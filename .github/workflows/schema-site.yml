@@ -114,10 +114,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Download OUTSIDE the repo tree, else the untracked parts/ collides with `git checkout schema-dump`.
       - name: Collect dump parts
         uses: actions/download-artifact@v4
         with:
-          path: parts
+          path: ${{ runner.temp }}/parts
           pattern: schema-*
           merge-multiple: true
 
@@ -133,14 +134,14 @@ jobs:
             git checkout --orphan schema-dump
             git rm -rfq . || true
           fi
-          rm -rf headers
+          rm -rf headers parts        # parts/ drops any stray copy committed by older runs
           mkdir -p headers
-          cp -r parts/headers/* headers/ 2>/dev/null || true
-          patch=$(cat parts/patchversion.txt 2>/dev/null || echo "?")
+          cp -r "$RUNNER_TEMP/parts/headers/"* headers/ 2>/dev/null || true
+          patch=$(cat "$RUNNER_TEMP/parts/patchversion.txt" 2>/dev/null || echo "?")
           manifest="${{ needs.check.outputs.version }}"
           printf 'CS2 schema dump\n\nPatchVersion: %s\nManifestID: %s\nOne .h per class, grouped by platform/module. Diff commits to see schema changes.\n' \
             "$patch" "$manifest" > README.md
-          git add -A headers README.md
+          git add -A
           git commit -m "CS2 PatchVersion $patch (manifest $manifest)" || { echo "no schema changes"; exit 0; }
           git push origin schema-dump
 
