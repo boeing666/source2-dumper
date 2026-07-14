@@ -173,8 +173,12 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 		}
 	}
 
+	const std::string patch = ReadPatchVersion();
 	WriteHeaders(modules, outDir / "headers" / PLATFORM_NAME);
-	WritePlatformPage(outDir, modules, known, ReadPatchVersion(), TodayUTC());
+	WritePlatformPage(outDir, modules, known, patch, TodayUTC());
+	if (!patch.empty()) {
+		std::ofstream(outDir / "patchversion.txt", std::ios::trunc) << patch;   // read by the CI commit step
+	}
 
 	int total = 0;
 	for (const Module& m : modules) {

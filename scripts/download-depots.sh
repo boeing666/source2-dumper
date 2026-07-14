@@ -79,4 +79,9 @@ if [ "$TARGET" = "windows" ] || [ "$TARGET" = "both" ]; then
 	"$DD" -app "$APP" -depot "$DEPOT_WINDOWS" -filelist "$(pick_filelist windows)" -dir "$GAME_DIR" -os windows "${auth[@]}"
 fi
 
+echo ">> steam.inf (PatchVersion)"
+mkdir -p "$GAME_DIR/game/csgo"
+curl -fsSL "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game/csgo/steam.inf" \
+	-o "$GAME_DIR/game/csgo/steam.inf" || echo "warning: steam.inf fetch failed (PatchVersion will be blank)"
+
 echo ">> Done."

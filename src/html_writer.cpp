@@ -70,6 +70,12 @@ static void CollectRefs(CSchemaClassInfo* c, const std::vector<const SchemaClass
 	}
 }
 
+// numeric table column: hex twin merged onto the column span itself (no inner wrapper -> fewer nodes)
+static std::string NumCol(const char* cls, long long v) {
+	const std::string hex = v < 0 ? std::format("-0x{:X}", -v) : std::format("0x{:X}", v);
+	return std::string("<span class=\"") + cls + " nv\" data-h=\"" + hex + "\">" + std::to_string(v) + "</span>";
+}
+
 // number rendered in dec, with its hex twin in data-h; the header "hex" toggle swaps them site-wide
 static std::string Num(long long v) {
 	const std::string hex = v < 0 ? std::format("-0x{:X}", -v) : std::format("0x{:X}", v);
@@ -149,19 +155,22 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 
 	std::string s;
 
-	// body as a table: declaration cell + right-pinned numbers column (offset hex/dec, size, align).
+	// body as a table: declaration cell + right-pinned numbers column (offset/size/align).
 	// table-cells keep the txt export sane: innerText renders cells as tabs, rows as newlines.
+	// plain (non-numeric) column cell: header labels and "-" placeholders
+	auto pcol = [](const char* cls, const std::string& t) {
+		return "<span class=\"" + std::string(cls) + "\">" + t + "</span>";
+	};
 	auto numCell = [](const std::string& off, const std::string& size, const std::string& al) {
 		// real spaces between spans keep the numbers separated in the txt export (innerText)
-		return "<span class=\"n\"><span class=\"c-off\">" + off + "</span> <span class=\"c-sz\">" + size
-		     + "</span> <span class=\"c-al\">" + al + "</span></span>";
+		return "<span class=\"n\">" + off + " " + size + " " + al + "</span>";
 	};
 	auto row = [&](const std::string& cls, const std::string& decl, const std::string& nums) {
 		s += "<span class=\"r" + cls + "\"><span class=\"d\">" + decl + "</span>" + nums + "</span>";
 	};
 
 	s += "<div class=\"bd\"><span class=\"btbl\">";
-	row(" hdr", "{", numCell("offset", "size", "align"));
+	row(" hdr", "{", numCell(pcol("c-off", "offset"), pcol("c-sz", "size"), pcol("c-al", "align")));
 	if (!isStruct) {
 		row("", "<span class=\"kw\">public</span>:", "<span class=\"n\"></span>");
 	}
@@ -170,7 +179,7 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 		if (to > from) {
 			row(" padline",
 			    std::format("    <span class=\"pad\">char _pad_{:04X}[", from) + Num(to - from) + "];</span>",
-			    numCell(Num(from), Num(to - from), ""));
+			    numCell(NumCol("c-off", from), NumCol("c-sz", to - from), pcol("c-al", "")));
 		}
 	};
 	for (const SchemaClassFieldData_t* f : fields) {
@@ -190,19 +199,19 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 			meta = " <span class=\"meta\">" + HtmlEscape(JoinTags(tags)) + "</span>";
 		}
 
-		// share-link button: copies a deep link (URL#Class::field) to this field
-		const std::string flink = " <a class=\"fl\" href=\"#" + mid + "\" onclick=\"cpField(this);return false\" title=\"copy link to field\">&sect;</a>";
+		// share-link button: copies a deep link (URL#Class::field); click handled by delegation
+		const std::string flink = " <a class=\"fl\" href=\"#" + mid + "\">&sect;</a>";
 
 		int bits;
 		if (FieldBits(f->m_pType, bits)) {
 			row("",
 			    "    <span class=\"ty\">" + std::string(BitUnderlying(bits)) + "</span> <span class=\"mb\" id=\"" + mid + "\">" + fn
 			      + "</span>: <span class=\"oh\">" + std::to_string(bits) + "</span>;" + meta + flink,
-			    numCell(Num(off), "-", "-"));
+			    numCell(NumCol("c-off", off), pcol("c-sz", "-"), pcol("c-al", "-")));
 		} else {
 			row("",
 			    "    <span class=\"ty\">" + LinkType(TypeName(f->m_pType), known) + "</span> <span class=\"mb\" id=\"" + mid + "\">" + fn + "</span>;" + meta + flink,
-			    numCell(Num(off), Num(size), align != 0xFF ? Num(align) : "-"));
+			    numCell(NumCol("c-off", off), NumCol("c-sz", size), align != 0xFF ? NumCol("c-al", align) : pcol("c-al", "-")));
 		}
 		cursor = std::max(cursor, off + size);
 	}
@@ -771,7 +780,9 @@ clearBtn.onclick=()=>{active.clear();apply();};
 
 document.addEventListener("click",e=>{
   const a=e.target.closest('a[href^="#"]');
-  if(!a||a.dataset.lib) return;
+  if(!a) return;
+  if(a.classList.contains("fl")){ e.preventDefault(); cpField(a); return; } // copy link, don't scroll
+  if(a.dataset.lib) return;
   const el=document.getElementById(a.getAttribute("href").slice(1));
   if(el && el.offsetParent===null){ active.clear(); apply(); }
 });
@@ -829,12 +840,17 @@ pb.onclick=()=>setPad(!document.body.classList.contains("showpad"));
 setPad(localStorage.getItem("showpad")==="1");
 
 const hb=document.getElementById("hex");
-function setHex(v){
-  hb.classList.toggle("on",v);localStorage.setItem("hexmode",v?"1":"0");
-  document.querySelectorAll(".nv").forEach(el=>{el.textContent=v?el.dataset.h:parseInt(el.dataset.h,16);});
+function applyHex(v){
+  // chunked so rewriting ~80k number cells never freezes the page (esp. on load)
+  const list=document.querySelectorAll(".nv");let i=0;
+  (function step(){
+    for(const end=Math.min(i+6000,list.length);i<end;i++){const el=list[i];el.textContent=v?el.dataset.h:parseInt(el.dataset.h,16);}
+    if(i<list.length)requestAnimationFrame(step);
+  })();
 }
+function setHex(v){hb.classList.toggle("on",v);localStorage.setItem("hexmode",v?"1":"0");applyHex(v);}
 hb.onclick=()=>setHex(!hb.classList.contains("on"));
-if(localStorage.getItem("hexmode")==="1")setHex(true);
+if(localStorage.getItem("hexmode")==="1"){hb.classList.add("on");applyHex(true);}
 
 // inheritance tree overlay (lazy: children render only when a node is expanded)
 const anchorOf=n=>n.replace(/[^A-Za-z0-9_.-]/g,"_");

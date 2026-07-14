@@ -136,10 +136,12 @@ jobs:
           rm -rf headers
           mkdir -p headers
           cp -r parts/headers/* headers/ 2>/dev/null || true
-          printf 'CS2 schema dump\n\nPatchVersion / manifest: %s\nOne .h per class, grouped by platform/module. Diff commits to see schema changes.\n' \
-            "${{ needs.check.outputs.version }}" > README.md
-          git add -A
-          git commit -m "CS2 ${{ needs.check.outputs.version }}" || { echo "no schema changes"; exit 0; }
+          patch=$(cat parts/patchversion.txt 2>/dev/null || echo "?")
+          manifest="${{ needs.check.outputs.version }}"
+          printf 'CS2 schema dump\n\nPatchVersion: %s\nManifestID: %s\nOne .h per class, grouped by platform/module. Diff commits to see schema changes.\n' \
+            "$patch" "$manifest" > README.md
+          git add -A headers README.md
+          git commit -m "CS2 PatchVersion $patch (manifest $manifest)" || { echo "no schema changes"; exit 0; }
           git push origin schema-dump
 
   publish:
@@ -179,14 +181,11 @@ jobs:
         id: deploy
         uses: actions/deploy-pages@v4
 
-      - name: Tag + release the build
+      # Lightweight tag only (no release) — marks this manifest as done so `check` skips it next run.
+      - name: Tag the build
         env:
           GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
         run: |
-          tag="cs2-${{ needs.check.outputs.version }}"
-          (cd site && zip -qr ../schema-site.zip .)
-          gh release create "$tag" schema-site.zip \
-            --target "${{ github.sha }}" \
-            --title "CS2 ${{ needs.check.outputs.version }}" \
-            --notes "Automated Source 2 schema dump for CS2 (manifest ${{ needs.check.outputs.version }}). Browse: ${{ steps.deploy.outputs.page_url }}"
+          gh api -X POST "repos/${{ github.repository }}/git/refs" \
+            -f ref="refs/tags/cs2-${{ needs.check.outputs.version }}" \
+            -f sha="${{ github.sha }}" || echo "tag already exists"

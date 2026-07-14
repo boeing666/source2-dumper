@@ -70,4 +70,14 @@ if ($Target -in @("both", "windows")) {
 	if ($LASTEXITCODE -ne 0) { throw "DepotDownloader (windows) exited $LASTEXITCODE" }
 }
 
+Write-Host ">> steam.inf (PatchVersion)"
+$infDir = Join-Path $gameDir "game\csgo"
+New-Item -ItemType Directory -Force -Path $infDir | Out-Null
+try {
+	Invoke-WebRequest -Uri "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game/csgo/steam.inf" `
+		-OutFile (Join-Path $infDir "steam.inf")
+} catch {
+	Write-Host "warning: steam.inf fetch failed (PatchVersion will be blank)"
+}
+
 Write-Host ">> Done."
