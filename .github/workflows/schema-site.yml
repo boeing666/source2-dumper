@@ -27,7 +27,7 @@ jobs:
       version: ${{ steps.v.outputs.version }}
       changed: ${{ steps.v.outputs.changed }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Resolve CS2 version
         id: v
@@ -56,7 +56,7 @@ jobs:
           - { os: ubuntu-latest,  target: linux,   platform: linux }
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Runtime deps (Linux)
         if: matrix.os == 'ubuntu-latest'
@@ -80,19 +80,12 @@ jobs:
         with:
           arch: x64
 
-      - name: Compiler cache
-        uses: mozilla-actions/sccache-action@v0.0.6
-
       - name: Build
         shell: bash
-        env:
-          SCCACHE_GHA_ENABLED: "true"
         run: |
           cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache \
             -DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded
           cmake --build build -j
-          sccache --show-stats || true
 
       - name: Dump schema
         shell: bash
@@ -117,7 +110,7 @@ jobs:
     if: needs.check.outputs.changed == '1'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
