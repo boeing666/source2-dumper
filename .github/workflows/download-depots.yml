@@ -1,0 +1,38 @@
+name: Download CS2 depots
+
+on:
+  workflow_dispatch:
+    inputs:
+      dd_version:
+        description: DepotDownloader release tag
+        default: DepotDownloader_3.4.0
+        required: false
+
+jobs:
+  download:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux
+          - os: windows-latest
+            target: windows
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download ${{ matrix.target }} depot
+        env:
+          DD_VERSION: ${{ github.event.inputs.dd_version }}
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        shell: bash
+        run: bash scripts/download-depots.sh ${{ matrix.target }}
+
+      - name: Upload ${{ matrix.target }} binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: cs2-${{ matrix.target }}
+          path: game/
+          if-no-files-found: error

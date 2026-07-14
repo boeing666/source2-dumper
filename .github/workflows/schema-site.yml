@@ -1,0 +1,199 @@
+name: Dump schema -> Pages
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # poll CS2 build every 30 min
+  workflow_dispatch:
+    inputs:
+      force:
+        description: rebuild even if the game build is unchanged
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # create tags / releases
+  pages: write
+  id-token: write
+
+concurrency:
+  group: schema
+  cancel-in-progress: false
+
+jobs:
+  # Poll the CS2 content-depot manifest GID; only continue when it differs from the last tag.
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      changed: ${{ steps.v.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve CS2 version
+        id: v
+        run: |
+          set -e
+          sudo apt-get update -qq
+          sudo apt-get install -y unzip
+          gid=$(bash scripts/game-version.sh)
+          echo "version=$gid" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"; echo "forced rebuild ($gid)"
+          elif git ls-remote --exit-code --tags origin "refs/tags/cs2-$gid" >/dev/null 2>&1; then
+            echo "changed=0" >> "$GITHUB_OUTPUT"; echo "up to date ($gid)"
+          else
+            echo "changed=1" >> "$GITHUB_OUTPUT"; echo "new version $gid"
+          fi
+
+  dump:
+    needs: check
+    if: needs.check.outputs.changed == '1'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: windows-latest, target: windows, platform: win64 }
+          - { os: ubuntu-latest,  target: linux,   platform: linux }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Runtime deps (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ninja-build libva2 libvdpau1 libx11-6 libdrm2
+
+      - name: Fetch SDKs
+        shell: bash
+        run: |
+          git clone --recursive --depth 1 https://github.com/Wend4r/sourcesdk       thirdparty/sourcesdk
+          git clone --recursive --depth 1 https://github.com/Wend4r/cpp-dynlibutils thirdparty/cpp-dynlibutils
+
+      - name: Download depot (${{ matrix.target }})
+        shell: bash
+        run: bash scripts/download-depots.sh ${{ matrix.target }}
+
+      - name: Setup MSVC (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Compiler cache
+        uses: mozilla-actions/sccache-action@v0.0.6
+
+      - name: Build
+        shell: bash
+        env:
+          SCCACHE_GHA_ENABLED: "true"
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache \
+            -DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded
+          cmake --build build -j
+          sccache --show-stats || true
+
+      - name: Dump schema
+        shell: bash
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            export LD_LIBRARY_PATH="$PWD/game/game/bin/linuxsteamrt64:$PWD/game/game/csgo/bin/linuxsteamrt64"
+            ./build/source2_dumper out
+          else
+            ./build/source2_dumper.exe out
+          fi
+
+      - name: Upload site part
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema-${{ matrix.platform }}
+          path: out
+          retention-days: 1
+
+  # Commit the per-class header dump to a dedicated branch so schema changes are diffable on GitHub.
+  commit-headers:
+    needs: [check, dump]
+    if: needs.check.outputs.changed == '1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect dump parts
+        uses: actions/download-artifact@v4
+        with:
+          path: parts
+          pattern: schema-*
+          merge-multiple: true
+
+      - name: Commit headers to schema-dump branch
+        run: |
+          set -e
+          git config user.name  "schema-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin schema-dump >/dev/null 2>&1; then
+            git fetch --depth 1 origin schema-dump
+            git checkout schema-dump
+          else
+            git checkout --orphan schema-dump
+            git rm -rfq . || true
+          fi
+          rm -rf headers
+          mkdir -p headers
+          cp -r parts/headers/* headers/ 2>/dev/null || true
+          printf 'CS2 schema dump\n\nPatchVersion / manifest: %s\nOne .h per class, grouped by platform/module. Diff commits to see schema changes.\n' \
+            "${{ needs.check.outputs.version }}" > README.md
+          git add -A
+          git commit -m "CS2 ${{ needs.check.outputs.version }}" || { echo "no schema changes"; exit 0; }
+          git push origin schema-dump
+
+  publish:
+    needs: [check, dump]
+    if: needs.check.outputs.changed == '1'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Collect site parts
+        uses: actions/download-artifact@v4
+        with:
+          path: site
+          pattern: schema-*
+          merge-multiple: true
+
+      - name: Write platforms manifest
+        run: |
+          shopt -s nullglob
+          json="["
+          for f in site/*.html; do
+            name=$(basename "$f" .html)
+            [ "$name" = "index" ] && continue
+            json="$json\"$name\","
+          done
+          json="${json%,}]"
+          echo "$json" > site/platforms.json
+          echo "platforms.json = $json"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Tag + release the build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          tag="cs2-${{ needs.check.outputs.version }}"
+          (cd site && zip -qr ../schema-site.zip .)
+          gh release create "$tag" schema-site.zip \
+            --target "${{ github.sha }}" \
+            --title "CS2 ${{ needs.check.outputs.version }}" \
+            --notes "Automated Source 2 schema dump for CS2 (manifest ${{ needs.check.outputs.version }}). Browse: ${{ steps.deploy.outputs.page_url }}"

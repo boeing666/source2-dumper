@@ -1,0 +1,16 @@
+build/
+build-linux/
+thirdparty/
+.vs/
+.idea/
+.cache/
+cmake-build-*/
+CMakeUserPresets.json
+
+# DepotDownloader tool + downloaded game binaries
+.tools/
+game/
+
+# Generated dump output (headers + site data)
+out/
+sdk/
