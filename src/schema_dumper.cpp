@@ -6,7 +6,6 @@
 
 #include <algorithm>
 #include <cstdio>
-#include <ctime>
 #include <format>
 #include <fstream>
 #include <string>
@@ -34,12 +33,12 @@ static std::string Decorate(std::string_view name) {
 	return std::format(MODULE_PREFIX "{}" MODULE_EXT, name);
 }
 
-// PatchVersion=1.40.1.2 -> "1.40.1.2" from game/<game>/steam.inf
-static std::string ReadPatchVersion() {
+// e.g. ReadInf("PatchVersion") / ReadInf("ServerVersion") from game/<game>/steam.inf
+static std::string ReadInf(std::string_view key) {
 	std::ifstream in(fs::path(GAME_ROOT) / SE_GAME_DIR / "steam.inf");
 	for (std::string line; std::getline(in, line);) {
-		if (line.rfind("PatchVersion=", 0) == 0) {
-			std::string v = line.substr(13);
+		if (line.rfind(key, 0) == 0 && line.size() > key.size() && line[key.size()] == '=') {
+			std::string v = line.substr(key.size() + 1);
 			while (!v.empty() && (v.back() == '\r' || v.back() == '\n' || v.back() == ' ')) {
 				v.pop_back();
 			}
@@ -47,13 +46,6 @@ static std::string ReadPatchVersion() {
 		}
 	}
 	return "";
-}
-
-static std::string TodayUTC() {
-	std::time_t t = std::time(nullptr);
-	char buf[32] = {};
-	std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M UTC", std::gmtime(&t));
-	return buf;
 }
 
 int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& outDir) {
@@ -125,6 +117,21 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 	}
 	addScope(sys->GlobalTypeScope());
 
+	auto prio = [](CSchemaSystemTypeScope* s) {
+		std::string_view n = s->m_szScopeName;
+		if (n.empty()) {
+			return 0; // global
+		}
+		if (n == "server.dll" || n == "libserver.so") {
+			return 1;
+		}
+		if (n == "client.dll" || n == "libclient.so") {
+			return 2;
+		}
+		return 3;
+	};
+	std::stable_sort(scopes.begin(), scopes.end(), [&](auto* a, auto* b) { return prio(a) < prio(b); });
+
 	std::vector<Module> modules;
 	std::unordered_set<std::string> known;
 	std::unordered_set<std::string> seen; // unique anchor id across classes + enums
@@ -173,9 +180,9 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 		}
 	}
 
-	const std::string patch = ReadPatchVersion();
+	const std::string patch = ReadInf("PatchVersion");
 	WriteHeaders(modules, outDir / "headers" / PLATFORM_NAME);
-	WritePlatformPage(outDir, modules, known, patch, TodayUTC());
+	WritePlatformPage(outDir, modules, known, patch, ReadInf("ServerVersion"));
 	if (!patch.empty()) {
 		std::ofstream(outDir / "patchversion.txt", std::ios::trunc) << patch;   // read by the CI commit step
 	}

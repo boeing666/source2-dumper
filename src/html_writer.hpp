@@ -14,6 +14,6 @@ void WritePlatformPage(const std::filesystem::path& outDir,
                        const std::vector<Module>& modules,
                        const std::unordered_set<std::string>& known,
                        const std::string& gameVersion,
-                       const std::string& dumpDate);
+                       const std::string& serverVersion);
 
 } // namespace schema

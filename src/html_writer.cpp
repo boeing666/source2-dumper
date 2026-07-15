@@ -15,6 +15,59 @@ namespace fs = std::filesystem;
 
 static constexpr int kMaxRefs = 40;
 
+// inline arrow icon (inherits color via currentColor), sized by CSS .ar
+static const char* const kArrow =
+    "<svg class=\"ar\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" "
+    "stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12h13M12 6l6 6-6 6\"/></svg>";
+
+// category color for a field type (drives the size/align bars + memory-map segments)
+static const char* TypeCat(std::string_view t) {
+	if (!t.empty() && t.back() == '*') {
+		return "var(--cptr)";
+	}
+	if (t.find('<') != std::string_view::npos) {
+		return "var(--ctmpl)";
+	}
+	for (const char* p : {"int", "uint", "float", "bool", "char", "double"}) {
+		if (t.rfind(p, 0) == 0) {
+			return "var(--cprim)";
+		}
+	}
+	return "var(--cagg)";
+}
+
+// sort metrics for the home index
+static int InheritDepth(CSchemaClassInfo* c) {
+	int d = 0;
+	for (CSchemaClassInfo* p = c; p && d < 64; ++d) {
+		p = (p->m_nBaseClassCount && p->m_pBaseClasses && p->m_pBaseClasses[0].m_pClass) ? p->m_pBaseClasses[0].m_pClass : nullptr;
+	}
+	return d;
+}
+static void DatamapCounts(CSchemaClassInfo* c, int& ni, int& no, int& nk) {
+	ni = no = nk = 0;
+	const datamap_t* dm = c->m_pDataMap;
+	if (!dm || dm->dataNumFields <= 0 || !dm->dataDesc) {
+		return;
+	}
+	constexpr int F_KEY = 1 << 2, F_INPUT = 1 << 3, F_OUTPUT = 1 << 4, F_PROC_KEY = 1 << 12;
+	for (int i = 0; i < dm->dataNumFields; ++i) {
+		const typedescription_t& td = dm->dataDesc[i];
+		const bool hasFn = td.fieldName && *td.fieldName;
+		const bool hasExt = td.externalName && *td.externalName;
+		if (!hasFn && !hasExt) {
+			continue;
+		}
+		if (td.flags & F_INPUT) {
+			++ni;
+		} else if (td.flags & F_OUTPUT) {
+			++no;
+		} else if (td.flags & (F_KEY | F_PROC_KEY) || hasExt) {
+			++nk;
+		}
+	}
+}
+
 static std::string LinkType(std::string_view type, const std::unordered_set<std::string>& known) {
 	std::string out;
 	for (size_t i = 0; i < type.size();) {
@@ -70,12 +123,6 @@ static void CollectRefs(CSchemaClassInfo* c, const std::vector<const SchemaClass
 	}
 }
 
-// numeric table column: hex twin merged onto the column span itself (no inner wrapper -> fewer nodes)
-static std::string NumCol(const char* cls, long long v) {
-	const std::string hex = v < 0 ? std::format("-0x{:X}", -v) : std::format("0x{:X}", v);
-	return std::string("<span class=\"") + cls + " nv\" data-h=\"" + hex + "\">" + std::to_string(v) + "</span>";
-}
-
 // number rendered in dec, with its hex twin in data-h; the header "hex" toggle swaps them site-wide
 static std::string Num(long long v) {
 	const std::string hex = v < 0 ? std::format("-0x{:X}", -v) : std::format("0x{:X}", v);
@@ -96,14 +143,17 @@ static std::string RefsHtml(const std::vector<std::string>& referencedBy) {
 		s += chip(referencedBy[i]);
 	}
 	if (n > kMaxRefs) {
-		// extras hidden until the toggle button is clicked (see tglMore() in the page script)
-		s += "<span class=\"xtra\" hidden>";
+		// the extras live in a data attribute (CSV) and become chips only when the button
+		// is clicked (tglMore) — keeps ~11k hidden DOM nodes out of the initial parse
+		std::string csv;
 		for (size_t i = kMaxRefs; i < n; ++i) {
-			s += chip(referencedBy[i]);
+			if (i > kMaxRefs) {
+				csv += ',';
+			}
+			csv += referencedBy[i];
 		}
-		s += "</span>";
-		s += std::format("<button class=\"chip more\" data-n=\"{}\" onclick=\"tglMore(this)\">+{} more</button>",
-		                 n - kMaxRefs, n - kMaxRefs);
+		s += std::format("<button class=\"chip more\" data-more=\"{}\" onclick=\"tglMore(this)\">+{} more</button>",
+		                 HtmlEscape(csv), n - kMaxRefs);
 	}
 	s += "</div></div>";
 	return s;
@@ -143,8 +193,11 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 			continue;
 		}
 		decl += (b == 0) ? " : " : ", ";
-		decl += "<span class=\"kw\">public</span> <a class=\"ty\" href=\"#" + SafeName(bc.m_pClass->m_pszName) + "\">"
-		      + HtmlEscape(bc.m_pClass->m_pszName) + "</a>";
+		// link only to !GlobalTypes (module-specific names may dedup to a different scope's twin)
+		const char* bn = bc.m_pClass->m_pszName;
+		decl += "<span class=\"kw\">public</span> ";
+		decl += known.count(bn) ? "<a class=\"ty\" href=\"#" + SafeName(bn) + "\">" + HtmlEscape(bn) + "</a>"
+		                        : "<span class=\"ty\">" + HtmlEscape(bn) + "</span>";
 		if (bc.m_nOffset) {
 			decl += "<span class=\"cm\">/*" + Num(bc.m_nOffset) + "*/</span>";
 		}
@@ -153,33 +206,21 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 		decl += " <span class=\"meta\">{" + HtmlEscape(JoinTags(m)) + "}</span>";
 	}
 
-	std::string s;
-
-	// body as a table: declaration cell + right-pinned numbers column (offset/size/align).
-	// table-cells keep the txt export sane: innerText renders cells as tabs, rows as newlines.
-	// plain (non-numeric) column cell: header labels and "-" placeholders
-	auto pcol = [](const char* cls, const std::string& t) {
-		return "<span class=\"" + std::string(cls) + "\">" + t + "</span>";
-	};
-	auto numCell = [](const std::string& off, const std::string& size, const std::string& al) {
-		// real spaces between spans keep the numbers separated in the txt export (innerText)
-		return "<span class=\"n\">" + off + " " + size + " " + al + "</span>";
-	};
-	auto row = [&](const std::string& cls, const std::string& decl, const std::string& nums) {
-		s += "<span class=\"r" + cls + "\"><span class=\"d\">" + decl + "</span>" + nums + "</span>";
-	};
-
-	s += "<div class=\"bd\"><span class=\"btbl\">";
-	row(" hdr", "{", numCell(pcol("c-off", "offset"), pcol("c-sz", "size"), pcol("c-al", "align")));
-	if (!isStruct) {
-		row("", "<span class=\"kw\">public</span>:", "<span class=\"n\"></span>");
-	}
+	// body = memory-map scale bar + centered sizeof/align + borderless table
+	// (offset · size[colored bar] · type · name · align[mini bar]); colors by type category.
+	auto barW = [](int sz) { return std::max(20, std::min(160, sz * 6)); };
+	std::string segs, rows;
 	int cursor = 0;
 	auto pad = [&](int from, int to) {
 		if (to > from) {
-			row(" padline",
-			    std::format("    <span class=\"pad\">char _pad_{:04X}[", from) + Num(to - from) + "];</span>",
-			    numCell(NumCol("c-off", from), NumCol("c-sz", to - from), pcol("c-al", "")));
+			const int sz = to - from;
+			segs += std::format("<span class=\"pseg\" title=\"padding &middot; {} B\" style=\"flex:{};background:var(--cpad)\"></span>", sz, sz);
+			rows += "<div class=\"tr padrow\"><span class=\"td c-off\">" + Num(from)
+			      + "</span><span class=\"td c-size\"><span class=\"bar\" style=\"min-width:" + std::to_string(barW(sz))
+			      + "px;background:var(--cpad)\">" + Num(sz) + "</span></span>"
+			      + "<span class=\"td c-type\"><span class=\"ty\">char</span></span>"
+			      + "<span class=\"td c-name padc\">_pad[" + Num(sz) + "]</span>"
+			      + "<span class=\"td c-align\">" + Num(1) + "</span></div>";
 		}
 	};
 	for (const SchemaClassFieldData_t* f : fields) {
@@ -192,36 +233,58 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 		}
 		pad(cursor, off);
 
+		const char* rawType = TypeName(f->m_pType);
+		const char* cc = TypeCat(rawType);
 		const std::string fn = HtmlEscape(f->m_pszName ? f->m_pszName : "field");
 		const std::string mid = SafeName(std::string(name) + "::" + (f->m_pszName ? f->m_pszName : "field"));
 		std::string meta;
 		if (auto tags = MetaTags(f->m_nStaticMetadataCount, f->m_pStaticMetadata); !tags.empty()) {
 			meta = " <span class=\"meta\">" + HtmlEscape(JoinTags(tags)) + "</span>";
 		}
-
-		// share-link button: copies a deep link (URL#Class::field); click handled by delegation
-		const std::string flink = " <a class=\"fl\" href=\"#" + mid + "\">&sect;</a>";
+		const std::string flink = "<a class=\"fl\" href=\"#" + SafeName(name) + "/" + mid + "\" title=\"copy link to field\">&sect;</a>";
 
 		int bits;
+		std::string typeCell, alignCell;
 		if (FieldBits(f->m_pType, bits)) {
-			row("",
-			    "    <span class=\"ty\">" + std::string(BitUnderlying(bits)) + "</span> <span class=\"mb\" id=\"" + mid + "\">" + fn
-			      + "</span>: <span class=\"oh\">" + std::to_string(bits) + "</span>;" + meta + flink,
-			    numCell(NumCol("c-off", off), pcol("c-sz", "-"), pcol("c-al", "-")));
+			typeCell = "<span class=\"ty\">" + std::string(BitUnderlying(bits)) + "</span>";
+			meta = " <span class=\"cm\">: " + std::to_string(bits) + "</span>" + meta;
+			alignCell = "<span class=\"c-align-n\">-</span>";
 		} else {
-			row("",
-			    "    <span class=\"ty\">" + LinkType(TypeName(f->m_pType), known) + "</span> <span class=\"mb\" id=\"" + mid + "\">" + fn + "</span>;" + meta + flink,
-			    numCell(NumCol("c-off", off), NumCol("c-sz", size), align != 0xFF ? NumCol("c-al", align) : pcol("c-al", "-")));
+			typeCell = LinkType(rawType, known);
+			if (align != 0xFF) {
+				alignCell = std::format("<span class=\"abar\" style=\"width:{}px;background:{}\"></span>", std::min(32, align * 3), cc)
+				          + "<span class=\"c-align-n\">" + Num(align) + "</span>";
+			} else {
+				alignCell = "<span class=\"c-align-n\">-</span>";
+			}
 		}
+		segs += std::format("<span data-i=\"{}\" title=\"{} &middot; {} B\" style=\"flex:{};background:{};opacity:.9\"></span>",
+		                    off, fn, size, size, cc);
+		rows += "<div class=\"tr\"><span class=\"td c-off\">" + Num(off)
+		      + "</span><span class=\"td c-size\"><span class=\"bar\" style=\"min-width:" + std::to_string(barW(size))
+		      + "px;background:" + cc + "\">" + Num(size) + "</span></span>"
+		      + "<span class=\"td c-type\">" + typeCell + "</span>"
+		      + "<span class=\"td c-name\"><span class=\"mb\" id=\"" + mid + "\">" + fn + "</span>" + meta + " " + flink + "</span>"
+		      + "<span class=\"td c-align\">" + alignCell + "</span></div>";
 		cursor = std::max(cursor, off + size);
 	}
 	pad(cursor, c->m_nSize);
-	s += "</span>};</div>";
 
-	// refs / inheritance / datamap live in a side panel next to the code body
-	std::string side = RefsHtml(referencedBy);
+	std::string s = "<div class=\"cbody\"><div class=\"map\">" + segs + "</div>";
+	s += "<div class=\"capc\">sizeof <b>" + Num(c->m_nSize) + "</b>";
+	if (c->m_nAlignment != 0xFF) {
+		s += " &middot; align <b>" + Num(c->m_nAlignment) + "</b>";
+	}
+	s += "</div>";
+	s += "<div class=\"tbl\"><div class=\"tr thr\"><span class=\"th\">offset</span><span class=\"th\">size</span>"
+	     "<span class=\"th\">type</span><span class=\"th c-name\">name</span><span class=\"th\">align</span></div>"
+	     + rows + "</div></div>";
 
-	// inheritance chain: root -> ... -> this
+	// side panel is built below (datamap first, referenced-by appended last)
+	std::string side;
+
+	// top bar: back button + inheritance chain, this class first -> ... -> root parent last
+	std::string topRow = "<div class=\"dtop\"><a class=\"back\" href=\"#\" title=\"back to index\">&larr;</a>";
 	std::vector<CSchemaClassInfo*> chain;
 	for (CSchemaClassInfo* p = c; p && chain.size() < 64;) {
 		chain.push_back(p);
@@ -229,21 +292,23 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 		    ? p->m_pBaseClasses[0].m_pClass : nullptr;
 	}
 	if (chain.size() > 1) {
-		side += "<div class=\"chain\"><div class=\"sec-h\">inheritance <span class=\"cnt\">"
-		      + std::to_string(chain.size()) + "</span></div><div class=\"chain-row\">";
-		for (size_t i = chain.size(); i-- > 0;) {
-			if (i + 1 != chain.size()) {
-				side += "<span class=\"arr\">&rarr;</span>";
+		topRow += "<span class=\"chain-row\">";
+		for (size_t i = 0; i < chain.size(); ++i) {
+			if (i) {
+				topRow += "<span class=\"arr\">" + std::string(kArrow) + "</span>";
 			}
 			CSchemaClassInfo* p = chain[i];
 			if (p == c) {
-				side += "<span class=\"chip cur\">" + HtmlEscape(p->m_pszName) + "</span>";
+				topRow += "<span class=\"chip cur\">" + HtmlEscape(p->m_pszName) + "</span>";
+			} else if (known.count(p->m_pszName)) {
+				topRow += "<a class=\"chip\" href=\"#" + SafeName(p->m_pszName) + "\">" + HtmlEscape(p->m_pszName) + "</a>";
 			} else {
-				side += "<a class=\"chip\" href=\"#" + SafeName(p->m_pszName) + "\">" + HtmlEscape(p->m_pszName) + "</a>";
+				topRow += "<span class=\"chip\">" + HtmlEscape(p->m_pszName) + "</span>";
 			}
 		}
-		side += "</div></div>";
+		topRow += "</span>";
 	}
+	topRow += "</div>";
 
 	// legacy datamap, split by kind: inputs / outputs / keyfields / plain data fields
 	if (c->m_pDataMap && c->m_pDataMap->dataNumFields > 0 && c->m_pDataMap->dataDesc) {
@@ -297,7 +362,7 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 		auto drow = [&](const std::string& key, const std::string& target, int type) {
 			std::string r = "<span class=\"k\">" + key + "</span>";
 			r += target.empty() ? "<span></span><span></span>"
-			                     : "<span class=\"arr\">&rarr;</span><span class=\"tgt\">" + target + "</span>";
+			                     : "<span class=\"arr\">" + std::string(kArrow) + "</span><span class=\"tgt\">" + target + "</span>";
 			r += "<span class=\"t\">" + std::string(FieldTypeName(type)) + "</span>";
 			++rowCount;
 			return r;
@@ -339,25 +404,24 @@ static std::string ClassHtml(CSchemaClassInfo* c, const std::vector<const Schema
 
 		if (rowCount > 0) {
 			side += std::format("<div class=\"dm\"><div class=\"sec-h\">datamap <span class=\"cnt\">{}</span></div>", rowCount);
-			auto sub = [&](const char* title, const std::string& body) {
-				if (!body.empty()) {
-					side += std::string("<div class=\"dsub\">") + title + "</div><div class=\"dmg\">" + body + "</div>";
-				}
+			auto col = [](const char* title, const std::string& body) {
+				return body.empty() ? std::string()
+				     : std::string("<div class=\"dsub\">") + title + "</div><div class=\"dmg\">" + body + "</div>";
 			};
-			sub("inputs", inputs);
-			sub("outputs", outputs);
-			sub("keyfields", keys);
-			sub("fields", data);
+			// inputs + outputs share one row (50/50); keyfields + fields full width below
+			if (!inputs.empty() || !outputs.empty()) {
+				side += "<div class=\"dm2\"><div>" + col("inputs", inputs) + "</div><div>" + col("outputs", outputs) + "</div></div>";
+			}
+			side += col("keyfields", keys) + col("fields", data);
 			side += "</div>";
 		}
 	}
+	side += RefsHtml(referencedBy);   // referenced-by goes last, at the very bottom
 
-	std::string out = "<div class=\"cls\" id=\"" + SafeName(name) + "\" data-k=\"" + (isStruct ? "struct" : "class") + "\">";
-	if (!side.empty()) {
-		out += "<div class=\"sig\">" + badgesL + decl + "</div><div class=\"sig sigb\">" + badgesR + "</div>";
-	} else {
-		out += "<div class=\"sig\">" + badgesL + badgesR + decl + "</div>";
-	}
+	// single column: signature, code body, then the side panel (refs + datamap) stacked below
+	std::string out = topRow + "<div class=\"cls\" id=\"" + SafeName(name)
+	                + "\" data-k=\"" + (isStruct ? "struct" : "class") + "\">";
+	out += "<div class=\"sig\">" + badgesL + badgesR + decl + "</div>";
 	out += s; // field table
 	if (!side.empty()) {
 		out += "<div class=\"side\">" + side + "</div>";
@@ -377,12 +441,9 @@ static std::string EnumHtml(CSchemaEnumInfo* e, const std::vector<std::string>& 
 	                       + "</span> : <span class=\"ty\">" + EnumUnderlying(e->m_nSize) + "</span>";
 	const std::string refs = RefsHtml(referencedBy);
 
-	std::string s = "<div class=\"cls\" id=\"" + SafeName(name) + "\" data-k=\"enum\">";
-	if (!refs.empty()) {
-		s += "<div class=\"sig\">" + badgesL + decl + "</div><div class=\"sig sigb\">" + badgesR + "</div>";
-	} else {
-		s += "<div class=\"sig\">" + badgesL + badgesR + decl + "</div>";
-	}
+	std::string s = "<div class=\"dtop\"><a class=\"back\" href=\"#\" title=\"back to index\">&larr;</a></div>"
+	              + std::string("<div class=\"cls\" id=\"") + SafeName(name) + "\" data-k=\"enum\">";
+	s += "<div class=\"sig\">" + badgesL + badgesR + decl + "</div>";
 	s += "<pre class=\"bd\">{\n";
 	for (uint16 i = 0; i < e->m_nEnumeratorCount && e->m_pEnumerators; ++i) {
 		const auto& en = e->m_pEnumerators[i];
@@ -400,7 +461,7 @@ static std::string EnumHtml(CSchemaEnumInfo* e, const std::vector<std::string>& 
 
 void WritePlatformPage(const fs::path& outDir, const std::vector<Module>& modules,
                        const std::unordered_set<std::string>& known,
-                       const std::string& gameVersion, const std::string& dumpDate) {
+                       const std::string& gameVersion, const std::string& serverVersion) {
 	fs::create_directories(outDir);
 
 	// refs[A] = classes that reference A
@@ -434,113 +495,125 @@ void WritePlatformPage(const fs::path& outDir, const std::vector<Module>& module
   :root{--bg:#17181d;--panel:#1e2026;--panel2:#24262e;--border:#2c2f38;--fg:#d7dae2;--mut:#8b91a0;--acc:#4ec9b0;
         --kw:#569cd6;--ty:#4ec9b0;--mb:#9cdcfe;--cm:#6a9955;--pad:#565b66;--num:#b5cea8;--emb:#c586c0;--meta:#ce9178;--fl:#dcdcaa;--enm:#e5c07b;--flash:#2d3a2d;
         --zeb:#22242b;--hov:#2a3a37;
+        --cptr:#e5c07b;--ctmpl:#c586c0;--cprim:#569cd6;--cagg:#4ec9b0;--cpad:#7e8593;
         --mono:ui-monospace,'Cascadia Code',Consolas,'JetBrains Mono',monospace;--shadow:0 1px 3px rgba(0,0,0,.25)}
   @media(prefers-color-scheme:light){:root{--bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;--acc:#0e7569;
         --kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--cm:#1a7f37;--pad:#a5aab4;--num:#0550ae;--emb:#8250df;--meta:#a31515;--fl:#7d6520;--enm:#b45309;--flash:#fff8c5;
         --zeb:#f4f5f8;--hov:#e2efe9;
+        --cptr:#b45309;--ctmpl:#8250df;--cprim:#0550ae;--cagg:#0e7569;--cpad:#aab0bb;
         --shadow:0 1px 3px rgba(31,35,40,.08)}}
   *{box-sizing:border-box}
-  body{margin:0;font:15px/1.55 -apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+  body{margin:0;font:16px/1.6 -apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--fg)}
   ::-webkit-scrollbar{width:10px;height:10px}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px;border:2px solid var(--bg)}
   ::-webkit-scrollbar-thumb:hover{background:var(--mut)}
-  header{position:sticky;top:0;z-index:6;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);
-         border-bottom:1px solid var(--border);padding:10px 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-  header h1{font-size:15px;margin:0;font-weight:650;letter-spacing:.2px}
-  header h1::before{content:"{;}";color:var(--acc);font-family:var(--mono);margin-right:8px;font-weight:700}
-  .ver{color:var(--mut);font-size:12px;font-family:var(--mono);white-space:nowrap}
-  /* inheritance tree overlay */
-  #tree{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding:6vh 16px}
-  #tree[hidden]{display:none}
-  .tree-box{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.4);width:min(720px,100%);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
-  .tree-h{display:flex;gap:10px;padding:12px;border-bottom:1px solid var(--border)}
-  .tree-h input{flex:1;padding:8px 11px;background:var(--panel2);border:0;border-radius:7px;color:var(--fg);font-size:13px}
-  .tree-h input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--acc)}
-  .tree-h button{padding:8px 14px;background:var(--panel2);border:0;border-radius:7px;color:var(--fg);cursor:pointer;font-size:13px;font-weight:600}
-  .tree-h button:hover{background:var(--acc);color:#fff}
-  #treeBody,#treeFlat{overflow:auto;padding:10px 14px;font-family:var(--mono);font-size:13px}
-  .tn-h{display:flex;align-items:center;gap:6px;padding:2px 0;border-radius:5px}
-  .tn-h:hover{background:var(--panel2)}
-  .tn-t{width:1.1em;flex:none;color:var(--mut);cursor:pointer;user-select:none;text-align:center}
-  .tn-n{color:var(--ty);text-decoration:none}
-  .tn-n:hover{color:var(--acc);text-decoration:underline}
-  .tn-c{color:var(--mut);font-size:11px}
-  .tn-k{margin-left:14px;border-left:1px solid var(--border);padding-left:8px}
-  .tn:not(.open)>.tn-k{display:none}
-  #treeFlat .flat{display:block;padding:3px 4px}
-  header button{padding:6px 12px;background:color-mix(in srgb,var(--acc) 14%,transparent);border:0;border-radius:7px;color:var(--acc);cursor:pointer;font-size:13px;font-weight:600;transition:background .1s,color .1s}
-  header button:hover{background:var(--acc);color:#fff}
-  .seg{display:flex;gap:8px}
-  .tgl{display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 8px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;color:var(--mut);cursor:pointer;font-size:12.5px;font-weight:600;transition:color .1s,border-color .1s}
+  /* top bar */
+  .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:9px 16px;background:var(--panel);border-bottom:1px solid var(--border)}
+  .brand{font-size:15px;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+  .brand::before{content:"{;}";color:var(--acc);font-family:var(--mono);margin-right:8px;font-weight:700}
+  .sp{flex:1}
+  .ver{color:var(--fg);font-weight:600;font-size:12.5px;font-family:var(--mono);white-space:nowrap}
+  #menu{display:none}
+  .top button{background:var(--panel2);border:1px solid var(--border);border-radius:7px;color:var(--mut);cursor:pointer;padding:6px 10px;font-size:15px;line-height:1}
+  .top button:hover{color:var(--acc);border-color:var(--acc)}
+  #tabs a{color:var(--mut);text-decoration:none;padding:5px 12px;background:var(--panel2);border-radius:7px;margin-left:6px;font-size:13px}
+  #tabs a:hover{color:var(--fg)}
+  #tabs a.cur{background:var(--acc);color:#fff}
+  .gwrap{position:relative}
+  #opts{position:absolute;top:calc(100% + 8px);right:0;z-index:21;background:var(--panel);border:1px solid var(--border);border-radius:9px;box-shadow:0 14px 44px rgba(0,0,0,.45);padding:10px;display:flex;flex-direction:column;gap:8px;min-width:150px}
+  #opts[hidden]{display:none}
+  .opt-m{color:var(--mut);font-size:12px;border-top:1px solid var(--border);padding-top:8px}
+  /* app: sidebar + content */
+  .app{display:flex;align-items:flex-start}
+  .sidebar{position:sticky;top:51px;align-self:flex-start;max-height:calc(100vh - 51px);width:270px;flex:none;background:var(--panel);
+           border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:visible}
+  #qwrap{position:relative;padding:12px;border-bottom:1px solid var(--border)}
+  .qhint{color:var(--mut);font:11px/1.4 var(--mono);margin:0 0 7px}
+  .qhint b{color:var(--fg);font-weight:600}
+  #q{width:100%;padding:9px 12px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;color:var(--fg);font-size:14.5px}
+  #q::placeholder{color:var(--mut)}
+  #q:focus{outline:none;border-color:var(--acc)}
+  #sugg{position:absolute;top:calc(100% - 2px);left:12px;width:min(560px,70vw);z-index:30;max-height:70vh;overflow:auto;
+        background:var(--panel);border:1px solid var(--border);border-radius:9px;box-shadow:0 14px 44px rgba(0,0,0,.45)}
+  #sugg[hidden]{display:none}
+  .s-it{display:flex;align-items:center;gap:9px;padding:7px 12px;text-decoration:none;color:var(--fg);font-family:var(--mono);font-size:13px}
+  .s-it:hover,.s-it.sel{background:var(--panel2)}
+  .s-n{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .s-f{color:var(--mut)}
+  .s-m{color:var(--mut);font-size:11px;white-space:nowrap}
+  .sortwrap{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border)}
+  .sortl{color:var(--mut);font:600 11px/1 -apple-system,'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.6px}
+  #sort{flex:1;padding:6px 8px;background:var(--panel2);border:1px solid var(--border);border-radius:7px;color:var(--fg);font-size:13px;cursor:pointer}
+  #sort:focus{outline:none;border-color:var(--acc)}
+  .it .mv{margin-left:auto;color:var(--num);font-size:12px;padding-left:8px}
+  .secs{flex:1;overflow:auto;padding-bottom:10px}
+  .sec{padding:6px 0}
+  .sec-t{padding:8px 14px 6px;color:var(--mut);font:600 11px/1 -apple-system,'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.6px}
+  .frow{display:flex;align-items:center;gap:9px;padding:5px 14px;font:13.5px/1.25 var(--mono);color:var(--fg);cursor:pointer}
+  .frow:hover{background:var(--hov)}
+  .frow.on{background:color-mix(in srgb,var(--acc) 15%,transparent)}
+  .frow .ct{margin-left:auto;color:var(--mut);font-size:11px}
+  .frow .ck{width:14px;height:14px;border:1px solid var(--mut);border-radius:3px;flex:none}
+  .frow.on .ck{background:var(--acc);border-color:var(--acc)}
+  #scrim{display:none}
+  /* home = every type grouped by module, columns, filterable */
+  .grp{margin-bottom:22px}
+  .grp-h{display:flex;align-items:center;gap:8px;color:var(--mut);font:600 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.6px;margin:0 0 10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+  .grp-h .c{color:var(--fg);font-weight:700}
+  .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+  @media(max-width:1100px){.cols{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:820px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .it{display:flex;align-items:center;gap:9px;padding:3px 14px;font:14.5px/1.7 var(--mono);color:var(--fg);text-decoration:none;border-right:1px solid var(--bd)}
+  .it:hover{background:var(--hov);color:var(--acc)}
+  .kb{width:18px;height:18px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font:700 10.5px/1 var(--mono);color:var(--bg);flex:none}
+  .kb-class{background:var(--ty)} .kb-struct{background:var(--enm)} .kb-enum{background:var(--emb)}
+  .it .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* detail top bar: back button + inheritance row */
+  .dtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+  .back{flex:none;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;color:var(--fg);text-decoration:none;font-size:16px}
+  .back:hover{color:var(--acc);border-color:var(--acc)}
+  .dtop .chain-row{margin:0}
+  .loading{color:var(--mut);padding:24px 2px}
+  /* toggles live in the gear popover */
+  .tgl{display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 8px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;color:var(--mut);cursor:pointer;font-size:13px;font-weight:600;transition:color .1s,border-color .1s}
   .tgl .sw{position:relative;width:26px;height:15px;border-radius:8px;background:var(--border);flex:none;transition:background .12s}
   .tgl .sw::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:var(--bg);transition:left .12s}
   .tgl.on{color:var(--fg);border-color:var(--acc)}
   .tgl.on .sw{background:var(--acc)}
   .tgl.on .sw::after{left:13px}
   .tgl:hover{color:var(--fg);border-color:var(--mut)}
-  .tgl:hover .sw{background:var(--mut)}
-  .tgl.on:hover{border-color:var(--acc)}
-  .tgl.on:hover .sw{background:var(--acc)}
-  #tabs a{color:var(--mut);text-decoration:none;padding:5px 12px;background:var(--panel2);border-radius:7px;margin-right:6px;font-size:13px}
-  #tabs a:hover{color:var(--fg)}
-  #tabs a.cur{background:var(--acc);color:#fff}
-  .hint{color:var(--mut);font-size:13px;margin-left:auto}
-  .wrap{display:flex;align-items:flex-start}
-  #toc{position:sticky;top:52px;align-self:flex-start;width:256px;max-height:calc(100vh - 52px);overflow:auto;padding:12px;border-right:1px solid var(--border);font-size:13px}
-  #toc input{width:100%;padding:8px 11px;margin-bottom:8px;background:var(--panel2);border:0;border-radius:7px;color:var(--fg);font-size:13px}
-  #toc input::placeholder{color:var(--mut)}
-  #toc input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--acc)}
-  #toc .lib{margin-bottom:2px}
-  #toc a{display:flex;justify-content:space-between;gap:8px;color:var(--fg);text-decoration:none;padding:4px 8px;border-radius:6px;font-family:var(--mono);font-size:12.5px}
-  #toc a:hover{background:var(--panel2)}
-  #toc a span{color:var(--mut)}
-  #toc a.active{background:var(--acc);color:#fff}
-  #toc a.active span{color:#fff}
-  #toc a.lib-h{font-weight:600}
-  #toc a.sub{position:relative;margin-left:14px;padding-left:20px;font-size:12px;color:var(--mut)}
-  #toc a.sub::before{content:"\2514";position:absolute;left:6px;color:var(--border);font-size:11px}
-  #toc a.sub:hover{color:var(--fg)}
-  #toc a.sub.active{color:#fff}
-  #toc a.sub.active::before{color:#fff}
-  #toc .clear{display:none;width:100%;margin-bottom:8px;padding:7px 11px;background:color-mix(in srgb,var(--acc) 14%,transparent);border:0;border-radius:7px;color:var(--acc);cursor:pointer;font-size:13px;font-weight:600;transition:background .1s,color .1s}
-  #toc .clear:hover{background:var(--acc);color:#fff}
-  #toc .clear.on{display:block}
-  main{flex:1;min-width:0;padding:0 20px 60vh}
-  h2{position:sticky;top:52px;z-index:4;font:650 16px/1.4 var(--mono);margin:26px 0 12px;padding:10px 2px 8px;
-     background:var(--bg);border-bottom:1px solid var(--border)}
-  h2 span{color:var(--mut);font-weight:400;font-size:12.5px;margin-left:8px}
-  /* content-visibility: skip layout/paint of off-screen cards (huge speedup on 4000+ cards; Ctrl-F still works) */
-  .cls{background:var(--panel);border:1px solid var(--border);border-radius:10px;margin:0 0 16px;overflow:clip;scroll-margin-top:96px;box-shadow:var(--shadow);content-visibility:auto;contain-intrinsic-size:auto 360px}
-  .cls:target{outline:2px solid var(--acc)}
-  .sig,.bd,.side{font-family:var(--mono);font-size:13.5px}
+  main{flex:1;min-width:0;padding:18px}
+  .site-foot{color:var(--mut);font-size:12px;line-height:1.6;padding:18px 2px 0;margin-top:22px;border-top:1px solid var(--border)}
+  .site-foot a{color:var(--acc);text-decoration:none}
+  .site-foot a:hover{text-decoration:underline}
+  #home{background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);padding:16px}
+  #detail{padding-bottom:32px}
+  .cls{background:var(--panel);border:1px solid var(--border);border-radius:10px;margin:0 0 16px;overflow:clip;box-shadow:var(--shadow)}
+  .sig,.bd,.side{font-family:var(--mono);font-size:14.5px}
   .sig{padding:10px 16px;border-bottom:1px solid var(--border);background:var(--panel2);line-height:1.7}
   .sig .cn{font-weight:650}
-  /* sticky class signature: stays under the sticky library header (h2 ~41px tall @ top:52) */
-  .sig:not(.sigb){position:sticky;top:93px;z-index:3}
+  /* sticky class signature: stays under the sticky header + search bar */
   .bd{white-space:pre;overflow-x:auto;padding:12px 16px;margin:0;line-height:1.6;tab-size:4}
-  /* field table: declaration cell + numbers pinned right (survive horizontal scroll of long types) */
-  .btbl{display:table;min-width:100%}
-  .bd .r{display:table-row}
-  .bd .r>.d{display:table-cell;white-space:pre;padding-right:24px}
-  .bd .r>.n{display:table-cell;white-space:nowrap;text-align:right;position:sticky;right:0;background:var(--panel);font-size:12.5px}
-  .bd .r:nth-child(even)>.d{background:var(--zeb)}
-  .bd .r:nth-child(even)>.n{background:var(--zeb)}
-  .bd .r:hover>.d,.bd .r:hover>.n{background:var(--hov)}
-  .c-off,.c-sz,.c-al{display:inline-block;text-align:right}
-  .c-off{min-width:7ch;color:var(--num)}
-  .c-sz{min-width:6ch;color:var(--cm)}
-  .c-al{min-width:6ch;color:var(--mut)}
-  .bd .r.hdr .n span{color:var(--mut);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px}
+  /* class body: memory-map scale + borderless table (offset·size·type·name·align) */
+  .cbody{padding:14px 16px;font:14px/1.75 var(--mono);overflow-x:auto}
+  .cbody .map{display:flex;height:18px;border-radius:5px;overflow:hidden;min-width:220px}
+  .cbody .map span{transition:opacity .1s}
+  .cbody .capc{text-align:center;color:var(--mut);font-size:12.5px;margin:9px 0 14px}
+  .cbody .capc b{color:var(--num);font-weight:700}
+  .tbl{display:table;width:100%}
+  .tr{display:table-row}
+  .tr:hover .td{background:var(--hov)}
+  .tr.hl .td{background:var(--hov)}
+  .th,.td{display:table-cell;padding:2px 18px 2px 0;vertical-align:middle;white-space:nowrap}
+  .th{color:var(--mut);font:600 11px/1 -apple-system,'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.5px;padding-bottom:8px}
+  .td.c-off{color:var(--fg)}
+  .td.c-name{width:100%}
+  .td.c-align{color:var(--fg)}
+  .bar{display:inline-flex;align-items:center;justify-content:flex-start;height:16px;border-radius:3px;color:#08130f;font:700 10px/1 var(--mono);min-width:20px;padding:0 6px;white-space:nowrap}
+  .abar{display:inline-block;height:8px;border-radius:2px;vertical-align:middle;margin-right:7px}
+  body:not(.showpad) .padrow,body:not(.showpad) .pseg{display:none}
   /* side panel: refs / inheritance / datamap right of the code on wide screens */
-  @media(min-width:1240px){
-    .cls:has(> .side){display:grid;grid-template-columns:minmax(0,1fr) clamp(340px,32%,480px)}
-    .cls:has(> .side) .sig{grid-column:1;grid-row:1}
-    .cls:has(> .side) .sigb{grid-column:2;grid-row:1;border-left:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;position:sticky;top:93px;z-index:3}
-    .cls:has(> .side) .sigb .tag{float:none;margin-left:0}
-    .cls:has(> .side) .bd{grid-column:1;grid-row:2}
-    .cls:has(> .side) .side{grid-column:2;grid-row:2;border-left:1px solid var(--border)}
-    .cls:has(> .side) .side>:first-child{border-top:0}
-  }
   .side{display:flex;flex-direction:column;min-width:0}
   .refs,.chain,.dm{padding:12px 16px;border-top:1px solid var(--border)}
   .sec-h{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:.7px;margin-bottom:9px}
@@ -548,7 +621,7 @@ void WritePlatformPage(const fs::path& outDir, const std::vector<Module>& module
   .chips{display:flex;flex-wrap:wrap;gap:6px}
   .chips .xtra{display:contents}
   .chips .xtra[hidden]{display:none}
-  .chip{font-family:var(--mono);font-size:12.5px;font-weight:inherit;text-decoration:none;color:var(--ty);background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:3px 10px;transition:border-color .1s,color .1s}
+  .chip{font-family:var(--mono);font-size:13.5px;font-weight:inherit;text-decoration:none;color:var(--ty);background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:3px 10px;transition:border-color .1s,color .1s}
   .chip:hover{border-color:var(--acc);color:var(--acc)}
   .chip.more{color:var(--mut);background:transparent;border-style:dashed;cursor:pointer}
   .chip.more:hover{color:var(--acc);border-color:var(--acc)}
@@ -556,22 +629,26 @@ void WritePlatformPage(const fs::path& outDir, const std::vector<Module>& module
   .chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
   .chain-row .arr{color:var(--mut);font-size:12px}
   .dm{overflow-x:auto}
+  .dm2{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+  @media(max-width:720px){.dm2{grid-template-columns:1fr}}
   .dmg .k,.dmg .tgt,.dmg .fn{white-space:nowrap}
-  .dm .dsub{color:var(--mut);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;margin:10px 0 4px}
+  .dm .dsub{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.6px;margin:12px 0 5px}
+  .ar{width:13px;height:13px;vertical-align:-2px}
   .dm .dsub:first-of-type{margin-top:2px}
-  .dmg{display:grid;grid-template-columns:auto auto 1fr auto;gap:2px 10px;align-items:baseline;font-family:var(--mono);font-size:12.5px}
+  .dmg{display:grid;grid-template-columns:auto auto 1fr auto;gap:3px 10px;align-items:center;font-family:var(--mono);font-size:14.5px}
   .dmg .k{color:var(--mb)}
   .dmg .arr{color:var(--mut)}
   .dmg .fn{color:var(--fl)}
   .dmg .t{color:var(--mut);font-size:11px;text-align:right;white-space:nowrap}
   .dmg .mlink{color:var(--ty);text-decoration:none}
   .dmg .mlink:hover{color:var(--acc);text-decoration:underline}
-  .bd a.fl{opacity:.22;margin-left:8px;color:var(--mut);text-decoration:none;font-weight:700;transition:opacity .1s,color .1s;user-select:none}
-  .bd .r:hover a.fl{opacity:.6}
-  .bd a.fl:hover{opacity:1;color:var(--acc)}
-  .bd a.fl.ok{opacity:1;color:var(--acc)}
-  .bd .mb[id]{scroll-margin-top:140px}
-  .bd .mb:target{background:var(--flash);outline:1px solid var(--acc);border-radius:3px}
+  /* visible per-field share-link */
+  a.fl{margin-left:6px;color:var(--mut);opacity:.5;text-decoration:none;font-weight:700;user-select:none;transition:opacity .1s,color .1s}
+  .tr:hover a.fl{opacity:1}
+  a.fl:hover{color:var(--acc)}
+  a.fl.ok{color:var(--acc);opacity:1}
+  .cbody .mb[id]{scroll-margin-top:140px}
+  .cbody .mb:target{background:var(--flash);outline:1px solid var(--acc);border-radius:3px}
   .kw{color:var(--kw)} .ty{color:var(--ty)} .mb{color:var(--mb)} .cm{color:var(--cm)} .pad{color:var(--pad)}
   .oh{color:var(--num)}
   .padline{color:var(--pad)}
@@ -586,47 +663,61 @@ void WritePlatformPage(const fs::path& outDir, const std::vector<Module>& module
   .tag.emb{background:color-mix(in srgb,var(--emb) 14%,transparent);color:var(--emb)}
   .tag.fl{background:color-mix(in srgb,var(--fl) 14%,transparent);color:var(--fl)}
   .meta{color:var(--meta)}
+  /* phone / narrow: sidebar becomes a slide-in drawer */
+  @media(max-width:820px){
+    .top{padding:8px 12px;gap:10px}
+    .brand{font-size:14px}.brand::before{margin-right:5px}
+    .ver{display:none}
+    #menu{display:inline-block}
+    .sidebar{position:fixed;top:0;left:0;height:100dvh;z-index:30;width:min(290px,84vw);
+             transform:translateX(-100%);transition:transform .2s ease;box-shadow:2px 0 20px rgba(0,0,0,.45)}
+    body.side-open .sidebar{transform:none}
+    body.side-open #scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:25}
+    main{padding:12px}
+    #q{font-size:16px}
+    .cbody .mb[id]{scroll-margin-top:12px}
+  }
 </style>
 </head><body>
-<header>
-  <h1>Source 2 Schema</h1><span class="ver">)"
-	     << (gameVersion.empty() ? std::string() : "PatchVersion " + HtmlEscape(gameVersion) + " &middot; ")
-	     << "dumped " << HtmlEscape(dumpDate) << R"(</span>
-  <nav id="tabs"></nav>
-  <div class="seg">
-    <button id="pad" class="tgl" title="show padding fields"><span class="sw"></span>padding</button>
-    <button id="hex" class="tgl" title="show all numbers as hex"><span class="sw"></span>hex</button>
-  </div>
-  <button id="treeBtn" title="class inheritance tree">&#x2261; tree</button>
-  <span class="hint">)" << total << R"( types &middot; Ctrl-F to find one</span>
-</header>
-<div class="wrap">
-<aside id="toc"><input id="filter" placeholder="filter libraries..." autocomplete="off"><button class="clear" id="clear">clear filter</button>)";
-
-	for (const Module& m : modules) {
-		size_t nStruct = 0;
-		for (const ClassRec& rec : m.classes) {
-			if (IsStructName(rec.info->m_pszName)) {
-				++nStruct;
-			}
-		}
-		const size_t nClass = m.classes.size() - nStruct;
-		page << "<div class=\"lib\" data-n=\"" << HtmlEscape(m.scope) << "\">"
-		     << "<a class=\"lib-h\" href=\"#m_" << m.safe << "\" data-lib=\"" << m.safe << "\">"
-		     << HtmlEscape(m.scope) << "<span>" << (m.classes.size() + m.enums.size()) << "</span></a>";
-		auto sub = [&](const char* k, const char* label, size_t n) {
-			if (n) {
-				page << "<a class=\"sub\" data-lib=\"" << m.safe << "\" data-k=\"" << k << "\" href=\"#m_" << m.safe << "\">"
-				     << label << "<span>" << n << "</span></a>";
-			}
-		};
-		sub("class", "classes", nClass);
-		sub("struct", "structs", nStruct);
-		sub("enum", "enums", m.enums.size());
-		page << "</div>";
-	}
-
-	page << "</aside>\n<main>\n";
+<div class="top">
+  <button id="menu" title="filters">&#x2261;</button>
+  <span class="brand">Source 2 Schema</span>
+  <span class="sp"></span>
+  <span class="ver">)"
+	     << (gameVersion.empty() ? std::string() : "PatchVersion " + HtmlEscape(gameVersion))
+	     << (serverVersion.empty() ? std::string()
+	         : std::string(gameVersion.empty() ? "" : " &middot; ") + "ServerVersion " + HtmlEscape(serverVersion))
+	     << R"(</span>
+  <button id="pad" class="tgl" title="show padding fields"><span class="sw"></span>padding</button>
+  <button id="hex" class="tgl" title="show all numbers as hex"><span class="sw"></span>hex</button>
+  <nav id="tabs" title="platform"></nav>
+</div>
+<div class="app">
+  <aside class="sidebar">
+    <div id="qwrap"><div class="qhint">name &middot; field &middot; <b>0x1c0</b>/<b>448</b> offset</div><input id="q" placeholder="search&hellip;" autocomplete="off" spellcheck="false"><div id="sugg" hidden></div></div>
+    <div class="sortwrap"><span class="sortl">sort</span><select id="sort">
+      <option value="name">A → Z</option>
+      <option value="dep">inheritance depth</option>
+      <option value="nf">field count</option>
+      <option value="ni">inputs</option>
+      <option value="no">outputs</option>
+      <option value="nk">keyfields</option>
+    </select></div>
+    <div class="secs">
+      <div class="sec"><div class="sec-t">libraries</div><div id="libs"></div></div>
+      <div class="sec"><div class="sec-t">kinds</div><div id="kinds"></div></div>
+    </div>
+  </aside>
+  <div id="scrim"></div>
+  <main>
+    <div id="home"></div>
+    <div id="detail" hidden></div>
+    <footer class="site-foot">&copy; <a href="https://github.com/boeing666/source2-dumper">boeing666/source2-dumper</a>
+      &middot; schema data from Counter-Strike 2 (Valve) &middot;
+      site &amp; dumps licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &mdash; reuse freely with attribution and a link back.</footer>
+  </main>
+</div>
+)";
 
 	static const std::vector<std::string> kEmpty;
 	auto refsOf = [&](const char* name) -> const std::vector<std::string>& {
@@ -634,202 +725,283 @@ void WritePlatformPage(const fs::path& outDir, const std::vector<Module>& module
 		return it != refs.end() ? it->second : kEmpty;
 	};
 
+	// one HTML fragment per type, loaded on demand by the shell (keeps the page tiny)
+	const fs::path cdir = outDir / PLATFORM_NAME / "c";
+	fs::create_directories(cdir);
+	auto jstr = [](std::string_view s) {
+		std::string o = "\"";
+		for (char c : s) {
+			if (c == '"' || c == '\\') {
+				o += '\\';
+			}
+			o += c;
+		}
+		return o + "\"";
+	};
+
+	// scope-priority dedup (schema_dumper) keeps the authoritative version of shared names,
+	// so every known name is a safe cross-link target.
+	const std::unordered_set<std::string>& linkable = known;
+
+	// fblob = original-case field names, space-joined, index-aligned with offsetBlob (same field order)
+	auto joinName = [](std::string& b, const char* s) {
+		if (!s || !*s) {
+			return;
+		}
+		if (!b.empty()) {
+			b += ' ';
+		}
+		b += s;
+	};
+	// T: safe -> [name, kind, module, entity, fblob, nFields, inheritDepth, nIn, nOut, nKey, offsetBlob]
+	page << "<script>\nconst T={";
+	bool firstT = true;
+	auto emitT = [&](const std::string& safe, const char* name, const char* kind, const std::string& mod, int entity,
+	                 const std::string& fblob, int nf, int dep, int ni, int no, int nk, const std::string& oblob) {
+		page << (firstT ? "" : ",") << jstr(safe) << ":[" << jstr(name) << ",\"" << kind << "\","
+		     << jstr(mod) << "," << entity << "," << jstr(fblob) << "," << nf << "," << dep << "," << ni << "," << no << "," << nk
+		     << "," << jstr(oblob) << "]";
+		firstT = false;
+	};
 	for (const Module& m : modules) {
-		page << "<section data-lib=\"" << m.safe << "\"><h2 id=\"m_" << m.safe << "\">" << HtmlEscape(m.scope)
-		     << " <span>" << m.classes.size() << " classes, " << m.enums.size() << " enums</span></h2>\n";
-
-		// enums, then structs, then classes
 		for (CSchemaEnumInfo* e : m.enums) {
-			page << EnumHtml(e, refsOf(e->m_pszName));
+			const std::string safe = SafeName(e->m_pszName);
+			std::ofstream(cdir / (safe + ".html"), std::ios::trunc) << EnumHtml(e, refsOf(e->m_pszName));
+			std::string fblob;
+			for (uint16 i = 0; i < e->m_nEnumeratorCount && e->m_pEnumerators; ++i) {
+				joinName(fblob, e->m_pEnumerators[i].m_pszName);
+			}
+			emitT(safe, e->m_pszName, "enum", m.scope, 0, fblob, e->m_nEnumeratorCount, 0, 0, 0, 0, "");
 		}
 		for (const ClassRec& rec : m.classes) {
-			if (IsStructName(rec.info->m_pszName)) {
-				page << ClassHtml(rec.info, rec.fields, known, refsOf(rec.info->m_pszName), rec.embedded);
+			const std::string safe = SafeName(rec.info->m_pszName);
+			std::ofstream(cdir / (safe + ".html"), std::ios::trunc)
+			    << ClassHtml(rec.info, rec.fields, linkable, refsOf(rec.info->m_pszName), rec.embedded);
+			std::string fblob, oblob;
+			for (const SchemaClassFieldData_t* f : rec.fields) {
+				joinName(fblob, f->m_pszName);
+				if (!oblob.empty()) {
+					oblob += ' ';
+				}
+				oblob += std::format("0x{:x}", f->m_nSingleInheritanceOffset);
 			}
+			int ni, no, nk;
+			DatamapCounts(rec.info, ni, no, nk);
+			emitT(safe, rec.info->m_pszName, IsStructName(rec.info->m_pszName) ? "struct" : "class",
+			      m.scope, rec.embedded ? 0 : 1, fblob, (int)rec.fields.size(), InheritDepth(rec.info), ni, no, nk, oblob);
 		}
-		for (const ClassRec& rec : m.classes) {
-			if (!IsStructName(rec.info->m_pszName)) {
-				page << ClassHtml(rec.info, rec.fields, known, refsOf(rec.info->m_pszName), rec.embedded);
-			}
-		}
-		page << "</section>\n";
 	}
+	page << "};\n";
 
-	// inheritance forest: parent -> sorted children, roots ordered by subtree size (big hierarchies first)
-	{
-		std::unordered_set<std::string> classNames;
-		for (const Module& m : modules) {
-			for (const ClassRec& rec : m.classes) {
-				classNames.insert(rec.info->m_pszName);
-			}
-		}
-		std::unordered_map<std::string, std::vector<std::string>> kids;
-		std::vector<std::string> roots;
-		for (const Module& m : modules) {
-			for (const ClassRec& rec : m.classes) {
-				const char* p = ParentName(rec.info);
-				if (p && classNames.count(p)) {
-					kids[p].push_back(rec.info->m_pszName);
-				} else {
-					roots.push_back(rec.info->m_pszName);
-				}
-			}
-		}
-		for (auto& [k, v] : kids) {
-			std::sort(v.begin(), v.end());
-		}
-		std::unordered_map<std::string, int> subtree;
-		auto size = [&](const std::string& n, auto&& self) -> int {
-			if (auto it = subtree.find(n); it != subtree.end()) {
-				return it->second;
-			}
-			int total = 1;
-			subtree[n] = 1; // guard against cycles
-			if (auto it = kids.find(n); it != kids.end()) {
-				for (const std::string& c : it->second) {
-					total += self(c, self);
-				}
-			}
-			return subtree[n] = total;
-		};
-		for (const std::string& r : roots) {
-			size(r, size);
-		}
-		std::sort(roots.begin(), roots.end(), [&](const std::string& a, const std::string& b) {
-			int sa = subtree[a], sb = subtree[b];
-			return sa != sb ? sa > sb : a < b;
-		});
-		auto jstr = [](const std::string& s) {
-			std::string o = "\"";
-			for (char c : s) {
-				if (c == '"' || c == '\\') {
-					o += '\\';
-				}
-				o += c;
-			}
-			return o + "\"";
-		};
-		page << "<script>\nconst KIDS={";
-		bool first = true;
-		for (const auto& [k, v] : kids) {
-			page << (first ? "" : ",") << jstr(k) << ":[";
-			first = false;
-			for (size_t i = 0; i < v.size(); ++i) {
-				page << (i ? "," : "") << jstr(v[i]);
-			}
-			page << "]";
-		}
-		page << "};\nconst ROOTS=[";
-		for (size_t i = 0; i < roots.size(); ++i) {
-			page << (i ? "," : "") << jstr(roots[i]);
-		}
-		page << "];\n</script>\n";
+	// module order for the home index (types grouped by their module)
+	page << "const MODS=[";
+	for (size_t i = 0; i < modules.size(); ++i) {
+		page << (i ? "," : "") << jstr(modules[i].scope);
 	}
+	page << "];\n</script>\n";
 
-	page << R"(</main></div>
-<div id="tree" hidden><div class="tree-box">
-  <div class="tree-h"><input id="treeF" placeholder="filter classes..." autocomplete="off"><button id="treeX">close</button></div>
-  <div id="treeBody"></div>
-  <div id="treeFlat" hidden></div>
-</div></div>
-<script>
-const PAGE=")" << PLATFORM_NAME << R"(";
+	page << R"JS(<script>
+const PAGE=")JS" << PLATFORM_NAME << R"JS(";
 fetch("platforms.json").then(r=>r.json()).then(ps=>{
   const t=document.getElementById("tabs");
   ps.forEach(p=>{const a=document.createElement("a");a.href=p+".html";a.textContent=p;if(p===PAGE)a.className="cur";t.appendChild(a);});
 }).catch(()=>{});
 
-const f=document.getElementById("filter");
-f.oninput=()=>{const q=f.value.toLowerCase();document.querySelectorAll("#toc .lib").forEach(d=>{d.style.display=d.dataset.n.toLowerCase().includes(q)?"":"none";});};
+const home=document.getElementById("home"),detail=document.getElementById("detail"),q=document.getElementById("q"),sugg=document.getElementById("sugg");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-// filter selection: "lib" = whole library, "lib|kind" = one kind of one library
-const active=new Set();
-const clearBtn=document.getElementById("clear");
-function apply(){
-  document.querySelectorAll("main section").forEach(s=>{
-    const lib=s.dataset.lib;
-    let vis=false;
-    s.querySelectorAll(".cls").forEach(c=>{
-      const show=active.size===0||active.has(lib)||active.has(lib+"|"+c.dataset.k);
-      c.style.display=show?"":"none"; if(show)vis=true;
-    });
-    s.style.display=vis?"":"none";
-  });
-  document.querySelectorAll("#toc a[data-lib]").forEach(a=>{
-    const key=a.dataset.k?a.dataset.lib+"|"+a.dataset.k:a.dataset.lib;
-    a.classList.toggle("active",active.has(key));
-  });
-  clearBtn.classList.toggle("on",active.size>0);
+// colored letter badge per kind (C/S/E), letter centered
+function badge(k){return '<span class="kb kb-'+k+'">'+k[0].toUpperCase()+'</span>';}
+
+// ---- home: every type grouped by module, columns, filterable, sortable ----
+// entry = [safe,name,kind,fblob, nf,dep,ni,no,nk]
+const byMod={};
+for(const safe in T){const m=T[safe];(byMod[m[2]]=byMod[m[2]]||[]).push([safe,m[0],m[1],m[4]||"",m[5],m[6],m[7],m[8],m[9],m[10]||""]);}
+// offset query: "0x1c0" or "448" -> normalized "0x1c0", else null
+function offQ(s){s=s.trim().toLowerCase();if(/^0x[0-9a-f]+$/.test(s))return s;if(/^\d+$/.test(s))return "0x"+parseInt(s,10).toString(16);return null;}
+const hasOff=(oblob,q)=>(" "+oblob+" ").includes(" "+q+" ");
+const SORTIDX={name:1,dep:5,nf:4,ni:6,no:7,nk:8};
+let sortKey="name";
+const sortSel=document.getElementById("sort");
+function sortArr(arr){
+  if(sortKey==="name")return arr.sort((a,b)=>a[1]<b[1]?-1:a[1]>b[1]?1:0);
+  const i=SORTIDX[sortKey];
+  return arr.sort((a,b)=>(b[i]||0)-(a[i]||0)||(a[1]<b[1]?-1:1)); // metric desc, then name
 }
-document.getElementById("toc").addEventListener("click",e=>{
-  const a=e.target.closest("a[data-lib]"); if(!a) return;
-  e.preventDefault();
-  const lib=a.dataset.lib;
-  const key=a.dataset.k?lib+"|"+a.dataset.k:lib;
-  if(active.has(key)){
-    active.delete(key);
-  }else{
-    if(a.dataset.k){ active.delete(lib); }               // one kind selected -> whole-lib entry is redundant
-    else{ for(const x of [...active]){ if(x.startsWith(lib+"|")) active.delete(x); } } // whole lib absorbs kinds
-    active.add(key);
+function buildHome(){
+  let s="";
+  for(const m of MODS){
+    const arr=byMod[m];if(!arr)continue;
+    sortArr(arr);
+    s+='<div class="grp" data-m="'+esc(m)+'"><div class="grp-h">'+esc(m)+' <span class="c">'+arr.length+'</span></div><div class="cols">'
+      +arr.map(e=>{const[safe,name,kind]=e;const mv=sortKey!=="name"?' <span class="mv">'+(e[SORTIDX[sortKey]]||0)+'</span>':'';
+        return '<a class="it" href="#'+safe+'" data-k="'+kind+'" data-n="'+esc(name).toLowerCase()+'" data-f="'+esc((e[3]||"").toLowerCase())+'" data-o="'+esc(e[9])+'"><span class="kb kb-'+kind+'">'+kind[0].toUpperCase()+'</span><span class="nm">'+esc(name)+'</span>'+mv+'</a>';}).join("")
+      +'</div></div>';
   }
-  apply();
-  if(active.has(key)){const sec=document.getElementById("m_"+lib); if(sec) sec.scrollIntoView();}
-});
-clearBtn.onclick=()=>{active.clear();apply();};
+  home.innerHTML=s;applyHome();
+}
+sortSel.onchange=()=>{sortKey=sortSel.value;buildHome();};
+// sidebar filters: libraries + kinds as list rows (checkbox/badge + count), multi-select
+const libSel=new Set(),kindSel=new Set();
+document.getElementById("libs").innerHTML=MODS.filter(m=>byMod[m]).map(m=>
+  `<div class="frow" data-m="${esc(m)}"><span class="ck"></span><span class="s-n">${esc(m)}</span><span class="ct">${byMod[m].length}</span></div>`).join("");
+const kcount={class:0,struct:0,enum:0};for(const s in T)kcount[T[s][1]]++;
+document.getElementById("kinds").innerHTML=[["class","classes"],["struct","structs"],["enum","enums"]].map(([k,l])=>
+  `<div class="frow" data-kind="${k}">${badge(k)}<span class="s-n">${l}</span><span class="ct">${kcount[k]}</span></div>`).join("");
+document.querySelector(".secs").addEventListener("click",e=>{const r=e.target.closest(".frow");if(!r)return;
+  if(r.dataset.kind){const k=r.dataset.kind;kindSel.has(k)?kindSel.delete(k):kindSel.add(k);r.classList.toggle("on",kindSel.has(k));}
+  else{const m=r.dataset.m;libSel.has(m)?libSel.delete(m):libSel.add(m);r.classList.toggle("on",libSel.has(m));}
+  applyHome();renderSugg();});
+buildHome();  // after libSel/kindSel exist (applyHome, called inside, reads them)
 
-document.addEventListener("click",e=>{
-  const a=e.target.closest('a[href^="#"]');
-  if(!a) return;
-  if(a.classList.contains("fl")){ e.preventDefault(); cpField(a); return; } // copy link, don't scroll
-  if(a.dataset.lib) return;
-  const el=document.getElementById(a.getAttribute("href").slice(1));
-  if(el && el.offsetParent===null){ active.clear(); apply(); }
-});
+// mobile sidebar drawer
+const menu=document.getElementById("menu"),scrim=document.getElementById("scrim");
+menu.onclick=()=>document.body.classList.toggle("side-open");
+scrim.onclick=()=>document.body.classList.remove("side-open");
 
-function copyFB(b,txt){
-  navigator.clipboard.writeText(txt).then(()=>{
-    const t=b.textContent;b.textContent="copied!";setTimeout(()=>{b.textContent=t;},900);
+function applyHome(){
+  const s=q.value.toLowerCase(),oq=offQ(s);
+  if(!detail.hidden){history.pushState("","",location.pathname);showHome();}
+  home.querySelectorAll(".grp").forEach(g=>{
+    const libOk=libSel.size===0||libSel.has(g.dataset.m);
+    let any=false;
+    g.querySelectorAll(".it").forEach(a=>{
+      // numeric/hex query -> match only fields by offset; else name/field text
+      const q2ok=oq?hasOff(a.dataset.o,oq):(!s||a.dataset.n.includes(s)||a.dataset.f.includes(s));
+      const show=libOk&&(kindSel.size===0||kindSel.has(a.dataset.k))&&q2ok;
+      a.style.display=show?"":"none";if(show)any=true;});
+    g.style.display=any?"":"none";
   });
 }
-function cpField(a){
-  // copy the deep link only; do NOT navigate/scroll (caller returns false)
-  navigator.clipboard.writeText(location.origin+location.pathname+a.getAttribute("href"));
-  a.classList.add("ok");setTimeout(()=>a.classList.remove("ok"),700);
+// autocomplete dropdown: type-name matches first, then field-name matches
+const ENTRIES=Object.entries(T);   // [safe,[name,kind,module,entity,fblob]]
+let pick=-1;
+function renderSugg(){
+  const s=q.value.trim().toLowerCase();
+  if(!s){sugg.hidden=true;sugg.innerHTML="";pick=-1;return;}
+  const oq=offQ(s);
+  if(oq){ // offset mode: classes that have a field at this offset — show that field's name
+    const hits=[];
+    for(const [safe,m] of ENTRIES){
+      if(libSel.size&&!libSel.has(m[2]))continue;
+      if(kindSel.size&&!kindSel.has(m[1]))continue;
+      const i=(m[10]||"").split(" ").indexOf(oq);
+      if(i>=0)hits.push([safe,m,(m[4]||"").split(" ")[i]||oq]);
+    }
+    sugg.innerHTML=hits.slice(0,60).map(([safe,m,fld])=>
+      `<a href="#${safe}/@${oq}" class="s-it">${badge(m[1])}<span class="s-n">${esc(m[0])} <span class="s-f">&middot; ${esc(fld)}</span></span><span class="s-m">${esc(m[2])}</span></a>`).join("");
+    sugg.hidden=!hits.length;pick=-1;return;
+  }
+  const names=[],flds=[];
+  for(const [safe,m] of ENTRIES){
+    if(libSel.size&&!libSel.has(m[2]))continue;
+    if(kindSel.size&&!kindSel.has(m[1]))continue;
+    const i=m[0].toLowerCase().indexOf(s);
+    if(i>=0){names.push([i,m[0].length,safe,m]);continue;}
+    const toks=(m[4]||"").split(" ");const li=toks.findIndex(t=>t.toLowerCase().includes(s));
+    if(li>=0)flds.push([safe,m,toks[li]]);
+  }
+  names.sort((a,b)=>a[0]-b[0]||a[1]-b[1]||(a[3][0]<b[3][0]?-1:1));
+  let html=names.slice(0,50).map(([,,safe,m])=>
+    `<a href="#${safe}" class="s-it">${badge(m[1])}<span class="s-n">${esc(m[0])}</span><span class="s-m">${esc(m[2])}</span></a>`).join("");
+  if(names.length<50&&flds.length)
+    html+=flds.slice(0,50-names.length).map(([safe,m,tok])=>
+      `<a href="#${safe}/~${tok}" class="s-it">${badge(m[1])}<span class="s-n">${esc(m[0])} <span class="s-f">&middot; ${esc(tok)}</span></span><span class="s-m">${esc(m[2])}</span></a>`).join("");
+  sugg.innerHTML=html;sugg.hidden=!html;pick=-1;
 }
-function cardRows(card){
-  return [...card.querySelectorAll(".btbl .r")].filter(r=>!r.classList.contains("hdr"));
+q.oninput=()=>{applyHome();renderSugg();};
+q.onkeydown=e=>{
+  const items=[...sugg.querySelectorAll(".s-it")];
+  if(e.key==="ArrowDown"&&items.length){e.preventDefault();pick=(pick+1)%items.length;}
+  else if(e.key==="ArrowUp"&&items.length){e.preventDefault();pick=(pick-1+items.length)%items.length;}
+  else if(e.key==="Enter"&&items.length){e.preventDefault();(items[pick]||items[0]).click();return;}
+  else if(e.key==="Escape"){sugg.hidden=true;return;}
+  else return;
+  items.forEach((it,i)=>it.classList.toggle("sel",i===pick));
+  if(items[pick])items[pick].scrollIntoView({block:"nearest"});
+};
+document.addEventListener("click",e=>{if(!e.target.closest("#qwrap"))sugg.hidden=true;});
+
+// ---- open a class: fetch its fragment into the detail pane ----
+let cur=null;
+function applyHexTo(root){ if(hb.classList.contains("on")) root.querySelectorAll(".nv").forEach(el=>el.textContent=el.dataset.h); }
+function flashField(el){ // highlight the whole row like a hover
+  const r=el&&el.closest(".tr"); if(!r)return;
+  document.querySelectorAll(".tr.hl").forEach(x=>x.classList.remove("hl"));
+  r.classList.add("hl");
 }
+function openClass(safe,field){
+  if(!T[safe]){showHome();return;}
+  cur=safe;home.hidden=true;detail.hidden=false;document.body.classList.remove("side-open");
+  detail.innerHTML='<div class="loading">loading '+safe+'…</div>';
+  fetch(PAGE+"/c/"+encodeURIComponent(safe)+".html").then(r=>r.ok?r.text():Promise.reject()).then(html=>{
+    if(cur!==safe)return;
+    detail.innerHTML=html;   // fragment carries its own back button + inheritance row
+    applyHexTo(detail);
+    if(field){
+      let el;
+      if(field[0]==="@"){ // jump to the field at this offset (data-h hex on the offset cell)
+        const oq=field.slice(1),cell=[...detail.querySelectorAll(".c-off .nv")].find(n=>n.dataset.h.toLowerCase()===oq);
+        el=cell&&cell.closest(".tr")&&cell.closest(".tr").querySelector(".mb[id]");
+      }else if(field[0]==="~"){const fq=field.slice(1),ms=[...detail.querySelectorAll(".cbody .mb[id]")];
+        el=ms.find(m=>m.textContent.toLowerCase()===fq)||ms.find(m=>m.textContent.toLowerCase().includes(fq));}
+      else el=document.getElementById(field);
+      if(el){el.scrollIntoView({block:"center"});flashField(el);return;}
+    }
+    window.scrollTo(0,0);
+  }).catch(()=>{
+    if(cur!==safe)return;
+    const local=location.protocol==="file:";
+    detail.innerHTML='<div class="dtop"><a class="back" href="#">&larr;</a></div><div class="loading">'
+      +(local?"Class pages load over HTTP — the browser blocks <code>fetch</code> on <code>file://</code>.<br><br>"
+        +"Run a server in this folder, then open over http:<br><br>"
+        +"<code>python -m http.server</code> &nbsp;&rarr;&nbsp; <code>http://localhost:8000/"+PAGE+".html</code>"
+        :"failed to load "+safe)+"</div>";
+  });
+}
+function showHome(){cur=null;detail.hidden=true;home.hidden=false;}
+
+function route(){
+  let h=decodeURIComponent(location.hash.slice(1));
+  if(!h){showHome();return;}
+  let field=null;
+  const slash=h.indexOf("/");
+  if(slash>=0){field=h.slice(slash+1);h=h.slice(0,slash);}
+  if(T[h])openClass(h,field); else showHome();
+}
+window.addEventListener("hashchange",route);
+
+// ---- navigation: any #<safe> link opens that class; field links (#cls/field) too ----
+document.addEventListener("click",e=>{
+  const a=e.target.closest('a[href^="#"]'); if(!a) return;
+  if(a.classList.contains("fl")){e.preventDefault();cpField(a);return;} // copy link, don't navigate
+  if(a.classList.contains("back")){e.preventDefault();history.pushState("","",location.pathname);showHome();return;}
+  const t=a.getAttribute("href").slice(1);
+  const base=t.split("/")[0];
+  if(t===""||T[base]){e.preventDefault();sugg.hidden=true;location.hash=t;if(location.hash.slice(1)===t)route();}
+});
+
+function copyFB(b,txt){navigator.clipboard.writeText(txt).then(()=>{const t=b.textContent;b.textContent="copied!";setTimeout(()=>{b.textContent=t;},900);});}
+function cpField(a){navigator.clipboard.writeText(location.origin+location.pathname+a.getAttribute("href"));a.classList.add("ok");setTimeout(()=>a.classList.remove("ok"),700);
+  const r=a.closest(".tr");if(r)flashField(r.querySelector(".mb[id]"));}
+function cardRows(card){return [...card.querySelectorAll(".tbl .tr")].filter(r=>!r.classList.contains("thr")&&!r.classList.contains("padrow"));}
 function copySchema(b){
   const card=b.closest(".cls");
-  const name=card.querySelector(".sig .cn").textContent;
-  const kind=card.querySelector(".sig .kw").textContent;
-  const par=card.querySelector(".sig a.ty");
+  const name=card.querySelector(".sig .cn").textContent,kind=card.querySelector(".sig .kw").textContent,par=card.querySelector(".sig a.ty");
   let out=kind+" "+name+(par?" : public "+par.textContent:"")+"\n{\npublic:\n\tDECLARE_SCHEMA_CLASS("+name+")\n\n";
-  cardRows(card).forEach(r=>{
-    if(r.classList.contains("padline"))return;
-    const ty=r.querySelector(".d .ty"),mb=r.querySelector(".d .mb");
-    if(!ty||!mb)return;
-    out+="\tSCHEMA_FIELD("+ty.textContent.trim()+", "+mb.textContent+")\n";
-  });
+  cardRows(card).forEach(r=>{const ty=r.querySelector(".c-type"),mb=r.querySelector(".c-name .mb");if(!ty||!mb||!ty.textContent.trim())return;out+="\tSCHEMA_FIELD("+ty.textContent.trim()+", "+mb.textContent+")\n";});
   copyFB(b,out+"};");
 }
 function copyFields(b){
-  const card=b.closest(".cls");
-  const showPad=document.body.classList.contains("showpad");
-  const lines=[];
-  cardRows(card).forEach(r=>{
-    if(!showPad&&r.classList.contains("padline"))return;
-    const d=r.querySelector(".d").cloneNode(true);
-    d.querySelectorAll(".meta").forEach(m=>m.remove());
-    const t=d.textContent.trim();
-    if(t&&t!=="public:")lines.push(t);
-  });
+  const card=b.closest(".cls"),lines=[];
+  cardRows(card).forEach(r=>{const ty=r.querySelector(".c-type"),mb=r.querySelector(".c-name .mb");if(!mb)return;const t=(ty&&ty.textContent.trim()?ty.textContent.trim()+" ":"")+mb.textContent+";";lines.push("\t"+t);});
   copyFB(b,lines.join("\n"));
 }
-
 function tglMore(b){
-  const x=b.parentElement.querySelector(".xtra"); if(!x) return;
+  let x=b.parentElement.querySelector(".xtra");
+  if(!x){x=document.createElement("span");x.className="xtra";
+    x.innerHTML=b.dataset.more.split(",").map(n=>`<a class="chip" href="#${n.replace(/[^A-Za-z0-9_.-]/g,"_")}">${n}</a>`).join("");
+    b.parentElement.insertBefore(x,b);b.dataset.n=b.textContent.replace(/\D/g,"");b.textContent="hide";return;}
   if(x.hasAttribute("hidden")){x.removeAttribute("hidden");b.textContent="hide";}
   else{x.setAttribute("hidden","");b.textContent="+"+b.dataset.n+" more";}
 }
@@ -840,68 +1012,15 @@ pb.onclick=()=>setPad(!document.body.classList.contains("showpad"));
 setPad(localStorage.getItem("showpad")==="1");
 
 const hb=document.getElementById("hex");
-function applyHex(v){
-  // chunked so rewriting ~80k number cells never freezes the page (esp. on load)
-  const list=document.querySelectorAll(".nv");let i=0;
-  (function step(){
-    for(const end=Math.min(i+6000,list.length);i<end;i++){const el=list[i];el.textContent=v?el.dataset.h:parseInt(el.dataset.h,16);}
-    if(i<list.length)requestAnimationFrame(step);
-  })();
-}
-function setHex(v){hb.classList.toggle("on",v);localStorage.setItem("hexmode",v?"1":"0");applyHex(v);}
+function setHex(v){hb.classList.toggle("on",v);localStorage.setItem("hexmode",v?"1":"0");
+  document.querySelectorAll(".nv").forEach(el=>el.textContent=v?el.dataset.h:parseInt(el.dataset.h,16));}
 hb.onclick=()=>setHex(!hb.classList.contains("on"));
-if(localStorage.getItem("hexmode")==="1"){hb.classList.add("on");applyHex(true);}
+if(localStorage.getItem("hexmode")==="1")hb.classList.add("on");
 
-// inheritance tree overlay (lazy: children render only when a node is expanded)
-const anchorOf=n=>n.replace(/[^A-Za-z0-9_.-]/g,"_");
-function treeNode(name){
-  const kids=KIDS[name];
-  const row=document.createElement("div");row.className="tn";
-  const head=document.createElement("div");head.className="tn-h";
-  const tog=document.createElement("span");tog.className="tn-t";
-  tog.textContent=kids?"▸":"";
-  const link=document.createElement("a");link.className="tn-n";link.textContent=name;link.href="#"+anchorOf(name);
-  if(kids){const c=document.createElement("span");c.className="tn-c";c.textContent=kids.length;head.append(tog,link,c);}
-  else head.append(tog,link);
-  row.append(head);
-  let kidBox=null;
-  if(kids){
-    head.onclick=e=>{
-      if(e.target===link)return;
-      if(!kidBox){kidBox=document.createElement("div");kidBox.className="tn-k";kids.forEach(k=>kidBox.append(treeNode(k)));row.append(kidBox);}
-      const open=row.classList.toggle("open");tog.textContent=open?"▾":"▸";
-    };
-  }
-  return row;
-}
-const treeEl=document.getElementById("tree"),treeBody=document.getElementById("treeBody"),
-      treeFlat=document.getElementById("treeFlat"),treeF=document.getElementById("treeF");
-const ALLNAMES=[...new Set([...ROOTS,...Object.keys(KIDS),...Object.values(KIDS).flat()])].sort();
-let treeBuilt=false;
-function openTree(){
-  if(!treeBuilt){ROOTS.forEach(r=>treeBody.append(treeNode(r)));treeBuilt=true;}
-  treeEl.removeAttribute("hidden");treeF.focus();
-}
-function closeTree(){treeEl.setAttribute("hidden","");}
-document.getElementById("treeBtn").onclick=openTree;
-document.getElementById("treeX").onclick=closeTree;
-treeEl.onclick=e=>{if(e.target===treeEl)closeTree();};
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!treeEl.hasAttribute("hidden"))closeTree();});
-treeEl.addEventListener("click",e=>{const a=e.target.closest("a.tn-n");if(a)closeTree();});
-// empty filter -> hierarchy; non-empty -> flat list of every matching class
-treeF.oninput=()=>{
-  const q=treeF.value.toLowerCase();
-  if(!q){treeFlat.hidden=true;treeBody.hidden=false;return;}
-  treeBody.hidden=true;treeFlat.hidden=false;treeFlat.textContent="";
-  const frag=document.createDocumentFragment();
-  ALLNAMES.filter(n=>n.toLowerCase().includes(q)).slice(0,500).forEach(n=>{
-    const a=document.createElement("a");a.className="tn-n flat";a.textContent=n;a.href="#"+anchorOf(n);frag.append(a);
-  });
-  treeFlat.append(frag);
-};
+route(); // open the class from the URL hash, else show the tree
 </script>
 </body></html>
-)";
+)JS";
 
 	// merge this platform into platforms.json (keeps tabs for both when win64/linux dumped side by side)
 	{
