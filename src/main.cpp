@@ -12,5 +12,7 @@ int main(int argc, char* argv[])
 
 	const fs::path outDir = (argc > 1) ? fs::path(argv[1]) : fs::path("sdk");
 
+	// On Windows DumpAll terminates the process itself after writing (Connect leaves game systems
+	// live, so normal teardown would fault); this return is reached only on the non-Connect paths.
 	return schema::DumpAll(binDir, moduleDir, outDir);
 }

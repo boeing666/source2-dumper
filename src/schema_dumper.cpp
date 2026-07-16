@@ -2,7 +2,8 @@
 #include "schema_model.hpp"
 #include "schema_util.hpp"
 #include "header_writer.hpp"
-#include "html_writer.hpp"
+#include "json_writer.hpp"
+#include "network_fields.hpp"
 
 #include <algorithm>
 #include <cstdio>
@@ -15,6 +16,14 @@
 
 #include <dynlibutils/module.hpp>
 #include <schemasystem/schemasystem.h>
+
+#include "eiface.h"
+
+#if defined(_WIN32)
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+#endif
 
 namespace schema {
 namespace fs = std::filesystem;
@@ -180,9 +189,17 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 		}
 	}
 
+	// networked fields, "Class::field" — authoritative via the network codegen DB on win64,
+	// falling back to static CNetworkVar RTTI parsing.
+	std::unordered_set<std::string> network = CollectNetworkFields(mods);
+
+	std::vector<ConVarInfo> convars;          // filled by the server bring-up (CollectConVars)
+	std::vector<ConCommandInfo> concommands;
+	CollectConVars(convars, concommands);
+
 	const std::string patch = ReadInf("PatchVersion");
 	WriteHeaders(modules, outDir / "headers" / PLATFORM_NAME);
-	WritePlatformPage(outDir, modules, known, patch, ReadInf("ServerVersion"));
+	WriteJson(outDir, modules, known, network, convars, concommands, patch, ReadInf("ServerVersion"));
 	if (!patch.empty()) {
 		std::ofstream(outDir / "patchversion.txt", std::ios::trunc) << patch;   // read by the CI commit step
 	}
@@ -192,8 +209,16 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 		total += (int)(m.classes.size() + m.enums.size());
 		std::printf("%-28s %5zu classes %4zu enums\n", m.scope.c_str(), m.classes.size(), m.enums.size());
 	}
-	std::printf("\n%d types / %zu modules -> %s (%s.html)\n",
-	            total, modules.size(), outDir.string().c_str(), PLATFORM_NAME);
+	std::printf("\n%d types / %zu modules / %zu network fields -> %s/%s (json)\n",
+	            total, modules.size(), network.size(), outDir.string().c_str(), PLATFORM_NAME);
+
+#if defined(_WIN32)
+	// All output is written. The server bring-up left game systems live (background threads suspended),
+	// so terminate now — a clean shutdown would fault in teardown.
+	std::fflush(stdout);
+	std::fflush(stderr);
+	TerminateProcess(GetCurrentProcess(), 0);
+#endif
 	return 0;
 }
 

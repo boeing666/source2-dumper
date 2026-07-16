@@ -53,7 +53,9 @@ set(SOURCE_FILES
 	src/schema_dumper.cpp
 	src/schema_util.cpp
 	src/header_writer.cpp
-	src/html_writer.cpp
+	src/json_writer.cpp
+	src/appsystem.cpp
+	src/network_fields.cpp
 )
 
 list(APPEND COMPILE_DEFINES
@@ -70,7 +72,7 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_compile_definitions(${PROJECT_NAME} PRIVATE ${COMPILE_DEFINES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-	CXX_STANDARD 20
+	CXX_STANDARD 23      # glaze (JSON) requires C++23
 	CXX_STANDARD_REQUIRED ON
 	CXX_EXTENSIONS OFF
 )
@@ -79,10 +81,14 @@ if(MSVC)
 	# Both SDKs are built with the static runtime — match it to avoid LNK4098.
 	set_target_properties(${PROJECT_NAME} PROPERTIES MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-	# The exe statically imports tier0.dll via sourcesdk, forcing it at process
-	# startup (it lives in game/bin/<platform>, not next to the exe). Delay-load it:
-	# dynlibutils loads tier0 from the game tree at runtime before any real call,
-	# and the delay stub then binds to the already-loaded module by name.
+	# The sourcesdk 'common' lib we link doesn't pull tier0's import lib. Release never references tier0
+	# (tier1 is compiled into comm.lib; the SDK container asserts compile out), but Debug enables those
+	# asserts in the header-inline containers (CUtlOrderedMap/CUtlLeanVector operator[]) which reference
+	# Plat_FatalError / LoggingSystem_LogAssert from tier0 -> LNK2019. Link tier0's import lib explicitly.
+	# /DELAYLOAD keeps tier0.dll out of the startup imports: dynlibutils loads it from the game tree
+	# (game/bin/<platform>, not next to the exe) before any real call, and the delay stub then binds to
+	# the already-loaded module by name.
+	target_link_libraries(${PROJECT_NAME} PRIVATE "${SOURCESDK_DIR}/lib/${SE_BIN_DIR}/tier0.lib")
 	target_link_options(${PROJECT_NAME} PRIVATE /DELAYLOAD:tier0.dll)
 	target_link_libraries(${PROJECT_NAME} PRIVATE delayimp)
 endif()
@@ -90,4 +96,13 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	common
 	cpp-memory_utils
+)
+
+# entity2/entityinstance.h + networksystem/inetworkserializer.h (the SDK network codegen types) pull
+# variant.h -> mathlib and the protobuf-generated headers.
+target_include_directories(${PROJECT_NAME} PRIVATE
+	"${SOURCESDK_DIR}/public/mathlib"
+	"${SOURCESDK_DIR}/thirdparty/protobuf/src"
+	"${CMAKE_BINARY_DIR}/sourcesdk/protos"
+	"${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glaze/include"   # glaze (header-only JSON)
 )

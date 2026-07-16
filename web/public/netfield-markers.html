@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network-field markers — 20 variants</title>
+<style>
+  :root{
+    --bg:#17181d;--panel:#1e2026;--panel2:#24262e;--border:#2c2f38;--fg:#d7dae2;--mut:#8b91a0;
+    --acc:#4ec9b0;--zeb:#22242b;--hov:#2a3a37;
+    --kw:#569cd6;--ty:#4ec9b0;--mb:#9cdcfe;--num:#b5cea8;--meta:#ce9178;--emb:#c586c0;--enm:#e5c07b;
+    --mono:ui-monospace,'Cascadia Code',Consolas,'JetBrains Mono',monospace;
+    --sans:-apple-system,'Segoe UI',Roboto,sans-serif;
+    --acc-rgb:78,201,176;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;
+      --acc:#0e7569;--zeb:#f4f5f8;--hov:#e2efe9;
+      --kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--num:#0550ae;--meta:#a31515;--emb:#8250df;--enm:#b45309;
+      --acc-rgb:14,117,105;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#17181d;--panel:#1e2026;--panel2:#24262e;--border:#2c2f38;--fg:#d7dae2;--mut:#8b91a0;
+    --acc:#4ec9b0;--zeb:#22242b;--hov:#2a3a37;
+    --kw:#569cd6;--ty:#4ec9b0;--mb:#9cdcfe;--num:#b5cea8;--meta:#ce9178;--emb:#c586c0;--enm:#e5c07b;--acc-rgb:78,201,176;
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;
+    --acc:#0e7569;--zeb:#f4f5f8;--hov:#e2efe9;
+    --kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--num:#0550ae;--meta:#a31515;--emb:#8250df;--enm:#b45309;--acc-rgb:14,117,105;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  .wrap{min-height:100vh;padding:28px clamp(14px,4vw,44px)}
+  .head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  h1{font-size:22px;font-weight:650;margin:0;letter-spacing:.2px}
+  .sub{color:var(--mut);font-size:13.5px;line-height:1.6;max-width:60ch;margin:6px 0 0}
+  .sub code{font-family:var(--mono);color:var(--ty);background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:1px 5px}
+  .tglbtn{margin-left:auto;flex:none;background:var(--panel2);border:1px solid var(--border);color:var(--mut);
+          border-radius:8px;padding:7px 12px;font-size:13px;cursor:pointer;font-family:var(--sans);transition:color .12s,border-color .12s}
+  .tglbtn:hover{color:var(--acc);border-color:var(--acc)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--mut);font-size:12px;font-family:var(--mono);margin:16px 0 22px;
+          padding:10px 14px;background:var(--panel);border:1px solid var(--border);border-radius:9px}
+  .legend b{color:var(--fg);font-weight:600}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:11px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .cap{display:flex;align-items:baseline;gap:9px;padding:11px 14px 9px;border-bottom:1px solid var(--border)}
+  .cap .n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
+  .cap .t{font-size:13px;font-weight:600}
+  .cap .d{color:var(--mut);font-size:11px;margin-left:auto;font-family:var(--mono)}
+  .tbl{padding:8px 4px 10px;font-family:var(--mono);font-size:13px}
+
+  .tr{display:grid;grid-template-columns:52px 118px 1fr;gap:0 12px;align-items:center;padding:3px 12px;position:relative}
+  .tr:nth-child(odd){background:var(--zeb)}
+  .off{color:var(--num);font-variant-numeric:tabular-nums}
+  .ty{color:var(--ty);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ty.p{color:var(--enm)}
+  .nm{color:var(--mb);white-space:nowrap;position:relative}
+
+  /* 01 superscript tag (current) */
+  .v01 .net .nm::after{content:'net';margin-left:5px;font:700 8.5px/1 var(--mono);color:var(--acc);vertical-align:super;text-transform:uppercase;letter-spacing:.3px}
+  /* 02 leading filled dot */
+  .v02 .net .nm::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--acc);margin-right:7px;vertical-align:1px}
+  /* 03 trailing pill NET */
+  .v03 .net .nm::after{content:'NET';margin-left:7px;font:700 8.5px/1 var(--sans);letter-spacing:.5px;color:var(--bg);background:var(--acc);padding:2px 5px;border-radius:4px;vertical-align:1px}
+  /* 04 left accent bar */
+  .v04 .net{box-shadow:inset 3px 0 0 var(--acc)}
+  /* 05 name recolored accent */
+  .v05 .net .nm{color:var(--acc)}
+  /* 06 signal icon */
+  .v06 .net .nm::after{content:'';display:inline-block;width:13px;height:13px;margin-left:6px;vertical-align:-2px;
+        background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%234ec9b0'%20stroke-width='2.4'%20stroke-linecap='round'%3E%3Cpath%20d='M4%2011a12%2012%200%200%201%2016%200'/%3E%3Cpath%20d='M7.5%2014.5a7%207%200%200%201%209%200'/%3E%3Ccircle%20cx='12'%20cy='18.6'%20r='1.1'%20fill='%234ec9b0'%20stroke='none'/%3E%3C/svg%3E") center/contain no-repeat}
+  /* 07 row background tint */
+  .v07 .net{background:rgba(var(--acc-rgb),.11)}
+  /* 08 dotted underline */
+  .v08 .net .nm{border-bottom:1px dotted var(--acc);padding-bottom:1px}
+  /* 09 gutter dot column */
+  .v09 .tr{padding-left:26px}
+  .v09 .net::before{content:'';position:absolute;left:12px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--acc)}
+  /* 10 replicate glyph */
+  .v10 .net .nm::after{content:'⇄';margin-left:6px;color:var(--acc);font-size:12px}
+  /* 11 right NET column */
+  .v11 .tr{padding-right:46px}
+  .v11 .net::after{content:'NET';position:absolute;right:12px;top:50%;transform:translateY(-50%);font:700 8.5px/1 var(--sans);letter-spacing:.5px;color:var(--acc);border:1px solid var(--acc);padding:2px 5px;border-radius:4px}
+  /* 12 bold accent name */
+  .v12 .net .nm{font-weight:700;color:var(--acc)}
+  /* 13 square chip before */
+  .v13 .net .nm::before{content:'';display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--acc);margin-right:7px;vertical-align:0}
+  /* 14 repl tag (meta) */
+  .v14 .net .nm::after{content:'repl';margin-left:7px;font:600 10px/1 var(--mono);color:var(--meta)}
+  /* 15 accent offset + bar */
+  .v15 .net .off{color:var(--acc);font-weight:700}
+  .v15 .net{box-shadow:inset 2px 0 0 var(--acc)}
+  /* 16 superscript N (mono) */
+  .v16 .net .nm::after{content:'N';margin-left:3px;font:700 9px/1 var(--mono);color:var(--acc);vertical-align:super}
+  /* 17 parenthetical (net) */
+  .v17 .net .nm::after{content:'(net)';margin-left:7px;font-size:11px;color:var(--mut)}
+  /* 18 text glow */
+  .v18 .net .nm{color:var(--acc);text-shadow:0 0 7px rgba(var(--acc-rgb),.65)}
+  /* 19 outline ring before */
+  .v19 .net .nm::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--acc);margin-right:7px;vertical-align:0}
+  /* 20 right edge stripe */
+  .v20 .net{box-shadow:inset -3px 0 0 var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>Network-field markers</h1>
+      <p class="sub">20 ways to flag a networked field (<code>CNetworkVar</code> / replicated) in the schema table.
+        Each card shows the same 5 fields — 3 networked, 2 local — so the marker's contrast is visible. Pick a number.</p>
+    </div>
+    <button class="tglbtn" id="tgl">◐ theme</button>
+  </div>
+
+  <div class="legend">
+    <span><b>rows:</b> offset · type · name</span>
+    <span><b>networked:</b> m_CBodyComponent, m_iHealth, m_lifeState</span>
+    <span><b>local:</b> m_iMaxHealth, m_flCreateTime</span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+  const ROWS = [
+    ["0x30",  "CBodyComponent*", "m_CBodyComponent", true,  "p"],
+    ["0x1c0", "int32",           "m_iHealth",        true,  ""],
+    ["0x1c4", "int32",           "m_iMaxHealth",     false, ""],
+    ["0x1c8", "uint8",           "m_lifeState",      true,  ""],
+    ["0x1cc", "float32",         "m_flCreateTime",   false, ""],
+  ];
+  const LABELS = [
+    ["superscript tag", "m_x net"],
+    ["leading dot", "● m_x"],
+    ["trailing pill", "m_x [NET]"],
+    ["left accent bar", "▏ row"],
+    ["name recolored", "accent name"],
+    ["signal icon", "m_x ⌒"],
+    ["row background tint", "row bg"],
+    ["dotted underline", "m_x underline"],
+    ["gutter dot column", "•  m_x"],
+    ["replicate glyph", "m_x ⇄"],
+    ["right NET column", "row   NET"],
+    ["bold accent name", "bold"],
+    ["square chip", "▪ m_x"],
+    ["repl text tag", "m_x repl"],
+    ["accent offset + bar", "offset hi"],
+    ["mono superscript N", "m_x N"],
+    ["parenthetical", "m_x (net)"],
+    ["text glow", "glow"],
+    ["outline ring", "◦ m_x"],
+    ["right edge stripe", "row ▕"],
+  ];
+  const grid = document.getElementById("grid");
+  LABELS.forEach((lab, i) => {
+    const v = String(i + 1).padStart(2, "0");
+    const rows = ROWS.map(([off, ty, nm, net, p]) =>
+      `<div class="tr${net ? " net" : ""}"><span class="off">${off}</span><span class="ty${p ? " p" : ""}">${ty}</span><span class="nm">${nm}</span></div>`
+    ).join("");
+    grid.insertAdjacentHTML("beforeend",
+      `<div class="card v${v}"><div class="cap"><span class="n">${v}</span><span class="t">${lab[0]}</span><span class="d">${lab[1]}</span></div><div class="tbl">${rows}</div></div>`
+    );
+  });
+
+  const root = document.documentElement;
+  document.getElementById("tgl").addEventListener("click", () => {
+    const cur = root.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

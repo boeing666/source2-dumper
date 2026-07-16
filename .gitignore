@@ -1,4 +1,4 @@
-build/
+build*
 build-linux/
 thirdparty/
 .vs/
@@ -14,3 +14,8 @@ game/
 # Generated dump output (headers + site data)
 out/
 sdk/
+
+# Frontend (Vite)
+web/node_modules/
+web/dist/
+web/public/data/

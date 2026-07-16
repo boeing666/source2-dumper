@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datamap — arrows + bigger text</title>
+<style>
+  :root{--bg:#17181d;--panel:#1e2026;--panel2:#24262e;--border:#2c2f38;--fg:#d7dae2;--mut:#8b91a0;--acc:#4ec9b0;--zeb:#22242b;
+    --kw:#569cd6;--ty:#4ec9b0;--mb:#9cdcfe;--num:#b5cea8;--meta:#ce9178;--emb:#c586c0;--enm:#e5c07b;--fl:#dcdcaa;
+    --mono:ui-monospace,'Cascadia Code',Consolas,'JetBrains Mono',monospace;--sans:-apple-system,'Segoe UI',Roboto,sans-serif;}
+  @media (prefers-color-scheme: light){:root{--bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;--acc:#0e7569;--zeb:#f4f5f8;--kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--num:#0550ae;--meta:#a31515;--emb:#8250df;--enm:#b45309;--fl:#7d6520;}}
+  :root[data-theme="dark"]{--bg:#17181d;--panel:#1e2026;--panel2:#24262e;--border:#2c2f38;--fg:#d7dae2;--mut:#8b91a0;--acc:#4ec9b0;--zeb:#22242b;--kw:#569cd6;--ty:#4ec9b0;--mb:#9cdcfe;--num:#b5cea8;--meta:#ce9178;--emb:#c586c0;--enm:#e5c07b;--fl:#dcdcaa;}
+  :root[data-theme="light"]{--bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;--acc:#0e7569;--zeb:#f4f5f8;--kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--num:#0550ae;--meta:#a31515;--emb:#8250df;--enm:#b45309;--fl:#7d6520;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  .wrap{padding:26px clamp(14px,3vw,40px)}
+  .head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  h1{font-size:22px;font-weight:650;margin:0}
+  .sub{color:var(--mut);font-size:13px;line-height:1.6;max-width:76ch;margin:6px 0 0}
+  .sub code{font-family:var(--mono);color:var(--ty)} .sub b{color:var(--fg)}
+  .tglbtn{margin-left:auto;background:var(--panel2);border:1px solid var(--border);color:var(--mut);border-radius:8px;padding:7px 12px;font-size:13px;cursor:pointer}
+  .tglbtn:hover{color:var(--acc);border-color:var(--acc)}
+  .cards{display:flex;flex-direction:column;gap:18px;margin-top:22px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .cap{display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--panel2)}
+  .cap .n{font-family:var(--mono);font-weight:700;color:var(--acc);font-size:13px}
+  .cap .t{font-weight:650;font-size:14px} .cap .d{color:var(--mut);font-size:12px;margin-left:auto;text-align:right}
+  .body{padding:14px 16px;font-family:var(--mono);font-size:15px}
+
+  .sh{color:var(--mut);font:700 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.6px;margin:0 0 9px;display:flex;align-items:baseline;gap:7px}
+  .sh:not(:first-child){margin-top:18px}
+  .sh b{color:var(--fg);font:700 12px/1 var(--mono)}
+  .k{color:var(--mb)} .tg{color:var(--ty)} .ty{color:var(--mut)} .arr{color:var(--acc)}
+  .ar{width:15px;height:15px;vertical-align:-3px;color:var(--acc)}
+  .no{color:var(--mut);opacity:.55}
+  .shrt{color:var(--mut);font-size:11px}
+
+  /* 01 multicol lines: key → member … TYPE (big) */
+  .mc{column-width:290px;column-gap:26px}
+  .mc .sec{break-inside:avoid;margin-bottom:14px}
+  .mc .ln{display:flex;align-items:baseline;gap:7px;line-height:1.9;white-space:nowrap;overflow:hidden}
+  .mc .ln .k{overflow:hidden;text-overflow:ellipsis}
+  .mc .ln .tg{overflow:hidden;text-overflow:ellipsis}
+  .mc .ln .ty{margin-left:auto;font-size:11px;padding-left:10px}
+  /* 02 auto-fit cells: key → member, TYPE under */
+  .g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:7px}
+  .c2{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;min-width:0}
+  .c2 .top{display:flex;align-items:baseline;gap:7px;white-space:nowrap;overflow:hidden}
+  .c2 .top .tg{overflow:hidden;text-overflow:ellipsis}
+  .c2 .ty{display:block;font-size:11px;margin-top:3px}
+  /* 03 aligned multicol grid: [key][→][member] columns line up inside each column */
+  .ag{column-width:320px;column-gap:26px}
+  .ag .sec{break-inside:avoid;margin-bottom:14px}
+  .ag .grid{display:grid;grid-template-columns:auto 16px 1fr;gap:3px 6px;align-items:baseline}
+  .ag .grid .k{white-space:nowrap}
+  .ag .grid .arr{text-align:center}
+  .ag .grid .tg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* 04 SVG arrow, inline flow */
+  .g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 16px}
+  .l4{display:flex;align-items:baseline;gap:8px;white-space:nowrap;overflow:hidden}
+  .l4 .tg{overflow:hidden;text-overflow:ellipsis} .l4 .ty{margin-left:auto;font-size:11px}
+  /* 05 wide cells, member emphasized, big arrow */
+  .g5{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px}
+  .c5{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;min-width:0}
+  .c5 .k{white-space:nowrap} .c5 .bigarr{color:var(--acc);font-size:18px;flex:none}
+  .c5 .tg{color:var(--ty);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+  .c5 .ty{font-size:11px;flex:none}
+  /* 06 second-line member with ↳ */
+  .g6{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 18px}
+  .c6 .k{display:block;font-size:15px}
+  .c6 .m2{display:block;color:var(--mut);font-size:13px;margin-top:1px}
+  .c6 .m2 .a{color:var(--acc)} .c6 .m2 .tg{color:var(--ty)}
+  /* 07 two wide columns, aligned key→member table, big */
+  .t7{columns:2;column-gap:32px}
+  @media(max-width:760px){.t7{columns:1}}
+  .t7 .sec{break-inside:avoid;margin-bottom:14px}
+  .t7 .row{display:grid;grid-template-columns:auto 18px 1fr auto;gap:2px 8px;align-items:baseline;line-height:1.8}
+  .t7 .row .tg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .t7 .row .ty{font-size:11px;text-align:right;white-space:nowrap}
+  /* 08 merged auto-fit, kind dot, key → member big */
+  .kd-in{--kc:var(--kw)} .kd-out{--kc:var(--emb)} .kd-key{--kc:var(--enm)}
+  .g8{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:7px}
+  .c8{display:flex;align-items:baseline;gap:8px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--kc);border-radius:7px;padding:7px 11px;min-width:0}
+  .c8 .tg{overflow:hidden;text-overflow:ellipsis} .c8 .ty{margin-left:auto;font-size:11px;flex:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>Datamap — arrows + bigger text</h1>
+      <p class="sub">Like variant 7, but every mapped entry shows an <b>arrow → the schema field it points to</b>, and text is larger.
+        Data (<code>CBaseEntity</code>): <b>30 inputs · 5 outputs · 33 keyfields</b>. Columns flow to fill width. Pick a number.</p>
+    </div>
+    <button class="tglbtn" id="tgl">◐ theme</button>
+  </div>
+  <div class="cards" id="cards"></div>
+</div>
+<script>
+const I=(k,tg,ty)=>({k,tg,ty});
+const inputs=[I("TeamNum","m_iInitialTeamNum()","FIELD_INT32"),I("SetTeam","","FIELD_INT32"),I("Kill","","FIELD_VOID"),I("KillHierarchy","","FIELD_VOID"),I("KillConstrained","","FIELD_VOID"),I("Use","","FIELD_INT32"),I("SetParentAttachment","","FIELD_STRING"),I("SetParentAttachmentMaintainOffset","","FIELD_STRING"),I("ClearParent","","FIELD_VOID"),I("FollowEntity","","FIELD_STRING"),I("SetDamageFilter","","FIELD_STRING"),I("EnableDamageForces","","FIELD_VOID"),I("DisableDamageForces","","FIELD_VOID"),I("DispatchResponse","","FIELD_STRING"),I("AddContext","","FIELD_STRING"),I("RemoveContext","","FIELD_STRING"),I("ClearContext","","FIELD_VOID"),I("AddAttribute","","FIELD_STRING"),I("RemoveAttribute","","FIELD_STRING"),I("DisableShadow","","FIELD_VOID"),I("EnableShadow","","FIELD_VOID"),I("FireUser1","","FIELD_STRING"),I("FireUser2","","FIELD_STRING"),I("FireUser3","","FIELD_STRING"),I("FireUser4","","FIELD_STRING"),I("ChangeSubclass","","FIELD_STRING"),I("EnablePlatform","InputPlatformEnable()","FIELD_VOID"),I("DisablePlatform","InputPlatformDisable()","FIELD_VOID"),I("PlatformFollowYaw","","FIELD_VOID"),I("PlatformIgnoreYaw","","FIELD_VOID")];
+const outputs=[I("OnUser1","m_OnUser1","FIELD_CUSTOM"),I("OnUser2","m_OnUser2","FIELD_CUSTOM"),I("OnUser3","m_OnUser3","FIELD_CUSTOM"),I("OnUser4","m_OnUser4","FIELD_CUSTOM"),I("OnKilled","m_OnKilled","FIELD_CUSTOM")];
+const keyfields=[I("globalname","m_iGlobalname","FIELD_STRING"),I("vscripts","m_iszPrivateVScripts","FIELD_STRING"),I("nextthink","m_nNextThinkTick","FIELD_TICK"),I("effects","m_fEffects","FIELD_UINT32"),I("ResponseContext","m_iszResponseContext","FIELD_STRING"),I("subclass_id","m_nSubclassID","FIELD_UTLSTRINGTOKEN"),I("subclass_name","","FIELD_STRING"),I("max_health","m_iMaxHealth","FIELD_INT32"),I("target","m_target","FIELD_STRING"),I("platform_type","m_nPlatformType","FIELD_UINT8"),I("damagefilter","m_iszDamageFilterName","FIELD_STRING"),I("MoveType","m_MoveType","FIELD_UINT8"),I("owner","m_hOwnerEntity","FIELD_EHANDLE"),I("caster","","FIELD_EHANDLE"),I("teamnumber","m_iTeamNum","FIELD_UINT8"),I("basevelocity","m_vecBaseVelocity","FIELD_VECTOR"),I("avelocity","m_vecAngVelocity","FIELD_VECTOR"),I("gravity","m_flGravityScale","FIELD_FLOAT32"),I("friction","m_flFriction","FIELD_FLOAT32"),I("ltime","m_flLocalTime","FIELD_FLOAT32"),I("velocity","m_vecVelocity","FIELD_VECTOR"),I("spawnflags","m_spawnflags","FIELD_UINT32"),I("disablelowviolence","m_bDisableLowViolence","FIELD_BOOLEAN"),I("LagCompensate","m_bLagCompensate","FIELD_BOOLEAN"),I("health","m_iHealth","FIELD_INT32"),I("angles","","FIELD_QANGLE"),I("origin","","FIELD_VECTOR"),I("model","","FIELD_STRING"),I("ownername","","FIELD_STRING"),I("disableshadows","","FIELD_BOOLEAN"),I("disablereceiveshadows","","FIELD_BOOLEAN"),I("nodamageforces","","FIELD_BOOLEAN"),I("angle","","FIELD_QANGLE")];
+const SEC=[["inputs",inputs,"in"],["outputs",outputs,"out"],["keyfields",keyfields,"key"]];
+const ALL=[...inputs.map(e=>({...e,kd:"in"})),...outputs.map(e=>({...e,kd:"out"})),...keyfields.map(e=>({...e,kd:"key"}))];
+const esc=s=>s.replace(/</g,"&lt;");
+const shrt=t=>t.replace("FIELD_","");
+const head=(t,l)=>`<div class="sh">${t} <b>${l.length}</b></div>`;
+const SVG=`<svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13M12 6l6 6-6 6"/></svg>`;
+
+const V=[
+["multi-column lines","key → member … TYPE, arrow inline, flows to fill width",()=>
+  `<div class="mc">`+SEC.map(([t,l])=>`<div class="sec">`+head(t,l)+l.map(e=>`<div class="ln"><span class="k">${e.k}</span>${e.tg?`<span class="arr">→</span><span class="tg">${esc(e.tg)}</span>`:""}<span class="ty">${shrt(e.ty)}</span></div>`).join("")+`</div>`).join("")+`</div>`],
+["auto-fit cells","key → member per cell, TYPE below; cells stretch full width",()=>
+  SEC.map(([t,l])=>head(t,l)+`<div class="g2">`+l.map(e=>`<div class="c2"><span class="top"><span class="k">${e.k}</span>${e.tg?`<span class="arr">→</span><span class="tg">${esc(e.tg)}</span>`:""}</span><span class="ty">${e.ty}</span></div>`).join("")+`</div>`).join("")],
+["aligned columns","arrows & members line up inside each flow column",()=>
+  `<div class="ag">`+SEC.map(([t,l])=>`<div class="sec">`+head(t,l)+`<div class="grid">`+l.map(e=>`<span class="k">${e.k}</span><span class="arr">${e.tg?"→":""}</span><span class="tg">${e.tg?esc(e.tg):""}</span>`).join("")+`</div></div>`).join("")+`</div>`],
+["SVG arrow inline","site-style arrow glyph, flowing cells",()=>
+  SEC.map(([t,l])=>head(t,l)+`<div class="g4">`+l.map(e=>`<div class="l4"><span class="k">${e.k}</span>${e.tg?`${SVG}<span class="tg">${esc(e.tg)}</span>`:""}<span class="ty">${shrt(e.ty)}</span></div>`).join("")+`</div>`).join("")],
+["wide cells, big arrow","member emphasized, larger → between key and field",()=>
+  SEC.map(([t,l])=>head(t,l)+`<div class="g5">`+l.map(e=>`<div class="c5"><span class="k">${e.k}</span>${e.tg?`<span class="bigarr">→</span><span class="tg">${esc(e.tg)}</span>`:`<span class="tg no">— no field —</span>`}<span class="ty">${shrt(e.ty)}</span></div>`).join("")+`</div>`).join("")],
+["two-line member","key on top, ↳ member (type) below",()=>
+  SEC.map(([t,l])=>head(t,l)+`<div class="g6">`+l.map(e=>`<div class="c6"><span class="k">${e.k}</span><span class="m2">${e.tg?`<span class="a">↳</span> <span class="tg">${esc(e.tg)}</span> `:""}<span class="shrt">${shrt(e.ty)}</span></span></div>`).join("")+`</div>`).join("")],
+["two aligned columns","proper key → member type, split into 2 columns",()=>
+  `<div class="t7">`+SEC.map(([t,l])=>`<div class="sec">`+head(t,l)+l.map(e=>`<div class="row"><span class="k">${e.k}</span><span class="arr">${e.tg?"→":""}</span><span class="tg">${e.tg?esc(e.tg):""}</span><span class="ty">${shrt(e.ty)}</span></div>`).join("")+`</div>`).join("")+`</div>`],
+["merged, kind stripe","all entries, key → member, colored left edge by kind",()=>
+  `<div class="g8">`+ALL.map(e=>`<div class="c8 kd-${e.kd}"><span class="k">${e.k}</span>${e.tg?`<span class="arr">→</span><span class="tg">${esc(e.tg)}</span>`:""}<span class="ty">${shrt(e.ty)}</span></div>`).join("")+`</div>`],
+];
+
+const cards=document.getElementById("cards");
+V.forEach((v,i)=>{const id=String(i+1).padStart(2,"0");const c=document.createElement("div");c.className="card";
+  c.innerHTML=`<div class="cap"><span class="n">${id}</span><span class="t">${v[0]}</span><span class="d">${v[1]}</span></div><div class="body">${v[2]()}</div>`;cards.appendChild(c);});
+const root=document.documentElement;
+document.getElementById("tgl").onclick=()=>{const cur=root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");root.setAttribute("data-theme",cur==="dark"?"light":"dark");};
+</script>
+</body>
+</html>

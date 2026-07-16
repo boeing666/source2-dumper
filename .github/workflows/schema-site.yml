@@ -69,6 +69,7 @@ jobs:
         run: |
           git clone --recursive --depth 1 https://github.com/Wend4r/sourcesdk       thirdparty/sourcesdk
           git clone --recursive --depth 1 https://github.com/Wend4r/cpp-dynlibutils thirdparty/cpp-dynlibutils
+          git clone --depth 1 --branch v7.9.0 https://github.com/stephenberry/glaze thirdparty/glaze
 
       - name: Download depot (${{ matrix.target }})
         shell: bash
@@ -153,30 +154,46 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Collect site parts
+      - uses: actions/checkout@v5   # frontend source (web/)
+
+      - name: Collect dump parts (per-platform JSON)
         uses: actions/download-artifact@v4
         with:
-          path: site
+          path: ${{ runner.temp }}/parts
           pattern: schema-*
           merge-multiple: true
 
-      - name: Write platforms manifest
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Stage JSON data into the frontend
         run: |
-          shopt -s nullglob
-          json="["
-          for f in site/*.html; do
-            name=$(basename "$f" .html)
-            [ "$name" = "index" ] && continue
-            json="$json\"$name\","
+          mkdir -p web/public/data
+          for p in win64 linux; do
+            if [ -d "$RUNNER_TEMP/parts/$p" ]; then
+              mkdir -p "web/public/data/$p"
+              cp "$RUNNER_TEMP/parts/$p"/*.json "web/public/data/$p/"
+              echo "staged $p: $(ls "web/public/data/$p" | wc -l) json"
+            fi
           done
-          json="${json%,}]"
-          echo "$json" > site/platforms.json
-          echo "platforms.json = $json"
+
+      - name: Build static site (Vite)
+        working-directory: web
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: web/dist
 
       - name: Deploy to Pages
         id: deploy
