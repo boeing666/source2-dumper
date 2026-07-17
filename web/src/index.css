@@ -14,33 +14,6 @@
       --zeb:#f4f5f8;--hov:#e8eef6;
       --cptr:#b45309;--ctmpl:#8250df;--cprim:#0550ae;--cagg:#0e7569;--cpad:#aab0bb;
       --shadow:0 1px 3px rgba(31,35,40,.08)}}
-/* shadcn token bridge → old palette (so shadcn components inherit the site look) */
-:root{
-  --background:var(--bg);--foreground:var(--fg);
-  --card:var(--panel);--card-foreground:var(--fg);
-  --popover:var(--panel);--popover-foreground:var(--fg);
-  --primary:var(--acc);--primary-foreground:#fff;
-  --secondary:var(--panel2);--secondary-foreground:var(--fg);
-  --muted:var(--panel2);--muted-foreground:var(--mut);
-  --accent:var(--hov);--accent-foreground:var(--fg);
-  --destructive:#e5484d;--destructive-foreground:#fff;
-  --input:var(--border);--ring:var(--acc);
-  --radius:0.5rem;
-}
-@theme inline{
-  --color-background:var(--background);--color-foreground:var(--foreground);
-  --color-card:var(--card);--color-card-foreground:var(--card-foreground);
-  --color-popover:var(--popover);--color-popover-foreground:var(--popover-foreground);
-  --color-primary:var(--primary);--color-primary-foreground:var(--primary-foreground);
-  --color-secondary:var(--secondary);--color-secondary-foreground:var(--secondary-foreground);
-  --color-muted:var(--muted);--color-muted-foreground:var(--muted-foreground);
-  --color-accent:var(--accent);--color-accent-foreground:var(--accent-foreground);
-  --color-destructive:var(--destructive);--color-destructive-foreground:var(--destructive-foreground);
-  --color-border:var(--border);--color-input:var(--input);--color-ring:var(--ring);
-  --color-acc:var(--acc);--color-mut:var(--mut);--color-num:var(--num);--color-meta:var(--meta);
-  --radius-sm:calc(var(--radius) - 4px);--radius-md:calc(var(--radius) - 2px);--radius-lg:var(--radius);--radius-xl:calc(var(--radius) + 4px);
-  --font-mono:var(--mono);
-}
 @layer base{*{border-color:var(--border)}}
 *{box-sizing:border-box}
 body{margin:0;font:16px/1.6 var(--mono);background:var(--bg);color:var(--fg)}
@@ -54,6 +27,8 @@ button{font-family:inherit}
 .brand{font-size:15px;font-weight:650;letter-spacing:.2px;white-space:nowrap}
 .brand::before{content:"{;}";color:var(--acc);font-family:var(--mono);margin-right:8px;font-weight:700}
 .sp{flex:1}
+.ghlink{display:inline-flex;align-items:center;color:var(--mut);margin-left:8px;transition:color .1s}
+.ghlink:hover{color:var(--fg)}
 .ver{color:var(--fg);font-weight:600;font-size:12.5px;font-family:var(--mono);white-space:nowrap}
 .subbar{display:flex;gap:22px;align-items:center;justify-content:center;padding:7px 16px;border-bottom:1px solid var(--border);background:var(--bg);color:var(--mut);font:12px/1 var(--mono)}
 .subbar b{color:var(--fg);font-weight:600}
