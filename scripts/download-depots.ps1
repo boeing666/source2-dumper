@@ -80,4 +80,24 @@ try {
 	Write-Host "warning: steam.inf fetch failed (PatchVersion will be blank)"
 }
 
+# gameevents live INSIDE pak01 vpk (not addressable by DepotDownloader), so pull the extracted text
+# from GameTracking-CS2 (bot-committed after every CS2 patch -> always current). Their layout nests a
+# "pak01_dir/" segment; we drop it and mirror the real game tree (csgo\resource, core\resource).
+Write-Host ">> gameevents (from GameTracking-CS2)"
+$gtBase = "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game"
+$gameevents = @(
+	@{ src = "csgo/pak01_dir/resource/game.gameevents"; dst = "game\csgo\resource\game.gameevents" },
+	@{ src = "csgo/pak01_dir/resource/mod.gameevents";  dst = "game\csgo\resource\mod.gameevents"  },
+	@{ src = "core/pak01_dir/resource/core.gameevents"; dst = "game\core\resource\core.gameevents" }
+)
+foreach ($ge in $gameevents) {
+	$out = Join-Path $gameDir $ge.dst
+	New-Item -ItemType Directory -Force -Path (Split-Path -Parent $out) | Out-Null
+	try {
+		Invoke-WebRequest -Uri "$gtBase/$($ge.src)" -OutFile $out
+	} catch {
+		Write-Host "warning: gameevents fetch failed: $($ge.src)"
+	}
+}
+
 Write-Host ">> Done."

@@ -62,7 +62,8 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y ninja-build libva2 libvdpau1 libx11-6 libdrm2
+          # g++-14: the dumper uses C++23 <print>, which libstdc++ only ships from GCC 14.
+          sudo apt-get install -y ninja-build g++-14 libva2 libvdpau1 libx11-6 libdrm2
 
       - name: Fetch SDKs
         shell: bash
@@ -84,8 +85,12 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            CC=gcc-14 CXX=g++-14 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          else
+            cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded
+          fi
           cmake --build build -j
 
       - name: Dump schema

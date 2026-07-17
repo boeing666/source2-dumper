@@ -1,48 +1,24 @@
 #include "schema_dumper.hpp"
-#include "schema_model.hpp"
-#include "schema_util.hpp"
-#include "header_writer.hpp"
-#include "json_writer.hpp"
-#include "network_fields.hpp"
+#include "schema/schema_model.hpp"
+#include "schema/schema_parse.hpp"
+#include "core/game_module.hpp"
+#include "output/header_writer.hpp"
+#include "output/json_writer.hpp"
+#include "runtime/network_fields.hpp"
+#include "runtime/appsystem.hpp"
+#include "runtime/convars.hpp"
+#include "gameevents/gameevents.hpp"
 
-#include <algorithm>
-#include <cstdio>
-#include <format>
+#include <print>
 #include <fstream>
 #include <string>
 #include <string_view>
 #include <unordered_set>
 #include <vector>
 
-#include <dynlibutils/module.hpp>
-#include <schemasystem/schemasystem.h>
-
-#include "eiface.h"
-
-#if defined(_WIN32)
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <windows.h>
-#endif
-
 namespace schema {
 namespace fs = std::filesystem;
-using DynLibUtils::CModule;
 
-#if defined(_WIN32)
-static constexpr int kLoadFlags = 0x8;          // LOAD_WITH_ALTERED_SEARCH_PATH
-#else
-static constexpr int kLoadFlags = 0x2 | 0x100;  // RTLD_NOW | RTLD_GLOBAL
-#endif
-
-using CreateInterfaceFn = void* (*)(const char*, int*);
-using InstallSchemaFn   = char  (*)(const char*, void*);
-
-static std::string Decorate(std::string_view name) {
-	return std::format(MODULE_PREFIX "{}" MODULE_EXT, name);
-}
-
-// e.g. ReadInf("PatchVersion") / ReadInf("ServerVersion") from game/<game>/steam.inf
 static std::string ReadInf(std::string_view key) {
 	std::ifstream in(fs::path(GAME_ROOT) / SE_GAME_DIR / "steam.inf");
 	for (std::string line; std::getline(in, line);) {
@@ -58,168 +34,40 @@ static std::string ReadInf(std::string_view key) {
 }
 
 int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& outDir) {
-	const std::string ext = MODULE_EXT;
-
-	std::vector<CModule> mods;
-	for (const fs::path& dir : { binDir, moduleDir }) {
-		if (!fs::is_directory(dir)) {
-			continue;
-		}
-		for (const auto& entry : fs::directory_iterator(dir)) {
-			if (!entry.is_regular_file() || entry.path().extension() != ext) {
-				continue;
-			}
-			CModule mod;
-			if (mod.LoadFromPath(entry.path().string(), kLoadFlags)) {
-				mods.push_back(std::move(mod));
-			} else {
-				// e.g. engine2/networksystem need steamnetworkingsockets.dll present in binDir
-				std::fprintf(stderr, "warning: could not load %s (%s)\n",
-				             entry.path().filename().string().c_str(), mod.GetLastError().data());
-			}
-		}
-	}
-
-	CModule* schemaMod = nullptr;
-	const std::string schemaFile = Decorate("schemasystem");
-	for (auto& m : mods) {
-		if (m.GetName() == schemaFile) {
-			schemaMod = &m;
-			break;
-		}
-	}
-	if (!schemaMod) {
-		std::fprintf(stderr, "schemasystem not loaded\n");
-		return 1;
-	}
-
-	auto createInterface = schemaMod->GetFunctionByName("CreateInterface").RCast<CreateInterfaceFn>();
-	auto* sys = createInterface ? static_cast<CSchemaSystem*>(createInterface(SCHEMASYSTEM_INTERFACE_VERSION, nullptr)) : nullptr;
-	if (!sys) {
-		std::fprintf(stderr, "no schema system\n");
-		return 1;
-	}
-
-	for (auto& m : mods) {
-		if (auto fn = m.GetFunctionByName("InstallSchemaBindings").RCast<InstallSchemaFn>()) {
-			fn(SCHEMASYSTEM_INTERFACE_VERSION, sys);
-		}
-	}
-
-	// A module's scope name is not always its filename, so probe a few variants.
-	std::vector<CSchemaSystemTypeScope*> scopes;
-	std::vector<void*> seenScope;
-	auto addScope = [&](CSchemaSystemTypeScope* s) {
-		if (s && std::find(seenScope.begin(), seenScope.end(), s) == seenScope.end()) {
-			seenScope.push_back(s);
-			scopes.push_back(s);
-		}
-	};
-	for (auto& m : mods) {
-		std::string f(m.GetName());
-		addScope(sys->FindTypeScopeForModule(f.c_str(), nullptr));
-		std::string base = f.substr(0, f.find('.'));
-		addScope(sys->FindTypeScopeForModule(base.c_str(), nullptr));
-		if (base.rfind("lib", 0) == 0) {
-			addScope(sys->FindTypeScopeForModule(base.substr(3).c_str(), nullptr));
-		}
-	}
-	addScope(sys->GlobalTypeScope());
-
-	auto prio = [](CSchemaSystemTypeScope* s) {
-		std::string_view n = s->m_szScopeName;
-		if (n.empty()) {
-			return 0; // global
-		}
-		if (n == "server.dll" || n == "libserver.so") {
-			return 1;
-		}
-		if (n == "client.dll" || n == "libclient.so") {
-			return 2;
-		}
-		return 3;
-	};
-	std::stable_sort(scopes.begin(), scopes.end(), [&](auto* a, auto* b) { return prio(a) < prio(b); });
+	ModuleMap mods = LoadGameModules({ binDir, moduleDir });
 
 	std::vector<Module> modules;
 	std::unordered_set<std::string> known;
-	std::unordered_set<std::string> seen; // unique anchor id across classes + enums
-
-	for (CSchemaSystemTypeScope* scope : scopes) {
-		Module md;
-		md.scope = scope->m_szScopeName[0] ? scope->m_szScopeName : "!GlobalTypes";
-		md.safe  = SafeName(md.scope);
-
-		auto& classes = scope->m_ClassBindings;
-		if (int n = classes.Count(); n > 0) {
-			std::vector<UtlTSHashHandle_t> handles(n);
-			classes.GetElements(0, n, handles.data());
-			for (int i = 0; i < n; ++i) {
-				CSchemaClassInfo* c = classes.Element(handles[i]);
-				if (!c || !c->m_pszName || !*c->m_pszName || !seen.insert(c->m_pszName).second) {
-					continue;
-				}
-				md.classes.push_back({ c, SortedFields(c), !DerivesFromEntity(c) });
-				known.insert(c->m_pszName);
-			}
-			std::ranges::sort(md.classes, [](const ClassRec& a, const ClassRec& b) {
-				return std::string_view(a.info->m_pszName) < std::string_view(b.info->m_pszName);
-			});
-		}
-
-		auto& enums = scope->m_EnumBindings;
-		if (int n = enums.Count(); n > 0) {
-			std::vector<UtlTSHashHandle_t> handles(n);
-			enums.GetElements(0, n, handles.data());
-			for (int i = 0; i < n; ++i) {
-				CSchemaEnumInfo* e = enums.Element(handles[i]);
-				if (!e || !e->m_pszName || !*e->m_pszName || !seen.insert(e->m_pszName).second) {
-					continue;
-				}
-				md.enums.push_back(e);
-				known.insert(e->m_pszName);
-			}
-			std::ranges::sort(md.enums, [](CSchemaEnumInfo* a, CSchemaEnumInfo* b) {
-				return std::string_view(a->m_pszName) < std::string_view(b->m_pszName);
-			});
-		}
-
-		if (!md.classes.empty() || !md.enums.empty()) {
-			modules.push_back(std::move(md));
-		}
+	if (!ParseSchema(mods, modules, known)) {
+		return 1;
 	}
 
-	// networked fields, "Class::field" — authoritative via the network codegen DB on win64,
-	// falling back to static CNetworkVar RTTI parsing.
 	std::unordered_set<std::string> network = CollectNetworkFields(mods);
 
-	std::vector<ConVarInfo> convars;          // filled by the server bring-up (CollectConVars)
+	std::vector<ConVarInfo> convars;
 	std::vector<ConCommandInfo> concommands;
 	CollectConVars(convars, concommands);
 
+	std::vector<GameEventInfo> events = CollectGameEvents(GAME_ROOT);
+
 	const std::string patch = ReadInf("PatchVersion");
 	WriteHeaders(modules, outDir / "headers" / PLATFORM_NAME);
-	WriteJson(outDir, modules, known, network, convars, concommands, patch, ReadInf("ServerVersion"));
+	WriteConVarDump(convars, concommands, outDir / "headers" / PLATFORM_NAME);
+	WriteJson(outDir, modules, known, network, convars, concommands, events, patch, ReadInf("ServerVersion"));
 	if (!patch.empty()) {
-		std::ofstream(outDir / "patchversion.txt", std::ios::trunc) << patch;   // read by the CI commit step
+		std::ofstream(outDir / "patchversion.txt", std::ios::trunc) << patch;
 	}
 
 	int total = 0;
 	for (const Module& m : modules) {
 		total += (int)(m.classes.size() + m.enums.size());
-		std::printf("%-28s %5zu classes %4zu enums\n", m.scope.c_str(), m.classes.size(), m.enums.size());
+		std::println("{:<28} {:>5} classes {:>4} enums", m.scope, m.classes.size(), m.enums.size());
 	}
-	std::printf("\n%d types / %zu modules / %zu network fields -> %s/%s (json)\n",
-	            total, modules.size(), network.size(), outDir.string().c_str(), PLATFORM_NAME);
+	std::println("\n{} types / {} modules / {} network fields -> {}/{} (json)",
+	             total, modules.size(), network.size(), outDir.string(), PLATFORM_NAME);
 
-#if defined(_WIN32)
-	// All output is written. The server bring-up left game systems live (background threads suspended),
-	// so terminate now — a clean shutdown would fault in teardown.
-	std::fflush(stdout);
-	std::fflush(stderr);
-	TerminateProcess(GetCurrentProcess(), 0);
-#endif
+	ShutdownAppSystems();
 	return 0;
 }
 
-} // namespace schema
+}

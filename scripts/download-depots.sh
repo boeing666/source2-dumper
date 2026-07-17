@@ -84,4 +84,15 @@ mkdir -p "$GAME_DIR/game/csgo"
 curl -fsSL "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game/csgo/steam.inf" \
 	-o "$GAME_DIR/game/csgo/steam.inf" || echo "warning: steam.inf fetch failed (PatchVersion will be blank)"
 
+echo ">> gameevents (from GameTracking-CS2)"
+GT_BASE="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game"
+for pair in \
+	"csgo/pak01_dir/resource/game.gameevents|csgo/resource/game.gameevents" \
+	"csgo/pak01_dir/resource/mod.gameevents|csgo/resource/mod.gameevents" \
+	"core/pak01_dir/resource/core.gameevents|core/resource/core.gameevents"; do
+	src="${pair%%|*}"; dst="$GAME_DIR/game/${pair##*|}"
+	mkdir -p "$(dirname "$dst")"
+	curl -fsSL "$GT_BASE/$src" -o "$dst" || echo "warning: gameevents fetch failed: $src"
+done
+
 echo ">> Done."

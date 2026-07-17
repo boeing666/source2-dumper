@@ -1,4 +1,4 @@
-import type { Meta, Scope, ConVar, ConCommand, IndexEntry } from "@/types";
+import type { Meta, Scope, ConVar, ConCommand, GameEvent, IndexEntry } from "@/types";
 
 // JSON lives under <base>/data/<platform>/ (the C++ dumper output, copied into public/data in CI).
 const base = import.meta.env.BASE_URL;
@@ -17,3 +17,4 @@ export const loadIndex = (p: Platform) => getJson<IndexEntry[]>(`${p}/index.json
 export const loadScope = (p: Platform, file: string) => getJson<Scope>(`${p}/${file}`);
 export const loadConVars = (p: Platform) => getJson<ConVar[]>(`${p}/convars.json`);
 export const loadConCommands = (p: Platform) => getJson<ConCommand[]>(`${p}/concommands.json`);
+export const loadEvents = (p: Platform) => getJson<GameEvent[]>(`${p}/events.json`);

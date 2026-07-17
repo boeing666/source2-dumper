@@ -78,6 +78,7 @@ export interface Meta {
   convars: number;
   concommands: number;
   networkFields: number;
+  events: number;
   scopes: ScopeIndex[];
 }
 
@@ -114,4 +115,15 @@ export interface ConCommand {
   help: string;
   flagsRaw: number;
   flags: string[];
+}
+
+export interface GameEventField {
+  name: string;
+  type: string;
+}
+
+export interface GameEvent {
+  name: string;
+  module: string; // game | mod | core
+  fields: GameEventField[];
 }
