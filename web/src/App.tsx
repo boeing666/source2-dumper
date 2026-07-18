@@ -55,12 +55,22 @@ export default function App() {
   const known = useMemo(() => new Set(index.map((e) => e.name)), [index]);
   const scopeNames = useMemo(() => (meta ? meta.scopes.map((s) => s.scope) : []), [meta]);
 
-  // resolve the URL's class once the index is available
+  // resolve the URL's class once the index is available, and re-resolve the current selection against a
+  // freshly loaded index — switching platform changes module file names, so selected.file must be re-derived
   useEffect(() => {
-    if (!pending.current || nameMap.size === 0) return;
-    const e = nameMap.get(pending.current.name);
-    if (e) setSelected({ name: e.name, file: e.file, targetField: pending.current.field });
-    pending.current = null;
+    if (nameMap.size === 0) return;
+    if (pending.current) {
+      const e = nameMap.get(pending.current.name);
+      if (e) setSelected({ name: e.name, file: e.file, targetField: pending.current.field });
+      pending.current = null;
+      return;
+    }
+    setSelected((s) => {
+      if (!s) return s;
+      const e = nameMap.get(s.name);
+      if (!e) return null;
+      return e.file === s.file ? s : { ...s, file: e.file };
+    });
   }, [nameMap]);
 
   // external URL changes (manual edit, opened share link, back/forward)
@@ -90,10 +100,15 @@ export default function App() {
 
   useEffect(() => {
     if (!selected) { setScopeData(null); return; }
-    const cached = scopeCache.current.get(selected.file);
+    const file = selected.file;
+    const cached = scopeCache.current.get(file);
     if (cached) { setScopeData(cached); return; }
     setScopeData(null);
-    loadScope(platform, selected.file).then((s) => { scopeCache.current.set(selected.file, s); setScopeData(s); });
+    let alive = true;
+    loadScope(platform, file)
+      .then((s) => { scopeCache.current.set(file, s); if (alive) setScopeData(s); })
+      .catch(() => {});
+    return () => { alive = false; };
   }, [selected, platform]);
 
   const pick = (e: IndexEntry, field?: string) => { setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: field }); };
