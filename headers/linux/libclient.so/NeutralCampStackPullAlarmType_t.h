@@ -1,0 +1,7 @@
+#pragma once
+
+enum NeutralCampStackPullAlarmType_t : uint32_t  // sizeof 0x4
+{
+    DOTA_NEUTRAL_CAMP_STACK_PULL_ALARM_TYPE_STACK = 1,
+    DOTA_NEUTRAL_CAMP_STACK_PULL_ALARM_TYPE_PULL = 2,
+};

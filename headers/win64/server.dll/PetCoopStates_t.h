@@ -1,0 +1,11 @@
+#pragma once
+
+enum PetCoopStates_t : uint32_t  // sizeof 0x4
+{
+    COOP_IGNORE = 0,
+    COOPTELEPORT_START_PERFORMING = 1,
+    COOPTELEPORT_PLAY_ENDANIM = 2,
+    COOPTELEPORT_PLAY_EXITANIM = 3,
+    COOP_WARD_OBSERVER = 4,
+    COOP_WARD_SENTRY = 5,
+};

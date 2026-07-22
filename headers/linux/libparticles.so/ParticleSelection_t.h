@@ -1,0 +1,8 @@
+#pragma once
+
+enum ParticleSelection_t : uint32_t  // sizeof 0x4
+{
+    PARTICLE_SELECTION_FIRST = 0,
+    PARTICLE_SELECTION_LAST = 1,
+    PARTICLE_SELECTION_NUMBER = 2,
+};

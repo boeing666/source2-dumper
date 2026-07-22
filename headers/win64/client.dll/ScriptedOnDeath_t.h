@@ -1,0 +1,9 @@
+#pragma once
+
+enum ScriptedOnDeath_t : uint32_t  // sizeof 0x4
+{
+    SS_ONDEATH_NOT_APPLICABLE = -1,
+    SS_ONDEATH_UNDEFINED = 0,
+    SS_ONDEATH_RAGDOLL = 1,
+    SS_ONDEATH_ANIMATED_DEATH = 2,
+};

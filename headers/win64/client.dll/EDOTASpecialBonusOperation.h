@@ -1,0 +1,11 @@
+#pragma once
+
+enum EDOTASpecialBonusOperation : uint8_t  // sizeof 0x1
+{
+    SPECIAL_BONUS_ADD = 0,
+    SPECIAL_BONUS_MULTIPLY = 1,
+    SPECIAL_BONUS_SUBTRACT = 2,
+    SPECIAL_BONUS_PERCENTAGE_ADD = 3,
+    SPECIAL_BONUS_PERCENTAGE_SUBTRACT = 4,
+    SPECIAL_BONUS_SET = 5,
+};

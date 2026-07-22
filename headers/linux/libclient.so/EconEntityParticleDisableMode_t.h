@@ -1,0 +1,8 @@
+#pragma once
+
+enum EconEntityParticleDisableMode_t : uint32_t  // sizeof 0x4
+{
+    ECON_ENTITY_PARTICLES_ENABLED = 0,
+    ECON_ENTITY_PARTICLES_DISABLED = 1,
+    ECON_ENTITY_PARTICLES_DISABLED_BUT_PLAY_ENDCAPS_TO_STOP = 2,
+};

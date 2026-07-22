@@ -1,0 +1,29 @@
+#pragma once
+
+class C_PointWorldText : public C_ModelPointEntity /*0x0*/  // sizeof 0xEE8, align 0x8 [vtable] (client)
+{
+public:
+    char _pad_0000[0xC18]; // offset 0x0
+    bool m_bForceRecreateNextUpdate; // offset 0xC18, size 0x1, align 1 | MNotSaved
+    char _pad_0C19[0x17]; // offset 0xC19
+    int32 m_nTextWidthPx; // offset 0xC30, size 0x4, align 4
+    int32 m_nTextHeightPx; // offset 0xC34, size 0x4, align 4
+    char[512] m_messageText; // offset 0xC38, size 0x200, align 1
+    char[64] m_FontName; // offset 0xE38, size 0x40, align 1 | MNotSaved
+    char[64] m_BackgroundMaterialName; // offset 0xE78, size 0x40, align 1 | MNotSaved
+    bool m_bEnabled; // offset 0xEB8, size 0x1, align 1 | MNotSaved
+    bool m_bFullbright; // offset 0xEB9, size 0x1, align 1 | MNotSaved
+    char _pad_0EBA[0x2]; // offset 0xEBA
+    float32 m_flWorldUnitsPerPx; // offset 0xEBC, size 0x4, align 4 | MNotSaved
+    float32 m_flFontSize; // offset 0xEC0, size 0x4, align 4 | MNotSaved
+    float32 m_flDepthOffset; // offset 0xEC4, size 0x4, align 4 | MNotSaved
+    bool m_bDrawBackground; // offset 0xEC8, size 0x1, align 1 | MNotSaved
+    char _pad_0EC9[0x3]; // offset 0xEC9
+    float32 m_flBackgroundBorderWidth; // offset 0xECC, size 0x4, align 4 | MNotSaved
+    float32 m_flBackgroundBorderHeight; // offset 0xED0, size 0x4, align 4 | MNotSaved
+    float32 m_flBackgroundWorldToUV; // offset 0xED4, size 0x4, align 4 | MNotSaved
+    Color m_Color; // offset 0xED8, size 0x4, align 1 | MNotSaved
+    PointWorldTextJustifyHorizontal_t m_nJustifyHorizontal; // offset 0xEDC, size 0x4, align 4 | MNotSaved
+    PointWorldTextJustifyVertical_t m_nJustifyVertical; // offset 0xEE0, size 0x4, align 4 | MNotSaved
+    PointWorldTextReorientMode_t m_nReorientMode; // offset 0xEE4, size 0x4, align 4 | MNotSaved
+};

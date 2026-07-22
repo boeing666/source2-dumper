@@ -1,0 +1,14 @@
+#pragma once
+
+enum FowCustomTeams_t : uint32_t  // sizeof 0x4
+{
+    FOW_TEAM_NONE = 0,
+    FOW_TEAM_NIGHTSTALKER = 6,
+    FOW_TEAM_ARENA_OF_BLOOD = 7,
+    FOW_TEAM_TUNNEL_VISION = 8,
+    FOW_TEAM_WEIGHTED_PIE = 9,
+    FOW_TEAM_BLOB = 10,
+    FOW_TEAM_UNUSED5 = 11,
+    FOW_TEAM_UNUSED6 = 12,
+    FOW_TEAM_UNUSED7 = 13,
+};

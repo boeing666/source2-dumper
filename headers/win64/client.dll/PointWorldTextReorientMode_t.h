@@ -1,0 +1,7 @@
+#pragma once
+
+enum PointWorldTextReorientMode_t : uint32_t  // sizeof 0x4
+{
+    POINT_WORLD_TEXT_REORIENT_NONE = 0,
+    POINT_WORLD_TEXT_REORIENT_AROUND_UP = 1,
+};

@@ -1,0 +1,9 @@
+#pragma once
+
+enum SPELL_DISPELLABLE_TYPES : uint32_t  // sizeof 0x4
+{
+    SPELL_DISPELLABLE_NONE = 0,
+    SPELL_DISPELLABLE_YES_STRONG = 1,
+    SPELL_DISPELLABLE_YES = 2,
+    SPELL_DISPELLABLE_NO = 3,
+};

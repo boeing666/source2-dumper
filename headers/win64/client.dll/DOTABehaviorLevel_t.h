@@ -1,0 +1,10 @@
+#pragma once
+
+enum DOTABehaviorLevel_t : uint32_t  // sizeof 0x4
+{
+    DOTA_BEHAVIOR_LEVEL_NONE = 0,
+    DOTA_BEHAVIOR_LEVEL_RANKED_ALLOWED = 1,
+    DOTA_BEHAVIOR_LEVEL_PAUSING = 2,
+    DOTA_BEHAVIOR_LEVEL_DROPS = 3,
+    DOTA_BEHAVIOR_LEVEL_COACHING = 4,
+};

@@ -1,0 +1,11 @@
+#pragma once
+
+enum Attributes : uint32_t  // sizeof 0x4
+{
+    DOTA_ATTRIBUTE_STRENGTH = 0,
+    DOTA_ATTRIBUTE_AGILITY = 1,
+    DOTA_ATTRIBUTE_INTELLECT = 2,
+    DOTA_ATTRIBUTE_ALL = 3,
+    DOTA_ATTRIBUTE_MAX = 4,
+    DOTA_ATTRIBUTE_INVALID = -1,
+};

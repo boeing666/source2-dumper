@@ -1,0 +1,9 @@
+#pragma once
+
+enum RelativeLocationType_t : uint8_t  // sizeof 0x1
+{
+    WORLD_SPACE_POSITION = 0,
+    RELATIVE_TO_ENTITY_IN_LOCAL_SPACE = 1,
+    RELATIVE_TO_ENTITY_YAW_ONLY = 2,
+    RELATIVE_TO_ENTITY_IN_WORLD_SPACE = 3,
+};

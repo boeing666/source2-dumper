@@ -1,0 +1,10 @@
+#pragma once
+
+enum quest_text_replace_values_t : uint32_t  // sizeof 0x4
+{
+    QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE = 0,
+    QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE = 1,
+    QUEST_TEXT_REPLACE_VALUE_ROUND = 2,
+    QUEST_TEXT_REPLACE_VALUE_REWARD = 3,
+    QUEST_NUM_TEXT_REPLACE_VALUES = 4,
+};

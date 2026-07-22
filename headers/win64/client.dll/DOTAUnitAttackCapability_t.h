@@ -1,0 +1,10 @@
+#pragma once
+
+enum DOTAUnitAttackCapability_t : uint32_t  // sizeof 0x4
+{
+    DOTA_UNIT_CAP_NO_ATTACK = 0,
+    DOTA_UNIT_CAP_MELEE_ATTACK = 1,
+    DOTA_UNIT_CAP_RANGED_ATTACK = 2,
+    DOTA_UNIT_CAP_RANGED_ATTACK_DIRECTIONAL = 4,
+    DOTA_UNIT_ATTACK_CAPABILITY_BIT_COUNT = 3,
+};

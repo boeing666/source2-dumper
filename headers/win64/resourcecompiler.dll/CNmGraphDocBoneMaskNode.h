@@ -1,0 +1,10 @@
+#pragma once
+
+class CNmGraphDocBoneMaskNode : public CNmGraphDocVariationDataNode /*0x0*/  // sizeof 0x210, align 0x8 [vtable] (animdoclib) {MGetKV3ClassDefaults}
+{
+public:
+    char _pad_0000[0x200]; // offset 0x0
+    CGlobalSymbol m_maskID; // offset 0x200, size 0x8, align 8 | MPropertyAttributeEditor
+    bool m_bIsOptionalMask; // offset 0x208, size 0x1, align 1 | MPropertyDescription
+    char _pad_0209[0x7]; // offset 0x209
+};

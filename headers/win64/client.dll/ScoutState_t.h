@@ -1,0 +1,11 @@
+#pragma once
+
+enum ScoutState_t : uint32_t  // sizeof 0x4
+{
+    SCOUT_STATE_INIT = -1,
+    SCOUT_STATE_IDLE = 0,
+    SCOUT_STATE_AT_BASE = 1,
+    SCOUT_STATE_MOVING = 2,
+    SCOUT_STATE_DEAD = 3,
+    SCOUT_NUM_STATES = 4,
+};

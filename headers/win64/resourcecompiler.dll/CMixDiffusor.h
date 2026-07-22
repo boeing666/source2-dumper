@@ -1,0 +1,11 @@
+#pragma once
+
+class CMixDiffusor : public CMixPropertyBase /*0x0*/  // sizeof 0x30, align 0x8 [vtable] (sounddoc_lib) {MGetKV3ClassDefaults MPropertyFriendlyName MPropertyDescription}
+{
+public:
+    char _pad_0000[0x20]; // offset 0x0
+    float32 m_flSize; // offset 0x20, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
+    float32 m_flComplexity; // offset 0x24, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
+    float32 m_flFeedback; // offset 0x28, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
+    float32 m_flOutputGain; // offset 0x2C, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
+};

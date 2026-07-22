@@ -1,0 +1,12 @@
+#pragma once
+
+enum ELeagueRegion : uint32_t  // sizeof 0x4
+{
+    LEAGUE_REGION_UNSET = 0,
+    LEAGUE_REGION_NA = 1,
+    LEAGUE_REGION_SA = 2,
+    LEAGUE_REGION_WEU = 3,
+    LEAGUE_REGION_EEU = 4,
+    LEAGUE_REGION_CHINA = 5,
+    LEAGUE_REGION_SEA = 6,
+};

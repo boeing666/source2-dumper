@@ -1,0 +1,8 @@
+#pragma once
+
+enum ParticleDepthFeatheringMode_t : uint32_t  // sizeof 0x4
+{
+    PARTICLE_DEPTH_FEATHERING_OFF = 0,
+    PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL = 1,
+    PARTICLE_DEPTH_FEATHERING_ON_REQUIRED = 2,
+};

@@ -1,0 +1,7 @@
+#pragma once
+
+enum RTProxyInstanceFlags_t : uint8_t  // sizeof 0x1
+{
+    RTPROXY_INSTANCE_FLAG_NONE = 0,
+    RTPROXY_INSTANCE_UNIQUE_MESH = 1,
+};

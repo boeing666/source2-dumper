@@ -1,0 +1,10 @@
+#pragma once
+
+enum DIALOG_TYPE : uint32_t  // sizeof 0x4
+{
+    DIALOG_MSG = 0,
+    DIALOG_MENU = 1,
+    DIALOG_TEXT = 2,
+    DIALOG_ENTRY = 3,
+    DIALOG_ASKCONNECT = 4,
+};

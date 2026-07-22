@@ -1,0 +1,15 @@
+#pragma once
+
+enum ELeagueNodeGroupType : uint32_t  // sizeof 0x4
+{
+    INVALID_GROUP_TYPE = 0,
+    ORGANIZATIONAL = 1,
+    ROUND_ROBIN = 2,
+    SWISS = 3,
+    BRACKET_SINGLE = 4,
+    BRACKET_DOUBLE_SEED_LOSER = 5,
+    BRACKET_DOUBLE_ALL_WINNER = 6,
+    SHOWMATCH = 7,
+    GSL = 8,
+    PLACEMENT = 9,
+};

@@ -1,0 +1,9 @@
+#pragma once
+
+enum CLogicBranchList::LogicBranchListenerLastState_t : uint32_t  // sizeof 0x4
+{
+    LOGIC_BRANCH_LISTENER_NOT_INIT = 0,
+    LOGIC_BRANCH_LISTENER_ALL_TRUE = 1,
+    LOGIC_BRANCH_LISTENER_ALL_FALSE = 2,
+    LOGIC_BRANCH_LISTENER_MIXED = 3,
+};

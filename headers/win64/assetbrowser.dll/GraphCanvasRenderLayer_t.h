@@ -1,0 +1,18 @@
+#pragma once
+
+enum GraphCanvasRenderLayer_t : uint32_t  // sizeof 0x4
+{
+    INVALID = -1,
+    COMMENTS = 0,
+    CONNECTIONS_BACKGROUND = 1,
+    GROUP_BACKGROUND = 2,
+    DEFAULT = 3,
+    NODES = 4,
+    CONNECTIONS_FOREGROUND = 5,
+    COMMENT_OVERLAY = 6,
+    SELECTION_OVERLAY = 7,
+    HOVER_OVERLAY = 8,
+    STANDARD_LAYER_COUNT = 9,
+    SPECIAL_DEBUGGER_OVERLAY = 10,
+    SPECIAL_LAYER_HOVER_TOOLTIP = 11,
+};

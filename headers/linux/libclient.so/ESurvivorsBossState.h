@@ -1,0 +1,15 @@
+#pragma once
+
+enum ESurvivorsBossState : uint32_t  // sizeof 0x4
+{
+    INVALID = -1,
+    IDLE = 0,
+    CASTING_BURNING_GROUND = 1,
+    START_CASTING_RADIATE_RAYS = 2,
+    CASTING_RADIATE_RAYS = 3,
+    END_CASTING_RADIATE_RAYS = 4,
+    CASTING_DEMON_PORTALS = 5,
+    START_DESTROYING_TOWER = 6,
+    END_DESTROYING_TOWER = 7,
+    CASTING_MAGIC_MISSILE = 8,
+};

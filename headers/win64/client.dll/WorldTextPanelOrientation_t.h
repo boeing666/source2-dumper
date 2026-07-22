@@ -1,0 +1,8 @@
+#pragma once
+
+enum WorldTextPanelOrientation_t : uint32_t  // sizeof 0x4
+{
+    WORLDTEXT_ORIENTATION_DEFAULT = 0,
+    WORLDTEXT_ORIENTATION_FACEUSER = 1,
+    WORLDTEXT_ORIENTATION_FACEUSER_UPRIGHT = 2,
+};

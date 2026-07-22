@@ -1,0 +1,8 @@
+#pragma once
+
+enum ESurvivorsEnemyMovementCapability : uint32_t  // sizeof 0x4
+{
+    ENEMY_MOVEMENT_CAPABILITY_INVALID = -1,
+    ENEMY_MOVEMENT_CAPABILITY_GROUND = 0,
+    ENEMY_MOVEMENT_CAPABILITY_FLYING = 1,
+};

@@ -1,0 +1,9 @@
+#pragma once
+
+enum CFuncRotator::RotationAxis_t : uint32_t  // sizeof 0x4
+{
+    ROTATION_AXIS_UNDEFINED = 0,
+    ROTATION_AXIS_YAW = 1,
+    ROTATION_AXIS_PITCH = 2,
+    ROTATION_AXIS_ROLL = 3,
+};

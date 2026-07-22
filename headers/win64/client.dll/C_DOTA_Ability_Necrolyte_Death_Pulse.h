@@ -1,0 +1,9 @@
+#pragma once
+
+class C_DOTA_Ability_Necrolyte_Death_Pulse : public C_DOTABaseAbility /*0x0*/  // sizeof 0x6C0, align 0x8 [vtable] (client)
+{
+public:
+    char _pad_0000[0x6BC]; // offset 0x0
+    bool m_bIsDeathSeekerCast; // offset 0x6BC, size 0x1, align 1
+    char _pad_06BD[0x3]; // offset 0x6BD
+};

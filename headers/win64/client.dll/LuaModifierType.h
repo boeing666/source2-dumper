@@ -1,0 +1,10 @@
+#pragma once
+
+enum LuaModifierType : uint32_t  // sizeof 0x4
+{
+    LUA_MODIFIER_MOTION_NONE = 0,
+    LUA_MODIFIER_MOTION_HORIZONTAL = 1,
+    LUA_MODIFIER_MOTION_VERTICAL = 2,
+    LUA_MODIFIER_MOTION_BOTH = 3,
+    LUA_MODIFIER_INVALID = 4,
+};

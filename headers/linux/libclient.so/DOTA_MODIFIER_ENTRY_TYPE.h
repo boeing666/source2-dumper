@@ -1,0 +1,7 @@
+#pragma once
+
+enum DOTA_MODIFIER_ENTRY_TYPE : uint32_t  // sizeof 0x4
+{
+    DOTA_MODIFIER_ENTRY_TYPE_ACTIVE = 1,
+    DOTA_MODIFIER_ENTRY_TYPE_REMOVED = 2,
+};

@@ -1,0 +1,12 @@
+#pragma once
+
+enum EDotaEntityMessages : uint32_t  // sizeof 0x4
+{
+    DOTA_UNIT_SPEECH = 0,
+    DOTA_UNIT_SPEECH_MUTE = 1,
+    DOTA_UNIT_ADD_GESTURE = 2,
+    DOTA_UNIT_REMOVE_GESTURE = 3,
+    DOTA_UNIT_REMOVE_ALL_GESTURES = 4,
+    DOTA_UNIT_FADE_GESTURE = 6,
+    DOTA_UNIT_SPEECH_CLIENTSIDE_RULES = 7,
+};

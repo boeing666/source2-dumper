@@ -1,0 +1,8 @@
+#pragma once
+
+enum ELeagueDivision : uint32_t  // sizeof 0x4
+{
+    LEAGUE_DIVISION_UNSET = 0,
+    LEAGUE_DIVISION_I = 1,
+    LEAGUE_DIVISION_II = 2,
+};

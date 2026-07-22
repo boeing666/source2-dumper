@@ -1,0 +1,11 @@
+#pragma once
+
+struct thinkfunc_t  // sizeof 0x28, align 0x8 [trivial_dtor] (client) {MGetKV3ClassDefaults}
+{
+    BASEPTR m_think; // offset 0x0, size 0x10, align 8
+    HSCRIPT m_hFn; // offset 0x10, size 0x8, align 8 | MNotSaved
+    CUtlStringToken m_nContext; // offset 0x18, size 0x4, align 4
+    GameTick_t m_nNextThinkTick; // offset 0x1C, size 0x4, align 255
+    GameTick_t m_nLastThinkTick; // offset 0x20, size 0x4, align 255
+    char _pad_0024[0x4]; // offset 0x24
+};

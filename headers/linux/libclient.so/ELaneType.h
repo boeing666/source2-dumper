@@ -1,0 +1,11 @@
+#pragma once
+
+enum ELaneType : uint32_t  // sizeof 0x4
+{
+    LANE_TYPE_UNKNOWN = 0,
+    LANE_TYPE_SAFE = 1,
+    LANE_TYPE_OFF = 2,
+    LANE_TYPE_MID = 3,
+    LANE_TYPE_JUNGLE = 4,
+    LANE_TYPE_ROAM = 5,
+};

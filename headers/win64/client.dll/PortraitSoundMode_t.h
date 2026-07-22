@@ -1,0 +1,9 @@
+#pragma once
+
+enum PortraitSoundMode_t : uint32_t  // sizeof 0x4
+{
+    PORTRAIT_SOUND_MODE_INVALID = -1,
+    PORTRAIT_SOUND_MODE_NO_SOUNDS = 0,
+    PORTRAIT_SOUND_MODE_ONLY_TAUNT_SOUNDS = 1,
+    PORTRAIT_SOUND_MODE_ALL_SOUNDS = 2,
+};

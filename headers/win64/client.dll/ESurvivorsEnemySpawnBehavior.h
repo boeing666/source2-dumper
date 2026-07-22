@@ -1,0 +1,13 @@
+#pragma once
+
+enum ESurvivorsEnemySpawnBehavior : uint32_t  // sizeof 0x4
+{
+    INVALID_SPAWN_BEHAVIOR = -1,
+    FIXED_DIRECTION = 0,
+    FIXED_DIRECTION_PERPENDICULAR_WALL = 1,
+    OVAL_AROUND_PLAYER = 2,
+    STATIC_IN_MAP = 3,
+    STATIC_IN_MAP_IGNORE_PLAYER_RADIUS = 4,
+    RANDOM_DIRECTION = 5,
+    SPAWNER_ORIGIN_RADIUS = 6,
+};

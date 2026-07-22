@@ -1,0 +1,12 @@
+#pragma once
+
+enum Comparison_t : uint32_t  // sizeof 0x4
+{
+    COMPARISON_EQUALS = 0,
+    COMPARISON_NOT_EQUALS = 1,
+    COMPARISON_GREATER = 2,
+    COMPARISON_GREATER_OR_EQUAL = 3,
+    COMPARISON_LESS = 4,
+    COMPARISON_LESS_OR_EQUAL = 5,
+    COMPARISON_COUNT = 6,
+};

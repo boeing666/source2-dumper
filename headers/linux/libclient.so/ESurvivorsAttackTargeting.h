@@ -1,0 +1,11 @@
+#pragma once
+
+enum ESurvivorsAttackTargeting : uint32_t  // sizeof 0x4
+{
+    INVALID_TARGET = -1,
+    CLOSEST_TARGET = 0,
+    RANDOM_TARGET_IN_RANGE = 1,
+    STRONGEST_TARGET_IN_RANGE = 2,
+    RANDOM_TARGET_AT_RANGE = 3,
+    PLAYER_FACING = 4,
+};

@@ -1,0 +1,8 @@
+#pragma once
+
+enum DamageCategory_t : uint32_t  // sizeof 0x4
+{
+    DOTA_DAMAGE_CATEGORY_SPELL = 0,
+    DOTA_DAMAGE_CATEGORY_ATTACK = 1,
+    DOTA_DAMAGE_CATEGORY_BARRIER = 2,
+};
