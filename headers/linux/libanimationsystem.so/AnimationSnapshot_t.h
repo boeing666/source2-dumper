@@ -1,6 +1,6 @@
 #pragma once
 
-struct AnimationSnapshot_t : public AnimationSnapshotBase_t /*0x0*/  // sizeof 0x120, align 0x10 (scenesystem) {MGetKV3ClassDefaults}
+struct AnimationSnapshot_t : public AnimationSnapshotBase_t /*0x0*/  // sizeof 0x120, align 0x10 (animationsystem) {MGetKV3ClassDefaults}
 {
     char _pad_0000[0x108]; // offset 0x0
     int32 m_nEntIndex; // offset 0x108, size 0x4, align 4
