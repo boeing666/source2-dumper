@@ -64,6 +64,10 @@ jobs:
         platform:
           - { os: windows-latest, target: windows, name: win64 }
           - { os: ubuntu-latest,  target: linux,   name: linux }
+        exclude:
+          # Deadlock ships no usable Linux binaries yet
+          - game: deadlock
+            platform: { os: ubuntu-latest, target: linux, name: linux }
     runs-on: ${{ matrix.platform.os }}
     steps:
       - uses: actions/checkout@v5
