@@ -62,9 +62,13 @@ std::string CvarValueStr(EConVarType type, const CVValue_t* v) {
 
 void CollectConVars(std::vector<ConVarInfo>& convars, std::vector<ConCommandInfo>& concommands) {
 	auto impl = static_cast<CCvar*>(g_pCVar);
+	if (!impl) {
+		return;
+	}
 
-	for (int i = 0; i < impl->m_ConVarCount; ++i) {
-		ConVarData* d = impl->GetConVarData(ConVarRef(static_cast<uint16>(i)));
+	auto& cvarList = impl->m_ConVarList;
+	for (auto i = cvarList.Head(); i != cvarList.InvalidIndex(); i = cvarList.Next(i)) {
+		ConVarData* d = cvarList.Element(i);
 		if (!d || !d->GetName()) {
 			continue;
 		}
@@ -90,8 +94,9 @@ void CollectConVars(std::vector<ConVarInfo>& convars, std::vector<ConCommandInfo
 		convars.push_back(std::move(ci));
 	}
 
-	for (int i = 0; i < impl->m_ConCommandCount; ++i) {
-		ConCommandData* d = impl->GetConCommandData(ConCommandRef(static_cast<uint16>(i)));
+	auto& cmdList = impl->m_ConCommandList;
+	for (auto i = cmdList.Head(); i != cmdList.InvalidIndex(); i = cmdList.Next(i)) {
+		ConCommandData* d = &cmdList.Element(i);
 		if (!d || !d->GetName()) {
 			continue;
 		}

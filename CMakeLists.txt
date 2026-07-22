@@ -24,12 +24,31 @@ endif()
 set(SOURCESDK_LINK_STEAMWORKS OFF CACHE BOOL "" FORCE)
 set(SOURCESDK_COMPILE_PROTOBUF OFF CACHE BOOL "" FORCE)
 
+set(GAME "cs2" CACHE STRING "Target game: cs2 | dota2 | deadlock")
+set_property(CACHE GAME PROPERTY STRINGS cs2 dota2 deadlock)
+
+if(GAME STREQUAL "cs2")
+	set(SE_GAME_DIR "csgo")
+	set(GAME_APPID 730)
+	set(_sdk_target "cs2")
+elseif(GAME STREQUAL "dota2")
+	set(SE_GAME_DIR "dota")
+	set(GAME_APPID 570)
+	set(_sdk_target "dota2")
+elseif(GAME STREQUAL "deadlock")
+	set(SE_GAME_DIR "citadel")
+	set(GAME_APPID 1422450)
+	set(_sdk_target "deadlock")
+else()
+	message(FATAL_ERROR "Unknown GAME '${GAME}' — use cs2 | dota2 | deadlock")
+endif()
+
+set(SOURCESDK_GAME_TARGET "${_sdk_target}" CACHE STRING "" FORCE)
+
 add_subdirectory("${SOURCESDK_DIR}" "${CMAKE_BINARY_DIR}/sourcesdk")
 add_subdirectory("${DYNLIBUTILS_DIR}" "${CMAKE_BINARY_DIR}/dynlibutils")
 
-set(SE_GAME_DIR "csgo" CACHE STRING "Game directory name (game/<dir>)")
-
-set(GAME_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/game/game" CACHE PATH "Downloaded game tree root (contains bin/ and <game>/)")
+set(GAME_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/game/${GAME}/game" CACHE PATH "Downloaded game tree root (contains bin/ and <game>/)")
 
 if(WIN32)
 	set(SE_BIN_DIR "win64")
@@ -60,6 +79,7 @@ list(APPEND COMPILE_DEFINES
 	SE_GAME_DIR="${SE_GAME_DIR}"
 	SE_BIN_DIR="${SE_BIN_DIR}"
 	PLATFORM_NAME="${PLATFORM_NAME}"
+	GAME_NAME="${GAME}"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

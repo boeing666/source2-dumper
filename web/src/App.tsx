@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { type Platform, loadMeta, loadIndex, loadScope } from "@/lib/data";
+import { type Game, type Platform, loadMeta, loadIndex, loadScope } from "@/lib/data";
 import type { Meta, IndexEntry, Scope } from "@/types";
 import { type Selected, toHash, fromHash } from "@/lib/url";
 import { TopBar } from "@/components/TopBar";
@@ -14,6 +14,7 @@ import { EventsView } from "@/components/EventsView";
 export default function App() {
   // initial state comes straight from the URL, so the very first render already matches (no clobber)
   const init = useMemo(() => fromHash(location.hash), []);
+  const [game, setGame] = useState<Game>(init.game);
   const [platform, setPlatform] = useState<Platform>(init.platform);
   const [tab, setTab] = useState(init.tab);
   const [meta, setMeta] = useState<Meta | null>(null);
@@ -46,10 +47,10 @@ export default function App() {
 
   useEffect(() => {
     setErr(null); setMeta(null); setIndex([]); scopeCache.current.clear();
-    Promise.all([loadMeta(platform), loadIndex(platform)])
+    Promise.all([loadMeta(game, platform), loadIndex(game, platform)])
       .then(([m, ix]) => { setMeta(m); setIndex(ix); })
       .catch((e) => setErr(String(e)));
-  }, [platform]);
+  }, [game, platform]);
 
   const nameMap = useMemo(() => { const m = new Map<string, IndexEntry>(); for (const e of index) m.set(e.name, e); return m; }, [index]);
   const known = useMemo(() => new Set(index.map((e) => e.name)), [index]);
@@ -77,7 +78,7 @@ export default function App() {
   useEffect(() => {
     const onNav = () => {
       const s = fromHash(location.hash);
-      setTab(s.tab); setPlatform(s.platform);
+      setTab(s.tab); setGame(s.game); setPlatform(s.platform);
       if (s.tab === "schema") {
         setQuery(s.q); setSort(s.sort); setKinds(s.kinds); setLibs(s.libs);
         const e = s.className ? nameMap.get(s.className) : undefined;
@@ -94,9 +95,9 @@ export default function App() {
   // write state to URL (replaceState → no reload / no loop; wait until the initial class is resolved)
   useEffect(() => {
     if (pending.current) return;
-    const h = toHash({ tab, platform, selected, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel });
+    const h = toHash({ tab, game, platform, selected, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel });
     if (location.hash !== h) history.replaceState(null, "", h);
-  }, [tab, platform, selected, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel]);
+  }, [tab, game, platform, selected, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel]);
 
   useEffect(() => {
     if (!selected) { setScopeData(null); return; }
@@ -105,11 +106,11 @@ export default function App() {
     if (cached) { setScopeData(cached); return; }
     setScopeData(null);
     let alive = true;
-    loadScope(platform, file)
+    loadScope(game, platform, file)
       .then((s) => { scopeCache.current.set(file, s); if (alive) setScopeData(s); })
       .catch(() => {});
     return () => { alive = false; };
-  }, [selected, platform]);
+  }, [selected, platform, game]);
 
   const pick = (e: IndexEntry, field?: string) => { setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: field }); };
   const navByName = (name: string) => { const e = nameMap.get(name); if (e) { setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: undefined }); } };
@@ -143,7 +144,7 @@ export default function App() {
 
   return (
     <>
-      <TopBar platform={platform} setPlatform={setPlatform} tab={tab} setTab={setTab}
+      <TopBar game={game} setGame={setGame} platform={platform} setPlatform={setPlatform} tab={tab} setTab={setTab}
               hex={hex} setHex={setHex} pad={pad} setPad={setPad} />
 
       {!err && meta && (
@@ -153,7 +154,7 @@ export default function App() {
         </div>
       )}
 
-      {err && <div className="loading" style={{ padding: 18 }}>no data for {platform}: {err}</div>}
+      {err && <div className="loading" style={{ padding: 18 }}>no data for {game}/{platform}: {err}</div>}
 
       {!err && tab === "schema" && (
         <main>
@@ -176,9 +177,9 @@ export default function App() {
         </main>
       )}
 
-      {!err && tab === "convars" && <main><ConVarsView platform={platform} q={cvQ} setQ={setCvQ} flags={cvFlags} toggleFlag={toggleCv} /></main>}
-      {!err && tab === "concommands" && <main><ConCommandsView platform={platform} q={cmQ} setQ={setCmQ} flags={cmFlags} toggleFlag={toggleCm} /></main>}
-      {!err && tab === "events" && <main><EventsView platform={platform} q={evQ} setQ={setEvQ} mods={evMods} toggleMod={toggleEv} sel={evSel} setSel={setEvSel} /></main>}
+      {!err && tab === "convars" && <main><ConVarsView game={game} platform={platform} q={cvQ} setQ={setCvQ} flags={cvFlags} toggleFlag={toggleCv} /></main>}
+      {!err && tab === "concommands" && <main><ConCommandsView game={game} platform={platform} q={cmQ} setQ={setCmQ} flags={cmFlags} toggleFlag={toggleCm} /></main>}
+      {!err && tab === "events" && <main><EventsView game={game} platform={platform} q={evQ} setQ={setEvQ} mods={evMods} toggleMod={toggleEv} sel={evSel} setSel={setEvSel} /></main>}
     </>
   );
 }

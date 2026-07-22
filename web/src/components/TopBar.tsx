@@ -1,9 +1,10 @@
-import { PLATFORMS, type Platform } from "@/lib/data";
+import { GAMES, PLATFORMS, type Game, type Platform } from "@/lib/data";
 import { Toggle } from "@/components/Toggle";
 
 export function TopBar({
-  platform, setPlatform, tab, setTab, hex, setHex, pad, setPad,
+  game, setGame, platform, setPlatform, tab, setTab, hex, setHex, pad, setPad,
 }: {
+  game: Game; setGame: (g: Game) => void;
   platform: Platform; setPlatform: (p: Platform) => void;
   tab: string; setTab: (t: string) => void;
   hex: boolean; setHex: (v: boolean) => void; pad: boolean; setPad: (v: boolean) => void;
@@ -17,6 +18,9 @@ export function TopBar({
   return (
     <div className="top">
       <span className="brand">Source 2 Dumper</span>
+      <select className="gamesel" value={game} onChange={(e) => setGame(e.target.value as Game)} title="switch game" aria-label="game">
+        {GAMES.map((g) => <option key={g} value={g}>{g}</option>)}
+      </select>
       <span className="sp" />
       <Toggle label="padding" on={pad} set={setPad} title="show padding fields" />
       <Toggle label="hex" on={hex} set={setHex} title="show all numbers as hex" />

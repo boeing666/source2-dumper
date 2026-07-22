@@ -1,10 +1,10 @@
 // Full app state <-> URL hash, so refresh / shared links restore tab + platform + selection + filters.
-import type { Platform } from "@/lib/data";
+import { GAMES, type Game, type Platform } from "@/lib/data";
 
 export type Selected = { name: string; file: string; targetField?: string };
 
 export type UrlState = {
-  tab: string; platform: Platform; selected: Selected | null;
+  tab: string; game: Game; platform: Platform; selected: Selected | null;
   query: string; sort: string; kinds: Set<string>; libs: Set<string>;
   cvQ: string; cvFlags: Set<string>; cmQ: string; cmFlags: Set<string>;
   evQ: string; evMods: Set<string>; evSel: string;
@@ -18,6 +18,7 @@ export function toHash(st: UrlState): string {
     if (st.selected.targetField) path += "/" + encodeURIComponent(st.selected.targetField);
   }
   const p = new URLSearchParams();
+  if (st.game !== "cs2") p.set("g", st.game);
   if (st.platform !== "win64") p.set("p", st.platform);
   if (st.tab === "schema") {
     if (!st.selected) {
@@ -50,8 +51,10 @@ export function fromHash(hash: string) {
   if (!["schema", "convars", "concommands", "events"].includes(tab)) tab = "schema";
   const p = new URLSearchParams(queryPart);
   const set = (k: string) => new Set((p.get(k) || "").split(",").filter(Boolean));
+  const g = p.get("g") || "cs2";
   return {
     tab,
+    game: ((GAMES as readonly string[]).includes(g) ? g : "cs2") as Game,
     platform: (p.get("p") === "linux" ? "linux" : "win64") as Platform,
     className: tab === "schema" ? segs[1] || null : null,
     field: tab === "schema" ? segs[2] || undefined : undefined,

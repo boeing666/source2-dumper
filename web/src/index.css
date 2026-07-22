@@ -25,6 +25,8 @@ button{font-family:inherit}
 /* top bar */
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:9px 16px;background:var(--panel);border-bottom:1px solid var(--border)}
 .brand{font-size:15px;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+.gamesel{margin-left:10px;height:26px;padding:0 8px;background:var(--panel2);color:var(--fl);border:1px solid var(--border);border-radius:4px;font:600 13px var(--mono);cursor:pointer;outline:none}
+.gamesel:hover,.gamesel:focus{border-color:var(--acc);color:var(--acc)}
 .brand::before{content:"{;}";color:var(--acc);font-family:var(--mono);margin-right:8px;font-weight:700}
 .sp{flex:1}
 .ghlink{display:inline-flex;align-items:center;color:var(--mut);margin-left:8px;transition:color .1s}

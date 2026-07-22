@@ -101,6 +101,7 @@ struct JScopeIndex {
 };
 
 struct JMeta {
+	std::string game;
 	std::string platform;
 	std::string patchVersion;
 	std::string serverVersion;
@@ -293,10 +294,11 @@ void WriteJson(const fs::path& outDir,
                const std::vector<GameEventInfo>& events,
                const std::string& patchVersion,
                const std::string& serverVersion) {
-	const fs::path dir = outDir / PLATFORM_NAME;
+	const fs::path dir = outDir / GAME_NAME / PLATFORM_NAME;
 	fs::create_directories(dir);
 
 	JMeta meta;
+	meta.game = GAME_NAME;
 	meta.platform = PLATFORM_NAME;
 	meta.patchVersion = patchVersion;
 	meta.serverVersion = serverVersion;

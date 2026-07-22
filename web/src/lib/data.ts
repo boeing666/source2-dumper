@@ -1,6 +1,5 @@
 import type { Meta, Scope, ConVar, ConCommand, GameEvent, IndexEntry } from "@/types";
 
-// JSON lives under <base>/data/<platform>/ (the C++ dumper output, copied into public/data in CI).
 const base = import.meta.env.BASE_URL;
 
 async function getJson<T>(path: string): Promise<T> {
@@ -9,12 +8,15 @@ async function getJson<T>(path: string): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+export const GAMES = ["cs2", "dota2", "deadlock"] as const;
+export type Game = (typeof GAMES)[number];
+
 export const PLATFORMS = ["win64", "linux"] as const;
 export type Platform = (typeof PLATFORMS)[number];
 
-export const loadMeta = (p: Platform) => getJson<Meta>(`${p}/meta.json`);
-export const loadIndex = (p: Platform) => getJson<IndexEntry[]>(`${p}/index.json`);
-export const loadScope = (p: Platform, file: string) => getJson<Scope>(`${p}/${file}`);
-export const loadConVars = (p: Platform) => getJson<ConVar[]>(`${p}/convars.json`);
-export const loadConCommands = (p: Platform) => getJson<ConCommand[]>(`${p}/concommands.json`);
-export const loadEvents = (p: Platform) => getJson<GameEvent[]>(`${p}/events.json`);
+export const loadMeta = (g: Game, p: Platform) => getJson<Meta>(`${g}/${p}/meta.json`);
+export const loadIndex = (g: Game, p: Platform) => getJson<IndexEntry[]>(`${g}/${p}/index.json`);
+export const loadScope = (g: Game, p: Platform, file: string) => getJson<Scope>(`${g}/${p}/${file}`);
+export const loadConVars = (g: Game, p: Platform) => getJson<ConVar[]>(`${g}/${p}/convars.json`);
+export const loadConCommands = (g: Game, p: Platform) => getJson<ConCommand[]>(`${g}/${p}/concommands.json`);
+export const loadEvents = (g: Game, p: Platform) => getJson<GameEvent[]>(`${g}/${p}/events.json`);

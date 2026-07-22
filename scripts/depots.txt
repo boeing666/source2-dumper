@@ -1,15 +1,5 @@
-# DepotDownloader filelist. "regex:" lines match manifest paths (forward or back slash).
-#
-# We grab EVERY shared lib in the engine bin dir — that covers schemasystem plus the
-# full dependency closure of client/server on both OSes, without guessing per-platform
-# names (win64: video64.dll / libavcodec-58.dll ; linux: libvideo.so / libv8_libcpp.so /
-# libavcodec.so.58). Then the three game modules we actually dump from csgo/bin.
-
-# all engine + runtime libs (schemasystem + every client/server dependency)
+# DepotDownloader filelist (game-agnostic). "regex:" lines match manifest paths (forward or back slash).
+# All engine + game shared libs (win64/linuxsteamrt64) + steam.inf, for any game subdir (csgo/dota/citadel).
 regex:game[\\/]bin[\\/](win64|linuxsteamrt64)[\\/][^\\/]+\.(dll|so)(\.[0-9]+)?$
-
-# game modules to dump
-regex:game[\\/]csgo[\\/]bin[\\/](win64|linuxsteamrt64)[\\/](lib)?(client|server|matchmaking)\.(so|dll)$
-
-# version info (PatchVersion shown on the site)
-regex:game[\\/]csgo[\\/]steam\.inf$
+regex:game[\\/][^\\/]+[\\/]bin[\\/](win64|linuxsteamrt64)[\\/][^\\/]+\.(dll|so)(\.[0-9]+)?$
+regex:game[\\/][^\\/]+[\\/]steam\.inf$

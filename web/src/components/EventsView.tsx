@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { GameEvent } from "@/types";
-import { loadEvents, type Platform } from "@/lib/data";
+import { loadEvents, type Game, type Platform } from "@/lib/data";
 
 // field wire-type -> category (for grouping fields in the detail pane), in display order
 const EV_CATS: [string, string][] = [["ent", "entities"], ["str", "strings"], ["num", "numbers"], ["bool", "bool"], ["oth", "other"]];
@@ -14,11 +14,11 @@ function evCat(type: string): string {
 }
 const evKey = (e: GameEvent) => e.module + ":" + e.name;
 
-export type EvProps = { platform: Platform; q: string; setQ: (v: string) => void; mods: Set<string>; toggleMod: (m: string) => void; sel: string; setSel: (k: string) => void };
+export type EvProps = { game: Game; platform: Platform; q: string; setQ: (v: string) => void; mods: Set<string>; toggleMod: (m: string) => void; sel: string; setSel: (k: string) => void };
 
-export function EventsView({ platform, q, setQ, mods, toggleMod, sel, setSel }: EvProps) {
+export function EventsView({ game, platform, q, setQ, mods, toggleMod, sel, setSel }: EvProps) {
   const [rows, setRows] = useState<GameEvent[]>([]);
-  useEffect(() => { loadEvents(platform).then(setRows).catch(() => setRows([])); }, [platform]);
+  useEffect(() => { loadEvents(game, platform).then(setRows).catch(() => setRows([])); }, [game, platform]);
   const allMods = useMemo(() => [...new Set(rows.map((r) => r.module))].sort(), [rows]);
   const filtered = useMemo(() => {
     const ql = q.toLowerCase();

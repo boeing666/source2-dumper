@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Poll the CS2 content-depot manifest GID; only continue when it differs from the last tag.
+  # Poll every game's manifest GIDs; rebuild all when the combined key differs from the last tag.
   check:
     runs-on: ubuntu-latest
     outputs:
@@ -29,20 +29,29 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Resolve CS2 version
+      - name: Resolve versions
         id: v
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: |
           set -e
           sudo apt-get update -qq
           sudo apt-get install -y unzip
-          gid=$(bash scripts/game-version.sh)
-          echo "version=$gid" >> "$GITHUB_OUTPUT"
+          key=""
+          for g in cs2 dota2 deadlock; do
+            gid=$(GAME=$g bash scripts/game-version.sh || echo NA)
+            echo "$g: $gid"
+            key="$key$g=$gid;"
+          done
+          ver=$(printf '%s' "$key" | sha1sum | cut -c1-12)
+          echo "version=$ver" >> "$GITHUB_OUTPUT"
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
-            echo "changed=1" >> "$GITHUB_OUTPUT"; echo "forced rebuild ($gid)"
-          elif git ls-remote --exit-code --tags origin "refs/tags/cs2-$gid" >/dev/null 2>&1; then
-            echo "changed=0" >> "$GITHUB_OUTPUT"; echo "up to date ($gid)"
+            echo "changed=1" >> "$GITHUB_OUTPUT"; echo "forced rebuild ($ver)"
+          elif git ls-remote --exit-code --tags origin "refs/tags/s2-$ver" >/dev/null 2>&1; then
+            echo "changed=0" >> "$GITHUB_OUTPUT"; echo "up to date ($ver)"
           else
-            echo "changed=1" >> "$GITHUB_OUTPUT"; echo "new version $gid"
+            echo "changed=1" >> "$GITHUB_OUTPUT"; echo "new version $ver"
           fi
 
   dump:
@@ -51,33 +60,40 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { os: windows-latest, target: windows, platform: win64 }
-          - { os: ubuntu-latest,  target: linux,   platform: linux }
-    runs-on: ${{ matrix.os }}
+        game: [cs2, dota2, deadlock]
+        platform:
+          - { os: windows-latest, target: windows, name: win64 }
+          - { os: ubuntu-latest,  target: linux,   name: linux }
+    runs-on: ${{ matrix.platform.os }}
     steps:
       - uses: actions/checkout@v5
 
       - name: Runtime deps (Linux)
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.platform.os == 'ubuntu-latest'
         run: |
           sudo apt-get update -qq
           # g++-14: the dumper uses C++23 <print>, which libstdc++ only ships from GCC 14.
           sudo apt-get install -y ninja-build g++-14 libva2 libvdpau1 libx11-6 libdrm2
 
-      - name: Fetch SDKs
+      - name: Fetch SDKs (game branch)
         shell: bash
         run: |
-          git clone --recursive --depth 1 https://github.com/Wend4r/sourcesdk       thirdparty/sourcesdk
+          case "${{ matrix.game }}" in
+            cs2) BR=main ;; dota2) BR=dota ;; deadlock) BR=deadlock ;;
+          esac
+          git clone --recursive --depth 1 --branch "$BR" https://github.com/Wend4r/sourcesdk thirdparty/sourcesdk
           git clone --recursive --depth 1 https://github.com/Wend4r/cpp-dynlibutils thirdparty/cpp-dynlibutils
           git clone --depth 1 --branch v7.9.0 https://github.com/stephenberry/glaze thirdparty/glaze
 
-      - name: Download depot (${{ matrix.target }})
+      - name: Download depot
         shell: bash
-        run: bash scripts/download-depots.sh ${{ matrix.target }}
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: GAME=${{ matrix.game }} bash scripts/download-depots.sh ${{ matrix.platform.target }}
 
       - name: Setup MSVC (Windows)
-        if: matrix.os == 'windows-latest'
+        if: matrix.platform.os == 'windows-latest'
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
@@ -85,10 +101,10 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
-            CC=gcc-14 CXX=g++-14 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          if [ "${{ matrix.platform.os }}" = "ubuntu-latest" ]; then
+            CC=gcc-14 CXX=g++-14 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DGAME=${{ matrix.game }}
           else
-            cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DGAME=${{ matrix.game }} \
               -DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded
           fi
           cmake --build build -j
@@ -96,8 +112,12 @@ jobs:
       - name: Dump schema
         shell: bash
         run: |
-          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
-            export LD_LIBRARY_PATH="$PWD/game/game/bin/linuxsteamrt64:$PWD/game/game/csgo/bin/linuxsteamrt64"
+          case "${{ matrix.game }}" in
+            cs2) GD=csgo ;; dota2) GD=dota ;; deadlock) GD=citadel ;;
+          esac
+          if [ "${{ matrix.platform.os }}" = "ubuntu-latest" ]; then
+            G="${{ matrix.game }}"
+            export LD_LIBRARY_PATH="$PWD/game/$G/game/bin/linuxsteamrt64:$PWD/game/$G/game/$GD/bin/linuxsteamrt64"
             ./build/source2_dumper out
           else
             ./build/source2_dumper.exe out
@@ -106,50 +126,58 @@ jobs:
       - name: Upload site part
         uses: actions/upload-artifact@v4
         with:
-          name: schema-${{ matrix.platform }}
+          name: schema-${{ matrix.game }}-${{ matrix.platform.name }}
           path: out
           retention-days: 1
 
-  # Commit the per-class header dump to a dedicated branch so schema changes are diffable on GitHub.
+  # Commit the per-class header dump to a per-game branch (schema-dump-<game>) so
+  # each game's schema changes are diffable on GitHub in isolation.
   commit-headers:
     needs: [check, dump]
     if: needs.check.outputs.changed == '1'
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        game: [cs2, dota2, deadlock]
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      # Download OUTSIDE the repo tree, else the untracked parts/ collides with `git checkout schema-dump`.
-      - name: Collect dump parts
+      # Download OUTSIDE the repo tree, else the untracked parts/ collides with `git checkout`.
+      - name: Collect ${{ matrix.game }} parts
         uses: actions/download-artifact@v4
         with:
           path: ${{ runner.temp }}/parts
-          pattern: schema-*
+          pattern: schema-${{ matrix.game }}-*
           merge-multiple: true
 
-      - name: Commit headers to schema-dump branch
+      - name: Commit headers to schema-dump-${{ matrix.game }}
         run: |
           set -e
+          g="${{ matrix.game }}"
+          br="schema-dump-$g"
           git config user.name  "schema-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git ls-remote --exit-code --heads origin schema-dump >/dev/null 2>&1; then
-            git fetch --depth 1 origin schema-dump
-            git checkout schema-dump
+          if git ls-remote --exit-code --heads origin "$br" >/dev/null 2>&1; then
+            git fetch --depth 1 origin "$br"
+            git checkout "$br"
           else
-            git checkout --orphan schema-dump
+            git checkout --orphan "$br"
             git rm -rfq . || true
           fi
           rm -rf headers parts        # parts/ drops any stray copy committed by older runs
           mkdir -p headers
-          cp -r "$RUNNER_TEMP/parts/headers/"* headers/ 2>/dev/null || true
-          patch=$(cat "$RUNNER_TEMP/parts/patchversion.txt" 2>/dev/null || echo "?")
+          # Flatten the game level: on a per-game branch it is redundant -> headers/<platform>/...
+          cp -r "$RUNNER_TEMP/parts/headers/$g/"* headers/ 2>/dev/null || true
           manifest="${{ needs.check.outputs.version }}"
-          printf 'CS2 schema dump\n\nPatchVersion: %s\nManifestID: %s\nOne .h per class, grouped by platform/module. Diff commits to see schema changes.\n' \
-            "$patch" "$manifest" > README.md
+          pv=$(cat "$RUNNER_TEMP/parts/$g/patchversion.txt" 2>/dev/null || echo "?")
+          printf 'Source2 schema dump — %s\n\nPatchVersion: %s\nManifest: %s\nOne .h per class, grouped by platform/module (+ convars.txt / concommands.txt). Diff commits to see schema changes.\n' \
+            "$g" "$pv" "$manifest" > README.md
           git add -A
-          git commit -m "CS2 PatchVersion $patch (manifest $manifest)" || { echo "no schema changes"; exit 0; }
-          git push origin schema-dump
+          git commit -m "schema dump $g $pv (manifest $manifest)" || { echo "no schema changes for $g"; exit 0; }
+          git push origin "$br"
 
   publish:
     needs: [check, dump]
@@ -181,12 +209,14 @@ jobs:
       - name: Stage JSON data into the frontend
         run: |
           mkdir -p web/public/data
-          for p in win64 linux; do
-            if [ -d "$RUNNER_TEMP/parts/$p" ]; then
-              mkdir -p "web/public/data/$p"
-              cp "$RUNNER_TEMP/parts/$p"/*.json "web/public/data/$p/"
-              echo "staged $p: $(ls "web/public/data/$p" | wc -l) json"
-            fi
+          for g in cs2 dota2 deadlock; do
+            for p in win64 linux; do
+              if [ -d "$RUNNER_TEMP/parts/$g/$p" ]; then
+                mkdir -p "web/public/data/$g/$p"
+                cp "$RUNNER_TEMP/parts/$g/$p"/*.json "web/public/data/$g/$p/"
+                echo "staged $g/$p: $(ls "web/public/data/$g/$p" | wc -l) json"
+              fi
+            done
           done
 
       - name: Build static site (Vite)
@@ -210,5 +240,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api -X POST "repos/${{ github.repository }}/git/refs" \
-            -f ref="refs/tags/cs2-${{ needs.check.outputs.version }}" \
+            -f ref="refs/tags/s2-${{ needs.check.outputs.version }}" \
             -f sha="${{ github.sha }}" || echo "tag already exists"

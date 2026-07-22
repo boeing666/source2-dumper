@@ -1,14 +1,12 @@
 <#
 .SYNOPSIS
-  Downloads the CS2 (app 730) depot files listed in the filelist, using
-  SteamRE/DepotDownloader. Bootstraps the tool on first run. Same steps the CI
-  workflow runs — run it directly to test:
-
-    scripts\download-depots.ps1              # both OSes
-    scripts\download-depots.ps1 -Target windows
+  Download a Source2 game's depot files via SteamRE/DepotDownloader.
+  scripts\download-depots.ps1 -Game cs2 -Target both
 #>
 [CmdletBinding()]
 param(
+	[ValidateSet("cs2", "dota2", "deadlock")]
+	[string]$Game          = "cs2",
 	[ValidateSet("both", "linux", "windows")]
 	[string]$Target        = "both",
 	[string]$Version       = "DepotDownloader_3.4.0",
@@ -20,24 +18,18 @@ param(
 $ErrorActionPreference = "Stop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$app          = 730
-$depotLinux   = 2347773
-$depotWindows = 2347771
+switch ($Game) {
+	"cs2"      { $app = 730;     $gameSubdir = "csgo";    $gtRepo = "GameTracking-CS2" }
+	"dota2"    { $app = 570;     $gameSubdir = "dota";    $gtRepo = "GameTracking-Dota2" }
+	"deadlock" { $app = 1422450; $gameSubdir = "citadel"; $gtRepo = "GameTracking-Deadlock" }
+}
 
 $scriptDir = $PSScriptRoot
 $root      = Split-Path -Parent $scriptDir
 if (-not $FileList) { $FileList = Join-Path $scriptDir "depots.txt" }
-$gameDir   = Join-Path $root "game"
+$gameDir   = Join-Path $root "game\$Game"
 $tools     = Join-Path $root ".tools\depotdownloader"
 $dd        = Join-Path $tools "DepotDownloader.exe"
-
-# Per-OS filelist if present (scripts\depots.linux.txt / depots.windows.txt), else
-# the shared one. Manifest paths differ per OS (linuxsteamrt64/lib*.so vs win64/*.dll);
-# the shared list uses regex to match both.
-function Resolve-FileList([string]$os) {
-	$f = Join-Path $scriptDir "depots.$os.txt"
-	if (Test-Path $f) { return $f } else { return $FileList }
-}
 
 if (-not (Test-Path $dd)) {
 	$asset = "DepotDownloader-windows-x64.zip"
@@ -56,47 +48,39 @@ if ($SteamUsername) {
 	$auth += "-remember-password"
 }
 
-if ($Target -in @("both", "linux")) {
-	$list = Resolve-FileList "linux"
-	Write-Host ">> Linux depot $depotLinux -> game\ (filelist: $list)"
-	& $dd -app $app -depot $depotLinux -filelist $list -dir $gameDir -os linux @auth
-	if ($LASTEXITCODE -ne 0) { throw "DepotDownloader (linux) exited $LASTEXITCODE" }
+foreach ($os in @("linux", "windows")) {
+	if ($Target -in @("both", $os)) {
+		Write-Host ">> $Game app $app ($os) -> game\"
+		& $dd -app $app -filelist $FileList -dir $gameDir -os $os @auth
+		if ($LASTEXITCODE -ne 0) { throw "DepotDownloader ($os) exited $LASTEXITCODE" }
+	}
 }
 
-if ($Target -in @("both", "windows")) {
-	$list = Resolve-FileList "windows"
-	Write-Host ">> Windows depot $depotWindows -> game\ (filelist: $list)"
-	& $dd -app $app -depot $depotWindows -filelist $list -dir $gameDir -os windows @auth
-	if ($LASTEXITCODE -ne 0) { throw "DepotDownloader (windows) exited $LASTEXITCODE" }
-}
-
-Write-Host ">> steam.inf (PatchVersion)"
-$infDir = Join-Path $gameDir "game\csgo"
+$gt = "https://raw.githubusercontent.com/SteamDatabase/$gtRepo/master/game"
+Write-Host ">> steam.inf"
+$infDir = Join-Path $gameDir "game\$gameSubdir"
 New-Item -ItemType Directory -Force -Path $infDir | Out-Null
 try {
-	Invoke-WebRequest -Uri "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game/csgo/steam.inf" `
-		-OutFile (Join-Path $infDir "steam.inf")
+	Invoke-WebRequest -Uri "$gt/$gameSubdir/steam.inf" -OutFile (Join-Path $infDir "steam.inf")
 } catch {
-	Write-Host "warning: steam.inf fetch failed (PatchVersion will be blank)"
+	Write-Host "warning: steam.inf fetch failed"
 }
 
-# gameevents live INSIDE pak01 vpk (not addressable by DepotDownloader), so pull the extracted text
-# from GameTracking-CS2 (bot-committed after every CS2 patch -> always current). Their layout nests a
-# "pak01_dir/" segment; we drop it and mirror the real game tree (csgo\resource, core\resource).
-Write-Host ">> gameevents (from GameTracking-CS2)"
-$gtBase = "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CS2/master/game"
-$gameevents = @(
-	@{ src = "csgo/pak01_dir/resource/game.gameevents"; dst = "game\csgo\resource\game.gameevents" },
-	@{ src = "csgo/pak01_dir/resource/mod.gameevents";  dst = "game\csgo\resource\mod.gameevents"  },
-	@{ src = "core/pak01_dir/resource/core.gameevents"; dst = "game\core\resource\core.gameevents" }
-)
-foreach ($ge in $gameevents) {
-	$out = Join-Path $gameDir $ge.dst
-	New-Item -ItemType Directory -Force -Path (Split-Path -Parent $out) | Out-Null
-	try {
-		Invoke-WebRequest -Uri "$gtBase/$($ge.src)" -OutFile $out
-	} catch {
-		Write-Host "warning: gameevents fetch failed: $($ge.src)"
+if ($Game -eq "cs2") {
+	Write-Host ">> gameevents ($gtRepo)"
+	$gameevents = @(
+		@{ src = "csgo/pak01_dir/resource/game.gameevents"; dst = "game\csgo\resource\game.gameevents" },
+		@{ src = "csgo/pak01_dir/resource/mod.gameevents";  dst = "game\csgo\resource\mod.gameevents"  },
+		@{ src = "core/pak01_dir/resource/core.gameevents"; dst = "game\core\resource\core.gameevents" }
+	)
+	foreach ($ge in $gameevents) {
+		$out = Join-Path $gameDir $ge.dst
+		New-Item -ItemType Directory -Force -Path (Split-Path -Parent $out) | Out-Null
+		try {
+			Invoke-WebRequest -Uri "$gt/$($ge.src)" -OutFile $out
+		} catch {
+			Write-Host "warning: gameevents fetch failed: $($ge.src)"
+		}
 	}
 }
 

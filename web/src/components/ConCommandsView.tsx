@@ -4,9 +4,9 @@ import { loadConCommands } from "@/lib/data";
 import { FlagFilter } from "@/components/FlagFilter";
 import type { CvProps } from "@/components/ConVarsView";
 
-export function ConCommandsView({ platform, q, setQ, flags, toggleFlag }: CvProps) {
+export function ConCommandsView({ game, platform, q, setQ, flags, toggleFlag }: CvProps) {
   const [rows, setRows] = useState<ConCommand[]>([]);
-  useEffect(() => { loadConCommands(platform).then(setRows).catch(() => setRows([])); }, [platform]);
+  useEffect(() => { loadConCommands(game, platform).then(setRows).catch(() => setRows([])); }, [game, platform]);
   const filtered = useMemo(() => {
     const ql = q.toLowerCase();
     return rows.filter((r) => (r.name.toLowerCase().includes(ql) || r.help.toLowerCase().includes(ql)) && (flags.size === 0 || [...flags].every((f) => r.flags.includes(f))));

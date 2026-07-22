@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ConVar } from "@/types";
-import { loadConVars, type Platform } from "@/lib/data";
+import { loadConVars, type Game, type Platform } from "@/lib/data";
 import { FlagFilter } from "@/components/FlagFilter";
 
-export type CvProps = { platform: Platform; q: string; setQ: (v: string) => void; flags: Set<string>; toggleFlag: (f: string) => void };
+export type CvProps = { game: Game; platform: Platform; q: string; setQ: (v: string) => void; flags: Set<string>; toggleFlag: (f: string) => void };
 
-export function ConVarsView({ platform, q, setQ, flags, toggleFlag }: CvProps) {
+export function ConVarsView({ game, platform, q, setQ, flags, toggleFlag }: CvProps) {
   const [rows, setRows] = useState<ConVar[]>([]);
-  useEffect(() => { loadConVars(platform).then(setRows).catch(() => setRows([])); }, [platform]);
+  useEffect(() => { loadConVars(game, platform).then(setRows).catch(() => setRows([])); }, [game, platform]);
   const filtered = useMemo(() => {
     const ql = q.toLowerCase();
     return rows.filter((r) => (r.name.toLowerCase().includes(ql) || r.help.toLowerCase().includes(ql)) && (flags.size === 0 || [...flags].every((f) => r.flags.includes(f))));

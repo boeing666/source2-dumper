@@ -19,3 +19,6 @@ sdk/
 web/node_modules/
 web/dist/
 web/public/data/
+
+# Local Linux test image — contains filled-in STEAM creds, never commit
+Dockerfile.test

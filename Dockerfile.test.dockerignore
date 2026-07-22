@@ -1,0 +1,16 @@
+# Keep the build context small — only CMakeLists.txt, src/, scripts/ are COPYed;
+# SDK/deps are cloned and depots downloaded inside the image.
+game/
+thirdparty/
+build/
+build-*/
+cmake-build*/
+.git/
+web/
+out/
+out-*/
+.tools/
+docs/
+node_modules/
+*.mdmp
+*.md

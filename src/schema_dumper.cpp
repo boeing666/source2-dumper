@@ -51,11 +51,13 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 	std::vector<GameEventInfo> events = CollectGameEvents(GAME_ROOT);
 
 	const std::string patch = ReadInf("PatchVersion");
-	WriteHeaders(modules, outDir / "headers" / PLATFORM_NAME);
-	WriteConVarDump(convars, concommands, outDir / "headers" / PLATFORM_NAME);
+	const fs::path headersDir = outDir / "headers" / GAME_NAME / PLATFORM_NAME;
+	WriteHeaders(modules, headersDir);
+	WriteConVarDump(convars, concommands, headersDir);
 	WriteJson(outDir, modules, known, network, convars, concommands, events, patch, ReadInf("ServerVersion"));
 	if (!patch.empty()) {
-		std::ofstream(outDir / "patchversion.txt", std::ios::trunc) << patch;
+		fs::create_directories(outDir / GAME_NAME);
+		std::ofstream(outDir / GAME_NAME / "patchversion.txt", std::ios::trunc) << patch;
 	}
 
 	int total = 0;
@@ -63,8 +65,8 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 		total += (int)(m.classes.size() + m.enums.size());
 		std::println("{:<28} {:>5} classes {:>4} enums", m.scope, m.classes.size(), m.enums.size());
 	}
-	std::println("\n{} types / {} modules / {} network fields -> {}/{} (json)",
-	             total, modules.size(), network.size(), outDir.string(), PLATFORM_NAME);
+	std::println("\n{} types / {} modules / {} network fields -> {}/{}/{} (json)",
+	             total, modules.size(), network.size(), outDir.string(), GAME_NAME, PLATFORM_NAME);
 
 	ShutdownAppSystems();
 	return 0;
