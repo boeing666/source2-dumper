@@ -1,0 +1,9 @@
+#pragma once
+
+enum ParticleMultiSegmentSpecialCharacter_t : uint32_t  // sizeof 0x4
+{
+    PARTICLE_MULTISEGMENT_SPECIAL_NONE = -1,
+    PARTICLE_MULTISEGMENT_SPECIAL_DECIMAL = 0,
+    PARTICLE_MULTISEGMENT_SPECIAL_COLON = 1,
+    PARTICLE_MULTISEGMENT_SPECIAL_DEGREES = 2,
+};

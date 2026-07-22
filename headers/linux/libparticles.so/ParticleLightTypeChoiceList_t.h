@@ -1,0 +1,9 @@
+#pragma once
+
+enum ParticleLightTypeChoiceList_t : uint32_t  // sizeof 0x4
+{
+    PARTICLE_LIGHT_TYPE_POINT = 0,
+    PARTICLE_LIGHT_TYPE_SPOT = 1,
+    PARTICLE_LIGHT_TYPE_FX = 2,
+    PARTICLE_LIGHT_TYPE_CAPSULE = 3,
+};

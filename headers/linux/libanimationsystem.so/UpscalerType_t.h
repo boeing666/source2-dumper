@@ -1,0 +1,11 @@
+#pragma once
+
+enum UpscalerType_t : uint32_t  // sizeof 0x4
+{
+    UPSCALER_NONE = 0,
+    UPSCALER_AMD_FSR2 = 1,
+    UPSCALER_AMD_FSR3 = 2,
+    UPSCALER_NVIDIA_DLSS = 3,
+    UPSCALER_INTEL_XESS = 4,
+    UPSCALER_COUNT = 5,
+};

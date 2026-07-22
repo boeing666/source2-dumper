@@ -1,0 +1,14 @@
+#pragma once
+
+class C_INIT_ColorLitPerParticle : public CParticleFunctionInitializer /*0x0*/  // sizeof 0x208, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults}
+{
+public:
+    char _pad_0000[0x1EC]; // offset 0x0
+    Color m_ColorMin; // offset 0x1EC, size 0x4, align 1 | MPropertyFriendlyName
+    Color m_ColorMax; // offset 0x1F0, size 0x4, align 1 | MPropertyFriendlyName
+    Color m_TintMin; // offset 0x1F4, size 0x4, align 1 | MPropertyFriendlyName
+    Color m_TintMax; // offset 0x1F8, size 0x4, align 1 | MPropertyFriendlyName
+    float32 m_flTintPerc; // offset 0x1FC, size 0x4, align 4 | MPropertyFriendlyName
+    ParticleColorBlendMode_t m_nTintBlendMode; // offset 0x200, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flLightAmplification; // offset 0x204, size 0x4, align 4 | MPropertyFriendlyName
+};
