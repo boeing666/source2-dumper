@@ -1,5 +1,12 @@
 import type { IndexEntry } from "@/types";
 import { SearchBox } from "@/components/SearchBox";
+import { Dropdown } from "@/components/Dropdown";
+
+const SortIcon = (
+  <svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <path d="M2 3.5h9M2 7h6M2 10.5h3" />
+  </svg>
+);
 
 export const SORTS: [string, string][] = [
   ["name", "A → Z"], ["dep", "inheritance depth"], ["nf", "field count"],
@@ -31,10 +38,7 @@ export function Hero({
       </div>
       <div className="filters">
         <div className="fline">
-          <span className="sortl">sort</span>
-          <select className="sortsel" value={sort} onChange={(e) => setSort(e.target.value)}>
-            {SORTS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
-          </select>
+          <Dropdown value={sort} options={SORTS} onChange={setSort} ariaLabel="sort" title="sort order" icon={SortIcon} />
           <span className="fsep" />
           {KIND_META.map(([k, cls, ltr, plural]) => (
             <button key={k} className={"fchip" + (kinds.has(k) ? " on" : "")} onClick={() => toggleKind(k)}>

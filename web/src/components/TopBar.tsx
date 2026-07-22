@@ -1,5 +1,6 @@
 import { GAMES, PLATFORMS, type Game, type Platform } from "@/lib/data";
 import { Toggle } from "@/components/Toggle";
+import { Dropdown } from "@/components/Dropdown";
 
 export function TopBar({
   game, setGame, platform, setPlatform, tab, setTab, hex, setHex, pad, setPad,
@@ -18,9 +19,8 @@ export function TopBar({
   return (
     <div className="top">
       <span className="brand">Source 2 Dumper</span>
-      <select className="gamesel" value={game} onChange={(e) => setGame(e.target.value as Game)} title="switch game" aria-label="game">
-        {GAMES.map((g) => <option key={g} value={g}>{g}</option>)}
-      </select>
+      <Dropdown value={game} options={GAMES.map((g) => [g, g] as [string, string])}
+                onChange={(v) => setGame(v as Game)} ariaLabel="game" title="switch game" />
       <span className="sp" />
       <Toggle label="padding" on={pad} set={setPad} title="show padding fields" />
       <Toggle label="hex" on={hex} set={setHex} title="show all numbers as hex" />
