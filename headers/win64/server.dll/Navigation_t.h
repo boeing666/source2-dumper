@@ -1,0 +1,14 @@
+#pragma once
+
+enum Navigation_t : uint32_t  // sizeof 0x4
+{
+    AI_NAV_NONE = -1,
+    AI_NAV_GROUND = 0,
+    AI_NAV_JUMP = 1,
+    AI_NAV_FLY = 2,
+    AI_NAV_CLIMB = 3,
+    AI_NAV_NAVLINK = 5,
+    AI_NAV_TRANSITION = 6,
+    AI_NAV_ORIENTED = 7,
+    AI_NAV_SMART_GOAL = 8,
+};

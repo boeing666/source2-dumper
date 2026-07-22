@@ -1,0 +1,10 @@
+#pragma once
+
+enum BuildupMode_t : uint32_t  // sizeof 0x4
+{
+    BUILDUP_MODE_ONE_AND_DONE = 0,
+    BUILDUP_MODE_RESTART_ON_FILL = 1,
+    BUILDUP_MODE_EXTEND_FILL_DURATION = 2,
+    BUILDUP_MODE_MAX_FILL_DURATION = 3,
+    BUILDUP_MODE_ADD_STACK = 4,
+};

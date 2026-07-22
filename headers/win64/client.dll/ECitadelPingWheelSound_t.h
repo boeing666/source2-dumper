@@ -1,0 +1,10 @@
+#pragma once
+
+enum ECitadelPingWheelSound_t : uint32_t  // sizeof 0x4
+{
+    CITADEL_PING_WHEEL_SOUND_NONE = 0,
+    CITADEL_PING_WHEEL_SOUND_MAP_PING = 1,
+    CITADEL_PING_WHEEL_SOUND_ATTACK = 2,
+    CITADEL_PING_WHEEL_SOUND_DEFEND = 3,
+    CITADEL_PING_WHEEL_SOUND_WARNING = 4,
+};

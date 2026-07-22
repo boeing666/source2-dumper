@@ -1,0 +1,11 @@
+#pragma once
+
+enum HierarchyType_t : uint32_t  // sizeof 0x4
+{
+    HIERARCHY_NONE = 0,
+    HIERARCHY_BONE_MERGE = 1,
+    HIERARCHY_ATTACHMENT = 2,
+    HIERARCHY_ABSORIGIN = 3,
+    HIERARCHY_BONE = 4,
+    HIERARCHY_TYPE_COUNT = 5,
+};

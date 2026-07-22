@@ -1,0 +1,8 @@
+#pragma once
+
+enum EAbilitySpectatePriority : uint8_t  // sizeof 0x1
+{
+    CITADELTV_ABILITY_SPECTATE_PRIORITY_NONE = 0,
+    CITADELTV_ABILITY_SPECTATE_PRIORITY_MEDIUM = 1,
+    CITADELTV_ABILITY_SPECTATE_PRIORITY_HIGH = 2,
+};

@@ -1,0 +1,15 @@
+#pragma once
+
+enum ENeutralTrooperType : uint32_t  // sizeof 0x4
+{
+    NEUTRAL_TROOPER_WEAK = 1,
+    NEUTRAL_TROOPER_NORMAL = 2,
+    NEUTRAL_TROOPER_STRONG = 3,
+    NEUTRAL_SUPER = 5,
+    NEUTRAL_SINNERS_SACRIFICE = 6,
+    NEUTRAL_BUG = 7,
+    NEUTRAL_GARGOYLE = 9,
+    NEUTRAL_TRASHBUG = 10,
+    NEUTRAL_WHACK_A_GHOST = 11,
+    NEUTRAL_VAULT = 12,
+};

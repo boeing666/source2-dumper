@@ -1,0 +1,12 @@
+#pragma once
+
+enum ECitadelGameMode : uint32_t  // sizeof 0x4
+{
+    k_ECitadelGameMode_Invalid = 0,
+    k_ECitadelGameMode_Normal = 1,
+    k_ECitadelGameMode_1v1Test = 2,
+    k_ECitadelGameMode_Sandbox = 3,
+    k_ECitadelGameMode_StreetBrawl = 4,
+    k_ECitadelGameMode_ExploreNYC = 5,
+    k_ECitadelGameMode_Internal = 6,
+};

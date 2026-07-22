@@ -1,0 +1,9 @@
+#pragma once
+
+class CPulseGameBlackboard : public C_BaseEntity /*0x0*/  // sizeof 0x608, align 0x8 [vtable] (client) {MNetworkVarNames MNetworkVarNames}
+{
+public:
+    char _pad_0000[0x5F8]; // offset 0x0
+    CUtlString m_strGraphName; // offset 0x5F8, size 0x8, align 8 | MNetworkEnable
+    CUtlString m_strStateBlob; // offset 0x600, size 0x8, align 8 | MNetworkEnable MNetworkChangeCallback
+};

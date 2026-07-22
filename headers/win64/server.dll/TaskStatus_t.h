@@ -1,0 +1,9 @@
+#pragma once
+
+enum TaskStatus_t : uint32_t  // sizeof 0x4
+{
+    TASKSTATUS_NEW = 0,
+    TASKSTATUS_RUN_MOVE_AND_TASK = 1,
+    TASKSTATUS_RUN_TASK = 2,
+    TASKSTATUS_COMPLETE = 3,
+};

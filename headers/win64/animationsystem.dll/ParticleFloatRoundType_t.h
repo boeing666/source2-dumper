@@ -1,0 +1,10 @@
+#pragma once
+
+enum ParticleFloatRoundType_t : uint32_t  // sizeof 0x4
+{
+    PF_ROUND_TYPE_INVALID = -1,
+    PF_ROUND_TYPE_NEAREST = 0,
+    PF_ROUND_TYPE_FLOOR = 1,
+    PF_ROUND_TYPE_CEIL = 2,
+    PF_ROUND_TYPE_COUNT = 3,
+};

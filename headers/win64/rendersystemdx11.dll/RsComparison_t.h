@@ -1,0 +1,13 @@
+#pragma once
+
+enum RsComparison_t : uint8_t  // sizeof 0x1
+{
+    RS_CMP_NEVER = 0,
+    RS_CMP_LESS = 1,
+    RS_CMP_EQUAL = 2,
+    RS_CMP_LESS_EQUAL = 3,
+    RS_CMP_GREATER = 4,
+    RS_CMP_NOT_EQUAL = 5,
+    RS_CMP_GREATER_EQUAL = 6,
+    RS_CMP_ALWAYS = 7,
+};

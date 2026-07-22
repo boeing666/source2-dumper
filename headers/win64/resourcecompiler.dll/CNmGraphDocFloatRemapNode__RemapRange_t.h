@@ -1,0 +1,7 @@
+#pragma once
+
+struct CNmGraphDocFloatRemapNode::RemapRange_t  // sizeof 0x8, align 0x4 [trivial_dtor] (animdoclib) {MGetKV3ClassDefaults MPropertyAutoExpandSelf}
+{
+    float32 m_flBegin; // offset 0x0, size 0x4, align 4
+    float32 m_flEnd; // offset 0x4, size 0x4, align 4
+};

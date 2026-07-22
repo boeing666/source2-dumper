@@ -1,0 +1,15 @@
+#pragma once
+
+struct sky3dparams_t  // sizeof 0x90, align 0xFF [vtable trivial_dtor] (client) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+{
+    char _pad_0000[0x8]; // offset 0x0
+    int16 scale; // offset 0x8, size 0x2, align 2 | MNetworkEnable
+    char _pad_000A[0x2]; // offset 0xA
+    Vector origin; // offset 0xC, size 0xC, align 4 | MNetworkEnable MNetworkEncoder
+    bool bClip3DSkyBoxNearToWorldFar; // offset 0x18, size 0x1, align 1 | MNetworkEnable MNotSaved
+    char _pad_0019[0x3]; // offset 0x19
+    float32 flClip3DSkyBoxNearToWorldFarOffset; // offset 0x1C, size 0x4, align 4 | MNetworkEnable MNotSaved
+    fogparams_t fog; // offset 0x20, size 0x68, align 255 | MNetworkEnable MNotSaved
+    WorldGroupId_t m_nWorldGroupID; // offset 0x88, size 0x4, align 4 | MNetworkEnable
+    char _pad_008C[0x4]; // offset 0x8C
+};

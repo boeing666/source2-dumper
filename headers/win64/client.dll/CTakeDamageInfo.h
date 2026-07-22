@@ -1,0 +1,44 @@
+#pragma once
+
+class CTakeDamageInfo  // sizeof 0x100, align 0xFF [vtable] (client)
+{
+public:
+    char _pad_0000[0x8]; // offset 0x0
+    Vector m_vecDamageForce; // offset 0x8, size 0xC, align 4
+    VectorWS m_vecDamagePosition; // offset 0x14, size 0xC, align 4
+    VectorWS m_vecReportedPosition; // offset 0x20, size 0xC, align 4
+    Vector m_vecDamageDirection; // offset 0x2C, size 0xC, align 4
+    CHandle< C_BaseEntity > m_hInflictor; // offset 0x38, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAttacker; // offset 0x3C, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAbility; // offset 0x40, size 0x4, align 4
+    float32 m_flDamage; // offset 0x44, size 0x4, align 4
+    float32 m_flTotalledDamage; // offset 0x48, size 0x4, align 4
+    DamageTypes_t m_bitsDamageType; // offset 0x4C, size 0x4, align 4
+    int32 m_iDamageCustom; // offset 0x50, size 0x4, align 4
+    AmmoIndex_t m_iAmmoType; // offset 0x54, size 0x1, align 255
+    char _pad_0055[0xB]; // offset 0x55
+    float32 m_flOriginalDamage; // offset 0x60, size 0x4, align 4
+    bool m_bShouldBleed; // offset 0x64, size 0x1, align 1
+    bool m_bShouldSpark; // offset 0x65, size 0x1, align 1
+    char _pad_0066[0x2]; // offset 0x66
+    float32 m_flDamageAbsorbed; // offset 0x68, size 0x4, align 4
+    char _pad_006C[0xC]; // offset 0x6C
+    TakeDamageFlags_t m_nDamageFlags; // offset 0x78, size 0x8, align 8
+    HitGroup_t m_iHitGroupId; // offset 0x80, size 0x4, align 4 | MNotSaved
+    ECitadelDamageType m_eCitadelDamageType; // offset 0x84, size 0x4, align 4 | MNotSaved
+    float32 m_flAfterBuffDamage; // offset 0x88, size 0x4, align 4 | MNotSaved
+    float32 m_flPreResistDamage; // offset 0x8C, size 0x4, align 4 | MNotSaved
+    bool m_bEvaded; // offset 0x90, size 0x1, align 1 | MNotSaved
+    char _pad_0091[0x3]; // offset 0x91
+    Vector m_vecDamageNormal; // offset 0x94, size 0xC, align 4 | MNotSaved
+    char _pad_00A0[0x8]; // offset 0xA0
+    CHandle< C_BaseEntity > m_hOriginator; // offset 0xA8, size 0x4, align 4 | MNotSaved
+    int32 m_iBatchCount; // offset 0xAC, size 0x4, align 4 | MNotSaved
+    float32 m_flEffectiveness; // offset 0xB0, size 0x4, align 4 | MNotSaved
+    float32 m_timeDamage; // offset 0xB4, size 0x4, align 4 | MNotSaved
+    float32 m_flCritDamage; // offset 0xB8, size 0x4, align 4 | MNotSaved
+    char _pad_00BC[0x24]; // offset 0xBC
+    CUtlVector< DestructibleHitGroupToDestroy_t > m_nDestructibleHitGroupsToForceDestroy; // offset 0xE0, size 0x18, align 8
+    bool m_bInTakeDamageFlow; // offset 0xF8, size 0x1, align 1 | MNotSaved
+    char _pad_00F9[0x7]; // offset 0xF9
+};

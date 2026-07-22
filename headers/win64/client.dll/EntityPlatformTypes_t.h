@@ -1,0 +1,8 @@
+#pragma once
+
+enum EntityPlatformTypes_t : uint8_t  // sizeof 0x1
+{
+    ENTITY_NOT_PLATFORM = 0,
+    ENTITY_PLATFORM_PLAYER_FOLLOWS_YAW = 1,
+    ENTITY_PLATFORM_PLAYER_IGNORES_YAW = 2,
+};
