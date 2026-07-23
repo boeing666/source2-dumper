@@ -15,7 +15,8 @@ enum DarkCarnivalRewardVisual_t : uint32_t  // sizeof 0x4
     k_eDarkCarnivalRewardVisual_Oracle = 9,
     k_eDarkCarnivalRewardVisual_HeroItemSet = 10,
     k_eDarkCarnivalRewardVisual_ShowcaseDecoration = 11,
-    k_eDarkCarnivalRewardVisual_Start = 12,
-    k_eDarkCarnivalRewardVisual_End = 13,
-    k_eDarkCarnivalRewardVisual_Completed = 14,
+    k_eDarkCarnivalRewardVisual_EconItem = 12,
+    k_eDarkCarnivalRewardVisual_Start = 13,
+    k_eDarkCarnivalRewardVisual_End = 14,
+    k_eDarkCarnivalRewardVisual_Completed = 15,
 };

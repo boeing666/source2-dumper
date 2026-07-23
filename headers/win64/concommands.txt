@@ -458,6 +458,7 @@ dota_dark_carnival_encounter_crate_drop | developmentonly,clientdll |
 dota_dark_carnival_encounter_lockpicking | developmentonly,clientdll | 
 dota_dark_carnival_encounter_slark_jailbreak | developmentonly,clientdll | 
 dota_dark_carnival_encounter_slark_jailbreak_debug | developmentonly,clientdll | 
+dota_dark_carnival_encounter_whack_a_mole | developmentonly,clientdll | 
 dota_dark_carnival_visual_novel_dialogue | developmentonly,clientdll | 
 dota_dashboard_clear_page_cache | developmentonly,clientdll | Unloads all pages from history/cache.
 dota_dashboard_force_background_refresh | developmentonly,clientdll | 

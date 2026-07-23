@@ -16,4 +16,5 @@ enum DOTAVisualNovelTextColor_t : uint32_t  // sizeof 0x4
     VN_TEXT_COLOR_PURPLE = 11,
     VN_TEXT_COLOR_YELLOW = 12,
     VN_TEXT_COLOR_LIGHT_BROWN = 13,
+    VN_TEXT_COLOR_TITLE = 14,
 };
