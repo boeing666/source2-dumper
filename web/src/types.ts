@@ -48,6 +48,7 @@ export interface ClassInfo {
   flagsRaw: number;
   flags: string[];
   baseClasses: BaseClass[];
+  chain?: string[]; // [self, base, ...] resolved in-scope by the dumper (optional: absent in older dumps)
   entity: boolean;
   metadata: string[];
   fields: Field[];

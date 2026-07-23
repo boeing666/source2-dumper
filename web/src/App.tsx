@@ -159,7 +159,7 @@ export default function App() {
       {!err && tab === "schema" && (
         <main>
           <div id="home">
-            <Hero index={index} query={query} setQuery={setQuery} sort={sort} setSort={setSort}
+            <Hero index={filteredIndex} query={query} setQuery={setQuery} sort={sort} setSort={setSort}
                   libs={libs} toggleLib={(s) => toggleSet(libs, setLibs, s)}
                   kinds={kinds} toggleKind={(k) => toggleSet(kinds, setKinds, k)}
                   scopes={scopeNames} onPick={pick} />

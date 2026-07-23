@@ -66,6 +66,7 @@ struct JClass {
 	uint32_t flagsRaw = 0;
 	std::vector<std::string> flags;
 	std::vector<JBaseClass> baseClasses;
+	std::vector<std::string> chain;
 	bool entity = false;
 	std::vector<std::string> metadata;
 	std::vector<JField> fields;
@@ -246,6 +247,12 @@ static JClass BuildClass(const ClassRec& rec, const std::unordered_set<std::stri
 			jc.baseClasses.push_back({ bc->m_pszName, (int32_t)c->m_pBaseClasses[b].m_nOffset });
 		}
 	}
+	
+	for (CSchemaClassInfo* p = c; p && jc.chain.size() < 64;
+	     p = (p->m_nBaseClassCount && p->m_pBaseClasses && p->m_pBaseClasses[0].m_pClass) ? p->m_pBaseClasses[0].m_pClass : nullptr) {
+		if (p->m_pszName) { jc.chain.emplace_back(p->m_pszName); }
+	}
+
 	for (const SchemaClassFieldData_t* f : rec.fields) {
 		JField jf;
 		jf.name = f->m_pszName ? f->m_pszName : "";

@@ -56,7 +56,7 @@ export function ClassDetail({
         <button className="back" title="back to index" onClick={onBack}>←</button>
         <span className="chain-row">
           <span className="chip cur">{cls.name}</span>
-          {chain.slice(1).map((c) => (
+          {(cls.chain && cls.chain.length ? cls.chain : chain).slice(1).map((c) => (
             <span key={c} style={{ display: "contents" }}>
               <span className="arr"><Arr /></span>
               <a className="chip" onClick={() => known.has(c) && onNav(c)}>{c}</a>
