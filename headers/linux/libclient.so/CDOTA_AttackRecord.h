@@ -67,5 +67,6 @@ public:
     char _pad_0100[0x18]; // offset 0x100
     float32 m_flActualDamageDealtResult; // offset 0x118, size 0x4, align 4
     bool m_bTrackedRecord; // offset 0x11C, size 0x1, align 1
-    char _pad_011D[0x3]; // offset 0x11D
+    bool m_bDamageImpacted; // offset 0x11D, size 0x1, align 1
+    char _pad_011E[0x2]; // offset 0x11E
 };

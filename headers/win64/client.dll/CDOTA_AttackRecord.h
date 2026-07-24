@@ -3,17 +3,17 @@
 class CDOTA_AttackRecord  // sizeof 0x120, align 0xFF (client)
 {
 public:
-    uint8_t m_bUseProjectile : 1; // offset 0x0
+    uint8_t m_bAutoCastAttack : 1; // offset 0x0
     uint8_t m_bTriggeredAttack : 1; // offset 0x0
     uint8_t m_bNoCooldown : 1; // offset 0x0
     uint8_t m_bProcessProcs : 1; // offset 0x0
+    uint8_t m_bUseProjectile : 1; // offset 0x0
     uint8_t m_bSuppressDamageEffects : 1; // offset 0x0
     uint8_t m_bSuppressDamageSounds : 1; // offset 0x0
     uint8_t m_bForceAttackMissSound : 1; // offset 0x0
     uint8_t m_bSuppressAttackSounds : 1; // offset 0x0
     uint8_t m_bIgnoreObstructions : 1; // offset 0x0
     uint8_t m_bIgnoreBaseArmor : 1; // offset 0x0
-    uint8_t m_bAutoCastAttack : 1; // offset 0x0
     uint8_t m_bAttack : 1; // offset 0x0
     uint8_t m_bRangedAttack : 1; // offset 0x0
     uint8_t m_bDirectionalRangedAttack : 1; // offset 0x0
@@ -67,5 +67,6 @@ public:
     char _pad_0100[0x18]; // offset 0x100
     float32 m_flActualDamageDealtResult; // offset 0x118, size 0x4, align 4
     bool m_bTrackedRecord; // offset 0x11C, size 0x1, align 1
-    char _pad_011D[0x3]; // offset 0x11D
+    bool m_bDamageImpacted; // offset 0x11D, size 0x1, align 1
+    char _pad_011E[0x2]; // offset 0x11E
 };
