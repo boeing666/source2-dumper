@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from "react";
 import type { ClassInfo } from "@/types";
 import type { Platform } from "@/lib/data";
 import { nv, barW, catVar, layout } from "@/lib/format";
@@ -13,6 +13,7 @@ export function ClassDetail({
 }) {
   const rows = useMemo(() => layout(cls.fields, cls.size), [cls]);
   const [flashName, setFlashName] = useState<string | undefined>();
+  const [tip, setTip] = useState<{ x: number; y: number; text: string } | null>(null);
   const flash = (fieldName: string) => {
     const n = fieldName.split("+")[0];
     setFlashName(n);
@@ -53,7 +54,7 @@ export function ClassDetail({
   return (
     <div id="detail">
       <div className="dtop">
-        <button className="back" title="back to index" onClick={onBack}>←</button>
+        <button className="back" title="back" onClick={onBack}>←</button>
         <span className="chain-row">
           <span className="chip cur">{cls.name}</span>
           {(cls.chain && cls.chain.length ? cls.chain : chain).slice(1).map((c) => (
@@ -69,10 +70,10 @@ export function ClassDetail({
         <div className="sig">
           <button className="tag cp" title="copy as schema declaration" onClick={copySchema}>⧉ copy as schema</button>
           <button className="tag cp" title="copy field declarations" onClick={copyFields}>⧉ copy fields</button>
-          <span className="tag sz">sizeof<b>{nv(cls.size, hex)}</b></span>
-          {cls.project && <span className="tag proj">{cls.project}</span>}
-          {!cls.entity && <span className="tag emb">embedded</span>}
-          {cls.flags.map((f) => <span className="tag fl" key={f}>{f}</span>)}
+          <span className="sinfo sz">sizeof <b>{nv(cls.size, hex)}</b></span>
+          {cls.project && <span className="sinfo proj">{cls.project}</span>}
+          {!cls.entity && <span className="sinfo emb">embedded</span>}
+          {cls.flags.map((f) => <span className="sinfo fl" key={f}>{f}</span>)}
           <span className="kw">{cls.isStruct ? "struct" : "class"}</span> <span className="cn">{cls.name}</span>
           {cls.baseClasses.length > 0 && (
             <>
@@ -88,12 +89,15 @@ export function ClassDetail({
         </div>
 
         <div className="cbody">
-          <div className="map">
-            {rows.map((r, i) => (
-              <span key={i} className={r.pad ? "pseg" : undefined}
-                title={r.pad ? `padding · ${r.size} B` : `${r.field!.name} · ${r.size} B`}
-                style={{ flex: r.size, background: r.pad ? "var(--cpad)" : `var(--${catVar(r.field!.type)})`, opacity: r.pad ? 1 : 0.9 }} />
-            ))}
+          <div className="map" onMouseLeave={() => setTip(null)}>
+            {rows.map((r, i) => {
+              const txt = r.pad ? `padding · ${r.size} B` : `${r.field!.name} · ${r.size} B`;
+              const move = (e: ReactMouseEvent) => setTip({ x: e.clientX, y: e.clientY, text: txt });
+              return (
+                <span key={i} className={r.pad ? "pseg" : undefined} onMouseEnter={move} onMouseMove={move}
+                  style={{ flex: r.size, background: r.pad ? "var(--cpad)" : `var(--${catVar(r.field!.type)})`, opacity: r.pad ? 1 : 0.9 }} />
+              );
+            })}
           </div>
 
           <div className="tbl">
@@ -163,6 +167,8 @@ export function ClassDetail({
           </div>
         )}
       </div>
+
+      {tip && <div className="maptip" style={{ left: tip.x, top: tip.y }}>{tip.text}</div>}
     </div>
   );
 }

@@ -9,11 +9,18 @@
       --zeb:#22242b;--hov:#2a2d36;
       --cptr:#e5c07b;--ctmpl:#c586c0;--cprim:#569cd6;--cagg:#4ec9b0;--cpad:#7e8593;
       --mono:'JetBrains Mono',ui-monospace,'Cascadia Code',Consolas,monospace;--shadow:0 1px 3px rgba(0,0,0,.25)}
-@media(prefers-color-scheme:light){:root{--bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;--acc:#005fb8;
+/* Light palette: system default only when the user hasn't forced a theme; the toggle stamps
+   data-theme on <html>, which must win over prefers-color-scheme in both directions. */
+@media(prefers-color-scheme:light){:root:not([data-theme]){--bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;--acc:#005fb8;
       --kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--cm:#1a7f37;--pad:#a5aab4;--num:#0550ae;--emb:#8250df;--meta:#a31515;--fl:#7d6520;--enm:#b45309;--flash:#fff8c5;
       --zeb:#f4f5f8;--hov:#e8eef6;
       --cptr:#b45309;--ctmpl:#8250df;--cprim:#0550ae;--cagg:#0e7569;--cpad:#aab0bb;
       --shadow:0 1px 3px rgba(31,35,40,.08)}}
+:root[data-theme="light"]{--bg:#f6f7f9;--panel:#fff;--panel2:#f0f1f4;--border:#dfe2e8;--fg:#1f2328;--mut:#6e7781;--acc:#005fb8;
+      --kw:#0550ae;--ty:#0e7569;--mb:#0a3069;--cm:#1a7f37;--pad:#a5aab4;--num:#0550ae;--emb:#8250df;--meta:#a31515;--fl:#7d6520;--enm:#b45309;--flash:#fff8c5;
+      --zeb:#f4f5f8;--hov:#e8eef6;
+      --cptr:#b45309;--ctmpl:#8250df;--cprim:#0550ae;--cagg:#0e7569;--cpad:#aab0bb;
+      --shadow:0 1px 3px rgba(31,35,40,.08)}
 @layer base{*{border-color:var(--border)}}
 *{box-sizing:border-box}
 body{margin:0;font:16px/1.6 var(--mono);background:var(--bg);color:var(--fg)}
@@ -43,6 +50,9 @@ button{font-family:inherit}
 .dd-opt:hover{background:var(--hov)}
 .dd-opt.sel{color:var(--acc);font-weight:700;background:color-mix(in srgb,var(--acc) 13%,transparent)}
 .dd-check{width:13px;flex:none;display:inline-flex;justify-content:center;color:var(--acc)}
+/* theme toggle (sits next to the game switcher) */
+.themebtn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:30px;margin-left:8px;background:var(--panel2);border:1px solid var(--border);border-radius:7px;color:var(--mut);cursor:pointer;transition:color .12s,border-color .12s,background .12s}
+.themebtn:hover{color:var(--acc);border-color:var(--acc)}
 .brand::before{content:"{;}";color:var(--acc);font-family:var(--mono);margin-right:8px;font-weight:700}
 .sp{flex:1}
 .ghlink{display:inline-flex;align-items:center;color:var(--mut);margin-left:8px;transition:color .1s}
@@ -153,6 +163,8 @@ main{flex:1;min-width:0;padding:18px}
 .cbody{padding:14px 16px;font:14px/1.75 var(--mono);overflow-x:auto}
 .cbody .map{display:flex;height:18px;border-radius:5px;overflow:hidden;min-width:220px}
 .cbody .map span{transition:opacity .1s;box-shadow:inset -1px 0 0 var(--panel)}
+/* instant field tooltip over the memory map (native title has a ~500ms delay) */
+.maptip{position:fixed;z-index:60;transform:translate(-50%,calc(-100% - 9px));pointer-events:none;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:4px 9px;font:600 12px/1.2 var(--mono);color:var(--fg);white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.35)}
 .cbody .capc{text-align:center;color:var(--mut);font-size:12.5px;margin:9px 0 14px}
 .cbody .capc b{color:var(--num);font-weight:700}
 .tbl{display:table;width:100%}
@@ -218,6 +230,11 @@ a.ty{text-decoration:none;cursor:pointer} a.ty:hover{text-decoration:underline}
 .tag.fl{color:var(--fl)}
 .tag.cp{border-color:transparent;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc);cursor:pointer;transition:background .1s,color .1s;user-select:none}
 .tag.cp:hover{background:var(--acc);color:#fff}
+/* class-signature info (sizeof / project / embedded / vtable flags) — plain text, no chip box */
+.sinfo{float:right;display:inline-flex;align-items:baseline;gap:5px;margin-left:14px;color:var(--mut);font:600 14.5px/1.7 var(--mono)}
+.sinfo b{font-weight:700;color:var(--num)}
+.sinfo.emb{color:var(--emb)}
+.sinfo.fl{color:var(--fl)}
 .meta{color:var(--meta)}
 /* convars / concommands — single-line rows, aligned columns, flag filter */
 .cvcard{background:var(--panel);border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow);overflow:clip}

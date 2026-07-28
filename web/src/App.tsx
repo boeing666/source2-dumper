@@ -36,6 +36,8 @@ export default function App() {
   const [pad, setPad] = useState(false);
 
   const [selected, setSelected] = useState<Selected | null>(null);
+  // classes visited via inheritance/ref links, so the back button walks back down the chain
+  const [navStack, setNavStack] = useState<Selected[]>([]);
   const scopeCache = useRef<Map<string, Scope>>(new Map());
   const [scopeData, setScopeData] = useState<Scope | null>(null);
   // class named in the initial URL (resolved to a Selected once the index loads); blocks URL writes until resolved
@@ -112,9 +114,21 @@ export default function App() {
     return () => { alive = false; };
   }, [selected, platform, game]);
 
-  const pick = (e: IndexEntry, field?: string) => { setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: field }); };
-  const navByName = (name: string) => { const e = nameMap.get(name); if (e) { setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: undefined }); } };
-  const goBack = () => setSelected(null);
+  // picking from search/index starts a fresh trail; following a link pushes the current class onto it
+  const pick = (e: IndexEntry, field?: string) => { setNavStack([]); setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: field }); };
+  const navByName = (name: string) => {
+    const e = nameMap.get(name);
+    if (!e) return;
+    setNavStack((s) => (selected && selected.name !== e.name ? [...s, selected] : s));
+    setTab("schema");
+    setSelected({ name: e.name, file: e.file, targetField: undefined });
+  };
+  const goBack = () => {
+    if (navStack.length) {
+      setSelected(navStack[navStack.length - 1]);
+      setNavStack(navStack.slice(0, -1));
+    } else setSelected(null);
+  };
   const onField = (f: string) => setSelected((s) => (s ? { ...s, targetField: f } : s));
   const toggleCv = (f: string) => setCvFlags((s) => { const n = new Set(s); if (n.has(f)) n.delete(f); else n.add(f); return n; });
   const toggleCm = (f: string) => setCmFlags((s) => { const n = new Set(s); if (n.has(f)) n.delete(f); else n.add(f); return n; });
