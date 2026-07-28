@@ -26,6 +26,7 @@ jobs:
     outputs:
       version: ${{ steps.v.outputs.version }}
       changed: ${{ steps.v.outputs.changed }}
+      gids: ${{ steps.v.outputs.gids }}
     steps:
       - uses: actions/checkout@v5
 
@@ -39,11 +40,15 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y unzip
           key=""
+          gids="{"; sep=""
           for g in cs2 dota2 deadlock; do
             gid=$(GAME=$g bash scripts/game-version.sh || echo NA)
             echo "$g: $gid"
             key="$key$g=$gid;"
+            gids="$gids$sep\"$g\":\"$gid\""; sep=","
           done
+          gids="$gids}"
+          echo "gids=$gids" >> "$GITHUB_OUTPUT"   # per-game manifest GID map, so each branch records its own
           ver=$(printf '%s' "$key" | sha1sum | cut -c1-12)
           echo "version=$ver" >> "$GITHUB_OUTPUT"
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
@@ -175,7 +180,9 @@ jobs:
           mkdir -p headers
           # Flatten the game level: on a per-game branch it is redundant -> headers/<platform>/...
           cp -r "$RUNNER_TEMP/parts/headers/$g/"* headers/ 2>/dev/null || true
-          manifest="${{ needs.check.outputs.version }}"
+          # This game's OWN manifest GID (not the combined run key) — so an unchanged game's
+          # README stays byte-identical and git skips its commit instead of touching every branch.
+          manifest='${{ fromJson(needs.check.outputs.gids)[matrix.game] }}'
           pv=$(cat "$RUNNER_TEMP/parts/$g/patchversion.txt" 2>/dev/null || echo "?")
           printf 'Source2 schema dump — %s\n\nPatchVersion: %s\nManifest: %s\nOne .h per class, grouped by platform/module (+ convars.txt / concommands.txt). Diff commits to see schema changes.\n' \
             "$g" "$pv" "$manifest" > README.md
