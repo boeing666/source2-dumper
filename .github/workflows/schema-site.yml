@@ -45,10 +45,13 @@ jobs:
             gid=$(GAME=$g bash scripts/game-version.sh || echo NA)
             echo "$g: $gid"
             key="$key$g=$gid;"
-            gids="$gids$sep\"$g\":\"$gid\""; sep=","
+            # game-version.sh returns the raw dash-joined depot GID list; hash it to a short,
+            # stable per-game id (same treatment as the combined key, just scoped to one game).
+            gv=$(printf '%s' "$gid" | sha1sum | cut -c1-12)
+            gids="$gids$sep\"$g\":\"$gv\""; sep=","
           done
           gids="$gids}"
-          echo "gids=$gids" >> "$GITHUB_OUTPUT"   # per-game manifest GID map, so each branch records its own
+          echo "gids=$gids" >> "$GITHUB_OUTPUT"   # per-game manifest map, so each branch records its own
           ver=$(printf '%s' "$key" | sha1sum | cut -c1-12)
           echo "version=$ver" >> "$GITHUB_OUTPUT"
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
