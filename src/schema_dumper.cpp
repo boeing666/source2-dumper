@@ -51,13 +51,15 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 	std::vector<GameEventInfo> events = CollectGameEvents(GAME_ROOT);
 
 	const std::string patch = ReadInf("PatchVersion");
+	const std::string serverVer = ReadInf("ServerVersion");
 	const fs::path headersDir = outDir / "headers" / GAME_NAME / PLATFORM_NAME;
 	WriteHeaders(modules, headersDir);
 	WriteConVarDump(convars, concommands, headersDir);
-	WriteJson(outDir, modules, known, network, convars, concommands, events, patch, ReadInf("ServerVersion"));
-	if (!patch.empty()) {
+	WriteJson(outDir, modules, known, network, convars, concommands, events, patch, serverVer);
+	const std::string dispVer = !patch.empty() ? patch : serverVer;
+	if (!dispVer.empty()) {
 		fs::create_directories(outDir / GAME_NAME);
-		std::ofstream(outDir / GAME_NAME / "patchversion.txt", std::ios::trunc) << patch;
+		std::ofstream(outDir / GAME_NAME / "patchversion.txt", std::ios::trunc) << dispVer;
 	}
 
 	int total = 0;

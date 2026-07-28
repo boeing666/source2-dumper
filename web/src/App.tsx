@@ -163,7 +163,7 @@ export default function App() {
 
       {!err && meta && (
         <div className="subbar">
-          <span>PatchVersion <b>{meta.patchVersion}</b></span>
+          <span>PatchVersion <b>{meta.patchVersion || meta.serverVersion}</b></span>
           <span>ServerVersion <b>{meta.serverVersion}</b></span>
         </div>
       )}
