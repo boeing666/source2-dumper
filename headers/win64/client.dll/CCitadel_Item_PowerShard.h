@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Item_PowerShard : public CCitadel_Item /*0x0*/  // sizeof 0x11D8, align 0x8 [vtable] (client)
+class CCitadel_Item_PowerShard : public CCitadel_Item /*0x0*/  // sizeof 0x1258, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x11D8]; // offset 0x0
+    char _pad_0000[0x1258]; // offset 0x0
 };
