@@ -156,4 +156,6 @@ enum EGCCitadelClientMessages : uint32_t  // sizeof 0x4
     k_EMsgGCToClientUpdateHeroReleaseVoteTally = 9281,
     k_EMsgClientToGCSetAccountPrivacySetting = 9282,
     k_EMsgClientToGCSetAccountPrivacySettingResponse = 9283,
+    k_EMsgClientToGCStartRankedInterval = 9289,
+    k_EMsgClientToGCStartRankedIntervalResponse = 9290,
 };

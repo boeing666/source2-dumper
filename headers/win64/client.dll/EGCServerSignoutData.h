@@ -16,4 +16,5 @@ enum EGCServerSignoutData : uint32_t  // sizeof 0x4
     k_EServerSignoutData_MatchKills = 14,
     k_EServerSignoutData_PlayerBehavior = 15,
     k_EServerSignoutData_StreetBrawlData = 16,
+    k_EServerSignoutData_HeroDraftData = 17,
 };

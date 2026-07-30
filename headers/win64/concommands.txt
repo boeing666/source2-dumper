@@ -130,6 +130,7 @@ citadel_boss_tier_3_testing_reset | gamedll,cheat | Respawns the boss
 citadel_bot_give_all_abilities | developmentonly,gamedll,defensive | Gives all bots all abilities.  Use with citadel_bot_use_ability 1-4
 citadel_bot_give_all_abilities_base | developmentonly,gamedll,defensive | Gives all bots all abilities without perks.  Use with citadel_bot_use_ability 1-4
 citadel_bot_give_team_gold | gamedll,cheat | Give all bots on a particular team gold
+citadel_bot_kick | developmentonly,gamedll,defensive | Kick bot <name>
 citadel_bot_list_ents | gamedll,cheat | List ent id of all players that are bots in this game
 citadel_bot_list_objectives_ent | gamedll,cheat | List all entities that are associated with a Citadel Game Objective
 citadel_bot_playrecording | gamedll,cheat,client_can_execute | Play back commands recorded via 'citadel_bot_record'
@@ -142,8 +143,8 @@ citadel_buttons_tweak | developmentonly,clientdll | Command to tweak level boons
 citadel_cancel_hero_draft | developmentonly,gamedll,defensive | Ends hero draft mode and goes straight to playing the game
 citadel_clear_all_post_process_effects | developmentonly,clientdll,defensive | Clear all post process effects that are active, and spew their state
 citadel_clear_killstreak | developmentonly,gamedll,defensive | citadel_clear_killstreak [player_slot]
-citadel_commend_fake_received | developmentonly,clientdll | 
-citadel_commend_player | developmentonly,clientdll,defensive | <target account id> [match id]
+citadel_commend_fake_received | clientdll,release | 
+citadel_commend_player | clientdll,release | <target account id> [match id] [hero_id]
 citadel_complete_new_player | clientdll,release | [flag] Marks the new player state as complete
 citadel_convert_deps | developmentonly,clientdll | Command to tweak level boons.  Pass in scale factor
 citadel_convert_particle_cfg | developmentonly,clientdll | Convert team_relative_particle_cfg to CitadelTeamRelativeParticleSettings_t
@@ -234,6 +235,7 @@ citadel_playofthegame_test_eval | developmentonly,gamedll | Run evaluation and d
 citadel_playtest_kick_disconnected_players | developmentonly,clientdll,defensive | Reassign any network disconnected players to the unnassigned team
 citadel_port_muzzles | developmentonly,clientdll | Port old muzzle defs to the new
 citadel_post_game_force_hero_id | developmentonly,clientdll,defensive | 
+citadel_pregame_hero_draft_test | developmentonly,clientdll,cheat | Test pregame draft
 citadel_purchase_quickbuy | clientdll,release | Purchase the next quickbuy item
 citadel_record_hero_animgraph | gamedll,cheat | Record the animgraph for a specified hero
 citadel_reload_rank_data | developmentonly,clientdll,defensive | Request rank confidence score from GC.
@@ -249,6 +251,8 @@ citadel_settings_reset_dismissed_settings | developmentonly,clientdll,defensive 
 citadel_settings_show_popup | developmentonly,clientdll,defensive | 
 citadel_show_hero_debut_popup | developmentonly,clientdll | [hero id] [allow swap]
 citadel_show_hero_select_popup | developmentonly,clientdll | 
+citadel_show_ranked_history_page | developmentonly,clientdll | 
+citadel_show_ranked_season_page | developmentonly,clientdll | 
 citadel_show_roster_select_popup | developmentonly,clientdll | 
 citadel_show_seasonal_kill_toast | developmentonly,clientdll | 
 citadel_shuffle_draft_order | developmentonly,gamedll,defensive | Shuffles the order in which players are drafting heroes
@@ -265,7 +269,7 @@ citadel_spectate_lobby_id | developmentonly,clientdll | [lobby id] Attempts to s
 citadel_spectator_voice_mode_toggle | clientdll,release | Toggle the value of citadel_spectator_voice_mode
 citadel_spew_active_movement_controller | developmentonly,clientdll,defensive | Spews what is the active movement controller on the local player
 citadel_spew_player_modifiers | developmentonly,clientdll,defensive | Spews all modifiers on the local player
-citadel_start_calibration_bot_match | developmentonly,clientdll,defensive | Starts a calibration match
+citadel_start_new_player_placement_bot_match | developmentonly,clientdll,defensive | Starts a new_player_placement match
 citadel_street_brawl_advance_state | developmentonly,gamedll,defensive | Advance the state of a street brawl game
 citadel_street_brawl_reset | developmentonly,gamedll,defensive | Resets a street brawl match
 citadel_street_brawl_test_drafts | developmentonly,gamedll,defensive | Simulates and spews the results of all draft rounds in street brawl
@@ -273,6 +277,7 @@ citadel_stunme | developmentonly,gamedll,defensive | Stun the local player
 citadel_suggest_claim_reqs | developmentonly,gamedll | Print a crude recommended required bullets to claim an orb for every hero
 citadel_tech_damage_vdata_tagging | developmentonly,clientdll | Command to Tag abilities with 'm_bIsAbilityDamageProperty = true' 
 citadel_tech_power_scaling_vdata_tweak | developmentonly,clientdll | Command to tweak all ability tech power scaling, including ability upgrades.  Pass in scale factor, with 1.0 being no change.
+citadel_test_abandon | developmentonly,gamedll,defensive | Test new abandon feature
 citadel_test_banned_heroes_message | developmentonly,clientdll,defensive | Draws the banned heroes message
 citadel_test_cinematic_intro | developmentonly,gamedll,defensive | Restart the cinematic intro sequence
 citadel_test_flex_unlocked_message | developmentonly,clientdll,defensive | Draws a test message: citadel_test_flex_unlocked_message [1-4]

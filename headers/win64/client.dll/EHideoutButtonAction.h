@@ -13,4 +13,6 @@ enum EHideoutButtonAction : uint32_t  // sizeof 0x4
     k_eHeroReleaseVote = 8,
     k_eFireEntityOutput = 9,
     k_eSeasonalEvent = 10,
+    k_eWardrobe = 11,
+    k_eRankedHub = 12,
 };

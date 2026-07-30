@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelPlayerPawn : public CCitadelPlayerPawnBase /*0x0*/  // sizeof 0x2210, align 0x10 [vtable] (server) {MNetworkIncludeByName MNetworkExcludeByName MNetworkExcludeByUserGroup MNetworkExcludeByName MNetworkExcludeByName MNetworkUserGroupProxy MNetworkUserGroupProxy MNetworkVarTypeOverride MNetworkIncludeByName MNetworkVarTypeOverride MNetworkIncludeByName MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CCitadelPlayerPawn : public CCitadelPlayerPawnBase /*0x0*/  // sizeof 0x2210, align 0x10 [vtable] (server) {MNetworkIncludeByName MNetworkExcludeByName MNetworkExcludeByUserGroup MNetworkExcludeByName MNetworkExcludeByName MNetworkUserGroupProxy MNetworkUserGroupProxy MNetworkVarTypeOverride MNetworkIncludeByName MNetworkVarTypeOverride MNetworkIncludeByName MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
 {
 public:
     char _pad_0000[0xDF0]; // offset 0x0
@@ -11,14 +11,14 @@ public:
     int32 m_nLevel; // offset 0xEC8, size 0x4, align 4 | MNetworkEnable
     int32[6] m_nCurrencies; // offset 0xECC, size 0x18, align 4 | MNetworkEnable
     int32[6] m_nSpentCurrencies; // offset 0xEE4, size 0x18, align 4 | MNetworkEnable
-    GameTime_t m_flRespawnTime; // offset 0xEFC, size 0x4, align 255 | MNetworkEnable
-    GameTime_t m_flLastSpawnTime; // offset 0xF00, size 0x4, align 255 | MNetworkEnable
-    bool m_bInRegenerationZone; // offset 0xF04, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bInItemShopZone; // offset 0xF05, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bInHideoutZone; // offset 0xF06, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_0F07[0x1]; // offset 0xF07
-    GameTime_t m_timeRevealedOnMinimapByNPC; // offset 0xF08, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    char _pad_0F0C[0x4]; // offset 0xF0C
+    int32 m_nNumHeroChangesUsed; // offset 0xEFC, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup
+    GameTime_t m_flRespawnTime; // offset 0xF00, size 0x4, align 255 | MNetworkEnable
+    GameTime_t m_flLastSpawnTime; // offset 0xF04, size 0x4, align 255 | MNetworkEnable
+    bool m_bInRegenerationZone; // offset 0xF08, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    bool m_bInItemShopZone; // offset 0xF09, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    bool m_bInHideoutZone; // offset 0xF0A, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    char _pad_0F0B[0x1]; // offset 0xF0B
+    GameTime_t m_timeRevealedOnMinimapByNPC; // offset 0xF0C, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
     CNetworkUtlVectorBase< CUtlStringToken > m_vecFullSellPriceItems; // offset 0xF10, size 0x18, align 8 | MNetworkEnable MNetworkUserGroup
     CNetworkUtlVectorBase< FullSellPriceAbilityUpgrades_t > m_vecFullSellPriceAbilityUpgrades; // offset 0xF28, size 0x60, align 8 | MNetworkEnable MNetworkUserGroup
     CNetworkUtlVectorBase< CUtlStringToken > m_vecQuickbuyQueue; // offset 0xF88, size 0x18, align 8 | MNetworkEnable MNetworkUserGroup

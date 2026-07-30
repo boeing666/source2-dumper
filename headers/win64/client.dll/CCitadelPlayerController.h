@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelPlayerController : public CBasePlayerController /*0x0*/  // sizeof 0xC30, align 0x8 [vtable] (client) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CCitadelPlayerController : public CBasePlayerController /*0x0*/  // sizeof 0xC40, align 0x8 [vtable] (client) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
 {
 public:
     char _pad_0000[0x7F0]; // offset 0x0
@@ -32,10 +32,10 @@ public:
     char _pad_0879[0x33]; // offset 0x879
     CHandle< C_CitadelPlayerPawn > m_hHeroPawn; // offset 0x8AC, size 0x4, align 4 | MNetworkEnable MNetworkChangeCallback
     char _pad_08B0[0x40]; // offset 0x8B0
-    PlayerDataGlobal_t m_PlayerDataGlobal; // offset 0x8F0, size 0x330, align 255 | MNetworkEnable MNotSaved
-    int8 m_nDeathReplayAvailable; // offset 0xC20, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    CitadelLobbyPlayerSlot_t m_unLobbyPlayerSlot; // offset 0xC21, size 0x1, align 255 | MNetworkEnable
-    bool m_bHasCheckedFriendName; // offset 0xC22, size 0x1, align 1
-    char _pad_0C23[0x5]; // offset 0xC23
-    CUtlString m_sFriendName; // offset 0xC28, size 0x8, align 8
+    PlayerDataGlobal_t m_PlayerDataGlobal; // offset 0x8F0, size 0x340, align 255 | MNetworkEnable MNotSaved
+    int8 m_nDeathReplayAvailable; // offset 0xC30, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    CitadelLobbyPlayerSlot_t m_unLobbyPlayerSlot; // offset 0xC31, size 0x1, align 255 | MNetworkEnable
+    bool m_bHasCheckedFriendName; // offset 0xC32, size 0x1, align 1
+    char _pad_0C33[0x5]; // offset 0xC33
+    CUtlString m_sFriendName; // offset 0xC38, size 0x8, align 8
 };
