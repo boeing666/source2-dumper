@@ -1360,7 +1360,6 @@ citadel_shop_reset_time | developmentonly,clientdll |
 citadel_show_account_ids | clientdll,release | When set, account IDs will be shown on player tooltips
 citadel_show_active_slot_popup | clientdll,release | 
 citadel_show_all_purchase_toasts | clientdll | If enabled, show purchase toasts for all item transactions, not just ones in your quickbuy queue
-citadel_show_average_rating_on_postgame | clientdll,release | Show the rating average rating of a team in the post game.
 citadel_show_bullet_lag_compensation | gamedll,clientdll,replicated,cheat | if > 0.0, show lag compensated hitboxes (value is seconds) whenever a bullet is lag compensated and hits something.
 citadel_show_chat_wheel_angle_threshold | developmentonly,clientdll | (degrees) Increase this to change how much you have to move your camera angle to make the Chat Wheel instantly visible while holding Ping. 
 citadel_show_chat_wheel_debug | developmentonly,clientdll | Increase this to change how much you have to move your camera angle to make the mousewheel visible (degrees)
@@ -1383,7 +1382,6 @@ citadel_show_page_reload_button | clientdll | Show beta db controls in the upper
 citadel_show_personal_best_duration | developmentonly,clientdll | 
 citadel_show_playerintents | developmentonly,clientdll | 
 citadel_show_playerintents_bothteams | developmentonly,clientdll | 
-citadel_show_rating_notification_on_change | clientdll,release | Show the rating notification on the post game if your rating changed that game.
 citadel_show_reportcard | developmentonly,clientdll | 
 citadel_show_reportcard_finished | developmentonly,clientdll | 
 citadel_show_reportcard_initial | developmentonly,clientdll | 
