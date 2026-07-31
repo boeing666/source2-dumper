@@ -49,7 +49,7 @@ public:
     bool m_bStolen; // offset 0x7E0, size 0x1, align 1
     bool m_bReplicated; // offset 0x7E1, size 0x1, align 1
     bool m_bStealable; // offset 0x7E2, size 0x1, align 1
-    char _pad_07E3[0x1]; // offset 0x7E3
+    bool m_bTransferred; // offset 0x7E3, size 0x1, align 1
     int32 m_nAbilityCurrentCharges; // offset 0x7E4, size 0x4, align 4
     float32 m_fAbilityChargeRestoreTimeRemaining; // offset 0x7E8, size 0x4, align 4
     bool m_bUpgradeRecommended; // offset 0x7EC, size 0x1, align 1

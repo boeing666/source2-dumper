@@ -855,6 +855,7 @@ fantasy_craft_decode_title_awards | developmentonly,clientdll,defensive | <leagu
 fantasy_craft_populate_league_data | developmentonly,clientdll,defensive | <fantasy league id> adds teams to the fantasy crafting data for the given fantasy league id
 fantasy_craft_reset_2024_tutorial | developmentonly,clientdll,defensive | Resets the user back to the base tutorial state
 fantasy_craft_reset_2025_tutorial | developmentonly,clientdll,defensive | Resets the user back to the base tutorial state
+fantasy_craft_reset_2026_tutorial | developmentonly,clientdll,defensive | Resets the user back to the base tutorial state
 fantasy_craft_reset_tablets | developmentonly,clientdll,defensive | <fantasy league id> Rerolls all attributes on all tablets for the account
 fantasy_craft_reset_tutorial | developmentonly,clientdll,defensive | Resets the user back to the base tutorial state
 fantasy_craft_set_roll_tokens | developmentonly,clientdll,defensive | <fantasy league id> <period id> <token_amount> Sets available roll tokens for the account

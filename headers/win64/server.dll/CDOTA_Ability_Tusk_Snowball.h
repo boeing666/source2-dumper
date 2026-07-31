@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Ability_Tusk_Snowball : public CDOTABaseAbility /*0x0*/, public CHorizontalMotionController /*0x580*/  // sizeof 0x6C0, align 0x8 [vtable] (server)
+class CDOTA_Ability_Tusk_Snowball : public CDOTABaseAbility /*0x0*/, public CHorizontalMotionController /*0x580*/  // sizeof 0x6D8, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x590]; // offset 0x0
@@ -19,17 +19,18 @@ public:
     VectorWS m_vProjectileLocation; // offset 0x5C0, size 0xC, align 4
     char _pad_05CC[0x4]; // offset 0x5CC
     CUtlVector< CHandle< CBaseEntity > > m_hSnowballedUnits; // offset 0x5D0, size 0x18, align 8
-    ParticleIndex_t m_nFXIndex; // offset 0x5E8, size 0x4, align 255
-    char _pad_05EC[0x4]; // offset 0x5EC
-    CountdownTimer ctSnowball; // offset 0x5F0, size 0x18, align 8
-    bool m_bSpeakAlly; // offset 0x608, size 0x1, align 1
-    bool m_bIsExpired; // offset 0x609, size 0x1, align 1
-    bool m_bInWindup; // offset 0x60A, size 0x1, align 1
-    char _pad_060B[0x1]; // offset 0x60B
-    CHandle< CBaseEntity > m_hPrimaryTarget; // offset 0x60C, size 0x4, align 4
-    int32 m_nContainedValidUnits; // offset 0x610, size 0x4, align 4
-    bool m_bEndingSnowball; // offset 0x614, size 0x1, align 1
-    char _pad_0615[0xA3]; // offset 0x615
-    int32 m_nSnowballProjectileHandle; // offset 0x6B8, size 0x4, align 4
-    char _pad_06BC[0x4]; // offset 0x6BC
+    CUtlVector< CHandle< CBaseEntity > > m_hEnemiesHit; // offset 0x5E8, size 0x18, align 8
+    ParticleIndex_t m_nFXIndex; // offset 0x600, size 0x4, align 255
+    char _pad_0604[0x4]; // offset 0x604
+    CountdownTimer ctSnowball; // offset 0x608, size 0x18, align 8
+    bool m_bSpeakAlly; // offset 0x620, size 0x1, align 1
+    bool m_bIsExpired; // offset 0x621, size 0x1, align 1
+    bool m_bInWindup; // offset 0x622, size 0x1, align 1
+    char _pad_0623[0x1]; // offset 0x623
+    CHandle< CBaseEntity > m_hPrimaryTarget; // offset 0x624, size 0x4, align 4
+    int32 m_nContainedValidUnits; // offset 0x628, size 0x4, align 4
+    bool m_bEndingSnowball; // offset 0x62C, size 0x1, align 1
+    char _pad_062D[0xA3]; // offset 0x62D
+    int32 m_nSnowballProjectileHandle; // offset 0x6D0, size 0x4, align 4
+    char _pad_06D4[0x4]; // offset 0x6D4
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTABehaviorCommandMoveToTargetToCast  // sizeof 0x170, align 0xFF [vtable] (server)
+class CDOTABehaviorCommandMoveToTargetToCast  // sizeof 0x178, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0x68]; // offset 0x0
@@ -14,5 +14,7 @@ public:
     bool m_bTurningToTarget; // offset 0x164, size 0x1, align 1
     char _pad_0165[0x3]; // offset 0x165
     float32 m_flTargetAngle; // offset 0x168, size 0x4, align 4
-    char _pad_016C[0x4]; // offset 0x16C
+    uint32 m_nGiveItemIndicatorID; // offset 0x16C, size 0x4, align 4
+    CPlayerSlot nGiverPlayerSlot; // offset 0x170, size 0x4, align 4
+    CPlayerSlot nReceiverPlayerSlot; // offset 0x174, size 0x4, align 4
 };

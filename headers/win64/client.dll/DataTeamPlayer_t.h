@@ -73,22 +73,23 @@ struct DataTeamPlayer_t  // sizeof 0x12F0, align 0xFF [vtable] (client)
     WeightedAbilitySuggestion_t[5] m_iSuggestedNeutralEnhancements; // offset 0xED4, size 0x28, align 4
     HeroID_t[10] m_iSuggestedHeroes; // offset 0xEFC, size 0x28, align 4
     float32[10] m_flSuggestedHeroesWeights; // offset 0xF24, size 0x28, align 4
-    float32[3] m_flDamageByTypeReceivedPreReduction; // offset 0xF4C, size 0xC, align 4
-    float32[3] m_flDamageByTypeReceivedPostReduction; // offset 0xF58, size 0xC, align 4
-    float32[3] m_flOutgoingDamageByTypePreReduction; // offset 0xF64, size 0xC, align 4
-    float32[3] m_flOutgoingDamageByTypePostReduction; // offset 0xF70, size 0xC, align 4
-    OverworldID_t m_uSelectedOverworldID; // offset 0xF7C, size 0x1, align 255
-    OverworldTokenID_t[3] m_uSelectedOverworldTokenRewards; // offset 0xF7D, size 0x3, align 1
-    OverworldTarotCardID_t[3] m_uOverworldFortune; // offset 0xF80, size 0x3, align 1
-    char _pad_0F83[0x1]; // offset 0xF83
-    int32 m_iCommandsIssued; // offset 0xF84, size 0x4, align 4
-    int32 m_iGoldSpentOnConsumables; // offset 0xF88, size 0x4, align 4
-    int32 m_iGoldSpentOnItems; // offset 0xF8C, size 0x4, align 4
-    int32 m_iGoldSpentOnBuybacks; // offset 0xF90, size 0x4, align 4
-    int32 m_iGoldLostToDeath; // offset 0xF94, size 0x4, align 4
-    bool m_bIsNewPlayer; // offset 0xF98, size 0x1, align 1
-    bool m_bIsGuidePlayer; // offset 0xF99, size 0x1, align 1
-    char _pad_0F9A[0x6]; // offset 0xF9A
+    int32 m_iWisdomShrinesTaken; // offset 0xF4C, size 0x4, align 4
+    float32[3] m_flDamageByTypeReceivedPreReduction; // offset 0xF50, size 0xC, align 4
+    float32[3] m_flDamageByTypeReceivedPostReduction; // offset 0xF5C, size 0xC, align 4
+    float32[3] m_flOutgoingDamageByTypePreReduction; // offset 0xF68, size 0xC, align 4
+    float32[3] m_flOutgoingDamageByTypePostReduction; // offset 0xF74, size 0xC, align 4
+    OverworldID_t m_uSelectedOverworldID; // offset 0xF80, size 0x1, align 255
+    OverworldTokenID_t[3] m_uSelectedOverworldTokenRewards; // offset 0xF81, size 0x3, align 1
+    OverworldTarotCardID_t[3] m_uOverworldFortune; // offset 0xF84, size 0x3, align 1
+    char _pad_0F87[0x1]; // offset 0xF87
+    int32 m_iCommandsIssued; // offset 0xF88, size 0x4, align 4
+    int32 m_iGoldSpentOnConsumables; // offset 0xF8C, size 0x4, align 4
+    int32 m_iGoldSpentOnItems; // offset 0xF90, size 0x4, align 4
+    int32 m_iGoldSpentOnBuybacks; // offset 0xF94, size 0x4, align 4
+    int32 m_iGoldLostToDeath; // offset 0xF98, size 0x4, align 4
+    bool m_bIsNewPlayer; // offset 0xF9C, size 0x1, align 1
+    bool m_bIsGuidePlayer; // offset 0xF9D, size 0x1, align 1
+    char _pad_0F9E[0x2]; // offset 0xF9E
     uint64 m_iPlayerSteamID; // offset 0xFA0, size 0x8, align 8
     int32 m_iSmokesUsed; // offset 0xFA8, size 0x4, align 4
     int32 m_iNeutralTokensFound; // offset 0xFAC, size 0x4, align 4

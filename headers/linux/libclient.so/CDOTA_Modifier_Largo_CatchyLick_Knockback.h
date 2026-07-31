@@ -1,7 +1,7 @@
 #pragma once
 
-class CDOTA_Modifier_Largo_CatchyLick_Knockback : public CDOTA_Modifier_Knockback /*0x0*/  // sizeof 0x1A90, align 0xFF [vtable] (client)
+class CDOTA_Modifier_Largo_CatchyLick_Knockback : public CDOTA_Modifier_Knockback /*0x0*/  // sizeof 0x1AB0, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x1A90]; // offset 0x0
+    char _pad_0000[0x1AB0]; // offset 0x0
 };

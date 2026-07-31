@@ -4,8 +4,9 @@ class C_DOTA_Ability_Huskar_Life_Break : public C_DOTABaseAbility /*0x0*/  // si
 {
 public:
     char _pad_0000[0x6A8]; // offset 0x0
-    VectorWS m_vProjectileLocation; // offset 0x6A8, size 0xC, align 4
-    CHandle< C_BaseEntity > m_hTarget; // offset 0x6B4, size 0x4, align 4
-    bool m_bInterrupted; // offset 0x6B8, size 0x1, align 1
-    char _pad_06B9[0x7]; // offset 0x6B9
+    int32 m_nLifeBreakProjectileHandle; // offset 0x6A8, size 0x4, align 4
+    VectorWS m_vProjectileLocation; // offset 0x6AC, size 0xC, align 4
+    CHandle< C_BaseEntity > m_hTarget; // offset 0x6B8, size 0x4, align 4
+    bool m_bInterrupted; // offset 0x6BC, size 0x1, align 1
+    char _pad_06BD[0x3]; // offset 0x6BD
 };

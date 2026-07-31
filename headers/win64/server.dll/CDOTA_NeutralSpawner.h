@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_NeutralSpawner : public CPointEntity /*0x0*/  // sizeof 0x5A0, align 0x8 [vtable] (server)
+class CDOTA_NeutralSpawner : public CPointEntity /*0x0*/  // sizeof 0x5A8, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x498]; // offset 0x0
@@ -30,11 +30,12 @@ public:
     int32 m_iNextTypeUnitCount; // offset 0x550, size 0x4, align 4
     bool[2] m_bSeenClearedByTeam; // offset 0x554, size 0x2, align 1
     char _pad_0556[0x2]; // offset 0x556
-    CUtlSymbolLarge m_szVolumeName; // offset 0x558, size 0x8, align 8
-    CUtlVector< CHandle< CBaseEntity > > m_hVolumes; // offset 0x560, size 0x18, align 8
-    CEntityIOOutput m_OnSpawnerExhausted; // offset 0x578, size 0x18, align 255
-    int32 m_Type; // offset 0x590, size 0x4, align 4
-    int32 m_PullType; // offset 0x594, size 0x4, align 4
-    int32 m_AggroType; // offset 0x598, size 0x4, align 4
-    char _pad_059C[0x4]; // offset 0x59C
+    int32[2] m_nStacksSeenByTeam; // offset 0x558, size 0x8, align 4
+    CUtlSymbolLarge m_szVolumeName; // offset 0x560, size 0x8, align 8
+    CUtlVector< CHandle< CBaseEntity > > m_hVolumes; // offset 0x568, size 0x18, align 8
+    CEntityIOOutput m_OnSpawnerExhausted; // offset 0x580, size 0x18, align 255
+    int32 m_Type; // offset 0x598, size 0x4, align 4
+    int32 m_PullType; // offset 0x59C, size 0x4, align 4
+    int32 m_AggroType; // offset 0x5A0, size 0x4, align 4
+    char _pad_05A4[0x4]; // offset 0x5A4
 };

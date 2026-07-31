@@ -659,7 +659,6 @@ dota_bingo_points_animation_duration_min_change | developmentonly,clientdll,defe
 dota_bingo_show_debug_button | developmentonly,clientdll | 
 dota_bingo_use_fake_stats | developmentonly,clientdll | 
 dota_black_screen_debug_messages | developmentonly,gamedll,clientdll,replicated | 
-dota_blog_image_accept_match | developmentonly,clientdll,hidden,defensive | 
 dota_bloodstone_aoe_size | gamedll,clientdll,replicated,cheat | Size of the bloodstone AOE increase.
 dota_bot_allow_human_control | gamedll,cheat | 
 dota_bot_assert_on_invalid_ability_usage | developmentonly,gamedll | 
@@ -958,6 +957,10 @@ dota_compendium_2025_predictions_main_event_results_shown | clientdll |
 dota_compendium_2025_predictions_rtti_results_shown | clientdll | 
 dota_compendium_2025_predictions_show_debug_node_names | developmentonly,clientdll | 
 dota_compendium_2025_predictions_test_state | developmentonly,clientdll | 0: Normal, 1:RTTI Available Main Unavailable, 2: RTTI Locked Main Unavailable, 3: RTTI Locked Main Available, 4: RTTI Locked Main Locked
+dota_compendium_2026_predictions_main_event_results_shown | clientdll | 
+dota_compendium_2026_predictions_rtti_results_shown | clientdll | 
+dota_compendium_2026_predictions_show_debug_node_names | developmentonly,clientdll | 
+dota_compendium_2026_predictions_test_state | developmentonly,clientdll | 0: Normal, 1:RTTI Available Main Unavailable, 2: RTTI Locked Main Unavailable, 3: RTTI Locked Main Available, 4: RTTI Locked Main Locked
 dota_compendium_levelup_interval_accel | developmentonly,clientdll | 
 dota_compendium_levelup_interval_min | developmentonly,clientdll | 
 dota_compendium_levelup_pitch_adjust_high | developmentonly,clientdll | 
@@ -1252,6 +1255,8 @@ dota_fantasy_2024_force_results_period | developmentonly,clientdll |
 dota_fantasy_2024_tutorial_state | clientdll | 
 dota_fantasy_2025_force_results_period | developmentonly,clientdll | 
 dota_fantasy_2025_tutorial_state | clientdll | 
+dota_fantasy_2026_force_results_period | developmentonly,clientdll | 
+dota_fantasy_2026_tutorial_state | clientdll | 
 dota_fantasy_craft_tutorial_state | clientdll | 
 dota_fantasy_force_results_period | developmentonly,clientdll | 
 dota_fantasy_league_region | clientdll,per_user | Set a valid league region.
@@ -1413,6 +1418,7 @@ dota_gamemode_ability_draft_pre_round_time | developmentonly,gamedll,clientdll,r
 dota_gamemode_ability_draft_pre_time | gamedll,cheat | 
 dota_gamemode_ardm_hero_count | gamedll,cheat | 
 dota_gamemode_ardm_sellback_percent | gamedll,clientdll,replicated,cheat | 
+dota_gametime_notch_slider_overlay_items_merge_threshold | developmentonly,clientdll,defensive | 
 dota_gg_call_time | developmentonly,gamedll,replicated,defensive | 
 dota_gift_permissions_cache_duration | developmentonly,clientdll,defensive | 
 dota_gift_permissions_request_timeout | developmentonly,clientdll,defensive | 
@@ -1464,7 +1470,6 @@ dota_health_bar_death_effect_duration | developmentonly,clientdll |
 dota_health_bar_death_effects | developmentonly,clientdll | 
 dota_health_bar_dispell_effect | clientdll,cheat | 
 dota_health_bar_healing_effect | clientdll,per_user | 
-dota_health_bar_hovered_always_top | developmentonly,clientdll,defensive | 
 dota_health_bar_hurt_effect | clientdll,per_user | 
 dota_health_bar_ice_blast_shatter_threshold | developmentonly,clientdll,defensive | 
 dota_health_bar_madness | developmentonly,clientdll,defensive | 
@@ -1668,8 +1673,11 @@ dota_international2024_rewards_level_animation_duration_max_seconds | developmen
 dota_international2024_rewards_level_animation_duration_min_change | developmentonly,clientdll,defensive | 
 dota_international2024_rewards_level_animation_duration_min_seconds | developmentonly,clientdll,defensive | 
 dota_international2025_force_ineligible | developmentonly,clientdll | 
+dota_international2026_force_ineligible | developmentonly,clientdll | 
 dota_international_2025_fandom_level_override | developmentonly,clientdll | 
 dota_international_2025_favorite_team_override | developmentonly,clientdll | 
+dota_international_2026_fandom_level_override | developmentonly,clientdll | 
+dota_international_2026_favorite_team_override | developmentonly,clientdll | 
 dota_intro_movie_volume | developmentonly,clientdll,defensive | 
 dota_inventory_combine_ground_items_radius | gamedll,cheat | 
 dota_inventory_neutral_item_teleport_throw | gamedll,cheat | 
@@ -2215,6 +2223,7 @@ dota_quit_on_hibernate_after_lobby | developmentonly,gamedll,defensive | Always 
 dota_random_strength | developmentonly,gamedll,defensive | 
 dota_range_display | developmentonly,clientdll,defensive | Displays a ring around the hero at the specified radius
 dota_ranked_role_queue | clientdll | 
+dota_ranked_role_queue_automatically_select_all | clientdll | Automatically select all roles when out of role queue games.
 dota_rare_line_click_count | developmentonly,clientdll,defensive | 
 dota_razor_arcana_disable_display | clientdll | 
 dota_razor_arcana_force_display | developmentonly,clientdll,cheat | 
@@ -2321,6 +2330,7 @@ dota_settings_reborn_dismissed_new_settings | clientdll | New Settings which hav
 dota_settings_reborn_last_ability_direct_cast_type | developmentonly,clientdll,per_user,defensive | 
 dota_settings_reborn_last_item_direct_cast_type | developmentonly,clientdll,per_user,defensive | 
 dota_settings_reborn_last_selected_hero | developmentonly,clientdll,per_user,defensive | 
+dota_settings_reborn_last_selected_neutral_unit | developmentonly,clientdll,per_user,defensive | 
 dota_settings_reborn_last_selected_unit_type | developmentonly,clientdll,per_user,defensive | 
 dota_settings_reborn_new_setting_newness_duration | developmentonly,clientdll,defensive | Maximum age a new setting will be shown without dismissing
 dota_settings_reborn_scroll_position | developmentonly,clientdll,defensive | 
@@ -2351,8 +2361,8 @@ dota_short_path_sidetracking_limit | developmentonly,gamedll,cheat |
 dota_shovel_baby_roshan_rise | developmentonly,gamedll | 
 dota_shovel_baby_roshan_rise_height | developmentonly,gamedll | 
 dota_shovel_baby_roshan_rot | developmentonly,gamedll | 
+dota_show_ability_damage_contributions | developmentonly,clientdll | 
 dota_show_ability_video_in_tooltips | clientdll | Show ability videos in tooltips while not in game.
-dota_show_accept_match_details | clientdll,per_user | 
 dota_show_all_items | developmentonly,clientdll | Allows hidden items being display around the client (mainly Armory). Main only.
 dota_show_cast_range | clientdll | 
 dota_show_chronocube_debug | developmentonly,gamedll | 
@@ -2382,6 +2392,7 @@ dota_showcase_admin_cache_duration_s | developmentonly,clientdll,defensive |
 dota_showcase_attachment_v2 | developmentonly,clientdll | 
 dota_silent_roshan | developmentonly,clientdll,defensive | Be quiet Rosh, the pros are trying to kill you
 dota_skip_behavior_comms_check | developmentonly,clientdll | Skip behavior score check for comms
+dota_skip_redundant_game_keyvalues_loads | developmentonly,gamedll,clientdll,replicated | 
 dota_skip_region_pings | developmentonly,clientdll | 
 dota_slark_jailbreak_debug_collision | developmentonly,clientdll | 
 dota_slark_jailbreak_debug_snapshots | developmentonly,clientdll | 
@@ -4222,6 +4233,11 @@ ti14_live_video_fake_timestamp | developmentonly,clientdll | Fake the timestamp 
 ti14_live_video_fake_twitch_channel | developmentonly,clientdll | Fake the twitch stream for live video
 ti14_live_video_spoilers_blocked | clientdll,per_user | Avoid spoilers for frontpage matches
 ti14_live_video_update_interval_s | developmentonly,clientdll | 
+ti15_live_video_fake_steam_account | developmentonly,clientdll | Fake the steam account for live video
+ti15_live_video_fake_timestamp | developmentonly,clientdll | Fake the timestamp used for calculating the live video timestamp
+ti15_live_video_fake_twitch_channel | developmentonly,clientdll | Fake the twitch stream for live video
+ti15_live_video_spoilers_blocked | clientdll,per_user | Avoid spoilers for frontpage matches
+ti15_live_video_update_interval_s | developmentonly,clientdll | 
 tier_treasure_mockup_item_offset_y | developmentonly,clientdll,defensive | 
 tier_treasure_mockup_tier_offset_x | developmentonly,clientdll,defensive | 
 tier_treasure_mockup_tier_offset_z | developmentonly,clientdll,defensive | 

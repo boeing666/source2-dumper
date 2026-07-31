@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_BaseNPC : public NextBotCombatCharacter /*0x0*/  // sizeof 0x1B80, align 0x8 [vtable] (server)
+class CDOTA_BaseNPC : public NextBotCombatCharacter /*0x0*/  // sizeof 0x1B88, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0xBF0]; // offset 0x0
@@ -168,157 +168,157 @@ public:
     CHandle< CBaseEntity > m_hOriginalCursorTarget; // offset 0x1214, size 0x4, align 4
     bool m_bCursorTargetingNothing; // offset 0x1218, size 0x1, align 1
     char _pad_1219[0x7]; // offset 0x1219
-    CDOTA_ModifierManager m_ModifierManager; // offset 0x1220, size 0x388, align 255
-    char _pad_15A8[0x8]; // offset 0x15A8
-    float32 m_flInvisibilityLevel; // offset 0x15B0, size 0x4, align 4
-    char _pad_15B4[0x4]; // offset 0x15B4
-    CUtlSymbolLarge m_iszMapUnitName; // offset 0x15B8, size 0x8, align 8
-    CUtlSymbolLarge m_iszUnitName; // offset 0x15C0, size 0x8, align 8
-    int32 m_iUnitNameIndex; // offset 0x15C8, size 0x4, align 4
-    int32 m_iDamageMin; // offset 0x15CC, size 0x4, align 4
-    int32 m_iDamageMax; // offset 0x15D0, size 0x4, align 4
-    int32 m_iDamageBonus; // offset 0x15D4, size 0x4, align 4
-    bool m_bIsWaitingToSpawn; // offset 0x15D8, size 0x1, align 1
-    char _pad_15D9[0x3]; // offset 0x15D9
-    int32 m_iLeashType; // offset 0x15DC, size 0x4, align 4
-    int32 m_iAggroType; // offset 0x15E0, size 0x4, align 4
-    bool m_bCreepIgnoreAggro; // offset 0x15E4, size 0x1, align 1
-    bool m_bCreepFirstWave; // offset 0x15E5, size 0x1, align 1
-    bool m_bIsIllusion; // offset 0x15E6, size 0x1, align 1
-    uint8 m_nUnitLabelIndex; // offset 0x15E7, size 0x1, align 1
-    CUtlString m_szScaleset; // offset 0x15E8, size 0x8, align 8
-    CUtlString m_szUnitLabel; // offset 0x15F0, size 0x8, align 8
-    CUtlString m_strAnimationModifier; // offset 0x15F8, size 0x8, align 8
-    char _pad_1600[0x8]; // offset 0x1600
-    CHandle< CBaseEntity > m_hOwnerNPC; // offset 0x1608, size 0x4, align 4
-    char _pad_160C[0x4]; // offset 0x160C
-    CLocomotionBase* m_locomotor; // offset 0x1610, size 0x8, align 8
-    INextBotBody* m_body; // offset 0x1618, size 0x8, align 8
-    bool m_bNeverMoveToClearSpace; // offset 0x1620, size 0x1, align 1
-    char _pad_1621[0x3]; // offset 0x1621
-    CHandle< CBaseEntity > m_hGoalEntity; // offset 0x1624, size 0x4, align 4
-    bool m_bMustReachEachGoalEntity; // offset 0x1628, size 0x1, align 1
+    CDOTA_ModifierManager m_ModifierManager; // offset 0x1220, size 0x390, align 255
+    char _pad_15B0[0x8]; // offset 0x15B0
+    float32 m_flInvisibilityLevel; // offset 0x15B8, size 0x4, align 4
+    char _pad_15BC[0x4]; // offset 0x15BC
+    CUtlSymbolLarge m_iszMapUnitName; // offset 0x15C0, size 0x8, align 8
+    CUtlSymbolLarge m_iszUnitName; // offset 0x15C8, size 0x8, align 8
+    int32 m_iUnitNameIndex; // offset 0x15D0, size 0x4, align 4
+    int32 m_iDamageMin; // offset 0x15D4, size 0x4, align 4
+    int32 m_iDamageMax; // offset 0x15D8, size 0x4, align 4
+    int32 m_iDamageBonus; // offset 0x15DC, size 0x4, align 4
+    bool m_bIsWaitingToSpawn; // offset 0x15E0, size 0x1, align 1
+    char _pad_15E1[0x3]; // offset 0x15E1
+    int32 m_iLeashType; // offset 0x15E4, size 0x4, align 4
+    int32 m_iAggroType; // offset 0x15E8, size 0x4, align 4
+    bool m_bCreepIgnoreAggro; // offset 0x15EC, size 0x1, align 1
+    bool m_bCreepFirstWave; // offset 0x15ED, size 0x1, align 1
+    bool m_bIsIllusion; // offset 0x15EE, size 0x1, align 1
+    uint8 m_nUnitLabelIndex; // offset 0x15EF, size 0x1, align 1
+    CUtlString m_szScaleset; // offset 0x15F0, size 0x8, align 8
+    CUtlString m_szUnitLabel; // offset 0x15F8, size 0x8, align 8
+    CUtlString m_strAnimationModifier; // offset 0x1600, size 0x8, align 8
+    char _pad_1608[0x8]; // offset 0x1608
+    CHandle< CBaseEntity > m_hOwnerNPC; // offset 0x1610, size 0x4, align 4
+    char _pad_1614[0x4]; // offset 0x1614
+    CLocomotionBase* m_locomotor; // offset 0x1618, size 0x8, align 8
+    INextBotBody* m_body; // offset 0x1620, size 0x8, align 8
+    bool m_bNeverMoveToClearSpace; // offset 0x1628, size 0x1, align 1
     char _pad_1629[0x3]; // offset 0x1629
-    VectorWS m_vInitialGoalPosition; // offset 0x162C, size 0xC, align 4
-    char _pad_1638[0x18]; // offset 0x1638
-    CUnitOrders m_CurrentQueuedOrder; // offset 0x1650, size 0x40, align 255
-    char _pad_1690[0x18]; // offset 0x1690
-    CDOTA_UnitInventory m_Inventory; // offset 0x16A8, size 0xF8, align 255
-    CHandle< CBaseEntity > m_hItemToDrop; // offset 0x17A0, size 0x4, align 4
-    DOTA_SHOP_TYPE m_iCurShop; // offset 0x17A4, size 0x4, align 4
-    CHandle< CBaseEntity > m_hLastNearShop; // offset 0x17A8, size 0x4, align 4
-    char _pad_17AC[0x4]; // offset 0x17AC
-    CUtlSymbolLarge m_szCurShopEntName; // offset 0x17B0, size 0x8, align 8
-    bool m_bHasInventory; // offset 0x17B8, size 0x1, align 1
-    char _pad_17B9[0x3]; // offset 0x17B9
-    float32 m_flBaselineModelScale; // offset 0x17BC, size 0x4, align 4
-    float32 m_fModelScaleMultiplier; // offset 0x17C0, size 0x4, align 4
-    float32 m_fModelScaleMultiplierChangeStart; // offset 0x17C4, size 0x4, align 4
-    GameTime_t m_fModelScaleMultiplierChangeTime; // offset 0x17C8, size 0x4, align 255
-    float32 m_flPreviousModelScale; // offset 0x17CC, size 0x4, align 4
-    float32 m_fMaxModelScaleMultiplier; // offset 0x17D0, size 0x4, align 4
-    bool m_bIsCamped; // offset 0x17D4, size 0x1, align 1
-    bool m_bIsReturningHome; // offset 0x17D5, size 0x1, align 1
-    bool m_bIgnoreHome; // offset 0x17D6, size 0x1, align 1
-    bool m_bWantsToFlee; // offset 0x17D7, size 0x1, align 1
-    bool m_bWakesNeutrals; // offset 0x17D8, size 0x1, align 1
-    bool m_bNeutralIgnore; // offset 0x17D9, size 0x1, align 1
-    bool m_bIdleAcquire; // offset 0x17DA, size 0x1, align 1
-    bool m_bIdleAcquireForceSet; // offset 0x17DB, size 0x1, align 1
-    bool m_bCanFollowUnseenUnits; // offset 0x17DC, size 0x1, align 1
-    bool m_bExpired; // offset 0x17DD, size 0x1, align 1
-    char _pad_17DE[0x2]; // offset 0x17DE
-    VectorWS m_vCurrentMovementOrderDestination; // offset 0x17E0, size 0xC, align 4
-    VectorWS m_vPreviousMovementOrderDestination; // offset 0x17EC, size 0xC, align 4
-    VectorWS m_vResumePreviousMovementRequestLocation; // offset 0x17F8, size 0xC, align 4
-    bool m_bCurrentOrderIsMovement; // offset 0x1804, size 0x1, align 1
-    bool m_bPreviousOrderIsMovement; // offset 0x1805, size 0x1, align 1
-    bool m_bResumePreviousMovement; // offset 0x1806, size 0x1, align 1
-    bool m_bIsPatrolling; // offset 0x1807, size 0x1, align 1
-    GameTime_t m_flCreationTime; // offset 0x1808, size 0x4, align 255
-    bool m_bTargetMovedOutOfRange; // offset 0x180C, size 0x1, align 1
-    bool m_bChaseTargetMoves; // offset 0x180D, size 0x1, align 1
-    char _pad_180E[0x2]; // offset 0x180E
-    float32 m_flChaseDistance; // offset 0x1810, size 0x4, align 4
-    CHandle< CBaseEntity > m_hChaseEntity; // offset 0x1814, size 0x4, align 4
-    CUtlVector< CUtlSymbol > m_ActivityModifiers; // offset 0x1818, size 0x18, align 8
-    bool m_bActivityModifiersDirty; // offset 0x1830, size 0x1, align 1
-    char _pad_1831[0x7]; // offset 0x1831
-    CUtlVector< CUtlSymbol > m_ActivityModifiersFromScript; // offset 0x1838, size 0x18, align 8
-    GameTime_t m_flBlinkDaggerTime; // offset 0x1850, size 0x4, align 255
-    float32 m_flAdditionalBattleMusicWeight; // offset 0x1854, size 0x4, align 4
-    bool m_bStolenScepter; // offset 0x1858, size 0x1, align 1
-    bool m_bHasScepterCached; // offset 0x1859, size 0x1, align 1
-    bool m_bHasShardCached; // offset 0x185A, size 0x1, align 1
-    bool m_bHasForbiddenTomeCached; // offset 0x185B, size 0x1, align 1
-    char _pad_185C[0x4]; // offset 0x185C
-    CLocalNPCObstructionsCache m_LocalNPCObstructionsCache; // offset 0x1860, size 0x20, align 255
-    char _pad_1880[0x20]; // offset 0x1880
-    GameTime_t m_flCritBashFailUntil; // offset 0x18A0, size 0x4, align 255
-    float32 m_flAttackTimeLostToLastTick; // offset 0x18A4, size 0x4, align 4
-    float32 m_flAttackTimeAtLastTick; // offset 0x18A8, size 0x4, align 4
-    float32 m_flCompanionDistance; // offset 0x18AC, size 0x4, align 4
-    bool m_bIsPartyCompanion; // offset 0x18B0, size 0x1, align 1
-    bool m_bCanPartyCompanionAttack; // offset 0x18B1, size 0x1, align 1
-    char _pad_18B2[0x2]; // offset 0x18B2
-    CHandle< CBaseEntity > m_CompanionEntity; // offset 0x18B4, size 0x4, align 4
-    bool m_bFacePlayer; // offset 0x18B8, size 0x1, align 1
-    char _pad_18B9[0x3]; // offset 0x18B9
-    GameTime_t m_flLastIdleChangeTime; // offset 0x18BC, size 0x4, align 255
-    bool m_bUseNeutralCreepBehavior; // offset 0x18C0, size 0x1, align 1
-    char _pad_18C1[0x27]; // offset 0x18C1
-    bool m_bHasBuiltWearableSpawnList; // offset 0x18E8, size 0x1, align 1
-    char _pad_18E9[0x3]; // offset 0x18E9
-    GameTick_t[15] m_nFoWFadeStartTime; // offset 0x18EC, size 0x3C, align 4
-    int32 m_nFOWVisibilityRadius; // offset 0x1928, size 0x4, align 4
-    VectorWS m_vFOWOriginOverride; // offset 0x192C, size 0xC, align 4
-    int32 m_iTeamViewerID; // offset 0x1938, size 0x4, align 4
-    int32 m_nAttackHeightBonus; // offset 0x193C, size 0x4, align 4
-    uint32 m_nScepterUpgradeID; // offset 0x1940, size 0x4, align 4
-    uint32 m_nShardUpgradeID; // offset 0x1944, size 0x4, align 4
-    CUtlString m_strLastKillerAbility; // offset 0x1948, size 0x8, align 8
-    int32 m_anglediff; // offset 0x1950, size 0x4, align 4
-    int32 m_NetworkActivity; // offset 0x1954, size 0x4, align 4
-    int32 m_NetworkSequenceIndex; // offset 0x1958, size 0x4, align 4
-    bool m_bShouldDoFlyHeightVisual; // offset 0x195C, size 0x1, align 1
-    char _pad_195D[0x3]; // offset 0x195D
-    float32 m_flStartSequenceCycle; // offset 0x1960, size 0x4, align 4
-    bool m_bMidLoading; // offset 0x1964, size 0x1, align 1
+    CHandle< CBaseEntity > m_hGoalEntity; // offset 0x162C, size 0x4, align 4
+    bool m_bMustReachEachGoalEntity; // offset 0x1630, size 0x1, align 1
+    char _pad_1631[0x3]; // offset 0x1631
+    VectorWS m_vInitialGoalPosition; // offset 0x1634, size 0xC, align 4
+    char _pad_1640[0x18]; // offset 0x1640
+    CUnitOrders m_CurrentQueuedOrder; // offset 0x1658, size 0x40, align 255
+    char _pad_1698[0x18]; // offset 0x1698
+    CDOTA_UnitInventory m_Inventory; // offset 0x16B0, size 0xF8, align 255
+    CHandle< CBaseEntity > m_hItemToDrop; // offset 0x17A8, size 0x4, align 4
+    DOTA_SHOP_TYPE m_iCurShop; // offset 0x17AC, size 0x4, align 4
+    CHandle< CBaseEntity > m_hLastNearShop; // offset 0x17B0, size 0x4, align 4
+    char _pad_17B4[0x4]; // offset 0x17B4
+    CUtlSymbolLarge m_szCurShopEntName; // offset 0x17B8, size 0x8, align 8
+    bool m_bHasInventory; // offset 0x17C0, size 0x1, align 1
+    char _pad_17C1[0x3]; // offset 0x17C1
+    float32 m_flBaselineModelScale; // offset 0x17C4, size 0x4, align 4
+    float32 m_fModelScaleMultiplier; // offset 0x17C8, size 0x4, align 4
+    float32 m_fModelScaleMultiplierChangeStart; // offset 0x17CC, size 0x4, align 4
+    GameTime_t m_fModelScaleMultiplierChangeTime; // offset 0x17D0, size 0x4, align 255
+    float32 m_flPreviousModelScale; // offset 0x17D4, size 0x4, align 4
+    float32 m_fMaxModelScaleMultiplier; // offset 0x17D8, size 0x4, align 4
+    bool m_bIsCamped; // offset 0x17DC, size 0x1, align 1
+    bool m_bIsReturningHome; // offset 0x17DD, size 0x1, align 1
+    bool m_bIgnoreHome; // offset 0x17DE, size 0x1, align 1
+    bool m_bWantsToFlee; // offset 0x17DF, size 0x1, align 1
+    bool m_bWakesNeutrals; // offset 0x17E0, size 0x1, align 1
+    bool m_bNeutralIgnore; // offset 0x17E1, size 0x1, align 1
+    bool m_bIdleAcquire; // offset 0x17E2, size 0x1, align 1
+    bool m_bIdleAcquireForceSet; // offset 0x17E3, size 0x1, align 1
+    bool m_bCanFollowUnseenUnits; // offset 0x17E4, size 0x1, align 1
+    bool m_bExpired; // offset 0x17E5, size 0x1, align 1
+    char _pad_17E6[0x2]; // offset 0x17E6
+    VectorWS m_vCurrentMovementOrderDestination; // offset 0x17E8, size 0xC, align 4
+    VectorWS m_vPreviousMovementOrderDestination; // offset 0x17F4, size 0xC, align 4
+    VectorWS m_vResumePreviousMovementRequestLocation; // offset 0x1800, size 0xC, align 4
+    bool m_bCurrentOrderIsMovement; // offset 0x180C, size 0x1, align 1
+    bool m_bPreviousOrderIsMovement; // offset 0x180D, size 0x1, align 1
+    bool m_bResumePreviousMovement; // offset 0x180E, size 0x1, align 1
+    bool m_bIsPatrolling; // offset 0x180F, size 0x1, align 1
+    GameTime_t m_flCreationTime; // offset 0x1810, size 0x4, align 255
+    bool m_bTargetMovedOutOfRange; // offset 0x1814, size 0x1, align 1
+    bool m_bChaseTargetMoves; // offset 0x1815, size 0x1, align 1
+    char _pad_1816[0x2]; // offset 0x1816
+    float32 m_flChaseDistance; // offset 0x1818, size 0x4, align 4
+    CHandle< CBaseEntity > m_hChaseEntity; // offset 0x181C, size 0x4, align 4
+    CUtlVector< CUtlSymbol > m_ActivityModifiers; // offset 0x1820, size 0x18, align 8
+    bool m_bActivityModifiersDirty; // offset 0x1838, size 0x1, align 1
+    char _pad_1839[0x7]; // offset 0x1839
+    CUtlVector< CUtlSymbol > m_ActivityModifiersFromScript; // offset 0x1840, size 0x18, align 8
+    GameTime_t m_flBlinkDaggerTime; // offset 0x1858, size 0x4, align 255
+    float32 m_flAdditionalBattleMusicWeight; // offset 0x185C, size 0x4, align 4
+    bool m_bStolenScepter; // offset 0x1860, size 0x1, align 1
+    bool m_bHasScepterCached; // offset 0x1861, size 0x1, align 1
+    bool m_bHasShardCached; // offset 0x1862, size 0x1, align 1
+    bool m_bHasForbiddenTomeCached; // offset 0x1863, size 0x1, align 1
+    char _pad_1864[0x4]; // offset 0x1864
+    CLocalNPCObstructionsCache m_LocalNPCObstructionsCache; // offset 0x1868, size 0x20, align 255
+    char _pad_1888[0x20]; // offset 0x1888
+    GameTime_t m_flCritBashFailUntil; // offset 0x18A8, size 0x4, align 255
+    float32 m_flAttackTimeLostToLastTick; // offset 0x18AC, size 0x4, align 4
+    float32 m_flAttackTimeAtLastTick; // offset 0x18B0, size 0x4, align 4
+    float32 m_flCompanionDistance; // offset 0x18B4, size 0x4, align 4
+    bool m_bIsPartyCompanion; // offset 0x18B8, size 0x1, align 1
+    bool m_bCanPartyCompanionAttack; // offset 0x18B9, size 0x1, align 1
+    char _pad_18BA[0x2]; // offset 0x18BA
+    CHandle< CBaseEntity > m_CompanionEntity; // offset 0x18BC, size 0x4, align 4
+    bool m_bFacePlayer; // offset 0x18C0, size 0x1, align 1
+    char _pad_18C1[0x3]; // offset 0x18C1
+    GameTime_t m_flLastIdleChangeTime; // offset 0x18C4, size 0x4, align 255
+    bool m_bUseNeutralCreepBehavior; // offset 0x18C8, size 0x1, align 1
+    char _pad_18C9[0x27]; // offset 0x18C9
+    bool m_bHasBuiltWearableSpawnList; // offset 0x18F0, size 0x1, align 1
+    char _pad_18F1[0x3]; // offset 0x18F1
+    GameTick_t[15] m_nFoWFadeStartTime; // offset 0x18F4, size 0x3C, align 4
+    int32 m_nFOWVisibilityRadius; // offset 0x1930, size 0x4, align 4
+    VectorWS m_vFOWOriginOverride; // offset 0x1934, size 0xC, align 4
+    int32 m_iTeamViewerID; // offset 0x1940, size 0x4, align 4
+    int32 m_nAttackHeightBonus; // offset 0x1944, size 0x4, align 4
+    uint32 m_nScepterUpgradeID; // offset 0x1948, size 0x4, align 4
+    uint32 m_nShardUpgradeID; // offset 0x194C, size 0x4, align 4
+    CUtlString m_strLastKillerAbility; // offset 0x1950, size 0x8, align 8
+    int32 m_anglediff; // offset 0x1958, size 0x4, align 4
+    int32 m_NetworkActivity; // offset 0x195C, size 0x4, align 4
+    int32 m_NetworkSequenceIndex; // offset 0x1960, size 0x4, align 4
+    bool m_bShouldDoFlyHeightVisual; // offset 0x1964, size 0x1, align 1
     char _pad_1965[0x3]; // offset 0x1965
-    CHandle< CDOTA_ScriptedSpawner > m_hTutorialSpawner; // offset 0x1968, size 0x4, align 4
-    char _pad_196C[0x4]; // offset 0x196C
-    CountdownTimer m_AngerCooldownTimer; // offset 0x1970, size 0x18, align 8
-    int32 m_iProjectileMoveSpeed; // offset 0x1988, size 0x4, align 4
-    char _pad_198C[0x4]; // offset 0x198C
-    CUtlSymbolLarge m_iszAutoAttackRangedParticle; // offset 0x1990, size 0x8, align 8
-    int32 m_nPoseParameterTurn; // offset 0x1998, size 0x4, align 4
-    int32 m_nPoseParameterRun; // offset 0x199C, size 0x4, align 4
-    float32 m_flLean; // offset 0x19A0, size 0x4, align 4
-    float32 m_flRun; // offset 0x19A4, size 0x4, align 4
-    char[256] m_CustomHealthLabel; // offset 0x19A8, size 0x100, align 1
-    Color m_CustomHealthLabelColor; // offset 0x1AA8, size 0x4, align 1
-    OriginalModelFlags_t m_nIsOriginalModel; // offset 0x1AAC, size 0x1, align 1
-    char _pad_1AAD[0x3]; // offset 0x1AAD
-    item_definition_index_t m_nWearableDefIndex; // offset 0x1AB0, size 0x4, align 255
-    int8 m_nArcanaLevel; // offset 0x1AB4, size 0x1, align 1
-    int8 m_nDefaultArcanaLevel; // offset 0x1AB5, size 0x1, align 1
-    Color m_defaultColorGemColor; // offset 0x1AB6, size 0x4, align 1
-    bool m_bDisableDamageDisplay; // offset 0x1ABA, size 0x1, align 1
-    char _pad_1ABB[0x1]; // offset 0x1ABB
-    Color m_gibTintColor; // offset 0x1ABC, size 0x4, align 1
-    float32 m_flPathfindingSearchDepthScale; // offset 0x1AC0, size 0x4, align 4
-    char _pad_1AC4[0x4]; // offset 0x1AC4
-    CUtlVector< int32 > m_ActivitiesStarted; // offset 0x1AC8, size 0x18, align 8
-    CHandle< CBaseEntity > m_hIllusionOriginal; // offset 0x1AE0, size 0x4, align 4
-    CHandle< CDOTA_BaseNPC > m_hDirectionalRangedFakeTarget; // offset 0x1AE4, size 0x4, align 4
-    char _pad_1AE8[0x28]; // offset 0x1AE8
-    bool m_bShouldComputeRemainingPathLength; // offset 0x1B10, size 0x1, align 1
-    char _pad_1B11[0x3]; // offset 0x1B11
-    float32 m_flRemainingPathLength; // offset 0x1B14, size 0x4, align 4
-    char _pad_1B18[0x28]; // offset 0x1B18
-    CUtlVector< CHandle< CBaseEntity > > m_AbilitiesPendingDelete; // offset 0x1B40, size 0x18, align 8
-    float32 m_flPrevHealthThinkRegen; // offset 0x1B58, size 0x4, align 4
-    GameTime_t m_prevRegenChangeTime; // offset 0x1B5C, size 0x4, align 255
-    float32 m_flAccumulatedHealthRegenSinceLastLogged; // offset 0x1B60, size 0x4, align 4
-    char _pad_1B64[0x1C]; // offset 0x1B64
+    float32 m_flStartSequenceCycle; // offset 0x1968, size 0x4, align 4
+    bool m_bMidLoading; // offset 0x196C, size 0x1, align 1
+    char _pad_196D[0x3]; // offset 0x196D
+    CHandle< CDOTA_ScriptedSpawner > m_hTutorialSpawner; // offset 0x1970, size 0x4, align 4
+    char _pad_1974[0x4]; // offset 0x1974
+    CountdownTimer m_AngerCooldownTimer; // offset 0x1978, size 0x18, align 8
+    int32 m_iProjectileMoveSpeed; // offset 0x1990, size 0x4, align 4
+    char _pad_1994[0x4]; // offset 0x1994
+    CUtlSymbolLarge m_iszAutoAttackRangedParticle; // offset 0x1998, size 0x8, align 8
+    int32 m_nPoseParameterTurn; // offset 0x19A0, size 0x4, align 4
+    int32 m_nPoseParameterRun; // offset 0x19A4, size 0x4, align 4
+    float32 m_flLean; // offset 0x19A8, size 0x4, align 4
+    float32 m_flRun; // offset 0x19AC, size 0x4, align 4
+    char[256] m_CustomHealthLabel; // offset 0x19B0, size 0x100, align 1
+    Color m_CustomHealthLabelColor; // offset 0x1AB0, size 0x4, align 1
+    OriginalModelFlags_t m_nIsOriginalModel; // offset 0x1AB4, size 0x1, align 1
+    char _pad_1AB5[0x3]; // offset 0x1AB5
+    item_definition_index_t m_nWearableDefIndex; // offset 0x1AB8, size 0x4, align 255
+    int8 m_nArcanaLevel; // offset 0x1ABC, size 0x1, align 1
+    int8 m_nDefaultArcanaLevel; // offset 0x1ABD, size 0x1, align 1
+    Color m_defaultColorGemColor; // offset 0x1ABE, size 0x4, align 1
+    bool m_bDisableDamageDisplay; // offset 0x1AC2, size 0x1, align 1
+    char _pad_1AC3[0x1]; // offset 0x1AC3
+    Color m_gibTintColor; // offset 0x1AC4, size 0x4, align 1
+    float32 m_flPathfindingSearchDepthScale; // offset 0x1AC8, size 0x4, align 4
+    char _pad_1ACC[0x4]; // offset 0x1ACC
+    CUtlVector< int32 > m_ActivitiesStarted; // offset 0x1AD0, size 0x18, align 8
+    CHandle< CBaseEntity > m_hIllusionOriginal; // offset 0x1AE8, size 0x4, align 4
+    CHandle< CDOTA_BaseNPC > m_hDirectionalRangedFakeTarget; // offset 0x1AEC, size 0x4, align 4
+    char _pad_1AF0[0x28]; // offset 0x1AF0
+    bool m_bShouldComputeRemainingPathLength; // offset 0x1B18, size 0x1, align 1
+    char _pad_1B19[0x3]; // offset 0x1B19
+    float32 m_flRemainingPathLength; // offset 0x1B1C, size 0x4, align 4
+    char _pad_1B20[0x28]; // offset 0x1B20
+    CUtlVector< CHandle< CBaseEntity > > m_AbilitiesPendingDelete; // offset 0x1B48, size 0x18, align 8
+    float32 m_flPrevHealthThinkRegen; // offset 0x1B60, size 0x4, align 4
+    GameTime_t m_prevRegenChangeTime; // offset 0x1B64, size 0x4, align 255
+    float32 m_flAccumulatedHealthRegenSinceLastLogged; // offset 0x1B68, size 0x4, align 4
+    char _pad_1B6C[0x1C]; // offset 0x1B6C
 };

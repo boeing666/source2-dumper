@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTA_DataNonSpectator : public C_BaseEntity /*0x0*/  // sizeof 0x1F58, align 0x8 [vtable] (client)
+class C_DOTA_DataNonSpectator : public C_BaseEntity /*0x0*/  // sizeof 0x1FC0, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x770]; // offset 0x0
@@ -25,10 +25,11 @@ public:
     C_NetworkUtlVectorBase< AbilityID_t > m_vecNeutralItemsConsumed; // offset 0x1988, size 0x18, align 8
     C_UtlVectorEmbeddedNetworkVar< PingConfirmationState_t > m_PingConfirmationStates; // offset 0x19A0, size 0x68, align 8
     C_NetworkUtlVectorBase< CHandle< C_BaseEntity > > m_vecKnownClearCamps; // offset 0x1A08, size 0x18, align 8
-    Vector2D[100] m_vPossibleWardPlacement; // offset 0x1A20, size 0x320, align 4
-    float32[100] m_vPossibleWardRadii; // offset 0x1D40, size 0x190, align 4
-    C_UtlVectorEmbeddedNetworkVar< DOTATeleportInfo_t > m_vecTrackedTeleports; // offset 0x1ED0, size 0x68, align 8
-    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1F38, size 0x18, align 255
-    int32 m_nNextPowerRuneType; // offset 0x1F50, size 0x4, align 4
-    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1F54, size 0x4, align 4
+    C_UtlVectorEmbeddedNetworkVar< DOTANeutralCampInfo_t > m_vecKnownCampStacks; // offset 0x1A20, size 0x68, align 8
+    Vector2D[100] m_vPossibleWardPlacement; // offset 0x1A88, size 0x320, align 4
+    float32[100] m_vPossibleWardRadii; // offset 0x1DA8, size 0x190, align 4
+    C_UtlVectorEmbeddedNetworkVar< DOTATeleportInfo_t > m_vecTrackedTeleports; // offset 0x1F38, size 0x68, align 8
+    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1FA0, size 0x18, align 255
+    int32 m_nNextPowerRuneType; // offset 0x1FB8, size 0x4, align 4
+    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1FBC, size 0x4, align 4
 };

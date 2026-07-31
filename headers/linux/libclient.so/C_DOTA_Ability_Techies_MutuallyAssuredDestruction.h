@@ -8,9 +8,10 @@ public:
     float32 explosion_delay; // offset 0x828, size 0x4, align 4
     float32 max_mana_pct_as_damage; // offset 0x82C, size 0x4, align 4
     float32 base_damage; // offset 0x830, size 0x4, align 4
-    GameTime_t m_ActiveExplodeTime; // offset 0x834, size 0x4, align 255
-    GameTime_t m_PassiveExplodeTime; // offset 0x838, size 0x4, align 255
-    char _pad_083C[0x1C]; // offset 0x83C
+    ParticleIndex_t m_castParticle; // offset 0x834, size 0x4, align 255
+    GameTime_t m_ActiveExplodeTime; // offset 0x838, size 0x4, align 255
+    GameTime_t m_PassiveExplodeTime; // offset 0x83C, size 0x4, align 255
+    char _pad_0840[0x18]; // offset 0x840
     CHandle< C_BaseEntity > m_hPassiveMAD; // offset 0x858, size 0x4, align 4
     char _pad_085C[0x4]; // offset 0x85C
 };

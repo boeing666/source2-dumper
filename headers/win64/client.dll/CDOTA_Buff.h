@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Buff : public C_HorizontalMotionController /*0x0*/, public C_VerticalMotionController /*0x10*/  // sizeof 0x1A58, align 0xFF [vtable abstract] (client)
+class CDOTA_Buff : public C_HorizontalMotionController /*0x0*/, public C_VerticalMotionController /*0x10*/  // sizeof 0x1A78, align 0xFF [vtable abstract] (client)
 {
 public:
     uint8_t m_bIsAura : 1; // offset 0x0
@@ -45,6 +45,6 @@ public:
     char _pad_00AC[0x4]; // offset 0xAC
     CUtlVector< CDOTA_BuffParticle > m_iParticles; // offset 0xB0, size 0x18, align 8
     CUtlVector< CHandle< C_BaseEntity > > m_hAuraUnits; // offset 0xC8, size 0x18, align 8
-    char _pad_00E0[0x1970]; // offset 0xE0
-    HSCRIPT m_hScriptScope; // offset 0x1A50, size 0x8, align 8
+    char _pad_00E0[0x1990]; // offset 0xE0
+    HSCRIPT m_hScriptScope; // offset 0x1A70, size 0x8, align 8
 };

@@ -1,7 +1,7 @@
 #pragma once
 
-class CODTA_Unit_Warlock_Imp : public C_DOTA_BaseNPC_Creep /*0x0*/  // sizeof 0x1B38, align 0x8 [vtable] (client)
+class CODTA_Unit_Warlock_Imp : public C_DOTA_BaseNPC_Creep /*0x0*/  // sizeof 0x1B40, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1B38]; // offset 0x0
+    char _pad_0000[0x1B40]; // offset 0x0
 };

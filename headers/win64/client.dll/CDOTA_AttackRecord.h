@@ -4,10 +4,10 @@ class CDOTA_AttackRecord  // sizeof 0x120, align 0xFF (client)
 {
 public:
     uint8_t m_bAutoCastAttack : 1; // offset 0x0
-    uint8_t m_bTriggeredAttack : 1; // offset 0x0
     uint8_t m_bNoCooldown : 1; // offset 0x0
     uint8_t m_bProcessProcs : 1; // offset 0x0
     uint8_t m_bUseProjectile : 1; // offset 0x0
+    uint8_t m_bSuppressCleave : 1; // offset 0x0
     uint8_t m_bSuppressDamageEffects : 1; // offset 0x0
     uint8_t m_bSuppressDamageSounds : 1; // offset 0x0
     uint8_t m_bForceAttackMissSound : 1; // offset 0x0
@@ -21,6 +21,7 @@ public:
     uint8_t m_bFakeAttack : 1; // offset 0x0
     uint8_t m_bNeverMiss : 1; // offset 0x0
     uint8_t m_bLethalAttack : 1; // offset 0x0
+    uint8_t m_bTriggeredAttack : 1; // offset 0x0
     char _pad_0001[0x7]; // offset 0x1
     CHandle< C_BaseEntity > m_hSource; // offset 0x8, size 0x4, align 4
     CHandle< C_DOTABaseAbility > m_hInflictor; // offset 0xC, size 0x4, align 4

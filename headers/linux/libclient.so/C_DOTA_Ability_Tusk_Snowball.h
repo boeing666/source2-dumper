@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTA_Ability_Tusk_Snowball : public C_DOTABaseAbility /*0x0*/  // sizeof 0x8A8, align 0x8 [vtable] (client)
+class C_DOTA_Ability_Tusk_Snowball : public C_DOTABaseAbility /*0x0*/  // sizeof 0x8C0, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x824]; // offset 0x0
@@ -18,15 +18,16 @@ public:
     float32 snowball_duration; // offset 0x850, size 0x4, align 4
     VectorWS m_vProjectileLocation; // offset 0x854, size 0xC, align 4
     CUtlVector< CHandle< C_BaseEntity > > m_hSnowballedUnits; // offset 0x860, size 0x18, align 8
-    ParticleIndex_t m_nFXIndex; // offset 0x878, size 0x4, align 255
-    char _pad_087C[0x4]; // offset 0x87C
-    CountdownTimer ctSnowball; // offset 0x880, size 0x18, align 8
-    bool m_bSpeakAlly; // offset 0x898, size 0x1, align 1
-    bool m_bIsExpired; // offset 0x899, size 0x1, align 1
-    bool m_bInWindup; // offset 0x89A, size 0x1, align 1
-    char _pad_089B[0x1]; // offset 0x89B
-    CHandle< C_BaseEntity > m_hPrimaryTarget; // offset 0x89C, size 0x4, align 4
-    int32 m_nContainedValidUnits; // offset 0x8A0, size 0x4, align 4
-    bool m_bEndingSnowball; // offset 0x8A4, size 0x1, align 1
-    char _pad_08A5[0x3]; // offset 0x8A5
+    CUtlVector< CHandle< C_BaseEntity > > m_hEnemiesHit; // offset 0x878, size 0x18, align 8
+    ParticleIndex_t m_nFXIndex; // offset 0x890, size 0x4, align 255
+    char _pad_0894[0x4]; // offset 0x894
+    CountdownTimer ctSnowball; // offset 0x898, size 0x18, align 8
+    bool m_bSpeakAlly; // offset 0x8B0, size 0x1, align 1
+    bool m_bIsExpired; // offset 0x8B1, size 0x1, align 1
+    bool m_bInWindup; // offset 0x8B2, size 0x1, align 1
+    char _pad_08B3[0x1]; // offset 0x8B3
+    CHandle< C_BaseEntity > m_hPrimaryTarget; // offset 0x8B4, size 0x4, align 4
+    int32 m_nContainedValidUnits; // offset 0x8B8, size 0x4, align 4
+    bool m_bEndingSnowball; // offset 0x8BC, size 0x1, align 1
+    char _pad_08BD[0x3]; // offset 0x8BD
 };

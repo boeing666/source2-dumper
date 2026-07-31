@@ -1,15 +1,15 @@
 #pragma once
 
-class CDOTA_Modifier_Nyx_Assassin_Vendetta : public CDOTA_Modifier_Invisible /*0x0*/  // sizeof 0x1A88, align 0xFF [vtable] (client)
+class CDOTA_Modifier_Nyx_Assassin_Vendetta : public CDOTA_Modifier_Invisible /*0x0*/  // sizeof 0x1AA8, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x1A68]; // offset 0x0
-    int32 bonus_damage; // offset 0x1A68, size 0x4, align 4
-    int32 movement_speed; // offset 0x1A6C, size 0x4, align 4
-    int32 mana_removal_pct; // offset 0x1A70, size 0x4, align 4
-    int32 free_pathing_duration; // offset 0x1A74, size 0x4, align 4
-    int32 attack_animation_bonus; // offset 0x1A78, size 0x4, align 4
-    int32 attack_range_bonus; // offset 0x1A7C, size 0x4, align 4
-    int32 free_pathing_movement_speed_bonus; // offset 0x1A80, size 0x4, align 4
-    char _pad_1A84[0x4]; // offset 0x1A84
+    char _pad_0000[0x1A88]; // offset 0x0
+    int32 bonus_damage; // offset 0x1A88, size 0x4, align 4
+    int32 movement_speed; // offset 0x1A8C, size 0x4, align 4
+    int32 mana_removal_pct; // offset 0x1A90, size 0x4, align 4
+    int32 free_pathing_duration; // offset 0x1A94, size 0x4, align 4
+    int32 attack_animation_bonus; // offset 0x1A98, size 0x4, align 4
+    int32 attack_range_bonus; // offset 0x1A9C, size 0x4, align 4
+    int32 free_pathing_movement_speed_bonus; // offset 0x1AA0, size 0x4, align 4
+    char _pad_1AA4[0x4]; // offset 0x1AA4
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_DataNonSpectator : public CBaseEntity /*0x0*/  // sizeof 0x1F60, align 0x8 [vtable] (server)
+class CDOTA_DataNonSpectator : public CBaseEntity /*0x0*/  // sizeof 0x1FC8, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x778]; // offset 0x0
@@ -26,9 +26,10 @@ public:
     Vector2D[100] m_vPossibleWardPlacement; // offset 0x1A20, size 0x320, align 4
     float32[100] m_vPossibleWardRadii; // offset 0x1D40, size 0x190, align 4
     CUtlVectorEmbeddedNetworkVar< DOTATeleportInfo_t > m_vecTrackedTeleports; // offset 0x1ED0, size 0x68, align 8
-    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1F38, size 0x18, align 255
-    int32 m_nNextPowerRuneType; // offset 0x1F50, size 0x4, align 4
-    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1F54, size 0x4, align 4
-    int32 m_iTowerKills; // offset 0x1F58, size 0x4, align 4
-    char _pad_1F5C[0x4]; // offset 0x1F5C
+    CUtlVectorEmbeddedNetworkVar< DOTANeutralCampInfo_t > m_vecKnownCampStacks; // offset 0x1F38, size 0x68, align 8
+    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1FA0, size 0x18, align 255
+    int32 m_nNextPowerRuneType; // offset 0x1FB8, size 0x4, align 4
+    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1FBC, size 0x4, align 4
+    int32 m_iTowerKills; // offset 0x1FC0, size 0x4, align 4
+    char _pad_1FC4[0x4]; // offset 0x1FC4
 };
