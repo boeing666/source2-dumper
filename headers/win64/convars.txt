@@ -1447,7 +1447,6 @@ citadel_t1_boss_max_attack_range | developmentonly,gamedll |
 citadel_t1_boss_melee_damage | developmentonly,gamedll,defensive | 
 citadel_team_size | developmentonly,gamedll,clientdll,replicated,defensive | 
 citadel_teleporter_enabled_time | gamedll,clientdll,replicated,cheat | 
-citadel_test_ranked_summary | developmentonly,clientdll | Test Ranked Summary
 citadel_tether_pull_speed | gamedll,clientdll,replicated,cheat | 
 citadel_tether_pull_speed_scale_per_meter | gamedll,clientdll,replicated,cheat | 
 citadel_text_chat_enabled | developmentonly,gamedll,clientdll,replicated | 
