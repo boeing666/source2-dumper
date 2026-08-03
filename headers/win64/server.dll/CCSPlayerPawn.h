@@ -125,15 +125,16 @@ public:
     char _pad_1325[0x3]; // offset 0x1325
     QAngle m_angStashedShootAngles; // offset 0x1328, size 0xC, align 4
     VectorWS m_vecStashedGrenadeThrowPosition; // offset 0x1334, size 0xC, align 4
-    Vector m_vecStashedVelocity; // offset 0x1340, size 0xC, align 4
-    char _pad_134C[0xC]; // offset 0x134C
-    bool m_bCommittingSuicideOnTeamChange; // offset 0x1358, size 0x1, align 1
-    bool m_wasNotKilledNaturally; // offset 0x1359, size 0x1, align 1
-    char _pad_135A[0x2]; // offset 0x135A
-    GameTime_t m_fImmuneToGunGameDamageTime; // offset 0x135C, size 0x4, align 255
-    bool m_bGunGameImmunity; // offset 0x1360, size 0x1, align 1
-    char _pad_1361[0x3]; // offset 0x1361
-    float32 m_fMolotovDamageTime; // offset 0x1364, size 0x4, align 4
-    QAngle m_angEyeAngles; // offset 0x1368, size 0xC, align 4
-    char _pad_1374[0xC]; // offset 0x1374
+    VectorWS m_vecStashedGrenadeThrowPawnCenter; // offset 0x1340, size 0xC, align 4
+    Vector m_vecStashedVelocity; // offset 0x134C, size 0xC, align 4
+    char _pad_1358[0x8]; // offset 0x1358
+    bool m_bCommittingSuicideOnTeamChange; // offset 0x1360, size 0x1, align 1
+    bool m_wasNotKilledNaturally; // offset 0x1361, size 0x1, align 1
+    char _pad_1362[0x2]; // offset 0x1362
+    GameTime_t m_fImmuneToGunGameDamageTime; // offset 0x1364, size 0x4, align 255
+    bool m_bGunGameImmunity; // offset 0x1368, size 0x1, align 1
+    char _pad_1369[0x3]; // offset 0x1369
+    float32 m_fMolotovDamageTime; // offset 0x136C, size 0x4, align 4
+    QAngle m_angEyeAngles; // offset 0x1370, size 0xC, align 4
+    char _pad_137C[0x4]; // offset 0x137C
 };

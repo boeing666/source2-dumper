@@ -1,6 +1,6 @@
 #pragma once
 
-class C_CSPlayerPawn : public C_CSPlayerPawnBase /*0x0*/  // sizeof 0x3460, align 0x10 [vtable] (client)
+class C_CSPlayerPawn : public C_CSPlayerPawnBase /*0x0*/  // sizeof 0x3470, align 0x10 [vtable] (client)
 {
 public:
     char _pad_0000[0x1490]; // offset 0x0
@@ -35,103 +35,104 @@ public:
     char _pad_150B[0x1]; // offset 0x150B
     GameTime_t m_flTimeOfLastInjury; // offset 0x150C, size 0x4, align 255
     GameTime_t m_flNextSprayDecalTime; // offset 0x1510, size 0x4, align 255
-    char _pad_1514[0x15C]; // offset 0x1514
-    int32 m_iRetakesOffering; // offset 0x1670, size 0x4, align 4
-    int32 m_iRetakesOfferingCard; // offset 0x1674, size 0x4, align 4
-    bool m_bRetakesHasDefuseKit; // offset 0x1678, size 0x1, align 1
-    bool m_bRetakesMVPLastRound; // offset 0x1679, size 0x1, align 1
-    char _pad_167A[0x2]; // offset 0x167A
-    int32 m_iRetakesMVPBoostItem; // offset 0x167C, size 0x4, align 4
-    loadout_slot_t m_RetakesMVPBoostExtraUtility; // offset 0x1680, size 0x4, align 4
-    char _pad_1684[0x1]; // offset 0x1684
-    bool m_bNeedToReApplyGloves; // offset 0x1685, size 0x1, align 1
-    char _pad_1686[0x2]; // offset 0x1686
-    C_EconItemView m_EconGloves; // offset 0x1688, size 0x470, align 255
-    uint8 m_nEconGlovesChanged; // offset 0x1AF8, size 0x1, align 1
-    bool m_bMustSyncRagdollState; // offset 0x1AF9, size 0x1, align 1
-    char _pad_1AFA[0x2]; // offset 0x1AFA
-    int32 m_nRagdollDamageBone; // offset 0x1AFC, size 0x4, align 4
-    Vector m_vRagdollDamageForce; // offset 0x1B00, size 0xC, align 4
-    char[64] m_szRagdollDamageWeaponName; // offset 0x1B0C, size 0x40, align 1
-    bool m_bRagdollDamageHeadshot; // offset 0x1B4C, size 0x1, align 1
-    char _pad_1B4D[0x3]; // offset 0x1B4D
-    VectorWS m_vRagdollServerOrigin; // offset 0x1B50, size 0xC, align 4
-    GameTime_t m_lastLandTime; // offset 0x1B5C, size 0x4, align 255
-    bool m_bOnGroundLastTick; // offset 0x1B60, size 0x1, align 1
-    char _pad_1B61[0x1B]; // offset 0x1B61
-    CHandle< C_CS2HudModelArms > m_hHudModelArms; // offset 0x1B7C, size 0x4, align 4
-    QAngle m_qDeathEyeAngles; // offset 0x1B80, size 0xC, align 4
-    bool m_bLeftHanded; // offset 0x1B8C, size 0x1, align 1
-    char _pad_1B8D[0x3]; // offset 0x1B8D
-    GameTime_t m_fSwitchedHandednessTime; // offset 0x1B90, size 0x4, align 255
-    float32 m_flViewmodelOffsetX; // offset 0x1B94, size 0x4, align 4
-    float32 m_flViewmodelOffsetY; // offset 0x1B98, size 0x4, align 4
-    float32 m_flViewmodelOffsetZ; // offset 0x1B9C, size 0x4, align 4
-    float32 m_flViewmodelFOV; // offset 0x1BA0, size 0x4, align 4
-    uint32[5] m_vecPlayerPatchEconIndices; // offset 0x1BA4, size 0x14, align 4
-    char _pad_1BB8[0x30]; // offset 0x1BB8
-    Color m_GunGameImmunityColor; // offset 0x1BE8, size 0x4, align 1
-    char _pad_1BEC[0x4C]; // offset 0x1BEC
-    CUtlVector< C_BulletHitModel* > m_vecBulletHitModels; // offset 0x1C38, size 0x18, align 8
-    bool m_bIsWalking; // offset 0x1C50, size 0x1, align 1
-    char _pad_1C51[0x7]; // offset 0x1C51
-    EntitySpottedState_t m_entitySpottedState; // offset 0x1C58, size 0x18, align 255
-    bool m_bIsScoped; // offset 0x1C70, size 0x1, align 1
-    bool m_bResumeZoom; // offset 0x1C71, size 0x1, align 1
-    bool m_bIsDefusing; // offset 0x1C72, size 0x1, align 1
-    bool m_bIsGrabbingHostage; // offset 0x1C73, size 0x1, align 1
-    CSPlayerBlockingUseAction_t m_iBlockingUseActionInProgress; // offset 0x1C74, size 0x4, align 4
-    GameTime_t m_flEmitSoundTime; // offset 0x1C78, size 0x4, align 255
-    bool m_bInNoDefuseArea; // offset 0x1C7C, size 0x1, align 1
-    char _pad_1C7D[0x3]; // offset 0x1C7D
-    int32 m_nWhichBombZone; // offset 0x1C80, size 0x4, align 4
-    int32 m_iShotsFired; // offset 0x1C84, size 0x4, align 4
-    float32 m_flFlinchStack; // offset 0x1C88, size 0x4, align 4
-    float32 m_flVelocityModifier; // offset 0x1C8C, size 0x4, align 4
-    bool m_bWaitForNoAttack; // offset 0x1C90, size 0x1, align 1
-    char _pad_1C91[0x3]; // offset 0x1C91
-    float32 m_ignoreLadderJumpTime; // offset 0x1C94, size 0x4, align 4
-    char _pad_1C98[0x1]; // offset 0x1C98
-    bool m_bKilledByHeadshot; // offset 0x1C99, size 0x1, align 1
-    char _pad_1C9A[0x2]; // offset 0x1C9A
-    int32 m_ArmorValue; // offset 0x1C9C, size 0x4, align 4
-    uint16 m_unCurrentEquipmentValue; // offset 0x1CA0, size 0x2, align 2
-    uint16 m_unRoundStartEquipmentValue; // offset 0x1CA2, size 0x2, align 2
-    uint16 m_unFreezetimeEndEquipmentValue; // offset 0x1CA4, size 0x2, align 2
-    char _pad_1CA6[0x2]; // offset 0x1CA6
-    CEntityIndex m_nLastKillerIndex; // offset 0x1CA8, size 0x4, align 4
-    bool m_bOldIsScoped; // offset 0x1CAC, size 0x1, align 1
-    bool m_bHasDeathInfo; // offset 0x1CAD, size 0x1, align 1
+    char _pad_1514[0x164]; // offset 0x1514
+    int32 m_iRetakesOffering; // offset 0x1678, size 0x4, align 4
+    int32 m_iRetakesOfferingCard; // offset 0x167C, size 0x4, align 4
+    bool m_bRetakesHasDefuseKit; // offset 0x1680, size 0x1, align 1
+    bool m_bRetakesMVPLastRound; // offset 0x1681, size 0x1, align 1
+    char _pad_1682[0x2]; // offset 0x1682
+    int32 m_iRetakesMVPBoostItem; // offset 0x1684, size 0x4, align 4
+    loadout_slot_t m_RetakesMVPBoostExtraUtility; // offset 0x1688, size 0x4, align 4
+    char _pad_168C[0x1]; // offset 0x168C
+    bool m_bNeedToReApplyGloves; // offset 0x168D, size 0x1, align 1
+    char _pad_168E[0x2]; // offset 0x168E
+    C_EconItemView m_EconGloves; // offset 0x1690, size 0x470, align 255
+    uint8 m_nEconGlovesChanged; // offset 0x1B00, size 0x1, align 1
+    bool m_bMustSyncRagdollState; // offset 0x1B01, size 0x1, align 1
+    char _pad_1B02[0x2]; // offset 0x1B02
+    int32 m_nRagdollDamageBone; // offset 0x1B04, size 0x4, align 4
+    Vector m_vRagdollDamageForce; // offset 0x1B08, size 0xC, align 4
+    char[64] m_szRagdollDamageWeaponName; // offset 0x1B14, size 0x40, align 1
+    bool m_bRagdollDamageHeadshot; // offset 0x1B54, size 0x1, align 1
+    char _pad_1B55[0x3]; // offset 0x1B55
+    VectorWS m_vRagdollServerOrigin; // offset 0x1B58, size 0xC, align 4
+    GameTime_t m_lastLandTime; // offset 0x1B64, size 0x4, align 255
+    bool m_bOnGroundLastTick; // offset 0x1B68, size 0x1, align 1
+    char _pad_1B69[0x1B]; // offset 0x1B69
+    CHandle< C_CS2HudModelArms > m_hHudModelArms; // offset 0x1B84, size 0x4, align 4
+    QAngle m_qDeathEyeAngles; // offset 0x1B88, size 0xC, align 4
+    bool m_bLeftHanded; // offset 0x1B94, size 0x1, align 1
+    char _pad_1B95[0x3]; // offset 0x1B95
+    GameTime_t m_fSwitchedHandednessTime; // offset 0x1B98, size 0x4, align 255
+    float32 m_flViewmodelOffsetX; // offset 0x1B9C, size 0x4, align 4
+    float32 m_flViewmodelOffsetY; // offset 0x1BA0, size 0x4, align 4
+    float32 m_flViewmodelOffsetZ; // offset 0x1BA4, size 0x4, align 4
+    float32 m_flViewmodelFOV; // offset 0x1BA8, size 0x4, align 4
+    uint32[5] m_vecPlayerPatchEconIndices; // offset 0x1BAC, size 0x14, align 4
+    char _pad_1BC0[0x30]; // offset 0x1BC0
+    Color m_GunGameImmunityColor; // offset 0x1BF0, size 0x4, align 1
+    char _pad_1BF4[0x4C]; // offset 0x1BF4
+    CUtlVector< C_BulletHitModel* > m_vecBulletHitModels; // offset 0x1C40, size 0x18, align 8
+    bool m_bIsWalking; // offset 0x1C58, size 0x1, align 1
+    char _pad_1C59[0x7]; // offset 0x1C59
+    EntitySpottedState_t m_entitySpottedState; // offset 0x1C60, size 0x18, align 255
+    bool m_bIsScoped; // offset 0x1C78, size 0x1, align 1
+    bool m_bResumeZoom; // offset 0x1C79, size 0x1, align 1
+    bool m_bIsDefusing; // offset 0x1C7A, size 0x1, align 1
+    bool m_bIsGrabbingHostage; // offset 0x1C7B, size 0x1, align 1
+    CSPlayerBlockingUseAction_t m_iBlockingUseActionInProgress; // offset 0x1C7C, size 0x4, align 4
+    GameTime_t m_flEmitSoundTime; // offset 0x1C80, size 0x4, align 255
+    bool m_bInNoDefuseArea; // offset 0x1C84, size 0x1, align 1
+    char _pad_1C85[0x3]; // offset 0x1C85
+    int32 m_nWhichBombZone; // offset 0x1C88, size 0x4, align 4
+    int32 m_iShotsFired; // offset 0x1C8C, size 0x4, align 4
+    float32 m_flFlinchStack; // offset 0x1C90, size 0x4, align 4
+    float32 m_flVelocityModifier; // offset 0x1C94, size 0x4, align 4
+    bool m_bWaitForNoAttack; // offset 0x1C98, size 0x1, align 1
+    char _pad_1C99[0x3]; // offset 0x1C99
+    float32 m_ignoreLadderJumpTime; // offset 0x1C9C, size 0x4, align 4
+    char _pad_1CA0[0x1]; // offset 0x1CA0
+    bool m_bKilledByHeadshot; // offset 0x1CA1, size 0x1, align 1
+    char _pad_1CA2[0x2]; // offset 0x1CA2
+    int32 m_ArmorValue; // offset 0x1CA4, size 0x4, align 4
+    uint16 m_unCurrentEquipmentValue; // offset 0x1CA8, size 0x2, align 2
+    uint16 m_unRoundStartEquipmentValue; // offset 0x1CAA, size 0x2, align 2
+    uint16 m_unFreezetimeEndEquipmentValue; // offset 0x1CAC, size 0x2, align 2
     char _pad_1CAE[0x2]; // offset 0x1CAE
-    float32 m_flDeathInfoTime; // offset 0x1CB0, size 0x4, align 4
-    VectorWS m_vecDeathInfoOrigin; // offset 0x1CB4, size 0xC, align 4
-    char _pad_1CC0[0x30]; // offset 0x1CC0
-    GameTime_t m_grenadeParameterStashTime; // offset 0x1CF0, size 0x4, align 255
-    bool m_bGrenadeParametersStashed; // offset 0x1CF4, size 0x1, align 1
-    char _pad_1CF5[0x3]; // offset 0x1CF5
-    QAngle m_angStashedShootAngles; // offset 0x1CF8, size 0xC, align 4
-    VectorWS m_vecStashedGrenadeThrowPosition; // offset 0x1D04, size 0xC, align 4
-    Vector m_vecStashedVelocity; // offset 0x1D10, size 0xC, align 4
-    char _pad_1D1C[0x1534]; // offset 0x1D1C
-    bool m_bShouldAutobuyDMWeapons; // offset 0x3250, size 0x1, align 1
-    char _pad_3251[0x3]; // offset 0x3251
-    GameTime_t m_fImmuneToGunGameDamageTime; // offset 0x3254, size 0x4, align 255
-    bool m_bGunGameImmunity; // offset 0x3258, size 0x1, align 1
-    char _pad_3259[0x3]; // offset 0x3259
-    GameTime_t m_fImmuneToGunGameDamageTimeLast; // offset 0x325C, size 0x4, align 255
-    float32 m_fMolotovDamageTime; // offset 0x3260, size 0x4, align 4
-    char _pad_3264[0x68]; // offset 0x3264
-    ParticleIndex_t m_nPlayerInfernoBodyFx; // offset 0x32CC, size 0x4, align 255
-    char _pad_32D0[0x70]; // offset 0x32D0
-    QAngle m_angEyeAngles; // offset 0x3340, size 0xC, align 4
-    char _pad_334C[0x84]; // offset 0x334C
-    GameTime_t[4] m_arrOldEyeAnglesTimes; // offset 0x33D0, size 0x10, align 4
-    QAngle[4] m_arrOldEyeAngles; // offset 0x33E0, size 0x30, align 4
-    QAngle m_angEyeAnglesVelocity; // offset 0x3410, size 0xC, align 4
-    CEntityIndex m_iIDEntIndex; // offset 0x341C, size 0x4, align 4
-    CountdownTimer m_delayTargetIDTimer; // offset 0x3420, size 0x18, align 8
-    CEntityIndex m_iTargetItemEntIdx; // offset 0x3438, size 0x4, align 4
-    CEntityIndex m_iOldIDEntIndex; // offset 0x343C, size 0x4, align 4
-    CountdownTimer m_holdTargetIDTimer; // offset 0x3440, size 0x18, align 8
-    char _pad_3458[0x8]; // offset 0x3458
+    CEntityIndex m_nLastKillerIndex; // offset 0x1CB0, size 0x4, align 4
+    bool m_bOldIsScoped; // offset 0x1CB4, size 0x1, align 1
+    bool m_bHasDeathInfo; // offset 0x1CB5, size 0x1, align 1
+    char _pad_1CB6[0x2]; // offset 0x1CB6
+    float32 m_flDeathInfoTime; // offset 0x1CB8, size 0x4, align 4
+    VectorWS m_vecDeathInfoOrigin; // offset 0x1CBC, size 0xC, align 4
+    char _pad_1CC8[0x30]; // offset 0x1CC8
+    GameTime_t m_grenadeParameterStashTime; // offset 0x1CF8, size 0x4, align 255
+    bool m_bGrenadeParametersStashed; // offset 0x1CFC, size 0x1, align 1
+    char _pad_1CFD[0x3]; // offset 0x1CFD
+    QAngle m_angStashedShootAngles; // offset 0x1D00, size 0xC, align 4
+    VectorWS m_vecStashedGrenadeThrowPosition; // offset 0x1D0C, size 0xC, align 4
+    VectorWS m_vecStashedGrenadeThrowPawnCenter; // offset 0x1D18, size 0xC, align 4
+    Vector m_vecStashedVelocity; // offset 0x1D24, size 0xC, align 4
+    char _pad_1D30[0x1530]; // offset 0x1D30
+    bool m_bShouldAutobuyDMWeapons; // offset 0x3260, size 0x1, align 1
+    char _pad_3261[0x3]; // offset 0x3261
+    GameTime_t m_fImmuneToGunGameDamageTime; // offset 0x3264, size 0x4, align 255
+    bool m_bGunGameImmunity; // offset 0x3268, size 0x1, align 1
+    char _pad_3269[0x3]; // offset 0x3269
+    GameTime_t m_fImmuneToGunGameDamageTimeLast; // offset 0x326C, size 0x4, align 255
+    float32 m_fMolotovDamageTime; // offset 0x3270, size 0x4, align 4
+    char _pad_3274[0x68]; // offset 0x3274
+    ParticleIndex_t m_nPlayerInfernoBodyFx; // offset 0x32DC, size 0x4, align 255
+    char _pad_32E0[0x70]; // offset 0x32E0
+    QAngle m_angEyeAngles; // offset 0x3350, size 0xC, align 4
+    char _pad_335C[0x84]; // offset 0x335C
+    GameTime_t[4] m_arrOldEyeAnglesTimes; // offset 0x33E0, size 0x10, align 4
+    QAngle[4] m_arrOldEyeAngles; // offset 0x33F0, size 0x30, align 4
+    QAngle m_angEyeAnglesVelocity; // offset 0x3420, size 0xC, align 4
+    CEntityIndex m_iIDEntIndex; // offset 0x342C, size 0x4, align 4
+    CountdownTimer m_delayTargetIDTimer; // offset 0x3430, size 0x18, align 8
+    CEntityIndex m_iTargetItemEntIdx; // offset 0x3448, size 0x4, align 4
+    CEntityIndex m_iOldIDEntIndex; // offset 0x344C, size 0x4, align 4
+    CountdownTimer m_holdTargetIDTimer; // offset 0x3450, size 0x18, align 8
+    char _pad_3468[0x8]; // offset 0x3468
 };
