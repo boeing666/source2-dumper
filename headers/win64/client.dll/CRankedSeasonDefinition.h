@@ -1,6 +1,6 @@
 #pragma once
 
-class CRankedSeasonDefinition  // sizeof 0xE0, align 0x8 (client) {MGetKV3ClassDefaults}
+class CRankedSeasonDefinition  // sizeof 0xE8, align 0x8 (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
@@ -15,5 +15,6 @@ public:
     uint32 m_unMinHeroWins; // offset 0xC4, size 0x4, align 4
     uint32 m_unMinHeroUnlocks; // offset 0xC8, size 0x4, align 4
     uint32 m_unCalibrationMatches; // offset 0xCC, size 0x4, align 4
-    char _pad_00D0[0x10]; // offset 0xD0
+    uint32 m_unBaseWinLossPointGrant; // offset 0xD0, size 0x4, align 4
+    char _pad_00D4[0x14]; // offset 0xD4
 };
