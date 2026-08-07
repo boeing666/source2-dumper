@@ -1,6 +1,6 @@
 #pragma once
 
-struct RenderInputLayoutField_t  // sizeof 0x4C, align 0xFF [trivial_dtor] (rendersystemempty)
+struct RenderInputLayoutField_t  // sizeof 0x4C, align 0xFF [trivial_dtor] (modellib)
 {
     char[32] m_pSemanticName; // offset 0x0, size 0x20, align 1
     int8 m_nSemanticIndex; // offset 0x20, size 0x1, align 1
