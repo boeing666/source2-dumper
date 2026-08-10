@@ -1313,7 +1313,6 @@ citadel_recent_comms_recording_window | gamedll,replicated,release |
 citadel_recent_comms_session_attempt_throttled_count | gamedll,replicated,release | 
 citadel_recent_comms_throttling_limit | gamedll,replicated,release | 
 citadel_recent_comms_throttling_penalty | gamedll,replicated,release | 
-citadel_reconnect_idle_buffer_time | developmentonly,gamedll,defensive | How much extra time the player has after reconnecting before he gets marked as AFK.
 citadel_region_override | clientdll,release | Override the region of the client
 citadel_replay_manager_download_chunk_size | clientdll | 
 citadel_replay_manager_download_simultaneous_requests | clientdll | 
