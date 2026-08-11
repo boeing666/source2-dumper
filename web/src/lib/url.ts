@@ -1,10 +1,11 @@
 // Full app state <-> URL hash, so refresh / shared links restore tab + platform + selection + filters.
 import { GAMES, type Game, type Platform } from "@/lib/data";
 
-export type Selected = { name: string; file: string; targetField?: string };
+export type Selected = { name: string; file: string; scope: string; targetField?: string };
 
 export type UrlState = {
   tab: string; game: Game; platform: Platform; selected: Selected | null;
+  dup: boolean;
   query: string; sort: string; kinds: Set<string>; libs: Set<string>;
   cvQ: string; cvFlags: Set<string>; cmQ: string; cmFlags: Set<string>;
   evQ: string; evMods: Set<string>; evSel: string;
@@ -21,6 +22,9 @@ export function toHash(st: UrlState): string {
   if (st.game !== "cs2") p.set("g", st.game);
   if (st.platform !== "win64") p.set("p", st.platform);
   if (st.tab === "schema") {
+    if (st.selected && st.dup && st.selected.scope) {
+      p.set("sc", st.selected.scope);
+    }
     if (!st.selected) {
       if (st.query) p.set("q", st.query);
       if (st.sort !== "name") p.set("sort", st.sort);
@@ -58,6 +62,7 @@ export function fromHash(hash: string) {
     platform: (p.get("p") === "linux" ? "linux" : "win64") as Platform,
     className: tab === "schema" ? segs[1] || null : null,
     field: tab === "schema" ? segs[2] || undefined : undefined,
+    sc: tab === "schema" ? p.get("sc") || undefined : undefined,
     q: p.get("q") || "",
     sort: p.get("sort") || "name",
     kinds: set("kinds"), libs: set("libs"), flags: set("flags"), mods: set("mods"),

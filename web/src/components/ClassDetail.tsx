@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from "react";
-import type { ClassInfo } from "@/types";
+import type { ClassInfo, IndexEntry } from "@/types";
 import type { Platform } from "@/lib/data";
 import { nv, barW, catVar, layout } from "@/lib/format";
 import { TypeText } from "@/components/TypeText";
+import { VariantChips } from "@/components/VariantChips";
 import { Arr } from "@/components/icons";
 
 export function ClassDetail({
-  cls, chain, known, hex, onNav, onBack, onField, platform, targetField,
+  cls, chain, known, hex, onNav, onBack, onField, platform, targetField, scope, variants, onVariant,
 }: {
   cls: ClassInfo; chain: string[]; known: Set<string>; hex: boolean;
   onNav: (n: string) => void; onBack: () => void; onField: (f: string) => void; platform: Platform; targetField?: string;
+  scope: string; variants: IndexEntry[]; onVariant: (e: IndexEntry) => void;
 }) {
   const rows = useMemo(() => layout(cls.fields, cls.size), [cls]);
   const [flashName, setFlashName] = useState<string | undefined>();
@@ -21,6 +23,13 @@ export function ClassDetail({
     setTimeout(() => setFlashName((x) => (x === n ? undefined : x)), 1800);
   };
   const goField = (m: string) => onField(m.split("+")[0]);
+  const fieldLink = (field: string) => {
+    const p = new URLSearchParams();
+    if (platform !== "win64") p.set("p", platform);
+    if (variants.length > 1 && scope) p.set("sc", scope);
+    const qs = p.toString();
+    return `${location.origin}${location.pathname}#schema/${cls.name}/${field}${qs ? "?" + qs : ""}`;
+  };
   useEffect(() => { if (targetField) flash(targetField); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [targetField, cls]);
 
   const copySchema = () => {
@@ -64,6 +73,7 @@ export function ClassDetail({
             </span>
           ))}
         </span>
+        <VariantChips scope={scope} variants={variants} onVariant={onVariant} />
       </div>
 
       <div className="cls">
@@ -125,7 +135,7 @@ export function ClassDetail({
                     {r.field!.networked && <span className="netpill" title="networked">NETWORKED</span>}
                     {r.field!.metadata.map((m) => <span className="meta" key={m}> {m}</span>)}
                     <a className="fl" title="copy link to field" onClick={(e) => {
-                      navigator.clipboard.writeText(`${location.origin}${location.pathname}#schema/${cls.name}/${r.field!.name}${platform !== "win64" ? `?p=${platform}` : ""}`);
+                      navigator.clipboard.writeText(fieldLink(r.field!.name));
                       const t = e.currentTarget; t.classList.add("ok"); setTimeout(() => t.classList.remove("ok"), 1200);
                     }}>§</a>
                   </span>

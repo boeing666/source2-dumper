@@ -193,6 +193,10 @@ body:not(.showpad) .padrow,body:not(.showpad) .pseg{display:none}
 .chip.cur{color:var(--enm);border-color:var(--enm)}
 .chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .chain-row .arr{color:var(--mut);font-size:12px;display:inline-flex}
+/* module switcher: shown only when the same type is bound in more than one library */
+.vars{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-left:auto}
+.chip.vr{font-size:12px;padding:2px 8px;color:var(--mut)}
+.chip.vr.cur{color:var(--acc);border-color:var(--acc);cursor:default}
 .dm{overflow-x:auto}
 /* sections tile to fill width (auto-fit); a lone section stretches full width — compact for any combo */
 .dmsecs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px 30px;align-items:start}

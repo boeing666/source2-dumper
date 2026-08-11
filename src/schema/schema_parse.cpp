@@ -59,10 +59,13 @@ bool ParseSchema(const ModuleMap& mods, std::vector<Module>& modules, std::unord
 	}
 
 	std::unordered_map<std::string, Module> byModule;
-	std::unordered_set<std::string> seen;
+	std::unordered_set<std::string> seenClass, seenEnum;
 
-	auto bucket = [&](const char* mod) -> Module& {
-		std::string key = (mod && *mod) ? mod : "!GlobalTypes";
+	auto moduleOf = [](const char* mod) -> std::string {
+		return (mod && *mod) ? std::string(mod) : std::string("!GlobalTypes");
+	};
+
+	auto bucket = [&](const std::string& key) -> Module& {
 		Module& md = byModule[key];
 		if (md.scope.empty()) { md.scope = key; md.safe = SafeName(key); }
 		return md;
@@ -76,10 +79,14 @@ bool ParseSchema(const ModuleMap& mods, std::vector<Module>& modules, std::unord
 
 			for (int i = 0; i < n; ++i) {
 				CSchemaClassInfo* c = classes.Element(handles[i]);
-				if (!c || !c->m_pszName || !*c->m_pszName || !seen.insert(c->m_pszName).second) {
+				if (!c || !c->m_pszName || !*c->m_pszName) {
 					continue;
 				}
-				bucket(sys->GetClassModuleName(c)).classes.push_back({ c, SortedFields(c), !DerivesFromEntity(c) });
+				std::string mod = moduleOf(sys->GetClassModuleName(c));
+				if (!seenClass.insert(mod + "::" + c->m_pszName).second) {
+					continue;
+				}
+				bucket(mod).classes.push_back({ c, SortedFields(c), !DerivesFromEntity(c) });
 				known.insert(c->m_pszName);
 			}
 		}
@@ -91,10 +98,14 @@ bool ParseSchema(const ModuleMap& mods, std::vector<Module>& modules, std::unord
 
 			for (int i = 0; i < n; ++i) {
 				CSchemaEnumInfo* e = enums.Element(handles[i]);
-				if (!e || !e->m_pszName || !*e->m_pszName || !seen.insert(e->m_pszName).second) {
+				if (!e || !e->m_pszName || !*e->m_pszName) {
 					continue;
 				}
-				bucket(sys->GetEnumModuleName(e)).enums.push_back(e);
+				std::string mod = moduleOf(sys->GetEnumModuleName(e));
+				if (!seenEnum.insert(mod + "::" + e->m_pszName).second) {
+					continue;
+				}
+				bucket(mod).enums.push_back(e);
 				known.insert(e->m_pszName);
 			}
 		}

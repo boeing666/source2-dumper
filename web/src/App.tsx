@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type Game, type Platform, loadMeta, loadIndex, loadScope } from "@/lib/data";
 import type { Meta, IndexEntry, Scope } from "@/types";
 import { type Selected, toHash, fromHash } from "@/lib/url";
@@ -41,8 +41,8 @@ export default function App() {
   const scopeCache = useRef<Map<string, Scope>>(new Map());
   const [scopeData, setScopeData] = useState<Scope | null>(null);
   // class named in the initial URL (resolved to a Selected once the index loads); blocks URL writes until resolved
-  const pending = useRef<{ name: string; field?: string } | null>(
-    init.tab === "schema" && init.className ? { name: init.className, field: init.field } : null
+  const pending = useRef<{ name: string; field?: string; scope?: string } | null>(
+    init.tab === "schema" && init.className ? { name: init.className, field: init.field, scope: init.sc } : null
   );
 
   useEffect(() => { document.body.classList.toggle("showpad", pad); }, [pad]);
@@ -54,27 +54,39 @@ export default function App() {
       .catch((e) => setErr(String(e)));
   }, [game, platform]);
 
-  const nameMap = useMemo(() => { const m = new Map<string, IndexEntry>(); for (const e of index) m.set(e.name, e); return m; }, [index]);
-  const known = useMemo(() => new Set(index.map((e) => e.name)), [index]);
+  const byName = useMemo(() => {
+    const m = new Map<string, IndexEntry[]>();
+    for (const e of index) { const a = m.get(e.name); if (a) a.push(e); else m.set(e.name, [e]); }
+    return m;
+  }, [index]);
+  const lookup = useCallback(
+    (name: string, scope?: string) => {
+      const a = byName.get(name);
+      if (!a) return undefined;
+      return (scope ? a.find((e) => e.scope === scope) : undefined) ?? a[0];
+    },
+    [byName]
+  );
+  const known = useMemo(() => new Set(byName.keys()), [byName]);
   const scopeNames = useMemo(() => (meta ? meta.scopes.map((s) => s.scope) : []), [meta]);
 
   // resolve the URL's class once the index is available, and re-resolve the current selection against a
   // freshly loaded index — switching platform changes module file names, so selected.file must be re-derived
   useEffect(() => {
-    if (nameMap.size === 0) return;
+    if (byName.size === 0) return;
     if (pending.current) {
-      const e = nameMap.get(pending.current.name);
-      if (e) setSelected({ name: e.name, file: e.file, targetField: pending.current.field });
+      const e = lookup(pending.current.name, pending.current.scope);
+      if (e) setSelected({ name: e.name, file: e.file, scope: e.scope, targetField: pending.current.field });
       pending.current = null;
       return;
     }
     setSelected((s) => {
       if (!s) return s;
-      const e = nameMap.get(s.name);
+      const e = lookup(s.name, s.scope);
       if (!e) return null;
-      return e.file === s.file ? s : { ...s, file: e.file };
+      return e.file === s.file && e.scope === s.scope ? s : { ...s, file: e.file, scope: e.scope };
     });
-  }, [nameMap]);
+  }, [byName, lookup]);
 
   // external URL changes (manual edit, opened share link, back/forward)
   useEffect(() => {
@@ -83,8 +95,8 @@ export default function App() {
       setTab(s.tab); setGame(s.game); setPlatform(s.platform);
       if (s.tab === "schema") {
         setQuery(s.q); setSort(s.sort); setKinds(s.kinds); setLibs(s.libs);
-        const e = s.className ? nameMap.get(s.className) : undefined;
-        setSelected(e ? { name: e.name, file: e.file, targetField: s.field } : null);
+        const e = s.className ? lookup(s.className, s.sc) : undefined;
+        setSelected(e ? { name: e.name, file: e.file, scope: e.scope, targetField: s.field } : null);
       } else if (s.tab === "convars") { setCvQ(s.q); setCvFlags(s.flags); }
       else if (s.tab === "concommands") { setCmQ(s.q); setCmFlags(s.flags); }
       else { setEvQ(s.q); setEvMods(s.mods); setEvSel(s.ev); }
@@ -92,14 +104,17 @@ export default function App() {
     window.addEventListener("hashchange", onNav);
     window.addEventListener("popstate", onNav);
     return () => { window.removeEventListener("hashchange", onNav); window.removeEventListener("popstate", onNav); };
-  }, [nameMap]);
+  }, [lookup]);
+
+  // every module the selected type is bound in (>1 → the detail view offers a switcher)
+  const variants = useMemo(() => (selected ? byName.get(selected.name) ?? [] : []), [selected, byName]);
 
   // write state to URL (replaceState → no reload / no loop; wait until the initial class is resolved)
   useEffect(() => {
     if (pending.current) return;
-    const h = toHash({ tab, game, platform, selected, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel });
+    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel });
     if (location.hash !== h) history.replaceState(null, "", h);
-  }, [tab, game, platform, selected, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel]);
+  }, [tab, game, platform, selected, variants, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel]);
 
   useEffect(() => {
     if (!selected) { setScopeData(null); return; }
@@ -115,14 +130,17 @@ export default function App() {
   }, [selected, platform, game]);
 
   // picking from search/index starts a fresh trail; following a link pushes the current class onto it
-  const pick = (e: IndexEntry, field?: string) => { setNavStack([]); setTab("schema"); setSelected({ name: e.name, file: e.file, targetField: field }); };
+  const pick = (e: IndexEntry, field?: string) => { setNavStack([]); setTab("schema"); setSelected({ name: e.name, file: e.file, scope: e.scope, targetField: field }); };
   const navByName = (name: string) => {
-    const e = nameMap.get(name);
+    // follow links inside the module we're already reading, so client.dll types don't jump to server.dll
+    const e = lookup(name, selected?.scope);
     if (!e) return;
     setNavStack((s) => (selected && selected.name !== e.name ? [...s, selected] : s));
     setTab("schema");
-    setSelected({ name: e.name, file: e.file, targetField: undefined });
+    setSelected({ name: e.name, file: e.file, scope: e.scope, targetField: undefined });
   };
+  // same type, different module — keep the trail, just swap which binding is shown
+  const pickVariant = (e: IndexEntry) => setSelected((s) => ({ name: e.name, file: e.file, scope: e.scope, targetField: s?.targetField }));
   const goBack = () => {
     if (navStack.length) {
       setSelected(navStack[navStack.length - 1]);
@@ -137,13 +155,13 @@ export default function App() {
   const chain = useMemo(() => {
     if (!selected) return [];
     const out = [selected.name];
-    let cur = nameMap.get(selected.name);
+    let cur = lookup(selected.name, selected.scope);
     const seen = new Set(out);
-    while (cur?.parent && nameMap.has(cur.parent) && !seen.has(cur.parent)) {
-      out.push(cur.parent); seen.add(cur.parent); cur = nameMap.get(cur.parent);
+    while (cur?.parent && byName.has(cur.parent) && !seen.has(cur.parent)) {
+      out.push(cur.parent); seen.add(cur.parent); cur = lookup(cur.parent, selected.scope);
     }
     return out;
-  }, [selected, nameMap]);
+  }, [selected, byName, lookup]);
 
   const filteredIndex = useMemo(
     () => index.filter((e) => (libs.size === 0 || libs.has(e.scope)) && (kinds.size === 0 || kinds.has(e.kind))),
@@ -180,8 +198,8 @@ export default function App() {
             <div className="content">
               {selected ? (
                 scopeData == null ? <div className="loading">loading…</div>
-                : selCls ? <ClassDetail cls={selCls} chain={chain} known={known} hex={hex} onNav={navByName} onBack={goBack} onField={onField} platform={platform} targetField={selected.targetField} />
-                : selEnum ? <EnumDetail en={selEnum} hex={hex} onBack={goBack} />
+                : selCls ? <ClassDetail cls={selCls} chain={chain} known={known} hex={hex} onNav={navByName} onBack={goBack} onField={onField} platform={platform} targetField={selected.targetField} scope={selected.scope} variants={variants} onVariant={pickVariant} />
+                : selEnum ? <EnumDetail en={selEnum} hex={hex} onBack={goBack} scope={selected.scope} variants={variants} onVariant={pickVariant} />
                 : <div className="loading">not found: {selected.name}</div>
               ) : (
                 <TypesList entries={filteredIndex} sort={sort} onPick={pick} />

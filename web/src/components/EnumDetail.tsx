@@ -1,12 +1,17 @@
-import type { EnumInfo } from "@/types";
+import type { EnumInfo, IndexEntry } from "@/types";
 import { nv } from "@/lib/format";
+import { VariantChips } from "@/components/VariantChips";
 
-export function EnumDetail({ en, hex, onBack }: { en: EnumInfo; hex: boolean; onBack: () => void }) {
+export function EnumDetail({ en, hex, onBack, scope, variants, onVariant }: {
+  en: EnumInfo; hex: boolean; onBack: () => void;
+  scope: string; variants: IndexEntry[]; onVariant: (e: IndexEntry) => void;
+}) {
   return (
     <div id="detail">
       <div className="dtop">
         <button className="back" title="back to index" onClick={onBack}>←</button>
         <span className="chain-row"><span className="chip cur">{en.name}</span></span>
+        <VariantChips scope={scope} variants={variants} onVariant={onVariant} />
       </div>
       <div className="cls">
         <div className="sig">
