@@ -1,0 +1,11 @@
+#pragma once
+
+class CDOTA_Modifier_Nian_Waterball : public CDOTA_Buff /*0x0*/  // sizeof 0x1AB0, align 0xFF [vtable] (server)
+{
+public:
+    char _pad_0000[0x1A78]; // offset 0x0
+    int32 trail_damage_per_second; // offset 0x1A78, size 0x4, align 4
+    int32 trail_damage_radius; // offset 0x1A7C, size 0x4, align 4
+    CUtlVector< int32 > m_vFXIndices; // offset 0x1A80, size 0x18, align 8
+    CUtlVector< VectorWS > m_vLocations; // offset 0x1A98, size 0x18, align 8
+};

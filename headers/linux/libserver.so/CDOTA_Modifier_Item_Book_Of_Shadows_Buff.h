@@ -1,0 +1,10 @@
+#pragma once
+
+class CDOTA_Modifier_Item_Book_Of_Shadows_Buff : public CDOTA_Buff /*0x0*/  // sizeof 0x1A80, align 0xFF [vtable] (server)
+{
+public:
+    char _pad_0000[0x1A78]; // offset 0x0
+    bool m_bUntargetableAllies; // offset 0x1A78, size 0x1, align 1
+    bool m_bUntargetableEnemies; // offset 0x1A79, size 0x1, align 1
+    char _pad_1A7A[0x6]; // offset 0x1A7A
+};

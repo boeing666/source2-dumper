@@ -1,0 +1,7 @@
+#pragma once
+
+class CDOTA_Muerta_Revenant : public CDOTA_BaseNPC /*0x0*/  // sizeof 0x1B88, align 0x8 [vtable] (server)
+{
+public:
+    char _pad_0000[0x1B88]; // offset 0x0
+};

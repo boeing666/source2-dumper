@@ -1,0 +1,9 @@
+#pragma once
+
+class CDOTA_Modifier_Hoodwink_Decoy_Invisibility : public CDOTA_Modifier_Invisible /*0x0*/  // sizeof 0x1AA0, align 0xFF [vtable] (server)
+{
+public:
+    char _pad_0000[0x1A84]; // offset 0x0
+    int32 movement_speed; // offset 0x1A84, size 0x4, align 4
+    CUtlVector< CHandle< CBaseEntity > > m_hEntitiesAffected; // offset 0x1A88, size 0x18, align 8
+};
