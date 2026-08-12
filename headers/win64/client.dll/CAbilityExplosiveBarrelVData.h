@@ -1,6 +1,6 @@
 #pragma once
 
-class CAbilityExplosiveBarrelVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1C08, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CAbilityExplosiveBarrelVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1C18, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x1818]; // offset 0x0
@@ -15,4 +15,5 @@ public:
     CSoundEventName m_strBarrelLaunchSound; // offset 0x1BD8, size 0x10, align 8
     CSoundEventName m_strBarrelMeleedSound; // offset 0x1BE8, size 0x10, align 8
     CSoundEventName m_strBarrelArmedSound; // offset 0x1BF8, size 0x10, align 8
+    CEmbeddedSubclass< CCitadelModifier > m_BurnModifier; // offset 0x1C08, size 0x10, align 8 | MPropertyStartGroup
 };
