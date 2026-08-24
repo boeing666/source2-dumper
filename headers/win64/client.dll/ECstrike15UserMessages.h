@@ -80,4 +80,5 @@ enum ECstrike15UserMessages : uint32_t  // sizeof 0x4
     CS_UM_RecurringMissionSchema = 387,
     CS_UM_SendPlayerLoadout = 388,
     CS_UM_WeaponMagDrop = 389,
+    CS_UM_CustomHudClicked = 390,
 };
