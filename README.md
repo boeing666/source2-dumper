@@ -1,5 +1,5 @@
 Source2 schema dump — cs2
 
-PatchVersion: 1.41.7.7
-Manifest: dc874e8c45a8
+PatchVersion: 1.41.7.8
+Manifest: 144e5c208fc0
 One .h per class, grouped by platform/module (+ convars.txt / concommands.txt). Diff commits to see schema changes.
