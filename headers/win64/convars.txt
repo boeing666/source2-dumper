@@ -2534,6 +2534,7 @@ dota_steamcontroller_view_distance_scale | clientdll |
 dota_steamcontroller_view_haptic_intensity | clientdll | 
 dota_steamcontroller_view_mode | clientdll | 
 dota_steamcontroller_view_sensitivity | clientdll | 
+dota_steamlearn_match_state_interval | gamedll,cheat | interval in seconds that we send match state to SteamLearn
 dota_steamtimeline_show_dev_messages | developmentonly,clientdll | 
 dota_steamtimeline_tower_distance_threshold | developmentonly,gamedll | 
 dota_stencil_glows | developmentonly,clientdll,defensive | Enable stencil of glows.
@@ -2798,12 +2799,6 @@ dota_update_connected_players_urgency_spectator_count | gamedll,cheat | max send
 dota_update_gc_connection_check_count | gamedll,cheat | How many tries we check if the GC is still connected before terminating due to no response
 dota_update_gc_connection_check_time | gamedll,cheat | How often the server should check the GC is still connected
 dota_update_gc_server_info | gamedll,cheat | How often the server should check if it needs to update the GC in seconds
-dota_upload_item_purchase_history_duration_threshold | gamedll,cheat | match duration below which we will not upload item purchases
-dota_upload_item_purchase_history_mmr_threshold | gamedll,cheat | MMR below which we will not upload item purchases
-dota_upload_match_state_history_duration_threshold | gamedll,cheat | match duration below which we will not upload item purchases
-dota_upload_match_state_history_interval | gamedll,cheat | interval in seconds that we track game states
-dota_upload_neutral_item_equip_history_duration_threshold | gamedll,cheat | match duration below which we will not upload neutral item equips
-dota_upload_neutral_item_equip_history_mmr_threshold | gamedll,cheat | MMR below which we will not upload neutral item equips
 dota_use_aghanims_postprocess_material | developmentonly,clientdll,defensive | 
 dota_use_experimental_npc_controller | developmentonly,gamedll,defensive | 
 dota_use_heightmap | cheat | Set to 0 to disable using heightmap when tracing vertical rays
