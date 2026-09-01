@@ -50,6 +50,7 @@ export interface ClassInfo {
   baseClasses: BaseClass[];
   chain?: string[]; // [self, base, ...] resolved in-scope by the dumper (optional: absent in older dumps)
   entity: boolean;
+  stateChanged?: number; // NetworkStateChanged vtable index
   metadata: string[];
   fields: Field[];
   datamap: Datamap[];

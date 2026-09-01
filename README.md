@@ -21,6 +21,7 @@ copy-as-schema. Filter by library, Ctrl-F any type, deep-link any field.
 ```
 git clone --recursive --depth 1 https://github.com/Wend4r/sourcesdk thirdparty/sourcesdk
 git clone --recursive --depth 1 https://github.com/Wend4r/cpp-dynlibutils thirdparty/cpp-dynlibutils
+git clone --recursive --depth 1 --branch v4.1.0 https://github.com/zyantific/zydis thirdparty/zydis
 
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build

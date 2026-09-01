@@ -68,6 +68,7 @@ struct JClass {
 	std::vector<JBaseClass> baseClasses;
 	std::vector<std::string> chain;
 	bool entity = false;
+	int32_t stateChanged = -1;
 	std::vector<std::string> metadata;
 	std::vector<JField> fields;
 	std::vector<JDatamap> datamap;
@@ -227,6 +228,7 @@ static void WriteFile(const fs::path& path, const T& obj) {
 }
 
 static JClass BuildClass(const ClassRec& rec, const std::unordered_set<std::string>& network,
+                         const std::unordered_map<std::string, int>& stateChanged,
                          const std::unordered_set<std::string>& known,
                          int& outNi, int& outNo, int& outNk) {
 	CSchemaClassInfo* c = rec.info;
@@ -241,6 +243,9 @@ static JClass BuildClass(const ClassRec& rec, const std::unordered_set<std::stri
 	jc.flagsRaw = c->m_nFlags1;
 	jc.flags = SplitWords(ClassFlags(c->m_nFlags1));
 	jc.entity = !rec.embedded;
+	if (const auto it = stateChanged.find(jc.name); it != stateChanged.end()) {
+		jc.stateChanged = it->second;
+	}
 	jc.metadata = MetaTags(c->m_nStaticMetadataCount, c->m_pStaticMetadata);
 	for (uint8 b = 0; b < c->m_nBaseClassCount && c->m_pBaseClasses; ++b) {
 		if (const auto* bc = c->m_pBaseClasses[b].m_pClass; bc && bc->m_pszName) {
@@ -296,6 +301,7 @@ void WriteJson(const fs::path& outDir,
                const std::vector<Module>& modules,
                const std::unordered_set<std::string>& known,
                const std::unordered_set<std::string>& network,
+               const std::unordered_map<std::string, int>& stateChanged,
                const std::vector<ConVarInfo>& convars,
                const std::vector<ConCommandInfo>& concommands,
                const std::vector<GameEventInfo>& events,
@@ -323,7 +329,7 @@ void WriteJson(const fs::path& outDir,
 
 		for (const ClassRec& rec : m.classes) {
 			int ni = 0, no = 0, nk = 0;
-			JClass jc = BuildClass(rec, network, known, ni, no, nk);
+			JClass jc = BuildClass(rec, network, stateChanged, known, ni, no, nk);
 			JIndexEntry ix;
 			ix.name = jc.name;
 			ix.kind = jc.isStruct ? "struct" : "class";

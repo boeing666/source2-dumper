@@ -81,6 +81,9 @@ export function ClassDetail({
           <button className="tag cp" title="copy as schema declaration" onClick={copySchema}>⧉ copy as schema</button>
           <button className="tag cp" title="copy field declarations" onClick={copyFields}>⧉ copy fields</button>
           <span className="sinfo sz">sizeof <b>{nv(cls.size, hex)}</b></span>
+          {cls.stateChanged !== undefined && cls.stateChanged >= 0 && (
+            <span className="sinfo nsc" title="NetworkStateChanged vtable index">netstate <b>{cls.stateChanged}</b></span>
+          )}
           {cls.project && <span className="sinfo proj">{cls.project}</span>}
           {!cls.entity && <span className="sinfo emb">embedded</span>}
           {cls.flags.map((f) => <span className="sinfo fl" key={f}>{f}</span>)}

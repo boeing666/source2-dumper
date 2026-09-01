@@ -12,6 +12,7 @@ project(source2_dumper
 
 set(SOURCESDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/sourcesdk" CACHE PATH "Path to Wend4r/sourcesdk")
 set(DYNLIBUTILS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cpp-dynlibutils" CACHE PATH "Path to Wend4r/cpp-dynlibutils")
+set(ZYDIS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/zydis" CACHE PATH "Path to zyantific/zydis")
 
 if(NOT EXISTS "${SOURCESDK_DIR}/CMakeLists.txt")
 	message(FATAL_ERROR "sourcesdk not found at '${SOURCESDK_DIR}'. Pass -DSOURCESDK_DIR=<path> or clone https://github.com/Wend4r/sourcesdk into thirdparty/sourcesdk")
@@ -19,6 +20,10 @@ endif()
 
 if(NOT EXISTS "${DYNLIBUTILS_DIR}/CMakeLists.txt")
 	message(FATAL_ERROR "cpp-dynlibutils not found at '${DYNLIBUTILS_DIR}'. Pass -DDYNLIBUTILS_DIR=<path> or clone https://github.com/Wend4r/cpp-dynlibutils into thirdparty/cpp-dynlibutils")
+endif()
+
+if(NOT EXISTS "${ZYDIS_DIR}/CMakeLists.txt")
+	message(FATAL_ERROR "zydis not found at '${ZYDIS_DIR}'. Pass -DZYDIS_DIR=<path> or clone --recursive https://github.com/zyantific/zydis into thirdparty/zydis")
 endif()
 
 set(SOURCESDK_LINK_STEAMWORKS OFF CACHE BOOL "" FORCE)
@@ -48,6 +53,12 @@ set(SOURCESDK_GAME_TARGET "${_sdk_target}" CACHE STRING "" FORCE)
 add_subdirectory("${SOURCESDK_DIR}" "${CMAKE_BINARY_DIR}/sourcesdk")
 add_subdirectory("${DYNLIBUTILS_DIR}" "${CMAKE_BINARY_DIR}/dynlibutils")
 
+set(ZYDIS_BUILD_SHARED_LIB OFF CACHE BOOL "" FORCE)
+set(ZYDIS_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
+set(ZYDIS_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(ZYDIS_BUILD_DOXYGEN OFF CACHE BOOL "" FORCE)
+add_subdirectory("${ZYDIS_DIR}" "${CMAKE_BINARY_DIR}/zydis")
+
 set(GAME_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/game/${GAME}/game" CACHE PATH "Downloaded game tree root (contains bin/ and <game>/)")
 
 if(WIN32)
@@ -69,6 +80,7 @@ set(SOURCE_FILES
 	src/runtime/appsystem.cpp
 	src/runtime/convars.cpp
 	src/runtime/network_fields.cpp
+	src/runtime/network_state.cpp
 	src/gameevents/gameevents.cpp
 )
 
@@ -106,6 +118,7 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	common
 	cpp-memory_utils
+	Zydis
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

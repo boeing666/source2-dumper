@@ -96,6 +96,7 @@ jobs:
           git clone --recursive --depth 1 --branch "$BR" https://github.com/Wend4r/sourcesdk thirdparty/sourcesdk
           git clone --recursive --depth 1 https://github.com/Wend4r/cpp-dynlibutils thirdparty/cpp-dynlibutils
           git clone --depth 1 --branch v7.9.0 https://github.com/stephenberry/glaze thirdparty/glaze
+          git clone --recursive --depth 1 --branch v4.1.0 https://github.com/zyantific/zydis thirdparty/zydis
 
       - name: Download depot
         shell: bash

@@ -239,6 +239,7 @@ a.ty{text-decoration:none;cursor:pointer} a.ty:hover{text-decoration:underline}
 .sinfo b{font-weight:700;color:var(--num)}
 .sinfo.emb{color:var(--emb)}
 .sinfo.fl{color:var(--fl)}
+.sinfo.nsc{color:var(--emb)}
 .meta{color:var(--meta)}
 /* convars / concommands — single-line rows, aligned columns, flag filter */
 .cvcard{background:var(--panel);border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow);overflow:clip}
