@@ -23,4 +23,7 @@ using ModuleMap = std::unordered_map<std::string, std::unique_ptr<GameModule>>;
 std::string NormalizeModuleName(std::string_view filename);
 ModuleMap LoadGameModules(const std::vector<std::filesystem::path>& dirs);
 
+void SnapshotConsoleOwners(void* cvar, const std::string& module);
+const std::unordered_map<std::string, std::string>& ConsoleOwners();
+
 }

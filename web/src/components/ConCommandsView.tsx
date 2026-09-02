@@ -19,11 +19,12 @@ export function ConCommandsView({ game, platform, q, setQ, flags, toggleFlag }: 
       </div>
       <div className="content">
         <div className="cvcard">
-          <div className="cvhdr cmd"><span>name</span><span>flags</span><span>help</span></div>
+          <div className="cvhdr cmd"><span>name</span><span>lib</span><span>flags</span><span>help</span></div>
           <div className="cvlist">
             {filtered.map((c) => (
               <div className="cvrow cmd" key={c.name}>
                 <span className="cvn" title={c.name}>{c.name}</span>
+                <span className="cvlib" title={c.module && `registered by ${c.module}`}>{c.module}</span>
                 <span className="cvflags">{c.flags.map((f) => <span className="cvflag" key={f} title={f}>{f}</span>)}</span>
                 <span className="cvh" title={c.help}>{c.help}</span>
               </div>

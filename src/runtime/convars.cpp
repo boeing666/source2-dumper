@@ -66,6 +66,13 @@ void CollectConVars(std::vector<ConVarInfo>& convars, std::vector<ConCommandInfo
 		return;
 	}
 
+	const auto& owners = ConsoleOwners();
+
+	const auto ownerOf = [&owners](const char* name) -> std::string {
+		const auto it = owners.find(name);
+		return it != owners.end() ? it->second : std::string{};
+	};
+
 	auto& cvarList = impl->m_ConVarList;
 	for (auto i = cvarList.Head(); i != cvarList.InvalidIndex(); i = cvarList.Next(i)) {
 		ConVarData* d = cvarList.Element(i);
@@ -76,6 +83,7 @@ void CollectConVars(std::vector<ConVarInfo>& convars, std::vector<ConCommandInfo
 		const EConVarType t = d->GetType();
 		ConVarInfo ci;
 		ci.name = d->GetName();
+		ci.module = ownerOf(d->GetName());
 		ci.type = (t > EConVarType_Invalid && t < EConVarType_MAX && d->GetDataTypeName()) ? d->GetDataTypeName() : "";
 		ci.help = d->GetHelpText() ? d->GetHelpText() : "";
 		ci.flagsRaw = d->GetFlags();
@@ -103,6 +111,7 @@ void CollectConVars(std::vector<ConVarInfo>& convars, std::vector<ConCommandInfo
 
 		ConCommandInfo cc;
 		cc.name = d->GetName();
+		cc.module = ownerOf(d->GetName());
 		cc.help = d->GetHelpText() ? d->GetHelpText() : "";
 		cc.flagsRaw = d->GetFlags();
 		cc.flags = DecodeFcvar(cc.flagsRaw);

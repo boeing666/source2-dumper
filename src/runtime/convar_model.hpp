@@ -8,6 +8,7 @@ namespace schema {
 
 struct ConVarInfo {
 	std::string name;
+	std::string module;
 	std::string type;
 	std::string defaultValue;
 	std::string minValue;
@@ -19,6 +20,7 @@ struct ConVarInfo {
 
 struct ConCommandInfo {
 	std::string name;
+	std::string module;
 	std::string help;
 	uint64_t flagsRaw = 0;
 	std::vector<std::string> flags;

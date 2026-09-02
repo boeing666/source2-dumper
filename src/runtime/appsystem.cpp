@@ -184,6 +184,15 @@ const BootEntry kAppSystems[] = {
 
 }
 
+static std::string ModuleOf(const ModuleMap& mods, const char* iface, const void* system) {
+	for (const auto& [name, gm] : mods) {
+		if (gm->func && gm->func(iface, nullptr) == system) {
+			return name;
+		}
+	}
+	return {};
+}
+
 CNetworkSerializerCodeGenDatabase* ConnectAndBuildNetworkDatabase(const ModuleMap& mods) {
 	for (const auto &gm: mods | std::views::values) {
 		if (gm->func) {
@@ -200,7 +209,9 @@ CNetworkSerializerCodeGenDatabase* ConnectAndBuildNetworkDatabase(const ModuleMa
 	CNetworkSerializerCodeGenDatabase* db = nullptr;
 
 	if (IAppSystem* srv = RawFind(SOURCE2SERVER_INTERFACE_VERSION)) {
+		const std::string owner = ModuleOf(mods, SOURCE2SERVER_INTERFACE_VERSION, srv);
 		BootSystem(srv, SOURCE2SERVER_INTERFACE_VERSION, &NetFactory, false);
+		SnapshotConsoleOwners(g_pCVar, owner);
 
 		const CModule* server = &serverIt->second->module;
 		const CEntityInstance* entity = server->GetVirtualTableByName("CBaseEntity").RCast<CEntityInstance*>();
@@ -215,11 +226,14 @@ CNetworkSerializerCodeGenDatabase* ConnectAndBuildNetworkDatabase(const ModuleMa
 	if (g_pCVar) {
 		BootSystem(g_pCVar, CVAR_INTERFACE_VERSION, tier0Factory, true);
 		g_cvarChangeHook.Hook<&ICvar::CallChangeCallback>(g_pCVar, &NoopCvarChangeCallback);
+		SnapshotConsoleOwners(g_pCVar, "tier0");
 	}
 
 	g_pSchemaSystem = static_cast<ISchemaSystem *>(RawFind(SCHEMASYSTEM_INTERFACE_VERSION));
 	if (g_pSchemaSystem) {
+		const std::string owner = ModuleOf(mods, SCHEMASYSTEM_INTERFACE_VERSION, g_pSchemaSystem);
 		BootSystem(g_pSchemaSystem, SCHEMASYSTEM_INTERFACE_VERSION, &CombinedFactory, true);
+		SnapshotConsoleOwners(g_pCVar, owner);
 	}
 
 	for (const auto &[iface, init] : kAppSystems) {
@@ -230,8 +244,13 @@ CNetworkSerializerCodeGenDatabase* ConnectAndBuildNetworkDatabase(const ModuleMa
 		}
 
 		g_factoryMap.emplace_back(iface, p);
+
+		const std::string owner = ModuleOf(mods, iface, p);
 		BootSystem(p, iface, &CombinedFactory, init);
+		SnapshotConsoleOwners(g_pCVar, owner);
 	}
+
+	SnapshotConsoleOwners(g_pCVar, "tier0");
 
 	return db;
 }

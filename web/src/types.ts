@@ -103,6 +103,7 @@ export interface IndexEntry {
 
 export interface ConVar {
   name: string;
+  module: string; // library whose system registered it
   type: string;
   defaultValue: string;
   minValue: string;
@@ -114,6 +115,7 @@ export interface ConVar {
 
 export interface ConCommand {
   name: string;
+  module: string; // library whose system registered it
   help: string;
   flagsRaw: number;
   flags: string[];

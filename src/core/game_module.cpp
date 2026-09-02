@@ -2,6 +2,9 @@
 
 #include <print>
 
+#include <icvar.h>
+#include <tier1/convar.h>
+
 namespace schema {
 namespace fs = std::filesystem;
 using DynLibUtils::CModule;
@@ -11,6 +14,50 @@ static constexpr int kLoadFlags = 0x8;
 #else
 static constexpr int kLoadFlags = 0x2 | 0x100;
 #endif
+
+namespace {
+
+std::unordered_map<std::string, std::string> g_consoleOwners;
+
+std::unique_ptr<GameModule> LoadModule(const fs::path& path) {
+	auto gm = std::make_unique<GameModule>();
+	if (!gm->module.LoadFromPath(path.string(), kLoadFlags)) {
+		std::println(stderr, "warning: could not load {} ({})", path.filename().string(), gm->module.GetLastError());
+		return nullptr;
+	}
+
+	gm->func = gm->module.GetFunctionByName("CreateInterface").RCast<CreateInterfaceFn>();
+	return gm;
+}
+
+}
+
+void SnapshotConsoleOwners(void* cvar, const std::string& module) {
+	auto* impl = static_cast<CCvar*>(cvar);
+	if (!impl) {
+		return;
+	}
+
+	auto& cvars = impl->m_ConVarList;
+	for (auto i = cvars.Head(); i != cvars.InvalidIndex(); i = cvars.Next(i)) {
+		const ConVarData* d = cvars.Element(i);
+		if (d && d->GetName()) {
+			g_consoleOwners.try_emplace(d->GetName(), module);
+		}
+	}
+
+	auto& commands = impl->m_ConCommandList;
+	for (auto i = commands.Head(); i != commands.InvalidIndex(); i = commands.Next(i)) {
+		const ConCommandData& d = commands.Element(i);
+		if (d.GetName()) {
+			g_consoleOwners.try_emplace(d.GetName(), module);
+		}
+	}
+}
+
+const std::unordered_map<std::string, std::string>& ConsoleOwners() {
+	return g_consoleOwners;
+}
 
 std::string NormalizeModuleName(std::string_view filename) {
 	std::string_view n = filename;
@@ -37,16 +84,12 @@ ModuleMap LoadGameModules(const std::vector<fs::path>& dirs) {
 				continue;
 			}
 
-			auto gm = std::make_unique<GameModule>();
-			if (!gm->module.LoadFromPath(entry.path().string(), kLoadFlags)) {
-				std::println(stderr, "warning: could not load {} ({})",
-				             entry.path().filename().string(), gm->module.GetLastError());
-				continue;
+			if (auto gm = LoadModule(entry.path())) {
+				mods.emplace(NormalizeModuleName(entry.path().filename().string()), std::move(gm));
 			}
-			gm->func = gm->module.GetFunctionByName("CreateInterface").RCast<CreateInterfaceFn>();
-			mods.emplace(NormalizeModuleName(entry.path().filename().string()), std::move(gm));
 		}
 	}
+
 	return mods;
 }
 
