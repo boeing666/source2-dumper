@@ -242,8 +242,6 @@ citadel_record_hero_animgraph | gamedll,cheat | Record the animgraph for a speci
 citadel_reload_rank_data | developmentonly,clientdll,defensive | Request rank confidence score from GC.
 citadel_render_minimap | clientdll,release | Render the minimap
 citadel_replay_toggle_pause | clientdll,release | Toggle a replay being paused
-citadel_require_in_playtest_clear | developmentonly,clientdll | Clears that we need to be in the next playtest
-citadel_require_in_playtest_set | developmentonly,clientdll | Indicates that we need to be in the next playtest
 citadel_reset_new_player | clientdll,release | Resets the new player experience back to the initial state
 citadel_reset_survey_responses | developmentonly,clientdll | Clears out all survey questions from this account and resets the state
 citadel_set_mmr | developmentonly,clientdll | <Account ID> <MMR> Sets the MMR of the specified account
@@ -722,6 +720,7 @@ memory | developmentonly,defensive | Print memory stats.
 memory_check_limit | developmentonly | Assert if peak memory use is over the limit.
 minimap_zoom_in | clientdll,release | Ping button pressed
 minimap_zoom_out | clientdll,release | Ping button released
+mmpri | developmentonly,clientdll | <Clear|Hero> [target account ID] Indicates that you want to be prioritized in matchmaking with optionally a specific hero. Clear will clear your status
 mod_status | clientdll,release | <Account ID>
 model_dump_convert_info | linked_concommand,developmentonly,gamedll,clientdll,defensive | Print model load-time conversion info
 modifier_broadcast_event | developmentonly,gamedll | Debug broadcasts an event will all empty fields

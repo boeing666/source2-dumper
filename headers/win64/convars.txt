@@ -728,6 +728,7 @@ citadel_draw_trooper_lanes | developmentonly,gamedll,defensive |
 citadel_druid_debug_bush_network | developmentonly,gamedll,clientdll,replicated | 
 citadel_duck_spam_slow_penalty_duration | developmentonly,gamedll,clientdll,replicated,defensive | How long the slow penalty is for spamming duck is
 citadel_dump_keybindings | developmentonly,clientdll,defensive | 
+citadel_enable_chat_rate_limiting | developmentonly,gamedll | 
 citadel_enable_double_ping | developmentonly,clientdll | Turns off the ability to have aggressive and passive pings.
 citadel_enable_new_ping_particle | developmentonly,clientdll | Convar to test new ping particle
 citadel_enable_parties | developmentonly,clientdll,defensive | Enable client side party UI
@@ -3078,7 +3079,6 @@ r_max_portal_render_targets | developmentonly,clientdll,defensive |
 r_mixed_shadows_fade_in_time | developmentonly,gamedll,clientdll,replicated,defensive | 
 r_mixed_shadows_fade_out_time | developmentonly,gamedll,clientdll,replicated,defensive | 
 r_monitor_3dskybox | developmentonly,clientdll,defensive | 
-r_multiscattering | developmentonly,clientdll | 
 r_muzzleflashbrightness | clientdll,replicated,cheat | 
 r_muzzleflashlinear | clientdll,replicated,cheat | 
 r_nearz | clientdll,cheat | Override the near clipping plane. -1 means use the default.

@@ -1,10 +1,11 @@
 #pragma once
 
-class CRankedSeasonIntervalDefinition  // sizeof 0xC, align 0x4 [trivial_dtor] (client) {MGetKV3ClassDefaults}
+class CRankedSeasonIntervalDefinition  // sizeof 0x10, align 0x4 [trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
 public:
     RankInterval_t m_unInterval; // offset 0x0, size 0x1, align 255
     char _pad_0001[0x3]; // offset 0x1
     uint32 m_rtIntervalStartTimestamp; // offset 0x4, size 0x4, align 4
     uint32 m_rtIntervalEndTimestamp; // offset 0x8, size 0x4, align 4
+    LeaderboardID_t m_unLeaderboardID; // offset 0xC, size 0x4, align 255
 };
