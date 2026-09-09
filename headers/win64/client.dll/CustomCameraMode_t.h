@@ -1,0 +1,9 @@
+#pragma once
+
+enum CustomCameraMode_t : uint8_t  // sizeof 0x1
+{
+    CUSTOM_CAMERA_MODE_DISABLED = 0,
+    CUSTOM_CAMERA_MODE_CONTROLLED = 1,
+    CUSTOM_CAMERA_MODE_CONTROLLED_POSITION = 2,
+    CUSTOM_CAMERA_MODE_FOLLOW_POSITION = 3,
+};

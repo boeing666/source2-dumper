@@ -313,6 +313,8 @@ cl_debug_overlays_broadcast | release | Render debug overlays from server.
 cl_debug_precipitation_surface_graph | clientdll,replicated,cheat | When true, use the surface graph to pass in positions for rainfall. 
 cl_debug_round_stat_submission | developmentonly,clientdll | 
 cl_debugviewangle | developmentonly,clientdll | Plots view angles yaw at various stages of the frame/tick in Tracy.
+cl_decryptdata_key | release | Key to decrypt encrypted GOTV messages
+cl_decryptdata_key_pub | release | Key to decrypt public encrypted GOTV messages
 cl_demo_predict | clientdll,release | Enable 'TrueView' when watching a demo, which attempts to recreate the client's experience more accurately.  0=disable, 1=only if demo version match, 2=always
 cl_demo_steadycam_blendframes | developmentonly,clientdll,defensive | blend over this many frames
 cl_demo_steadycam_deflection | developmentonly,clientdll,defensive | if camera orientation changes this much update orientation
@@ -2991,6 +2993,8 @@ tv_enable | release | Activates SourceTV on server.
 tv_enable1 | release | Activates SourceTV[1] on server.
 tv_enable_delta_frames | release | Indicates whether or not the tv should use delta frames for storage of intermediate frames. This takes more CPU but significantly less memory.
 tv_enable_dynamic | release | When enabled, changes in tv_enable convars cause immediate startup or shutdown of hltv server
+tv_encryptdata_key | release | When set to a valid key communication messages will be encrypted for GOTV
+tv_encryptdata_key_pub | release | When set to a valid key public communication messages will be encrypted for GOTV
 tv_extended_logging | developmentonly,defensive | 
 tv_grouprelaydatareliable | developmentonly,defensive | When enabled, this will collect all information for relay sending into a single datagram to ensure that the data stays together through a potentially large number of relays
 tv_grouprelaydataunreliable | developmentonly,defensive | When enabled, this will collect all information for relay sending into a single datagram to ensure that the data stays together through a potentially large number of relays
@@ -3030,10 +3034,10 @@ tv_relay_rate | developmentonly,defensive | default rate for relays
 tv_relay_secret_code | developmentonly,defensive | When enabled, this will use a uniquely generated server code to authenticate relay to relay connections. This code is coordinated via the GC or some external means rather than by clients directly
 tv_relaypassword | protected,dontrecord,release | SourceTV password for relay proxies
 tv_relayradio | gamedll,release | Relay team radio commands to TV: 0=off, 1=on
+tv_relaytextchat | gamedll,release | Relay text chat data to GOTV: 0=off, 1=say, 2=say+say_team
 tv_relayvoice | release | Relay voice data: 0=off, 1=on
 tv_secret_code | developmentonly,defensive | When enabled, this will use a uniquely generated server code to authenticate relay connections. This code is coordinated via the GC or some external means rather than by clients directly
 tv_secure_bypass | release | Bypass secure challenge on TV port
-tv_show_allchat | gamedll,release | 
 tv_spectator_port_offset | clientdll,release | 
 tv_threaded_merge_entity_deltas | developmentonly,defensive | Enable SourceTV threading of delta merging
 tv_timeout | release | SourceTV connection timeout in seconds.
