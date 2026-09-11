@@ -879,6 +879,7 @@ r_viewport | developmentonly,defensive | Slams viewport size to a specified valu
 ragdoll_cleanup_all | linked_concommand,gamedll,clientdll,cheat | Cleans up all ragdolls.
 rangefinder | gamedll,cheat | Measures distance along a ray
 rangefinder2d | gamedll,cheat | Measures distance along a ray, only measuring along XY plane.
+ranked_set_active_season | developmentonly,clientdll,cheat | <interval> Sets the override of the currently active ranked season to be the specified interval
 ray_bench | developmentonly,gamedll,defensive | Load the rays and run the benchmark
 rcon | dontrecord,release | Issue an rcon command.
 record | cheat,dontrecord,release | Record a demo.
