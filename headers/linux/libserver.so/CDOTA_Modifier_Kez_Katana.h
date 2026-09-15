@@ -7,7 +7,7 @@ public:
     int32 katana_attack_range; // offset 0x1A78, size 0x4, align 4
     float32 katana_base_attack_time; // offset 0x1A7C, size 0x4, align 4
     int32 katana_agility_bonus_base_damage; // offset 0x1A80, size 0x4, align 4
-    int32 katana_bleed_attack_damage_pct; // offset 0x1A84, size 0x4, align 4
+    float32 katana_bleed_attack_damage_pct; // offset 0x1A84, size 0x4, align 4
     int32 katana_base_ms; // offset 0x1A88, size 0x4, align 4
     float32 katana_bleed_duration; // offset 0x1A8C, size 0x4, align 4
     int32 katana_swap_bonus_damage; // offset 0x1A90, size 0x4, align 4
