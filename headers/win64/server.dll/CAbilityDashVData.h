@@ -1,6 +1,6 @@
 #pragma once
 
-class CAbilityDashVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1C40, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CAbilityDashVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1C58, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x1818]; // offset 0x0
@@ -26,5 +26,11 @@ public:
     float32 m_flPostMaxDrag; // offset 0x1C24, size 0x4, align 4
     float32 m_flPostDragDuration; // offset 0x1C28, size 0x4, align 4
     float32 m_flDownwardAirDashSpeed; // offset 0x1C2C, size 0x4, align 4
-    CSoundEventName m_strAirDashSound; // offset 0x1C30, size 0x10, align 8
+    float32 m_flParryCancelSpeedScale; // offset 0x1C30, size 0x4, align 4 | MPropertyDescription
+    float32 m_flParryCancelSlideDuration; // offset 0x1C34, size 0x4, align 4 | MPropertyDescription
+    float32 m_flParryCancelSlideFrictionPercent; // offset 0x1C38, size 0x4, align 4 | MPropertyDescription
+    float32 m_flParryCancelAirGlideDuration; // offset 0x1C3C, size 0x4, align 4 | MPropertyDescription
+    float32 m_flParryCancelAirGravityScale; // offset 0x1C40, size 0x4, align 4 | MPropertyDescription
+    char _pad_1C44[0x4]; // offset 0x1C44
+    CSoundEventName m_strAirDashSound; // offset 0x1C48, size 0x10, align 8
 };

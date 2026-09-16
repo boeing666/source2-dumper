@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_KothCashInVData : public CCitadel_MultiCapturePointVData /*0x0*/  // sizeof 0x848, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_KothCashInVData : public CCitadel_MultiCapturePointVData /*0x0*/  // sizeof 0x840, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x4A8]; // offset 0x0
@@ -20,16 +20,14 @@ public:
     CSoundEventName m_strKothGivingUpWarningLoopSound; // offset 0x7E8, size 0x10, align 8
     CSoundEventName m_strKothContestedLoopSound; // offset 0x7F8, size 0x10, align 8
     CSoundEventName m_strKothCaptureStartAnnounce; // offset 0x808, size 0x10, align 8
-    int32 m_iComebackBounty; // offset 0x818, size 0x4, align 4 | MPropertyStartGroup
-    float32 m_flZoneHeightMeters; // offset 0x81C, size 0x4, align 4
-    float32 m_flTotalTimeToCaptureFavored; // offset 0x820, size 0x4, align 4
-    float32 m_flTotalTimeToCaptureUnfavored; // offset 0x824, size 0x4, align 4
-    float32 m_flTimeToGiveUp; // offset 0x828, size 0x4, align 4
-    float32 m_flTimeToWarnAboutGivingUp; // offset 0x82C, size 0x4, align 4
-    int32 m_nGiveUpOrbs; // offset 0x830, size 0x4, align 4
-    float32 m_flTroopersMin; // offset 0x834, size 0x4, align 4
-    float32 m_flTroopersMax; // offset 0x838, size 0x4, align 4
-    float32 m_flTroopersSpawnRate; // offset 0x83C, size 0x4, align 4
-    float32 m_flDelayedDelete; // offset 0x840, size 0x4, align 4
-    char _pad_0844[0x4]; // offset 0x844
+    float32 m_flZoneHeightMeters; // offset 0x818, size 0x4, align 4 | MPropertyStartGroup
+    float32 m_flTotalTimeToCaptureFavored; // offset 0x81C, size 0x4, align 4
+    float32 m_flTotalTimeToCaptureUnfavored; // offset 0x820, size 0x4, align 4
+    float32 m_flTimeToGiveUp; // offset 0x824, size 0x4, align 4
+    float32 m_flTimeToWarnAboutGivingUp; // offset 0x828, size 0x4, align 4
+    int32 m_nGiveUpOrbs; // offset 0x82C, size 0x4, align 4
+    float32 m_flTroopersMin; // offset 0x830, size 0x4, align 4
+    float32 m_flTroopersMax; // offset 0x834, size 0x4, align 4
+    float32 m_flTroopersSpawnRate; // offset 0x838, size 0x4, align 4
+    float32 m_flDelayedDelete; // offset 0x83C, size 0x4, align 4
 };

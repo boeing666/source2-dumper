@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelGameRules : public CTeamplayRules /*0x0*/  // sizeof 0x2BA8, align 0xFF [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CCitadelGameRules : public CTeamplayRules /*0x0*/  // sizeof 0x2BC8, align 0xFF [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
 {
 public:
     char _pad_0000[0xE0]; // offset 0x0
@@ -74,50 +74,50 @@ public:
     char _pad_05F0[0x1248]; // offset 0x5F0
     CountdownTimer m_CheckIdleTimer; // offset 0x1838, size 0x18, align 255
     CountdownTimer m_CheckCheatersTimer; // offset 0x1850, size 0x18, align 255
-    char _pad_1868[0x130]; // offset 0x1868
-    GameTime_t m_flTimeScaleStart; // offset 0x1998, size 0x4, align 255
-    GameTime_t m_flTimeScaleEndTime; // offset 0x199C, size 0x4, align 255
-    GameTime_t m_flTimeScaleRampInEndTime; // offset 0x19A0, size 0x4, align 255
-    GameTime_t m_flTimeScaleRampOutStartTime; // offset 0x19A4, size 0x4, align 255
-    float32 m_flTimeScaleRampInTime; // offset 0x19A8, size 0x4, align 4
-    float32 m_flTimeScaleDuration; // offset 0x19AC, size 0x4, align 4
-    float32 m_flTimeScaleRampOutTime; // offset 0x19B0, size 0x4, align 4
-    float32 m_flTimeScale; // offset 0x19B4, size 0x4, align 4
-    float32 m_flOriginalTimeScale; // offset 0x19B8, size 0x4, align 4
-    bool m_bTimeScaleActive; // offset 0x19BC, size 0x1, align 1
-    char _pad_19BD[0x3]; // offset 0x19BD
-    int32 m_iMidbossKillCount; // offset 0x19C0, size 0x4, align 4 | MNetworkEnable
-    int32 m_iAmberRejuvCount; // offset 0x19C4, size 0x4, align 4 | MNetworkEnable
-    int32 m_iSapphireRejuvCount; // offset 0x19C8, size 0x4, align 4 | MNetworkEnable
-    float32 m_tNextMidBossSpawnTime; // offset 0x19CC, size 0x4, align 4 | MNetworkEnable
-    char _pad_19D0[0xFC0]; // offset 0x19D0
-    bool m_bServerPaused; // offset 0x2990, size 0x1, align 1 | MNetworkEnable
-    char _pad_2991[0x3]; // offset 0x2991
-    int32 m_iPauseTeam; // offset 0x2994, size 0x4, align 4 | MNetworkEnable
-    int32 m_nMatchClockUpdateTick; // offset 0x2998, size 0x4, align 4 | MNetworkEnable
-    float32 m_flMatchClockAtLastUpdate; // offset 0x299C, size 0x4, align 4 | MNetworkEnable
-    float64 m_flPauseTime; // offset 0x29A0, size 0x8, align 8
-    CPlayerSlot m_pausingPlayerId; // offset 0x29A8, size 0x4, align 4
-    CPlayerSlot m_unpausingPlayerId; // offset 0x29AC, size 0x4, align 4
-    float32 m_fPauseRawTime; // offset 0x29B0, size 0x4, align 4
-    float32 m_fPauseCurTime; // offset 0x29B4, size 0x4, align 4
-    float32 m_fUnpauseRawTime; // offset 0x29B8, size 0x4, align 4 | MNetworkEnable
-    float32 m_fUnpauseCurTime; // offset 0x29BC, size 0x4, align 4
-    char _pad_29C0[0x50]; // offset 0x29C0
-    int32 m_nLastPreGameCount; // offset 0x2A10, size 0x4, align 4
-    int32 m_eGGTeam; // offset 0x2A14, size 0x4, align 4 | MNetworkEnable
-    GameTime_t m_flGGEndsAtTime; // offset 0x2A18, size 0x4, align 255 | MNetworkEnable
-    char _pad_2A1C[0x4]; // offset 0x2A1C
-    MatchID_t m_unMatchID; // offset 0x2A20, size 0x8, align 255 | MNetworkEnable
-    CUtlString m_sGameplayExperiment; // offset 0x2A28, size 0x8, align 8 | MNetworkEnable
-    uint32 m_ExperimentTokenHashCode; // offset 0x2A30, size 0x4, align 4 | MNetworkEnable
-    int32 m_nPlayerDeathEventID; // offset 0x2A34, size 0x4, align 4
-    int32 m_nReplayChangedEvent; // offset 0x2A38, size 0x4, align 4
-    int32 m_nGameOverEvent; // offset 0x2A3C, size 0x4, align 4
-    char _pad_2A40[0x20]; // offset 0x2A40
-    GameTime_t m_flHeroDiedTime; // offset 0x2A60, size 0x4, align 255 | MNetworkEnable
-    char _pad_2A64[0x4]; // offset 0x2A64
-    CCitadelPlayOfTheGame* m_pPlayOfTheGame; // offset 0x2A68, size 0x8, align 8 | MNetworkEnable
-    CStreetBrawlController m_tStreetBrawl; // offset 0x2A70, size 0x130, align 255 | MNetworkEnable
-    char _pad_2BA0[0x8]; // offset 0x2BA0
+    char _pad_1868[0x150]; // offset 0x1868
+    GameTime_t m_flTimeScaleStart; // offset 0x19B8, size 0x4, align 255
+    GameTime_t m_flTimeScaleEndTime; // offset 0x19BC, size 0x4, align 255
+    GameTime_t m_flTimeScaleRampInEndTime; // offset 0x19C0, size 0x4, align 255
+    GameTime_t m_flTimeScaleRampOutStartTime; // offset 0x19C4, size 0x4, align 255
+    float32 m_flTimeScaleRampInTime; // offset 0x19C8, size 0x4, align 4
+    float32 m_flTimeScaleDuration; // offset 0x19CC, size 0x4, align 4
+    float32 m_flTimeScaleRampOutTime; // offset 0x19D0, size 0x4, align 4
+    float32 m_flTimeScale; // offset 0x19D4, size 0x4, align 4
+    float32 m_flOriginalTimeScale; // offset 0x19D8, size 0x4, align 4
+    bool m_bTimeScaleActive; // offset 0x19DC, size 0x1, align 1
+    char _pad_19DD[0x3]; // offset 0x19DD
+    int32 m_iMidbossKillCount; // offset 0x19E0, size 0x4, align 4 | MNetworkEnable
+    int32 m_iAmberRejuvCount; // offset 0x19E4, size 0x4, align 4 | MNetworkEnable
+    int32 m_iSapphireRejuvCount; // offset 0x19E8, size 0x4, align 4 | MNetworkEnable
+    float32 m_tNextMidBossSpawnTime; // offset 0x19EC, size 0x4, align 4 | MNetworkEnable
+    char _pad_19F0[0xFC0]; // offset 0x19F0
+    bool m_bServerPaused; // offset 0x29B0, size 0x1, align 1 | MNetworkEnable
+    char _pad_29B1[0x3]; // offset 0x29B1
+    int32 m_iPauseTeam; // offset 0x29B4, size 0x4, align 4 | MNetworkEnable
+    int32 m_nMatchClockUpdateTick; // offset 0x29B8, size 0x4, align 4 | MNetworkEnable
+    float32 m_flMatchClockAtLastUpdate; // offset 0x29BC, size 0x4, align 4 | MNetworkEnable
+    float64 m_flPauseTime; // offset 0x29C0, size 0x8, align 8
+    CPlayerSlot m_pausingPlayerId; // offset 0x29C8, size 0x4, align 4
+    CPlayerSlot m_unpausingPlayerId; // offset 0x29CC, size 0x4, align 4
+    float32 m_fPauseRawTime; // offset 0x29D0, size 0x4, align 4
+    float32 m_fPauseCurTime; // offset 0x29D4, size 0x4, align 4
+    float32 m_fUnpauseRawTime; // offset 0x29D8, size 0x4, align 4 | MNetworkEnable
+    float32 m_fUnpauseCurTime; // offset 0x29DC, size 0x4, align 4
+    char _pad_29E0[0x50]; // offset 0x29E0
+    int32 m_nLastPreGameCount; // offset 0x2A30, size 0x4, align 4
+    int32 m_eGGTeam; // offset 0x2A34, size 0x4, align 4 | MNetworkEnable
+    GameTime_t m_flGGEndsAtTime; // offset 0x2A38, size 0x4, align 255 | MNetworkEnable
+    char _pad_2A3C[0x4]; // offset 0x2A3C
+    MatchID_t m_unMatchID; // offset 0x2A40, size 0x8, align 255 | MNetworkEnable
+    CUtlString m_sGameplayExperiment; // offset 0x2A48, size 0x8, align 8 | MNetworkEnable
+    uint32 m_ExperimentTokenHashCode; // offset 0x2A50, size 0x4, align 4 | MNetworkEnable
+    int32 m_nPlayerDeathEventID; // offset 0x2A54, size 0x4, align 4
+    int32 m_nReplayChangedEvent; // offset 0x2A58, size 0x4, align 4
+    int32 m_nGameOverEvent; // offset 0x2A5C, size 0x4, align 4
+    char _pad_2A60[0x20]; // offset 0x2A60
+    GameTime_t m_flHeroDiedTime; // offset 0x2A80, size 0x4, align 255 | MNetworkEnable
+    char _pad_2A84[0x4]; // offset 0x2A84
+    CCitadelPlayOfTheGame* m_pPlayOfTheGame; // offset 0x2A88, size 0x8, align 8 | MNetworkEnable
+    CStreetBrawlController m_tStreetBrawl; // offset 0x2A90, size 0x130, align 255 | MNetworkEnable
+    char _pad_2BC0[0x8]; // offset 0x2BC0
 };

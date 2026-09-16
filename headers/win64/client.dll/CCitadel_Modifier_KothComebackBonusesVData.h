@@ -4,8 +4,8 @@ class CCitadel_Modifier_KothComebackBonusesVData : public CCitadelModifierVData 
 {
 public:
     char _pad_0000[0x750]; // offset 0x0
-    float32 m_flTechResist; // offset 0x750, size 0x4, align 4
-    float32 m_flBulletResist; // offset 0x754, size 0x4, align 4
-    float32 m_flStatusResist; // offset 0x758, size 0x4, align 4
+    float32 m_flResistMaxAtStart; // offset 0x750, size 0x4, align 4
+    float32 m_flResistMaxPerMinute; // offset 0x754, size 0x4, align 4
+    float32 m_flResistMaxCap; // offset 0x758, size 0x4, align 4
     char _pad_075C[0x4]; // offset 0x75C
 };

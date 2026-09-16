@@ -570,6 +570,7 @@ citadel_clamp_mouse_when_using_ping_wheel | developmentonly,clientdll |
 citadel_client_mm_ignore_engine_version | developmentonly,clientdll | Ignore the engine version number for matchmaking. Useful for testing locally in release.
 citadel_client_solo_mm_keep_alive_check_s | developmentonly,clientdll,defensive | Number of seconds between checking to make sure that the client is still in MM
 citadel_client_status_cycle_delay | developmentonly,clientdll | 
+citadel_comeback_redirect_fraction | developmentonly,gamedll,defensive | Fraction of the comeback souls earned by a player above the enemy team's average net worth that is redirected to the tick gold pool for the two lowest net worth teammates
 citadel_commend_toast_enemy_seconds | developmentonly,clientdll | Number of seconds to show enemy commend toasts
 citadel_commend_toast_seconds | developmentonly,clientdll | Number of seconds to show commend toasts
 citadel_commend_use_toasts | clientdll,release | Whether to use commend toasts (older) or the custom commend notification (newer)
@@ -733,6 +734,7 @@ citadel_enable_double_ping | developmentonly,clientdll | Turns off the ability t
 citadel_enable_new_ping_particle | developmentonly,clientdll | Convar to test new ping particle
 citadel_enable_parties | developmentonly,clientdll,defensive | Enable client side party UI
 citadel_enable_ping_rate_limiting | developmentonly,gamedll | 
+citadel_enable_slows_affect_air_drag | gamedll,clientdll,replicated,cheat,release | Whether slows affect air drag
 citadel_enable_survey | developmentonly,clientdll | Kill switch in case we want to make sure the survey isn't shown, or temporarily disable it
 citadel_enable_vdata_sound_preload | developmentonly,clientdll | 
 citadel_end_of_match_additional_delay_s | developmentonly,gamedll,replicated | How long in addition to the tv_delay do we wait at the end of the match before going to the score screen in seconds
@@ -1392,6 +1394,7 @@ citadel_skip_client_ping_caluclation_in_dev_universe | developmentonly,clientdll
 citadel_slide_debug | developmentonly,gamedll,clientdll,replicated | 
 citadel_slide_delay | developmentonly,gamedll,clientdll,replicated,defensive | 
 citadel_slide_one_button_falling_max_lookahead_distance | developmentonly,gamedll,clientdll,replicated,defensive | 
+citadel_slow_air_drag_penalty_scale | gamedll,clientdll,replicated,cheat | Fraction of an active movement slow that is also applied as additional air drag
 citadel_snowball_level_override | gamedll,cheat,release,client_can_execute | Change the snowball level
 citadel_solo_bot_match | gamedll,clientdll,replicated,release | 
 citadel_spawn_combine_only | developmentonly,gamedll | Only spawn creeps on one team
@@ -1451,6 +1454,7 @@ citadel_tether_pull_speed | gamedll,clientdll,replicated,cheat |
 citadel_tether_pull_speed_scale_per_meter | gamedll,clientdll,replicated,cheat | 
 citadel_text_chat_enabled | developmentonly,gamedll,clientdll,replicated | 
 citadel_throwsand_projectile_show_debug | developmentonly,gamedll,clientdll,replicated | 
+citadel_tick_gold_comeback_redirect_payout | developmentonly,gamedll,defensive | Fraction of the redirected comeback souls pool paid out to the two lowest net worth players each period
 citadel_tick_gold_payout_for_lowest | developmentonly,gamedll,defensive | 
 citadel_tick_gold_payout_for_second_lowest | developmentonly,gamedll,defensive | 
 citadel_tick_gold_period_duration_s | developmentonly,gamedll,defensive | Duration of a period of accumulated tick gold. Larger values will result in longer between a team getting gold and a player getting the benefit.

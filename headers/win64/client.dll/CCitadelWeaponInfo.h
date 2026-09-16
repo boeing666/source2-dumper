@@ -9,8 +9,9 @@ public:
     int32 m_iBullets; // offset 0x10, size 0x4, align 4 | MPropertyDescription
     int32 m_iSplitShotsMax; // offset 0x14, size 0x4, align 4 | MPropertyDescription
     float32 m_flSplitShotAngles; // offset 0x18, size 0x4, align 4 | MPropertyDescription
-    bool m_bHitOnceAcrossAllBullets; // offset 0x1C, size 0x1, align 1 | MPropertyDescription
-    char _pad_001D[0x3]; // offset 0x1D
+    bool m_bExpressShotDisabled; // offset 0x1C, size 0x1, align 1 | MPropertyDescription
+    bool m_bHitOnceAcrossAllBullets; // offset 0x1D, size 0x1, align 1 | MPropertyDescription
+    char _pad_001E[0x2]; // offset 0x1E
     int32 m_iBulletsToFullyClaimOrb; // offset 0x20, size 0x4, align 4 | MPropertyDescription
     float32 m_flExplosionRadius; // offset 0x24, size 0x4, align 4 | MPropertyDescription
     float32 m_flExplosionDamageScaleAtMaxRadius; // offset 0x28, size 0x4, align 4 | MPropertyDescription MPropertySuppressExpr MPropertyAttributeRange

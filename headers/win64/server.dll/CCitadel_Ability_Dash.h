@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_Dash : public CCitadelBaseAbility /*0x0*/  // sizeof 0xFA0, align 0x8 [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CCitadel_Ability_Dash : public CCitadelBaseAbility /*0x0*/  // sizeof 0xFA8, align 0x8 [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
 {
 public:
     char _pad_0000[0xF70]; // offset 0x0
@@ -13,9 +13,11 @@ public:
     GameTime_t m_flAirDashCastTime; // offset 0xF84, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
     Vector m_flAirDashStartPos; // offset 0xF88, size 0xC, align 4 | MNetworkEnable MNetworkUserGroup
     GameTime_t m_flAirDashDragStartTime; // offset 0xF94, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    int8 m_nConsecutiveAirDashes; // offset 0xF98, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    int8 m_nConsecutiveDownDashes; // offset 0xF99, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bDownAirDash; // offset 0xF9A, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_0F9B[0x1]; // offset 0xF9B
-    GameTime_t m_flAirDashDelayedEffectsTime; // offset 0xF9C, size 0x4, align 255
+    GameTime_t m_flParryCancelSlideEndTime; // offset 0xF98, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
+    GameTime_t m_flParryCancelAirGlideStartTime; // offset 0xF9C, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
+    int8 m_nConsecutiveAirDashes; // offset 0xFA0, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    int8 m_nConsecutiveDownDashes; // offset 0xFA1, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    bool m_bDownAirDash; // offset 0xFA2, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
+    char _pad_0FA3[0x1]; // offset 0xFA3
+    GameTime_t m_flAirDashDelayedEffectsTime; // offset 0xFA4, size 0x4, align 255
 };
