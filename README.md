@@ -1,5 +1,5 @@
 Source2 schema dump — dota2
 
-PatchVersion: 6933
-Manifest: 7165a8291130
+PatchVersion: 6934
+Manifest: 8398d126548d
 One .h per class, grouped by platform/module (+ convars.txt / concommands.txt). Diff commits to see schema changes.
