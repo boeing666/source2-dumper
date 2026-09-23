@@ -270,7 +270,7 @@ cl_clutch_mode | clientdll,release | Silence voice and other distracting sounds 
 cl_color | clientdll | Preferred teammate color
 cl_connectionretrytime_p2p | release | Number of seconds over which to spread retry attempts for P2P.
 cl_cq_min_queue |  | Used by the client to inform the server of their desired queue length.  Derived from cl_tickpacket_recvmargin_desired and cl_tickpacket_desired_queuelength
-cl_crosshair_drawoutline | clientdll,per_user | Draw a black outline around the crosshair for better visibility
+cl_crosshair_drawoutline | clientdll,per_user | Draw a black outline around the crosshair for better visibility. 0 = No outline, 1 = Full outline, 2 = Half outline
 cl_crosshair_dynamic_maxdist_splitratio | clientdll,per_user | Style 2 only: how the bar length is divided between inner and outer bars once split. inner = cl_crosshairsize * (1 - ratio), outer = cl_crosshairsize * ratio. [0 - 1]
 cl_crosshair_dynamic_splitalpha_innermod | clientdll,per_user | Style 2 only: alpha multiplier for the INNER crosshair bars once they have split. [0 - 1]
 cl_crosshair_dynamic_splitalpha_outermod | clientdll,per_user | Style 2 only: alpha multiplier for the OUTER crosshair bars once they have split. [0.3 - 1]
@@ -291,7 +291,7 @@ cl_crosshaircolor_g | clientdll,per_user | Crosshair color, green component
 cl_crosshaircolor_r | clientdll,per_user | Crosshair color, red component
 cl_crosshairdot | clientdll,per_user | Draw a dot at the center of the crosshair
 cl_crosshairsize | clientdll,hidden,per_user | 
-cl_crosshairstyle | clientdll,per_user | Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
+cl_crosshairstyle | clientdll,per_user | Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad, 8 = Static Square. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
 cl_crosshairthickness | clientdll,hidden,per_user | 
 cl_csgo_shoot_debugvis_rdp_text_l | developmentonly,clientdll | 
 cl_csgo_shoot_debugvis_rdp_text_x | developmentonly,clientdll | 
