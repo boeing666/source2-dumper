@@ -1,59 +1,21 @@
 #include "runtime/pulse_io.hpp"
 
-#include <optional>
+#include <algorithm>
 #include <print>
 #include <string_view>
+#include <tuple>
 
-#include <glaze/glaze.hpp>
-#include <glaze/containers/ordered_map.hpp>
-
-#include <tier0/keyvalues3.h>
-#include <tier0/utlstring.h>
+#include <tier1/keyvalues3.h>
 
 namespace schema {
 
-namespace pulse_meta {
-
-// Subset of the server's module metadata (ExtractModuleMetadata), the data Valve's tools read.
-// Entity I/O moved out of the datamap into Pulse API bindings; each binding is keyed "Class_API::Name",
-// outputs "OUTPUT!Class_API::Name".
-struct MetaParam {
-	std::string type;
-};
-
-struct MetaFlow {
-	std::string name;
-};
-
-struct MetaData {
-	bool is_pulse_target_method = false;
-	bool is_pulse_target_output = false;
-	std::optional<glz::ordered_map<std::string, MetaParam>> pulse_inparams; // null when there are none
-	std::optional<glz::ordered_map<std::string, MetaParam>> pulse_outparams;
-	std::optional<std::vector<MetaFlow>> pulse_inflows;
-};
-
-struct MetaBinding {
-	std::optional<MetaData> m_MetaData;
-};
-
-struct MetaGamedata {
-	std::unordered_map<std::string, MetaBinding> m_Classes;
-};
-
-struct MetaPulseBindings {
-	MetaGamedata gamedata;
-};
-
-struct ModuleMetadata {
-	MetaPulseBindings pulse_bindings;
-};
-
-}
-
 namespace {
 
-using namespace pulse_meta;
+// Read from the server's module metadata (ExtractModuleMetadata), the data Valve's tools read:
+//   pulse_bindings.gamedata.m_Classes["Class_API::Name"]          -> binding (input candidate)
+//   pulse_bindings.gamedata.m_Classes["OUTPUT!Class_API::Name"]   -> output
+// each with m_MetaData { is_pulse_target_method, is_pulse_target_output, pulse_inparams, pulse_outparams, pulse_inflows }.
+// Walked through KeyValues3 directly: tier0's JSON writer crashes on this tree on some builds (deadlock 6637).
 
 constexpr std::string_view kOutputPrefix = "OUTPUT!";
 constexpr std::string_view kTargetArg = "_Target"; // implicit entity the binding is called on
@@ -81,16 +43,21 @@ std::string ValueType(std::string_view t) {
 	return out;
 }
 
-std::string ParamTypes(const std::optional<glz::ordered_map<std::string, MetaParam>>& params) {
+// Parameter table (name -> { type }) in declaration order; null when the binding has none.
+std::string ParamTypes(const KeyValues3* params) {
 	std::string out;
-	for (const auto& [name, p] : params ? *params : glz::ordered_map<std::string, MetaParam>{}) {
-		if (name == kTargetArg) {
-			continue;
+	if (params && params->IsTable()) {
+		for (int i = 0; i < params->GetMemberCount(); ++i) {
+			const char* name = params->GetMemberName(i);
+			const KeyValues3* p = params->GetMember(i);
+			if (!p || (name && kTargetArg == name)) {
+				continue;
+			}
+			if (!out.empty()) {
+				out += ", ";
+			}
+			out += ValueType(p->GetMemberString("type"));
 		}
-		if (!out.empty()) {
-			out += ", ";
-		}
-		out += ValueType(p.type);
 	}
 	return out.empty() ? "void" : out;
 }
@@ -131,28 +98,28 @@ std::unordered_map<std::string, std::vector<PulseIOEntry>> CollectPulseIO(const 
 		return out;
 	}
 
-	CUtlString json, saveError;
-	if (!SaveKV3AsJSON(kv, &saveError, &json)) {
-		std::println(stderr, "pulse io: SaveKV3AsJSON failed: {}", saveError.Get());
-		return out;
-	}
-
-	pulse_meta::ModuleMetadata meta;
-	if (auto ec = glz::read<glz::opts{ .error_on_unknown_keys = false }>(meta, std::string_view(json.Get(), json.Length()))) {
-		std::println(stderr, "pulse io: metadata parse error: {}", glz::format_error(ec, std::string_view(json.Get(), json.Length())));
+	const KeyValues3* bindings = kv->FindMember("pulse_bindings");
+	const KeyValues3* gamedata = bindings ? bindings->FindMember("gamedata") : nullptr;
+	const KeyValues3* classes = gamedata ? gamedata->FindMember("m_Classes") : nullptr;
+	if (!classes || !classes->IsTable()) {
+		std::println(stderr, "pulse io: module metadata has no pulse_bindings.gamedata.m_Classes");
 		return out;
 	}
 
 	int inputs = 0, outputs = 0;
-	for (const auto& [key, binding] : meta.pulse_bindings.gamedata.m_Classes) {
-		if (!binding.m_MetaData) {
+	for (int i = 0; i < classes->GetMemberCount(); ++i) {
+		const char* key = classes->GetMemberName(i);
+		const KeyValues3* binding = classes->GetMember(i);
+		const KeyValues3* meta = binding ? binding->FindMember("m_MetaData") : nullptr;
+		if (!key || !meta || !meta->IsTable()) {
 			continue;
 		}
-		const MetaData& m = *binding.m_MetaData;
 
 		std::string_view name = key;
-		const bool output = m.is_pulse_target_output && name.starts_with(kOutputPrefix);
-		const bool input = m.is_pulse_target_method && m.pulse_inflows && !m.pulse_inflows->empty();
+		const bool output = meta->GetMemberBool("is_pulse_target_output") && name.starts_with(kOutputPrefix);
+		// The entity's pulse signature accepts target methods that have an inflow as inputs.
+		const KeyValues3* inflows = meta->FindMember("pulse_inflows");
+		const bool input = meta->GetMemberBool("is_pulse_target_method") && inflows && inflows->IsArray() && inflows->GetArrayElementCount() > 0;
 		if (!input && !output) {
 			continue;
 		}
@@ -168,10 +135,10 @@ std::unordered_map<std::string, std::vector<PulseIOEntry>> CollectPulseIO(const 
 		const std::string io(name.substr(sep + 2));
 
 		if (output) {
-			out[cls].push_back({ "output", io, ParamTypes(m.pulse_outparams) });
+			out[cls].push_back({ "output", io, ParamTypes(meta->FindMember("pulse_outparams")) });
 			++outputs;
 		} else {
-			out[cls].push_back({ "input", io, ParamTypes(m.pulse_inparams) });
+			out[cls].push_back({ "input", io, ParamTypes(meta->FindMember("pulse_inparams")) });
 			++inputs;
 		}
 	}
