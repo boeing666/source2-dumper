@@ -155,7 +155,7 @@ public:
 			_codeStart = reinterpret_cast<uintptr_t>(code->GetPtr());
 			_codeEnd = _codeStart + code->m_nSectionSize - kScanBytes;
 		}
-		IndexTypeNames();
+		IndexVirtualTables();
 	}
 
 	uintptr_t Find(const std::string_view scopedName, const std::string_view ownerName) const {
@@ -177,7 +177,7 @@ public:
 		}
 #endif
 
-		return reinterpret_cast<uintptr_t>(table.GetPtr());
+		return table;
 	}
 
 	template<typename Matcher>
@@ -202,51 +202,91 @@ public:
 	}
 
 private:
-	// Every lookup miss costs GetVirtualTableByName a full section scan, and most names asked for have no vtable.
-	DynLibUtils::CMemory Lookup(const std::string& decorated) const {
-		if (!_typeNames.contains(decorated)) {
-			return nullptr;
-		}
-		return _module.GetVirtualTableByName(decorated, true);
+	uintptr_t Lookup(const std::string& decorated) const {
+		const auto it = _vtables.find(decorated);
+		return it != _vtables.end() ? it->second : 0;
 	}
 
-	// RTTI type names live in the section GetVirtualTableByName searches: MSVC type descriptors
-	// (".?AV...@@") in .data, Itanium typeinfo names in .rodata.
-	void IndexTypeNames() {
-#ifdef _WIN32
-		const auto* section = _module.GetSectionByName(".data");
-#else
-		const auto* section = _module.GetSectionByName(".rodata");
-#endif
-		if (!section) {
-			return;
-		}
+	struct Range {
+		uintptr_t lo = 0, hi = 0;
+		bool Has(uintptr_t p, size_t n) const { return p >= lo && p <= hi && n <= hi - p; }
+	};
 
-		const auto* begin = static_cast<const char*>(section->GetPtr());
-		const auto* end = begin + section->m_nSectionSize;
-		for (const char* p = begin; p < end;) {
-			const char* stop = std::find(p, end, char(0));
-			if (stop == end) {
-				break;
-			}
-			const std::string_view name(p, stop);
-#ifdef _WIN32
-			if (name.starts_with(".?A")) {
-				_typeNames.insert(name);
-			}
-#else
-			if (!name.empty()) {
-				_typeNames.insert(name);
-			}
-#endif
-			p = stop + 1;
+	Range Section(const char* name) const {
+		const auto* section = _module.GetSectionByName(name);
+		if (!section) {
+			return {};
 		}
+		const auto lo = reinterpret_cast<uintptr_t>(section->GetPtr());
+		return { lo, lo + section->m_nSectionSize };
+	}
+
+	static std::string_view CString(const Range& range, uintptr_t p) {
+		const auto* begin = reinterpret_cast<const char*>(p);
+		const auto* end = reinterpret_cast<const char*>(range.hi);
+		const char* stop = std::find(begin, end, char(0));
+		return stop == end ? std::string_view() : std::string_view(begin, stop);
+	}
+
+	// Every vtable by its RTTI name, resolved the way GetVirtualTableByName does it, in one pass per section:
+	// asking that for thousands of names costs several full section scans each (minutes on dota).
+	void IndexVirtualTables() {
+#ifdef _WIN32
+		const Range rdata = Section(".rdata");
+		const Range data = Section(".data");
+		const auto base = static_cast<uintptr_t>(_module.GetBase().GetAddr());
+		for (uintptr_t slot = (rdata.lo + 7) & ~uintptr_t(7); slot + 16 <= rdata.hi; slot += 8) {
+			const auto col = *reinterpret_cast<const uintptr_t*>(slot);
+			if (!rdata.Has(col, 24)) {
+				continue;
+			}
+			const auto* locator = reinterpret_cast<const int32_t*>(col);
+			if (locator[0] != 1 || locator[1] != 0) {
+				continue;
+			}
+			const uintptr_t descriptor = base + static_cast<uint32_t>(locator[3]);
+			if (!data.Has(descriptor, 0x11)) {
+				continue;
+			}
+			const std::string_view name = CString(data, descriptor + 0x10);
+			if (name.starts_with(".?A")) {
+				_vtables.try_emplace(name, slot + 8);
+			}
+		}
+#else
+		// typeinfo { vptr, const char* name } in .data.rel.ro; vtable { offset_to_top 0, typeinfo*, functions... }
+		const Range rodata = Section(".rodata");
+		const Range relro = Section(".data.rel.ro");
+		std::unordered_map<uintptr_t, std::string_view> typeInfos;
+		std::unordered_set<std::string_view> named;
+		for (uintptr_t p = (relro.lo + 7) & ~uintptr_t(7); p + 8 <= relro.hi; p += 8) {
+			const auto str = *reinterpret_cast<const uintptr_t*>(p);
+			if (p < relro.lo + 8 || !rodata.Has(str, 1)) {
+				continue;
+			}
+			const std::string_view name = CString(rodata, str);
+			if (!name.empty() && named.insert(name).second) { // first reference to the name, as FindPattern would
+				typeInfos.emplace(p - 8, name);
+			}
+		}
+		for (const char* sectionName : { ".data.rel.ro", ".data.rel.ro.local" }) {
+			const Range range = Section(sectionName);
+			for (uintptr_t p = ((range.lo + 7) & ~uintptr_t(7)) + 8; p + 8 <= range.hi; p += 8) {
+				if (*reinterpret_cast<const int64_t*>(p - 8) != 0) {
+					continue;
+				}
+				if (const auto it = typeInfos.find(*reinterpret_cast<const uintptr_t*>(p)); it != typeInfos.end()) {
+					_vtables.try_emplace(it->second, p + 8);
+				}
+			}
+		}
+#endif
 	}
 
 	const DynLibUtils::CModule& _module;
 	uintptr_t _codeStart = 0;
 	uintptr_t _codeEnd = 0;
-	std::unordered_set<std::string_view> _typeNames;
+	std::unordered_map<std::string_view, uintptr_t> _vtables;
 };
 
 PlacementMap CollectPlacements(const std::vector<Module>& modules) {
