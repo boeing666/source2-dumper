@@ -205,6 +205,28 @@ static void BuildDatamap(CSchemaClassInfo* c, std::vector<JDatamap>& out, int& n
 	}
 }
 
+// Entity I/O now comes from Pulse API bindings; an output lives in the CEntityIOOutput member "m_<Name>"
+// (the metadata has no member name, so outputs named otherwise stay unresolved).
+static void AppendPulseIO(CSchemaClassInfo* c, const std::vector<PulseIOEntry>& entries, std::vector<JDatamap>& out, int& ni, int& no) {
+	auto member = [c](const std::string& name) -> std::string {
+		const std::string want = name.starts_with("m_") ? name : "m_" + name;
+		for (CSchemaClassInfo* p = c; p;
+		     p = (p->m_nBaseClassCount && p->m_pBaseClasses && p->m_pBaseClasses[0].m_pClass) ? p->m_pBaseClasses[0].m_pClass : nullptr) {
+			for (uint16 i = 0; i < p->m_nFieldCount && p->m_pFields; ++i) {
+				if (p->m_pFields[i].m_pszName && want == p->m_pFields[i].m_pszName) {
+					return want;
+				}
+			}
+		}
+		return {};
+	};
+	for (const PulseIOEntry& e : entries) {
+		const bool output = e.kind == "output";
+		out.push_back({ e.kind, e.name, output ? member(e.name) : std::string(), e.type });
+		++(output ? no : ni);
+	}
+}
+
 static std::vector<std::string> SplitWords(const std::string& s) {
 	std::vector<std::string> out;
 	for (size_t i = 0; i < s.size();) {
@@ -229,6 +251,7 @@ static void WriteFile(const fs::path& path, const T& obj) {
 
 static JClass BuildClass(const ClassRec& rec, const std::unordered_set<std::string>& network,
                          const std::unordered_map<std::string, int>& stateChanged,
+                         const std::unordered_map<std::string, std::vector<PulseIOEntry>>& pulseIO,
                          const std::unordered_set<std::string>& known,
                          int& outNi, int& outNo, int& outNk) {
 	CSchemaClassInfo* c = rec.info;
@@ -279,6 +302,9 @@ static JClass BuildClass(const ClassRec& rec, const std::unordered_set<std::stri
 		jc.fields.push_back(std::move(jf));
 	}
 	BuildDatamap(c, jc.datamap, outNi, outNo, outNk);
+	if (const auto it = pulseIO.find(jc.name); it != pulseIO.end()) {
+		AppendPulseIO(c, it->second, jc.datamap, outNi, outNo);
+	}
 	CollectRefs(c, rec.fields, known, jc.refs);
 	return jc;
 }
@@ -302,6 +328,7 @@ void WriteJson(const fs::path& outDir,
                const std::unordered_set<std::string>& known,
                const std::unordered_set<std::string>& network,
                const std::unordered_map<std::string, int>& stateChanged,
+               const std::unordered_map<std::string, std::vector<PulseIOEntry>>& pulseIO,
                const std::vector<ConVarInfo>& convars,
                const std::vector<ConCommandInfo>& concommands,
                const std::vector<GameEventInfo>& events,
@@ -329,7 +356,7 @@ void WriteJson(const fs::path& outDir,
 
 		for (const ClassRec& rec : m.classes) {
 			int ni = 0, no = 0, nk = 0;
-			JClass jc = BuildClass(rec, network, stateChanged, known, ni, no, nk);
+			JClass jc = BuildClass(rec, network, stateChanged, pulseIO, known, ni, no, nk);
 			JIndexEntry ix;
 			ix.name = jc.name;
 			ix.kind = jc.isStruct ? "struct" : "class";

@@ -81,6 +81,7 @@ set(SOURCE_FILES
 	src/runtime/convars.cpp
 	src/runtime/network_fields.cpp
 	src/runtime/network_state.cpp
+	src/runtime/pulse_io.cpp
 	src/gameevents/gameevents.cpp
 )
 
