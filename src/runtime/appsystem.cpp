@@ -101,6 +101,9 @@ public:
 	void OnStartupManifestGroupLoaded() override {}
 	void AddStartupManifest(ResourceManifestDesc_t&) override {}
 	CAppSystemDict* GetAppSystemDict() override { return nullptr; }
+
+		// cs2-only vfunc (absent on dota/deadlock SDK branches), so no `override`.
+	virtual bool IsPerforceWorkspace() { return false; }
 };
 
 CStubApplication g_stubApp;
