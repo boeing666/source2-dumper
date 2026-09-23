@@ -9,4 +9,10 @@ enum EChickenActivity : uint32_t  // sizeof 0x4
     Glide = 4,
     Land = 5,
     Panic = 6,
+    Trick = 7,
+    TurnInPlace = 8,
+    Feed = 9,
+    Sleep = 10,
+    Shoulder = 11,
+    LowOnFood = 12,
 };

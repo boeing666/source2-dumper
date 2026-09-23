@@ -84,7 +84,6 @@ animgraph_trace_ignore_prop_physics | developmentonly,gamedll,clientdll,replicat
 animgraph_trace_static_only | gamedll,clientdll,replicated,cheat | 
 annotation_auto_load | clientdll,release,commandline_enforced | 
 autosave_fully_async | developmentonly,gamedll,defensive | Set to 1 to have autosaves execute completely on the save thread, forces 'render only' mode while the save completes
-battery_saver |  | OBSOLETE replaced by mobile_fps_* - Battery saver mode. 0=off, 1=on
 bot_allow_grenades | gamedll,release | If nonzero, bots may use grenades.
 bot_allow_machine_guns | gamedll,release | If nonzero, bots may use the machine gun.
 bot_allow_pistols | gamedll,release | If nonzero, bots may use pistols.
@@ -125,6 +124,7 @@ bot_max_vision_distance_override | gamedll,replicated,release,commandline_enforc
 bot_mimic | gamedll,clientdll,replicated,cheat | Bot uses usercmd of player by index.
 bot_mimic_spec_buttons | clientdll,cheat | +attack, +jump etc are used for spectator control instead of being passed on to spectated bot
 bot_mimic_yaw_offset | gamedll,cheat | 
+bot_path_require_reachable_goal | gamedll,release | If nonzero, bots refuse to path to a nav area that the nav build did not reach from a player spawn.
 bot_prefix | gamedll,release | This string is prefixed to the name of all bots that join the game. <difficulty> will be replaced with the bot's difficulty. <weaponclass> will be replaced with the bot's desired weapon class. <skill> will be replaced with a 0-100 representation of the bot's skill.
 bot_quota | gamedll,release,commandline_enforced | Determines the total number of bots in the game.
 bot_quota_mode | gamedll,release,commandline_enforced | Determines the type of quota. Allowed values: 'normal', 'fill', and 'match'. If 'fill', the server will adjust bots to keep N players in the game, where N is bot_quota. If 'match', the server will maintain a 1:N ratio of humans to bots, where N is bot_quota.
@@ -254,7 +254,6 @@ cl_cameraoverride_shadow_depth_bias | developmentonly,clientdll,defensive |
 cl_cameraoverride_shadow_end | developmentonly,clientdll,defensive | 
 cl_change_callback_limit | clientdll,release | change callback msec warning limit
 cl_chat_active | developmentonly,clientdll,defensive | 
-cl_clanid | clientdll,hidden | Current clan ID for name decoration
 cl_clock_buffer_ticks | developmentonly | Clock sync will try to maintain an additional margin of N ticks.  This is intended to smooth over packet loss, and is a replacement for cl_interp_ratio / cl_interp.  This value is simply added to cl_clock_recvmargin_desired
 cl_clock_buffer_ticks_spectator | developmentonly | Additional margin (in ticks) to apply when spectating.
 cl_clock_correction | cheat | Enable/disable clock correction on the client.
@@ -271,29 +270,29 @@ cl_clutch_mode | clientdll,release | Silence voice and other distracting sounds 
 cl_color | clientdll | Preferred teammate color
 cl_connectionretrytime_p2p | release | Number of seconds over which to spread retry attempts for P2P.
 cl_cq_min_queue |  | Used by the client to inform the server of their desired queue length.  Derived from cl_tickpacket_recvmargin_desired and cl_tickpacket_desired_queuelength
-cl_crosshair_drawoutline | clientdll,per_user | Draws a black outline around the crosshair for better visibility
-cl_crosshair_dynamic_maxdist_splitratio | clientdll,per_user | If using cl_crosshairstyle 2, this is the ratio used to determine how long the inner and outer xhair pips will be. [inner = cl_crosshairsize*(1-cl_crosshair_dynamic_maxdist_splitratio), outer = cl_crosshairsize*cl_crosshair_dynamic_maxdist_splitratio]  [0 - 1]
-cl_crosshair_dynamic_splitalpha_innermod | clientdll,per_user | If using cl_crosshairstyle 2, this is the alpha modification that will be used for the INNER crosshair pips once they've split. [0 - 1]
-cl_crosshair_dynamic_splitalpha_outermod | clientdll,per_user | If using cl_crosshairstyle 2, this is the alpha modification that will be used for the OUTER crosshair pips once they've split. [0.3 - 1]
-cl_crosshair_dynamic_splitdist | clientdll,per_user | If using cl_crosshairstyle 2, this is the distance that the crosshair pips will split into 2. (default is 7)
+cl_crosshair_drawoutline | clientdll,per_user | Draw a black outline around the crosshair for better visibility
+cl_crosshair_dynamic_maxdist_splitratio | clientdll,per_user | Style 2 only: how the bar length is divided between inner and outer bars once split. inner = cl_crosshairsize * (1 - ratio), outer = cl_crosshairsize * ratio. [0 - 1]
+cl_crosshair_dynamic_splitalpha_innermod | clientdll,per_user | Style 2 only: alpha multiplier for the INNER crosshair bars once they have split. [0 - 1]
+cl_crosshair_dynamic_splitalpha_outermod | clientdll,per_user | Style 2 only: alpha multiplier for the OUTER crosshair bars once they have split. [0.3 - 1]
+cl_crosshair_dynamic_splitdist | clientdll,per_user | Style 2: distance at which the crosshair bars split in two.
+cl_crosshair_dynamic_spread_limit | clientdll,per_user | The additional distance the dynamic elements are allowed to spread out to from the baseline of 128 pixels.
 cl_crosshair_friendly_warning | clientdll,release | 0: off, 1: on
-cl_crosshair_outlinethickness | clientdll,per_user | Set how thick you want your crosshair outline to draw (0-3)
-cl_crosshair_recoil | clientdll,per_user | 
-cl_crosshair_show_desynced_seeds_marker | developmentonly,clientdll | 
+cl_crosshair_gap | clientdll,per_user | Offset added to the gap between the crosshair center and the bars.
+cl_crosshair_length | clientdll,per_user | Length of each crosshair bar, scaled with screen resolution
+cl_crosshair_recoil | clientdll,per_user | Crosshair follows the weapon's predicted recoil (aim punch)
+cl_crosshair_screen_height | clientdll,hidden,per_user | The res at which the user authored their size settings at - changes whenever a size setting is updated
 cl_crosshair_sniper_width | clientdll,per_user | If >1 sniper scope cross lines gain extra width (1 for single-pixel hairline)
-cl_crosshair_t | clientdll,per_user | T style crosshair
-cl_crosshairalpha | clientdll,per_user | 
-cl_crosshaircolor | clientdll,per_user | Set crosshair color as defined in game_options.consoles.txt
-cl_crosshaircolor_b | clientdll,per_user | 
-cl_crosshaircolor_g | clientdll,per_user | 
-cl_crosshaircolor_r | clientdll,per_user | 
-cl_crosshairdot | clientdll,per_user | 
-cl_crosshairgap | clientdll,per_user | 
-cl_crosshairgap_useweaponvalue | clientdll,per_user | If set to 1, the gap will update dynamically based on which weapon is currently equipped
-cl_crosshairsize | clientdll,per_user | 
-cl_crosshairstyle | clientdll,per_user | 0 = DEFAULT (DISABLED), 1 = DEFAULT STATIC (DISABLED), 2 = DEFAULT (accurate recoil/spread feedback with a fixed inner part), 3 = ACCURATE DYNAMIC (DISABLED) (accurate recoil/spread feedback), 4 = DEFAULT STATIC, 5 = LEGACY (fake recoil - inaccurate feedback)
-cl_crosshairthickness | clientdll,per_user | 
-cl_crosshairusealpha | clientdll,per_user | 
+cl_crosshair_t | clientdll,per_user | T-style crosshair: hide the top bar
+cl_crosshair_thickness | clientdll,per_user | Thickness of the crosshair bars and circle, scaled with screen resolution (minimum 1 pixel)
+cl_crosshairalpha | clientdll,hidden,per_user | 
+cl_crosshaircolor_a | clientdll,per_user | Crosshair opacity. 0 = fully transparent, 255 = fully opaque
+cl_crosshaircolor_b | clientdll,per_user | Crosshair color, blue component
+cl_crosshaircolor_g | clientdll,per_user | Crosshair color, green component
+cl_crosshaircolor_r | clientdll,per_user | Crosshair color, red component
+cl_crosshairdot | clientdll,per_user | Draw a dot at the center of the crosshair
+cl_crosshairsize | clientdll,hidden,per_user | 
+cl_crosshairstyle | clientdll,per_user | Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
+cl_crosshairthickness | clientdll,hidden,per_user | 
 cl_csgo_shoot_debugvis_rdp_text_l | developmentonly,clientdll | 
 cl_csgo_shoot_debugvis_rdp_text_x | developmentonly,clientdll | 
 cl_csgo_shoot_debugvis_show_los | developmentonly,clientdll | Show line of last shot.
@@ -367,7 +366,6 @@ cl_fake_timeout | developmentonly,clientdll |
 cl_fasttempentcollision | developmentonly,clientdll,defensive | 
 cl_firstperson_legs | developmentonly,clientdll,defensive | 
 cl_firstperson_legs_aoproxy | developmentonly,clientdll,defensive | 
-cl_fixedcrosshairgap | clientdll,per_user | For crosshair style 1: How big to make the gap between the pips in the fixed crosshair
 cl_flushentitypacket | cheat | For debugging. Force the engine to flush an entity packet.
 cl_force_next_signon_to_reset | developmentonly | 
 cl_force_spec_hud_color_to_team | clientdll | Spec hud color setting is always team/teammate
@@ -394,11 +392,11 @@ cl_grenadecrosshair_decoy | clientdll,per_user | Is the grenade crosshair enable
 cl_grenadecrosshair_explosive | clientdll,per_user | Is the grenade crosshair enabled
 cl_grenadecrosshair_fire | clientdll,per_user | Is the grenade crosshair enabled
 cl_grenadecrosshair_flash | clientdll,per_user | Is the grenade crosshair enabled
-cl_grenadecrosshair_keepusercrosshair | clientdll,per_user | Keep the user's crosshair when the grenade crosshair is enabled
+cl_grenadecrosshair_keepusercrosshair | clientdll,per_user | Keep drawing the user's crosshair while the grenade throw crosshair is shown
 cl_grenadecrosshair_smoke | clientdll,per_user | Is the grenade crosshair enabled
-cl_grenadecrosshair_tickinterval | developmentonly,clientdll | 
-cl_grenadecrosshair_ticklabels | developmentonly,clientdll | 
-cl_grenadecrosshair_tickscaling | developmentonly,clientdll | 
+cl_grenadecrosshair_tickinterval | developmentonly,clientdll | Spacing between ticks on the grenade throw crosshair
+cl_grenadecrosshair_ticklabels | developmentonly,clientdll | Draw labels on grenade throw crosshair ticks
+cl_grenadecrosshair_tickscaling | developmentonly,clientdll | Scale applied to grenade throw crosshair ticks
 cl_grenadecrosshairdelay_decoy | clientdll,per_user | How long should the pin be pulled for before showing the grenade crosshair
 cl_grenadecrosshairdelay_explosive | clientdll,per_user | How long should the pin be pulled for before showing the grenade crosshair
 cl_grenadecrosshairdelay_fire | clientdll,per_user | How long should the pin be pulled for before showing the grenade crosshair
@@ -481,7 +479,7 @@ cl_net_showevents | developmentonly,clientdll,defensive | Dump game events to co
 cl_new_user_phase | clientdll,release | 0: Not Started, 1: Needs Training, 2: Training Complete, -1: Disabled
 cl_obs_interp_enable | clientdll | Enables interpolation between observer targets
 cl_obs_interp_speed | clientdll | Spectator camera interpolation speed
-cl_observed_bot_crosshair | clientdll,release | Control the crosshair shown when observing a bot. 0: Show player crosshair. 1: Show player crosshair only when bot can be taken over, otherwise show default.. 2: Always show default crosshair for bots.
+cl_observed_bot_crosshair | clientdll,release | Crosshair shown when observing a bot. 0 = show your crosshair, 1 = show your crosshair only when the bot can be taken over (otherwise default), 2 = always show the default crosshair
 cl_paintkit_override | clientdll,cheat,release | 
 cl_panel_freeze_time_after_press | developmentonly,clientdll,defensive | time to freeze mouse/pointer motion after a mouse button press
 cl_parallel_readpacketentities | developmentonly,defensive | Set to 1 to use threading snapshot reading (if game supports and server is sending bitcounts).
@@ -626,7 +624,7 @@ cl_show_equipment_value | developmentonly,clientdll,defensive |
 cl_show_equipped_character_for_player_avatars | clientdll | 
 cl_show_head_trajectory | developmentonly,clientdll | 
 cl_show_matchmaking_stat_spew | developmentonly,clientdll,defensive | 
-cl_show_observer_crosshair | clientdll,release | Show the crosshair of the player being observed. 0: off 1: friends and party 2: everyone 
+cl_show_observer_crosshair | clientdll,release | Show the crosshair of the player being observed. 0 = off, 1 = friends and party only, 2 = everyone
 cl_show_playernames_max_chars_console | developmentonly,clientdll | Shows all player names (including bots) as 16 W's.
 cl_show_quest_info | developmentonly,clientdll | 
 cl_show_splashes | developmentonly,clientdll | 
@@ -670,6 +668,7 @@ cl_spawngroup_spewresources | developmentonly | Spew all manifest add/updates.
 cl_spec_show_bindings | clientdll,release,clientcmd_can_execute | Toggle the visibility of the spectator bindings.
 cl_spec_stats | clientdll,release | 
 cl_spec_use_tournament_content_standards | clientdll,release | 
+cl_spectator_predict | clientdll,release | Enable 'TrueView' when spectating another player, which attempts to recreate the client's experience more accurately.  The server may not allow this at certain times.
 cl_streams_image_sfurl | developmentonly,clientdll | Format of Scaleform image representing the stream
 cl_streams_mytwitchtv_channel | developmentonly,clientdll | Twitch.tv account channel URL
 cl_streams_mytwitchtv_nolink | developmentonly,clientdll | Twitch.tv account linking URL
@@ -713,6 +712,7 @@ cl_use_entity_as_targetid | developmentonly,clientdll,defensive |
 cl_use_last_selected_weapon_slot_position | clientdll,release | Use the last selected weapon slot position when switching back to a weapon slot.
 cl_use_old_wearable_shoulddraw | developmentonly,clientdll,defensive | 
 cl_use_opens_buy_menu | clientdll,per_user | Pressing the +use key will open the buy menu if in a buy zone (just as if you pressed the 'buy' key).
+cl_use_prompt_smoke_density | clientdll,cheat | Smoke density at the eye position above which a button's use prompt is suppressed.
 cl_usercmd_dbg | developmentonly | show usercmd payload sizing info for packets with more than this many usercmds
 cl_usercmd_max_per_movemsg | release | max number of CUserCmds to send in one client move message
 cl_usercmd_showsize | developmentonly | 
@@ -737,7 +737,7 @@ cl_workshop_map_download_timeout | developmentonly,clientdll,defensive |
 cl_yawspeed | developmentonly,clientdll,defensive | 
 clear_debug_flags_on_death | developmentonly,gamedll,defensive | 
 clientport | release | If non-zero, client binds port to specific address.  Usually you should leave this blank to use a different random system-assigned port for each connection.
-closecaption | clientdll | Enable close captioning.
+closecaption | clientdll,per_user | Enable close captioning.
 cloth_debug_draw | developmentonly,clientdll | 
 cloth_hudmodel_presettle | developmentonly,clientdll | 
 cloth_hudmodel_presettle_log | developmentonly,clientdll | 
@@ -839,9 +839,10 @@ csm_shadow_worldview_align_x_to_u | clientdll,cheat |
 csm_shadow_worldview_shear_align_z_to_v | clientdll,cheat | 
 csm_sst_max_visible_dist | clientdll,cheat | 
 csm_sst_pushback_distance | clientdll,cheat | default pushback
+csm_sst_shadow_focus_region_caster_headroom | clientdll,cheat | 
 csm_sst_shadow_focus_region_maxz | clientdll,cheat | 
 csm_sst_shadow_focus_region_minz | clientdll,cheat | 
-csm_sst_shadow_focus_region_thin_compensation | clientdll,cheat | 
+csm_sst_vertical_depth_shear_enable | clientdll,cheat | 
 csm_viewdir_shadow_bias | clientdll,cheat | 
 csm_viewmodel_max_shadow_dist | clientdll,cheat | 
 csm_viewmodel_max_visible_dist | clientdll,cheat | 
@@ -974,7 +975,6 @@ ent_show_contexts | gamedll,cheat | Show entity contexts in ent_text display
 ent_showonlyattachment | gamedll,cheat | 
 ent_skeleton_duration | gamedll,clientdll,replicated,cheat | Duration of ent_skeleton display
 ent_skeleton_only_ik_joints | developmentonly,gamedll,defensive | 
-ent_skeleton_snapshot | developmentonly,gamedll | 
 ent_steadystate_batchsize | developmentonly,gamedll,defensive | Max number of entities to transmit to player
 ent_steadystate_delay | developmentonly,gamedll,defensive | Time in seconds without network state changes until an entity is considered for trickle updates
 ent_steadystate_enable | developmentonly,gamedll,defensive | 
@@ -983,6 +983,7 @@ ent_test_interpolation | developmentonly,clientdll,defensive |
 ent_text_flags_active | gamedll,cheat | 
 ent_text_no_name_really_i_mean_it | gamedll,cheat | 
 entity_log_load_unserialize | gamedll,clientdll,replicated,cheat | Output unserialization of entities on map load. 0 - off, 1 - client/server, 2 - server, 3 - client
+env_shake_debug | developmentonly,gamedll | Draw debug info for active env_shakes: query radius, affected physics bodies/particles, and the forces/velocity deltas applied to them.
 eom_local_player_defeat_anim_enabled | clientdll,release | 
 execute_command_every_frame | cheat | 
 fade_debug_splitscreen_slot | developmentonly,clientdll,defensive | 
@@ -1058,6 +1059,7 @@ func_mover_debug_follower | developmentonly,gamedll,defensive |
 func_mover_debug_parallel | developmentonly,gamedll,defensive | 
 func_mover_debug_showtext | developmentonly,gamedll,defensive | 
 func_mover_debug_verbose | developmentonly,gamedll,defensive | 
+func_mover_disable_movement | developmentonly,gamedll,defensive | 
 func_mover_force_transition_start_direction | developmentonly,gamedll,defensive | 
 func_mover_get_speed_override | developmentonly,gamedll,defensive | 
 func_mover_imgui_log_count | developmentonly,gamedll,defensive | 
@@ -1087,7 +1089,6 @@ gameinstructor_start_sound_cooldown | developmentonly,clientdll,defensive | Numb
 gameinstructor_verbose | clientdll,cheat | Set to 1 for standard debugging or 2 (in combo with gameinstructor_verbose_lesson) to show update actions.
 gameinstructor_verbose_lesson | clientdll,cheat | Display more verbose information for lessons have this name.
 gamestats_file_output_directory | developmentonly,gamedll,defensive | When -gamestatsfileoutputonly is specified, file will be emitted here instead of to modpath 
-gc_secret_key | developmentonly,gamedll,protected,defensive | Secret key for authenticating with the GC 
 gl_clear | developmentonly,clientdll,defensive | 
 glow_chickens | developmentonly,gamedll | Glow chickens with a green outline.
 glow_outline_width | clientdll,cheat | Width of glow outline effect in screen space.
@@ -1247,8 +1248,6 @@ labelled_debug_helper_show_text | gamedll,clientdll,replicated,cheat |
 labelled_debug_helper_skeleton_show_bone_names | gamedll,clientdll,replicated,cheat | 
 lb_csm_cascade_size_override | reference | 
 leaderboards_cache_duration | developmentonly,clientdll | 
-lightquery_debug_direct_lighting | gamedll,clientdll,replicated,cheat | 
-lightquery_debug_indirect_lighting | gamedll,clientdll,replicated,cheat | 
 lobby_default_privacy_bits2 | clientdll,release | Lobby default permissions (0: private, 1: public)
 lobby_gamesearch_fake | developmentonly,clientdll | 
 lobby_stats_fake | developmentonly,clientdll | 
@@ -1324,10 +1323,6 @@ mm_teamsearch_nostart | developmentonly | Team search will fake cancel before se
 mm_title_debug_version | developmentonly | This matchmaking version will override .res file version for isolating matchmaking
 mm_tu_string | developmentonly,defensive | 
 mm_use_p2p_for_listen_server | developmentonly,defensive | 
-mobile_fps_increase_during_charging |  | MOBILE_FPS_CONTROL: If true we increase framerate limit while charging
-mobile_fps_increase_during_hfr_animations | developmentonly,hidden,defensive | MOBILE_FPS_CONTROL: If true we increase framerate limit during HFR-tagged animations and transitions.
-mobile_fps_increase_during_touch |  | MOBILE_FPS_CONTROL: If true we increase framerate limit during touch
-mobile_fps_limit |  | MOBILE_FPS_CONTROL: Mobile FPS limit - 15, 30, 60
 model_default_preview_sequence_name | gamedll,clientdll,replicated | 
 molotov_throw_detonate_time | gamedll,clientdll,replicated,release,commandline_enforced | 
 molotov_usethrow_direction | gamedll,cheat | 
@@ -1372,7 +1367,7 @@ mp_damage_vampiric_amount | gamedll,replicated,release,commandline_enforced | If
 mp_death_drop_c4 | gamedll,clientdll,replicated,release,commandline_enforced | Whether c4 is droppable
 mp_death_drop_defuser | gamedll,clientdll,replicated,release,commandline_enforced | Drop defuser on player death
 mp_death_drop_grenade | gamedll,clientdll,replicated,release,commandline_enforced | Which grenade to drop on player death: 0=none, 1=best, 2=current or best, 3=all grenades
-mp_death_drop_gun | gamedll,clientdll,replicated,release,commandline_enforced | Which gun to drop on player death: 0=none, 1=best, 2=current or best
+mp_death_drop_gun | gamedll,clientdll,replicated,release,commandline_enforced | Which gun to drop on player death: 0=none, 1=best, 2=current or best, 3=both
 mp_death_drop_healthshot | gamedll,clientdll,replicated,release | Drop healthshot on player death
 mp_death_drop_taser | gamedll,clientdll,replicated,release | Drop taser on player death
 mp_deathcam_skippable | gamedll,replicated,release,commandline_enforced | Determines whether a player can early-out of the deathcam.
@@ -1515,6 +1510,7 @@ mp_td_dmgtokick | gamedll,replicated,release | The damage threshhold players hav
 mp_td_dmgtowarn | gamedll,replicated,release | The damage threshhold players have to exceed in a match to get warned that they are about to be kicked.
 mp_td_spawndmgthreshold | gamedll,replicated,release | The damage threshold players have to exceed at the start of the round to be warned/kick.
 mp_team_intro_time | gamedll,replicated,release,commandline_enforced | How many seconds for team intro
+mp_team_intro_type | gamedll,clientdll,replicated,release,commandline_enforced | none, normal, wingman, rush, or auto (implies normal if mp_halftime is set, none otherwise)
 mp_team_timeout_max | gamedll,clientdll,replicated,release | Number of timeouts each team gets per match.
 mp_team_timeout_ot_add_each | gamedll,clientdll,replicated,release | Number of timeouts to add for each team when match goes to 2nd and each next overtime.
 mp_team_timeout_ot_add_once | gamedll,clientdll,replicated,release | Number of timeouts to add for each team when regulation time ends and match goes to overtime.
@@ -1587,8 +1583,9 @@ nav_curve_max_step | gamedll,cheat |
 nav_curve_set | gamedll,cheat | 
 nav_curve_step | gamedll,cheat | 
 nav_debug_blocked | gamedll,cheat | 
-nav_drag_selection_volume_zmax_offset | developmentonly,gamedll,replicated,defensive | The offset of the nav drag volume top from center
-nav_drag_selection_volume_zmin_offset | developmentonly,gamedll,replicated,defensive | The offset of the nav drag volume bottom from center
+nav_drag_selection_volume_zmax_offset | developmentonly,gamedll | The offset of the nav drag volume top from center
+nav_drag_selection_volume_zmin_offset | developmentonly,gamedll | The offset of the nav drag volume bottom from center
+nav_draw_area_color_by_game_attribute | gamedll,cheat | 
 nav_draw_area_connections | gamedll,cheat | 
 nav_draw_area_filled | gamedll,cheat | 
 nav_draw_area_gravity | gamedll,cheat | 
@@ -1610,13 +1607,13 @@ nav_draw_connected_area_radius | gamedll,cheat |
 nav_draw_dangerareas | gamedll,cheat | 
 nav_draw_dormant_movable_meshes | gamedll,cheat | Draw dormant movable meshes.
 nav_draw_externally_created | gamedll,cheat | 
-nav_draw_flow_map | gamedll,cheat | 
+nav_draw_flow_map | developmentonly,gamedll | 
 nav_draw_hidingspots | gamedll,cheat | 
-nav_draw_indirect_connections | gamedll,cheat | 
+nav_draw_indirect_connections | developmentonly,gamedll | 
 nav_draw_jump_links | gamedll,cheat | 
-nav_draw_limit | gamedll,cheat | The maximum number of areas to draw in edit mode
-nav_draw_link_alignment | gamedll,cheat | 
-nav_draw_links | gamedll,cheat | 
+nav_draw_limit | developmentonly,gamedll | The maximum number of areas to draw in edit mode
+nav_draw_link_alignment | developmentonly,gamedll | 
+nav_draw_links | developmentonly,gamedll | 
 nav_draw_markup | gamedll,cheat | 
 nav_draw_mesh | gamedll,cheat | 
 nav_draw_mesh_grid | gamedll,cheat | Draw the mesh's spatial grid structure around the edit cursor position.
@@ -1714,21 +1711,26 @@ nav_pathfind_inadmissable_heuristic_factor | gamedll,cheat |
 nav_pathfind_multithread | gamedll,cheat | 
 nav_potentially_visible_dot_tolerance | gamedll,cheat | 
 nav_recorder_enabled | gamedll,cheat | 
-nav_select_allow_blocked | gamedll,cheat | When selecting an area under nav_edit, allow area marked as blocked.
-nav_select_area_id | gamedll,cheat | Select nav area with matching ID.
-nav_select_block_id | gamedll,cheat | Select nav space block with matching ID.
-nav_select_hull | gamedll,cheat | Restrict area selection to areas that can support a hull of the given category
-nav_show_area_connections | gamedll,cheat | Show connections to selected area when true
-nav_show_area_verts | gamedll,cheat | Show area vertex positions
-nav_show_area_water_info | gamedll,cheat | 
-nav_show_elem_info | gamedll,cheat | 
-nav_show_elem_info_font | gamedll,cheat | 
-nav_show_elem_info_font_size | gamedll,cheat | 
-nav_show_elem_info_font_voffset | gamedll,cheat | 
+nav_select_allow_blocked | developmentonly,gamedll | When selecting an area under nav_edit, allow area marked as blocked.
+nav_select_area_id | developmentonly,gamedll | Select nav area with matching ID.
+nav_select_block_id | developmentonly,gamedll | Select nav space block with matching ID.
+nav_select_hull | developmentonly,gamedll | Restrict area selection to areas that can support a hull of the given category
+nav_show_area_connections | developmentonly,gamedll | Show connections to selected area when true
+nav_show_area_verts | developmentonly,gamedll | Show area vertex positions
+nav_show_area_water_info | developmentonly,gamedll | 
+nav_show_elem_info | developmentonly,gamedll | 
+nav_show_elem_info_font | developmentonly,gamedll | 
+nav_show_elem_info_font_size | developmentonly,gamedll | 
+nav_show_elem_info_font_voffset | developmentonly,gamedll | 
+nav_smooth_arrival_enable | gamedll,cheat | 
+nav_smooth_arrival_handle_scale | gamedll,cheat | 
+nav_smooth_arrival_spline | gamedll,cheat | 
+nav_smooth_arrival_spring | gamedll,cheat | 
 nav_smooth_constrain_spline | gamedll,cheat | 
 nav_smooth_constrain_spline_relax | gamedll,cheat | 
 nav_smooth_constrain_spring | gamedll,cheat | 
 nav_smooth_constrain_spring_relax | gamedll,cheat | 
+nav_smooth_draw_arrival_calc | gamedll,cheat | 
 nav_smooth_draw_boundary | gamedll,cheat | 
 nav_smooth_draw_calc | gamedll,cheat | 
 nav_smooth_draw_constraint_spline | gamedll,cheat | 
@@ -1775,7 +1777,6 @@ nav_test_boundary_zone_rays_margin | gamedll,cheat |
 nav_test_boundary_zone_rays_random | gamedll,cheat | 
 nav_test_boundary_zone_sphere | gamedll,cheat | 
 nav_test_curve_opt | gamedll,cheat | 
-nav_test_detour | gamedll,cheat | 
 nav_test_find_nearest | gamedll,cheat | Calculate the nearest point on the navmesh to the trace point.  Uses selection from nav_select_hull.
 nav_test_find_nearest_clear | gamedll,cheat | Calculate the nearest point on the navmesh to the trace point.  Uses selection from nav_select_hull.
 nav_test_find_random_connected | gamedll,cheat | Demonstrates finding random points that are connected in the nav mesh to the start point.
@@ -1794,16 +1795,18 @@ nav_test_npc_area | gamedll,cheat |
 nav_test_npc_collision | gamedll,cheat | 
 nav_test_npc_collision_range | gamedll,cheat | 
 nav_test_npc_collision_show_geometry | gamedll,cheat | 
-nav_test_path | gamedll,cheat | Calculate and draw a path from player/camera position to the test position.
-nav_test_path_lock_goal | gamedll,cheat | Lock the pathfinding goal to the current intersection point.
-nav_test_path_lock_start | gamedll,cheat | Lock the pathfinding start to the current intersection point.
-nav_test_path_move | gamedll,cheat | 
-nav_test_path_opt | gamedll,cheat | Enable path optimization for nav_edit_path paths.
-nav_test_path_opt_transitions | gamedll,cheat | 
-nav_test_path_return | gamedll,cheat | Calculate a return path from cursor position to the path calculated by nav_test_path.
-nav_test_path_space | gamedll,cheat | Should nav_test_path test 3d navigation?  1 = space to space, 2 = multi-modal space/ground
-nav_test_path_space_fly | gamedll,cheat | Test flight paths
-nav_test_path_space_swim | gamedll,cheat | Test swim paths
+nav_test_path | developmentonly,gamedll | Calculate and draw a path from player/camera position to the test position.
+nav_test_path_lock_goal | developmentonly,gamedll | Lock the pathfinding goal to the current intersection point.
+nav_test_path_lock_start | developmentonly,gamedll | Lock the pathfinding start to the current intersection point.
+nav_test_path_move | developmentonly,gamedll | 
+nav_test_path_npc | developmentonly,gamedll | Calculate and draw a path for the selected NPC to the test position.
+nav_test_path_npc_success_radius_when_blocked | developmentonly,gamedll | Calculate and draw a path for the selected NPC to the test position.
+nav_test_path_opt | developmentonly,gamedll | Enable path optimization for nav_edit_path paths.
+nav_test_path_opt_transitions | developmentonly,gamedll | 
+nav_test_path_return | developmentonly,gamedll | Calculate a return path from cursor position to the path calculated by nav_test_path.
+nav_test_path_space | developmentonly,gamedll | Should nav_test_path test 3d navigation?  1 = space to space, 2 = multi-modal space/ground
+nav_test_path_space_fly | developmentonly,gamedll | Test flight paths
+nav_test_path_space_swim | developmentonly,gamedll | Test swim paths
 nav_test_pos_name | developmentonly,gamedll,defensive | 
 nav_test_pos_place | developmentonly,gamedll,defensive | 
 nav_test_ray_space | gamedll,cheat | 
@@ -1828,6 +1831,7 @@ nav_test_split_obstacle_size | gamedll,cheat |
 nav_test_split_obstacle_update_pos | gamedll,cheat | 
 nav_volume_debug | gamedll,cheat | Draw or print debug information about nav volume queries.
 navspace_create_water_smooth_connections | gamedll,cheat | 
+navspace_create_water_surface_connections | gamedll,cheat | 
 navspace_create_water_transition_connections | gamedll,cheat | 
 navspace_debug_pathfind | gamedll,cheat | 
 navspace_debug_stringpull | gamedll,cheat | 
@@ -1846,6 +1850,7 @@ nextlevel | gamedll,release | If set to a valid map name, will trigger a changel
 nextmap_print_enabled | gamedll,release | When enabled prints next map to clients
 nextmode | gamedll,replicated,release | Sets the game mode to be played when the next level loads
 noclip_fixup | gamedll,cheat | 
+npc_record_skeleton_snapshot | developmentonly,gamedll | 
 npc_record_snapshot_data | developmentonly,gamedll | 
 npcsolve_attract_draw | developmentonly,gamedll,defensive | 
 npcsolve_constraint_nav | developmentonly,gamedll,defensive | 
@@ -1894,6 +1899,7 @@ panorama_worldpanel_update_cull_size_threshold | developmentonly,clientdll,defen
 panorama_worldpanel_update_culling | developmentonly,clientdll,defensive | 
 parallel_perform_invalidate_physics | developmentonly,gamedll,clientdll,replicated | 
 parallel_update_surrounding_bounds_in_spatial_partition_update | developmentonly,gamedll,clientdll,replicated | 
+particle_cluster_bounds_debug | developmentonly,gamedll,clientdll,replicated,defensive | 
 particle_cluster_debug | developmentonly,gamedll,clientdll,replicated,defensive | 
 particle_cluster_manager_search_dist | developmentonly,gamedll,clientdll,replicated,defensive | 
 particle_cluster_nodraw | developmentonly,gamedll,clientdll,replicated,defensive | 
@@ -1905,11 +1911,14 @@ partybrowser_throttle_data | developmentonly,clientdll |
 partybrowser_timeout | developmentonly,clientdll | 
 password | dontrecord,server_cannot_query | Current server access password
 path_closest_point_debug | developmentonly,gamedll,clientdll,replicated | 
+path_mover_enable_high_resolution_debug_rendering | developmentonly,gamedll,defensive | 
+path_mover_entity_spawner_debug | developmentonly,gamedll,defensive | 
 path_node_evaluation_debug | developmentonly,gamedll,clientdll,replicated | 
 pawn_mimic_all | developmentonly,gamedll,clientdll,replicated | 
 phonemedelay | developmentonly,clientdll,defensive | Phoneme delay to account for sound system latency.
 phonemefilter | developmentonly,clientdll,defensive | Time duration of box filter to pass over phonemes.
 phonemesnap | developmentonly,clientdll,defensive | Lod at level at which visemes stops always considering two phonemes, regardless of duration.
+phys_agg_world_compounds | developmentonly,gamedll,clientdll,replicated | 
 phys_batch_ray_test | developmentonly,clientdll,defensive | 
 phys_continuous_kinematic_update | developmentonly,gamedll,clientdll,replicated,defensive | 
 phys_dynamic_scaling | gamedll,clientdll,replicated,cheat | 
@@ -1942,7 +1951,6 @@ phys_use_block_solver | gamedll,cheat | Use block solving for constraint entitie
 phys_vehicleimpactforcescale | developmentonly,gamedll,defensive | 
 phys_visualize_awake_dynamic_only | developmentonly,gamedll,clientdll,replicated,defensive | 
 phys_visualize_awake_unattached_only | developmentonly,gamedll,clientdll,replicated,defensive | 
-phys_wind_force_scale | developmentonly,gamedll,clientdll,replicated | Scale on the force wind applies to physics bodies
 pickup_check_period | developmentonly,gamedll,defensive | 
 player0_using_joystick |  | 
 player_botdifflast_s | clientdll,release | 
@@ -1981,6 +1989,7 @@ prop_nav_obstacle_block_mass_c | developmentonly,gamedll,defensive |
 props_break_apply_radial_forces | developmentonly,gamedll,clientdll,replicated | 
 props_break_max_pieces_perframe | developmentonly,gamedll,clientdll,replicated,defensive | Maximum prop breakable piece count per frame (-1 = model default)
 props_break_radial_force_ratio | developmentonly,gamedll,clientdll,replicated | 
+pulse_cursor_infinite_loop_detection_threshold | developmentonly,gamedll,clientdll,replicated | 
 pulse_save_execution_history | developmentonly,gamedll,clientdll,replicated | Keep a history of all instructions run on a per graph basis.
 pulse_save_execution_history_limit | developmentonly,gamedll,clientdll,replicated | Keep a history of all instructions run on a per graph basis.
 pvs_debugentity | gamedll,release | Verbose spew for this entity when doing IsInPVS computation.
@@ -2129,10 +2138,10 @@ r_csgo_volume_mboit_optimization | clientdll,cheat |
 r_csgo_water_effects | clientdll,cheat | 
 r_csgo_water_refraction | clientdll,cheat | 
 r_csgo_water_skybox_depth | developmentonly,clientdll | 
+r_csgo_world_receives_skybox_csm | developmentonly,clientdll | 
 r_cubemap_debug_colors | reference | 
 r_dashboard_render_quality | developmentonly,clientdll,defensive | 
 r_debug_depth_holes | clientdll,cheat | 
-r_debug_draw_safe_area_insets | developmentonly | Render safe area insets as wireframe.
 r_debug_particle_shadows | clientdll,cheat | 
 r_debug_precipitation | clientdll,cheat | Show precipitation volumes
 r_decal_hit_confirmation | developmentonly,gamedll,clientdll,replicated | 
@@ -2140,9 +2149,13 @@ r_decals | developmentonly,gamedll,clientdll,replicated,defensive |
 r_decals_additional_offset | developmentonly,gamedll,clientdll,replicated | 
 r_decals_default_fade_duration | developmentonly,gamedll,clientdll,replicated,defensive | 
 r_decals_default_start_fade | developmentonly,gamedll,clientdll,replicated,defensive | 
-r_decals_max_on_deformables | developmentonly,gamedll,clientdll,replicated,defensive | 
+r_decals_distance_scale | gamedll,clientdll,replicated,cheat | Size multiplier applied to decals placed at r_decals_distance_scale_end or further from the local player. 1.0 disables distance scaling.
+r_decals_distance_scale_end | gamedll,clientdll,replicated,cheat | Distance from the local player at which decals reach r_decals_distance_scale.
+r_decals_distance_scale_start | gamedll,clientdll,replicated,cheat | Distance from the local player at which decals start scaling toward r_decals_distance_scale.
+r_decals_max_triangle_anchored | developmentonly,gamedll,clientdll,replicated,defensive | 
 r_decals_overide_fadestarttime_params | developmentonly,gamedll,clientdll,replicated,commandline_enforced,defensive | 
 r_decals_overlap_threshold | developmentonly,gamedll,clientdll,replicated,defensive | 
+r_decals_triangle_max_stretch | developmentonly,gamedll,clientdll,replicated,defensive | Max stretch (and 1/x compression) ratio a triangle-anchored decal may show relative to its shape at placement. 1 = rigid follow, <= 0 = unlimited.
 r_depth_of_field | developmentonly,clientdll | 0 = off, 1 = enabled (high quality, circular bokeh, HDR)
 r_directlighting | cheat | Set to use direct lighting
 r_dof2_maxblursize | developmentonly,clientdll | 
@@ -2237,7 +2250,7 @@ r_player_visibility_strength | developmentonly,clientdll,cheat |
 r_post_bloom_debug | developmentonly,clientdll | 1 = bloom output (before thresholding), 2 = quarter res downsample, 3 = quarter res effects bloom 4 = quarter res effects raw
 r_propsmaxdist | developmentonly,clientdll,defensive | Maximum visible distance
 r_render_to_cubemap_begin_mixing_roughness | developmentonly,clientdll,defensive | 
-r_render_to_cubemap_debug | developmentonly,clientdll,defensive | 
+r_render_to_cubemap_debug | clientdll,cheat | 
 r_rendersun | cheat | Render sun lighting
 r_replay_post_effect | clientdll,cheat | 
 r_ropetranslucent | developmentonly,clientdll,defensive | 
@@ -2317,6 +2330,7 @@ rr_debugclassname | developmentonly,gamedll,clientdll,replicated,defensive | If 
 rr_debugresponseconcept | developmentonly,gamedll,clientdll,replicated,defensive | If set, rr_debugresponseconcept will print only responses testing for the specified concept
 rr_debugresponses | developmentonly,gamedll,clientdll,replicated,defensive | Show verbose matching output (1 for simple, 2 for rule scoring, 3 for noisy). If set to 4, it will only show response success/failure for npc_selected NPCs.
 rr_debugrule | developmentonly,gamedll,clientdll,replicated,defensive | If set to the name of the rule, that rule's score will be shown whenever a concept is passed into the response rules system.
+rr_dumpresponses | developmentonly,gamedll,clientdll,replicated | 
 rr_followup_maxdist | gamedll,cheat | 'then ANY' or 'then ALL' response followups will be dispatched only to characters within this distance.
 rr_thenany_score_slop | gamedll,cheat | When computing respondents for a 'THEN ANY' rule, all rule-matching scores within this much of the best score will be considered.
 safezonex | clientdll | The percentage of the screen width that is considered safe from overscan. Cannot result in a width less than the height.
@@ -2365,6 +2379,7 @@ skeleton_instance_scaleset_enable | gamedll,clientdll,replicated,cheat |
 skeleton_instance_smear_boneflags | gamedll,cheat | Smear boneflags across the model.  Costs computation, but tests to make sure your bone flags are consistent.
 skeleton_physics_joint_fixup | developmentonly,gamedll,clientdll,replicated,cheat | 
 skill | gamedll,clientdll,replicated,per_user | Game skill level.
+sky_camera_volume_debug | clientdll,cheat | Draw sky_camera_volume bounds and their target links.
 slope_drop_enable | developmentonly,gamedll,clientdll,replicated,defensive | Toggles a test dropping the view offset based on the slope
 slope_drop_max_offset | developmentonly,gamedll,clientdll,replicated,defensive | The maximum distance to adjust the view height
 slope_drop_off_ground_blend_speed | developmentonly,gamedll,clientdll,replicated,defensive | The speed with which the slope drop is blended out when the entity leaves the ground
@@ -2379,7 +2394,12 @@ smoke_use_noise_texture | developmentonly,gamedll,clientdll,replicated,defensive
 smoke_volume_lod_ratio_change | developmentonly,clientdll | 
 smoothstairs | developmentonly,gamedll,clientdll,replicated,defensive | Smooth player eye z coordinate when traversing stairs.
 snd_break_on_start_soundevent | gamedll,clientdll,replicated,cheat | Use to debug break on any soundevent that is started matching this name
+snd_chicken_obscured_fade_time | developmentonly,clientdll,defensive | Seconds to fade the ChickensObscuredLayer mix layer in and out.
 snd_deathcamera_volume | clientdll,release | Volume of Deathcam Timers
+snd_deathcamera_volume_armsrace | clientdll,release | Arms Race volume of Deathcam Timers
+snd_deathcamera_volume_casual | clientdll,release | Casual volume of Deathcam Timers
+snd_deathcamera_volume_deathmatch | clientdll,release | Deathmatch volume of Deathcam Timers
+snd_deathcamera_volume_rush | clientdll,release | Rush volume of Deathcam Timers
 snd_disable_radar_visualize | developmentonly,gamedll,clientdll,replicated,defensive | 
 snd_eq_arms_race | developmentonly,clientdll | 
 snd_eq_casual | developmentonly,clientdll | 
@@ -2398,23 +2418,53 @@ snd_log_empty_event_entities | clientdll,cheat | Logs the sound event entities t
 snd_mainmenu_music_break_time_max | clientdll,cheat | Maximum amount of time to pause between playing main menu music
 snd_mainmenu_music_break_time_min | clientdll,cheat | Minimum amount of time to pause between playing main menu music
 snd_mapobjective_volume | clientdll,release | Volume of Map Objective Music
+snd_mapobjective_volume_armsrace | clientdll,release | Arms Race volume of Map Objective Music
+snd_mapobjective_volume_casual | clientdll,release | Casual volume of Map Objective Music
+snd_mapobjective_volume_deathmatch | clientdll,release | Deathmatch volume of Map Objective Music
+snd_mapobjective_volume_rush | clientdll,release | Rush volume of Map Objective Music
 snd_max_pitch_shift_inaccuracy | developmentonly,gamedll,clientdll,replicated,defensive | 
 snd_menumap_volume | clientdll,release | Volume of background sounds for maps
 snd_menumusic_volume | clientdll,release | Volume of Menu / Non-gameplay music
+snd_menumusic_volume_armsrace | clientdll,release | Arms Race volume of Menu / Non-gameplay music
+snd_menumusic_volume_casual | clientdll,release | Casual volume of Menu / Non-gameplay music
+snd_menumusic_volume_deathmatch | clientdll,release | Deathmatch volume of Menu / Non-gameplay music
+snd_menumusic_volume_rush | clientdll,release | Rush volume of Menu / Non-gameplay music
 snd_mixahead | reference | 
+snd_music_mode | clientdll,release | Selects which per-game-mode set of music volume convars is live
+snd_music_settings_mode | clientdll,release | Which game mode's music volumes the audio settings screen is editing
 snd_musicvolume | reference | 
 snd_mute_losefocus |  | 
 snd_mute_mvp_music_live_players | clientdll,release | If set, MVP music is muted if players from both teams are still alive.
 snd_mvp_volume | clientdll,release | Volume of MVP Music
+snd_mvp_volume_armsrace | clientdll,release | Arms Race volume of MVP Music
+snd_mvp_volume_casual | clientdll,release | Casual volume of MVP Music
+snd_mvp_volume_deathmatch | clientdll,release | Deathmatch volume of MVP Music
+snd_mvp_volume_rush | clientdll,release | Rush volume of MVP Music
 snd_new_visualize | gamedll,cheat | Displays soundevent name played at it's 3d position
 snd_occlusion_debug | gamedll,clientdll,replicated,cheat | 
+snd_opvar_set_dome_catchup_distance | developmentonly,gamedll,clientdll,replicated,defensive | 
+snd_opvar_set_dome_catchup_rate | developmentonly,gamedll,clientdll,replicated,defensive | 
+snd_opvar_set_dome_churn_fraction | developmentonly,gamedll,clientdll,replicated,defensive | 
+snd_opvar_set_dome_cluster_steps_per_think | developmentonly,gamedll,clientdll,replicated,defensive | 
 snd_opvar_set_point_debug | gamedll,clientdll,replicated,cheat | 
 snd_opvar_set_point_update_interval | developmentonly,gamedll,clientdll,replicated,defensive | 
 snd_opvar_set_point_update_interval_fast | developmentonly,gamedll,clientdll,replicated,defensive | 
 snd_report_c4_sounds | developmentonly,clientdll,cheat | 
 snd_roundaction_volume | clientdll,release | Volume of Move Action Music
+snd_roundaction_volume_armsrace | clientdll,release | Arms Race volume of Move Action Music
+snd_roundaction_volume_casual | clientdll,release | Casual volume of Move Action Music
+snd_roundaction_volume_deathmatch | clientdll,release | Deathmatch volume of Move Action Music
+snd_roundaction_volume_rush | clientdll,release | Rush volume of Move Action Music
 snd_roundend_volume | clientdll,release | Volume of Won/Lost Music
+snd_roundend_volume_armsrace | clientdll,release | Arms Race volume of Won/Lost Music
+snd_roundend_volume_casual | clientdll,release | Casual volume of Won/Lost Music
+snd_roundend_volume_deathmatch | clientdll,release | Deathmatch volume of Won/Lost Music
+snd_roundend_volume_rush | clientdll,release | Rush volume of Won/Lost Music
 snd_roundstart_volume | clientdll,release | Volume of Round Start Music
+snd_roundstart_volume_armsrace | clientdll,release | Arms Race volume of Round Start Music
+snd_roundstart_volume_casual | clientdll,release | Casual volume of Round Start Music
+snd_roundstart_volume_deathmatch | clientdll,release | Deathmatch volume of Round Start Music
+snd_roundstart_volume_rush | clientdll,release | Rush volume of Round Start Music
 snd_sos_debug_trigger_opvar | developmentonly,gamedll,defensive | 
 snd_sos_opvar_debug | reference | 
 snd_sound_areas_debug | clientdll,replicated,cheat | 
@@ -2427,6 +2477,10 @@ snd_surf_volume_inair | clientdll,release | The volume of the wind when surfing.
 snd_surf_volume_map | clientdll,release | The volume of ambient sounds when surfing is enabled.
 snd_surf_volume_slide | clientdll,release | The volume of sliding along surfaces when surfing.
 snd_tensecondwarning_volume | clientdll,release | Volume of Ten Second Warnings
+snd_tensecondwarning_volume_armsrace | clientdll,release | Arms Race volume of Ten Second Warnings
+snd_tensecondwarning_volume_casual | clientdll,release | Casual volume of Ten Second Warnings
+snd_tensecondwarning_volume_deathmatch | clientdll,release | Deathmatch volume of Ten Second Warnings
+snd_tensecondwarning_volume_rush | clientdll,release | Rush volume of Ten Second Warnings
 snd_vol_arms_race | developmentonly,clientdll | 
 snd_vol_casual | developmentonly,clientdll | 
 snd_vol_competitive | developmentonly,clientdll | 
@@ -2500,9 +2554,7 @@ steam_controller_haptics | clientdll,release |
 steamworks_sessionid_client | clientdll,hidden | The client session ID for the new steamworks gamestats.
 steamworks_sessionid_server | developmentonly,gamedll,clientdll,hidden,replicated,defensive | The server session ID for the new steamworks gamestats.
 sticky_tooltips | developmentonly,clientdll,hidden,defensive | Don't ever hide tooltips. Helpful when debugging complicated tooltip layouts.
-surf_speed_fast | gamedll,clientdll,replicated,release | Speed above which a player is considered to be going fast.
-surf_speed_med | gamedll,clientdll,replicated,release | Speed above which a player is considered to be going medium.
-surf_speed_slow | gamedll,clientdll,replicated,release | Speed above which a player is considered to be going slow.
+surf_speed_slow | gamedll,clientdll,replicated,release | Speed above which surf sounds are played.
 suspicious_hit_odds_threshold | gamedll,release | 
 suspicious_hit_player_radius | gamedll,release | 
 suspicious_hit_strategy | gamedll,release | What to do about suspicious hits. 0: Nothing. 1: Skip the bullet. 2: Skip the bullet and re-roll a new bullet.
@@ -2514,6 +2566,7 @@ sv_air_max_wishspeed | gamedll,clientdll,replicated,release |
 sv_airaccelerate | gamedll,clientdll,replicated,release | 
 sv_allchat | gamedll,release | Players can receive all other players' text chat, no death restrictions
 sv_allow_annotations_access_level | gamedll,clientdll,replicated,release,commandline_enforced | 0:off | 1: view-only | 2: edit.
+sv_allow_approximate_spawns | gamedll,clientdll,replicated,release,commandline_enforced | Test spawn points for occupancy. Fall back to placing players in the nearest empty space instead of overlapping.
 sv_allow_ground_weapon_pickup | developmentonly,gamedll,clientdll,replicated | 
 sv_allow_switching_weapon_handedness | developmentonly,gamedll,clientdll,replicated | 
 sv_allow_votes | gamedll,release,commandline_enforced | Allow voting?
@@ -2553,6 +2606,8 @@ sv_c4_upright_constraint_enabled | developmentonly,gamedll,defensive | Use a con
 sv_c4_upright_constraint_strength | developmentonly,gamedll,defensive | How quickly the constraint converges
 sv_chat_proximity | gamedll,clientdll,replicated,release | 
 sv_cheats | replicated,release | Allow cheats on server
+sv_clanid | developmentonly,gamedll | Steam clan ID to allow members to set some convars
+sv_clanserver_gms | developmentonly | 
 sv_client_max_interp_ratio | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected).
 sv_client_min_interp_ratio | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected). 
 sv_clip_penetration_traces_to_players | developmentonly,gamedll,clientdll,replicated,defensive | 
@@ -2628,6 +2683,8 @@ sv_force_team_intro_random | developmentonly,gamedll |
 sv_force_team_intro_variant | developmentonly,gamedll | 
 sv_force_transmit_ents | developmentonly,gamedll | Will transmit all entities to client, regardless of PVS conditions (will still skip based on transmit flags, however).
 sv_fps_max | developmentonly,hidden,defensive | Dedicated server frame rate limiter. 0=tick rate. Only applies to the dedicated server.
+sv_frame_snapshot_async_delete | developmentonly | 
+sv_frame_snapshot_sort_entities | developmentonly | 
 sv_freeze_camera_angles | gamedll,clientdll,replicated,release,commandline_enforced | 
 sv_freeze_camera_enabled | gamedll,clientdll,replicated,release,commandline_enforced | 
 sv_freeze_camera_min_remaining | gamedll,clientdll,replicated,release,commandline_enforced | 
@@ -2696,7 +2753,6 @@ sv_logsdir | release | Folder in the game directory where server logs will be st
 sv_long_frame_ms | developmentonly,defensive | If a server frame takes longer than N ms, complain about it.  (Dedicated server only.)  See also engine_frametime_warnings_enable.
 sv_mapvetopickvote_maps | gamedll,release | Which maps are used for map veto pick sequence
 sv_mapvetopickvote_phase_duration | gamedll,release | How many seconds each phase lasts
-sv_mapvetopickvote_rnd | gamedll,release | When enabled will shuffle veto pick maps list order every time
 sv_massreport | developmentonly,gamedll,defensive | 
 sv_matchend_drops_enabled | gamedll,release | Rewards gameplay time is always accumulated for players, but drops at the end of the match can be prevented
 sv_matchpause_auto_5v5 | gamedll,clientdll,replicated,release | When enabled will automatically pause the match at next freeze time if less than 5 players are connected on each team.
@@ -2723,10 +2779,12 @@ sv_minrate | replicated,release | Min bandwidth rate allowed on server, 0 == unl
 sv_mmqueue_reservation | developmentonly,dontrecord | Server queue reservation
 sv_mmqueue_reservation_extended_timeout | developmentonly | Extended time in seconds before mmqueue reservation expires.
 sv_mmqueue_reservation_timeout | developmentonly | Time in seconds before mmqueue reservation expires.
+sv_molotov_broken_glass_trap | gamedll,release | 
 sv_mover_maxslope | developmentonly,gamedll,clientdll,replicated,defensive | The maximum slope the player can overcome [-]
 sv_mover_pogodampingratio | developmentonly,gamedll,clientdll,replicated,defensive | The capsule pogo stick damping ratio [-]
 sv_mover_pogofrequency | developmentonly,gamedll,clientdll,replicated,defensive | The capsule pogo stick frequency [hz].
 sv_mute_players_with_social_penalties | developmentonly,gamedll,defensive | 
+sv_netprof_delta_sharing_temp | release | Temp counter for measuring performance impact of some network changes. To be removed by the end of Sept 2026
 sv_networkvar_log_fullchanges | developmentonly,gamedll | Log FUL_FULL_EDICT_CHANGED calls.
 sv_networkvar_perfieldtracking | release | Track individual field offset changes, rather than a single dirty flag for the whole entity.
 sv_no_navmesh | developmentonly,gamedll,cheat | Block loading of the navmesh. Unplayable, only used for memory sampling.
@@ -2839,6 +2897,7 @@ sv_sniper_tracer_innacuracy | developmentonly,gamedll,clientdll,replicated | How
 sv_sniper_tracer_innacuracy_length | developmentonly,gamedll,clientdll,replicated | How far should the tracer draw if we trip sv_sniper_tracer_mode behavior.
 sv_sniper_tracer_mode | developmentonly,gamedll,clientdll,replicated,defensive | Mode for sniper tracers. 0: legacy, 1: hide when more than sv_sniper_tracer_innacuracy inaccurate.
 sv_spawn_afk_bomb_drop_time | gamedll,replicated,release | Players that have never moved since they spawned will drop the bomb after this amount of time.
+sv_spawn_random_nudge_offset | gamedll,clientdll,replicated,release,commandline_enforced | Max distance in X and Y to randomly offset a player from their spawn position, for procedural spawn variation. 0 to disable.
 sv_spec_hear | gamedll,clientdll,replicated,release | Determines who spectators can hear: 0: only spectators; 1: all players; 2: spectated team; 3: self only; 4: nobody
 sv_spec_use_tournament_content_standards | gamedll,clientdll,replicated,release | 
 sv_specaccelerate | gamedll,clientdll,replicated | 
@@ -2877,7 +2936,6 @@ sv_teamid_overhead_maxdist | gamedll,clientdll,replicated,release,commandline_en
 sv_teamid_overhead_maxdist_spec | gamedll,clientdll,replicated,release,commandline_enforced | If >0, server will override cl_teamid_overhead_maxdist_spec
 sv_temp_baseline_string_table_buffer_size | developmentonly,defensive | Buffer size for writing string table baselines
 sv_tick_parallel_with_client | developmentonly | Runs the final server tick of the frame in parallel with client work
-sv_tick_snapshot_sort_entities | developmentonly | 
 sv_timebetweenducks | gamedll,clientdll,replicated,release | Minimum time before recognizing consecutive duck key
 sv_timeout | developmentonly,defensive | After this many seconds without a message from fully connected client, the client is dropped
 sv_turbophysics | developmentonly,gamedll,clientdll,replicated,defensive | Turns on turbo physics
@@ -2956,6 +3014,7 @@ tool_spawned_model_scales | developmentonly,gamedll,replicated |
 tools_stall_monitor_break_on_unknown_cause | developmentonly | Break on unknown stall cause
 trigger_fan_debug | developmentonly,gamedll,clientdll,replicated | 
 trigger_fan_player_windblock_debug | developmentonly,gamedll,clientdll,replicated | 
+trigger_physics_debug | developmentonly,gamedll,cheat | Toggle trigger_physics debug visualization.
 trusted_launch | clientdll | Trusted launch status
 tv_advertise_watchable | protected,dontrecord,release | GOTV advertises the match as watchable via game UI, clients watching via UI will not need to type password
 tv_allow_autorecording_index | gamedll,release | When >=0 restricts autorecording only to the specified TV index
@@ -3023,6 +3082,7 @@ tv_playcast_max_rtdelay | hidden,release |
 tv_playcast_origin_auth | hidden,release | Get request X-Origin-Auth string
 tv_playcast_retry_timeout | release | In case of intermittent network problems, how long should playcast retry fragment retrieval before resorting to resync
 tv_playcast_showerrors | hidden,release | Set to display headers upon error (e.g. "CF-Ray,CF-Cache-Status,Body" )
+tv_playcast_slow_playback_fragment_count | hidden,release | Number of fragments we need to have in the buffer before slowing down playback. For use with tv_playcast_slow_playback_when_fragment_requests_fail
 tv_playcast_slow_playback_when_fragment_requests_fail | hidden,release | Whether or not we slow playback rate if we start running out of buffered stream fragments.
 tv_port | release | Host SourceTV[0] port
 tv_port1 | release | Host SourceTV[1] port
@@ -3067,6 +3127,7 @@ ui_playsettings_flags_listen_competitive | clientdll,release |
 ui_playsettings_flags_listen_cooperative | clientdll,release | 
 ui_playsettings_flags_listen_deathmatch | clientdll,release | 
 ui_playsettings_flags_listen_retakes | clientdll,release | 
+ui_playsettings_flags_listen_rush | clientdll,release | 
 ui_playsettings_flags_listen_scrimcomp2v2 | clientdll,release | 
 ui_playsettings_flags_listen_skirmish | clientdll,release | 
 ui_playsettings_flags_listen_survival | clientdll,release | 
@@ -3075,6 +3136,7 @@ ui_playsettings_flags_official_competitive | clientdll,release |
 ui_playsettings_flags_official_cooperative | clientdll,release | 
 ui_playsettings_flags_official_deathmatch | clientdll,release | 
 ui_playsettings_flags_official_retakes | clientdll,release | 
+ui_playsettings_flags_official_rush | clientdll,release | 
 ui_playsettings_flags_official_scrimcomp2v2 | clientdll,release | 
 ui_playsettings_flags_official_skirmish | clientdll,release | 
 ui_playsettings_flags_official_survival | clientdll,release | 
@@ -3087,11 +3149,13 @@ ui_playsettings_maps_listen_competitive | clientdll,release |
 ui_playsettings_maps_listen_deathmatch | clientdll,release | 
 ui_playsettings_maps_listen_gungameprogressive | clientdll,release | 
 ui_playsettings_maps_listen_retakes | clientdll,release | 
+ui_playsettings_maps_listen_rush | clientdll,release | 
 ui_playsettings_maps_listen_scrimcomp2v2 | clientdll,release | 
 ui_playsettings_maps_official_casual | clientdll,release | 
 ui_playsettings_maps_official_deathmatch | clientdll,release | 
 ui_playsettings_maps_official_gungameprogressive | clientdll,release | 
 ui_playsettings_maps_official_retakes | clientdll,release | 
+ui_playsettings_maps_official_rush | clientdll,release | 
 ui_playsettings_maps_workshop | clientdll,release | 
 ui_playsettings_mode_listen | clientdll,release | 
 ui_playsettings_mode_official_v20 | clientdll,release | 
@@ -3160,6 +3224,7 @@ voice_threshold_ramp_min_db | developmentonly | A dB floor of when to stop trans
 voice_vox | clientdll,per_user | Voice chat uses a vox-style always on
 voice_vox_current_peak | developmentonly,clientdll,defensive | Current peak value (out of 64k) of the incoming voice stream
 volume | reference | 
+vprof_all_threads | developmentonly | Capture VProf scopes on background threads as well as the target thread. Same option as the All Threads checkbox in the VProf tools -- setting either one updates the other
 vprof_counters | developmentonly,defensive | 
 vprof_counters_show_minmax | developmentonly,defensive | 
 vprof_scope_entity_clientthink | developmentonly,clientdll,hidden,defensive | Does nothing whatsoever.
@@ -3177,8 +3242,7 @@ weapon_all_stattrak | developmentonly,clientdll |
 weapon_auto_cleanup_time | gamedll,clientdll,replicated,release | If set to non-zero, weapons will delete themselves after the specified time (in seconds) if no players are near.
 weapon_debug_inaccuracy_only_up | developmentonly,gamedll,clientdll,replicated,cheat | Force weapon inaccuracy to be in exactly the up direction
 weapon_debug_max_inaccuracy | developmentonly,gamedll,clientdll,replicated,cheat | Force all shots to have maximum inaccuracy
-weapon_debug_spread_gap | clientdll,cheat,per_user | 
-weapon_debug_spread_show | clientdll,cheat,per_user | Enables display of weapon accuracy; 1: show accuracy box, 3: show accuracy with dynamic crosshair
+weapon_debug_spread_show | clientdll,cheat,per_user | Draws the current weapon's true inaccuracy + spread radius around the crosshair
 weapon_land_dip_amt | developmentonly,gamedll,clientdll,replicated,cheat | The amount the gun should dip when the player lands after a jump.
 weapon_max_before_cleanup | gamedll,clientdll,replicated,release,commandline_enforced | If set to non-zero, will remove the oldest dropped weapon to maintain the specified number of dropped weapons in the world.
 weapon_molotov_maxdetonateslope | developmentonly,gamedll,clientdll,replicated,defensive | Maximum angle of slope on which the molotov will detonate

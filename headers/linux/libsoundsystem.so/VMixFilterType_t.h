@@ -1,6 +1,6 @@
 #pragma once
 
-enum VMixFilterType_t : uint16_t  // sizeof 0x2
+enum VMixFilterType_t : uint8_t  // sizeof 0x1
 {
     FILTER_UNKNOWN = -1,
     FILTER_LOWPASS = 0,

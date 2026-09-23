@@ -1,6 +1,6 @@
 #pragma once
 
-enum ModelMeshBufferUsage_t : uint8_t  // sizeof 0x1
+enum ModelMeshBufferUsage_t : uint16_t  // sizeof 0x2
 {
     MESH_BUFFER_USAGE_NONE = 0,
     MESH_BUFFER_USAGE_VB = 1,
@@ -10,4 +10,6 @@ enum ModelMeshBufferUsage_t : uint8_t  // sizeof 0x1
     MESH_BUFFER_USAGE_RT_PROXY = 16,
     MESH_BUFFER_USAGE_VERTEX_ALBEDO = 32,
     MESH_BUFFER_USAGE_VERTEX_EMISSIVE = 64,
+    MESH_BUFFER_USAGE_MESHLETS = 128,
+    MESH_BUFFER_USAGE_ALIAS_TABLE = 256,
 };

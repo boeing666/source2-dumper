@@ -7,6 +7,6 @@ public:
     VectorAligned m_vWsCenter; // offset 0x40, size 0x10, align 16
     VectorAligned m_vWsStart; // offset 0x50, size 0x10, align 16
     VectorAligned m_vWsEnd; // offset 0x60, size 0x10, align 16
-    Color m_Color; // offset 0x70, size 0x4, align 1
+    Color m_Color; // offset 0x70, size 0x4, align 4
     char _pad_0074[0xC]; // offset 0x74
 };

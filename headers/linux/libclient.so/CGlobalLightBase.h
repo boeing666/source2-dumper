@@ -14,14 +14,14 @@ public:
     Vector m_InspectorSpecularDirection; // offset 0x50, size 0xC, align 4
     float32 m_flSpecularPower; // offset 0x5C, size 0x4, align 4
     float32 m_flSpecularIndependence; // offset 0x60, size 0x4, align 4
-    Color m_SpecularColor; // offset 0x64, size 0x4, align 1
+    Color m_SpecularColor; // offset 0x64, size 0x4, align 4
     bool m_bStartDisabled; // offset 0x68, size 0x1, align 1
     bool m_bEnabled; // offset 0x69, size 0x1, align 1
-    Color m_LightColor; // offset 0x6A, size 0x4, align 1
-    Color m_AmbientColor1; // offset 0x6E, size 0x4, align 1
-    Color m_AmbientColor2; // offset 0x72, size 0x4, align 1
-    Color m_AmbientColor3; // offset 0x76, size 0x4, align 1
-    char _pad_007A[0x2]; // offset 0x7A
+    char _pad_006A[0x2]; // offset 0x6A
+    Color m_LightColor; // offset 0x6C, size 0x4, align 4
+    Color m_AmbientColor1; // offset 0x70, size 0x4, align 4
+    Color m_AmbientColor2; // offset 0x74, size 0x4, align 4
+    Color m_AmbientColor3; // offset 0x78, size 0x4, align 4
     float32 m_flSunDistance; // offset 0x7C, size 0x4, align 4
     float32 m_flFOV; // offset 0x80, size 0x4, align 4
     float32 m_flNearZ; // offset 0x84, size 0x4, align 4

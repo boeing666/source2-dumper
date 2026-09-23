@@ -13,5 +13,5 @@ struct RnMesh_t  // sizeof 0xC0, align 0x8 (physicslib) {MGetKV3ClassDefaults}
     Vector m_vOrthographicAreas; // offset 0xA8, size 0xC, align 4
     uint32 m_nFlags; // offset 0xB4, size 0x4, align 4
     uint32 m_nDebugFlags; // offset 0xB8, size 0x4, align 4
-    char _pad_00BC[0x4]; // offset 0xBC
+    float32 m_flSurfaceArea; // offset 0xBC, size 0x4, align 4
 };

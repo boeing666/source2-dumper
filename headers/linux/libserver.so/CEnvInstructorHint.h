@@ -13,7 +13,7 @@ public:
     CUtlSymbolLarge m_iszIcon_Offscreen; // offset 0x7B0, size 0x8, align 8
     CUtlSymbolLarge m_iszCaption; // offset 0x7B8, size 0x8, align 8
     CUtlSymbolLarge m_iszActivatorCaption; // offset 0x7C0, size 0x8, align 8
-    Color m_Color; // offset 0x7C8, size 0x4, align 1
+    Color m_Color; // offset 0x7C8, size 0x4, align 4
     float32 m_fIconOffset; // offset 0x7CC, size 0x4, align 4
     float32 m_fRange; // offset 0x7D0, size 0x4, align 4
     uint8 m_iPulseOption; // offset 0x7D4, size 0x1, align 1

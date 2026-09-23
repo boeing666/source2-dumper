@@ -9,6 +9,7 @@ public:
     bool m_bIsOffsetNode; // offset 0xE, size 0x1, align 1
     bool m_bIsOffsetRelativeToCharacter; // offset 0xF, size 0x1, align 1
     bool m_bWarpTranslation; // offset 0x10, size 0x1, align 1
-    CNmRootMotionData::SamplingMode_t m_samplingMode; // offset 0x11, size 0x1, align 1
-    char _pad_0012[0x6]; // offset 0x12
+    CNmOrientationWarpNode::AlignmentMode_t m_alignmentMode; // offset 0x11, size 0x1, align 1
+    CNmRootMotionData::SamplingMode_t m_samplingMode; // offset 0x12, size 0x1, align 1
+    char _pad_0013[0x5]; // offset 0x13
 };

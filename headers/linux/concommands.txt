@@ -297,6 +297,7 @@ crash_error_job | cheat | Cause the engine to crash by Plat_FatalError on job th
 crash_error_thread | cheat | Cause the engine to crash by Plat_FatalError on non-main thread (Debug!!)
 crash_job | cheat | Cause the engine to crash in a job thread (Debug!!)
 crash_thread | cheat | Cause the engine to crash in a brand new non-main thread (Debug!!)
+create_explosion_damage | gamedll,cheat | Explosion where you're looking, or at x y z, with a real explosion's physics force (unlike create_radius_damage).
 create_radius_damage | gamedll,cheat | Causes radius damage where you're looking, at the passed in radius.
 creditsdone | developmentonly,gamedll,defensive | 
 cs_quit_prompt | clientdll,release | Quit the game
@@ -377,8 +378,10 @@ ent_debug_anim | developmentonly,clientdll,defensive | Use the specified entity 
 ent_debug_origin_changes | developmentonly,gamedll | turn on, off, or toggle origin changes on server for entity by index
 ent_find | gamedll,cheat | Find and list all entities with classnames or targetnames that contain the specified substrings. Format: find_ent <substring> 
 ent_find_index | gamedll,cheat | Display data for entity matching specified index. Format: find_ent_index <index> 
-ent_fire | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire <target> [action] [value] [delay] 
-ent_fire_output | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output <target> [output name] [value] [delay] 
+ent_fire | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire <target> [action] [value0] [value1] ... [valueN] 
+ent_fire_delay | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_delay <target> [action] [value0] [value1] ... [valueN] [delay] 
+ent_fire_output | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output <target> [output name] [value0] [value1] ... [valueN] 
+ent_fire_output_delay | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output_delay <target> [output name] [value0] [value1] ... [valueN] [delay] 
 ent_gib | gamedll,cheat | Gibs the given entity(s)  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_grab | gamedll,cheat | grabs the object in front of the player. Options: -loose -multiple -toggle
 ent_hierarchy | gamedll,cheat | Prints the entity hierarchy tree rooted at the specified ent(s)
@@ -443,11 +446,11 @@ firstperson | clientdll,release,execute_per_tick | Switch to firstperson camera.
 fog_override_color | cheat | Sets the fog color override
 force_assert | developmentonly | Fire an assertion failure
 force_fatal_error | developmentonly | Fire a fatal error
-force_hibernate | developmentonly | Force toggle hibernation state
 fs_clear_open_duplicate_times | developmentonly,defensive | Clear the list of files that have been opened.
 fs_dump_open_duplicate_times | developmentonly,defensive | Set fs_report_long_reads 1 before loading to use this. Prints a list of files that were opened more than once and ~how long was spent reading from them.
 func_mover_count | gamedll,cheat | 
 func_mover_enable_debug_all | gamedll,cheat | 
+func_mover_step_movement | gamedll,cheat | 
 game_alias | release | Set the configuration of game type and mode based on game alias like "deathmatch".
 game_particle_manager_dump_requeue | developmentonly,clientdll | Dump contents of particle manager requeue
 game_particle_manager_list_active | developmentonly,clientdll | Dump counts of active particles
@@ -644,7 +647,7 @@ open_current_map_in_hammer | developmentonly | opens the current map in hammer.
 p2p_listpeers | developmentonly,defensive | List currently known peers.
 p2p_ping | developmentonly,clientdll,defensive | Ping a peer.
 panorama_console_reset_size_and_position | linked_concommand,developmentonly,clientdll,hidden,defensive | Resets the panorama console to its default size and position
-particle_test_create | gamedll,cheat | Creates the named particle system where the player is looking.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+particle_test_create | gamedll,cheat | Creates the named particle system where the player is looking.  Can be used on an entity if pointed at the entity.  Optionally takes a particle config name.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_destroy | gamedll,cheat | Destroys all particle systems matching the specified name.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_start | gamedll,cheat | Dispatches the test particle system with the parameters specified in particle_test_file,  particle_test_attach_mode and particle_test_attach_param on the entity the player is looking at.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_stop | gamedll,cheat | Stops all particle systems on the selected entities.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -781,6 +784,7 @@ server_snd_cast | gamedll,cheat | Casts a ray and starts a sound event where the
 server_snd_pos | gamedll,cheat | Starts a sound event at a given position. The sound event will retrigger periodically. Usage: server_snd_pos <eventname> <retrigger time> <x> <y> <z>.
 servervoice_clear | developmentonly,clientdll,defensive | servervoice_clear
 servervoice_dump | developmentonly,clientdll,defensive | servervoice_dump
+set_server_cvar | developmentonly,clientdll | Change a server convar if allowed
 setang | gamedll,cheat,client_can_execute | Snap player eyes to specified pitch yaw <roll:optional> (must have sv_cheats).
 setang_exact | gamedll,cheat,client_can_execute | Snap player eyes and orientation to specified pitch yaw <roll:optional> (must have sv_cheats).
 setinfo | clientcmd_can_execute | Adds a new user info value
@@ -828,6 +832,7 @@ snd_sos_sv_soundevent_unpause_last | developmentonly,gamedll,defensive | Test
 snd_sos_sv_test_gender | developmentonly,gamedll,defensive | Test
 soundscape_dumpclient | clientdll,cheat | Dumps the client's soundscape data. 
 soundscape_flush | developmentonly,gamedll,defensive | Flushes the server & client side soundscapes
+spawnBrokenGlass | developmentonly,gamedll,cheat | 
 spawnCashStack | developmentonly,gamedll,cheat | 
 spec_goto | clientdll,clientcmd_can_execute | Move the spectator camera to a specific location. `spec_goto x y z pitch yaw`
 spec_lock_to_current_player | developmentonly,clientdll | As an observer, lock the spectator target to the currently observed target

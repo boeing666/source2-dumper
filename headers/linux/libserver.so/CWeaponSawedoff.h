@@ -1,7 +1,7 @@
 #pragma once
 
-class CWeaponSawedoff : public CCSWeaponBaseShotgun /*0x0*/  // sizeof 0x1320, align 0x10 [vtable] (server)
+class CWeaponSawedoff : public CCSWeaponBaseShotgun /*0x0*/  // sizeof 0x1550, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0x1320]; // offset 0x0
+    char _pad_0000[0x1550]; // offset 0x0
 };

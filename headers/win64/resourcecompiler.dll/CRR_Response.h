@@ -1,6 +1,6 @@
 #pragma once
 
-class CRR_Response  // sizeof 0x1D0, align 0x8 (resourcecompiler) {MGetKV3ClassDefaults}
+class CRR_Response  // sizeof 0x1B8, align 0x8 (resourcecompiler) {MGetKV3ClassDefaults}
 {
 public:
     uint8 m_Type; // offset 0x0, size 0x1, align 1
@@ -13,8 +13,7 @@ public:
     char _pad_0185[0x3]; // offset 0x185
     char* m_szSpeakerContext; // offset 0x188, size 0x8, align 8 | MNotSaved
     char* m_szWorldContext; // offset 0x190, size 0x8, align 8 | MNotSaved
-    ResponseFollowup m_Followup; // offset 0x198, size 0x31, align 255 | MNotSaved
-    char _pad_01C9[0x1]; // offset 0x1C9
-    CUtlSymbol m_recipientFilter; // offset 0x1CA, size 0x2, align 2 | MNotSaved
-    char _pad_01CC[0x4]; // offset 0x1CC
+    ResponseFollowup m_Followup; // offset 0x198, size 0x1C, align 255 | MNotSaved
+    CUtlSymbol m_recipientFilter; // offset 0x1B4, size 0x2, align 2 | MNotSaved
+    char _pad_01B6[0x2]; // offset 0x1B6
 };

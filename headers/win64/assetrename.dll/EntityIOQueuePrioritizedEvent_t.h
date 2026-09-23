@@ -1,6 +1,6 @@
 #pragma once
 
-struct EntityIOQueuePrioritizedEvent_t  // sizeof 0x70, align 0x8 (entity2) {MGetKV3ClassDefaults}
+struct EntityIOQueuePrioritizedEvent_t  // sizeof 0xF8, align 0x8 (entity2) {MGetKV3ClassDefaults}
 {
     char _pad_0000[0x4]; // offset 0x0
     GameTime_t m_flFireTime; // offset 0x4, size 0x4, align 255
@@ -13,5 +13,7 @@ struct EntityIOQueuePrioritizedEvent_t  // sizeof 0x70, align 0x8 (entity2) {MGe
     CEntityHandle m_hEntTarget; // offset 0x28, size 0x4, align 4
     char _pad_002C[0x4]; // offset 0x2C
     CVariantBase< CVariantDefaultAllocator > m_variantValue; // offset 0x30, size 0x10, align 8 | MKV3TransferSaveOpsForField
-    char _pad_0040[0x30]; // offset 0x40
+    CPulseArgumentPack m_PulseArguments; // offset 0x40, size 0x90, align 8
+    CPulseInputParamMap m_paramMap; // offset 0xD0, size 0x18, align 8
+    char _pad_00E8[0x10]; // offset 0xE8
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CNmSkeletonDocument : public CNmAnimDocument /*0x0*/  // sizeof 0x120, align 0x8 [vtable] (animdoclib) {MGetKV3ClassDefaults}
+class CNmSkeletonDocument : public CNmAnimDocument /*0x0*/  // sizeof 0x138, align 0x8 [vtable] (animdoclib) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x70]; // offset 0x0
@@ -10,11 +10,12 @@ public:
     bool m_bIsAttachableProp; // offset 0x84, size 0x1, align 1
     bool m_bIsCS_HACK; // offset 0x85, size 0x1, align 1
     char _pad_0086[0x2]; // offset 0x86
-    CUtlVector< CNmSkeletonDocument::SecondarySkeleton_t > m_secondarySkeletons; // offset 0x88, size 0x18, align 8 | MPropertyFriendlyName MPropertyAutoExpandSelf
-    CUtlVector< CGlobalSymbol > m_gameplayRelevantBones; // offset 0xA0, size 0x18, align 8 | MPropertyDescription
-    CUtlVector< CGlobalSymbol > m_highLODBones; // offset 0xB8, size 0x18, align 8 | MPropertySuppressField
-    CUtlVector< NmBoneMaskSetDefinition_t > m_boneMaskSetDefinitions; // offset 0xD0, size 0x18, align 8 | MPropertySuppressField
-    CUtlVector< CNmFloatChannelSet_t > m_floatChannelSets; // offset 0xE8, size 0x18, align 8 | MPropertySuppressField
-    CUtlString m_previewModelName; // offset 0x100, size 0x8, align 8 | MPropertyGroupName MPropertyAttributeEditor
-    char _pad_0108[0x18]; // offset 0x108
+    CUtlVector< CNmSkeletonDocument::ContactConfig_t > m_contactConfigs; // offset 0x88, size 0x18, align 8
+    CUtlVector< CNmSkeletonDocument::SecondarySkeleton_t > m_secondarySkeletons; // offset 0xA0, size 0x18, align 8 | MPropertyFriendlyName MPropertyAutoExpandSelf
+    CUtlVector< CGlobalSymbol > m_gameplayRelevantBones; // offset 0xB8, size 0x18, align 8 | MPropertyDescription
+    CUtlVector< CGlobalSymbol > m_highLODBones; // offset 0xD0, size 0x18, align 8 | MPropertySuppressField
+    CUtlVector< NmBoneMaskSetDefinition_t > m_boneMaskSetDefinitions; // offset 0xE8, size 0x18, align 8 | MPropertySuppressField
+    CUtlVector< CNmFloatChannelSet_t > m_floatChannelSets; // offset 0x100, size 0x18, align 8 | MPropertySuppressField
+    CUtlString m_previewModelName; // offset 0x118, size 0x8, align 8 | MPropertyGroupName MPropertyAttributeEditor
+    char _pad_0120[0x18]; // offset 0x120
 };

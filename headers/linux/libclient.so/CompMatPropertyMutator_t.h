@@ -31,7 +31,7 @@ struct CompMatPropertyMutator_t  // sizeof 0x390, align 0x8 (compositematerialsl
     CUtlString m_strDrawText_InputContainerSrc; // offset 0x350, size 0x8, align 8 | MPropertyFriendlyName MPropertyAttrStateCallback
     CUtlString m_strDrawText_InputContainerProperty; // offset 0x358, size 0x8, align 8 | MPropertyFriendlyName MPropertyAttrStateCallback
     Vector2D m_vecDrawText_Position; // offset 0x360, size 0x8, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback
-    Color m_colDrawText_Color; // offset 0x368, size 0x4, align 1 | MPropertyFriendlyName MPropertyAttrStateCallback
+    Color m_colDrawText_Color; // offset 0x368, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback
     char _pad_036C[0x4]; // offset 0x36C
     CUtlString m_strDrawText_Font; // offset 0x370, size 0x8, align 8 | MPropertyFriendlyName MPropertyAttrStateCallback
     CUtlVector< CompMatMutatorCondition_t > m_vecConditions; // offset 0x378, size 0x18, align 8 | MPropertyFriendlyName MPropertyAttrStateCallback

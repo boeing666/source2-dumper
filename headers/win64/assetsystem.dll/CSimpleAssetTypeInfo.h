@@ -1,6 +1,6 @@
 #pragma once
 
-class CSimpleAssetTypeInfo  // sizeof 0x100, align 0x8 [vtable] (toolutils2) {MGetKV3ClassDefaults}
+class CSimpleAssetTypeInfo  // sizeof 0x108, align 0x8 [vtable] (toolutils2) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0
@@ -29,5 +29,7 @@ public:
     bool m_bShouldCompileErrorFallbackToDisk; // offset 0xF0, size 0x1, align 1
     char _pad_00F1[0x3]; // offset 0xF1
     int32 m_nAssetTypeVersion; // offset 0xF4, size 0x4, align 4
-    CUtlString m_Test_InjectSearchable; // offset 0xF8, size 0x8, align 8
+    int32 m_nAssetThumbnailVersion; // offset 0xF8, size 0x4, align 4
+    char _pad_00FC[0x4]; // offset 0xFC
+    CUtlString m_Test_InjectSearchable; // offset 0x100, size 0x8, align 8
 };

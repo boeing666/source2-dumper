@@ -1,6 +1,6 @@
 #pragma once
 
-class CModelConfigElement_AttachedModel : public CModelConfigElement /*0x0*/  // sizeof 0xE8, align 0x8 [vtable] (modellib) {MGetKV3ClassDefaults}
+class CModelConfigElement_AttachedModel : public CModelConfigElement /*0x0*/  // sizeof 0xF0, align 0x8 [vtable] (modellib) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x48]; // offset 0x0
@@ -18,5 +18,7 @@ public:
     char _pad_008F[0x1]; // offset 0x8F
     CUtlString m_BodygroupOnOtherModels; // offset 0x90, size 0x8, align 8
     CUtlString m_MaterialGroupOnOtherModels; // offset 0x98, size 0x8, align 8
-    char _pad_00A0[0x48]; // offset 0xA0
+    bool m_bCollideWithHierarchy; // offset 0xA0, size 0x1, align 1
+    bool m_bCollideOutsideHierarchy; // offset 0xA1, size 0x1, align 1
+    char _pad_00A2[0x4E]; // offset 0xA2
 };

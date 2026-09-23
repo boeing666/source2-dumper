@@ -1,7 +1,7 @@
 #pragma once
 
-class CRagdollPropAlias_physics_prop_ragdoll : public CRagdollProp /*0x0*/  // sizeof 0xB20, align 0x10 [vtable] (server)
+class CRagdollPropAlias_physics_prop_ragdoll : public CRagdollProp /*0x0*/  // sizeof 0xC00, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0xB20]; // offset 0x0
+    char _pad_0000[0xC00]; // offset 0x0
 };

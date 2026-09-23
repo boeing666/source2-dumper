@@ -1,6 +1,6 @@
 #pragma once
 
-struct RTProxyInstanceInfo_t  // sizeof 0x48, align 0x4 [trivial_dtor] (resourcecompiler) {MGetKV3ClassDefaults}
+struct RTProxyInstanceInfo_t  // sizeof 0x4C, align 0x4 [trivial_dtor] (resourcecompiler) {MGetKV3ClassDefaults}
 {
     RTProxyInstanceFlags_t m_nFlags; // offset 0x0, size 0x1, align 1
     VertexAlbedoFormat_t m_albedoFormat; // offset 0x1, size 0x1, align 1
@@ -13,4 +13,5 @@ struct RTProxyInstanceInfo_t  // sizeof 0x48, align 0x4 [trivial_dtor] (resource
     uint32 m_nVertexEmissiveByteOffset; // offset 0x10, size 0x4, align 4
     float32 m_fEmissiveFactor; // offset 0x14, size 0x4, align 4
     matrix3x4_t m_mWorldFromLocal; // offset 0x18, size 0x30, align 4
+    Color m_vTintColorSRGB; // offset 0x48, size 0x4, align 4
 };

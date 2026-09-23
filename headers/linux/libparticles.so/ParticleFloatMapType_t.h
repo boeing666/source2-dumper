@@ -10,5 +10,8 @@ enum ParticleFloatMapType_t : uint32_t  // sizeof 0x4
     PF_MAP_TYPE_CURVE = 4,
     PF_MAP_TYPE_NOTCHED = 5,
     PF_MAP_TYPE_ROUND = 6,
-    PF_MAP_TYPE_COUNT = 7,
+    PF_MAP_TYPE_MIN = 7,
+    PF_MAP_TYPE_MAX = 8,
+    PF_MAP_TYPE_MOD = 9,
+    PF_MAP_TYPE_COUNT = 10,
 };

@@ -7,8 +7,8 @@ public:
     float32 m_FOV; // offset 0x788, size 0x4, align 4
     float32 m_Resolution; // offset 0x78C, size 0x4, align 4
     bool m_bFogEnable; // offset 0x790, size 0x1, align 1
-    Color m_FogColor; // offset 0x791, size 0x4, align 1
-    char _pad_0795[0x3]; // offset 0x795
+    char _pad_0791[0x3]; // offset 0x791
+    Color m_FogColor; // offset 0x794, size 0x4, align 4
     float32 m_flFogStart; // offset 0x798, size 0x4, align 4
     float32 m_flFogEnd; // offset 0x79C, size 0x4, align 4
     float32 m_flFogMaxDensity; // offset 0x7A0, size 0x4, align 4

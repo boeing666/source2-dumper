@@ -1,7 +1,7 @@
 #pragma once
 
-class CCommentaryViewPosition : public CSprite /*0x0*/  // sizeof 0xAC0, align 0x8 [vtable] (server)
+class CCommentaryViewPosition : public CSprite /*0x0*/  // sizeof 0xBA0, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xAC0]; // offset 0x0
+    char _pad_0000[0xBA0]; // offset 0x0
 };

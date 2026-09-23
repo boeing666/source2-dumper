@@ -1,6 +1,6 @@
 #pragma once
 
-class C_EconItemView : public IEconItemInterface /*0x0*/  // sizeof 0x1378, align 0xFF [vtable] (client)
+class C_EconItemView : public IEconItemInterface /*0x0*/  // sizeof 0x14B8, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x70]; // offset 0x0
@@ -38,7 +38,9 @@ public:
     CAttributeList m_NetworkedDynamicAttributes; // offset 0x1188, size 0x78, align 255
     char[161] m_szCustomName; // offset 0x1200, size 0xA1, align 1
     char[161] m_szCustomNameOverride; // offset 0x12A1, size 0xA1, align 1
-    char _pad_1342[0x2E]; // offset 0x1342
-    bool m_bInitializedTags; // offset 0x1370, size 0x1, align 1
-    char _pad_1371[0x7]; // offset 0x1371
+    char[161] m_szCustomNameOverride2; // offset 0x1342, size 0xA1, align 1
+    char[161] m_szCustomNameOverride3; // offset 0x13E3, size 0xA1, align 1
+    char _pad_1484[0x2C]; // offset 0x1484
+    bool m_bInitializedTags; // offset 0x14B0, size 0x1, align 1
+    char _pad_14B1[0x7]; // offset 0x14B1
 };

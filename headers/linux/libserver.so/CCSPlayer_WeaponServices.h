@@ -1,6 +1,6 @@
 #pragma once
 
-class CCSPlayer_WeaponServices : public CPlayer_WeaponServices /*0x0*/  // sizeof 0x1880, align 0xFF [vtable] (server)
+class CCSPlayer_WeaponServices : public CPlayer_WeaponServices /*0x0*/  // sizeof 0x18B8, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0xC0]; // offset 0x0
@@ -15,8 +15,8 @@ public:
     bool m_bPickedUpWeapon; // offset 0xDA, size 0x1, align 1
     bool m_bDisableAutoDeploy; // offset 0xDB, size 0x1, align 1
     bool m_bIsPickingUpGroundWeapon; // offset 0xDC, size 0x1, align 1
-    char _pad_00DD[0x1783]; // offset 0xDD
-    CNetworkUtlVectorBase< uint8 > m_networkAnimTiming; // offset 0x1860, size 0x18, align 8
-    bool m_bBlockInspectUntilNextGraphUpdate; // offset 0x1878, size 0x1, align 1
-    char _pad_1879[0x7]; // offset 0x1879
+    char _pad_00DD[0x17BB]; // offset 0xDD
+    CNetworkUtlVectorBase< uint8 > m_networkAnimTiming; // offset 0x1898, size 0x18, align 8
+    bool m_bBlockInspectUntilNextGraphUpdate; // offset 0x18B0, size 0x1, align 1
+    char _pad_18B1[0x7]; // offset 0x18B1
 };

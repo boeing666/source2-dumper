@@ -1,7 +1,7 @@
 #pragma once
 
-class CServerRagdollTrigger : public CBaseTrigger /*0x0*/  // sizeof 0x8E8, align 0x8 [vtable] (server)
+class CServerRagdollTrigger : public CBaseTrigger /*0x0*/  // sizeof 0x9C8, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x8E8]; // offset 0x0
+    char _pad_0000[0x9C8]; // offset 0x0
 };

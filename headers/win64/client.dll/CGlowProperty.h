@@ -10,7 +10,7 @@ public:
     int32 m_iGlowTeam; // offset 0x34, size 0x4, align 4 | MNotSaved
     int32 m_nGlowRange; // offset 0x38, size 0x4, align 4 | MNotSaved
     int32 m_nGlowRangeMin; // offset 0x3C, size 0x4, align 4 | MNotSaved
-    Color m_glowColorOverride; // offset 0x40, size 0x4, align 1 | MNotSaved
+    Color m_glowColorOverride; // offset 0x40, size 0x4, align 4 | MNotSaved
     bool m_bFlashing; // offset 0x44, size 0x1, align 1 | MNotSaved
     char _pad_0045[0x3]; // offset 0x45
     float32 m_flGlowTime; // offset 0x48, size 0x4, align 4 | MNotSaved

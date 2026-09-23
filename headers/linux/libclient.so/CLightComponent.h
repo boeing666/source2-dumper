@@ -5,10 +5,9 @@ class CLightComponent : public CEntityComponent /*0x0*/  // sizeof 0x1F0, align 
 public:
     char _pad_0000[0x38]; // offset 0x0
     CNetworkVarChainer __m_pChainEntity; // offset 0x38, size 0x28, align 255 | MNotSaved
-    char _pad_0060[0x15]; // offset 0x60
-    Color m_Color; // offset 0x75, size 0x4, align 1
-    Color m_SecondaryColor; // offset 0x79, size 0x4, align 1
-    char _pad_007D[0x3]; // offset 0x7D
+    char _pad_0060[0x18]; // offset 0x60
+    Color m_Color; // offset 0x78, size 0x4, align 4
+    Color m_SecondaryColor; // offset 0x7C, size 0x4, align 4
     float32 m_flBrightness; // offset 0x80, size 0x4, align 4
     float32 m_flBrightnessScale; // offset 0x84, size 0x4, align 4
     float32 m_flBrightnessMult; // offset 0x88, size 0x4, align 4
@@ -73,14 +72,29 @@ public:
     int32 m_nFogLightingMode; // offset 0x184, size 0x4, align 4
     float32 m_flFogContributionStength; // offset 0x188, size 0x4, align 4
     float32 m_flNearClipPlane; // offset 0x18C, size 0x4, align 4
-    Color m_SkyColor; // offset 0x190, size 0x4, align 1
+    Color m_SkyColor; // offset 0x190, size 0x4, align 4
     float32 m_flSkyIntensity; // offset 0x194, size 0x4, align 4
-    Color m_SkyAmbientBounce; // offset 0x198, size 0x4, align 1
+    Color m_SkyAmbientBounce; // offset 0x198, size 0x4, align 4
     bool m_bUseSecondaryColor; // offset 0x19C, size 0x1, align 1
     bool m_bMixedShadows; // offset 0x19D, size 0x1, align 1 | MNotSaved
     char _pad_019E[0x2]; // offset 0x19E
     GameTime_t m_flLightStyleStartTime; // offset 0x1A0, size 0x4, align 255
     float32 m_flCapsuleLength; // offset 0x1A4, size 0x4, align 4
     float32 m_flMinRoughness; // offset 0x1A8, size 0x4, align 4
-    char _pad_01AC[0x44]; // offset 0x1AC
+    bool m_bAmbientOcclusionProxyOverride; // offset 0x1AC, size 0x1, align 1
+    char _pad_01AD[0x3]; // offset 0x1AD
+    CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition0; // offset 0x1B0, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition1; // offset 0x1B4, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition2; // offset 0x1B8, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition3; // offset 0x1BC, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyStrength0; // offset 0x1C0, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyStrength1; // offset 0x1C4, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyStrength2; // offset 0x1C8, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyStrength3; // offset 0x1CC, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyAmbientStrength; // offset 0x1D0, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyConeAngle0; // offset 0x1D4, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyConeAngle1; // offset 0x1D8, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyConeAngle2; // offset 0x1DC, size 0x4, align 4
+    float32 m_flAmbientOcclusionProxyConeAngle3; // offset 0x1E0, size 0x4, align 4
+    char _pad_01E4[0xC]; // offset 0x1E4
 };

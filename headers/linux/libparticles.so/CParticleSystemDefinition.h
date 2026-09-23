@@ -1,6 +1,6 @@
 #pragma once
 
-class CParticleSystemDefinition : public IParticleSystemDefinition /*0x0*/  // sizeof 0x450, align 0x10 [vtable] (particles) {MGetKV3ClassDefaults}
+class CParticleSystemDefinition : public IParticleSystemDefinition /*0x0*/  // sizeof 0x5A0, align 0x10 [vtable] (particles) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
@@ -29,7 +29,7 @@ public:
     char _pad_0286[0x2]; // offset 0x286
     CUtlString m_NamedValueDomain; // offset 0x288, size 0x8, align 8 | MPropertyFriendlyName MPropertyAttributeChoiceName MPropertyAutoRebuildOnChange MPropertySuppressExpr
     CUtlVector< ParticleNamedValueSource_t* > m_NamedValueLocals; // offset 0x290, size 0x18, align 8 | MPropertySuppressField
-    Color m_ConstantColor; // offset 0x2A8, size 0x4, align 1 | MPropertyStartGroup MPropertyFriendlyName MPropertyColorPlusAlpha
+    Color m_ConstantColor; // offset 0x2A8, size 0x4, align 4 | MPropertyStartGroup MPropertyFriendlyName MPropertyColorPlusAlpha
     Vector m_ConstantNormal; // offset 0x2AC, size 0xC, align 4 | MPropertyFriendlyName MVectorIsCoordinate
     float32 m_flConstantRadius; // offset 0x2B8, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
     float32 m_flConstantRotation; // offset 0x2BC, size 0x4, align 4 | MPropertyFriendlyName
@@ -80,5 +80,5 @@ public:
     bool m_bShouldSort; // offset 0x378, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
     char _pad_0379[0x47]; // offset 0x379
     CUtlVector< ParticleControlPointConfiguration_t > m_controlPointConfigurations; // offset 0x3C0, size 0x18, align 8 | MPropertySuppressField
-    char _pad_03D8[0x78]; // offset 0x3D8
+    char _pad_03D8[0x1C8]; // offset 0x3D8
 };

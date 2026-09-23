@@ -1,15 +1,17 @@
 #pragma once
 
-class C_Chicken : public C_DynamicProp /*0x0*/, public IHasAttributes /*0x13C0*/  // sizeof 0x18B0, align 0x10 [vtable] (client)
+class C_Chicken : public C_DynamicProp /*0x0*/, public IHasAttributes /*0x14B0*/  // sizeof 0x1BA0, align 0x10 [vtable] (client)
 {
 public:
-    char _pad_0000[0x13C8]; // offset 0x0
-    CHandle< C_CSPlayerPawn > m_leader; // offset 0x13C8, size 0x4, align 4
-    char _pad_13CC[0x4]; // offset 0x13CC
-    C_AttributeContainer m_AttributeManager; // offset 0x13D0, size 0x4D0, align 255
-    bool m_bAttributesInitialized; // offset 0x18A0, size 0x1, align 1
-    char _pad_18A1[0x3]; // offset 0x18A1
-    ParticleIndex_t m_hWaterWakeParticles; // offset 0x18A4, size 0x4, align 255
-    bool m_bIsPreviewModel; // offset 0x18A8, size 0x1, align 1
-    char _pad_18A9[0x7]; // offset 0x18A9
+    char _pad_0000[0x14C0]; // offset 0x0
+    CHandle< C_CSPlayerPawn > m_leader; // offset 0x14C0, size 0x4, align 4
+    CHandle< CCSPlayerController > m_owner; // offset 0x14C4, size 0x4, align 4
+    C_AttributeContainer m_AttributeManager; // offset 0x14C8, size 0x610, align 255
+    bool m_bAttributesInitialized; // offset 0x1AD8, size 0x1, align 1
+    char _pad_1AD9[0x3]; // offset 0x1AD9
+    ParticleIndex_t m_hWaterWakeParticles; // offset 0x1ADC, size 0x4, align 255
+    bool m_bIsPreviewModel; // offset 0x1AE0, size 0x1, align 1
+    char _pad_1AE1[0x87]; // offset 0x1AE1
+    bool m_bSpawnDyingParticles; // offset 0x1B68, size 0x1, align 1
+    char _pad_1B69[0x37]; // offset 0x1B69
 };

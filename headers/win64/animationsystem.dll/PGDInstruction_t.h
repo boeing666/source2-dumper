@@ -16,5 +16,6 @@ struct PGDInstruction_t  // sizeof 0x38, align 0x8 [trivial_dtor] (pulse_runtime
     PulseRuntimeConstantIndex_t m_nConstIdx; // offset 0x20, size 0x2, align 255
     PulseRuntimeDomainValueIndex_t m_nDomainValueIdx; // offset 0x22, size 0x2, align 255
     PulseRuntimeBlackboardReferenceIndex_t m_nBlackboardReferenceIdx; // offset 0x24, size 0x2, align 255
-    char _pad_0026[0x12]; // offset 0x26
+    PulseRuntimeTempVarIndex_t m_nTempVarIdx; // offset 0x26, size 0x2, align 255
+    char _pad_0028[0x10]; // offset 0x28
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CEconItemView : public IEconItemInterface /*0x0*/  // sizeof 0x2A8, align 0xFF [vtable] (server)
+class CEconItemView : public IEconItemInterface /*0x0*/  // sizeof 0x3E8, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0x38]; // offset 0x0
@@ -21,5 +21,7 @@ public:
     CAttributeList m_NetworkedDynamicAttributes; // offset 0xE8, size 0x78, align 255
     char[161] m_szCustomName; // offset 0x160, size 0xA1, align 1
     char[161] m_szCustomNameOverride; // offset 0x201, size 0xA1, align 1
-    char _pad_02A2[0x6]; // offset 0x2A2
+    char[161] m_szCustomNameOverride2; // offset 0x2A2, size 0xA1, align 1
+    char[161] m_szCustomNameOverride3; // offset 0x343, size 0xA1, align 1
+    char _pad_03E4[0x4]; // offset 0x3E4
 };

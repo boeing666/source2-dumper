@@ -1,6 +1,6 @@
 #pragma once
 
-struct AI_GroundRootMotionMotor_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t /*0x0*/  // sizeof 0x88, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MPropertyFriendlyName}
+struct AI_GroundRootMotionMotor_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t /*0x0*/  // sizeof 0x90, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MPropertyFriendlyName}
 {
     char _pad_0000[0x8]; // offset 0x0
     CGlobalSymbol desired_movement_gait_set; // offset 0x8, size 0x8, align 8
@@ -20,7 +20,9 @@ struct AI_GroundRootMotionMotor_DebugSnapshotData_t : public DebugSnapshotBaseSt
     CGlobalSymbol move_type; // offset 0x58, size 0x8, align 8
     float32 f_forward_strafing_angle_actual; // offset 0x60, size 0x4, align 4
     float32 f_forward_strafing_angle_desired; // offset 0x64, size 0x4, align 4
-    float32 f_current_lean; // offset 0x68, size 0x4, align 4
-    float32 f_target_lean; // offset 0x6C, size 0x4, align 4
-    CUtlVector< AI_GroundRootMotionMotor_DebugSnapshotData_t::Event_t > vec_events; // offset 0x70, size 0x18, align 8
+    float32 f_forward_strafing_angle_committed; // offset 0x68, size 0x4, align 4
+    float32 f_current_lean; // offset 0x6C, size 0x4, align 4
+    float32 f_target_lean; // offset 0x70, size 0x4, align 4
+    char _pad_0074[0x4]; // offset 0x74
+    CUtlVector< AI_GroundRootMotionMotor_DebugSnapshotData_t::Event_t > vec_events; // offset 0x78, size 0x18, align 8
 };

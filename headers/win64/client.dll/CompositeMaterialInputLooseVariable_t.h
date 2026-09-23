@@ -33,7 +33,7 @@ struct CompositeMaterialInputLooseVariable_t  // sizeof 0x288, align 0x8 (compos
     float32 m_flValueFloatW; // offset 0x80, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback MPropertyAttributeRange
     float32 m_flValueFloatW_Min; // offset 0x84, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback
     float32 m_flValueFloatW_Max; // offset 0x88, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback
-    Color m_cValueColor4; // offset 0x8C, size 0x4, align 1 | MPropertyFriendlyName MPropertyAttrStateCallback
+    Color m_cValueColor4; // offset 0x8C, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback
     CompositeMaterialVarSystemVar_t m_nValueSystemVar; // offset 0x90, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttrStateCallback
     char _pad_0094[0x4]; // offset 0x94
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIMaterial2 > > m_strResourceMaterial; // offset 0x98, size 0xE0, align 8 | MPropertyFriendlyName MPropertyAttrStateCallback

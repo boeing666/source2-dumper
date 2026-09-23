@@ -1,7 +1,7 @@
 #pragma once
 
-class CTriggerCallback : public CBaseTrigger /*0x0*/  // sizeof 0xBD0, align 0x8 [vtable] (server)
+class CTriggerCallback : public CBaseTrigger /*0x0*/  // sizeof 0xCB0, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xBD0]; // offset 0x0
+    char _pad_0000[0xCB0]; // offset 0x0
 };

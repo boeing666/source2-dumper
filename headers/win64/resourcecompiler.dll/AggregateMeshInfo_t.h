@@ -9,7 +9,7 @@ struct AggregateMeshInfo_t  // sizeof 0x2C, align 0x4 [trivial_dtor] (resourceco
     char _pad_0007[0x1]; // offset 0x7
     int16 m_nDrawCallIndex; // offset 0x8, size 0x2, align 2
     int16 m_nLODSetupIndex; // offset 0xA, size 0x2, align 2
-    Color m_vTintColor; // offset 0xC, size 0x4, align 1
+    Color m_vTintColor; // offset 0xC, size 0x4, align 4
     ObjectTypeFlags_t m_objectFlags; // offset 0x10, size 0x4, align 4
     int32 m_nLightProbeVolumePrecomputedHandshake; // offset 0x14, size 0x4, align 4
     uint32 m_nInstanceStreamOffset; // offset 0x18, size 0x4, align 4

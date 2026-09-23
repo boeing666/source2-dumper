@@ -1,6 +1,6 @@
 #pragma once
 
-class CNmTargetSelectorNode::CDefinition : public CNmClipReferenceNode::CDefinition /*0x0*/  // sizeof 0x38, align 0x8 [vtable] (animlib) {MGetKV3ClassDefaults}
+class CNmTargetSelectorNode::CDefinition : public CNmClipReferenceNode::CDefinition /*0x0*/  // sizeof 0x40, align 0x8 [vtable] (animlib) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0
@@ -11,4 +11,5 @@ public:
     bool m_bIgnoreInvalidOptions; // offset 0x32, size 0x1, align 1
     bool m_bIsWorldSpaceTarget; // offset 0x33, size 0x1, align 1
     char _pad_0034[0x4]; // offset 0x34
+    CGlobalSymbol m_alignmentBoneID; // offset 0x38, size 0x8, align 8
 };

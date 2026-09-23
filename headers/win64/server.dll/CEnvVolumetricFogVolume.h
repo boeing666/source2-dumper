@@ -19,7 +19,7 @@ public:
     float32 m_fIndirectLightStrength; // offset 0x4DC, size 0x4, align 4
     float32 m_fSunLightStrength; // offset 0x4E0, size 0x4, align 4
     float32 m_fNoiseStrength; // offset 0x4E4, size 0x4, align 4
-    Color m_TintColor; // offset 0x4E8, size 0x4, align 1
+    Color m_TintColor; // offset 0x4E8, size 0x4, align 4
     bool m_bOverrideTintColor; // offset 0x4EC, size 0x1, align 1
     bool m_bOverrideIndirectLightStrength; // offset 0x4ED, size 0x1, align 1
     bool m_bOverrideSunLightStrength; // offset 0x4EE, size 0x1, align 1

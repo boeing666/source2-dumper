@@ -5,7 +5,7 @@ class C_EnvVolumetricFogController : public C_BaseEntity /*0x0*/  // sizeof 0x83
 public:
     char _pad_0000[0x77C]; // offset 0x0
     float32 m_flScattering; // offset 0x77C, size 0x4, align 4
-    Color m_TintColor; // offset 0x780, size 0x4, align 1
+    Color m_TintColor; // offset 0x780, size 0x4, align 4
     float32 m_flAnisotropy; // offset 0x784, size 0x4, align 4
     float32 m_flFadeSpeed; // offset 0x788, size 0x4, align 4
     float32 m_flDrawDistance; // offset 0x78C, size 0x4, align 4

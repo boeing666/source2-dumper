@@ -1,6 +1,6 @@
 #pragma once
 
-class CSceneEntity : public CPointEntity /*0x0*/  // sizeof 0x7F0, align 0x8 [vtable] (server)
+class CSceneEntity : public CPointEntity /*0x0*/  // sizeof 0x800, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x4B0]; // offset 0x0
@@ -32,7 +32,8 @@ public:
     float32 m_flCurrentTime; // offset 0x530, size 0x4, align 4
     float32 m_flFrameTime; // offset 0x534, size 0x4, align 4
     bool m_bCancelAtNextInterrupt; // offset 0x538, size 0x1, align 1
-    char _pad_0539[0x3]; // offset 0x539
+    bool m_bRemoveOnCompletion; // offset 0x539, size 0x1, align 1
+    char _pad_053A[0x2]; // offset 0x53A
     float32 m_fPitch; // offset 0x53C, size 0x4, align 4
     bool m_bAutomated; // offset 0x540, size 0x1, align 1
     char _pad_0541[0x3]; // offset 0x541
@@ -59,24 +60,29 @@ public:
     CEntityIOOutput m_OnPaused; // offset 0x610, size 0x18, align 255
     CEntityIOOutput m_OnResumed; // offset 0x628, size 0x18, align 255
     CEntityIOOutput m_OnPulseRequirement; // offset 0x640, size 0x18, align 255
-    char _pad_0658[0xF0]; // offset 0x658
-    CUtlVector< ActorMapping_t > m_ActorMap; // offset 0x748, size 0x18, align 8
-    char _pad_0760[0x28]; // offset 0x760
+    char _pad_0658[0x78]; // offset 0x658
+    CUtlDict< CUtlSymbolLarge > m_TargetNameMap; // offset 0x6D0, size 0x28, align 8
+    CUtlDict< CUtlSymbolLarge > m_AnchorNameMap; // offset 0x6F8, size 0x28, align 8
+    CUtlDict< CUtlSymbolLarge > m_ActorGraphMap; // offset 0x720, size 0x28, align 8
+    CUtlDict< ActorClipEntry_t > m_ActorClipMap; // offset 0x748, size 0x28, align 8
+    CUtlVector< ActorMapping_t > m_ActorMap; // offset 0x770, size 0x18, align 8
     CHandle< CSceneEntity > m_hInterruptScene; // offset 0x788, size 0x4, align 4
     int32 m_nInterruptCount; // offset 0x78C, size 0x4, align 4
-    bool m_bSceneMissing; // offset 0x790, size 0x1, align 1 | MNotSaved
-    bool m_bInterrupted; // offset 0x791, size 0x1, align 1
-    bool m_bCompletedEarly; // offset 0x792, size 0x1, align 1
-    bool m_bInterruptSceneFinished; // offset 0x793, size 0x1, align 1
-    bool m_bRestoring; // offset 0x794, size 0x1, align 1 | MNotSaved
-    char _pad_0795[0x3]; // offset 0x795
-    CUtlVector< CHandle< CSceneEntity > > m_hNotifySceneCompletion; // offset 0x798, size 0x18, align 8
-    CUtlVector< CHandle< CSceneListManager > > m_hListManagers; // offset 0x7B0, size 0x18, align 8
-    CUtlSymbolLarge m_iszSoundName; // offset 0x7C8, size 0x8, align 8
-    CUtlSymbolLarge m_iszSequenceName; // offset 0x7D0, size 0x8, align 8
-    CHandle< CBaseModelEntity > m_hActor; // offset 0x7D8, size 0x4, align 4
-    CHandle< CBaseEntity > m_hActivator; // offset 0x7DC, size 0x4, align 4
-    int32 m_BusyActor; // offset 0x7E0, size 0x4, align 4
-    SceneOnPlayerDeath_t m_iPlayerDeathBehavior; // offset 0x7E4, size 0x4, align 4
-    char _pad_07E8[0x8]; // offset 0x7E8
+    CUtlString m_responseConcept; // offset 0x790, size 0x8, align 8
+    CUtlString m_responseCriteria; // offset 0x798, size 0x8, align 8
+    bool m_bSceneMissing; // offset 0x7A0, size 0x1, align 1 | MNotSaved
+    bool m_bInterrupted; // offset 0x7A1, size 0x1, align 1
+    bool m_bCompletedEarly; // offset 0x7A2, size 0x1, align 1
+    bool m_bInterruptSceneFinished; // offset 0x7A3, size 0x1, align 1
+    bool m_bRestoring; // offset 0x7A4, size 0x1, align 1 | MNotSaved
+    char _pad_07A5[0x3]; // offset 0x7A5
+    CUtlVector< CHandle< CSceneEntity > > m_hNotifySceneCompletion; // offset 0x7A8, size 0x18, align 8
+    CUtlVector< CHandle< CSceneListManager > > m_hListManagers; // offset 0x7C0, size 0x18, align 8
+    CUtlSymbolLarge m_iszSoundName; // offset 0x7D8, size 0x8, align 8
+    CUtlSymbolLarge m_iszSequenceName; // offset 0x7E0, size 0x8, align 8
+    CHandle< CBaseModelEntity > m_hActor; // offset 0x7E8, size 0x4, align 4
+    CHandle< CBaseEntity > m_hActivator; // offset 0x7EC, size 0x4, align 4
+    int32 m_BusyActor; // offset 0x7F0, size 0x4, align 4
+    SceneOnPlayerDeath_t m_iPlayerDeathBehavior; // offset 0x7F4, size 0x4, align 4
+    char _pad_07F8[0x8]; // offset 0x7F8
 };

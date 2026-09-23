@@ -1,6 +1,6 @@
 #pragma once
 
-class C_GradientFog : public C_BaseEntity /*0x0*/  // sizeof 0x698, align 0x8 [vtable] (client)
+class C_GradientFog : public C_BaseEntity /*0x0*/  // sizeof 0x698, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
 {
 public:
     char _pad_0000[0x600]; // offset 0x0
@@ -15,7 +15,7 @@ public:
     float32 m_flFogMaxOpacity; // offset 0x620, size 0x4, align 4
     float32 m_flFogFalloffExponent; // offset 0x624, size 0x4, align 4
     float32 m_flFogVerticalExponent; // offset 0x628, size 0x4, align 4
-    Color m_fogColor; // offset 0x62C, size 0x4, align 1
+    Color m_fogColor; // offset 0x62C, size 0x4, align 4
     float32 m_flFogStrength; // offset 0x630, size 0x4, align 4
     float32 m_flFadeTime; // offset 0x634, size 0x4, align 4
     bool m_bStartDisabled; // offset 0x638, size 0x1, align 1

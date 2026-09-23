@@ -4,7 +4,8 @@ struct VPhysXAggregateData_t  // sizeof 0x150, align 0x8 (modellib) {MGetKV3Clas
 {
     uint16 m_nFlags; // offset 0x0, size 0x2, align 2
     uint16 m_nRefCounter; // offset 0x2, size 0x2, align 2
-    char _pad_0004[0x4]; // offset 0x4
+    bool m_bCompoundsPacked; // offset 0x4, size 0x1, align 1
+    char _pad_0005[0x3]; // offset 0x5
     CUtlVector< uint32 > m_bonesHash; // offset 0x8, size 0x18, align 8
     CUtlVector< CUtlString > m_boneNames; // offset 0x20, size 0x18, align 8
     CUtlVector< uint16 > m_indexNames; // offset 0x38, size 0x18, align 8

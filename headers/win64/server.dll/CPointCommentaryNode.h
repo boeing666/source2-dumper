@@ -1,42 +1,42 @@
 #pragma once
 
-class CPointCommentaryNode : public CBaseAnimGraph /*0x0*/  // sizeof 0xA40, align 0x10 [vtable] (server)
+class CPointCommentaryNode : public CBaseAnimGraph /*0x0*/  // sizeof 0xB20, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0x960]; // offset 0x0
-    CUtlSymbolLarge m_iszPreCommands; // offset 0x960, size 0x8, align 8
-    CUtlSymbolLarge m_iszPostCommands; // offset 0x968, size 0x8, align 8
-    CUtlSymbolLarge m_iszCommentaryFile; // offset 0x970, size 0x8, align 8
-    CUtlSymbolLarge m_iszViewTarget; // offset 0x978, size 0x8, align 8
-    CHandle< CBaseEntity > m_hViewTarget; // offset 0x980, size 0x4, align 4
-    CHandle< CBaseEntity > m_hViewTargetAngles; // offset 0x984, size 0x4, align 4
-    CUtlSymbolLarge m_iszViewPosition; // offset 0x988, size 0x8, align 8
-    CHandle< CBaseEntity > m_hViewPosition; // offset 0x990, size 0x4, align 4
-    CHandle< CBaseEntity > m_hViewPositionMover; // offset 0x994, size 0x4, align 4
-    bool m_bPreventMovement; // offset 0x998, size 0x1, align 1
-    bool m_bUnderCrosshair; // offset 0x999, size 0x1, align 1
-    bool m_bUnstoppable; // offset 0x99A, size 0x1, align 1
-    char _pad_099B[0x1]; // offset 0x99B
-    GameTime_t m_flFinishedTime; // offset 0x99C, size 0x4, align 255
-    VectorWS m_vecFinishOrigin; // offset 0x9A0, size 0xC, align 4
-    QAngle m_vecOriginalAngles; // offset 0x9AC, size 0xC, align 4
-    QAngle m_vecFinishAngles; // offset 0x9B8, size 0xC, align 4
-    bool m_bPreventChangesWhileMoving; // offset 0x9C4, size 0x1, align 1
-    bool m_bDisabled; // offset 0x9C5, size 0x1, align 1
-    char _pad_09C6[0x2]; // offset 0x9C6
-    VectorWS m_vecTeleportOrigin; // offset 0x9C8, size 0xC, align 4
-    GameTime_t m_flAbortedPlaybackAt; // offset 0x9D4, size 0x4, align 255
-    CEntityIOOutput m_pOnCommentaryStarted; // offset 0x9D8, size 0x18, align 255
-    CEntityIOOutput m_pOnCommentaryStopped; // offset 0x9F0, size 0x18, align 255
-    bool m_bActive; // offset 0xA08, size 0x1, align 1
-    char _pad_0A09[0x3]; // offset 0xA09
-    GameTime_t m_flStartTime; // offset 0xA0C, size 0x4, align 255
-    float32 m_flStartTimeInCommentary; // offset 0xA10, size 0x4, align 4
-    char _pad_0A14[0x4]; // offset 0xA14
-    CUtlSymbolLarge m_iszTitle; // offset 0xA18, size 0x8, align 8
-    CUtlSymbolLarge m_iszSpeakers; // offset 0xA20, size 0x8, align 8
-    int32 m_iNodeNumber; // offset 0xA28, size 0x4, align 4
-    int32 m_iNodeNumberMax; // offset 0xA2C, size 0x4, align 4
-    bool m_bListenedTo; // offset 0xA30, size 0x1, align 1
-    char _pad_0A31[0xF]; // offset 0xA31
+    char _pad_0000[0xA40]; // offset 0x0
+    CUtlSymbolLarge m_iszPreCommands; // offset 0xA40, size 0x8, align 8
+    CUtlSymbolLarge m_iszPostCommands; // offset 0xA48, size 0x8, align 8
+    CUtlSymbolLarge m_iszCommentaryFile; // offset 0xA50, size 0x8, align 8
+    CUtlSymbolLarge m_iszViewTarget; // offset 0xA58, size 0x8, align 8
+    CHandle< CBaseEntity > m_hViewTarget; // offset 0xA60, size 0x4, align 4
+    CHandle< CBaseEntity > m_hViewTargetAngles; // offset 0xA64, size 0x4, align 4
+    CUtlSymbolLarge m_iszViewPosition; // offset 0xA68, size 0x8, align 8
+    CHandle< CBaseEntity > m_hViewPosition; // offset 0xA70, size 0x4, align 4
+    CHandle< CBaseEntity > m_hViewPositionMover; // offset 0xA74, size 0x4, align 4
+    bool m_bPreventMovement; // offset 0xA78, size 0x1, align 1
+    bool m_bUnderCrosshair; // offset 0xA79, size 0x1, align 1
+    bool m_bUnstoppable; // offset 0xA7A, size 0x1, align 1
+    char _pad_0A7B[0x1]; // offset 0xA7B
+    GameTime_t m_flFinishedTime; // offset 0xA7C, size 0x4, align 255
+    VectorWS m_vecFinishOrigin; // offset 0xA80, size 0xC, align 4
+    QAngle m_vecOriginalAngles; // offset 0xA8C, size 0xC, align 4
+    QAngle m_vecFinishAngles; // offset 0xA98, size 0xC, align 4
+    bool m_bPreventChangesWhileMoving; // offset 0xAA4, size 0x1, align 1
+    bool m_bDisabled; // offset 0xAA5, size 0x1, align 1
+    char _pad_0AA6[0x2]; // offset 0xAA6
+    VectorWS m_vecTeleportOrigin; // offset 0xAA8, size 0xC, align 4
+    GameTime_t m_flAbortedPlaybackAt; // offset 0xAB4, size 0x4, align 255
+    CEntityIOOutput m_pOnCommentaryStarted; // offset 0xAB8, size 0x18, align 255
+    CEntityIOOutput m_pOnCommentaryStopped; // offset 0xAD0, size 0x18, align 255
+    bool m_bActive; // offset 0xAE8, size 0x1, align 1
+    char _pad_0AE9[0x3]; // offset 0xAE9
+    GameTime_t m_flStartTime; // offset 0xAEC, size 0x4, align 255
+    float32 m_flStartTimeInCommentary; // offset 0xAF0, size 0x4, align 4
+    char _pad_0AF4[0x4]; // offset 0xAF4
+    CUtlSymbolLarge m_iszTitle; // offset 0xAF8, size 0x8, align 8
+    CUtlSymbolLarge m_iszSpeakers; // offset 0xB00, size 0x8, align 8
+    int32 m_iNodeNumber; // offset 0xB08, size 0x4, align 4
+    int32 m_iNodeNumberMax; // offset 0xB0C, size 0x4, align 4
+    bool m_bListenedTo; // offset 0xB10, size 0x1, align 1
+    char _pad_0B11[0xF]; // offset 0xB11
 };

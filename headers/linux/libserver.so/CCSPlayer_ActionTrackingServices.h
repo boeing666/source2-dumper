@@ -1,6 +1,6 @@
 #pragma once
 
-class CCSPlayer_ActionTrackingServices : public CPlayerPawnComponent /*0x0*/  // sizeof 0x310, align 0xFF [vtable] (server)
+class CCSPlayer_ActionTrackingServices : public CPlayerPawnComponent /*0x0*/  // sizeof 0x380, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0x1F8]; // offset 0x0
@@ -10,5 +10,6 @@ public:
     char _pad_0225[0x3]; // offset 0x225
     WeaponPurchaseTracker_t m_weaponPurchasesThisMatch; // offset 0x228, size 0x70, align 255
     WeaponPurchaseTracker_t m_weaponPurchasesThisRound; // offset 0x298, size 0x70, align 255
-    char _pad_0308[0x8]; // offset 0x308
+    WeaponPurchaseTracker_t m_weaponCarryOverIntoThisRound; // offset 0x308, size 0x70, align 255
+    char _pad_0378[0x8]; // offset 0x378
 };

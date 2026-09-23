@@ -1,6 +1,6 @@
 #pragma once
 
-struct CSAdditionalPerRoundStats_t  // sizeof 0xF8, align 0xFF (server)
+struct CSAdditionalPerRoundStats_t  // sizeof 0x110, align 0xFF (server)
 {
     int32 m_numChickensKilled; // offset 0x0, size 0x4, align 4
     int32 m_killsWhileBlind; // offset 0x4, size 0x4, align 4
@@ -15,5 +15,5 @@ struct CSAdditionalPerRoundStats_t  // sizeof 0xF8, align 0xFF (server)
     int32 m_nHostagePickUps; // offset 0x20, size 0x4, align 4
     int32 m_numTeammatesFlashed; // offset 0x24, size 0x4, align 4
     CUtlString m_strAnnotationsWorkshopId; // offset 0x28, size 0x8, align 8
-    char _pad_0030[0xC8]; // offset 0x30
+    char _pad_0030[0xE0]; // offset 0x30
 };

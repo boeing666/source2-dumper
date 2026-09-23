@@ -1,6 +1,6 @@
 #pragma once
 
-class CNavPathCost : public INavPathCost /*0x0*/  // sizeof 0x30, align 0xFF [vtable] (navlib) {MGetKV3ClassDefaults}
+class CNavPathCost : public INavPathCost /*0x0*/  // sizeof 0x30, align 0x8 [vtable] (navlib) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xC]; // offset 0x0

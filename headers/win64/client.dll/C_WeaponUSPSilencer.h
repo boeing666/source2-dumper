@@ -1,7 +1,7 @@
 #pragma once
 
-class C_WeaponUSPSilencer : public C_CSWeaponBaseGun /*0x0*/  // sizeof 0x1D10, align 0x10 [vtable] (client)
+class C_WeaponUSPSilencer : public C_CSWeaponBaseGun /*0x0*/  // sizeof 0x1F40, align 0x10 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1D10]; // offset 0x0
+    char _pad_0000[0x1F40]; // offset 0x0
 };

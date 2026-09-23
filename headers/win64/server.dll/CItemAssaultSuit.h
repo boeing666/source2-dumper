@@ -1,7 +1,7 @@
 #pragma once
 
-class CItemAssaultSuit : public CItem /*0x0*/  // sizeof 0xA00, align 0x10 [vtable] (server)
+class CItemAssaultSuit : public CItem /*0x0*/  // sizeof 0xAE0, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0xA00]; // offset 0x0
+    char _pad_0000[0xAE0]; // offset 0x0
 };

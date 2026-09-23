@@ -1,43 +1,43 @@
 #pragma once
 
-class CPlantedC4 : public CBaseAnimGraph /*0x0*/, public IHasAttributes /*0x960*/  // sizeof 0xD80, align 0x10 [vtable] (server)
+class CPlantedC4 : public CBaseAnimGraph /*0x0*/, public IHasAttributes /*0xA40*/  // sizeof 0xFA0, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0x9B8]; // offset 0x0
-    bool m_bBombTicking; // offset 0x9B8, size 0x1, align 1
-    char _pad_09B9[0x3]; // offset 0x9B9
-    GameTime_t m_flC4Blow; // offset 0x9BC, size 0x4, align 255
-    int32 m_nBombSite; // offset 0x9C0, size 0x4, align 4
-    int32 m_nSourceSoundscapeHash; // offset 0x9C4, size 0x4, align 4
-    bool m_bAbortDetonationBecauseWorldIsFrozen; // offset 0x9C8, size 0x1, align 1
-    char _pad_09C9[0x7]; // offset 0x9C9
-    CAttributeContainer m_AttributeManager; // offset 0x9D0, size 0x2F8, align 255
-    CEntityIOOutput m_OnBombDefused; // offset 0xCC8, size 0x18, align 255
-    CEntityIOOutput m_OnBombBeginDefuse; // offset 0xCE0, size 0x18, align 255
-    CEntityIOOutput m_OnBombDefuseAborted; // offset 0xCF8, size 0x18, align 255
-    bool m_bCannotBeDefused; // offset 0xD10, size 0x1, align 1
-    char _pad_0D11[0x7]; // offset 0xD11
-    EntitySpottedState_t m_entitySpottedState; // offset 0xD18, size 0x18, align 255
-    int32 m_nSpotRules; // offset 0xD30, size 0x4, align 4
-    bool m_bHasExploded; // offset 0xD34, size 0x1, align 1
-    bool m_bBombDefused; // offset 0xD35, size 0x1, align 1
-    bool m_bTrainingPlacedByPlayer; // offset 0xD36, size 0x1, align 1
-    char _pad_0D37[0x1]; // offset 0xD37
-    float32 m_flTimerLength; // offset 0xD38, size 0x4, align 4
-    bool m_bBeingDefused; // offset 0xD3C, size 0x1, align 1
-    char _pad_0D3D[0x7]; // offset 0xD3D
-    GameTime_t m_fLastDefuseTime; // offset 0xD44, size 0x4, align 255
-    char _pad_0D48[0x4]; // offset 0xD48
-    float32 m_flDefuseLength; // offset 0xD4C, size 0x4, align 4
-    GameTime_t m_flDefuseCountDown; // offset 0xD50, size 0x4, align 255
-    CHandle< CCSPlayerPawn > m_hBombDefuser; // offset 0xD54, size 0x4, align 4
-    int32 m_iProgressBarTime; // offset 0xD58, size 0x4, align 4
-    bool m_bVoiceAlertFired; // offset 0xD5C, size 0x1, align 1
-    bool[4] m_bVoiceAlertPlayed; // offset 0xD5D, size 0x4, align 1
-    char _pad_0D61[0x3]; // offset 0xD61
-    GameTime_t m_flNextBotBeepTime; // offset 0xD64, size 0x4, align 255
-    char _pad_0D68[0x4]; // offset 0xD68
-    QAngle m_angCatchUpToPlayerEye; // offset 0xD6C, size 0xC, align 4
-    GameTime_t m_flLastSpinDetectionTime; // offset 0xD78, size 0x4, align 255
-    char _pad_0D7C[0x4]; // offset 0xD7C
+    char _pad_0000[0xA98]; // offset 0x0
+    bool m_bBombTicking; // offset 0xA98, size 0x1, align 1
+    char _pad_0A99[0x3]; // offset 0xA99
+    GameTime_t m_flC4Blow; // offset 0xA9C, size 0x4, align 255
+    int32 m_nBombSite; // offset 0xAA0, size 0x4, align 4
+    int32 m_nSourceSoundscapeHash; // offset 0xAA4, size 0x4, align 4
+    bool m_bAbortDetonationBecauseWorldIsFrozen; // offset 0xAA8, size 0x1, align 1
+    char _pad_0AA9[0x7]; // offset 0xAA9
+    CAttributeContainer m_AttributeManager; // offset 0xAB0, size 0x438, align 255
+    CEntityIOOutput m_OnBombDefused; // offset 0xEE8, size 0x18, align 255
+    CEntityIOOutput m_OnBombBeginDefuse; // offset 0xF00, size 0x18, align 255
+    CEntityIOOutput m_OnBombDefuseAborted; // offset 0xF18, size 0x18, align 255
+    bool m_bCannotBeDefused; // offset 0xF30, size 0x1, align 1
+    char _pad_0F31[0x7]; // offset 0xF31
+    EntitySpottedState_t m_entitySpottedState; // offset 0xF38, size 0x18, align 255
+    int32 m_nSpotRules; // offset 0xF50, size 0x4, align 4
+    bool m_bHasExploded; // offset 0xF54, size 0x1, align 1
+    bool m_bBombDefused; // offset 0xF55, size 0x1, align 1
+    bool m_bTrainingPlacedByPlayer; // offset 0xF56, size 0x1, align 1
+    char _pad_0F57[0x1]; // offset 0xF57
+    float32 m_flTimerLength; // offset 0xF58, size 0x4, align 4
+    bool m_bBeingDefused; // offset 0xF5C, size 0x1, align 1
+    char _pad_0F5D[0x7]; // offset 0xF5D
+    GameTime_t m_fLastDefuseTime; // offset 0xF64, size 0x4, align 255
+    char _pad_0F68[0x4]; // offset 0xF68
+    float32 m_flDefuseLength; // offset 0xF6C, size 0x4, align 4
+    GameTime_t m_flDefuseCountDown; // offset 0xF70, size 0x4, align 255
+    CHandle< CCSPlayerPawn > m_hBombDefuser; // offset 0xF74, size 0x4, align 4
+    int32 m_iProgressBarTime; // offset 0xF78, size 0x4, align 4
+    bool m_bVoiceAlertFired; // offset 0xF7C, size 0x1, align 1
+    bool[4] m_bVoiceAlertPlayed; // offset 0xF7D, size 0x4, align 1
+    char _pad_0F81[0x3]; // offset 0xF81
+    GameTime_t m_flNextBotBeepTime; // offset 0xF84, size 0x4, align 255
+    char _pad_0F88[0x4]; // offset 0xF88
+    QAngle m_angCatchUpToPlayerEye; // offset 0xF8C, size 0xC, align 4
+    GameTime_t m_flLastSpinDetectionTime; // offset 0xF98, size 0x4, align 255
+    char _pad_0F9C[0x4]; // offset 0xF9C
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-class CScriptTriggerPush : public CTriggerPush /*0x0*/  // sizeof 0xBF8, align 0x8 [vtable] (server)
+class CScriptTriggerPush : public CTriggerPush /*0x0*/  // sizeof 0xCD8, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xBEC]; // offset 0x0
-    Vector m_vExtent; // offset 0xBEC, size 0xC, align 4
+    char _pad_0000[0xCCC]; // offset 0x0
+    Vector m_vExtent; // offset 0xCCC, size 0xC, align 4
 };

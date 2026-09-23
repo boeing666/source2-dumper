@@ -11,5 +11,6 @@ enum MovementCapability_t : uint32_t  // sizeof 0x4
     ePlantedTurn = 6,
     eUseStartAsPlantedTurn = 7,
     eLean = 8,
-    eCount = 9,
+    eForwardStartOnly = 9,
+    eCount = 10,
 };

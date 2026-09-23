@@ -12,8 +12,8 @@ public:
     float32 m_flGain; // offset 0x30, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
     float32 m_flModRate; // offset 0x34, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
     float32 m_flModDepth; // offset 0x38, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
-    VMixFilterType_t m_filterType; // offset 0x3C, size 0x2, align 2 | MPropertyFriendlyName MPropertyGroupName
-    char _pad_003E[0x2]; // offset 0x3E
+    VMixFilterType_t m_filterType; // offset 0x3C, size 0x1, align 1 | MPropertyFriendlyName MPropertyGroupName
+    char _pad_003D[0x3]; // offset 0x3D
     float32 m_flFrequency; // offset 0x40, size 0x4, align 4 | MPropertyFriendlyName MPropertyGroupName MPropertyAttributeRange
     float32 m_flQ; // offset 0x44, size 0x4, align 4 | MPropertyFriendlyName MPropertyGroupName MPropertyAttributeRange
     float32 m_flFilterGain; // offset 0x48, size 0x4, align 4 | MPropertyFriendlyName MPropertyGroupName MPropertyAttributeRange
