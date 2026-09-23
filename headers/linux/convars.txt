@@ -621,6 +621,7 @@ dota_arty_cam_yaw | developmentonly,clientdll |
 dota_arty_cam_z | developmentonly,clientdll | 
 dota_assisted_camera_operator_pure_interp_multiplier | developmentonly,clientdll,defensive | 
 dota_attack_timer_buffer_ticks | gamedll,cheat | 
+dota_audio_language_storage | developmentonly,clientdll,defensive | 
 dota_auto_connect | developmentonly,clientdll,defensive | Automatically connect to the specified server forever
 dota_auto_courier_auto_burst | clientdll,per_user,release | Whether courier automatically uses Speed Burst when auto-mode is on.
 dota_auto_courier_deliver_visible_only | clientdll,per_user,release | Whether courier delivers only while you're visible when auto-mode is on.
