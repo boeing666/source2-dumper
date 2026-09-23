@@ -1,8 +1,11 @@
 #include "runtime/network_state.hpp"
 
+#include <algorithm>
 #include <cstdint>
 #include <format>
 #include <print>
+#include <string_view>
+#include <unordered_set>
 
 #include <schemasystem/schemasystem.h>
 
@@ -152,6 +155,7 @@ public:
 			_codeStart = reinterpret_cast<uintptr_t>(code->GetPtr());
 			_codeEnd = _codeStart + code->m_nSectionSize - kScanBytes;
 		}
+		IndexTypeNames();
 	}
 
 	uintptr_t Find(const std::string_view scopedName, const std::string_view ownerName) const {
@@ -165,11 +169,11 @@ public:
 		                           : std::format("N{}{}{}{}E", ownerName.length(), ownerName, scopedName.length(), scopedName);
 #endif
 
-		auto table = _module.GetVirtualTableByName(decorated, true);
+		auto table = Lookup(decorated);
 
 #ifdef _WIN32
 		if (!table && ownerName.empty()) {
-			table = _module.GetVirtualTableByName(std::format(".?AU{}@@", scopedName), true);
+			table = Lookup(std::format(".?AU{}@@", scopedName));
 		}
 #endif
 
@@ -198,9 +202,51 @@ public:
 	}
 
 private:
+	// Every lookup miss costs GetVirtualTableByName a full section scan, and most names asked for have no vtable.
+	DynLibUtils::CMemory Lookup(const std::string& decorated) const {
+		if (!_typeNames.contains(decorated)) {
+			return nullptr;
+		}
+		return _module.GetVirtualTableByName(decorated, true);
+	}
+
+	// RTTI type names live in the section GetVirtualTableByName searches: MSVC type descriptors
+	// (".?AV...@@") in .data, Itanium typeinfo names in .rodata.
+	void IndexTypeNames() {
+#ifdef _WIN32
+		const auto* section = _module.GetSectionByName(".data");
+#else
+		const auto* section = _module.GetSectionByName(".rodata");
+#endif
+		if (!section) {
+			return;
+		}
+
+		const auto* begin = static_cast<const char*>(section->GetPtr());
+		const auto* end = begin + section->m_nSectionSize;
+		for (const char* p = begin; p < end;) {
+			const char* stop = std::find(p, end, char(0));
+			if (stop == end) {
+				break;
+			}
+			const std::string_view name(p, stop);
+#ifdef _WIN32
+			if (name.starts_with(".?A")) {
+				_typeNames.insert(name);
+			}
+#else
+			if (!name.empty()) {
+				_typeNames.insert(name);
+			}
+#endif
+			p = stop + 1;
+		}
+	}
+
 	const DynLibUtils::CModule& _module;
 	uintptr_t _codeStart = 0;
 	uintptr_t _codeEnd = 0;
+	std::unordered_set<std::string_view> _typeNames;
 };
 
 PlacementMap CollectPlacements(const std::vector<Module>& modules) {
