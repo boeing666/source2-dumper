@@ -240,18 +240,6 @@ a.fl:hover,a.fl.ok{color:var(--acc);opacity:1}
 .sec-h{display:flex;align-items:center;gap:6px;color:var(--mut);font:600 10.5px var(--ui);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px}
 .sec-h .cnt{margin-left:0}
 .dm{overflow-x:auto}
-.dmsecs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px 30px;align-items:start}
-.dmsec{min-width:0}
-.dm .dsub{color:var(--mut);font:600 12px var(--ui);margin:0 0 6px;display:flex;align-items:baseline;gap:6px}
-.dm .dsub .dcnt{color:var(--fg);font:600 11px var(--mono)}
-.dmg{display:flex;flex-direction:column;gap:1px;font:12.5px var(--mono)}
-.dment{display:flex;align-items:baseline;gap:7px;line-height:1.6;min-width:0}
-.dment .k{color:var(--mb);white-space:nowrap}
-.dment .arr{color:var(--mut);flex:none;display:inline-flex;align-items:center}
-.dment .tg{color:var(--ty);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.dment .dt{color:var(--num);font-size:11px;white-space:nowrap;margin-left:auto;padding-left:12px}
-.dment .mlink{cursor:pointer}
-.dment .mlink:hover{color:var(--acc);text-decoration:underline}
 
 /* ---------- convars / commands ---------- */
 .cvcard{background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);overflow:clip}
@@ -319,3 +307,27 @@ a.fl:hover,a.fl.ok{color:var(--acc);opacity:1}
   .allres .r{grid-template-columns:18px minmax(0,1fr)}.allres .rc{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* class detail: "inherited" view — parents' fields grouped by the declaring class */
+.tag.cp.inh.on{border-color:var(--acc);color:var(--acc);background:var(--accs)}
+.tag.cp:disabled{opacity:.5;cursor:default}
+.ownrow .td{padding-top:12px;padding-bottom:4px;border-bottom:1px solid var(--border);background:transparent!important}
+.ownrow .c-type{font-weight:600}
+.ownk{font:600 10.5px var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.ownr{font-weight:400;font-size:11.5px;color:var(--mut)}
+
+
+/* datamap: kind tabs + full-width table (rows grouped by declaring class in the inherited view) */
+.dmtabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:6px;overflow-x:auto;scrollbar-width:none}
+.dmtabs button{display:inline-flex;align-items:center;border:0;border-bottom:2px solid transparent;background:none;padding:7px 12px;cursor:pointer;color:var(--mut);font:500 12.5px var(--ui);white-space:nowrap}
+.dmtabs button:hover{color:var(--fg)}
+.dmtabs button.on{color:var(--fg);border-color:var(--acc)}
+table.dmt{width:100%;border-collapse:collapse;font:12.5px var(--mono)}
+table.dmt th{text-align:left;font:600 10.5px var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding:6px 10px 6px 0;white-space:nowrap}
+table.dmt td{padding:3px 16px 3px 0;border-top:1px solid color-mix(in srgb,var(--border) 55%,transparent);vertical-align:baseline;white-space:nowrap}
+table.dmt td.k{color:var(--mb);white-space:nowrap}
+table.dmt td.dt{color:var(--num);width:1%;white-space:nowrap}
+table.dmt tr:hover td{background:var(--hov)}
+table.dmt .mlink{cursor:pointer}
+table.dmt .mlink:hover{color:var(--acc);text-decoration:underline}
+table.dmt tr.dmgrp td{padding-top:12px;border-top:0;border-bottom:1px solid var(--border);font:600 12.5px var(--mono);background:transparent!important}

@@ -1,6 +1,6 @@
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { type Game, type Platform, type GameAvail, loadMeta, loadIndex, loadScope, loadGameAvail, getConVars, getConCommands, getEvents, getScriptApi } from "@/lib/data";
-import type { Meta, IndexEntry, Scope, ConVar, ConCommand, GameEvent, ScriptApi } from "@/types";
+import type { Meta, IndexEntry, Scope, ConVar, ConCommand, GameEvent, ScriptApi, ClassInfo } from "@/types";
 import { type Selected, type Tab, toHash, fromHash } from "@/lib/url";
 import { prepIndex, searchSchema, searchConVars, searchCommands, searchEvents, searchScript, vsTotal, type Group, type Hit } from "@/lib/search";
 import { Header } from "@/components/Header";
@@ -43,6 +43,8 @@ export default function App() {
   const [pad, setPadS] = useState(() => stored("pad"));
   const setHex = (v: boolean) => { setHexS(v); store("hex", v); };
   const setPad = (v: boolean) => { setPadS(v); store("pad", v); };
+  const [inherit, setInheritS] = useState(() => stored("inherit"));
+  const setInherit = (v: boolean) => { setInheritS(v); store("inherit", v); };
 
   const [selected, setSelected] = useState<Selected | null>(null);
   // classes visited via inheritance/ref links, so the back button walks back down the chain
@@ -288,6 +290,20 @@ export default function App() {
 
   const selCls = scopeData && selected ? scopeData.classes.find((c) => c.name === selected.name) : null;
   const selEnum = scopeData && selected ? scopeData.enums.find((c) => c.name === selected.name) : null;
+  // the dumper's in-scope chain when present, else the one walked through the index
+  const fullChain = useMemo(() => (selCls?.chain?.length ? selCls.chain : chain), [selCls, chain]);
+
+  // parent classes (child -> root) for the "inherited" view; usually in the same module file, so already cached
+  const [bases, setBases] = useState<ClassInfo[]>([]);
+  useEffect(() => {
+    if (!selected || fullChain.length < 2) { setBases([]); return; }
+    let alive = true;
+    Promise.all(fullChain.slice(1).map((n) => {
+      const e = lookup(n, selected.scope);
+      return e ? getScope(e.file).then((s) => s.classes.find((c) => c.name === n), () => undefined) : Promise.resolve(undefined);
+    })).then((cs) => { if (alive) setBases(cs.filter((c): c is ClassInfo => !!c)); });
+    return () => { alive = false; };
+  }, [selected, fullChain, lookup, getScope]);
 
   return (
     <>
@@ -308,7 +324,7 @@ export default function App() {
 
         {!err && tab === "schema" && (selected ? (
           scopeData == null ? <div className="loading">loading…</div>
-          : selCls ? <ClassDetail cls={selCls} chain={chain} known={known} hex={hex} onNav={navByName} onBack={goBack} onField={onField} fieldLink={(f) => fieldLink(lookup(selCls.name, selected.scope)!, f)} targetField={selected.targetField} scope={selected.scope} variants={variants} onVariant={pickVariant} backLabel={navStack.length ? navStack[navStack.length - 1].name : backTab === "all" ? "results" : "types"} />
+          : selCls ? <ClassDetail cls={selCls} chain={fullChain} known={known} hex={hex} onNav={navByName} onBack={goBack} onField={onField} fieldLink={(f, owner) => fieldLink(lookup(owner ?? selCls.name, selected.scope)!, f)} bases={bases} inherit={inherit} setInherit={setInherit} targetField={selected.targetField} scope={selected.scope} variants={variants} onVariant={pickVariant} backLabel={navStack.length ? navStack[navStack.length - 1].name : backTab === "all" ? "results" : "types"} />
           : selEnum ? <EnumDetail en={selEnum} hex={hex} onBack={goBack} scope={selected.scope} variants={variants} onVariant={pickVariant} />
           : <div className="empty">Type {selected.name} was not found in {selected.scope}.</div>
         ) : (
