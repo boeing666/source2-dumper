@@ -285,6 +285,16 @@ a.ty{text-decoration:none;cursor:pointer} a.ty:hover{text-decoration:underline}
 .t-num{color:var(--num)}.t-str{color:var(--meta)}.t-bool{color:var(--kw)}.t-ent{color:var(--emb)}.t-oth{color:var(--ty)}
 .evempty{color:var(--mut);font-style:italic;padding:20px 2px}
 @media(max-width:720px){.evtp{grid-template-columns:1fr}.evdet{position:static}}
+/* vscript: function signatures */
+.vsfn{padding:7px 0;border-bottom:1px solid var(--border)}
+.vssig{font-family:var(--mono);font-size:14px;color:var(--fl);overflow-wrap:anywhere}
+.vsret,.vsptype{color:var(--ty)}
+.vsname{color:var(--mb);font-weight:700}
+.vspname{color:var(--meta)}
+.vsdesc{color:var(--mut);font-size:13px;margin-top:3px;overflow-wrap:anywhere}
+.vsclsdesc{margin:0 0 10px}
+.vslink{color:var(--acc);cursor:pointer}
+.vslink:hover{text-decoration:underline}
 /* phone / narrow: sidebar becomes a slide-in drawer */
 @media(max-width:820px){
   .top{padding:8px 12px;gap:10px}

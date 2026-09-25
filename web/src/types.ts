@@ -131,3 +131,30 @@ export interface GameEvent {
   module: string; // game | mod | core
   fields: GameEventField[];
 }
+
+export interface ScriptParam {
+  name: string; // empty when the game registered no parameter names
+  type: string;
+}
+
+export interface ScriptFunction {
+  name: string;
+  returnType: string;
+  params: ScriptParam[];
+  description: string;
+}
+
+export interface ScriptClass {
+  name: string; // C++ class
+  scriptName: string; // name exposed to scripts
+  base: string;
+  description: string;
+  functions: ScriptFunction[];
+}
+
+export interface ScriptApi {
+  functions: ScriptFunction[]; // globals
+  instances: { name: string; className: string }[];
+  classes: ScriptClass[];
+  constants: { name: string; type: string; value: string }[];
+}

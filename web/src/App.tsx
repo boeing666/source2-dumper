@@ -10,6 +10,7 @@ import { EnumDetail } from "@/components/EnumDetail";
 import { ConVarsView } from "@/components/ConVarsView";
 import { ConCommandsView } from "@/components/ConCommandsView";
 import { EventsView } from "@/components/EventsView";
+import { VScriptView } from "@/components/VScriptView";
 
 export default function App() {
   // initial state comes straight from the URL, so the very first render already matches (no clobber)
@@ -32,6 +33,8 @@ export default function App() {
   const [evQ, setEvQ] = useState(init.tab === "events" ? init.q : "");
   const [evMods, setEvMods] = useState<Set<string>>(init.tab === "events" ? init.mods : new Set());
   const [evSel, setEvSel] = useState(init.tab === "events" ? init.ev : "");
+  const [vsQ, setVsQ] = useState(init.tab === "vscript" ? init.q : "");
+  const [vsSel, setVsSel] = useState(init.tab === "vscript" ? init.sel : "");
   const [hex, setHex] = useState(false);
   const [pad, setPad] = useState(false);
 
@@ -99,6 +102,7 @@ export default function App() {
         setSelected(e ? { name: e.name, file: e.file, scope: e.scope, targetField: s.field } : null);
       } else if (s.tab === "convars") { setCvQ(s.q); setCvFlags(s.flags); }
       else if (s.tab === "concommands") { setCmQ(s.q); setCmFlags(s.flags); }
+      else if (s.tab === "vscript") { setVsQ(s.q); setVsSel(s.sel); }
       else { setEvQ(s.q); setEvMods(s.mods); setEvSel(s.ev); }
     };
     window.addEventListener("hashchange", onNav);
@@ -112,9 +116,9 @@ export default function App() {
   // write state to URL (replaceState → no reload / no loop; wait until the initial class is resolved)
   useEffect(() => {
     if (pending.current) return;
-    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel });
+    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel, vsQ, vsSel });
     if (location.hash !== h) history.replaceState(null, "", h);
-  }, [tab, game, platform, selected, variants, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel]);
+  }, [tab, game, platform, selected, variants, query, sort, kinds, libs, cvQ, cvFlags, cmQ, cmFlags, evQ, evMods, evSel, vsQ, vsSel]);
 
   useEffect(() => {
     if (!selected) { setScopeData(null); return; }
@@ -212,6 +216,7 @@ export default function App() {
       {!err && tab === "convars" && <main><ConVarsView game={game} platform={platform} q={cvQ} setQ={setCvQ} flags={cvFlags} toggleFlag={toggleCv} /></main>}
       {!err && tab === "concommands" && <main><ConCommandsView game={game} platform={platform} q={cmQ} setQ={setCmQ} flags={cmFlags} toggleFlag={toggleCm} /></main>}
       {!err && tab === "events" && <main><EventsView game={game} platform={platform} q={evQ} setQ={setEvQ} mods={evMods} toggleMod={toggleEv} sel={evSel} setSel={setEvSel} /></main>}
+      {!err && tab === "vscript" && <main><VScriptView game={game} platform={platform} q={vsQ} setQ={setVsQ} sel={vsSel} setSel={setVsSel} /></main>}
     </>
   );
 }

@@ -9,6 +9,7 @@ export type UrlState = {
   query: string; sort: string; kinds: Set<string>; libs: Set<string>;
   cvQ: string; cvFlags: Set<string>; cmQ: string; cmFlags: Set<string>;
   evQ: string; evMods: Set<string>; evSel: string;
+  vsQ: string; vsSel: string;
 };
 
 export function toHash(st: UrlState): string {
@@ -37,6 +38,9 @@ export function toHash(st: UrlState): string {
   } else if (st.tab === "concommands") {
     if (st.cmQ) p.set("q", st.cmQ);
     if (st.cmFlags.size) p.set("flags", [...st.cmFlags].join(","));
+  } else if (st.tab === "vscript") {
+    if (st.vsQ) p.set("q", st.vsQ);
+    if (st.vsSel) p.set("sel", st.vsSel);
   } else {
     if (st.evQ) p.set("q", st.evQ);
     if (st.evMods.size) p.set("mods", [...st.evMods].join(","));
@@ -52,7 +56,7 @@ export function fromHash(hash: string) {
   const segs = pathPart.split("/").filter(Boolean).map(decodeURIComponent);
   let tab = segs[0] || "schema";
   if (tab === "commands") tab = "concommands";
-  if (!["schema", "convars", "concommands", "events"].includes(tab)) tab = "schema";
+  if (!["schema", "convars", "concommands", "events", "vscript"].includes(tab)) tab = "schema";
   const p = new URLSearchParams(queryPart);
   const set = (k: string) => new Set((p.get(k) || "").split(",").filter(Boolean));
   const g = p.get("g") || "cs2";
@@ -67,5 +71,6 @@ export function fromHash(hash: string) {
     sort: p.get("sort") || "name",
     kinds: set("kinds"), libs: set("libs"), flags: set("flags"), mods: set("mods"),
     ev: p.get("ev") || "",
+    sel: p.get("sel") || "",
   };
 }

@@ -26,6 +26,7 @@ export function TopBar({
     ["convars", "convars"],
     ["concommands", "commands"],
     ["events", "events"],
+    ["vscript", "vscript"],
   ];
   return (
     <div className="top">

@@ -1,4 +1,4 @@
-import type { Meta, Scope, ConVar, ConCommand, GameEvent, IndexEntry } from "@/types";
+import type { Meta, Scope, ConVar, ConCommand, GameEvent, IndexEntry, ScriptApi } from "@/types";
 
 const base = import.meta.env.BASE_URL;
 
@@ -20,3 +20,4 @@ export const loadScope = (g: Game, p: Platform, file: string) => getJson<Scope>(
 export const loadConVars = (g: Game, p: Platform) => getJson<ConVar[]>(`${g}/${p}/convars.json`);
 export const loadConCommands = (g: Game, p: Platform) => getJson<ConCommand[]>(`${g}/${p}/concommands.json`);
 export const loadEvents = (g: Game, p: Platform) => getJson<GameEvent[]>(`${g}/${p}/events.json`);
+export const loadScriptApi = (g: Game, p: Platform) => getJson<ScriptApi>(`${g}/${p}/vscript.json`);
