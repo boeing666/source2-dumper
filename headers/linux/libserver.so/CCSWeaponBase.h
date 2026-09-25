@@ -45,7 +45,7 @@ public:
     bool m_bStealthy; // offset 0x1298, size 0x1, align 1
     bool m_bInSilentReloadSection; // offset 0x1299, size 0x1, align 1
     bool m_bSilentReloadStatCounted; // offset 0x129A, size 0x1, align 1
-    char _pad_129B[0x1]; // offset 0x129B
+    bool m_bSilentReloadStatPending; // offset 0x129B, size 0x1, align 1
     GameTime_t m_flStealthHoldStartTime; // offset 0x129C, size 0x4, align 255
     bool m_bReloadHeldSinceStart; // offset 0x12A0, size 0x1, align 1
     char _pad_12A1[0x3]; // offset 0x12A1

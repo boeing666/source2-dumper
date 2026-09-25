@@ -1,6 +1,6 @@
 #pragma once
 
-class CSmokeGrenadeProjectile : public CBaseCSGrenadeProjectile /*0x0*/  // sizeof 0x2E40, align 0x10 [vtable] (server)
+class CSmokeGrenadeProjectile : public CBaseCSGrenadeProjectile /*0x0*/  // sizeof 0x2E50, align 0x10 [vtable] (server)
 {
 public:
     char _pad_0000[0xB68]; // offset 0x0
@@ -14,10 +14,12 @@ public:
     CNetworkUtlVectorBase< uint8 > m_VoxelFrameData; // offset 0xB90, size 0x18, align 8
     int32 m_nVoxelFrameDataSize; // offset 0xBA8, size 0x4, align 4
     int32 m_nVoxelUpdate; // offset 0xBAC, size 0x4, align 4
-    GameTime_t m_flLastBounce; // offset 0xBB0, size 0x4, align 255
-    GameTime_t m_fllastSimulationTime; // offset 0xBB4, size 0x4, align 255
-    char _pad_0BB8[0x2280]; // offset 0xBB8
-    bool m_bExplodeFromInferno; // offset 0x2E38, size 0x1, align 1
-    bool m_bDidGroundScorch; // offset 0x2E39, size 0x1, align 1
-    char _pad_2E3A[0x6]; // offset 0x2E3A
+    uint8 m_nSmokeLightProbeRegen; // offset 0xBB0, size 0x1, align 1
+    char _pad_0BB1[0x3]; // offset 0xBB1
+    GameTime_t m_flLastBounce; // offset 0xBB4, size 0x4, align 255
+    GameTime_t m_fllastSimulationTime; // offset 0xBB8, size 0x4, align 255
+    char _pad_0BBC[0x2284]; // offset 0xBBC
+    bool m_bExplodeFromInferno; // offset 0x2E40, size 0x1, align 1
+    bool m_bDidGroundScorch; // offset 0x2E41, size 0x1, align 1
+    char _pad_2E42[0xE]; // offset 0x2E42
 };

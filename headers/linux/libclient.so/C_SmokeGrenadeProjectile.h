@@ -14,7 +14,8 @@ public:
     C_NetworkUtlVectorBase< uint8 > m_VoxelFrameData; // offset 0x1310, size 0x18, align 8
     int32 m_nVoxelFrameDataSize; // offset 0x1328, size 0x4, align 4
     int32 m_nVoxelUpdate; // offset 0x132C, size 0x4, align 4
-    bool m_bSmokeVolumeDataReceived; // offset 0x1330, size 0x1, align 1
-    bool m_bSmokeEffectSpawned; // offset 0x1331, size 0x1, align 1
-    char _pad_1332[0x156]; // offset 0x1332
+    uint8 m_nSmokeLightProbeRegen; // offset 0x1330, size 0x1, align 1
+    bool m_bSmokeVolumeDataReceived; // offset 0x1331, size 0x1, align 1
+    bool m_bSmokeEffectSpawned; // offset 0x1332, size 0x1, align 1
+    char _pad_1333[0x155]; // offset 0x1333
 };

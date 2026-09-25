@@ -2610,6 +2610,7 @@ sv_chat_proximity | gamedll,clientdll,replicated,release |
 sv_cheats | replicated,release | Allow cheats on server
 sv_clanid | developmentonly,gamedll | Steam clan ID to allow members to set some convars
 sv_clanserver_gms | developmentonly | 
+sv_clantags_enabled | gamedll,clientdll,replicated,release | Show players' clan tags in their names.
 sv_client_max_interp_ratio | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected).
 sv_client_min_interp_ratio | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected). 
 sv_clip_penetration_traces_to_players | developmentonly,gamedll,clientdll,replicated,defensive | 

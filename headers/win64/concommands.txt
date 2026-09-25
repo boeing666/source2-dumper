@@ -882,6 +882,7 @@ sv_rethrow_last_grenade | gamedll,cheat | Emit the last grenade thrown on the se
 sv_setsteamaccount | release | token Set game server account token to use for logging in to a persistent game server account
 sv_showtags | developmentonly,defensive | Describe current gametags.
 sv_shutdown | release | Sets the server to shutdown when all games have completed
+sv_smoke_lighting_changed | gamedll,release | Recompute smoke volume LPV caches
 sv_soundscape_printdebuginfo | gamedll,cheat | print soundscapes
 sv_spewmeta | cheat | Spew serializer meta
 sv_spewworldgroups | developmentonly | Spew world groups (server)
