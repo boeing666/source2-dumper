@@ -7,10 +7,20 @@
 #include <string>
 #include <unordered_set>
 
+#include <igamesystem.h>
 #include <igamesystemfactory.h>
-#include <vscript_server.h>
+#include <vscript/ivscript.h>
 
 namespace schema {
+
+// i am lazy to sync dota / deadlock repo with cs2
+// dirty hack
+abstract_class IVScriptGameSystem {
+public:
+	virtual void VScriptInit(bool bUnk) = 0;
+};
+
+class CVScriptGameSystem : public CBaseGameSystem, public IVScriptGameSystem {};
 
 namespace {
 
@@ -169,12 +179,16 @@ public:
 
 	HSCRIPT GetRootTable() override { return nullptr; }
 	HSCRIPT CopyHandle(HSCRIPT hScope) override { return hScope; }
+#if defined(GAME_CS2)
 	int LoadAndCompileScriptFile(const char*, const char*, HSCRIPT* pScript) override {
 		if (pScript) {
 			*pScript = nullptr;
 		}
 		return 0;
 	}
+#else
+	HSCRIPT LoadAndCompileScriptFile(const char*, const char*) override { return nullptr; }
+#endif
 	void GetSourceId(HSCRIPT, char* pBuf, unsigned int nBufSize) override {
 		if (pBuf && nBufSize) {
 			*pBuf = '\0';

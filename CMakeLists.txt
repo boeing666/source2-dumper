@@ -89,6 +89,7 @@ set(SOURCE_FILES
 	src/gameevents/gameevents.cpp
 )
 
+string(TOUPPER "${GAME}" GAME_UPPER)
 list(APPEND COMPILE_DEFINES
 	MODULE_PREFIX="${CMAKE_SHARED_LIBRARY_PREFIX}"
 	MODULE_EXT="${CMAKE_SHARED_LIBRARY_SUFFIX}"
@@ -98,6 +99,7 @@ list(APPEND COMPILE_DEFINES
 	PLATFORM_NAME="${PLATFORM_NAME}"
 	GAME_NAME="${GAME}"
 	VSCRIPT_GAME_SYSTEM="${VSCRIPT_GAME_SYSTEM}"
+	GAME_${GAME_UPPER}
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
@@ -118,7 +120,6 @@ if(MSVC)
 	target_link_libraries(${PROJECT_NAME} PRIVATE delayimp)
 else()
 	target_link_libraries(${PROJECT_NAME} PRIVATE "${GAME_ROOT}/bin/${SE_BIN_DIR}/libtier0.so")
-	set_source_files_properties(src/runtime/appsystem.cpp PROPERTIES COMPILE_OPTIONS "-fno-rtti")
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -132,7 +133,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/src"
 	"${SOURCESDK_DIR}/public/mathlib"
-	"${SOURCESDK_DIR}/game/server"
 	"${SOURCESDK_DIR}/thirdparty/protobuf/src"
 	"${CMAKE_BINARY_DIR}/sourcesdk/protos"
 	"${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glaze/include"
