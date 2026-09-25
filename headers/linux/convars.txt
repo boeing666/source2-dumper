@@ -1432,7 +1432,7 @@ mp_hostages_spawn_force_positions_xyz | gamedll,replicated,release | Comma separ
 mp_hostages_spawn_same_every_round | gamedll,replicated,release,commandline_enforced | 0 = spawn hostages randomly every round, 1 = same spawns for entire match.
 mp_hostages_takedamage | gamedll,clientdll,replicated,release | Whether or not hostages can be hurt.
 mp_humanteam | gamedll,replicated,release | Restricts human players to a single team {any, CT, T}
-mp_ignore_round_win_conditions | gamedll,replicated,release | Ignore conditions which would end the current round
+mp_ignore_round_win_conditions | gamedll,replicated,release,commandline_enforced | Ignore conditions which would end the current round
 mp_items_prohibited | gamedll,clientdll,replicated,release,commandline_enforced | Set this convar to a comma-delimited list of definition indices of weapons that should be prohibited from use.
 mp_join_grace_time | gamedll,clientdll,replicated,release | Number of seconds after round start to allow a player to join a game
 mp_limitteams | gamedll,replicated,release,commandline_enforced | Max # of players 1 team can have over another (0 disables check)
@@ -1495,7 +1495,7 @@ mp_shorthanded_cash_bonus_ignore_kicked | gamedll,clientdll,replicated,release |
 mp_shorthanded_cash_bonus_round_delay | gamedll,clientdll,replicated,release | number of previous rounds that a team needs to have been shorthanded before they are eligible for the short-handed bonus
 mp_solid_enemies | gamedll,clientdll,replicated,release,commandline_enforced | How solid are enemies: 0 = transparent; 1 = fully solid
 mp_solid_teammates | gamedll,clientdll,replicated,release,commandline_enforced | How solid are teammates: 0 = transparent; 1 = fully solid; 2 = can stand on top of heads
-mp_spawnprotectiontime | gamedll,replicated,release | Kick players who team-kill within this many seconds of a round restart.
+mp_spawnprotectiontime | gamedll,release,commandline_enforced | Kick players who team-kill within this many seconds of a round restart.
 mp_spectators_max | gamedll,clientdll,replicated,release | How many spectators are allowed in a match.
 mp_starting_losses | gamedll,clientdll,replicated,release,commandline_enforced | Determines what the initial loss streak is.
 mp_startmoney | gamedll,clientdll,replicated,release,commandline_enforced | amount of money each player gets when they reset
@@ -1506,9 +1506,9 @@ mp_t_default_primary | gamedll,clientdll,replicated,release,commandline_enforced
 mp_t_default_secondary | gamedll,clientdll,replicated,release,commandline_enforced | The default secondary (pistol) weapon that the Ts will spawn with
 mp_tagging_scale | gamedll,clientdll,replicated,release,commandline_enforced | Scalar for player tagging modifier when hit. Lower values for greater tagging.
 mp_taser_recharge_time | gamedll,clientdll,replicated,release,commandline_enforced | Determines recharge time for taser. -1 = disabled.
-mp_td_dmgtokick | gamedll,replicated,release | The damage threshhold players have to exceed in a match to get kicked.
-mp_td_dmgtowarn | gamedll,replicated,release | The damage threshhold players have to exceed in a match to get warned that they are about to be kicked.
-mp_td_spawndmgthreshold | gamedll,replicated,release | The damage threshold players have to exceed at the start of the round to be warned/kick.
+mp_td_dmgtokick | gamedll,release,commandline_enforced | The damage threshhold players have to exceed in a match to get kicked.
+mp_td_dmgtowarn | gamedll,release,commandline_enforced | The damage threshhold players have to exceed in a match to get warned that they are about to be kicked.
+mp_td_spawndmgthreshold | gamedll,release,commandline_enforced | The damage threshold players have to exceed at the start of the round to be warned/kick.
 mp_team_intro_time | gamedll,replicated,release,commandline_enforced | How many seconds for team intro
 mp_team_intro_type | gamedll,clientdll,replicated,release,commandline_enforced | none, normal, wingman, rush, or auto (implies normal if mp_halftime is set, none otherwise)
 mp_team_timeout_max | gamedll,clientdll,replicated,release | Number of timeouts each team gets per match.

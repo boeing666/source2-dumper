@@ -1,7 +1,7 @@
 #pragma once
 
-class C_MolotovGrenade : public C_BaseCSGrenade /*0x0*/  // sizeof 0x1FD0, align 0x10 [vtable] (client)
+class C_MolotovGrenade : public C_BaseCSGrenade /*0x0*/  // sizeof 0x1FE0, align 0x10 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1FD0]; // offset 0x0
+    char _pad_0000[0x1FE0]; // offset 0x0
 };

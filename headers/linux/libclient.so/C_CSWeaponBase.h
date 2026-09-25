@@ -1,6 +1,6 @@
 #pragma once
 
-class C_CSWeaponBase : public C_BasePlayerWeapon /*0x0*/  // sizeof 0x2DA0, align 0xFF [vtable] (client)
+class C_CSWeaponBase : public C_BasePlayerWeapon /*0x0*/  // sizeof 0x2DB0, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x2838]; // offset 0x0
@@ -42,42 +42,44 @@ public:
     bool m_bInSilentReloadSection; // offset 0x28E5, size 0x1, align 1
     char _pad_28E6[0x2]; // offset 0x28E6
     GameTime_t m_flStealthHoldStartTime; // offset 0x28E8, size 0x4, align 255
-    float32 m_flWeaponActionPlaybackRate; // offset 0x28EC, size 0x4, align 4
-    int32 m_iOriginalTeamNumber; // offset 0x28F0, size 0x4, align 4
-    int32 m_iMostRecentTeamNumber; // offset 0x28F4, size 0x4, align 4
-    bool m_bDroppedNearBuyZone; // offset 0x28F8, size 0x1, align 1
-    char _pad_28F9[0x3]; // offset 0x28F9
-    float32 m_flNextAttackRenderTimeOffset; // offset 0x28FC, size 0x4, align 4
-    char _pad_2900[0xA8]; // offset 0x2900
-    bool m_bClearWeaponIdentifyingUGC; // offset 0x29A8, size 0x1, align 1
-    bool m_bVisualsDataSet; // offset 0x29A9, size 0x1, align 1
-    bool m_bUIWeapon; // offset 0x29AA, size 0x1, align 1
-    char _pad_29AB[0x1]; // offset 0x29AB
-    int32 m_nCustomEconReloadEventId; // offset 0x29AC, size 0x4, align 4
-    char _pad_29B0[0x8]; // offset 0x29B0
-    bool m_bCanBePickedUp; // offset 0x29B8, size 0x1, align 1
-    char _pad_29B9[0x3]; // offset 0x29B9
-    GameTime_t m_nextPrevOwnerUseTime; // offset 0x29BC, size 0x4, align 255
-    CHandle< C_CSPlayerPawn > m_hPrevOwner; // offset 0x29C0, size 0x4, align 4
-    GameTick_t m_nDropTick; // offset 0x29C4, size 0x4, align 255
-    bool m_bWasActiveWeaponWhenDropped; // offset 0x29C8, size 0x1, align 1
-    char _pad_29C9[0x23]; // offset 0x29C9
-    bool m_donated; // offset 0x29EC, size 0x1, align 1
-    char _pad_29ED[0x3]; // offset 0x29ED
-    GameTime_t m_fLastShotTime; // offset 0x29F0, size 0x4, align 255
-    bool m_bWasOwnedByCT; // offset 0x29F4, size 0x1, align 1
-    bool m_bWasOwnedByTerrorist; // offset 0x29F5, size 0x1, align 1
-    char _pad_29F6[0x2]; // offset 0x29F6
-    float32 m_flNextClientFireBulletTime; // offset 0x29F8, size 0x4, align 4
-    float32 m_flNextClientFireBulletTime_Repredict; // offset 0x29FC, size 0x4, align 4
-    char _pad_2A00[0x50]; // offset 0x2A00
-    C_IronSightController m_IronSightController; // offset 0x2A50, size 0xB0, align 255
-    int32 m_iIronSightMode; // offset 0x2B00, size 0x4, align 4
-    char _pad_2B04[0x74]; // offset 0x2B04
-    GameTime_t m_flLastLOSTraceFailureTime; // offset 0x2B78, size 0x4, align 255
-    char _pad_2B7C[0x5C]; // offset 0x2B7C
-    float32 m_flWatTickOffset; // offset 0x2BD8, size 0x4, align 4
-    char _pad_2BDC[0x10]; // offset 0x2BDC
-    GameTime_t m_flLastShakeTime; // offset 0x2BEC, size 0x4, align 255
-    char _pad_2BF0[0x1B0]; // offset 0x2BF0
+    bool m_bReloadHeldSinceStart; // offset 0x28EC, size 0x1, align 1
+    char _pad_28ED[0x3]; // offset 0x28ED
+    float32 m_flWeaponActionPlaybackRate; // offset 0x28F0, size 0x4, align 4
+    int32 m_iOriginalTeamNumber; // offset 0x28F4, size 0x4, align 4
+    int32 m_iMostRecentTeamNumber; // offset 0x28F8, size 0x4, align 4
+    bool m_bDroppedNearBuyZone; // offset 0x28FC, size 0x1, align 1
+    char _pad_28FD[0x3]; // offset 0x28FD
+    float32 m_flNextAttackRenderTimeOffset; // offset 0x2900, size 0x4, align 4
+    char _pad_2904[0xAC]; // offset 0x2904
+    bool m_bClearWeaponIdentifyingUGC; // offset 0x29B0, size 0x1, align 1
+    bool m_bVisualsDataSet; // offset 0x29B1, size 0x1, align 1
+    bool m_bUIWeapon; // offset 0x29B2, size 0x1, align 1
+    char _pad_29B3[0x1]; // offset 0x29B3
+    int32 m_nCustomEconReloadEventId; // offset 0x29B4, size 0x4, align 4
+    char _pad_29B8[0x8]; // offset 0x29B8
+    bool m_bCanBePickedUp; // offset 0x29C0, size 0x1, align 1
+    char _pad_29C1[0x3]; // offset 0x29C1
+    GameTime_t m_nextPrevOwnerUseTime; // offset 0x29C4, size 0x4, align 255
+    CHandle< C_CSPlayerPawn > m_hPrevOwner; // offset 0x29C8, size 0x4, align 4
+    GameTick_t m_nDropTick; // offset 0x29CC, size 0x4, align 255
+    bool m_bWasActiveWeaponWhenDropped; // offset 0x29D0, size 0x1, align 1
+    char _pad_29D1[0x23]; // offset 0x29D1
+    bool m_donated; // offset 0x29F4, size 0x1, align 1
+    char _pad_29F5[0x3]; // offset 0x29F5
+    GameTime_t m_fLastShotTime; // offset 0x29F8, size 0x4, align 255
+    bool m_bWasOwnedByCT; // offset 0x29FC, size 0x1, align 1
+    bool m_bWasOwnedByTerrorist; // offset 0x29FD, size 0x1, align 1
+    char _pad_29FE[0x2]; // offset 0x29FE
+    float32 m_flNextClientFireBulletTime; // offset 0x2A00, size 0x4, align 4
+    float32 m_flNextClientFireBulletTime_Repredict; // offset 0x2A04, size 0x4, align 4
+    char _pad_2A08[0x58]; // offset 0x2A08
+    C_IronSightController m_IronSightController; // offset 0x2A60, size 0xB0, align 255
+    int32 m_iIronSightMode; // offset 0x2B10, size 0x4, align 4
+    char _pad_2B14[0x74]; // offset 0x2B14
+    GameTime_t m_flLastLOSTraceFailureTime; // offset 0x2B88, size 0x4, align 255
+    char _pad_2B8C[0x5C]; // offset 0x2B8C
+    float32 m_flWatTickOffset; // offset 0x2BE8, size 0x4, align 4
+    char _pad_2BEC[0x10]; // offset 0x2BEC
+    GameTime_t m_flLastShakeTime; // offset 0x2BFC, size 0x4, align 255
+    char _pad_2C00[0x1B0]; // offset 0x2C00
 };

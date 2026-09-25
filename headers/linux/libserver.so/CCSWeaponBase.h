@@ -47,13 +47,15 @@ public:
     bool m_bSilentReloadStatCounted; // offset 0x129A, size 0x1, align 1
     char _pad_129B[0x1]; // offset 0x129B
     GameTime_t m_flStealthHoldStartTime; // offset 0x129C, size 0x4, align 255
-    float32 m_flWeaponActionPlaybackRate; // offset 0x12A0, size 0x4, align 4
-    int32 m_iOriginalTeamNumber; // offset 0x12A4, size 0x4, align 4
-    int32 m_iMostRecentTeamNumber; // offset 0x12A8, size 0x4, align 4
-    bool m_bDroppedNearBuyZone; // offset 0x12AC, size 0x1, align 1
-    char _pad_12AD[0x3]; // offset 0x12AD
-    float32 m_flNextAttackRenderTimeOffset; // offset 0x12B0, size 0x4, align 4
-    char _pad_12B4[0x14]; // offset 0x12B4
+    bool m_bReloadHeldSinceStart; // offset 0x12A0, size 0x1, align 1
+    char _pad_12A1[0x3]; // offset 0x12A1
+    float32 m_flWeaponActionPlaybackRate; // offset 0x12A4, size 0x4, align 4
+    int32 m_iOriginalTeamNumber; // offset 0x12A8, size 0x4, align 4
+    int32 m_iMostRecentTeamNumber; // offset 0x12AC, size 0x4, align 4
+    bool m_bDroppedNearBuyZone; // offset 0x12B0, size 0x1, align 1
+    char _pad_12B1[0x3]; // offset 0x12B1
+    float32 m_flNextAttackRenderTimeOffset; // offset 0x12B4, size 0x4, align 4
+    char _pad_12B8[0x10]; // offset 0x12B8
     bool m_bCanBePickedUp; // offset 0x12C8, size 0x1, align 1
     bool m_bUseCanOverrideNextOwnerTouchTime; // offset 0x12C9, size 0x1, align 1
     char _pad_12CA[0x2]; // offset 0x12CA
