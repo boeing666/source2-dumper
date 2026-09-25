@@ -35,14 +35,17 @@ set_property(CACHE GAME PROPERTY STRINGS cs2 dota2 deadlock)
 if(GAME STREQUAL "cs2")
 	set(SE_GAME_DIR "csgo")
 	set(GAME_APPID 730)
+	set(VSCRIPT_GAME_SYSTEM "CCSGOVScriptGameSystem")
 	set(_sdk_target "cs2")
 elseif(GAME STREQUAL "dota2")
 	set(SE_GAME_DIR "dota")
 	set(GAME_APPID 570)
+	set(VSCRIPT_GAME_SYSTEM "CDOTAVScriptGameSystem")
 	set(_sdk_target "dota2")
 elseif(GAME STREQUAL "deadlock")
 	set(SE_GAME_DIR "citadel")
 	set(GAME_APPID 1422450)
+	set(VSCRIPT_GAME_SYSTEM "CCitadelVScriptGameSystem")
 	set(_sdk_target "deadlock")
 else()
 	message(FATAL_ERROR "Unknown GAME '${GAME}' — use cs2 | dota2 | deadlock")
@@ -82,6 +85,7 @@ set(SOURCE_FILES
 	src/runtime/network_fields.cpp
 	src/runtime/network_state.cpp
 	src/runtime/pulse_io.cpp
+	src/runtime/vscript.cpp
 	src/gameevents/gameevents.cpp
 )
 
@@ -93,6 +97,7 @@ list(APPEND COMPILE_DEFINES
 	SE_BIN_DIR="${SE_BIN_DIR}"
 	PLATFORM_NAME="${PLATFORM_NAME}"
 	GAME_NAME="${GAME}"
+	VSCRIPT_GAME_SYSTEM="${VSCRIPT_GAME_SYSTEM}"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
@@ -127,6 +132,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/src"
 	"${SOURCESDK_DIR}/public/mathlib"
+	"${SOURCESDK_DIR}/game/server"
 	"${SOURCESDK_DIR}/thirdparty/protobuf/src"
 	"${CMAKE_BINARY_DIR}/sourcesdk/protos"
 	"${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glaze/include"

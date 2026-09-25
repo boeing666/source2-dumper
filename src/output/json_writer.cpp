@@ -329,6 +329,7 @@ void WriteJson(const fs::path& outDir,
                const std::unordered_set<std::string>& network,
                const std::unordered_map<std::string, int>& stateChanged,
                const std::unordered_map<std::string, std::vector<PulseIOEntry>>& pulseIO,
+               const ScriptApi& scriptApi,
                const std::vector<ConVarInfo>& convars,
                const std::vector<ConCommandInfo>& concommands,
                const std::vector<GameEventInfo>& events,
@@ -400,6 +401,7 @@ void WriteJson(const fs::path& outDir,
 
 	WriteFile(dir / "index.json", index);
 	WriteFile(dir / "convars.json", convars);
+	WriteFile(dir / "vscript.json", scriptApi);
 	WriteFile(dir / "concommands.json", concommands);
 	WriteFile(dir / "events.json", events);
 	WriteFile(dir / "meta.json", meta);

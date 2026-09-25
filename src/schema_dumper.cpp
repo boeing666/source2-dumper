@@ -7,6 +7,7 @@
 #include "runtime/network_fields.hpp"
 #include "runtime/network_state.hpp"
 #include "runtime/pulse_io.hpp"
+#include "runtime/vscript.hpp"
 #include "runtime/appsystem.hpp"
 #include "runtime/convars.hpp"
 #include "gameevents/gameevents.hpp"
@@ -48,6 +49,7 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 	std::unordered_set<std::string> network = CollectNetworkFields(mods);
 	std::unordered_map<std::string, int> stateChanged = CollectNetworkStateIndices(mods, modules);
 	const auto pulseIO = CollectPulseIO(mods);
+	const ScriptApi scriptApi = CollectScriptApi(mods);
 
 	std::vector<ConVarInfo> convars;
 	std::vector<ConCommandInfo> concommands;
@@ -60,7 +62,7 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 	const fs::path headersDir = outDir / "headers" / GAME_NAME / PLATFORM_NAME;
 	WriteHeaders(modules, headersDir);
 	WriteConVarDump(convars, concommands, headersDir);
-	WriteJson(outDir, modules, known, network, stateChanged, pulseIO, convars, concommands, events, patch, serverVer);
+	WriteJson(outDir, modules, known, network, stateChanged, pulseIO, scriptApi, convars, concommands, events, patch, serverVer);
 	const std::string dispVer = !patch.empty() ? patch : serverVer;
 	if (!dispVer.empty()) {
 		fs::create_directories(outDir / GAME_NAME);

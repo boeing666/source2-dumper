@@ -1,4 +1,5 @@
 #include "runtime/appsystem.hpp"
+#include "runtime/vscript.hpp"
 
 #include <cstdio>
 #include <print>
@@ -17,6 +18,7 @@
 #include <icvar.h>
 #include <networksystem/inetworkserializer.h>
 #include <schemasystem/schemasystem.h>
+#include <vscript/ivscript.h>
 
 #include <ranges>
 #include "eiface.h"
@@ -133,6 +135,8 @@ void* CombinedFactory(const char* name, int* returnCode) {
 		iface = g_pSchemaSystem;
 	} else if (want == APPLICATION_INTERFACE_VERSION) {
 		iface = &g_stubApp;
+	} else if (want == VSCRIPT_INTERFACE_VERSION) {
+		iface = RecordingScriptManager();
 	} else {
 		for (auto& [n, p] : g_factoryMap) {
 			if (n == want) {
@@ -150,7 +154,7 @@ void* CombinedFactory(const char* name, int* returnCode) {
 }
 
 void* NetFactory(const char* name, int* returnCode) {
-	void* iface = RawFind(name);
+	void* iface = std::string_view(name) == VSCRIPT_INTERFACE_VERSION ? RecordingScriptManager() : RawFind(name);
 	if (!iface) {
 		iface = &g_stubApp;
 	}

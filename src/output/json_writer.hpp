@@ -11,6 +11,7 @@
 #include "runtime/convar_model.hpp"
 #include "gameevents/event_model.hpp"
 #include "runtime/pulse_io.hpp"
+#include "runtime/vscript_model.hpp"
 
 namespace schema {
 
@@ -20,6 +21,7 @@ void WriteJson(const std::filesystem::path& outDir,
                const std::unordered_set<std::string>& network,
                const std::unordered_map<std::string, int>& stateChanged,
                const std::unordered_map<std::string, std::vector<PulseIOEntry>>& pulseIO,
+               const ScriptApi& scriptApi,
                const std::vector<ConVarInfo>& convars,
                const std::vector<ConCommandInfo>& concommands,
                const std::vector<GameEventInfo>& events,
