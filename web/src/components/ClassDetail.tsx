@@ -1,17 +1,16 @@
 import { useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from "react";
 import type { ClassInfo, IndexEntry } from "@/types";
-import type { Platform } from "@/lib/data";
 import { nv, barW, catVar, layout } from "@/lib/format";
 import { TypeText } from "@/components/TypeText";
 import { VariantChips } from "@/components/VariantChips";
 import { Arr } from "@/components/icons";
 
 export function ClassDetail({
-  cls, chain, known, hex, onNav, onBack, onField, platform, targetField, scope, variants, onVariant,
+  cls, chain, known, hex, onNav, onBack, onField, fieldLink, targetField, scope, variants, onVariant, backLabel,
 }: {
   cls: ClassInfo; chain: string[]; known: Set<string>; hex: boolean;
-  onNav: (n: string) => void; onBack: () => void; onField: (f: string) => void; platform: Platform; targetField?: string;
-  scope: string; variants: IndexEntry[]; onVariant: (e: IndexEntry) => void;
+  onNav: (n: string) => void; onBack: () => void; onField: (f: string) => void; fieldLink: (f: string) => string; targetField?: string;
+  scope: string; variants: IndexEntry[]; onVariant: (e: IndexEntry) => void; backLabel: string;
 }) {
   const rows = useMemo(() => layout(cls.fields, cls.size), [cls]);
   const [flashName, setFlashName] = useState<string | undefined>();
@@ -23,13 +22,6 @@ export function ClassDetail({
     setTimeout(() => setFlashName((x) => (x === n ? undefined : x)), 1800);
   };
   const goField = (m: string) => onField(m.split("+")[0]);
-  const fieldLink = (field: string) => {
-    const p = new URLSearchParams();
-    if (platform !== "win64") p.set("p", platform);
-    if (variants.length > 1 && scope) p.set("sc", scope);
-    const qs = p.toString();
-    return `${location.origin}${location.pathname}#schema/${cls.name}/${field}${qs ? "?" + qs : ""}`;
-  };
   useEffect(() => { if (targetField) flash(targetField); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [targetField, cls]);
 
   const copySchema = () => {
@@ -63,7 +55,7 @@ export function ClassDetail({
   return (
     <div id="detail">
       <div className="dtop">
-        <button className="back" title="back" onClick={onBack}>←</button>
+        <button className="back" title={`back to ${backLabel}`} onClick={onBack}>← {backLabel}</button>
         <span className="chain-row">
           <span className="chip cur">{cls.name}</span>
           {(cls.chain && cls.chain.length ? cls.chain : chain).slice(1).map((c) => (

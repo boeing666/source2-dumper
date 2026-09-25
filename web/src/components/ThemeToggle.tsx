@@ -30,7 +30,7 @@ export function ThemeToggle() {
   const effective = theme ?? (systemDark() ? "dark" : "light");
   const next = effective === "dark" ? "light" : "dark";
   return (
-    <button className="themebtn" title={`switch to ${next} theme`} aria-label="toggle color theme"
+    <button className="icn" title={`switch to ${next} theme`} aria-label="toggle color theme"
             onClick={() => setTheme(next)}>
       {effective === "dark" ? Moon : Sun}
     </button>

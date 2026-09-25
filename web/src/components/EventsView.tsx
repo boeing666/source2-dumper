@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { GameEvent } from "@/types";
-import { loadEvents, type Game, type Platform } from "@/lib/data";
+import { getEvents, type Game, type Platform } from "@/lib/data";
 
 // field wire-type -> category (for grouping fields in the detail pane), in display order
 const EV_CATS: [string, string][] = [["ent", "entities"], ["str", "strings"], ["num", "numbers"], ["bool", "bool"], ["oth", "other"]];
@@ -14,14 +14,14 @@ function evCat(type: string): string {
 }
 const evKey = (e: GameEvent) => e.module + ":" + e.name;
 
-export type EvProps = { game: Game; platform: Platform; q: string; setQ: (v: string) => void; mods: Set<string>; toggleMod: (m: string) => void; sel: string; setSel: (k: string) => void };
+export type EvProps = { game: Game; platform: Platform; q: string; mods: Set<string>; toggleMod: (m: string) => void; sel: string; setSel: (k: string) => void };
 
-export function EventsView({ game, platform, q, setQ, mods, toggleMod, sel, setSel }: EvProps) {
+export function EventsView({ game, platform, q, mods, toggleMod, sel, setSel }: EvProps) {
   const [rows, setRows] = useState<GameEvent[]>([]);
-  useEffect(() => { loadEvents(game, platform).then(setRows).catch(() => setRows([])); }, [game, platform]);
+  useEffect(() => { getEvents(game, platform).then(setRows, () => setRows([])); }, [game, platform]);
   const allMods = useMemo(() => [...new Set(rows.map((r) => r.module))].sort(), [rows]);
   const filtered = useMemo(() => {
-    const ql = q.toLowerCase();
+    const ql = q.trim().toLowerCase();
     return rows.filter((r) =>
       (mods.size === 0 || mods.has(r.module)) &&
       (r.name.toLowerCase().includes(ql) || r.fields.some((f) => f.name.toLowerCase().includes(ql) || f.type.toLowerCase().includes(ql)))
@@ -46,27 +46,23 @@ export function EventsView({ game, platform, q, setQ, mods, toggleMod, sel, setS
   }, [selected]);
 
   return (
-    <div id="home">
-      <div className="hero">
-        <div className="herosearch"><input className="q" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`search ${rows.length} events…`} /></div>
-        {allMods.length > 0 && (
-          <div className="filters">
-            <div className="fline">
-              {allMods.map((m) => <button key={m} className={"fchip" + (mods.has(m) ? " on" : "")} onClick={() => toggleMod(m)}>{m}</button>)}
-            </div>
-          </div>
-        )}
-      </div>
+    <div className="page">
+      {allMods.length > 0 && (
+        <div className="fbar">
+          {allMods.map((m) => <button key={m} className={"fchip" + (mods.has(m) ? " on" : "")} onClick={() => toggleMod(m)}>{m}</button>)}
+          <span className="fcount">{filtered.length} / {rows.length} events</span>
+        </div>
+      )}
       <div className="content">
         <div className="evtp">
           <div className="evtree">
             {groups.map((gr) => (
               <div key={gr.prefix}>
                 <div className="evtph">{gr.prefix}_* <span className="evtc">{gr.events.length}</span></div>
-                {gr.events.map((ev) => {
+                {gr.events.map((ev, i) => {
                   const k = evKey(ev);
                   return (
-                    <div key={k} className={"evte" + (k === sel ? " on" : "")} onClick={() => setSel(k)}>
+                    <div key={k + i} className={"evte" + (k === sel ? " on" : "")} onClick={() => setSel(k)}>
                       <span className="evten">{ev.name}</span>
                       <span className="evtef">{ev.fields.length}</span>
                     </div>
@@ -87,8 +83,8 @@ export function EventsView({ game, platform, q, setQ, mods, toggleMod, sel, setS
                 {cats.length ? cats.map((c) => (
                   <div className="evcat" key={c.k}>
                     <div className="evcath">{c.label} · {c.fields.length}</div>
-                    {c.fields.map((f) => (
-                      <div className="evcatrow" key={f.name}>
+                    {c.fields.map((f, i) => (
+                      <div className="evcatrow" key={f.name + i}>
                         <span className="evfn">{f.name}</span>
                         <span className={"evft t-" + c.k}>{f.type}</span>
                       </div>

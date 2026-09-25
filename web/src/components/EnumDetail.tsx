@@ -9,7 +9,7 @@ export function EnumDetail({ en, hex, onBack, scope, variants, onVariant }: {
   return (
     <div id="detail">
       <div className="dtop">
-        <button className="back" title="back to index" onClick={onBack}>←</button>
+        <button className="back" title="back" onClick={onBack}>← back</button>
         <span className="chain-row"><span className="chip cur">{en.name}</span></span>
         <VariantChips scope={scope} variants={variants} onVariant={onVariant} />
       </div>

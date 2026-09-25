@@ -25,10 +25,10 @@ export function TypesList({ entries, sort, onPick }: { entries: IndexEntry[]; so
         <div className="grp" key={scope}>
           <div className="grp-h">{scope} <span className="c">{es.length}</span></div>
           <div className="cols">
-            {es.map((e) => {
+            {es.map((e, i) => {
               const mv = metricOf(e, sort);
               return (
-                <button className="it" key={e.name} onClick={() => onPick(e)}>
+                <button className="it" key={e.kind + e.name + i} onClick={() => onPick(e)}>
                   <span className={"kb " + kb(e.kind)}>{letter(e.kind)}</span>
                   <span className="nm">{e.name}</span>
                   {mv != null && mv > 0 && <span className="mv">{mv}</span>}

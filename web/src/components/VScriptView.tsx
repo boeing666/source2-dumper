@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ScriptApi, ScriptClass, ScriptFunction } from "@/types";
-import { loadScriptApi, type Game, type Platform } from "@/lib/data";
+import { getScriptApi, type Game, type Platform } from "@/lib/data";
 
 // selection keys: the global function list, the constants, or one class ("cls:<C++ name>")
 const FN = "functions";
@@ -35,17 +35,17 @@ function Signature({ f }: { f: ScriptFunction }) {
   );
 }
 
-export type VsProps = { game: Game; platform: Platform; q: string; setQ: (v: string) => void; sel: string; setSel: (k: string) => void };
+export type VsProps = { game: Game; platform: Platform; q: string; sel: string; setSel: (k: string) => void };
 
-export function VScriptView({ game, platform, q, setQ, sel, setSel }: VsProps) {
+export function VScriptView({ game, platform, q, sel, setSel }: VsProps) {
   const [api, setApi] = useState<ScriptApi | null>(null);
   const [missing, setMissing] = useState(false);
   useEffect(() => {
     setApi(null); setMissing(false);
-    loadScriptApi(game, platform).then(setApi).catch(() => setMissing(true));
+    getScriptApi(game, platform).then(setApi, () => setMissing(true));
   }, [game, platform]);
 
-  const ql = q.toLowerCase();
+  const ql = q.trim().toLowerCase();
   const byName = useMemo(() => new Map((api?.classes ?? []).map((c) => [c.name, c])), [api]);
   const globals = useMemo(() => (api?.functions ?? []).filter((f) => !ql || fnMatches(f, ql)), [api, ql]);
   const constants = useMemo(
@@ -85,14 +85,12 @@ export function VScriptView({ game, platform, q, setQ, sel, setSel }: VsProps) {
     </div>
   );
 
-  if (missing) return <div className="loading" style={{ padding: 18 }}>no vscript data for {game}/{platform}</div>;
-  if (!api) return <div className="loading" style={{ padding: 18 }}>loading…</div>;
+  if (missing) return <div className="loading">no vscript data for {game}/{platform}</div>;
+  if (!api) return <div className="loading">loading…</div>;
 
   return (
-    <div id="home">
-      <div className="hero">
-        <div className="herosearch"><input className="q" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`search ${total} functions, ${api.classes.length} classes, ${api.constants.length} constants…`} /></div>
-      </div>
+    <div className="page">
+      <div className="fbar"><span className="fcount">{total} functions · {api.classes.length} classes · {api.instances.length} instances · {api.constants.length} constants</span></div>
       <div className="content">
         <div className="evtp">
           <div className="evtree">
