@@ -1773,6 +1773,7 @@ dota_loadout_test_pet_offset | clientdll,cheat |
 dota_loadout_wearable_transition_effect | developmentonly,clientdll | Transition effect when previewing wearables.  dissolve / dither
 dota_lobby_browser_selected_gamemode | clientdll | 
 dota_lobby_browser_selected_region | clientdll | 
+dota_lobby_nonce | hidden,release | 
 dota_lobby_settings_advanced_visible | clientdll | 
 dota_local_bot_match_difficulty | gamedll,clientdll,replicated | Difficulty to play local bot matches against
 dota_local_bot_match_script_index | clientdll | 
