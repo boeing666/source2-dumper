@@ -3,7 +3,7 @@
 enum AI_TaskFailureCode_t : uint16_t  // sizeof 0x2
 {
     NO_TASK_FAILURE = 0,
-    NO_MOVE_TACTIC_FAILURE = 0,
+    NO_TACTIC_FAILURE = 0,
     FAIL_NO_TARGET = 1,
     FAIL_ITEM_NO_FIND = 2,
     FAIL_NO_HINT_NODE = 3,
@@ -11,7 +11,6 @@ enum AI_TaskFailureCode_t : uint16_t  // sizeof 0x2
     FAIL_NO_ENEMY = 5,
     FAIL_NO_COVER = 6,
     FAIL_NO_SHOOT = 7,
-    FAIL_FIRST_PATH_FAILURE = 8,
     FAIL_NO_ROUTE = 8,
     FAIL_NO_ROUTE_GOAL = 9,
     FAIL_NO_ROUTE_BLOCKED_WORLD = 10,
@@ -22,7 +21,6 @@ enum AI_TaskFailureCode_t : uint16_t  // sizeof 0x2
     FAIL_NO_ROUTE_BLOCKED_NPC_START_SOLID = 15,
     FAIL_NO_ROUTE_BLOCKED_LOCAL_NAV = 16,
     FAIL_NO_ROUTE_ILLEGAL = 17,
-    FAIL_LAST_PATH_FAILURE = 18,
     FAIL_MOVEMENT_DISABLED = 18,
     FAIL_HINT_ALREADY_RESERVED = 19,
     FAIL_NO_SOUND = 20,
@@ -45,5 +43,9 @@ enum AI_TaskFailureCode_t : uint16_t  // sizeof 0x2
     FAIL_NO_PHYSICS = 37,
     FAIL_BAD_HANDSHAKE = 38,
     FAIL_NO_MOVEMENT_GAIT = 39,
-    NUM_FAIL_CODES = 40,
+    FAIL_COVER_GOAL_INVALIDATED = 40,
+    FAIL_LOS_GOAL_INVALIDATED = 41,
+    NUM_FAIL_CODES = 42,
+    FAIL_FIRST_PATH_FAILURE = 8,
+    FAIL_LAST_PATH_FAILURE = 17,
 };

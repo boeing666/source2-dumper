@@ -1,12 +1,12 @@
 #pragma once
 
-class ConstraintSoundInfo  // sizeof 0x98, align 0xFF [vtable] (server)
+class ConstraintSoundInfo  // sizeof 0x98, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
     VelocitySampler m_vSampler; // offset 0x8, size 0x14, align 255 | MNotSaved
     char _pad_001C[0x4]; // offset 0x1C
-    SimpleConstraintSoundProfile m_soundProfile; // offset 0x20, size 0x20, align 255
+    SimpleConstraintSoundProfile m_soundProfile; // offset 0x20, size 0x20, align 8
     Vector m_forwardAxis; // offset 0x40, size 0xC, align 4 | MNotSaved
     char _pad_004C[0x4]; // offset 0x4C
     CUtlSymbolLarge m_iszTravelSoundFwd; // offset 0x50, size 0x8, align 8

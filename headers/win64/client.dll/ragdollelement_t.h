@@ -1,6 +1,6 @@
 #pragma once
 
-struct ragdollelement_t  // sizeof 0x30, align 0xFF [trivial_ctor trivial_dtor] (client)
+struct ragdollelement_t  // sizeof 0x30, align 0x8 [trivial_ctor trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
     Vector originParentSpace; // offset 0x0, size 0xC, align 4
     char _pad_000C[0x14]; // offset 0xC

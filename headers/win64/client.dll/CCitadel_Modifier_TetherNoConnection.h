@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_TetherNoConnection : public CCitadel_Modifier_Base /*0x0*/  // sizeof 0x340, align 0xFF [vtable] (client)
+class CCitadel_Modifier_TetherNoConnection : public CCitadel_Modifier_Base /*0x0*/  // sizeof 0x4A0, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x340]; // offset 0x0
+    char _pad_0000[0x4A0]; // offset 0x0
 };

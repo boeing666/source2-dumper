@@ -12,7 +12,7 @@ struct NPCAILODDesc_t  // sizeof 0x18, align 0x4 [trivial_dtor] (client) {MGetKV
     bool m_bUseAdvancedLocomotion; // offset 0x10, size 0x1, align 1
     bool m_bEnableFootSweeps; // offset 0x11, size 0x1, align 1
     bool m_bDetailedLookTargets; // offset 0x12, size 0x1, align 1
-    bool m_bShouldPlayFootstepSounds; // offset 0x13, size 0x1, align 1
+    bool m_bShouldGenerateAIFootstepEvents; // offset 0x13, size 0x1, align 1
     bool m_bRagdollEnabled; // offset 0x14, size 0x1, align 1
     bool m_bEnableFlinching; // offset 0x15, size 0x1, align 1
     bool m_bEnableWarnNPCsOfIncomingFire; // offset 0x16, size 0x1, align 1

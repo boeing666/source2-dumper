@@ -1,6 +1,6 @@
 #pragma once
 
-class ResponseParams  // sizeof 0x20, align 0xFF [trivial_dtor] (scenefilecache)
+class ResponseParams  // sizeof 0x20, align 0x8 [trivial_dtor] (scenefilecache) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0

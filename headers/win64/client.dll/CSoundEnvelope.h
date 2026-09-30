@@ -1,6 +1,6 @@
 #pragma once
 
-class CSoundEnvelope  // sizeof 0x10, align 0xFF [trivial_dtor] (client)
+class CSoundEnvelope  // sizeof 0x10, align 0x4 [trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
 public:
     float32 m_current; // offset 0x0, size 0x4, align 4

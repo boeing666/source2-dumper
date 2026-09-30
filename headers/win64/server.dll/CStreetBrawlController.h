@@ -1,17 +1,17 @@
 #pragma once
 
-class CStreetBrawlController  // sizeof 0x130, align 0xFF [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CStreetBrawlController  // sizeof 0x130, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
-    EStreetBrawlGameState m_eStreetBrawlState; // offset 0x8, size 0x4, align 4 | MNetworkEnable MNetworkChangeCallback
-    GameTime_t m_flStreetBrawlStateStartTime; // offset 0xC, size 0x4, align 255 | MNetworkEnable
-    GameTime_t m_flNextStateTime; // offset 0x10, size 0x4, align 255 | MNetworkEnable
-    float32 m_flStreetBrawlTotalNonCombatTime; // offset 0x14, size 0x4, align 4 | MNetworkEnable
-    int32 m_iRound; // offset 0x18, size 0x4, align 4 | MNetworkEnable
-    int32 m_iLastBuyCountDown; // offset 0x1C, size 0x4, align 4 | MNetworkEnable
-    int32 m_iTeamSapphireScore; // offset 0x20, size 0x4, align 4 | MNetworkEnable
-    int32 m_iTeamAmberScore; // offset 0x24, size 0x4, align 4 | MNetworkEnable
+    EStreetBrawlGameState m_eStreetBrawlState; // offset 0x8, size 0x4, align 4
+    GameTime_t m_flStreetBrawlStateStartTime; // offset 0xC, size 0x4, align 255
+    GameTime_t m_flNextStateTime; // offset 0x10, size 0x4, align 255
+    float32 m_flStreetBrawlTotalNonCombatTime; // offset 0x14, size 0x4, align 4
+    int32 m_iRound; // offset 0x18, size 0x4, align 4
+    int32 m_iLastBuyCountDown; // offset 0x1C, size 0x4, align 4
+    int32 m_iTeamSapphireScore; // offset 0x20, size 0x4, align 4
+    int32 m_iTeamAmberScore; // offset 0x24, size 0x4, align 4
     float32 m_tNoTrooperTime; // offset 0x28, size 0x4, align 4
     bool m_bOvertime; // offset 0x2C, size 0x1, align 1
     char _pad_002D[0x3]; // offset 0x2D

@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Ability_TrooperBossGrenade : public CCitadel_Ability_TrooperGrenade /*0x0*/  // sizeof 0x14D8, align 0x8 [vtable] (client)
+class CCitadel_Ability_TrooperBossGrenade : public CCitadel_Ability_TrooperGrenade /*0x0*/  // sizeof 0x1AF8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x14D8]; // offset 0x0
+    char _pad_0000[0x1AF8]; // offset 0x0
 };

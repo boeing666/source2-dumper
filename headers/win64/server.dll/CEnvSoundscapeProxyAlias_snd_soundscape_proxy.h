@@ -1,7 +1,7 @@
 #pragma once
 
-class CEnvSoundscapeProxyAlias_snd_soundscape_proxy : public CEnvSoundscapeProxy /*0x0*/  // sizeof 0x538, align 0x8 [vtable] (server)
+class CEnvSoundscapeProxyAlias_snd_soundscape_proxy : public CEnvSoundscapeProxy /*0x0*/  // sizeof 0x548, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x538]; // offset 0x0
+    char _pad_0000[0x548]; // offset 0x0
 };

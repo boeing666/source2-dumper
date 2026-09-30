@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_CapturePointVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x490, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_CapturePointVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x498, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x28]; // offset 0x0
@@ -19,7 +19,10 @@ public:
     CRemapFloat m_remapCapturersToCaptureTime; // offset 0x464, size 0x10, align 255 | MPropertyDescription
     float32 m_flEnemyProgressRemoveScale; // offset 0x474, size 0x4, align 4 | MPropertyDescription
     float32 m_flTotalHealthToCapture; // offset 0x478, size 0x4, align 4 | MPropertyDescription
-    CRangeFloat m_flInitialEnableTimeInSeconds; // offset 0x47C, size 0x8, align 255 | MPropertyStartGroup MPropertyDescription
-    float32 m_flPreEnableWindowInSeconds; // offset 0x484, size 0x4, align 4 | MPropertyDescription
-    CRangeFloat m_flRespawnRangeInSeconds; // offset 0x488, size 0x8, align 255 | MPropertyDescription
+    bool m_bDestroyNearbyNeutrals; // offset 0x47C, size 0x1, align 1 | MPropertyDescription
+    char _pad_047D[0x3]; // offset 0x47D
+    CRangeFloat m_flInitialEnableTimeInSeconds; // offset 0x480, size 0x8, align 255 | MPropertyStartGroup MPropertyDescription
+    float32 m_flPreEnableWindowInSeconds; // offset 0x488, size 0x4, align 4 | MPropertyDescription
+    CRangeFloat m_flRespawnRangeInSeconds; // offset 0x48C, size 0x8, align 255 | MPropertyDescription
+    char _pad_0494[0x4]; // offset 0x494
 };

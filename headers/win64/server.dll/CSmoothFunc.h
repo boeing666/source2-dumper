@@ -1,6 +1,6 @@
 #pragma once
 
-class CSmoothFunc  // sizeof 0x20, align 0xFF [vtable trivial_dtor] (server)
+class CSmoothFunc  // sizeof 0x20, align 0x8 [vtable trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0

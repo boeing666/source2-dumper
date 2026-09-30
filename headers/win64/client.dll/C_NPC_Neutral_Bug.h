@@ -1,7 +1,7 @@
 #pragma once
 
-class C_NPC_Neutral_Bug : public CBaseAnimGraph /*0x0*/  // sizeof 0xCA8, align 0x8 [vtable] (client)
+class C_NPC_Neutral_Bug : public CBaseAnimGraph /*0x0*/  // sizeof 0xDA0, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0xCA8]; // offset 0x0
+    char _pad_0000[0xDA0]; // offset 0x0
 };

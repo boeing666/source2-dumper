@@ -1,7 +1,7 @@
 #pragma once
 
-class CNmCachedPoseReadTask : public CNmPoseTask /*0x0*/  // sizeof 0x60, align 0x8 [vtable] (animlib)
+class CNmCachedPoseReadTask : public CNmPoseTask /*0x0*/  // sizeof 0x80, align 0x10 [vtable] (animlib)
 {
 public:
-    char _pad_0000[0x60]; // offset 0x0
+    char _pad_0000[0x80]; // offset 0x0
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CConstantForceController  // sizeof 0x40, align 0xFF [vtable trivial_dtor] (server)
+class CConstantForceController  // sizeof 0x40, align 0x8 [vtable trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xC]; // offset 0x0

@@ -11,5 +11,5 @@ public:
     NmIKBlendMode_t m_blendMode; // offset 0x28, size 0x1, align 1
     bool m_bIsTargetInWorldSpace; // offset 0x29, size 0x1, align 1
     char _pad_002A[0x2]; // offset 0x2A
-    float32 m_flReferencePoseTwistWeight; // offset 0x2C, size 0x4, align 4
+    float32 m_flChainRotationWeight; // offset 0x2C, size 0x4, align 4
 };

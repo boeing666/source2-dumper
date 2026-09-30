@@ -18,4 +18,6 @@ enum ESource2PlayStatsFieldType : uint32_t  // sizeof 0x4
     Source2PlayStats_LowCardinalityString = 13,
     Source2PlayStats_UTCDateTime = 14,
     Source2PlayStats_SteamIDTrustBucket = 15,
+    Source2PlayStats_SteamIDTrustBucketMin = 16,
+    Source2PlayStats_SteamID = 17,
 };

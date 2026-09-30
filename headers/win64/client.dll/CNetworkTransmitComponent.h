@@ -1,6 +1,6 @@
 #pragma once
 
-class CNetworkTransmitComponent  // sizeof 0x1D0, align 0xFF [vtable] (client)
+class CNetworkTransmitComponent  // sizeof 0x1D0, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x184]; // offset 0x0

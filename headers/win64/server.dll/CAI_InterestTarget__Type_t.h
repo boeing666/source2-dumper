@@ -7,4 +7,5 @@ enum CAI_InterestTarget::Type_t : uint32_t  // sizeof 0x4
     ePosition = 2,
     eDirection = 3,
     ePath = 4,
+    eLastPathWaypoint = 5,
 };

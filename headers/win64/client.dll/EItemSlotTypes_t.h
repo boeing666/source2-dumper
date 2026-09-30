@@ -10,5 +10,6 @@ enum EItemSlotTypes_t : uint8_t  // sizeof 0x1
     EItemSlotType_UniversalLocked = 4,
     EItemSlotType_All = 5,
     EItemSlotType_Favorites = 6,
-    EMaxItemSlotTypes = 7,
+    EItemSlotType_Ability = 7,
+    EMaxItemSlotTypes = 8,
 };

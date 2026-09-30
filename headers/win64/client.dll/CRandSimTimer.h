@@ -1,6 +1,6 @@
 #pragma once
 
-class CRandSimTimer : public CSimpleSimTimer /*0x0*/  // sizeof 0x10, align 0xFF [trivial_dtor] (client)
+class CRandSimTimer : public CSimpleSimTimer /*0x0*/  // sizeof 0x10, align 0xFF [trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0

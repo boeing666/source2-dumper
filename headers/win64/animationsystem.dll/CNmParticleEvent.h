@@ -3,9 +3,11 @@
 class CNmParticleEvent : public CNmEvent /*0x0*/  // sizeof 0x70, align 0x8 [vtable] (animlib) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x20]; // offset 0x0
-    CNmEventRelevance_t m_relevance; // offset 0x20, size 0x4, align 4
-    CNmParticleEvent::Type_t m_type; // offset 0x24, size 0x4, align 4
+    char _pad_0000[0x18]; // offset 0x0
+    CNmEventRelevance_t m_relevance; // offset 0x18, size 0x4, align 4
+    CNmParticleEvent::Type_t m_type; // offset 0x1C, size 0x4, align 4
+    CNmEventTargetEntity_t m_target; // offset 0x20, size 0x4, align 4
+    char _pad_0024[0x4]; // offset 0x24
     CStrongHandle< InfoForResourceTypeIParticleSystemDefinition > m_hParticleSystem; // offset 0x28, size 0x8, align 8
     CUtlString m_tags; // offset 0x30, size 0x8, align 8
     bool m_bStopImmediately; // offset 0x38, size 0x1, align 1

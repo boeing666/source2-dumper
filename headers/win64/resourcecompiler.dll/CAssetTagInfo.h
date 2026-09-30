@@ -7,7 +7,7 @@ public:
     CUtlString m_TagName; // offset 0x30, size 0x8, align 8 | MPropertyDescription
     CUtlString m_TagDescription; // offset 0x38, size 0x8, align 8 | MPropertyDescription MPropertyAttributeEditor
     CUtlString m_TagIcon; // offset 0x40, size 0x8, align 8 | MPropertyDescription MPropertyAttributeEditor
-    Color m_TagColor; // offset 0x48, size 0x4, align 1 | MPropertyDescription
+    Color m_TagColor; // offset 0x48, size 0x4, align 4 | MPropertyDescription
     char _pad_004C[0x4]; // offset 0x4C
     CUtlVector< CUtlString > m_TagAliases; // offset 0x50, size 0x18, align 8 | MPropertyDescription MPropertyAutoExpandSelf
     CUtlString m_ThumbnailOverlayImage; // offset 0x68, size 0x8, align 8 | MPropertyDescription MPropertyAttributeEditor

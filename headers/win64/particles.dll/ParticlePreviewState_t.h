@@ -1,6 +1,6 @@
 #pragma once
 
-struct ParticlePreviewState_t  // sizeof 0x68, align 0x8 (particles) {MGetKV3ClassDefaults}
+struct ParticlePreviewState_t  // sizeof 0x70, align 0x8 (particles) {MGetKV3ClassDefaults}
 {
     CUtlString m_previewModel; // offset 0x0, size 0x8, align 8
     uint32 m_nModSpecificData; // offset 0x8, size 0x4, align 4
@@ -21,5 +21,5 @@ struct ParticlePreviewState_t  // sizeof 0x68, align 0x8 (particles) {MGetKV3Cla
     bool m_bSequenceNameIsAnimClipPath; // offset 0x55, size 0x1, align 1
     char _pad_0056[0x2]; // offset 0x56
     Vector m_vecPreviewGravity; // offset 0x58, size 0xC, align 4
-    char _pad_0064[0x4]; // offset 0x64
+    Vector m_vecPreviewWind; // offset 0x64, size 0xC, align 4
 };

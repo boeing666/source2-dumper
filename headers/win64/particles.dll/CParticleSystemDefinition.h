@@ -1,6 +1,6 @@
 #pragma once
 
-class CParticleSystemDefinition : public IParticleSystemDefinition /*0x0*/  // sizeof 0x440, align 0x10 [vtable] (particles) {MGetKV3ClassDefaults}
+class CParticleSystemDefinition : public IParticleSystemDefinition /*0x0*/  // sizeof 0x590, align 0x10 [vtable] (particles) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
@@ -29,7 +29,7 @@ public:
     char _pad_0286[0x2]; // offset 0x286
     CUtlString m_NamedValueDomain; // offset 0x288, size 0x8, align 8 | MPropertyFriendlyName MPropertyAttributeChoiceName MPropertyAutoRebuildOnChange MPropertySuppressExpr
     CUtlVector< ParticleNamedValueSource_t* > m_NamedValueLocals; // offset 0x290, size 0x18, align 8 | MPropertySuppressField
-    Color m_ConstantColor; // offset 0x2A8, size 0x4, align 1 | MPropertyStartGroup MPropertyFriendlyName MPropertyColorPlusAlpha
+    Color m_ConstantColor; // offset 0x2A8, size 0x4, align 4 | MPropertyStartGroup MPropertyFriendlyName MPropertyColorPlusAlpha
     Vector m_ConstantNormal; // offset 0x2AC, size 0xC, align 4 | MPropertyFriendlyName MVectorIsCoordinate
     float32 m_flConstantRadius; // offset 0x2B8, size 0x4, align 4 | MPropertyFriendlyName MPropertyAttributeRange
     float32 m_flConstantRotation; // offset 0x2BC, size 0x4, align 4 | MPropertyFriendlyName
@@ -57,26 +57,28 @@ public:
     float32 m_flMinimumSimTime; // offset 0x328, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flMinimumTimeStep; // offset 0x32C, size 0x4, align 4 | MPropertyFriendlyName
     int32 m_nMinimumFrames; // offset 0x330, size 0x4, align 4 | MPropertyFriendlyName
-    int32 m_nMinCPULevel; // offset 0x334, size 0x4, align 4 | MPropertyStartGroup MPropertyFriendlyName
-    int32 m_nMinGPULevel; // offset 0x338, size 0x4, align 4 | MPropertyFriendlyName
-    float32 m_flNoDrawTimeToGoToSleep; // offset 0x33C, size 0x4, align 4 | MPropertyFriendlyName
-    float32 m_flMaxDrawDistance; // offset 0x340, size 0x4, align 4 | MPropertyFriendlyName
-    float32 m_flStartFadeDistance; // offset 0x344, size 0x4, align 4 | MPropertyFriendlyName
-    float32 m_flMaxCreationDistance; // offset 0x348, size 0x4, align 4 | MPropertyFriendlyName
-    int32 m_nAggregationMinAvailableParticles; // offset 0x34C, size 0x4, align 4 | MPropertyFriendlyName
-    float32 m_flAggregateRadius; // offset 0x350, size 0x4, align 4 | MPropertyFriendlyName
-    bool m_bShouldBatch; // offset 0x354, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
-    bool m_bShouldHitboxesFallbackToRenderBounds; // offset 0x355, size 0x1, align 1 | MPropertyFriendlyName
-    bool m_bShouldHitboxesFallbackToSnapshot; // offset 0x356, size 0x1, align 1 | MPropertyFriendlyName
-    bool m_bShouldHitboxesFallbackToCollisionHulls; // offset 0x357, size 0x1, align 1 | MPropertyFriendlyName
-    InheritableBoolType_t m_nViewModelEffect; // offset 0x358, size 0x4, align 4 | MPropertyStartGroup MPropertyFriendlyName MPropertySuppressExpr
-    bool m_bScreenSpaceEffect; // offset 0x35C, size 0x1, align 1 | MPropertyFriendlyName MPropertySuppressExpr
-    char _pad_035D[0x3]; // offset 0x35D
-    CUtlSymbolLarge m_pszTargetLayerID; // offset 0x360, size 0x8, align 8 | MPropertyFriendlyName
-    int32 m_nSkipRenderControlPoint; // offset 0x368, size 0x4, align 4 | MPropertyFriendlyName
-    int32 m_nAllowRenderControlPoint; // offset 0x36C, size 0x4, align 4 | MPropertyFriendlyName
-    bool m_bShouldSort; // offset 0x370, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
-    char _pad_0371[0x47]; // offset 0x371
-    CUtlVector< ParticleControlPointConfiguration_t > m_controlPointConfigurations; // offset 0x3B8, size 0x18, align 8 | MPropertySuppressField
-    char _pad_03D0[0x70]; // offset 0x3D0
+    bool m_bIsGPUParticleSystem; // offset 0x334, size 0x1, align 1 | MPropertyFriendlyName MPropertySuppressExpr MPropertyAutoRebuildOnChange
+    char _pad_0335[0x3]; // offset 0x335
+    int32 m_nMinCPULevel; // offset 0x338, size 0x4, align 4 | MPropertyStartGroup MPropertyFriendlyName
+    int32 m_nMinGPULevel; // offset 0x33C, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flNoDrawTimeToGoToSleep; // offset 0x340, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flMaxDrawDistance; // offset 0x344, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flStartFadeDistance; // offset 0x348, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flMaxCreationDistance; // offset 0x34C, size 0x4, align 4 | MPropertyFriendlyName
+    int32 m_nAggregationMinAvailableParticles; // offset 0x350, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flAggregateRadius; // offset 0x354, size 0x4, align 4 | MPropertyFriendlyName
+    bool m_bShouldBatch; // offset 0x358, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
+    bool m_bShouldHitboxesFallbackToRenderBounds; // offset 0x359, size 0x1, align 1 | MPropertyFriendlyName
+    bool m_bShouldHitboxesFallbackToSnapshot; // offset 0x35A, size 0x1, align 1 | MPropertyFriendlyName
+    bool m_bShouldHitboxesFallbackToCollisionHulls; // offset 0x35B, size 0x1, align 1 | MPropertyFriendlyName
+    InheritableBoolType_t m_nViewModelEffect; // offset 0x35C, size 0x4, align 4 | MPropertyStartGroup MPropertyFriendlyName MPropertySuppressExpr
+    bool m_bScreenSpaceEffect; // offset 0x360, size 0x1, align 1 | MPropertyFriendlyName MPropertySuppressExpr
+    char _pad_0361[0x7]; // offset 0x361
+    CUtlSymbolLarge m_pszTargetLayerID; // offset 0x368, size 0x8, align 8 | MPropertyFriendlyName
+    int32 m_nSkipRenderControlPoint; // offset 0x370, size 0x4, align 4 | MPropertyFriendlyName
+    int32 m_nAllowRenderControlPoint; // offset 0x374, size 0x4, align 4 | MPropertyFriendlyName
+    bool m_bShouldSort; // offset 0x378, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
+    char _pad_0379[0x47]; // offset 0x379
+    CUtlVector< ParticleControlPointConfiguration_t > m_controlPointConfigurations; // offset 0x3C0, size 0x18, align 8 | MPropertySuppressField
+    char _pad_03D8[0x1B8]; // offset 0x3D8
 };

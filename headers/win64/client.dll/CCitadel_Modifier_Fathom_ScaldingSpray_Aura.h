@@ -1,13 +1,13 @@
 #pragma once
 
-class CCitadel_Modifier_Fathom_ScaldingSpray_Aura : public CCitadelModifierAura_Cone /*0x0*/  // sizeof 0x328, align 0xFF [vtable] (client)
+class CCitadel_Modifier_Fathom_ScaldingSpray_Aura : public CCitadelModifierAura_Cone /*0x0*/  // sizeof 0x458, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x110]; // offset 0x0
-    QAngle m_playerAngles; // offset 0x110, size 0xC, align 4
-    bool m_bHasAnyTargets; // offset 0x11C, size 0x1, align 1
-    char _pad_011D[0x3]; // offset 0x11D
-    GameTime_t m_flLastStackTime; // offset 0x120, size 0x4, align 255
-    ParticleIndex_t m_ConeParticle; // offset 0x124, size 0x4, align 255
-    char _pad_0128[0x200]; // offset 0x128
+    char _pad_0000[0x180]; // offset 0x0
+    QAngle m_playerAngles; // offset 0x180, size 0xC, align 4
+    bool m_bHasAnyTargets; // offset 0x18C, size 0x1, align 1
+    char _pad_018D[0x3]; // offset 0x18D
+    GameTime_t m_flLastStackTime; // offset 0x190, size 0x4, align 255
+    ParticleIndex_t m_ConeParticle; // offset 0x194, size 0x4, align 255
+    char _pad_0198[0x2C0]; // offset 0x198
 };

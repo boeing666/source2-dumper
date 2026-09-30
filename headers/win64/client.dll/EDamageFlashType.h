@@ -8,5 +8,6 @@ enum EDamageFlashType : uint32_t  // sizeof 0x4
     EFlashType_CritDamage = 3,
     EFlashType_MeleeActivate = 4,
     EFlashType_PatronHit = 5,
-    EFlshTypeCount = 6,
+    EFlashType_GenericDamage = 6,
+    EFlshTypeCount = 7,
 };

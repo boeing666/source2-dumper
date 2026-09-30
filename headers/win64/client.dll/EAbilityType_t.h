@@ -10,4 +10,5 @@ enum EAbilityType_t : uint8_t  // sizeof 0x1
     EAbilityType_Innate = 4,
     EAbilityType_Cosmetic = 5,
     EAbilityType_Melee = 6,
+    EAbilityType_Held = 7,
 };

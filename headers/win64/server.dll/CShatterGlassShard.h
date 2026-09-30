@@ -1,6 +1,6 @@
 #pragma once
 
-class CShatterGlassShard  // sizeof 0xB8, align 0xFF [vtable] (server)
+class CShatterGlassShard  // sizeof 0xB8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0

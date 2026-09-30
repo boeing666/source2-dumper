@@ -1,6 +1,6 @@
 #pragma once
 
-struct AmbientParticleSettings_t  // sizeof 0x10, align 0x8 (client) {MGetKV3ClassDefaults}
+struct AmbientParticleSettings_t  // sizeof 0x10, align 0x8 (client) {MGetKV3ClassDefaults MPropertyFriendlyName}
 {
     int32 m_nCP; // offset 0x0, size 0x4, align 4
     ParticleAttachment_t m_eAttachmentType; // offset 0x4, size 0x4, align 4

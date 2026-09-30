@@ -1,6 +1,6 @@
 #pragma once
 
-struct CGameScriptedMoveDef_t  // sizeof 0x30, align 0x4 [trivial_dtor] (server) {MGetKV3ClassDefaults}
+struct CGameScriptedMoveDef_t  // sizeof 0x30, align 0xFF [trivial_dtor] (server)
 {
     Vector m_vDestOffset; // offset 0x0, size 0xC, align 4
     CHandle< CBaseEntity > m_hDestEntity; // offset 0xC, size 0x4, align 4

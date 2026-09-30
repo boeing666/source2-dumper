@@ -8,5 +8,5 @@ public:
     CSteamAudioProbeData m_probes; // offset 0x10, size 0x8, align 8
     CUtlVector< float32 > m_vecPathingRatio; // offset 0x18, size 0x18, align 8
     CUtlVector< float32 > m_vecPathingDeviation; // offset 0x30, size 0x18, align 8
-    CUtlVector< float32 > m_vecReflectionRatio; // offset 0x48, size 0x18, align 8
+    CUtlVector< float32 > m_vecReflectionEnergy; // offset 0x48, size 0x18, align 8
 };

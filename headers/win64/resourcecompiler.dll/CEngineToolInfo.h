@@ -7,12 +7,13 @@ public:
     CUtlString m_Library; // offset 0x20, size 0x8, align 8
     CUtlString m_InterfaceName; // offset 0x28, size 0x8, align 8
     bool m_bShowInRevisionSubMenu; // offset 0x30, size 0x1, align 1
-    bool m_bIsSecondaryTool; // offset 0x31, size 0x1, align 1
-    bool m_bDoNotWarnAboutLargeAssetBatches; // offset 0x32, size 0x1, align 1
-    bool m_bIsWorkshopManagerTool; // offset 0x33, size 0x1, align 1
-    bool m_bIsWorkshopItemTool; // offset 0x34, size 0x1, align 1
-    bool m_bCanHighlightSubassets; // offset 0x35, size 0x1, align 1
-    char _pad_0036[0x2]; // offset 0x36
+    bool m_bShowInToolsMenu; // offset 0x31, size 0x1, align 1
+    bool m_bIsSecondaryTool; // offset 0x32, size 0x1, align 1
+    bool m_bDoNotWarnAboutLargeAssetBatches; // offset 0x33, size 0x1, align 1
+    bool m_bIsWorkshopManagerTool; // offset 0x34, size 0x1, align 1
+    bool m_bIsWorkshopItemTool; // offset 0x35, size 0x1, align 1
+    bool m_bCanHighlightSubassets; // offset 0x36, size 0x1, align 1
+    char _pad_0037[0x1]; // offset 0x37
     CUtlVector< CUtlString > m_AssetTypes; // offset 0x38, size 0x18, align 8
     CUtlVector< CUtlString > m_LimitToMods; // offset 0x50, size 0x18, align 8
     CUtlVector< CUtlString > m_ExcludeFromMods; // offset 0x68, size 0x18, align 8

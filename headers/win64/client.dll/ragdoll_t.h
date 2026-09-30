@@ -1,6 +1,6 @@
 #pragma once
 
-struct ragdoll_t  // sizeof 0x50, align 0xFF (client)
+struct ragdoll_t  // sizeof 0x50, align 0x8 (client) {MGetKV3ClassDefaults}
 {
     CUtlVector< ragdollelement_t > list; // offset 0x0, size 0x18, align 8
     CUtlVector< ragdollhierarchyjoint_t > hierarchyJoints; // offset 0x18, size 0x18, align 8

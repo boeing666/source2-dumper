@@ -1,9 +1,9 @@
 #pragma once
 
-class CTeamTrackedStatsEntity : public CBaseTrackedStatsEntity /*0x0*/  // sizeof 0x510, align 0x8 [vtable] (server) {MNetworkVarNames}
+class CTeamTrackedStatsEntity : public CBaseTrackedStatsEntity /*0x0*/  // sizeof 0x520, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x508]; // offset 0x0
-    int32 m_nTeam; // offset 0x508, size 0x4, align 4 | MNetworkEnable
-    char _pad_050C[0x4]; // offset 0x50C
+    char _pad_0000[0x518]; // offset 0x0
+    int32 m_nTeam; // offset 0x518, size 0x4, align 4
+    char _pad_051C[0x4]; // offset 0x51C
 };

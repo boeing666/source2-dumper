@@ -1,0 +1,10 @@
+#pragma once
+
+enum CInfoChoreoLocatorShapeType_t : uint32_t  // sizeof 0x4
+{
+    POINT = 0,
+    LINE = 1,
+    RADIUS = 2,
+    COUNT = 3,
+    NONE = 4,
+};

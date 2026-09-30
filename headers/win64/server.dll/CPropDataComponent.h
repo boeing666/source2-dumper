@@ -1,6 +1,6 @@
 #pragma once
 
-class CPropDataComponent : public CEntityComponent /*0x0*/  // sizeof 0x40, align 0xFF [vtable trivial_dtor] (server)
+class CPropDataComponent : public CEntityComponent /*0x0*/  // sizeof 0x40, align 0x8 [vtable trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0

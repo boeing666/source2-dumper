@@ -1,7 +1,7 @@
 #pragma once
 
-class CAI_CitadelMotor : public CAI_Motor /*0x0*/  // sizeof 0xF90, align 0x10 [vtable] (server)
+class CAI_CitadelMotor : public IAI_Motor /*0x0*/  // sizeof 0x68, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0xF90]; // offset 0x0
+    char _pad_0000[0x68]; // offset 0x0
 };

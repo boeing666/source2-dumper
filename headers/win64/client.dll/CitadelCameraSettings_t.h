@@ -1,6 +1,6 @@
 #pragma once
 
-struct CitadelCameraSettings_t  // sizeof 0x28, align 0x4 [trivial_dtor] (client) {MModelGameData MGetKV3ClassDefaults}
+struct CitadelCameraSettings_t  // sizeof 0x28, align 0x4 [trivial_dtor] (client) {MModelGameData MGetKV3ClassDefaults MPropertyFriendlyName}
 {
     float32 m_flCameraSideOffset; // offset 0x0, size 0x4, align 4
     float32 m_flCameraSideOffsetZiplining; // offset 0x4, size 0x4, align 4 | MPropertyDescription

@@ -42,7 +42,7 @@ struct GameModeStreetBrawl_t  // sizeof 0x220, align 0x8 (client) {MGetKV3ClassD
     float32 m_flZipBoostCooldownOnStart; // offset 0x208, size 0x4, align 4
     float32 m_flBuyTimeGracePeriod; // offset 0x20C, size 0x4, align 4
     int32 m_iUltimateUnlockRound; // offset 0x210, size 0x4, align 4
-    float32 m_flTier1MaxResistTime; // offset 0x214, size 0x4, align 4
-    float32 m_flTier2MaxResistTime; // offset 0x218, size 0x4, align 4
-    char _pad_021C[0x4]; // offset 0x21C
+    int32 m_iCorruptItemRound; // offset 0x214, size 0x4, align 4 | MPropertyDescription
+    float32 m_flTier1MaxResistTime; // offset 0x218, size 0x4, align 4
+    float32 m_flTier2MaxResistTime; // offset 0x21C, size 0x4, align 4
 };

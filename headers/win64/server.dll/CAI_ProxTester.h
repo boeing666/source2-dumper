@@ -1,6 +1,6 @@
 #pragma once
 
-class CAI_ProxTester  // sizeof 0x8, align 0xFF [trivial_dtor] (server)
+class CAI_ProxTester  // sizeof 0x8, align 0x4 [trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     float32 m_distSq; // offset 0x0, size 0x4, align 4

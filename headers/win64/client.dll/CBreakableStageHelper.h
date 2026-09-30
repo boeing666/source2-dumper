@@ -1,6 +1,6 @@
 #pragma once
 
-class CBreakableStageHelper  // sizeof 0x18, align 0xFF (client)
+class CBreakableStageHelper  // sizeof 0x18, align 0x8 (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0

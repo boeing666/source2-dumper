@@ -1,7 +1,7 @@
 #pragma once
 
-class CSceneEntityAlias_logic_choreographed_scene : public CSceneEntity /*0x0*/  // sizeof 0x790, align 0x8 [vtable] (server)
+class CSceneEntityAlias_logic_choreographed_scene : public CSceneEntity /*0x0*/  // sizeof 0x830, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x790]; // offset 0x0
+    char _pad_0000[0x830]; // offset 0x0
 };

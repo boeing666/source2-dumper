@@ -1,0 +1,8 @@
+#pragma once
+
+enum AIMovementFlags_t : uint32_t  // sizeof 0x4
+{
+    MOVEMENT_FLAGS_NONE = 0,
+    MOVEMENT_FLAGS_PRESERVE_MOVEMENT_ON_COMPLETION = 1,
+    MOVEMENT_FLAGS_CLEAR_UNREACHABILITY_ON_ENEMY_CHANGE = 2,
+};

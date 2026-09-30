@@ -1,6 +1,6 @@
 #pragma once
 
-struct PostProcessingResource_t  // sizeof 0x138, align 0x8 (resourcecompiler) {MGetKV3ClassDefaults}
+struct PostProcessingResource_t  // sizeof 0x158, align 0x8 (resourcecompiler) {MGetKV3ClassDefaults}
 {
     bool m_bHasTonemapParams; // offset 0x0, size 0x1, align 1
     char _pad_0001[0x3]; // offset 0x1
@@ -19,5 +19,8 @@ struct PostProcessingResource_t  // sizeof 0x138, align 0x8 (resourcecompiler) {
     bool m_bHasColorCorrection; // offset 0x120, size 0x1, align 1
     bool m_bHasFogScatteringParams; // offset 0x121, size 0x1, align 1
     char _pad_0122[0x2]; // offset 0x122
-    PostProcessingFogScatteringParameters_t m_fogScatteringParams; // offset 0x124, size 0x14, align 4
+    PostProcessingFogScatteringParameters_t m_fogScatteringParams; // offset 0x124, size 0x20, align 4
+    bool m_bHasLocalExposureParams; // offset 0x144, size 0x1, align 1
+    char _pad_0145[0x3]; // offset 0x145
+    PostProcessingLocalExposureParameters_t m_localExposureParams; // offset 0x148, size 0x10, align 4
 };

@@ -1,9 +1,9 @@
 #pragma once
 
-class C_AssignedLaneParticle : public C_BaseModelEntity /*0x0*/  // sizeof 0x9D0, align 0x8 [vtable] (client) {MNetworkIncludeByName MNetworkVarNames}
+class C_AssignedLaneParticle : public C_BaseModelEntity /*0x0*/  // sizeof 0xBD8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x9C8]; // offset 0x0
-    int32 m_iLane; // offset 0x9C8, size 0x4, align 4 | MNetworkEnable
-    char _pad_09CC[0x4]; // offset 0x9CC
+    char _pad_0000[0xBD0]; // offset 0x0
+    int32 m_iLane; // offset 0xBD0, size 0x4, align 4
+    char _pad_0BD4[0x4]; // offset 0xBD4
 };

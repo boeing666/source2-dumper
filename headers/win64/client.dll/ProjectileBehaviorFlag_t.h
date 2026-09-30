@@ -22,6 +22,8 @@ enum ProjectileBehaviorFlag_t : uint32_t  // sizeof 0x4
     PBF_DisableRemoveOnDoneTracking = 65536,
     PBF_DontTravelThroughPortals = 131072,
     PBF_LocationTrackingOnTargetDeath = 262144,
-    PBF_DetonateWhenReachingTrackedPosition = 524288,
+    PBF_HitWhenReachingTrackedPosition = 524288,
     PBF_TouchAllEntitiesEachTick = 1048576,
+    PBF_StopTrackingOnDetonateStart = 2097152,
+    PBF_DetonateWhenReachingTrackedPosition = 4194304,
 };

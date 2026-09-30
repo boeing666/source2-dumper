@@ -11,7 +11,7 @@ public:
     float32 m_flMuzzleFlashBrightness; // offset 0x24, size 0x4, align 4
     char _pad_0028[0x8]; // offset 0x28
     Quaternion m_quatMuzzleFlashOrientation; // offset 0x30, size 0x10, align 16
-    Vector m_vecMuzzleFlashOrigin; // offset 0x40, size 0xC, align 4
+    VectorWS m_vecMuzzleFlashOrigin; // offset 0x40, size 0xC, align 4
     float32 m_flFov; // offset 0x4C, size 0x4, align 4
     float32 m_flFarZ; // offset 0x50, size 0x4, align 4
     float32 m_flLinearAtten; // offset 0x54, size 0x4, align 4

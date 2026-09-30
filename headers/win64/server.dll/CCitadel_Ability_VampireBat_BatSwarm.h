@@ -1,16 +1,16 @@
 #pragma once
 
-class CCitadel_Ability_VampireBat_BatSwarm : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1AA0, align 0x8 [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CCitadel_Ability_VampireBat_BatSwarm : public CCitadelBaseAbility /*0x0*/  // sizeof 0x23F0, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xF70]; // offset 0x0
-    int32 m_iBonusBats; // offset 0xF70, size 0x4, align 4 | MNetworkEnable
-    int32 m_iBatCountOnCast; // offset 0xF74, size 0x4, align 4 | MNetworkEnable
-    float32 m_flChannelTime; // offset 0xF78, size 0x4, align 4 | MNetworkEnable
-    bool m_bPauseChannel; // offset 0xF7C, size 0x1, align 1 | MNetworkEnable
-    char _pad_0F7D[0x3]; // offset 0xF7D
-    float32 m_flLastRemainingChannelTime; // offset 0xF80, size 0x4, align 4 | MNetworkEnable
-    char _pad_0F84[0xC]; // offset 0xF84
-    GameTime_t m_flNextBatTime; // offset 0xF90, size 0x4, align 255
-    char _pad_0F94[0xB0C]; // offset 0xF94
+    char _pad_0000[0x14A0]; // offset 0x0
+    int32 m_iBonusBats; // offset 0x14A0, size 0x4, align 4
+    int32 m_iBatCountOnCast; // offset 0x14A4, size 0x4, align 4
+    float32 m_flChannelTime; // offset 0x14A8, size 0x4, align 4
+    bool m_bPauseChannel; // offset 0x14AC, size 0x1, align 1
+    char _pad_14AD[0x3]; // offset 0x14AD
+    float32 m_flLastRemainingChannelTime; // offset 0x14B0, size 0x4, align 4
+    char _pad_14B4[0xC]; // offset 0x14B4
+    GameTime_t m_flNextBatTime; // offset 0x14C0, size 0x4, align 255
+    char _pad_14C4[0xF2C]; // offset 0x14C4
 };

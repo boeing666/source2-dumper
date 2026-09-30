@@ -2,20 +2,14 @@
 +camdistance | developmentonly,clientdll,defensive | 
 +cammousemove | developmentonly,clientdll,defensive | 
 +chatwheel | clientdll,release | Opens chatwheel menu while held
-+chatwheel_pingwheel | clientdll,release | Opens the second chatwheel menu while held
 +citadel_swtich_player_cam | clientdll,release | Player Cam switching button pressed
-+herochatwheel | clientdll,release | Opens hero chatwheel menu while held
 +in_ability_ping | clientdll,release | Ping button pressed
-+show_ability_upgrade_radial | developmentonly,clientdll | Opens radial abilities menu while held
 -bugvoice | developmentonly,dontrecord,defensive | Finish recording bug voice attachment.
 -camdistance | developmentonly,clientdll,defensive | 
 -cammousemove | developmentonly,clientdll,defensive | 
 -chatwheel | clientdll,release | Executes the highlighted chatwheel menu item
--chatwheel_pingwheel | clientdll,release | Executes the highlighted chatwheel menu item
 -citadel_swtich_player_cam | clientdll,release | Player Cam switching button released
--herochatwheel | clientdll,release | Executes the highlighted hero chatwheel menu item
 -in_ability_ping | clientdll,release | Ping button released
--show_ability_upgrade_radial | developmentonly,clientdll | Closest radial abilities menu on release
 StackStats_Dump | developmentonly | Dump a named stackstats structure to disk. Usage: stackstats_dump "structname" ["filename"]
 Test_Checkpoint | developmentonly,defensive | Indicate to a test script that a checkpoint has been reached
 Test_CreateEntity | gamedll,cheat | 
@@ -54,9 +48,6 @@ alias | release | Alias a command.
 anim_eval_stats | developmentonly,gamedll | Displays stats about how many EvaluatePose calls are unused
 animevents_dump | gamedll,cheat | List all the currently registered anim events. 
 animgraph_dump_update_list | developmentonly,gamedll | Displays stats about which animations are updating
-announce_create | clientdll,release | <title> <message> <URL> [Priority] Create a new announcement with the specified title, message, and URL. use empty quotes if you want to skip message or URL
-announce_delete | clientdll,release | <ID> Deletes the specified announcement ID
-announce_update | clientdll,release | <ID> <title> <message> <URL> [Priority] Create a new announcement with the specified title, message, and URL. use empty quotes if you want to skip message or URL
 auto_bug | developmentonly,dontrecord,defensive | auto_bug : create non-interactive bug report.
 autosave | developmentonly,gamedll,defensive | Autosave
 autosavedangerous | developmentonly,gamedll,defensive | AutoSaveDangerous
@@ -71,6 +62,7 @@ bindss | release | Bind a key for a particular splitscreen player.
 bindtoggle | developmentonly,defensive | Performs a bind <key> "increment var <cvar> 0 1 1".
 blink | developmentonly,dontrecord,defensive | Blink specified convar value between two values at the specified duration.
 bot_command | developmentonly,gamedll,defensive | <bot name> <command string...>. Sends specified command to one or more player bots: [all], [east/west], [bot name]
+bot_command_target | gamedll,cheat,release | Sends specified command to target bot under reticle
 bot_force_zipline | developmentonly,gamedll,defensive | Make all the bots get on nearby ziplines
 bot_kick_all | gamedll,cheat,client_can_execute | Kick all the bots
 bot_mimic_target | gamedll,cheat,client_can_execute | Selects the targeted bot for mimicking
@@ -101,10 +93,6 @@ cast_physics | gamedll,cheat | Tests physics shape collision detection
 cast_ray | gamedll,cheat | Tests ray cast
 cast_sphere | gamedll,cheat | Tests sphere cast
 cc_emit | developmentonly,clientdll,defensive | Emits a closed caption
-cc_findsound | developmentonly,clientdll,defensive | Searches for soundname which emits specified text.
-cc_flush | developmentonly,clientdll,defensive | Flushes async'd captions.
-cc_random | developmentonly,clientdll,defensive | Emits a random caption
-cc_showblocks | developmentonly,clientdll,defensive | Toggles showing which blocks are pending/loaded async.
 changelevel | release | changelevel <mapname> :Multiplayer change level.
 chat_fake_player_say_all | developmentonly,clientdll | <player_slot> <message>
 chat_fake_player_say_allies | developmentonly,clientdll | <player_slot> <message>
@@ -112,6 +100,10 @@ chat_fake_quick_response | developmentonly,clientdll |
 check_nofilefd | developmentonly,defensive | Print the current number of FDs reported by getrlimit
 citadel_FindUnitsInRadius | developmentonly,gamedll | Run UTIL_FindUnitsInRadius centered around 
 citadel_abandon_match | developmentonly,clientdll,defensive | Force abandons current match
+citadel_ability_active_report | developmentonly,gamedll,cheat | Print per-ability active window transition counts and dwell times. Use citadel_ability_active_reset_stats to clear.
+citadel_ability_active_reset_stats | developmentonly,gamedll,cheat | Clear the counters printed by citadel_ability_active_report.
+citadel_ability_activeness_report | developmentonly,gamedll,defensive | Print ability MODIFIER_VALUE contributions recorded while the ability was untrained or inactive. Use citadel_ability_activeness_reset_stats to clear.
+citadel_ability_activeness_reset_stats | developmentonly,gamedll,defensive | Clear the counters printed by citadel_ability_activeness_report.
 citadel_ability_damage_vdata_tweak | developmentonly,clientdll | Command to tweak base damage from abilities.  ** Usage - arg1 - Scale Value 1.0 being no change. - arg2 - 2: Affect Abilities and Upgrades, 1: Affects Upgrades Only, 0: Do no Affect Upgrades]
 citadel_ability_maintain | developmentonly,clientdll | Command to tweak level boons.  Pass in scale factor
 citadel_ability_property_usage | developmentonly,clientdll | Command to tweak level boons.  Pass in scale factor
@@ -127,71 +119,85 @@ citadel_book_open | clientdll,release | [BookID/Book Name] Opens up the specifie
 citadel_book_reset | developmentonly,clientdll | [BookID=1] Resets the current book progress
 citadel_book_xp | developmentonly,clientdll | <xp> [BookID=1] Grants the specified amount of XP to the book
 citadel_boss_tier_3_testing_reset | gamedll,cheat | Respawns the boss
+citadel_bot_copyrecording | gamedll,cheat,client_can_execute | Copy a bot's recorded commands to the clipboard as a share code (aim at the bot, or the first bot with a recording)
 citadel_bot_force_abandon | developmentonly,gamedll,defensive | Force bot into the abandon state
-citadel_bot_give_all_abilities | developmentonly,gamedll,defensive | Gives all bots all abilities.  Use with citadel_bot_use_ability 1-4
+citadel_bot_give_all_abilities | gamedll,cheat,release | Gives all bots all abilities.  Use with citadel_bot_use_ability 1-4
 citadel_bot_give_all_abilities_base | developmentonly,gamedll,defensive | Gives all bots all abilities without perks.  Use with citadel_bot_use_ability 1-4
+citadel_bot_give_all_bots_all_items | developmentonly,gamedll,defensive | Gives all bots all items. Not limited by slot count (last I checked, this resulted in ~200 items being added to every bot)
 citadel_bot_give_team_gold | gamedll,cheat | Give all bots on a particular team gold
 citadel_bot_kick | developmentonly,gamedll,defensive | Kick bot <name>
 citadel_bot_list_ents | gamedll,cheat | List ent id of all players that are bots in this game
 citadel_bot_list_objectives_ent | gamedll,cheat | List all entities that are associated with a Citadel Game Objective
+citadel_bot_pasterecording | gamedll,cheat,client_can_execute | Load a bot recording share code from the clipboard. Aim at a bot to load it into that bot as the recorded hero, otherwise a new bot of that hero is spawned
 citadel_bot_playrecording | gamedll,cheat,client_can_execute | Play back commands recorded via 'citadel_bot_record'
 citadel_bot_purchase_random_draft_option | developmentonly,gamedll,defensive | Makes the bots purchase a random draft option
+citadel_bot_recordstop | gamedll,cheat,client_can_execute | Stop bot recording and any bot recording playback
 citadel_bot_run_dps_test | developmentonly,gamedll | Run a gun DPS test and record the results usage: <hero_target>
 citadel_bot_run_mantle_tests | developmentonly,gamedll | Causes bots to teleport to bot test nodes and attempt mantling usage: <all | hero_name>
 citadel_bot_run_shooting_test | developmentonly,gamedll | Causes bots to teleport to bot test nodes and shoot at an assigned target usage: <hero_shooter> <hero_target>
 citadel_build_tag_picker | developmentonly,clientdll | <HeroID>
 citadel_buttons_tweak | developmentonly,clientdll | Command to tweak level boons.  Pass in scale factor
 citadel_cancel_hero_draft | developmentonly,gamedll,defensive | Ends hero draft mode and goes straight to playing the game
+citadel_catapult_draw_preview_paths | developmentonly,clientdll | Debug draw every catapult's predicted launch path for x seconds (default 5)
+citadel_catapult_respawn_pickup_trails | gamedll,cheat,release | Re-lays the pickup trail on every catapult that has one, clearing the old pickups first
 citadel_clear_all_post_process_effects | developmentonly,clientdll,defensive | Clear all post process effects that are active, and spew their state
 citadel_clear_killstreak | developmentonly,gamedll,defensive | citadel_clear_killstreak [player_slot]
+citadel_combatlog_scan | developmentonly,clientdll,defensive | Scans for fights
+citadel_combatlog_size | developmentonly,clientdll,defensive | Calculates the total allocations for a combatlog
+citadel_combatlog_size_server | developmentonly,gamedll,defensive | 
+citadel_combatlog_update | gamedll,client_can_execute | Send combat log to a client
+citadel_combatlog_write_test | developmentonly,clientdll,defensive | Writes combatlog to disk if you have citadel_combatlog_file set
 citadel_commend_fake_received | clientdll,release | 
 citadel_commend_player | clientdll,release | <target account id> [match id] [hero_id]
+citadel_commend_player_clear | clientdll,release | Reset the commend notification UI, discarding any commends it has accumulated
 citadel_complete_new_player | clientdll,release | [flag] Marks the new player state as complete
 citadel_convert_deps | developmentonly,clientdll | Command to tweak level boons.  Pass in scale factor
 citadel_convert_particle_cfg | developmentonly,clientdll | Convert team_relative_particle_cfg to CitadelTeamRelativeParticleSettings_t
 citadel_convert_tight_camera_settings | developmentonly,clientdll | Bake citadel_tightcamera scale onto camera settings
 citadel_cooldown_scaling_vdata_tweak | developmentonly,clientdll | Command to tweak all ability cooldowns, including ability upgrades.  Pass in scale factor (with 1.0 being no change), and a min delta.
+citadel_cooldown_scaling_vdata_tweak_ult | developmentonly,clientdll | Command to tweak all ultimate ability cooldowns, including ability upgrades.  Pass in scale factor (with 1.0 being no change), and a min delta.
 citadel_create_unit | gamedll,vconsole_fuzzy_matching,client_can_execute | [hero_name | none] [team] - Creates an unit.  Pass 'my_hero' as hero_name to use your current hero
+citadel_debug_equip_econ_item | developmentonly,clientdll | Equip an econ item <item_id> <hero_id> <slot_id>
 citadel_decrease_replay_speed | clientdll,release | Decrease the Replay speed while watching a replay
 citadel_destroy_all_bosses | developmentonly,gamedll,defensive | Kills all the guardians
 citadel_destroy_all_npcs | developmentonly,gamedll,defensive | Kills all bosses and troopers in the map
 citadel_dev_test_endgame | clientdll,cheat,release,client_can_execute | Set the Map to test End game content
 citadel_dev_test_endgame_server_cmd | gamedll,cheat,release,client_can_execute | Set the Map to test End game content
 citadel_disable_duplicate_heroes | gamedll,cheat,release,client_can_execute | Disable usage of Duplicate Heroes
-citadel_disable_fast_cooldowns | gamedll,cheat,client_can_execute | Disable fast cooldowns
-citadel_disable_fast_stamina | gamedll,cheat,client_can_execute | Disable fast stamina
-citadel_disable_no_hero_death | gamedll,cheat,client_can_execute | Make heroes able to die
-citadel_disable_unlimited_ammo | gamedll,cheat,client_can_execute | Disable unlimited ammo
-citadel_draw_cover_points | developmentonly,gamedll,defensive | visualizes all the trooper cover points
 citadel_draw_trooper_path | developmentonly,gamedll,defensive | Draws a path between two coordinates
 citadel_dump_build_tags | developmentonly,clientdll | dump all build tag tokens
 citadel_dump_bullets | developmentonly,gamedll,client_can_execute | dump all bullet info to the console
+citadel_dump_corrupted_overrides | gamedll,release | Dumps every corrupted item's penalty exclusions, fixed bonuses and integer-rounded bonuses
+citadel_dump_corrupted_penalties | developmentonly,gamedll,defensive | Dumps the corrupted item penalty rolled for every corruptible item this match
 citadel_dump_deleted_entity_counts | developmentonly,clientdll,defensive | Displays counts of which kinds of entities have been deleted since map started
 citadel_dump_game_state | developmentonly,gamedll,defensive | Dumps current state of the game and all players
 citadel_dump_items_with_component | developmentonly,clientdll | Dump to Console All items with components and their components
 citadel_dump_player_stats | developmentonly,clientdll,defensive | Dump stat component values for local player
 citadel_dump_rank_data | developmentonly,clientdll,defensive | Request rank confidence score from GC.
 citadel_enable_duplicate_heroes | gamedll,cheat,release,client_can_execute | Enable usage of Duplicate Heroes
-citadel_enable_fast_cooldowns | gamedll,cheat,client_can_execute | Enables fast cooldowns
-citadel_enable_fast_stamina | gamedll,cheat,client_can_execute | Enables fast stamina
 citadel_enable_nearby_capture_point | gamedll,cheat,release | Enables the first capture point found within 20m
-citadel_enable_no_hero_death | gamedll,cheat,client_can_execute | Make heroes unable to die
-citadel_enable_unlimited_ammo | gamedll,cheat,client_can_execute | Enables unlimited ammo
 citadel_exonerate_account | clientdll,release | <Account ID> Clear recent cheat reports on this account.
 citadel_fetch_cheat_reports | clientdll,release | Request accounts recently reported for cheating
 citadel_fibonacci_sphere_trace | gamedll,cheat | Draws the LOS check generated by our fibonacci sphere trace algorithm
-citadel_force_koth_spawn | developmentonly,gamedll | Force Spawning Koth Capture point with Warning
+citadel_flame_graph_request | gamedll,cheat,release,client_can_execute | Request a flame graph dump
+citadel_force_kill | gamedll,cheat,release | Kill every unit of one type: troopers, neutrals, breakables, healing_snacks, guardians, walkers, base_guardians, shrines
+citadel_force_koth_spawn | gamedll,cheat,release,client_can_execute | Force Spawning Koth Capture point with Warning
 citadel_force_on_upgrade_for_all_abilities | developmentonly,gamedll,defensive | Force all abilities to call OnUpgrade()
 citadel_force_playofthegame | developmentonly,gamedll | Force begin play of the game
 citadel_force_resolution | developmentonly,clientdll,defensive | Force a resolution change even if it's not supported on your monitor. [h] [w] [refresh rate]
 citadel_force_spawn_idol | gamedll,cheat,release,client_can_execute | Force idol spawn
 citadel_get_rp | developmentonly,clientdll | Retrieves the rich presence of the user (leave blank for local or specify user with SteamID.Render() format).
-citadel_give_gold | gamedll,cheat,client_can_execute | <gold> Give gold value to all players
+citadel_give_gold | gamedll,cheat,client_can_execute | <gold> [unsecure=0|1] Give gold value to all players
+citadel_give_permanent_buffs | gamedll,cheat,release | Gives you N random breakable permanent buffs at once, the same way a Sinner's Sacrifice jackpot does. Usage: citadel_give_permanent_buffs <count>
 citadel_give_player_gold | gamedll,cheat,client_can_execute | <player name> <gold> Gives the specified player gold
 citadel_grant_dev_account | developmentonly,clientdll | <Account ID> [0/1] Grants or removes dev access to an account
 citadel_guide_bot_say | developmentonly,gamedll,defensive | <line> makes the guide bot say the specified line
 citadel_gun_boon_growth_vdata_tweak | developmentonly,clientdll | Command to tweak boon gun damage growth.  ** Usage - arg1 - Scale Value 1.0 being no change.
+citadel_heal_target | gamedll,cheat,release | Restore the unit under your crosshair to full health
 citadel_hero_lock_all | developmentonly,clientdll | Relocks all heroes for this account
+citadel_hero_release_vote_clear_all_submitted | developmentonly,clientdll | 
+citadel_hero_release_vote_clear_submitted | developmentonly,clientdll | 
+citadel_hero_release_vote_fake_received | developmentonly,clientdll | [count] [delay seconds] [delay random extra seconds]
 citadel_hero_unlock | developmentonly,clientdll | <Hero ID> Unlocks the specified hero
 citadel_hero_unlock_all | developmentonly,clientdll | Unlocks all heroes for this account
 citadel_hideout_accept_request | clientdll,release | Accept an incoming request in the hideout
@@ -226,6 +232,8 @@ citadel_open_hero_sheet | clientdll,release | Open the current hero character sh
 citadel_open_hero_vdata_by_name | clientdll,cheat | Open the VData editor to a specified hero
 citadel_open_modeldoc_to_model | clientdll,cheat | Open ModelDoc to the model under the cursor.  Pass any parameter to open your own model
 citadel_open_vdata_file_to_node | clientdll,cheat | Open the VData editor to a specified file and node
+citadel_orbit_camera_in | clientdll,release | Move in the hideout zone camera
+citadel_orbit_camera_out | clientdll,release | Move in the hideout zone camera
 citadel_pause | clientdll,release | Send a game pause request.
 citadel_playofthegame_hud_fake_callout | developmentonly,clientdll,defensive | Show POTG hud callout
 citadel_playofthegame_hud_fake_hide | developmentonly,clientdll,defensive | Hide POTG hud
@@ -238,37 +246,62 @@ citadel_port_muzzles | developmentonly,clientdll | Port old muzzle defs to the n
 citadel_post_game_force_hero_id | developmentonly,clientdll,defensive | 
 citadel_pregame_hero_draft_test | developmentonly,clientdll,cheat | Test pregame draft
 citadel_purchase_quickbuy | clientdll,release | Purchase the next quickbuy item
-citadel_record_hero_animgraph | gamedll,cheat | Record the animgraph for a specified hero
+citadel_radial_toggle_prop_open | developmentonly,clientdll,defensive | Toggle propping radial menus open. While on, an opened radial stays up and will not fire until toggled off again.
 citadel_reload_rank_data | developmentonly,clientdll,defensive | Request rank confidence score from GC.
 citadel_render_minimap | clientdll,release | Render the minimap
 citadel_replay_toggle_pause | clientdll,release | Toggle a replay being paused
+citadel_reroll_corrupted_items | gamedll,cheat,client_can_execute | [seed] Rerolls the random penalty and stat variance of every corrupted item.  Omit the seed or pass 0 for a random one.
+citadel_reset_gold | gamedll,cheat,client_can_execute | Reset gold for all players
 citadel_reset_new_player | clientdll,release | Resets the new player experience back to the initial state
 citadel_reset_survey_responses | developmentonly,clientdll | Clears out all survey questions from this account and resets the state
+citadel_respawn_all_breakables | gamedll,cheat,release | Force Spawns every breakable on the map
+citadel_respawn_boss_barracks | gamedll,cheat,release | 
+citadel_respawn_boss_shrines | gamedll,cheat,release | 
+citadel_respawn_boss_t1 | gamedll,cheat,release | 
+citadel_respawn_boss_t2 | gamedll,cheat,release | 
+citadel_respawn_nearby_breakables | gamedll,cheat,release | Force Spawns any nearby breakables
+citadel_rootme | developmentonly,gamedll,defensive | Root the local player
 citadel_set_mmr | developmentonly,clientdll | <Account ID> <MMR> Sets the MMR of the specified account
 citadel_set_server_convar | developmentonly,clientdll | [convar] [value] Set a server convar on the server that the player is currently connected to
 citadel_settings_reset_dismissed_settings | developmentonly,clientdll,defensive | 
 citadel_settings_show_popup | developmentonly,clientdll,defensive | 
+citadel_show_combatlog | developmentonly,clientdll,defensive | 
 citadel_show_hero_debut_popup | developmentonly,clientdll | [hero id] [allow swap]
+citadel_show_hero_release_vote_page | developmentonly,clientdll | 
 citadel_show_hero_select_popup | developmentonly,clientdll | 
+citadel_show_hero_vo_test_page | clientdll,release | Open the Voice Lines page
 citadel_show_ranked_history_page | developmentonly,clientdll | 
 citadel_show_ranked_season_page | developmentonly,clientdll | 
+citadel_show_reporter_updates_popup | clientdll,release | Shows the popup for a report you filed that we took action on, if there is one
+citadel_show_reporter_updates_popup_fake | developmentonly,clientdll | [report type] - Shows the reporter updates popup filled in with a fake update
 citadel_show_roster_select_popup | developmentonly,clientdll | 
 citadel_show_seasonal_kill_toast | developmentonly,clientdll | 
 citadel_shuffle_draft_order | developmentonly,gamedll,defensive | Shuffles the order in which players are drafting heroes
+citadel_silenceme | developmentonly,gamedll,defensive | Silence the local player
+citadel_sleepme | developmentonly,gamedll,defensive | Sleep the local player
 citadel_spawn_all_heroes_in_a_line | gamedll,cheat | Spawn all of the heroes as bots in a line in front of you
+citadel_spawn_all_neutrals | gamedll,cheat,release | Spawns every neutral camp on the map
+citadel_spawn_all_pickup_spawners | gamedll,cheat,release | Spawns the pickup of every citadel_pickup_spawner (healing snacks) now
 citadel_spawn_escort | gamedll,cheat,release | Spawns the escort with an optional delay
+citadel_spawn_midboss_breakables | gamedll,cheat,release | Force spawns the breakables above the mid boss that normally first appear at 10 minutes
 citadel_spawn_nearby_neutrals | gamedll,cheat,release | Spawns any neutral camps within 800 units (~20m)
+citadel_spawn_pickup | developmentonly,gamedll,defensive | Spawns a pickup using a pickup subclass
 citadel_spawn_pickup_item | developmentonly,gamedll,defensive | Spawns an item pickup for a specific item. You can specify the item, or else you'll get a random one
-citadel_spawn_trooper | developmentonly,gamedll,defensive | Creates a new trooper NPC and spawn them in front of the player
+citadel_spawn_trooper | gamedll,cheat,release | Creates a new trooper NPC and spawn them in front of the player
 citadel_spawn_trooper_grid | developmentonly,gamedll,defensive | Creates a NxN trooper grid in front of the player. Supports same trooper types as citadel_spawn_trooper
+citadel_spawn_trooper_wave | gamedll,cheat,release | Spawns one trooper wave in every lane, even while trooper spawning is off
 citadel_spawn_trooper_zipline | developmentonly,gamedll,defensive | Spawn a trooper on a zipline
 citadel_spawn_urn | gamedll,cheat | Spawn an urn for testing
 citadel_spectate_account_id | developmentonly,clientdll | [lobby id] Attempts to spectate the specified player
 citadel_spectate_lobby_id | developmentonly,clientdll | [lobby id] Attempts to spectate the specified lobby ID
+citadel_spectate_topbar_player | clientdll,release | While spectating, switch to the Nth hero on the top bar, numbered 1-12 from left to right
 citadel_spectator_voice_mode_toggle | clientdll,release | Toggle the value of citadel_spectator_voice_mode
 citadel_spew_active_movement_controller | developmentonly,clientdll,defensive | Spews what is the active movement controller on the local player
 citadel_spew_player_modifiers | developmentonly,clientdll,defensive | Spews all modifiers on the local player
+citadel_start_local_bot_match | gamedll,release,client_can_execute | <hex setup> Hosts a client provided bot match on this listen server
 citadel_start_new_player_placement_bot_match | developmentonly,clientdll,defensive | Starts a new_player_placement match
+citadel_stat_cache_dump_deps | developmentonly,gamedll,cheat | Dump the full stat dependency graph for an entity. Usage: citadel_stat_cache_dump_deps [entindex/name]
+citadel_stat_cache_report | developmentonly,gamedll,cheat | Print per-EStatsType cache statistics sorted by query volume. Use stat_cache_reset_stats to clear.
 citadel_street_brawl_advance_state | developmentonly,gamedll,defensive | Advance the state of a street brawl game
 citadel_street_brawl_reset | developmentonly,gamedll,defensive | Resets a street brawl match
 citadel_street_brawl_test_drafts | developmentonly,gamedll,defensive | Simulates and spews the results of all draft rounds in street brawl
@@ -283,13 +316,12 @@ citadel_test_flex_unlocked_message | developmentonly,clientdll,defensive | Draws
 citadel_test_game_over_message | developmentonly,clientdll,defensive | Draws the game over message: citadel_test_game_over_message <WINNING_TEAM>
 citadel_test_hud_game_announcement | developmentonly,clientdll,defensive | Shows a test game announcement: [title] [description] [classname]
 citadel_test_level_up_msg | developmentonly,clientdll,defensive | Draws a test level up message
-citadel_test_pause_msg | developmentonly,clientdll,defensive | Draws a test pause message: citadel_test_team_msg <Message ID> <Value>
 citadel_test_player_ping | developmentonly,clientdll,defensive | Test pinging a player
 citadel_test_popup_news_post | developmentonly,clientdll | [URL]
 citadel_test_portal_trace | developmentonly,gamedll | Trace a sphere through portals and draw the results
 citadel_test_streetbrawl_scoring_message | developmentonly,clientdll,defensive | Draws the street brawl scoring message: citadel_test_streetbrawl_scoring_message <ScoringTeam>
 citadel_test_survey_popup | clientdll,cheat | Tests bringing up the survey popup
-citadel_test_team_msg | developmentonly,gamedll,defensive | Draws a test team message: citadel_test_team_msg <EVENT_TYPE> <ISPOSITIVE> <LANECOLOR> <TEAM_NUMBER> <PLAYER_SLOT>
+citadel_toggle_combatlog | developmentonly,clientdll,defensive | 
 citadel_toggle_mute | clientdll,release | Toggles muting/unmuting the audio.
 citadel_toggle_server_pause | developmentonly,gamedll,defensive | Toggle a server side pause.
 citadel_tracked_stats_dump | developmentonly,gamedll | [all|player|team|match] Dump currently tracked stats.
@@ -298,7 +330,11 @@ citadel_tweak_hero_base_health | developmentonly,clientdll | Command to tweak ba
 citadel_tweak_hero_level_boons | developmentonly,clientdll | Command to tweak level boons.  Pass in scale factor
 citadel_tweak_hero_level_boons_health | developmentonly,clientdll | Command to tweak level boons for health.  Pass in scale factor and fixed increase
 citadel_tweak_weights | developmentonly,clientdll | Tweaks the hero item bucketing.
+citadel_unit_query_benchmark | developmentonly,gamedll,cheat | Runs UnitQueries and physics queries and prints time spent: citadel_unit_query_benchmark [queries] [repetitions]
+citadel_unit_query_registry_report | developmentonly,gamedll,cheat | Print a per-bucket classname list of the unit query registry
+citadel_unit_query_test_randomized | developmentonly,gamedll,cheat | Fire randomized unit queries through the cached and physics paths and compare results
 citadel_unlock_flex_slots | gamedll,cheat,client_can_execute | <team number> - Unlock the flex slots for a team (or both teams if you omit the team number)
+citadel_vdata_update_popular_items | developmentonly,clientdll | Command to update popular items in hero vdata.
 citadel_zip_debug | developmentonly,gamedll | Prints debug info about the closest zip line node
 citadel_zipline_capture | developmentonly,gamedll | Captures the closest zipline node
 citadel_zipline_capture_all | developmentonly,gamedll | sets all ziplines nodes to the specified team
@@ -309,11 +345,20 @@ cl_axis | clientdll,cheat | Draw an axis  Arguments:  x y z pitch yaw roll <life
 cl_box | clientdll,cheat | Draw a bbox  Arguments:  minx miny miny maxx maxy maxz <lifetime = 10.0> <r g b a> 
 cl_break_on_missing_resource | developmentonly | Break in debugger when missing resource match is found. Format: cl_break_on_missing_resource <substring> /(empty to break on all) / 0 to turn off. 
 cl_checkdeclareclasses | cheat | Check game code serializers
+cl_citadel_ability_active_report | developmentonly,clientdll,cheat | Print per-ability active window transition counts and dwell times. Use citadel_ability_active_reset_stats to clear.
+cl_citadel_ability_active_reset_stats | developmentonly,clientdll,cheat | Clear the counters printed by citadel_ability_active_report.
+cl_citadel_ability_activeness_report | developmentonly,clientdll,defensive | Print ability MODIFIER_VALUE contributions recorded while the ability was untrained or inactive. Use citadel_ability_activeness_reset_stats to clear.
+cl_citadel_ability_activeness_reset_stats | developmentonly,clientdll,defensive | Clear the counters printed by citadel_ability_activeness_report.
 cl_citadel_dump_bullets | developmentonly,clientdll,client_can_execute | dump all bullet info to the console
+cl_citadel_dump_corrupted_overrides | clientdll,release | Dumps every corrupted item's penalty exclusions, fixed bonuses and integer-rounded bonuses
+cl_citadel_dump_corrupted_penalties | developmentonly,clientdll,defensive | Dumps the corrupted item penalty rolled for every corruptible item this match
 cl_citadel_force_on_upgrade_for_all_abilities | developmentonly,clientdll,defensive | Force all abilities to call OnUpgrade()
-cl_citadel_forceangles | developmentonly,clientdll,defensive | Force third person camera angles
-cl_citadel_record_hero_animgraph | clientdll,cheat | Record the animgraph for a specified hero
+cl_citadel_forceangles | clientdll,cheat | Force third person camera angles
+cl_citadel_stat_cache_dump_deps | developmentonly,clientdll,cheat | Dump the full stat dependency graph for an entity. Usage: citadel_stat_cache_dump_deps [entindex/name]
+cl_citadel_stat_cache_report | developmentonly,clientdll,cheat | Print per-EStatsType cache statistics sorted by query volume. Use stat_cache_reset_stats to clear.
+cl_citadel_unit_query_registry_report | developmentonly,clientdll,cheat | Print a per-bucket classname list of the unit query registry
 cl_citadel_zipline_rebuildpaths | developmentonly,clientdll | Rebuilds all zipline splines
+cl_cleardraw | clientdll,cheat | Clears all lines drawn by drawline and drawcross
 cl_debugoverlay_cycle_domain | clientdll,cheat | Toggles visibility of the debug overlay system.
 cl_debugoverlay_cycle_state | clientdll,cheat | Toggles visibility of the debug overlay system.
 cl_debugoverlay_dashboard | clientdll,cheat | Makes the debug overlay dashboard visible.
@@ -331,7 +376,6 @@ cl_ent_actornames | clientdll,cheat | Displays the entity name for all entities 
 cl_ent_animgraph2_open_graph | clientdll,cheat | Opens the graph and starts live debugging the AG2 graph for a given entity  Arguments: entityName  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cl_ent_animgraph2_record | clientdll,cheat | Starts live debugging & recording the AG2 graph for a given entity  Arguments: entityName  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cl_ent_animgraph_debug | clientdll,cheat | Displays debug draws about the given entity(ies) animgraph  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
-cl_ent_animgraph_record | clientdll,cheat | Toggles recording of animgraph replay of the given entity(s)  Arguments: entityName automaticallyOpenInAnimgraphEditor  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cl_ent_attachments | clientdll,cheat | Displays the attachment points on an entity.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cl_ent_bbox | clientdll,cheat | Displays the movement bounding box for the given entity(ies) in orange.  Some entites will also display entity specific overlays.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cl_ent_call | clientdll,cheat | ent_call <funcname> <option:entname> calls function on current look target or filtername, checks on ent, then root, then mode, then map scope
@@ -378,6 +422,8 @@ cl_imgui_set_selection | clientdll,cheat | Sets ImGui selection
 cl_imgui_set_status_text | clientdll,cheat | Sets ImGui header status text
 cl_in_forcebuttonstate | developmentonly,clientdll,vconsole_fuzzy_matching | Forces a button to be a particular state - WHEN PROCESSING USERCOMMANDS
 cl_interp | clientdll,release | Read the effective client simulation interpolation amount in terms of time.
+cl_modifier_cache_report | developmentonly,clientdll,defensive | Print per-EModifierValue cache statistics sorted by query volume. Use modifier_cache_reset_stats to clear.
+cl_modifier_cache_reset_stats | developmentonly,clientdll,defensive | Reset modifier value cache statistics.
 cl_modifier_dump | clientdll,cheat | Display all modifiers for the unit: <entityindex/name>
 cl_modifier_dump_list | clientdll,cheat | Dumps all modifiers that exist in the game
 cl_modifier_dump_visible | clientdll,cheat | Print out non-hidden modifiers.
@@ -401,7 +447,7 @@ cl_physics_report_active | developmentonly,clientdll | Lists all active physics 
 cl_precacheinfo | developmentonly,defensive | Show precache info (client).
 cl_pred_track | developmentonly,clientdll,defensive | <entindex> <fieldname>:  Track changes to entity index entindex, for field fieldname.
 cl_pred_track_off | developmentonly,clientdll,defensive | clear field track changes.
-cl_predictioncopy_describe | developmentonly,clientdll,defensive | Describe datamap_t for entindex
+cl_predictioncopy_describe | developmentonly,clientdll,defensive | Describe PredictionMap_t for entindex
 cl_predictioncopy_print | developmentonly,clientdll,defensive | Print simple description of prediction copy fields for entindex
 cl_printfps | developmentonly,clientdll,defensive | Print information from cl_showfps.
 cl_prop_debug | clientdll,cheat | Toggle prop debug mode. If on, props will show colorcoded bounding boxes. Red means ignore all damage. White means respond physically to damage but never break. Green maps health in the range of 100 down to 1.
@@ -413,8 +459,6 @@ cl_report_simthinklist | developmentonly,clientdll | Lists all simulating/thinki
 cl_report_soundpatch | developmentonly,clientdll,defensive | reports client-side sound patch count
 cl_resetfps | developmentonly,clientdll,defensive | Reset information from cl_showfps.
 cl_rr_dump_rules | clientdll,cheat | Print all response rules
-cl_rr_reloadresponsesystems | clientdll,cheat | Reload all response system scripts.
-cl_save_animgraph_recording | clientdll,cheat | Saves all active animgraph recordings to disk  Arguments: automaticallyOpenInAnimgraphEditor
 cl_scale_function_dump | clientdll,cheat | Print out all scale functions.
 cl_script_add_debug_filter | clientdll,cheat | Add a filter to the game debug overlay
 cl_script_add_watch | clientdll,cheat | Add a watch to the game debug overlay
@@ -445,11 +489,13 @@ cl_soundscape_printdebuginfo | developmentonly,clientdll,defensive | print sound
 cl_spewserializers | cheat | Spew serializers
 cl_spewworldgroups | developmentonly | Spew world groups (client)
 cl_ss_origin | developmentonly,clientdll,defensive | print origin in script format
+cl_stat_cache_reset_stats | developmentonly,clientdll,cheat | Reset stat value cache statistics.
 cl_test_list_entities | clientdll,cheat | test-list entities
 cl_ticktiming | dontrecord,release | {print|<interval>} [summary|detail]  Print timing stats now, or set report interval
 cl_updatevisibility | developmentonly,clientdll,defensive | Updates visibility bits.
 clear | dontrecord,release | Clear console output.
 clearall | dontrecord,release | Clear console output from all views.
+cleardraw | gamedll,cheat | Clears all lines drawn by drawline and drawcross
 cli_ent_attachments | clientdll,cheat | Displays the interpolated attachment points on an entity.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cli_ent_hitbox | clientdll,cheat | Displays the skeleton for the given entity(ies).  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cli_ent_pivot | clientdll,cheat | Displays the interpolated pivot for the given entity(ies).  (y=up=green, z=forward=blue, x=left=red).   Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -473,7 +519,7 @@ crash_error_job | cheat | Cause the engine to crash by Plat_FatalError on job th
 crash_error_thread | cheat | Cause the engine to crash by Plat_FatalError on non-main thread (Debug!!)
 crash_job | cheat | Cause the engine to crash in a job thread (Debug!!)
 crash_thread | cheat | Cause the engine to crash in a brand new non-main thread (Debug!!)
-create_flare | developmentonly,gamedll,defensive | Create a flare on the local player's team
+create_explosion_damage | gamedll,cheat | Explosion where you're looking, or at x y z, with a real explosion's physics force (unlike create_radius_damage).
 create_orb | developmentonly,gamedll,defensive | Create an orb on the local player's team
 create_radius_damage | gamedll,cheat | Causes radius damage where you're looking, at the passed in radius.
 create_test_portal | developmentonly,gamedll | creates a portal
@@ -533,8 +579,6 @@ ent_actornames | gamedll,cheat | Displays the entity name for all entities that 
 ent_animgraph2_open_graph | gamedll,cheat | Opens the graph and starts live debugging the AG2 graph for a given entity  Arguments: entityName  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_animgraph2_record | gamedll,cheat | Starts live debugging & recording the AG2 graph for a given entity  Arguments: entityName  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_animgraph_debug | gamedll,cheat | Displays debug draws about the given entity(ies) animgraph  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
-ent_animgraph_record | gamedll,cheat | Toggles recording of animgraph replay of the given entity(s)  Arguments: entityName automaticallyOpenInAnimgraphEditor  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
-ent_animgraph_setvar | gamedll,cheat | Sets a variable on the animgraph of the given entity(s)  Arguments:   <varname>=<value> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
 ent_attachments | gamedll,cheat | Displays the attachment points on an entity.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_autoaim | gamedll,cheat | Displays the entity's autoaim radius.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_bbox | gamedll,cheat | Displays the movement bounding box for the given entity(ies) in orange.  Some entites will also display entity specific overlays.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -548,8 +592,10 @@ ent_debug_anim | developmentonly,clientdll,defensive | Use the specified entity 
 ent_debug_origin_changes | developmentonly,gamedll | turn on, off, or toggle origin changes on server for entity by index
 ent_find | gamedll,cheat | Find and list all entities with classnames or targetnames that contain the specified substrings. Format: find_ent <substring> 
 ent_find_index | gamedll,cheat | Display data for entity matching specified index. Format: find_ent_index <index> 
-ent_fire | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire <target> [action] [value] [delay] 
-ent_fire_output | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output <target> [output name] [value] [delay] 
+ent_fire | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire <target> [action] [value0] [value1] ... [valueN] 
+ent_fire_delay | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_delay <target> [action] [value0] [value1] ... [valueN] [delay] 
+ent_fire_output | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output <target> [output name] [value0] [value1] ... [valueN] 
+ent_fire_output_delay | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output_delay <target> [output name] [value0] [value1] ... [valueN] [delay] 
 ent_gib | gamedll,cheat | Gibs the given entity(s)  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_grab | gamedll,cheat | grabs the object in front of the player. Options: -loose -multiple -toggle
 ent_hierarchy | gamedll,cheat | Prints the entity hierarchy tree rooted at the specified ent(s)
@@ -596,6 +642,13 @@ ent_viewpunch | developmentonly,gamedll | Used to debug ViewPunch
 ent_visibility_traces | gamedll,cheat,vconsole_fuzzy_matching | Displays visibility traces for the given entity  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ents | developmentonly,gamedll,defensive | List server entities, sorted by spawn group
 escape | release,clientcmd_can_execute | Escape key pressed.
+event_grant_points | developmentonly,clientdll | Reset all state on your account relating to the given event id
+event_override_clear | developmentonly,clientdll | <event id> - Clear any clientside overrides for an event
+event_override_owned | developmentonly,clientdll | <event id> [owned] - Set a clientside override of whether an event is owned. -1 for not owned, 1 for owned, 0 for no override.
+event_override_points | developmentonly,clientdll | <event id> [points] - Set a clientside override of the point value for an event
+event_override_premium_points | developmentonly,clientdll | <event id> [premium points] - Set a clientside override of the premium points for an event. -1 to remove the override.
+event_reload_schema | linked_concommand,developmentonly,gamedll,clientdll,defensive | 
+event_reset_state | developmentonly,clientdll | Reset all state on your account relating to the given event id
 exec | dontrecord,release | Execute a cfg file
 exec_async | cheat,dontrecord | Execute a cfg file over time
 execifexists | dontrecord,release | Execute a cfg file if file exists
@@ -611,9 +664,11 @@ fog_override_color | cheat | Sets the fog color override
 force_assert | developmentonly | Fire an assertion failure
 force_fatal_error | developmentonly | Fire a fatal error
 force_floating_point_exceptions | developmentonly | Enable floating point exceptions to find bugs
-force_hibernate | developmentonly | Force toggle hibernation state
 fs_clear_open_duplicate_times | developmentonly,defensive | Clear the list of files that have been opened.
 fs_dump_open_duplicate_times | developmentonly,defensive | Set fs_report_long_reads 1 before loading to use this. Prints a list of files that were opened more than once and ~how long was spent reading from them.
+func_mover_count | gamedll,cheat | 
+func_mover_enable_debug_all | gamedll,cheat | 
+func_mover_step_movement | gamedll,cheat | 
 game_particle_manager_dump_requeue | developmentonly,clientdll | Dump contents of particle manager requeue
 game_particle_manager_list_active | developmentonly,clientdll | Dump counts of active particles
 gameevents_analyze | developmentonly,gamedll | compare game events across all mods
@@ -676,6 +731,8 @@ instant_replay_skip | developmentonly,defensive | Number of seconds to skip back
 instant_replay_skip_live | developmentonly,defensive | Number of seconds to skip back to instant replay from live
 instant_replay_timescale | developmentonly,defensive | Sets instant replay speed.
 instant_replay_togglepause | developmentonly,defensive | Toggles instant replay.
+internal_bot_test_private | developmentonly,clientdll | [difficulty = 1-4] Starts a private internal bot test
+internal_bot_test_queue_mm | developmentonly,clientdll | Queues for internal bot test using matchmaking
 iv_debug | developmentonly,clientdll,defensive | Spew interpolated var info for entity.
 iv_interp | developmentonly,clientdll,defensive | Spew interpolated var info for entity.
 iv_off | developmentonly,clientdll,defensive | Turn off all interpolation variable spew.
@@ -724,6 +781,8 @@ mmpri | developmentonly,clientdll | <Clear|Hero> [target account ID] Indicates t
 mod_status | clientdll,release | <Account ID>
 model_dump_convert_info | linked_concommand,developmentonly,gamedll,clientdll,defensive | Print model load-time conversion info
 modifier_broadcast_event | developmentonly,gamedll | Debug broadcasts an event will all empty fields
+modifier_cache_report | developmentonly,gamedll,defensive | Print per-EModifierValue cache statistics sorted by query volume. Use modifier_cache_reset_stats to clear.
+modifier_cache_reset_stats | developmentonly,gamedll,defensive | Reset modifier value cache statistics.
 modifier_create | gamedll,cheat,vconsole_fuzzy_matching | Creates a test modifier on unit: modifier_create <entityindex> <modifiername> <duration>
 modifier_dump | gamedll,cheat | Display all modifiers for the unit: <entityindex/name>
 modifier_dump_list | gamedll,cheat | Dumps all modifiers that exist in the game
@@ -769,7 +828,6 @@ nav_split | gamedll,cheat | To split an Area into two, align the split line usin
 nav_store_selected_set | gamedll,cheat | Stores the current selected set for later retrieval.
 nav_switch | developmentonly,gamedll,defensive | Switches to navmesh for the specified spawngroup
 nav_test_level_hull | gamedll,cheat | Find entities that intrude into the nav mesh.  List those entities in console output, and display bounding boxes around them for a while.
-nav_test_level_hull_move | gamedll,cheat | 
 nav_toggle_deselecting | gamedll,cheat | Start or stop continuously removing from the selected set.
 nav_toggle_in_selected_set | gamedll,cheat | Remove current area from the selected set.
 nav_toggle_selected_set | gamedll,cheat | Toggles all areas into/out of the selected set.
@@ -782,6 +840,7 @@ noclip | gamedll,cheat,client_can_execute | Toggle. Player becomes non-solid and
 notarget | gamedll,cheat,client_can_execute | Toggle. Player becomes hidden to NPCs.
 npc_ability_range_debug | gamedll,cheat,vconsole_fuzzy_matching | Draws range indicators for abilities for the given NPC(s).  Uses the NPCs enemy for range drawing.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_bodylocations | gamedll,cheat,vconsole_fuzzy_matching | Displays labelled body locations of NPCs.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+npc_buddha | gamedll,cheat | Tag an NPC so they don't die or become incapacitated  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_cancel_handshake | developmentonly,gamedll,vconsole_fuzzy_matching | 
 npc_combat | gamedll,cheat | Displays text debugging information about the squad and enemy of the selected NPC  (See Overlay Text)  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_conditions | gamedll,cheat,vconsole_fuzzy_matching | Displays all the current AI conditions that an NPC has in the overlay text.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -798,10 +857,13 @@ npc_go_loop | gamedll,cheat | Toggles whether the selected NPC(s) will loop betw
 npc_go_loop_clear_waypoints | gamedll,cheat | Clear waypoints for npc_go_loop.
 npc_go_random | gamedll,cheat | Sends all selected NPC(s) to a random node.  Arguments:    -none-
 npc_go_update_path | gamedll,cheat | Selected NPC(s) will go to the location that the player is looking (shown with a purple box), WITHOUT CHANGING SCHEDULE!  Arguments: [dest_fly]
+npc_god | gamedll,cheat | Tag an NPC so they don't take damage  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+npc_handshakes_text | gamedll,cheat,vconsole_fuzzy_matching | Outputs text debugging information to the console about the Animation handshaking in the NPC's AI  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_heal | developmentonly,gamedll,defensive | Heals the target back to full health
 npc_hist_dump | developmentonly,gamedll,defensive | Dump the NPC history to the console. 
 npc_kill | gamedll,cheat,vconsole_fuzzy_matching | Kills the given NPC(s)  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_kill_unselected | gamedll,cheat | Properly kills all NPCs from the universe that aren't currently selected
+npc_pathquery_text | gamedll,cheat,vconsole_fuzzy_matching | Outputs text debugging information to the console about the NPC's path query processing  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_relationships | gamedll,cheat,vconsole_fuzzy_matching | Displays the relationships between this NPC and all others.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_reportstate | gamedll,cheat | Outputs the current state of the NPC
 npc_reset | gamedll,cheat | Reloads schedules for all NPC's from their script files  Arguments: -none-
@@ -809,9 +871,9 @@ npc_route | gamedll,cheat,vconsole_fuzzy_matching | Displays the current route o
 npc_scripted_commands | gamedll,cheat,vconsole_fuzzy_matching | Displays the state of scripted commands on the NPC  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_select | gamedll,cheat,vconsole_fuzzy_matching | Select or deselects the given NPC(s) for later manipulation.  Selected NPC's are shown surrounded by a red translucent box  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_sethealth | developmentonly,gamedll,defensive | Sets the target's health, even above max. Optionally matches based on npc name to set multiple npc's health.  Args: [npc] <amount>
-npc_speakall | developmentonly,gamedll,defensive | Force the npc to try and speak all their responses
 npc_squads | gamedll,cheat | Obsolete.  Replaced by npc_combat
-npc_start_handshake | developmentonly,gamedll,vconsole_fuzzy_matching | 
+npc_start_handshake_full_body | developmentonly,gamedll,vconsole_fuzzy_matching | 
+npc_start_handshake_upper_body | developmentonly,gamedll,vconsole_fuzzy_matching | 
 npc_steering | gamedll,cheat,vconsole_fuzzy_matching | Displays the steering obstructions of the NPC (used to perform local avoidance)  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 npc_steering_all | gamedll,cheat | Displays the steering obstructions of all NPCs (used to perform local avoidance) 
 npc_stop_moving | gamedll,cheat | Selected NPC(s) will stop moving.  Arguments: [asap]
@@ -824,7 +886,8 @@ open_asset | developmentonly,defensive | Opens an asset in it's primary editor o
 open_current_map_in_hammer | developmentonly | opens the current map in hammer.
 p2p_listpeers | developmentonly,defensive | List currently known peers.
 p2p_ping | developmentonly,clientdll,defensive | Ping a peer.
-particle_test_create | gamedll,cheat | Creates the named particle system where the player is looking.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+panorama_console_reset_size_and_position | linked_concommand,developmentonly,clientdll,hidden,defensive | Resets the panorama console to its default size and position
+particle_test_create | gamedll,cheat | Creates the named particle system where the player is looking.  Can be used on an entity if pointed at the entity.  Optionally takes a particle config name.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_destroy | gamedll,cheat | Destroys all particle systems matching the specified name.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_start | gamedll,cheat | Dispatches the test particle system with the parameters specified in particle_test_file,  particle_test_attach_mode and particle_test_attach_param on the entity the player is looking at.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_stop | gamedll,cheat | Stops all particle systems on the selected entities.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -853,6 +916,7 @@ ping_quick_response | clientdll,release | Responds to the last ping message rece
 pingkeypress | clientdll,release | Ping keybind pressed
 playcast | release | Play a broadcast
 playdemo | release | Play a recorded demo file (.dem ).
+player_test_prediction_smoothing | gamedll,cheat | Teleport the player on the server, use with cl_smooth_root_infiniteteleporttolerance
 playsound | developmentonly,defensive | playsound <soundname>
 playsoundscape | clientdll,cheat | Forces a soundscape to play
 png_screenshot | developmentonly,defensive | Take a .png screenshot: png_screenshot [filename]
@@ -908,11 +972,9 @@ respawn_player | gamedll,cheat | Respawns the player from death!
 restart | cheat,vconsole_set_focus | Poor man's restart: reload the current map from disk.
 rr_dump_rules | gamedll,cheat | Print all response rules
 rr_forceconcept | gamedll,cheat | fire a response concept directly at a given character. USAGE: rr_forceconcept <target name or index> <concept> "criteria1:value1,criteria2:value2,..." criteria values are optional. 
-rr_reloadresponsesystems | gamedll,cheat | Reload all response system scripts.
 rs_dump_stats | developmentonly | rs_dump_stats - Dump resourcesystem stats.
 run_perftest | cheat,dontrecord | Execute perftest.cfg
 save | developmentonly,gamedll,dontrecord,defensive | Save Game
-save_animgraph_recording | gamedll,cheat | Saves all active animgraph recordings to disk  Arguments: automaticallyOpenInAnimgraphEditor
 save_clear_subdirectory | developmentonly,gamedll,replicated,defensive | 
 save_finish_async | developmentonly,gamedll,defensive | 
 save_set_subdirectory | developmentonly,gamedll,replicated,defensive | 
@@ -924,7 +986,6 @@ say_chat | clientdll,release | Opens chat menu to chat with everyone
 say_chat_team | clientdll,release | Opens chat menu to chat with Allies
 say_team | gamedll,client_can_execute | Display player message to team
 scale_function_dump | gamedll,cheat | Print out all scale functions.
-scene_coordinator_add_request | developmentonly,gamedll,defensive | Add a request to the scene coordinator
 scene_playvcd | gamedll,cheat | Play the given VCD as an instanced scripted scene.
 schema_all_list_bindings | developmentonly | schema_all_list_bindings <substring> - List all scopes registered schema bindings (classes & enums). If no substring, list them all.
 schema_detailed_class_layout | developmentonly | schema_detailed_class_layout <class_name> - Print a detailed memory layout of the class (including inline structs).
@@ -997,15 +1058,18 @@ soundscape_dumpclient | clientdll,cheat | Dumps the client's soundscape data.
 soundscape_flush | developmentonly,gamedll,defensive | Flushes the server & client side soundscapes
 spawn_citadel_tutorial_controller | gamedll,release,client_can_execute | Spawns an entity that activates tutorial mode controls.
 spawn_hero_testing_controller | gamedll,release,client_can_execute | Spawns an entity that activates sandbox mode controls.
-spec_chase | clientdll,release | Changes the spectate mode to chase
-spec_goto | clientdll,release | Changes the spectate mode to roaming and go to the location
-spec_in_eye | clientdll,release | Changes the spectate mode to in-eye
+spec_dolly_in | clientdll,release | Moves the spectator camera position toward target. At zero, this will switch to in eye mode.
+spec_dolly_out | clientdll,release | Moves the spectator camera position away from target target. This is otherwise known as Chase Mode.
+spec_goto | clientdll,release | Changes the spectate mode to roaming and go to the location: spec_goto x y z <pitch yaw optional>
 spec_lock_to_current_player | developmentonly,clientdll | As an observer, lock the spectator target to the currently observed target
 spec_mode | clientdll,clientcmd_can_execute | Set spectator mode
 spec_next | clientdll,clientcmd_can_execute | Spectate next player
 spec_player | clientdll,clientcmd_can_execute | Spectate a player by name or slot
 spec_pos | clientdll,cheat | dump position and angles to the console
 spec_prev | clientdll,clientcmd_can_execute | Spectate previous player
+spec_setang | clientdll,release | Points the spectator camera: spec_setang pitch yaw
+spec_setpos | clientdll,release | Changes the spectate mode to roaming and moves the spectator camera: spec_setpos x y <z optional>
+spec_stopsound | clientdll,release | (Spectators only) Stop all sounds
 spec_target | clientdll,release | Changes the target being spectated
 spew_gold_sources | developmentonly,gamedll,defensive | 
 splitscreen_testreadconfigconflict | developmentonly,defensive | 
@@ -1014,6 +1078,7 @@ ss_remove | developmentonly,defensive | Removes a splitscreen user.
 ss_teleport | developmentonly,clientdll,cheat | Teleport other splitscreen player to my location.
 startdemos | release | Play demos in demo sequence.
 startmovie | developmentonly,dontrecord,defensive | Start recording movie frames.
+stat_cache_reset_stats | developmentonly,gamedll,cheat | Reset stat value cache statistics.
 stats | developmentonly,defensive | Prints server performance variables
 stats_print | developmentonly,defensive | Prints out perf statistics to the console, clears perf history
 stats_print_gpu | developmentonly,defensive | Prints out GPU perf statistics to the console.  Requires stats_display > 0, and stats_collect_gpu = true.  Optional argument of CSV filename

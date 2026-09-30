@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Item_ModDisruptorVData : public CitadelItemVData /*0x0*/  // sizeof 0x19B0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Item_ModDisruptorVData : public CitadelItemVData /*0x0*/  // sizeof 0x15A8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x18B8]; // offset 0x0
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_DetonateParticle; // offset 0x18B8, size 0xE0, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_DisruptModifier; // offset 0x1998, size 0x10, align 8 | MPropertyStartGroup
-    float32 m_flWaveSpeed; // offset 0x19A8, size 0x4, align 4 | MPropertyStartGroup
-    char _pad_19AC[0x4]; // offset 0x19AC
+    char _pad_0000[0x14B0]; // offset 0x0
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_DetonateParticle; // offset 0x14B0, size 0xE0, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CCitadelModifier > m_DisruptModifier; // offset 0x1590, size 0x10, align 8 | MPropertyStartGroup
+    float32 m_flWaveSpeed; // offset 0x15A0, size 0x4, align 4 | MPropertyStartGroup
+    char _pad_15A4[0x4]; // offset 0x15A4
 };

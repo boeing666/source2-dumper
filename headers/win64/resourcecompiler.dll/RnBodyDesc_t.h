@@ -3,7 +3,7 @@
 struct RnBodyDesc_t  // sizeof 0xE0, align 0x8 (physicslib) {MGetKV3ClassDefaults}
 {
     CUtlString m_sDebugName; // offset 0x0, size 0x8, align 8
-    Vector m_vPosition; // offset 0x8, size 0xC, align 4
+    VectorWS m_vPosition; // offset 0x8, size 0xC, align 4
     QuaternionStorage m_qOrientation; // offset 0x14, size 0x10, align 4
     Vector m_vLinearVelocity; // offset 0x24, size 0xC, align 4
     Vector m_vAngularVelocity; // offset 0x30, size 0xC, align 4

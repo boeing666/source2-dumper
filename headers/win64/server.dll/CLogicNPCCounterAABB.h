@@ -1,11 +1,11 @@
 #pragma once
 
-class CLogicNPCCounterAABB : public CLogicNPCCounter /*0x0*/  // sizeof 0x750, align 0x8 [vtable] (server)
+class CLogicNPCCounterAABB : public CLogicNPCCounter /*0x0*/  // sizeof 0x760, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x720]; // offset 0x0
-    Vector m_vDistanceOuterMins; // offset 0x720, size 0xC, align 4
-    Vector m_vDistanceOuterMaxs; // offset 0x72C, size 0xC, align 4
-    Vector m_vOuterMins; // offset 0x738, size 0xC, align 4
-    Vector m_vOuterMaxs; // offset 0x744, size 0xC, align 4
+    char _pad_0000[0x730]; // offset 0x0
+    Vector m_vDistanceOuterMins; // offset 0x730, size 0xC, align 4
+    Vector m_vDistanceOuterMaxs; // offset 0x73C, size 0xC, align 4
+    VectorWS m_vOuterMins; // offset 0x748, size 0xC, align 4
+    VectorWS m_vOuterMaxs; // offset 0x754, size 0xC, align 4
 };

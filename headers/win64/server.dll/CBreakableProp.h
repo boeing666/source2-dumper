@@ -1,10 +1,10 @@
 #pragma once
 
-class CBreakableProp : public CBaseProp /*0x0*/  // sizeof 0xC20, align 0x10 [vtable] (server) {MNetworkVarNames}
+class CBreakableProp : public CBaseProp /*0x0*/  // sizeof 0xC20, align 0x10 [vtable] (server)
 {
 public:
     char _pad_0000[0xAC8]; // offset 0x0
-    CPropDataComponent m_CPropDataComponent; // offset 0xAC8, size 0x40, align 255 | MNetworkEnable MNetworkUserGroup MNetworkAlias MNetworkTypeAlias
+    CPropDataComponent m_CPropDataComponent; // offset 0xAC8, size 0x40, align 8
     CEntityIOOutput m_OnStartDeath; // offset 0xB08, size 0x18, align 255
     CEntityIOOutput m_OnBreak; // offset 0xB20, size 0x18, align 255
     CEntityOutputTemplate< float32 > m_OnHealthChanged; // offset 0xB38, size 0x20, align 8

@@ -7,7 +7,7 @@ struct AggregateSceneObject_t  // sizeof 0x78, align 0x8 (resourcecompiler) {MGe
     int16 m_nLayer; // offset 0x8, size 0x2, align 2
     int16 m_instanceStream; // offset 0xA, size 0x2, align 2
     int16 m_vertexAlbedoStream; // offset 0xC, size 0x2, align 2
-    char _pad_000E[0x2]; // offset 0xE
+    int16 m_vertexEmissiveStream; // offset 0xE, size 0x2, align 2
     CUtlVector< AggregateMeshInfo_t > m_aggregateMeshes; // offset 0x10, size 0x18, align 8
     CUtlVector< AggregateLODSetup_t > m_lodSetups; // offset 0x28, size 0x18, align 8
     CUtlVector< uint16 > m_visClusterMembership; // offset 0x40, size 0x18, align 8

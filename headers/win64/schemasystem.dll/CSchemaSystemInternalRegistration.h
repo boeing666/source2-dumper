@@ -15,7 +15,7 @@ public:
     QuaternionStorage m_QuaternionStorage; // offset 0x70, size 0x10, align 4
     matrix3x4_t m_matrix3x4_t; // offset 0x80, size 0x30, align 4
     matrix3x4a_t m_matrix3x4a_t; // offset 0xB0, size 0x30, align 16
-    Color m_Color; // offset 0xE0, size 0x4, align 1
+    Color m_Color; // offset 0xE0, size 0x4, align 4
     Vector4D m_Vector4D; // offset 0xE4, size 0x10, align 4
     char _pad_00F4[0xC]; // offset 0xF4
     CTransform m_CTransform; // offset 0x100, size 0x20, align 16

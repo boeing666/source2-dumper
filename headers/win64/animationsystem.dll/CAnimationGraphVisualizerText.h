@@ -5,7 +5,7 @@ class CAnimationGraphVisualizerText : public CAnimationGraphVisualizerPrimitiveB
 public:
     char _pad_0000[0x40]; // offset 0x0
     VectorAligned m_vWsPosition; // offset 0x40, size 0x10, align 16
-    Color m_Color; // offset 0x50, size 0x4, align 1
+    Color m_Color; // offset 0x50, size 0x4, align 4
     char _pad_0054[0x4]; // offset 0x54
     CUtlString m_Text; // offset 0x58, size 0x8, align 8
 };

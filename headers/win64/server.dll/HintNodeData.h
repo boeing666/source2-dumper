@@ -1,6 +1,6 @@
 #pragma once
 
-class HintNodeData  // sizeof 0x40, align 0xFF [trivial_dtor] (server)
+class HintNodeData  // sizeof 0x40, align 0x8 [trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     CUtlSymbolLarge strEntityName; // offset 0x0, size 0x8, align 8

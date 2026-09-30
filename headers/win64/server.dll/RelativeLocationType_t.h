@@ -8,4 +8,5 @@ enum RelativeLocationType_t : uint8_t  // sizeof 0x1
     RELATIVE_TO_ENTITY_IN_WORLD_SPACE = 3,
     RELATIVE_TO_NAV_AREA = 4,
     RELATIVE_TO_NAV_BLOCK = 5,
+    RELATIVE_TO_ENTITY_NAV = 255,
 };

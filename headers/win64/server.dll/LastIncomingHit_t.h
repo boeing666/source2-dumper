@@ -1,6 +1,6 @@
 #pragma once
 
-struct LastIncomingHit_t  // sizeof 0x20, align 0xFF [trivial_ctor trivial_dtor] (server)
+struct LastIncomingHit_t  // sizeof 0x20, align 0x4 [trivial_ctor trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
     Vector vecDir; // offset 0x0, size 0xC, align 4
     Vector vecBoneLocalPos; // offset 0xC, size 0xC, align 4

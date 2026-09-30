@@ -1,7 +1,7 @@
 #pragma once
 
-class CInWorldKeyBindPanel : public CPointClientUIWorldPanel /*0x0*/  // sizeof 0x938, align 0x8 [vtable] (server)
+class CInWorldKeyBindPanel : public CPointClientUIWorldPanel /*0x0*/  // sizeof 0xA38, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x938]; // offset 0x0
+    char _pad_0000[0xA38]; // offset 0x0
 };

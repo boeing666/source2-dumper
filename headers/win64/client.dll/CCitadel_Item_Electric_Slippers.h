@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Item_Electric_Slippers : public CCitadel_Item /*0x0*/  // sizeof 0x12D8, align 0x8 [vtable] (client)
+class CCitadel_Item_Electric_Slippers : public CCitadel_Item /*0x0*/  // sizeof 0x16D8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x12D8]; // offset 0x0
+    char _pad_0000[0x16D8]; // offset 0x0
 };

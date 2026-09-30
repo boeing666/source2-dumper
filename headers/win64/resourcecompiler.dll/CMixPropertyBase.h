@@ -9,5 +9,6 @@ public:
     bool m_bActive; // offset 0x18, size 0x1, align 1 | MPropertySortPriority MPropertyHideField
     bool m_bSolo; // offset 0x19, size 0x1, align 1 | MPropertySortPriority MPropertyHideField
     bool m_bEditProperties; // offset 0x1A, size 0x1, align 1 | MPropertySortPriority MPropertyHideField
-    char _pad_001B[0x5]; // offset 0x1B
+    char _pad_001B[0x1]; // offset 0x1B
+    int32 m_nGenerationId; // offset 0x1C, size 0x4, align 4 | MPropertySortPriority MPropertyHideField
 };

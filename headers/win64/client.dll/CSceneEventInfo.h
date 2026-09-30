@@ -1,26 +1,31 @@
 #pragma once
 
-class CSceneEventInfo  // sizeof 0x80, align 0xFF (client)
+class CSceneEventInfo  // sizeof 0x90, align 0xFF (client)
 {
 public:
     int32 m_iLayer; // offset 0x0, size 0x4, align 4
     int32 m_iPriority; // offset 0x4, size 0x4, align 4
     HSequence m_hSequence; // offset 0x8, size 0x4, align 255
     float32 m_flWeight; // offset 0xC, size 0x4, align 4
-    CStrongHandle< InfoForResourceTypeCNmClip > m_hAnimClip; // offset 0x10, size 0x8, align 8
-    CGlobalSymbol m_sAnimClipSlot; // offset 0x18, size 0x8, align 8
-    CGlobalSymbol m_sAnimClipSlotWeight; // offset 0x20, size 0x8, align 8
-    bool m_bHasArrived; // offset 0x28, size 0x1, align 1
-    char _pad_0029[0x3]; // offset 0x29
-    int32 m_nType; // offset 0x2C, size 0x4, align 4
-    GameTime_t m_flNext; // offset 0x30, size 0x4, align 255
-    bool m_bIsGesture; // offset 0x34, size 0x1, align 1
-    bool m_bShouldRemove; // offset 0x35, size 0x1, align 1
-    char _pad_0036[0x26]; // offset 0x36
-    CHandle< C_BaseEntity > m_hTarget; // offset 0x5C, size 0x4, align 4
-    CModifierHandleTyped< CCitadelModifier > m_hModifier; // offset 0x60, size 0x18, align 8
-    SceneEventId_t m_nSceneEventId; // offset 0x78, size 0x4, align 255
-    bool m_bClientSide; // offset 0x7C, size 0x1, align 1
-    bool m_bStarted; // offset 0x7D, size 0x1, align 1
-    char _pad_007E[0x2]; // offset 0x7E
+    float32 m_flLastAccumulatedTime; // offset 0x10, size 0x4, align 4
+    float32 m_flLastJumpFromTime; // offset 0x14, size 0x4, align 4
+    float32 m_flLastJumpToTime; // offset 0x18, size 0x4, align 4
+    float32 m_flLastCycle; // offset 0x1C, size 0x4, align 4
+    CStrongHandle< InfoForResourceTypeCNmClip > m_hAnimClip; // offset 0x20, size 0x8, align 8
+    CGlobalSymbol m_sAnimClipSlot; // offset 0x28, size 0x8, align 8
+    CGlobalSymbol m_sAnimClipSlotWeight; // offset 0x30, size 0x8, align 8
+    bool m_bHasArrived; // offset 0x38, size 0x1, align 1
+    bool m_bExternalGraphFinished; // offset 0x39, size 0x1, align 1
+    char _pad_003A[0x2]; // offset 0x3A
+    int32 m_nType; // offset 0x3C, size 0x4, align 4
+    GameTime_t m_flNext; // offset 0x40, size 0x4, align 255
+    bool m_bIsGesture; // offset 0x44, size 0x1, align 1
+    bool m_bShouldRemove; // offset 0x45, size 0x1, align 1
+    char _pad_0046[0x26]; // offset 0x46
+    CHandle< C_BaseEntity > m_hTarget; // offset 0x6C, size 0x4, align 4
+    CModifierHandleTyped< CCitadelModifier > m_hBlinkModifier; // offset 0x70, size 0x18, align 8
+    SceneEventId_t m_nSceneEventId; // offset 0x88, size 0x4, align 255
+    bool m_bClientSide; // offset 0x8C, size 0x1, align 1
+    bool m_bStarted; // offset 0x8D, size 0x1, align 1
+    char _pad_008E[0x2]; // offset 0x8E
 };

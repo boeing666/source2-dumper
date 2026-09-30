@@ -1,6 +1,6 @@
 #pragma once
 
-class CHitboxComponent : public CEntityComponent /*0x0*/  // sizeof 0x18, align 0xFF [vtable] (server)
+class CHitboxComponent : public CEntityComponent /*0x0*/  // sizeof 0x18, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x14]; // offset 0x0

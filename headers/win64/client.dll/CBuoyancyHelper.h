@@ -1,6 +1,6 @@
 #pragma once
 
-class CBuoyancyHelper  // sizeof 0x118, align 0xFF [vtable] (client)
+class CBuoyancyHelper  // sizeof 0x118, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0

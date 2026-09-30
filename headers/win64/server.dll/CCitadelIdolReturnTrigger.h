@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadelIdolReturnTrigger : public CTriggerModifier /*0x0*/  // sizeof 0x930, align 0x8 [vtable] (server) {MNetworkVarNames}
+class CCitadelIdolReturnTrigger : public CTriggerModifier /*0x0*/  // sizeof 0xA38, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x908]; // offset 0x0
-    CCitadelMinimapComponent m_CCitadelMinimapComponent; // offset 0x908, size 0x20, align 255 | MNetworkEnable MNetworkUserGroup MNetworkAlias MNetworkTypeAlias
-    char _pad_0928[0x8]; // offset 0x928
+    char _pad_0000[0xA10]; // offset 0x0
+    CCitadelMinimapComponent m_CCitadelMinimapComponent; // offset 0xA10, size 0x20, align 255
+    char _pad_0A30[0x8]; // offset 0xA30
 };

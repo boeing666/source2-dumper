@@ -1,6 +1,6 @@
 #pragma once
 
-enum AI_VolumetricEventTypeMask_t : uint64_t  // sizeof 0x8
+enum AI_VolumetricEventTypeMask_t : uint64_t  // sizeof 0x8 {MEnumFlagsWithOverlappingBits}
 {
     eNone = 0,
     eCombat = 1,

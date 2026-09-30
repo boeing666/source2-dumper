@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Ability_ShieldedSentry : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1910, align 0x8 [vtable] (client) {MNetworkVarNames}
+class CCitadel_Ability_ShieldedSentry : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x20B0, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x11D8]; // offset 0x0
-    int32 k_nOldestSentriesToShowInUI; // offset 0x11D8, size 0x4, align 4
-    char _pad_11DC[0x1C]; // offset 0x11DC
-    C_NetworkUtlVectorBase< CHandle< C_NPC_SimpleAnimatingAI > > m_vecDeployedSentries; // offset 0x11F8, size 0x18, align 8 | MNetworkEnable MNetworkChangeCallback
-    char _pad_1210[0x700]; // offset 0x1210
+    char _pad_0000[0x16D8]; // offset 0x0
+    int32 k_nOldestSentriesToShowInUI; // offset 0x16D8, size 0x4, align 4
+    char _pad_16DC[0x1C]; // offset 0x16DC
+    C_NetworkUtlVectorBase< CHandle< C_NPC_ShieldedSentry > > m_vecDeployedSentries; // offset 0x16F8, size 0x18, align 8
+    char _pad_1710[0x9A0]; // offset 0x1710
 };

@@ -1,14 +1,14 @@
 #pragma once
 
-class CCitadel_Ability_HornetLeap : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1588, align 0x8 [vtable] (server) {MNetworkVarNames MNetworkVarNames}
+class CCitadel_Ability_HornetLeap : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1CF8, align 0x8 [vtable] (server) {MAbilityDynamicValuesSuppressCacheWhileActive}
 {
 public:
-    char _pad_0000[0xF72]; // offset 0x0
-    bool m_bLeaping; // offset 0xF72, size 0x1, align 1 | MNetworkEnable
-    char _pad_0F73[0x1]; // offset 0xF73
-    GameTime_t m_flLeapStartTime; // offset 0xF74, size 0x4, align 255 | MNetworkEnable
-    ParticleIndex_t m_nFXIndex; // offset 0xF78, size 0x4, align 255
-    char _pad_0F7C[0x604]; // offset 0xF7C
-    ParticleIndex_t m_TrailFX; // offset 0x1580, size 0x4, align 255
-    char _pad_1584[0x4]; // offset 0x1584
+    char _pad_0000[0x14A2]; // offset 0x0
+    bool m_bLeaping; // offset 0x14A2, size 0x1, align 1
+    char _pad_14A3[0x1]; // offset 0x14A3
+    GameTime_t m_flLeapStartTime; // offset 0x14A4, size 0x4, align 255
+    ParticleIndex_t m_nFXIndex; // offset 0x14A8, size 0x4, align 255
+    char _pad_14AC[0x844]; // offset 0x14AC
+    ParticleIndex_t m_TrailFX; // offset 0x1CF0, size 0x4, align 255
+    char _pad_1CF4[0x4]; // offset 0x1CF4
 };

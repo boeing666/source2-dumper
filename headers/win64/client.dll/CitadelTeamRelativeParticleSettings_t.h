@@ -1,6 +1,6 @@
 #pragma once
 
-struct CitadelTeamRelativeParticleSettings_t  // sizeof 0x30, align 0x8 (client) {MModelGameData MFgdHelper MGetKV3ClassDefaults}
+struct CitadelTeamRelativeParticleSettings_t  // sizeof 0x30, align 0x8 (client) {MModelGameData MFgdHelper MGetKV3ClassDefaults MPropertyFriendlyName}
 {
     CStrongHandle< InfoForResourceTypeIParticleSystemDefinition > m_strFriendlyParticle; // offset 0x0, size 0x8, align 8
     CStrongHandle< InfoForResourceTypeIParticleSystemDefinition > m_strEnemyParticle; // offset 0x8, size 0x8, align 8

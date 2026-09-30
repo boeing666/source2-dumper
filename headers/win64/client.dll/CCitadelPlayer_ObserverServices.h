@@ -8,8 +8,8 @@ public:
     int32 m_nCurrentObservedTeam; // offset 0x64, size 0x4, align 4
     CHandle< C_BaseEntity > m_hLastObserverTarget; // offset 0x68, size 0x4, align 4
     CHandle< C_BaseEntity > m_hPreviousTeamTarget; // offset 0x6C, size 0x4, align 4
-    QAngle m_angTargetCamera; // offset 0x70, size 0xC, align 4 | MNetworkEnable MNetworkEncoder MNetworkChangeCallback
+    QAngle m_angTargetCamera; // offset 0x70, size 0xC, align 4
     char _pad_007C[0x84]; // offset 0x7C
-    Vector m_vTargetCameraPos; // offset 0x100, size 0xC, align 4 | MNetworkEnable MNetworkEncoder MNetworkChangeCallback
+    VectorWS m_vTargetCameraPos; // offset 0x100, size 0xC, align 4
     char _pad_010C[0x84]; // offset 0x10C
 };

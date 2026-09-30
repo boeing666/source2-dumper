@@ -9,5 +9,8 @@ enum MovementCapability_t : uint32_t  // sizeof 0x4
     eInstantStop = 4,
     eShuffle = 5,
     ePlantedTurn = 6,
-    eCount = 7,
+    eUseStartAsPlantedTurn = 7,
+    eLean = 8,
+    eForwardStartOnly = 9,
+    eCount = 10,
 };

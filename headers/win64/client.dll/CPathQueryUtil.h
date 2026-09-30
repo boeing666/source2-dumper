@@ -1,6 +1,6 @@
 #pragma once
 
-class CPathQueryUtil  // sizeof 0x80, align 0xFF (client)
+class CPathQueryUtil  // sizeof 0x80, align 0xFF (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0

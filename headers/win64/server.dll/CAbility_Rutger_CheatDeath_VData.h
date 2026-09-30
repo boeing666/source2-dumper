@@ -1,8 +1,8 @@
 #pragma once
 
-class CAbility_Rutger_CheatDeath_VData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1828, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CAbility_Rutger_CheatDeath_VData : public CitadelAbilityVData /*0x0*/  // sizeof 0x13B0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x1818]; // offset 0x0
-    CEmbeddedSubclass< CBaseModifier > m_ModifierCheatDeathActivated; // offset 0x1818, size 0x10, align 8 | MPropertyStartGroup
+    char _pad_0000[0x13A0]; // offset 0x0
+    CEmbeddedSubclass< CBaseModifier > m_ModifierCheatDeathActivated; // offset 0x13A0, size 0x10, align 8 | MPropertyStartGroup
 };

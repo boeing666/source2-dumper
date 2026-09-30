@@ -1,6 +1,6 @@
 #pragma once
 
-class CRenderGroom  // sizeof 0xA0, align 0x8 (modellib) {MGetKV3ClassDefaults}
+class CRenderGroom  // sizeof 0xB0, align 0x8 (modellib) {MGetKV3ClassDefaults}
 {
 public:
     CUtlVector< RenderHairStrandInfo_t > m_hairs; // offset 0x0, size 0x18, align 8
@@ -18,6 +18,7 @@ public:
     int32 m_nAttachBoneIdx; // offset 0x90, size 0x4, align 4
     int32 m_nAttachMeshIdx; // offset 0x94, size 0x4, align 4
     int32 m_nAttachMeshDrawCallIdx; // offset 0x98, size 0x4, align 4
-    bool m_bEnableSimulation; // offset 0x9C, size 0x1, align 1
-    char _pad_009D[0x3]; // offset 0x9D
+    char _pad_009C[0x10]; // offset 0x9C
+    bool m_bEnableSimulation; // offset 0xAC, size 0x1, align 1
+    char _pad_00AD[0x3]; // offset 0xAD
 };

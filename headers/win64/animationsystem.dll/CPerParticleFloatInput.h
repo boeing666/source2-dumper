@@ -1,7 +1,7 @@
 #pragma once
 
-class CPerParticleFloatInput : public CParticleFloatInput /*0x0*/  // sizeof 0x170, align 0x8 [vtable] (particleslib) {MGetKV3ClassDefaults MPropertyCustomEditor}
+class CPerParticleFloatInput : public CParticleFloatInput /*0x0*/  // sizeof 0x178, align 0x8 [vtable] (particleslib) {MGetKV3ClassDefaults MPropertyCustomEditor}
 {
 public:
-    char _pad_0000[0x170]; // offset 0x0
+    char _pad_0000[0x178]; // offset 0x0
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-struct CitadelMuzzleSettings_t  // sizeof 0x40, align 0x8 (client) {MModelGameData MGetKV3ClassDefaults}
+struct CitadelMuzzleSettings_t  // sizeof 0x40, align 0x8 (client) {MModelGameData MGetKV3ClassDefaults MPropertyFriendlyName}
 {
     CUtlVector< CitadelMuzzle_t > m_vecPrimaryMuzzles; // offset 0x0, size 0x18, align 8
     CUtlVector< CitadelMuzzle_t > m_vecSecondaryMuzzles; // offset 0x18, size 0x18, align 8

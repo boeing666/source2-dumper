@@ -22,5 +22,6 @@ enum StatusEffectProperty_t : uint32_t  // sizeof 0x4
     EStatusEffect_Unstoppable = 17,
     EStatusEffect_Displacement = 18,
     EStatusEffect_Silence = 19,
-    EStatusEffect_Count = 20,
+    EStatusEffect_Curse = 20,
+    EStatusEffect_Count = 21,
 };

@@ -7,7 +7,7 @@ public:
     CEntityIOOutput m_OnPlay; // offset 0x5F0, size 0x18, align 255
     float32 m_flRadius; // offset 0x608, size 0x4, align 4
     char _pad_060C[0x4]; // offset 0x60C
-    CUtlSymbolLarge m_soundEventName; // offset 0x610, size 0x8, align 8
+    CGameSoundEventName m_soundEventName; // offset 0x610, size 0x8, align 8
     bool m_bOverrideWithEvent; // offset 0x618, size 0x1, align 1
     char _pad_0619[0x3]; // offset 0x619
     int32 m_soundscapeIndex; // offset 0x61C, size 0x4, align 4 | MNotSaved

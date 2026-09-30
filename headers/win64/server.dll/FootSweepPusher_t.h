@@ -1,6 +1,6 @@
 #pragma once
 
-struct FootSweepPusher_t  // sizeof 0x14, align 0xFF [trivial_dtor] (server)
+struct FootSweepPusher_t  // sizeof 0x14, align 0x4 [trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
     VectorWS m_vC; // offset 0x0, size 0xC, align 4
     float32 m_flR; // offset 0xC, size 0x4, align 4

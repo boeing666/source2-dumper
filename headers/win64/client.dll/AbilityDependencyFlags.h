@@ -6,4 +6,5 @@ enum AbilityDependencyFlags : uint16_t  // sizeof 0x2
     LinkImbues = 1,
     LinkUpgrades = 2,
     DisplayAsSubAbility = 4,
+    AssignAsAltFire = 8,
 };

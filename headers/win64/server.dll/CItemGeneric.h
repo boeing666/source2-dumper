@@ -37,9 +37,10 @@ public:
     float32 m_flTriggerRadius; // offset 0xC3C, size 0x4, align 4 | MNotSaved
     CUtlSymbolLarge m_pTriggerSoundEffect; // offset 0xC40, size 0x8, align 8 | MNotSaved
     bool m_bGlowWhenInTrigger; // offset 0xC48, size 0x1, align 1 | MNotSaved
-    Color m_glowColor; // offset 0xC49, size 0x4, align 1 | MNotSaved
-    bool m_bUseable; // offset 0xC4D, size 0x1, align 1 | MNotSaved
-    char _pad_0C4E[0x2]; // offset 0xC4E
-    CHandle< CItemGenericTriggerHelper > m_hTriggerHelper; // offset 0xC50, size 0x4, align 4 | MNotSaved
-    char _pad_0C54[0xC]; // offset 0xC54
+    char _pad_0C49[0x3]; // offset 0xC49
+    Color m_glowColor; // offset 0xC4C, size 0x4, align 4 | MNotSaved
+    bool m_bUseable; // offset 0xC50, size 0x1, align 1 | MNotSaved
+    char _pad_0C51[0x3]; // offset 0xC51
+    CHandle< CItemGenericTriggerHelper > m_hTriggerHelper; // offset 0xC54, size 0x4, align 4 | MNotSaved
+    char _pad_0C58[0x8]; // offset 0xC58
 };

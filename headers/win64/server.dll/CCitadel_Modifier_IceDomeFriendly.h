@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_IceDomeFriendly : public CCitadel_Modifier_IceDome_AuraModifierBase /*0x0*/  // sizeof 0x250, align 0xFF [vtable] (server)
+class CCitadel_Modifier_IceDomeFriendly : public CCitadel_Modifier_IceDome_AuraModifierBase /*0x0*/  // sizeof 0x350, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x250]; // offset 0x0
+    char _pad_0000[0x350]; // offset 0x0
 };

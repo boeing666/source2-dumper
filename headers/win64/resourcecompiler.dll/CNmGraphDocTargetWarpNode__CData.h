@@ -4,5 +4,5 @@ class CNmGraphDocTargetWarpNode::CData : public CNmGraphDocVariationDataNode::CD
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
-    CUtlString m_strAlignmentBoneName; // offset 0x8, size 0x8, align 8
+    CGlobalSymbol m_strAlignmentBoneName; // offset 0x8, size 0x8, align 8
 };

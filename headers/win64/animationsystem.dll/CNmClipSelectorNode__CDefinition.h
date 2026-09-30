@@ -4,6 +4,6 @@ class CNmClipSelectorNode::CDefinition : public CNmClipReferenceNode::CDefinitio
 {
 public:
     char _pad_0000[0x10]; // offset 0x0
-    CUtlLeanVectorFixedGrowable< int16, 5 > m_optionNodeIndices; // offset 0x10, size 0x18, align 8
-    CUtlLeanVectorFixedGrowable< int16, 5 > m_conditionNodeIndices; // offset 0x28, size 0x18, align 8
+    CUtlLeanVectorFixedGrowable< int16, 8 > m_optionNodeIndices; // offset 0x10, size 0x18, align 8
+    CUtlLeanVectorFixedGrowable< int16, 8 > m_conditionNodeIndices; // offset 0x28, size 0x18, align 8
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-struct AbilityUpgradeState_t  // sizeof 0x38, align 0xFF [vtable] (server) {MNetworkVarNames MNetworkVarNames}
+struct AbilityUpgradeState_t  // sizeof 0x38, align 0xFF [vtable] (server)
 {
     char _pad_0000[0x30]; // offset 0x0
-    CUtlStringToken m_ItemID; // offset 0x30, size 0x4, align 4 | MNetworkEnable
-    CitadelAbilityUpgradeInfoPacked_t m_nUpgradeInfo; // offset 0x34, size 0x4, align 255 | MNetworkEnable
+    CUtlStringToken m_ItemID; // offset 0x30, size 0x4, align 4
+    CitadelAbilityUpgradeInfoPacked_t m_nUpgradeInfo; // offset 0x34, size 0x4, align 255
 };

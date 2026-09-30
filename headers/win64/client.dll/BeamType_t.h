@@ -6,7 +6,7 @@ enum BeamType_t : uint32_t  // sizeof 0x4
     BEAM_POINTS = 1,
     BEAM_ENTPOINT = 2,
     BEAM_ENTS = 3,
-    BEAM_HOSE = 4,
+    xxBEAM_HOSExxunused = 4,
     BEAM_SPLINE = 5,
     BEAM_LASER = 6,
 };

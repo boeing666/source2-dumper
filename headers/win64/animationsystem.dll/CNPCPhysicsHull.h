@@ -1,6 +1,6 @@
 #pragma once
 
-class CNPCPhysicsHull  // sizeof 0x40, align 0x8 (modellib) {MGetKV3ClassDefaults MModelGameData MFgdHelper MFgdHelper}
+class CNPCPhysicsHull  // sizeof 0x40, align 0x8 (modellib) {MGetKV3ClassDefaults MModelGameData MFgdHelper MFgdHelper MCustomFGDMetadata}
 {
 public:
     CGlobalSymbol m_sName; // offset 0x0, size 0x8, align 8 | MPropertyFriendlyName MPropertySuppressField

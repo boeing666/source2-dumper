@@ -1,10 +1,10 @@
 #pragma once
 
-class CCitadel_Ability_Hornet_Chain : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1470, align 0x8 [vtable] (client)
+class CCitadel_Ability_Hornet_Chain : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1A60, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x11D8]; // offset 0x0
-    VectorWS m_vLaunchPosition; // offset 0x11D8, size 0xC, align 4
-    QAngle m_qLaunchAngle; // offset 0x11E4, size 0xC, align 4
-    char _pad_11F0[0x280]; // offset 0x11F0
+    char _pad_0000[0x16D8]; // offset 0x0
+    VectorWS m_vLaunchPosition; // offset 0x16D8, size 0xC, align 4
+    QAngle m_qLaunchAngle; // offset 0x16E4, size 0xC, align 4
+    char _pad_16F0[0x370]; // offset 0x16F0
 };

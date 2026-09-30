@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_Hero_Testing_Damage_AuraDebuff : public CCitadelModifier /*0x0*/  // sizeof 0xD0, align 0xFF [vtable] (server)
+class CCitadel_Modifier_Hero_Testing_Damage_AuraDebuff : public CCitadelModifier /*0x0*/  // sizeof 0x140, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0xD0]; // offset 0x0
+    char _pad_0000[0x140]; // offset 0x0
 };

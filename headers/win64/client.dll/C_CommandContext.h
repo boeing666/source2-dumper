@@ -1,6 +1,6 @@
 #pragma once
 
-class C_CommandContext  // sizeof 0xB8, align 0xFF (client)
+class C_CommandContext  // sizeof 0xB8, align 0x8 (client) {MGetKV3ClassDefaults}
 {
 public:
     bool needsprocessing; // offset 0x0, size 0x1, align 1

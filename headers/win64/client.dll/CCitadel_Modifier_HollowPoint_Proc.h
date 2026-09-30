@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_HollowPoint_Proc : public CCitadel_Modifier_BaseBulletPreRollProc /*0x0*/  // sizeof 0x398, align 0xFF [vtable] (client)
+class CCitadel_Modifier_HollowPoint_Proc : public CCitadel_Modifier_BaseBulletPreRollProc /*0x0*/  // sizeof 0x4F8, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x398]; // offset 0x0
+    char _pad_0000[0x4F8]; // offset 0x0
 };

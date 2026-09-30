@@ -1,33 +1,36 @@
 #pragma once
 
-class C_DynamicProp : public C_BreakableProp /*0x0*/  // sizeof 0xEF0, align 0x10 [vtable] (client) {MEntityAllowsPortraitWorldSpawn MNetworkVarNames MNetworkVarNames}
+class C_DynamicProp : public C_BreakableProp /*0x0*/  // sizeof 0x1050, align 0x10 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
 {
 public:
-    char _pad_0000[0xE20]; // offset 0x0
-    bool m_bUseHitboxesForRenderBox; // offset 0xE20, size 0x1, align 1 | MNetworkEnable
-    bool m_bUseAnimGraph; // offset 0xE21, size 0x1, align 1 | MNetworkEnable
-    char _pad_0E22[0x6]; // offset 0xE22
-    CEntityIOOutput m_pOutputAnimBegun; // offset 0xE28, size 0x18, align 255
-    CEntityIOOutput m_pOutputAnimOver; // offset 0xE40, size 0x18, align 255
-    CEntityIOOutput m_pOutputAnimLoopCycleOver; // offset 0xE58, size 0x18, align 255
-    CEntityIOOutput m_OnAnimReachedStart; // offset 0xE70, size 0x18, align 255
-    CEntityIOOutput m_OnAnimReachedEnd; // offset 0xE88, size 0x18, align 255
-    CUtlSymbolLarge m_iszIdleAnim; // offset 0xEA0, size 0x8, align 8
-    AnimLoopMode_t m_nIdleAnimLoopMode; // offset 0xEA8, size 0x4, align 4
-    bool m_bRandomizeCycle; // offset 0xEAC, size 0x1, align 1
-    bool m_bStartDisabled; // offset 0xEAD, size 0x1, align 1
-    bool m_bFiredStartEndOutput; // offset 0xEAE, size 0x1, align 1
-    bool m_bForceNpcExclude; // offset 0xEAF, size 0x1, align 1 | MNotSaved
-    bool m_bCreateNonSolid; // offset 0xEB0, size 0x1, align 1 | MNotSaved
-    bool m_bIsOverrideProp; // offset 0xEB1, size 0x1, align 1 | MNotSaved
-    char _pad_0EB2[0x2]; // offset 0xEB2
-    int32 m_iInitialGlowState; // offset 0xEB4, size 0x4, align 4
-    int32 m_nGlowRange; // offset 0xEB8, size 0x4, align 4
-    int32 m_nGlowRangeMin; // offset 0xEBC, size 0x4, align 4
-    Color m_glowColor; // offset 0xEC0, size 0x4, align 1
-    int32 m_nGlowTeam; // offset 0xEC4, size 0x4, align 4
-    int32 m_iCachedFrameCount; // offset 0xEC8, size 0x4, align 4 | MNotSaved
-    Vector m_vecCachedRenderMins; // offset 0xECC, size 0xC, align 4 | MNotSaved
-    Vector m_vecCachedRenderMaxs; // offset 0xED8, size 0xC, align 4 | MNotSaved
-    char _pad_0EE4[0xC]; // offset 0xEE4
+    char _pad_0000[0xF10]; // offset 0x0
+    bool m_bGraphControllerEnabled; // offset 0xF10, size 0x1, align 1
+    bool m_bUseHitboxesForRenderBox; // offset 0xF11, size 0x1, align 1
+    bool m_bUseAnimGraph; // offset 0xF12, size 0x1, align 1
+    char _pad_0F13[0x5]; // offset 0xF13
+    CEntityIOOutput m_pOutputAnimBegun; // offset 0xF18, size 0x18, align 255
+    CEntityIOOutput m_pOutputAnimOver; // offset 0xF30, size 0x18, align 255
+    CEntityIOOutput m_pOutputAnimLoopCycleOver; // offset 0xF48, size 0x18, align 255
+    CEntityIOOutput m_OnAnimReachedStart; // offset 0xF60, size 0x18, align 255
+    CEntityIOOutput m_OnAnimReachedEnd; // offset 0xF78, size 0x18, align 255
+    CEntityIOOutput[5] m_OnScriptFireEvent; // offset 0xF90, size 0x78, align 8
+    CUtlSymbolLarge m_iszIdleAnim; // offset 0x1008, size 0x8, align 8
+    AnimLoopMode_t m_nIdleAnimLoopMode; // offset 0x1010, size 0x4, align 4
+    bool m_bRandomizeCycle; // offset 0x1014, size 0x1, align 1
+    bool m_bStartDisabled; // offset 0x1015, size 0x1, align 1
+    bool m_bFiredStartEndOutput; // offset 0x1016, size 0x1, align 1
+    bool m_bForceNpcExclude; // offset 0x1017, size 0x1, align 1 | MNotSaved
+    bool m_bCreateMovableSurfaceGraph; // offset 0x1018, size 0x1, align 1
+    bool m_bCreateNonSolid; // offset 0x1019, size 0x1, align 1 | MNotSaved
+    bool m_bIsOverrideProp; // offset 0x101A, size 0x1, align 1 | MNotSaved
+    char _pad_101B[0x1]; // offset 0x101B
+    int32 m_iInitialGlowState; // offset 0x101C, size 0x4, align 4
+    int32 m_nGlowRange; // offset 0x1020, size 0x4, align 4
+    int32 m_nGlowRangeMin; // offset 0x1024, size 0x4, align 4
+    Color m_glowColor; // offset 0x1028, size 0x4, align 4
+    int32 m_nGlowTeam; // offset 0x102C, size 0x4, align 4
+    int32 m_iCachedFrameCount; // offset 0x1030, size 0x4, align 4 | MNotSaved
+    Vector m_vecCachedRenderMins; // offset 0x1034, size 0xC, align 4 | MNotSaved
+    Vector m_vecCachedRenderMaxs; // offset 0x1040, size 0xC, align 4 | MNotSaved
+    char _pad_104C[0x4]; // offset 0x104C
 };

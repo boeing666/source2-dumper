@@ -1,8 +1,8 @@
 #pragma once
 
-struct thinkfunc_t  // sizeof 0x20, align 0xFF [trivial_dtor] (client)
+struct thinkfunc_t  // sizeof 0x20, align 0x8 [trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
-    char _pad_0000[0x8]; // offset 0x0
+    BASEPTR m_think; // offset 0x0, size 0x8, align 8
     HSCRIPT m_hFn; // offset 0x8, size 0x8, align 8 | MNotSaved
     CUtlStringToken m_nContext; // offset 0x10, size 0x4, align 4
     GameTick_t m_nNextThinkTick; // offset 0x14, size 0x4, align 255

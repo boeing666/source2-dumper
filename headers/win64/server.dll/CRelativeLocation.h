@@ -1,6 +1,6 @@
 #pragma once
 
-class CRelativeLocation  // sizeof 0x40, align 0xFF [trivial_dtor] (server)
+class CRelativeLocation  // sizeof 0x48, align 0x8 [trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x18]; // offset 0x0
@@ -9,6 +9,8 @@ public:
     Vector m_vRelativeOffset; // offset 0x1C, size 0xC, align 4
     VectorWS m_vWorldSpacePos; // offset 0x28, size 0xC, align 4
     CHandle< CBaseEntity > m_hEntity; // offset 0x34, size 0x4, align 4
-    uint32 m_nNavAreaID; // offset 0x38, size 0x4, align 4
-    uint32 m_nSpaceBlockID; // offset 0x3C, size 0x4, align 4
+    uint32 m_nLastKnownNavAreaVersion; // offset 0x38, size 0x4, align 4
+    uint32 m_nNavAreaID; // offset 0x3C, size 0x4, align 4
+    uint32 m_nNavBlockID; // offset 0x40, size 0x4, align 4
+    char _pad_0044[0x4]; // offset 0x44
 };

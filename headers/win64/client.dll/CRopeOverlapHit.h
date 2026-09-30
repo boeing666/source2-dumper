@@ -1,6 +1,6 @@
 #pragma once
 
-class CRopeOverlapHit  // sizeof 0x20, align 0xFF (client)
+class CRopeOverlapHit  // sizeof 0x20, align 0x8 (client) {MGetKV3ClassDefaults}
 {
 public:
     CHandle< C_BaseEntity > m_hEntity; // offset 0x0, size 0x4, align 4

@@ -1,18 +1,18 @@
 #pragma once
 
-class CSkeletonInstance : public CGameSceneNode /*0x0*/  // sizeof 0x420, align 0xFF [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CSkeletonInstance : public CGameSceneNode /*0x0*/  // sizeof 0x470, align 0x10 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    uint8_t m_bDirtyMotionType : 1; // offset 0x0 | MNotSaved
-    uint8_t m_bIsGeneratingLatchedParentSpaceState : 1; // offset 0x0 | MNotSaved
-    char _pad_0001[0x12F]; // offset 0x1
-    CModelState m_modelState; // offset 0x130, size 0x250, align 255 | MNetworkEnable
-    bool m_bUseParentRenderBounds; // offset 0x380, size 0x1, align 1 | MNetworkEnable MNotSaved
-    bool m_bDisableSolidCollisionsForHierarchy; // offset 0x381, size 0x1, align 1
-    char _pad_0382[0x2]; // offset 0x382
-    CUtlStringToken m_materialGroup; // offset 0x384, size 0x4, align 4 | MNetworkEnable MNetworkChangeCallback
-    uint8 m_nHitboxSet; // offset 0x388, size 0x1, align 1 | MNetworkEnable
-    char _pad_0389[0x5B]; // offset 0x389
-    bool m_bForceServerConstraintsEnabled; // offset 0x3E4, size 0x1, align 1
-    char _pad_03E5[0x3B]; // offset 0x3E5
+    char _pad_0000[0x120]; // offset 0x0
+    CModelState m_modelState; // offset 0x120, size 0x2A0, align 255
+    bool m_bUseParentRenderBounds; // offset 0x3C0, size 0x1, align 1 | MNotSaved
+    bool m_bDisableSolidCollisionsForHierarchy; // offset 0x3C1, size 0x1, align 1
+    bool m_bDirtyMotionType; // offset 0x3C2, size 0x1, align 1 | MNotSaved
+    bool m_bIsGeneratingLatchedParentSpaceState; // offset 0x3C3, size 0x1, align 1 | MNotSaved
+    char _pad_03C4[0x4]; // offset 0x3C4
+    CUtlStringToken m_materialGroup; // offset 0x3C8, size 0x4, align 4
+    uint8 m_nHitboxSet; // offset 0x3CC, size 0x1, align 1
+    char _pad_03CD[0x63]; // offset 0x3CD
+    bool m_bForceServerConstraintsEnabled; // offset 0x430, size 0x1, align 1
+    char _pad_0431[0x3F]; // offset 0x431
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CAI_InterestTarget  // sizeof 0x34, align 0xFF [trivial_dtor] (server)
+class CAI_InterestTarget  // sizeof 0x34, align 0x4 [trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
 public:
     CHandle< CBaseEntity > m_hTarget; // offset 0x0, size 0x4, align 4

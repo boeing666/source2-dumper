@@ -1,20 +1,20 @@
 #pragma once
 
-class CAbility_Fathom_ReefdwellerHarpoon : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1220, align 0x8 [vtable] (server) {MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CAbility_Fathom_ReefdwellerHarpoon : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1840, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xF70]; // offset 0x0
-    bool m_bHitTarget; // offset 0xF70, size 0x1, align 1
-    char _pad_0F71[0x3]; // offset 0xF71
-    Vector m_vPrevPos; // offset 0xF74, size 0xC, align 4
-    bool m_bBulletFlying; // offset 0xF80, size 0x1, align 1 | MNetworkEnable
-    bool m_bHasLatchedOnce; // offset 0xF81, size 0x1, align 1 | MNetworkEnable
-    bool m_bLatched; // offset 0xF82, size 0x1, align 1 | MNetworkEnable
-    char _pad_0F83[0x1]; // offset 0xF83
-    Vector m_vHarpoonTarget; // offset 0xF84, size 0xC, align 4 | MNetworkEnable
-    float32 m_flLatchedYaw; // offset 0xF90, size 0x4, align 4 | MNetworkEnable
-    GameTime_t m_flCloseEnoughStartTime; // offset 0xF94, size 0x4, align 255 | MNetworkEnable
-    GameTime_t m_flStuckStartTime; // offset 0xF98, size 0x4, align 255 | MNetworkEnable
-    GameTime_t m_flReelStartTime; // offset 0xF9C, size 0x4, align 255 | MNetworkEnable
-    char _pad_0FA0[0x280]; // offset 0xFA0
+    char _pad_0000[0x14A0]; // offset 0x0
+    bool m_bHitTarget; // offset 0x14A0, size 0x1, align 1
+    char _pad_14A1[0x3]; // offset 0x14A1
+    VectorWS m_vPrevPos; // offset 0x14A4, size 0xC, align 4
+    bool m_bBulletFlying; // offset 0x14B0, size 0x1, align 1
+    bool m_bHasLatchedOnce; // offset 0x14B1, size 0x1, align 1
+    bool m_bLatched; // offset 0x14B2, size 0x1, align 1
+    char _pad_14B3[0x1]; // offset 0x14B3
+    VectorWS m_vHarpoonTarget; // offset 0x14B4, size 0xC, align 4
+    float32 m_flLatchedYaw; // offset 0x14C0, size 0x4, align 4
+    GameTime_t m_flCloseEnoughStartTime; // offset 0x14C4, size 0x4, align 255
+    GameTime_t m_flStuckStartTime; // offset 0x14C8, size 0x4, align 255
+    GameTime_t m_flReelStartTime; // offset 0x14CC, size 0x4, align 255
+    char _pad_14D0[0x370]; // offset 0x14D0
 };

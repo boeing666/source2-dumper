@@ -1,142 +1,145 @@
 #pragma once
 
-class CCitadelPlayerPawn : public CCitadelPlayerPawnBase /*0x0*/  // sizeof 0x2210, align 0x10 [vtable] (server) {MNetworkIncludeByName MNetworkExcludeByName MNetworkExcludeByUserGroup MNetworkExcludeByName MNetworkExcludeByName MNetworkUserGroupProxy MNetworkUserGroupProxy MNetworkVarTypeOverride MNetworkIncludeByName MNetworkVarTypeOverride MNetworkIncludeByName MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames MNetworkVarNames}
+class CCitadelPlayerPawn : public CCitadelPlayerPawnBase /*0x0*/  // sizeof 0x2220, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0xDF0]; // offset 0x0
-    int32[45] m_arrGoldSources; // offset 0xDF0, size 0xB4, align 4
-    QAngle m_angClientCamera; // offset 0xEA4, size 0xC, align 4 | MNetworkEnable MNetworkUserGroup MNetworkBitCount MNetworkPriority
-    QAngle m_angEyeAngles; // offset 0xEB0, size 0xC, align 4 | MNetworkEnable MNetworkUserGroup MNetworkEncoder MNetworkBitCount MNetworkPriority
-    QAngle m_angLockedEyeAngles; // offset 0xEBC, size 0xC, align 4 | MNetworkEnable MNetworkUserGroup
-    int32 m_nLevel; // offset 0xEC8, size 0x4, align 4 | MNetworkEnable
-    int32[6] m_nCurrencies; // offset 0xECC, size 0x18, align 4 | MNetworkEnable
-    int32[6] m_nSpentCurrencies; // offset 0xEE4, size 0x18, align 4 | MNetworkEnable
-    int32 m_nNumHeroChangesUsed; // offset 0xEFC, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup
-    GameTime_t m_flRespawnTime; // offset 0xF00, size 0x4, align 255 | MNetworkEnable
-    GameTime_t m_flLastSpawnTime; // offset 0xF04, size 0x4, align 255 | MNetworkEnable
-    bool m_bInRegenerationZone; // offset 0xF08, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bInItemShopZone; // offset 0xF09, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bInHideoutZone; // offset 0xF0A, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_0F0B[0x1]; // offset 0xF0B
-    GameTime_t m_timeRevealedOnMinimapByNPC; // offset 0xF0C, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    CNetworkUtlVectorBase< CUtlStringToken > m_vecFullSellPriceItems; // offset 0xF10, size 0x18, align 8 | MNetworkEnable MNetworkUserGroup
-    CNetworkUtlVectorBase< FullSellPriceAbilityUpgrades_t > m_vecFullSellPriceAbilityUpgrades; // offset 0xF28, size 0x60, align 8 | MNetworkEnable MNetworkUserGroup
-    CNetworkUtlVectorBase< CUtlStringToken > m_vecQuickbuyQueue; // offset 0xF88, size 0x18, align 8 | MNetworkEnable MNetworkUserGroup
-    char _pad_0FA0[0x18]; // offset 0xFA0
-    CNetworkUtlVectorBase< CUtlStringToken > m_vecQuickbuySellQueue; // offset 0xFB8, size 0x18, align 8 | MNetworkEnable MNetworkUserGroup
-    bool m_bQuickbuyAutoPurchase; // offset 0xFD0, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_0FD1[0x3]; // offset 0xFD1
-    CUtlStringToken m_unQuickbuyAutoPurchaseRequest; // offset 0xFD4, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup
-    bool m_bQuickbuyAutoQueueBuild; // offset 0xFD8, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_0FD9[0x2F]; // offset 0xFD9
-    CNetworkUtlVectorBase< CUtlStringToken > m_vecRestrictedToItems; // offset 0x1008, size 0x18, align 8 | MNetworkEnable MNetworkUserGroup
-    HeroBuildID_t m_unHeroBuildID; // offset 0x1020, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    char _pad_1024[0x4]; // offset 0x1024
-    CUtlString m_sHeroBuildSerialized; // offset 0x1028, size 0x8, align 8 | MNetworkEnable MNetworkUserGroup
-    CHandle< CBaseEntity > m_hViewEntityForObserver; // offset 0x1030, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup
-    bool m_bNetworkDisconnected; // offset 0x1034, size 0x1, align 1 | MNetworkEnable
-    bool m_bLearningAbility; // offset 0x1035, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_1036[0x2]; // offset 0x1036
-    int32 m_nFlashStartTick; // offset 0x1038, size 0x4, align 4 | MNetworkEnable
-    int32 m_nFlashMaxStartTick; // offset 0x103C, size 0x4, align 4 | MNetworkEnable
-    int32 m_nFlashFadeStartTick; // offset 0x1040, size 0x4, align 4 | MNetworkEnable
-    int32 m_nFlashEndTick; // offset 0x1044, size 0x4, align 4 | MNetworkEnable
-    int8 m_nFlashMaxAlpha; // offset 0x1048, size 0x1, align 1 | MNetworkEnable
-    char _pad_1049[0x3]; // offset 0x1049
-    int32 m_nDeducedLane; // offset 0x104C, size 0x4, align 4 | MNetworkEnable
-    CHandle< CBaseEntity > m_hEnemyPlayerAimTarget; // offset 0x1050, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup MNetworkPriority
-    char _pad_1054[0x4]; // offset 0x1054
-    ItemDraftRoundState_t m_ItemDraftRoundState; // offset 0x1058, size 0x88, align 255 | MNetworkEnable MNetworkUserGroup
-    char _pad_10E0[0x18]; // offset 0x10E0
-    bool m_bDismissedReportCard; // offset 0x10F8, size 0x1, align 1 | MNetworkEnable
-    char _pad_10F9[0x3]; // offset 0x10F9
-    float32 m_flCurrentHealingAmount; // offset 0x10FC, size 0x4, align 4 | MNetworkEnable
-    CHandle< CCitadelBaseAbility > m_hAbilityRequiresDebounce; // offset 0x1100, size 0x4, align 4
-    char _pad_1104[0x4]; // offset 0x1104
-    CCitadelAbilityComponent m_CCitadelAbilityComponent; // offset 0x1108, size 0x268, align 255 | MNetworkEnable MNetworkUserGroup MNetworkAlias MNetworkTypeAlias MNetworkPriority
-    CCitadelHeroComponent m_CCitadelHeroComponent; // offset 0x1370, size 0x40, align 255 | MNetworkEnable MNetworkUserGroup MNetworkAlias MNetworkTypeAlias
-    CCitadelRegenComponent m_CCitadelRegenComponent; // offset 0x13B0, size 0x160, align 255 | MNetworkEnable MNetworkUserGroup MNetworkAlias MNetworkTypeAlias
-    CCitadelMinimapComponent m_CCitadelMinimapComponent; // offset 0x1510, size 0x20, align 255 | MNetworkEnable MNetworkUserGroup MNetworkAlias MNetworkTypeAlias
-    bool m_bHasShopOpen; // offset 0x1530, size 0x1, align 1
-    char _pad_1531[0x3]; // offset 0x1531
-    ECitadelPingLocation_t m_eCurrentPingLocation; // offset 0x1534, size 0x4, align 4
-    char _pad_1538[0x6C0]; // offset 0x1538
-    float32 m_flLastRegenThinkTime; // offset 0x1BF8, size 0x4, align 4
-    char _pad_1BFC[0x34]; // offset 0x1BFC
-    int32 m_nBulletsFiredAtUs; // offset 0x1C30, size 0x4, align 4
-    int32 m_nBulletsHitOnUs; // offset 0x1C34, size 0x4, align 4
-    int32 m_nHeadshotsOnUs; // offset 0x1C38, size 0x4, align 4
-    GameTime_t m_flLastGameStatsRecorded; // offset 0x1C3C, size 0x4, align 255
-    float32 m_flUnusedGoldRemainder; // offset 0x1C40, size 0x4, align 4
-    float32 m_flUnusedAbilityRemainder; // offset 0x1C44, size 0x4, align 4
-    int32 m_nBulletsFiredAtEnemyHeroes; // offset 0x1C48, size 0x4, align 4
-    int32 m_nBulletsHitOnEnemyHeroes; // offset 0x1C4C, size 0x4, align 4
-    int32 m_nHeadshotsOnEnemyHeroes; // offset 0x1C50, size 0x4, align 4
-    int32 m_nLuckyShotsOnEnemyHeroes; // offset 0x1C54, size 0x4, align 4
-    int32 m_nBulletsHitOnImmobileEnemyHeroes; // offset 0x1C58, size 0x4, align 4
-    int32 m_nHeadshotsOnImmobileEnemyHeroes; // offset 0x1C5C, size 0x4, align 4
-    CHandle< CBaseEntity > m_hEnemyHeroClientAimedAtAttackTime; // offset 0x1C60, size 0x4, align 4
-    bool m_bHasOverrideSpawnPos; // offset 0x1C64, size 0x1, align 1
-    char _pad_1C65[0x3]; // offset 0x1C65
-    Vector m_vecOverrideSpawnPos; // offset 0x1C68, size 0xC, align 4
-    int32 m_iTrooperWaveEventCount; // offset 0x1C74, size 0x4, align 4
-    int32 m_iTrooperWaveNumber; // offset 0x1C78, size 0x4, align 4
-    int32 m_iPrevTrooperWaveEventCount; // offset 0x1C7C, size 0x4, align 4
-    int32 m_iPrevTrooperWaveNumber; // offset 0x1C80, size 0x4, align 4
-    bool m_bHasStartedPlaying; // offset 0x1C84, size 0x1, align 1
-    char _pad_1C85[0x3]; // offset 0x1C85
-    CHandle< CBaseEntity > m_hRevengeTarget; // offset 0x1C88, size 0x4, align 4
-    char _pad_1C8C[0x10]; // offset 0x1C8C
-    GameTime_t m_flLastHurtTimeByEnemyHero; // offset 0x1C9C, size 0x4, align 255
-    GameTime_t m_flLastHurtByNeutral; // offset 0x1CA0, size 0x4, align 255
-    GameTime_t m_flLastHurtByEnemyNPC; // offset 0x1CA4, size 0x4, align 255
-    GameTime_t m_flLastTimeLookedAtByDirector; // offset 0x1CA8, size 0x4, align 255
-    char _pad_1CAC[0x4]; // offset 0x1CAC
-    CTakeDamageResult m_ragdollDamage; // offset 0x1CB0, size 0x30, align 255
-    char _pad_1CE0[0x88]; // offset 0x1CE0
-    CCitadelRecentDamage m_sInCombat; // offset 0x1D68, size 0x18, align 255 | MNetworkEnable
-    CCitadelRecentDamage m_sPlayerDamageTaken; // offset 0x1D80, size 0x18, align 255 | MNetworkEnable
-    CCitadelRecentDamage m_sPlayerDamageDealt; // offset 0x1D98, size 0x18, align 255 | MNetworkEnable
-    char _pad_1DB0[0xBC]; // offset 0x1DB0
-    CMsgLaneColor m_eZipLineLaneColor; // offset 0x1E6C, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup
-    bool m_bCanBecomeRagdoll; // offset 0x1E70, size 0x1, align 1
-    char _pad_1E71[0x3]; // offset 0x1E71
-    float32 m_blindUntilTime; // offset 0x1E74, size 0x4, align 4
-    float32 m_blindStartTime; // offset 0x1E78, size 0x4, align 4
-    int8 m_nSuccessiveDucks; // offset 0x1E7C, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_1E7D[0x3]; // offset 0x1E7D
-    GameTime_t m_flLastDuckTime; // offset 0x1E80, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    bool m_bAnimGraphMovementClipped; // offset 0x1E84, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bAnimGraphMovementDisableGravity; // offset 0x1E85, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bAnimGraphMovementDirectAirControl; // offset 0x1E86, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_1E87[0x1]; // offset 0x1E87
-    GameTime_t m_flPredTimeSlowedStart; // offset 0x1E88, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    GameTime_t m_flPredTimeSlowedEnd; // offset 0x1E8C, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    float32 m_flPredSlowSpeed; // offset 0x1E90, size 0x4, align 4 | MNetworkEnable MNetworkUserGroup
-    GameTime_t[4] m_flTimeSlowedStart; // offset 0x1E94, size 0x10, align 4 | MNetworkEnable MNetworkUserGroup
-    GameTime_t[4] m_flTimeSlowedEnd; // offset 0x1EA4, size 0x10, align 4 | MNetworkEnable MNetworkUserGroup
-    float32[4] m_flSlowSpeed; // offset 0x1EB4, size 0x10, align 4 | MNetworkEnable MNetworkUserGroup
-    GameTime_t m_flForceInCombatAnimsUntilTime; // offset 0x1EC4, size 0x4, align 255 | MNetworkEnable MNetworkUserGroup
-    bool[4] m_arrPreventAbilityLearning; // offset 0x1EC8, size 0x4, align 1 | MNetworkEnable MNetworkUserGroup
-    int32 m_iCurSlowSlot; // offset 0x1ECC, size 0x4, align 4
-    char _pad_1ED0[0x4]; // offset 0x1ED0
-    ParticleIndex_t m_nRespawnParticleIndex; // offset 0x1ED4, size 0x4, align 255
-    ParticleIndex_t m_nShoppingParticle; // offset 0x1ED8, size 0x4, align 255
-    char _pad_1EDC[0x2C]; // offset 0x1EDC
-    CCitadelPlayerBot* m_pBot; // offset 0x1F08, size 0x8, align 8
-    char _pad_1F10[0x280]; // offset 0x1F10
-    bool m_bLocoLeanTriggeredForDirection; // offset 0x2190, size 0x1, align 1
-    bool m_bLocoRunToStopCanTrigger; // offset 0x2191, size 0x1, align 1
-    char _pad_2192[0x2]; // offset 0x2192
-    float32 m_flCrouchFraction; // offset 0x2194, size 0x4, align 4
-    float32 m_flCrouchSpeed; // offset 0x2198, size 0x4, align 4
-    GameTime_t m_fidgetTime; // offset 0x219C, size 0x4, align 255
-    Vector m_vShootTestOffsetStanding; // offset 0x21A0, size 0xC, align 4
-    Vector m_vShootTestOffsetCrouching; // offset 0x21AC, size 0xC, align 4
-    GameTime_t m_leanStartTime; // offset 0x21B8, size 0x4, align 255
+    char _pad_0000[0xDB8]; // offset 0x0
+    int32[43] m_arrGoldSources; // offset 0xDB8, size 0xAC, align 4
+    QAngle m_angClientCamera; // offset 0xE64, size 0xC, align 4
+    QAngle m_angEyeAngles; // offset 0xE70, size 0xC, align 4
+    QAngle m_angLockedEyeAngles; // offset 0xE7C, size 0xC, align 4
+    bool m_bIgnoringZoom; // offset 0xE88, size 0x1, align 1
+    char _pad_0E89[0x3]; // offset 0xE89
+    int32 m_nLevel; // offset 0xE8C, size 0x4, align 4
+    int32[6] m_nCurrencies; // offset 0xE90, size 0x18, align 4
+    int32[6] m_nSpentCurrencies; // offset 0xEA8, size 0x18, align 4
+    int32 m_nNumHeroChangesUsed; // offset 0xEC0, size 0x4, align 4
+    GameTime_t m_flRespawnTime; // offset 0xEC4, size 0x4, align 255
+    GameTime_t m_flLastSpawnTime; // offset 0xEC8, size 0x4, align 255
+    bool m_bInRegenerationZone; // offset 0xECC, size 0x1, align 1
+    bool m_bInItemShopZone; // offset 0xECD, size 0x1, align 1
+    bool m_bInHideoutZone; // offset 0xECE, size 0x1, align 1
+    char _pad_0ECF[0x1]; // offset 0xECF
+    int32 m_nLastEnteredTunnelID; // offset 0xED0, size 0x4, align 4
+    char _pad_0ED4[0x4]; // offset 0xED4
+    CNetworkUtlVectorBase< CUtlStringToken > m_vecFullSellPriceItems; // offset 0xED8, size 0x18, align 8
+    CNetworkUtlVectorBase< FullSellPriceAbilityUpgrades_t > m_vecFullSellPriceAbilityUpgrades; // offset 0xEF0, size 0x60, align 8
+    CNetworkUtlVectorBase< CUtlStringToken > m_vecQuickbuyQueue; // offset 0xF50, size 0x18, align 8
+    char _pad_0F68[0x18]; // offset 0xF68
+    CNetworkUtlVectorBase< CUtlStringToken > m_vecQuickbuySellQueue; // offset 0xF80, size 0x18, align 8
+    bool m_bQuickbuyAutoPurchase; // offset 0xF98, size 0x1, align 1
+    char _pad_0F99[0x3]; // offset 0xF99
+    CUtlStringToken m_unQuickbuyAutoPurchaseRequest; // offset 0xF9C, size 0x4, align 4
+    bool m_bQuickbuyAutoQueueBuild; // offset 0xFA0, size 0x1, align 1
+    char _pad_0FA1[0x2F]; // offset 0xFA1
+    CNetworkUtlVectorBase< CUtlStringToken > m_vecRestrictedToItems; // offset 0xFD0, size 0x18, align 8
+    HeroBuildID_t m_unHeroBuildID; // offset 0xFE8, size 0x4, align 255
+    char _pad_0FEC[0x4]; // offset 0xFEC
+    CUtlString m_sHeroBuildSerialized; // offset 0xFF0, size 0x8, align 8
+    CHandle< CBaseEntity > m_hViewEntityForObserver; // offset 0xFF8, size 0x4, align 4
+    bool m_bNetworkDisconnected; // offset 0xFFC, size 0x1, align 1
+    bool m_bLearningAbility; // offset 0xFFD, size 0x1, align 1
+    char _pad_0FFE[0x2]; // offset 0xFFE
+    int32 m_nFlashStartTick; // offset 0x1000, size 0x4, align 4
+    int32 m_nFlashMaxStartTick; // offset 0x1004, size 0x4, align 4
+    int32 m_nFlashFadeStartTick; // offset 0x1008, size 0x4, align 4
+    int32 m_nFlashEndTick; // offset 0x100C, size 0x4, align 4
+    int8 m_nFlashMaxAlpha; // offset 0x1010, size 0x1, align 1
+    char _pad_1011[0x3]; // offset 0x1011
+    int32 m_nDeducedLane; // offset 0x1014, size 0x4, align 4
+    CPlayerSlot m_hEnemyPlayerPrimaryAimTarget; // offset 0x1018, size 0x4, align 4
+    char _pad_101C[0x4]; // offset 0x101C
+    uint64 m_iEnemyPlayerAimTargetBitVec; // offset 0x1020, size 0x8, align 8
+    ItemDraftRoundState_t m_ItemDraftRoundState; // offset 0x1028, size 0x88, align 255
+    int32 m_nStreetBrawlCorruptionsAvailable; // offset 0x10B0, size 0x4, align 4
+    char _pad_10B4[0x1C]; // offset 0x10B4
+    GameTime_t m_tLastRevealTime; // offset 0x10D0, size 0x4, align 255
+    GameTime_t m_tLastPlayerRevealTime; // offset 0x10D4, size 0x4, align 255
+    bool m_bDismissedReportCard; // offset 0x10D8, size 0x1, align 1
+    char _pad_10D9[0x3]; // offset 0x10D9
+    float32 m_flCurrentHealingAmount; // offset 0x10DC, size 0x4, align 4
+    CHandle< CCitadelBaseAbility > m_hAbilityRequiresDebounce; // offset 0x10E0, size 0x4, align 4
+    char _pad_10E4[0x4]; // offset 0x10E4
+    CCitadelAbilityComponent m_CCitadelAbilityComponent; // offset 0x10E8, size 0x268, align 255
+    CCitadelHeroComponent m_CCitadelHeroComponent; // offset 0x1350, size 0x40, align 255
+    CCitadelRegenComponent m_CCitadelRegenComponent; // offset 0x1390, size 0x160, align 255
+    CCitadelMinimapComponent m_CCitadelMinimapComponent; // offset 0x14F0, size 0x20, align 255
+    bool m_bHasShopOpen; // offset 0x1510, size 0x1, align 1
+    char _pad_1511[0x3]; // offset 0x1511
+    ECitadelPingLocation_t m_eCurrentPingLocation; // offset 0x1514, size 0x4, align 4
+    char _pad_1518[0x6C0]; // offset 0x1518
+    float32 m_flLastRegenThinkTime; // offset 0x1BD8, size 0x4, align 4
+    char _pad_1BDC[0x3C]; // offset 0x1BDC
+    int32 m_nBulletsFiredAtUs; // offset 0x1C18, size 0x4, align 4
+    int32 m_nBulletsHitOnUs; // offset 0x1C1C, size 0x4, align 4
+    int32 m_nHeadshotsOnUs; // offset 0x1C20, size 0x4, align 4
+    GameTime_t m_flLastGameStatsRecorded; // offset 0x1C24, size 0x4, align 255
+    float32 m_flUnusedGoldRemainder; // offset 0x1C28, size 0x4, align 4
+    float32 m_flUnusedAbilityRemainder; // offset 0x1C2C, size 0x4, align 4
+    int32 m_nBulletsFiredAtEnemyHeroes; // offset 0x1C30, size 0x4, align 4
+    int32 m_nBulletsHitOnEnemyHeroes; // offset 0x1C34, size 0x4, align 4
+    int32 m_nHeadshotsOnEnemyHeroes; // offset 0x1C38, size 0x4, align 4
+    int32 m_nLuckyShotsOnEnemyHeroes; // offset 0x1C3C, size 0x4, align 4
+    int32 m_nBulletsHitOnImmobileEnemyHeroes; // offset 0x1C40, size 0x4, align 4
+    int32 m_nHeadshotsOnImmobileEnemyHeroes; // offset 0x1C44, size 0x4, align 4
+    CHandle< CBaseEntity > m_hEnemyHeroClientAimedAtAttackTime; // offset 0x1C48, size 0x4, align 4
+    bool m_bHasOverrideSpawnPos; // offset 0x1C4C, size 0x1, align 1
+    char _pad_1C4D[0x3]; // offset 0x1C4D
+    VectorWS m_vecOverrideSpawnPos; // offset 0x1C50, size 0xC, align 4
+    int32 m_iTrooperWaveEventCount; // offset 0x1C5C, size 0x4, align 4
+    int32 m_iTrooperWaveNumber; // offset 0x1C60, size 0x4, align 4
+    int32 m_iPrevTrooperWaveEventCount; // offset 0x1C64, size 0x4, align 4
+    int32 m_iPrevTrooperWaveNumber; // offset 0x1C68, size 0x4, align 4
+    bool m_bHasStartedPlaying; // offset 0x1C6C, size 0x1, align 1
+    char _pad_1C6D[0x3]; // offset 0x1C6D
+    CHandle< CBaseEntity > m_hRevengeTarget; // offset 0x1C70, size 0x4, align 4
+    char _pad_1C74[0x10]; // offset 0x1C74
+    GameTime_t m_flLastHurtTimeByEnemyHero; // offset 0x1C84, size 0x4, align 255
+    GameTime_t m_flLastHurtByNeutral; // offset 0x1C88, size 0x4, align 255
+    GameTime_t m_flLastHurtByEnemyNPC; // offset 0x1C8C, size 0x4, align 255
+    GameTime_t m_flLastTimeLookedAtByDirector; // offset 0x1C90, size 0x4, align 255
+    char _pad_1C94[0x4]; // offset 0x1C94
+    CTakeDamageResult m_ragdollDamage; // offset 0x1C98, size 0x68, align 8
+    char _pad_1D00[0x60]; // offset 0x1D00
+    CCitadelRecentDamage m_sInCombat; // offset 0x1D60, size 0x18, align 255
+    CCitadelRecentDamage m_sPlayerDamageTaken; // offset 0x1D78, size 0x18, align 255
+    CCitadelRecentDamage m_sPlayerDamageDealt; // offset 0x1D90, size 0x18, align 255
+    char _pad_1DA8[0xBC]; // offset 0x1DA8
+    CMsgLaneColor m_eZipLineLaneColor; // offset 0x1E64, size 0x4, align 4
+    CEntityIndex m_nMapDistrictTrigger; // offset 0x1E68, size 0x4, align 4
+    int8 m_nMapDistrictLocation; // offset 0x1E6C, size 0x1, align 1
+    bool m_bCanBecomeRagdoll; // offset 0x1E6D, size 0x1, align 1
+    char _pad_1E6E[0x2]; // offset 0x1E6E
+    float32 m_blindUntilTime; // offset 0x1E70, size 0x4, align 4
+    float32 m_blindStartTime; // offset 0x1E74, size 0x4, align 4
+    int8 m_nSuccessiveDucks; // offset 0x1E78, size 0x1, align 1
+    char _pad_1E79[0x3]; // offset 0x1E79
+    GameTime_t m_flLastDuckTime; // offset 0x1E7C, size 0x4, align 255
+    GameTime_t m_flPredTimeSlowedStart; // offset 0x1E80, size 0x4, align 255
+    GameTime_t m_flPredTimeSlowedEnd; // offset 0x1E84, size 0x4, align 255
+    float32 m_flPredSlowSpeed; // offset 0x1E88, size 0x4, align 4
+    GameTime_t[4] m_flTimeSlowedStart; // offset 0x1E8C, size 0x10, align 4
+    GameTime_t[4] m_flTimeSlowedEnd; // offset 0x1E9C, size 0x10, align 4
+    float32[4] m_flSlowSpeed; // offset 0x1EAC, size 0x10, align 4
+    GameTime_t m_flForceInCombatAnimsUntilTime; // offset 0x1EBC, size 0x4, align 255
+    bool[4] m_arrPreventAbilityLearning; // offset 0x1EC0, size 0x4, align 1
+    int32 m_iCurSlowSlot; // offset 0x1EC4, size 0x4, align 4
+    char _pad_1EC8[0x4]; // offset 0x1EC8
+    ParticleIndex_t m_nRespawnParticleIndex; // offset 0x1ECC, size 0x4, align 255
+    ParticleIndex_t m_nShoppingParticle; // offset 0x1ED0, size 0x4, align 255
+    char _pad_1ED4[0x2C]; // offset 0x1ED4
+    CCitadelPlayerBot* m_pBot; // offset 0x1F00, size 0x8, align 8
+    char _pad_1F08[0x280]; // offset 0x1F08
+    bool m_bLocoLeanTriggeredForDirection; // offset 0x2188, size 0x1, align 1
+    bool m_bLocoRunToStopCanTrigger; // offset 0x2189, size 0x1, align 1
+    char _pad_218A[0x2]; // offset 0x218A
+    float32 m_flCrouchFraction; // offset 0x218C, size 0x4, align 4
+    float32 m_flCrouchSpeed; // offset 0x2190, size 0x4, align 4
+    GameTime_t m_fidgetTime; // offset 0x2194, size 0x4, align 255
+    Vector m_vShootTestOffsetStanding; // offset 0x2198, size 0xC, align 4
+    Vector m_vShootTestOffsetCrouching; // offset 0x21A4, size 0xC, align 4
+    GameTime_t m_leanStartTime; // offset 0x21B0, size 0x4, align 255
+    char _pad_21B4[0x8]; // offset 0x21B4
     GameTick_t m_nLastUnpredictableMovementTick; // offset 0x21BC, size 0x4, align 255
-    char _pad_21C0[0x40]; // offset 0x21C0
-    uint8 m_nAudioEnclosure; // offset 0x2200, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    bool m_bAudioHasSkyExposure; // offset 0x2201, size 0x1, align 1 | MNetworkEnable MNetworkUserGroup
-    char _pad_2202[0xE]; // offset 0x2202
+    char _pad_21C0[0x60]; // offset 0x21C0
 };

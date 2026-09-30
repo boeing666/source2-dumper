@@ -1,6 +1,6 @@
 #pragma once
 
-class CRandStopwatch : public CStopwatchBase /*0x0*/  // sizeof 0x14, align 0xFF [trivial_dtor] (client)
+class CRandStopwatch : public CStopwatchBase /*0x0*/  // sizeof 0x14, align 0xFF [trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xC]; // offset 0x0

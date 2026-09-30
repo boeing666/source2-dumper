@@ -3,8 +3,6 @@
 enum EBaseUserMessages : uint32_t  // sizeof 0x4
 {
     UM_AchievementEvent = 101,
-    UM_CloseCaption = 102,
-    UM_CloseCaptionDirect = 103,
     UM_CurrentTimescale = 104,
     UM_DesiredTimescale = 105,
     UM_Fade = 106,
@@ -52,5 +50,9 @@ enum EBaseUserMessages : uint32_t  // sizeof 0x4
     UM_ExtraUserData = 164,
     UM_NotifyResponseFound = 165,
     UM_PlayResponseConditional = 166,
+    UM_UserSentBugBug = 167,
+    UM_UsageReport = 168,
+    UM_RemoteServerCommand = 169,
+    UM_RemoteServerResponse = 170,
     UM_MAX_BASE = 200,
 };

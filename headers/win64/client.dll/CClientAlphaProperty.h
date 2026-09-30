@@ -1,6 +1,6 @@
 #pragma once
 
-class CClientAlphaProperty : public IClientAlphaProperty /*0x0*/  // sizeof 0x30, align 0xFF [vtable trivial_dtor] (client)
+class CClientAlphaProperty : public IClientAlphaProperty /*0x0*/  // sizeof 0x30, align 0x10 [vtable trivial_dtor] (client) {MGetKV3ClassDefaults}
 {
 public:
     uint16_t m_nDesyncOffset : 14; // offset 0x0

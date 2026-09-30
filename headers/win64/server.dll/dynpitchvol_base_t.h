@@ -1,6 +1,6 @@
 #pragma once
 
-struct dynpitchvol_base_t  // sizeof 0x64, align 0xFF [trivial_ctor trivial_dtor] (server)
+struct dynpitchvol_base_t  // sizeof 0x64, align 0x4 [trivial_ctor trivial_dtor] (server) {MGetKV3ClassDefaults}
 {
     int32 preset; // offset 0x0, size 0x4, align 4
     int32 pitchrun; // offset 0x4, size 0x4, align 4

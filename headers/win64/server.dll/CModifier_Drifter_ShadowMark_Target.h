@@ -1,9 +1,7 @@
 #pragma once
 
-class CModifier_Drifter_ShadowMark_Target : public CCitadelModifier /*0x0*/  // sizeof 0x258, align 0xFF [vtable] (server)
+class CModifier_Drifter_ShadowMark_Target : public CCitadelModifier_BleedBase /*0x0*/  // sizeof 0x2A8, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0xD0]; // offset 0x0
-    GameTime_t m_flLastTickTime; // offset 0xD0, size 0x4, align 255
-    char _pad_00D4[0x184]; // offset 0xD4
+    char _pad_0000[0x2A8]; // offset 0x0
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseModifier  // sizeof 0x90, align 0xFF [vtable abstract] (client)
+class CBaseModifier  // sizeof 0x90, align 0xFF [vtable abstract] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x28]; // offset 0x0
@@ -10,7 +10,7 @@ public:
     float32 m_flDuration; // offset 0x34, size 0x4, align 4
     CHandle< C_BaseEntity > m_hCaster; // offset 0x38, size 0x4, align 4
     CHandle< C_BaseEntity > m_hAbility; // offset 0x3C, size 0x4, align 4
-    CModifierHandleBase m_hAuraProvider; // offset 0x40, size 0x18, align 255
+    CModifierHandleBase m_hAuraProvider; // offset 0x40, size 0x18, align 8
     bool m_bInAuraRange; // offset 0x58, size 0x1, align 1
     char _pad_0059[0x3]; // offset 0x59
     CUtlStringToken m_nAbilitySubclassID; // offset 0x5C, size 0x4, align 4
@@ -22,8 +22,8 @@ public:
     CUtlVector< GameTime_t >* m_pVecStackDecayTimes; // offset 0x68, size 0x8, align 8 | MNotSaved
     uint8 m_eDestroyReason; // offset 0x70, size 0x1, align 1
     bool m_bDisabled; // offset 0x71, size 0x1, align 1
-    bool m_bSuppressSendModifier; // offset 0x72, size 0x1, align 1
-    char _pad_0073[0x1]; // offset 0x73
+    bool m_bSuppressSendModifier; // offset 0x72, size 0x1, align 1 | MNotSaved
+    bool m_bReadyOnClient; // offset 0x73, size 0x1, align 1 | MNotSaved
     float32 m_flThinkInterval; // offset 0x74, size 0x4, align 4
     GameTime_t m_flThinkIntervalStartTime; // offset 0x78, size 0x4, align 255
     float32 m_flTimeScale; // offset 0x7C, size 0x4, align 4

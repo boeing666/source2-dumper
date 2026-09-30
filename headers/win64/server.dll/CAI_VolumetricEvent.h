@@ -1,6 +1,6 @@
 #pragma once
 
-class CAI_VolumetricEvent  // sizeof 0x78, align 0xFF (server)
+class CAI_VolumetricEvent  // sizeof 0x80, align 0x8 (server) {MGetKV3ClassDefaults}
 {
 public:
     AI_VolumetricEventHandle_t m_hHandle; // offset 0x0, size 0x8, align 255
@@ -15,7 +15,7 @@ public:
     float32 m_flRadius; // offset 0x20, size 0x4, align 4
     GameTime_t m_flExpireTime; // offset 0x24, size 0x4, align 255
     char _pad_0028[0x8]; // offset 0x28
-    CRelativeLocation m_vOrigin; // offset 0x30, size 0x40, align 255
-    CHandle< CBaseEntity > m_hTarget; // offset 0x70, size 0x4, align 4
-    char _pad_0074[0x4]; // offset 0x74
+    CRelativeLocation m_vOrigin; // offset 0x30, size 0x48, align 8
+    CHandle< CBaseEntity > m_hTarget; // offset 0x78, size 0x4, align 4
+    char _pad_007C[0x4]; // offset 0x7C
 };
