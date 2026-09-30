@@ -179,7 +179,7 @@ public:
 
 	HSCRIPT GetRootTable() override { return nullptr; }
 	HSCRIPT CopyHandle(HSCRIPT hScope) override { return hScope; }
-#if defined(GAME_CS2)
+#if defined(GAME_CS2) || defined(GAME_DEADLOCK)
 	int LoadAndCompileScriptFile(const char*, const char*, HSCRIPT* pScript) override {
 		if (pScript) {
 			*pScript = nullptr;
