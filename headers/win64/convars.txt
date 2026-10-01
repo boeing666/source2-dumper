@@ -1209,6 +1209,7 @@ citadel_per_weapon_per_surface_impact_effects | developmentonly,gamedll,clientdl
 citadel_perf_interval_report_s | developmentonly,gamedll | The interval that we record performance stats to the log at measured in seconds
 citadel_perf_long_frame_time_threshold_ms | developmentonly,gamedll | The time in milliseconds where if a frame is beyond this, count it as a long frame
 citadel_perf_short_idle_time_threshold_ms | developmentonly,gamedll | The amount of time in milliseconds where if we have less than this in idle time, count it as a low idle frame
+citadel_photomode_enabled | clientdll,release | Hides Healthbars, Local Hero, HUD
 citadel_pickup_spawner_enabled | gamedll,replicated,cheat,release | Set to false to stop citadel_pickup_spawner pickups (healing snacks) from spawning and respawning
 citadel_pickup_spawner_initial_spawn_time_override | gamedll,replicated,cheat,release | If positive, override the initial spawn time (in seconds) for all citadel_pickup_spawner pickups
 citadel_pickup_spawner_spawn_interval_override | gamedll,replicated,cheat,release | If positive, override the respawn interval (in seconds) for all citadel_pickup_spawner pickups
@@ -1225,6 +1226,7 @@ citadel_ping_radial_anchor_mode | developmentonly,clientdll | Comms wheel quick 
 citadel_ping_radial_debug_gesture | developmentonly,clientdll | Draw comms wheel quick reveal deadzone. 1: the pseudo deadzone capsule in the world plus a screen readout. 2: adds a per-frame console log.
 citadel_ping_radial_early_open_deflection_deg | developmentonly,clientdll | Degrees of camera deflection away from the thing we pressed on that force the radial open ahead of its delay. Degrees rather than pixels so the mouse sensitivity slider already normalises it. <= 0, ignore gesture angle don't open 
 citadel_ping_spam_hides_marker | gamedll,cheat | Restores the old behaviour where repeat pings hid the marker as well as the sound. The marker is positional information the team needs; the noise is the spam.
+citadel_ping_teammate_alone_radius | gamedll,cheat | A pinged teammate with no other living ally (the pinger included) within this many units is told to be careful.
 citadel_ping_wheel_activation_radius | developmentonly,clientdll | Increase this to change how much you have to move your mouse to make the mousewheel visible.
 citadel_play_page_fake_data | developmentonly,clientdll | 
 citadel_play_page_finished_tutorial | developmentonly,clientdll | 
@@ -1595,10 +1597,13 @@ citadel_subtitles_all_caps | clientdll,per_user | Show the HUD subtitles in all 
 citadel_subtitles_background_color_b | clientdll,per_user | Blue channel of the HUD subtitle background color.
 citadel_subtitles_background_color_g | clientdll,per_user | Green channel of the HUD subtitle background color.
 citadel_subtitles_background_color_r | clientdll,per_user | Red channel of the HUD subtitle background color.
+citadel_subtitles_background_opacity | clientdll,per_user | Opacity, in percent, of the HUD subtitle background.
+citadel_subtitles_background_style | clientdll,per_user | Style of the HUD subtitle background: 0 solid, 1 outline.
 citadel_subtitles_bold_font | clientdll,per_user | Show the HUD subtitles in a semi-bold font rather than normal weight.
 citadel_subtitles_custom_style | clientdll,per_user | Show the HUD subtitles in the player's custom size, colors, and font rather than the default style.
 citadel_subtitles_font | clientdll,per_user | Font of the HUD subtitles: 0 default, 1 block, 2 stylized.
 citadel_subtitles_font_size | clientdll,per_user | Font size of the HUD subtitles.
+citadel_subtitles_outline_thickness | clientdll,per_user | Thickness, in pixels, of the outline around the HUD subtitles when their background style is outline.
 citadel_subtitles_text_color_b | clientdll,per_user | Blue channel of the HUD subtitle text color.
 citadel_subtitles_text_color_g | clientdll,per_user | Green channel of the HUD subtitle text color.
 citadel_subtitles_text_color_r | clientdll,per_user | Red channel of the HUD subtitle text color.
@@ -2290,15 +2295,9 @@ fire_use_modifier | developmentonly,gamedll,clientdll,replicated,defensive |
 fish_debug | clientdll,cheat | Show debug info for fish
 fish_dormant | gamedll,replicated,cheat | Turns off interactive fish behavior. Fish become immobile and unresponsive.
 fog_color | clientdll,cheat | 
-fog_colorskybox | clientdll,cheat | 
 fog_enable | clientdll,cheat | Enable fog
-fog_enableskybox | clientdll,cheat | 
 fog_end | clientdll,cheat | 
-fog_endskybox | clientdll,cheat | 
 fog_hdrcolorscale | clientdll,cheat | 
-fog_hdrcolorscaleskybox | clientdll,cheat | 
-fog_maxdensity | clientdll,cheat | 
-fog_maxdensityskybox | clientdll,cheat | 
 fog_override | clientdll,cheat | Overrides the map's fog settings (-1 populates fog_ vars with map's values)
 fog_override_enable | cheat | Use fog_override convars instead of world fog data
 fog_override_end | cheat | 
@@ -2306,7 +2305,6 @@ fog_override_exponent | cheat |
 fog_override_max_density | cheat | 
 fog_override_start | cheat | 
 fog_start | clientdll,cheat | 
-fog_startskybox | clientdll,cheat | 
 fog_volume_debug | developmentonly,gamedll,defensive | If enabled, prints diagnostic information about the current fog volume
 footstep_debug | developmentonly,gamedll,clientdll,replicated,defensive | 
 footstep_force_volume | developmentonly,gamedll,clientdll,replicated,defensive | 
