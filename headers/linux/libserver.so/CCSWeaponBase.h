@@ -36,45 +36,46 @@ public:
     bool m_bInReload; // offset 0x1280, size 0x1, align 1
     char _pad_1281[0x3]; // offset 0x1281
     GameTick_t m_nDeployTick; // offset 0x1284, size 0x4, align 255
-    GameTime_t m_flDroppedAtTime; // offset 0x1288, size 0x4, align 255
-    char _pad_128C[0x4]; // offset 0x128C
-    bool m_bIsHauledBack; // offset 0x1290, size 0x1, align 1
-    bool m_bSilencerOn; // offset 0x1291, size 0x1, align 1
-    char _pad_1292[0x2]; // offset 0x1292
-    GameTime_t m_flTimeSilencerSwitchComplete; // offset 0x1294, size 0x4, align 255
-    bool m_bStealthy; // offset 0x1298, size 0x1, align 1
-    bool m_bInSilentReloadSection; // offset 0x1299, size 0x1, align 1
-    bool m_bSilentReloadStatCounted; // offset 0x129A, size 0x1, align 1
-    bool m_bSilentReloadStatPending; // offset 0x129B, size 0x1, align 1
-    GameTime_t m_flStealthHoldStartTime; // offset 0x129C, size 0x4, align 255
-    bool m_bReloadHeldSinceStart; // offset 0x12A0, size 0x1, align 1
-    char _pad_12A1[0x3]; // offset 0x12A1
-    float32 m_flWeaponActionPlaybackRate; // offset 0x12A4, size 0x4, align 4
-    int32 m_iOriginalTeamNumber; // offset 0x12A8, size 0x4, align 4
-    int32 m_iMostRecentTeamNumber; // offset 0x12AC, size 0x4, align 4
-    bool m_bDroppedNearBuyZone; // offset 0x12B0, size 0x1, align 1
-    char _pad_12B1[0x3]; // offset 0x12B1
-    float32 m_flNextAttackRenderTimeOffset; // offset 0x12B4, size 0x4, align 4
-    char _pad_12B8[0x10]; // offset 0x12B8
-    bool m_bCanBePickedUp; // offset 0x12C8, size 0x1, align 1
-    bool m_bUseCanOverrideNextOwnerTouchTime; // offset 0x12C9, size 0x1, align 1
-    char _pad_12CA[0x2]; // offset 0x12CA
-    GameTime_t m_nextOwnerTouchTime; // offset 0x12CC, size 0x4, align 255
-    GameTime_t m_nextPrevOwnerTouchTime; // offset 0x12D0, size 0x4, align 255
-    char _pad_12D4[0x4]; // offset 0x12D4
-    GameTime_t m_nextPrevOwnerUseTime; // offset 0x12D8, size 0x4, align 255
-    CHandle< CCSPlayerPawn > m_hPrevOwner; // offset 0x12DC, size 0x4, align 4
-    GameTick_t m_nDropTick; // offset 0x12E0, size 0x4, align 255
-    bool m_bWasActiveWeaponWhenDropped; // offset 0x12E4, size 0x1, align 1
-    char _pad_12E5[0x1F]; // offset 0x12E5
-    bool m_donated; // offset 0x1304, size 0x1, align 1
-    char _pad_1305[0x3]; // offset 0x1305
-    GameTime_t m_fLastShotTime; // offset 0x1308, size 0x4, align 255
-    bool m_bWasOwnedByCT; // offset 0x130C, size 0x1, align 1
-    bool m_bWasOwnedByTerrorist; // offset 0x130D, size 0x1, align 1
-    char _pad_130E[0x2]; // offset 0x130E
-    int32 m_numRemoveUnownedWeaponThink; // offset 0x1310, size 0x4, align 4
-    char _pad_1314[0x5C]; // offset 0x1314
+    GameTime_t m_flAttackHoldStartTime; // offset 0x1288, size 0x4, align 255
+    GameTime_t m_flDroppedAtTime; // offset 0x128C, size 0x4, align 255
+    char _pad_1290[0x4]; // offset 0x1290
+    bool m_bIsHauledBack; // offset 0x1294, size 0x1, align 1
+    bool m_bSilencerOn; // offset 0x1295, size 0x1, align 1
+    char _pad_1296[0x2]; // offset 0x1296
+    GameTime_t m_flTimeSilencerSwitchComplete; // offset 0x1298, size 0x4, align 255
+    bool m_bStealthy; // offset 0x129C, size 0x1, align 1
+    bool m_bInSilentReloadSection; // offset 0x129D, size 0x1, align 1
+    bool m_bSilentReloadStatCounted; // offset 0x129E, size 0x1, align 1
+    bool m_bSilentReloadStatPending; // offset 0x129F, size 0x1, align 1
+    GameTime_t m_flStealthHoldStartTime; // offset 0x12A0, size 0x4, align 255
+    bool m_bReloadHeldSinceStart; // offset 0x12A4, size 0x1, align 1
+    char _pad_12A5[0x3]; // offset 0x12A5
+    float32 m_flWeaponActionPlaybackRate; // offset 0x12A8, size 0x4, align 4
+    int32 m_iOriginalTeamNumber; // offset 0x12AC, size 0x4, align 4
+    int32 m_iMostRecentTeamNumber; // offset 0x12B0, size 0x4, align 4
+    bool m_bDroppedNearBuyZone; // offset 0x12B4, size 0x1, align 1
+    char _pad_12B5[0x3]; // offset 0x12B5
+    float32 m_flNextAttackRenderTimeOffset; // offset 0x12B8, size 0x4, align 4
+    char _pad_12BC[0x14]; // offset 0x12BC
+    bool m_bCanBePickedUp; // offset 0x12D0, size 0x1, align 1
+    bool m_bUseCanOverrideNextOwnerTouchTime; // offset 0x12D1, size 0x1, align 1
+    char _pad_12D2[0x2]; // offset 0x12D2
+    GameTime_t m_nextOwnerTouchTime; // offset 0x12D4, size 0x4, align 255
+    GameTime_t m_nextPrevOwnerTouchTime; // offset 0x12D8, size 0x4, align 255
+    char _pad_12DC[0x4]; // offset 0x12DC
+    GameTime_t m_nextPrevOwnerUseTime; // offset 0x12E0, size 0x4, align 255
+    CHandle< CCSPlayerPawn > m_hPrevOwner; // offset 0x12E4, size 0x4, align 4
+    GameTick_t m_nDropTick; // offset 0x12E8, size 0x4, align 255
+    bool m_bWasActiveWeaponWhenDropped; // offset 0x12EC, size 0x1, align 1
+    char _pad_12ED[0x1F]; // offset 0x12ED
+    bool m_donated; // offset 0x130C, size 0x1, align 1
+    char _pad_130D[0x3]; // offset 0x130D
+    GameTime_t m_fLastShotTime; // offset 0x1310, size 0x4, align 255
+    bool m_bWasOwnedByCT; // offset 0x1314, size 0x1, align 1
+    bool m_bWasOwnedByTerrorist; // offset 0x1315, size 0x1, align 1
+    char _pad_1316[0x2]; // offset 0x1316
+    int32 m_numRemoveUnownedWeaponThink; // offset 0x1318, size 0x4, align 4
+    char _pad_131C[0x54]; // offset 0x131C
     CIronSightController m_IronSightController; // offset 0x1370, size 0x18, align 255
     int32 m_iIronSightMode; // offset 0x1388, size 0x4, align 4
     GameTime_t m_flLastLOSTraceFailureTime; // offset 0x138C, size 0x4, align 255

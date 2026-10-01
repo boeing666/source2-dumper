@@ -290,8 +290,12 @@ cl_crosshaircolor_b | clientdll,per_user | Crosshair color, blue component
 cl_crosshaircolor_g | clientdll,per_user | Crosshair color, green component
 cl_crosshaircolor_r | clientdll,per_user | Crosshair color, red component
 cl_crosshairdot | clientdll,per_user | Draw a dot at the center of the crosshair
+cl_crosshairoutline_a | clientdll,per_user | Crosshair outline opacity. 0 = fully transparent, 255 = fully opaque
+cl_crosshairoutline_b | clientdll,per_user | Crosshair outline color, blue component
+cl_crosshairoutline_g | clientdll,per_user | Crosshair outline color, green component
+cl_crosshairoutline_r | clientdll,per_user | Crosshair outline color, red component
 cl_crosshairsize | clientdll,hidden,per_user | 
-cl_crosshairstyle | clientdll,per_user | Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad, 8 = Static Square. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
+cl_crosshairstyle | clientdll,per_user | Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad, 8 = Static Square, 9 = Static Quad.
 cl_crosshairthickness | clientdll,hidden,per_user | 
 cl_csgo_shoot_debugvis_rdp_text_l | developmentonly,clientdll | 
 cl_csgo_shoot_debugvis_rdp_text_x | developmentonly,clientdll | 
@@ -394,7 +398,6 @@ cl_grenadecrosshair_fire | clientdll,per_user | Is the grenade crosshair enabled
 cl_grenadecrosshair_flash | clientdll,per_user | Is the grenade crosshair enabled
 cl_grenadecrosshair_keepusercrosshair | clientdll,per_user | Keep drawing the user's crosshair while the grenade throw crosshair is shown
 cl_grenadecrosshair_smoke | clientdll,per_user | Is the grenade crosshair enabled
-cl_grenadecrosshair_tickinterval | developmentonly,clientdll | Spacing between ticks on the grenade throw crosshair
 cl_grenadecrosshair_ticklabels | developmentonly,clientdll | Draw labels on grenade throw crosshair ticks
 cl_grenadecrosshair_tickscaling | developmentonly,clientdll | Scale applied to grenade throw crosshair ticks
 cl_grenadecrosshairdelay_decoy | clientdll,per_user | How long should the pin be pulled for before showing the grenade crosshair
@@ -445,7 +448,7 @@ cl_inventory_saved_filter2 | clientdll,release |
 cl_inventory_saved_sort2 | clientdll,release | 
 cl_invites_only_friends | clientdll,release | If turned on, will ignore in-game invites from recent teammates or other non-friends
 cl_invites_only_mainmenu | clientdll,release | If turned on, will ignore all invites when user is playing a match
-cl_ironsight_dot_scale | clientdll,per_user | Ironsight dot scale
+cl_ironsight_dot_scale | clientdll,per_user | Scope dot scale
 cl_ironsight_filter_alpha | developmentonly,clientdll | Ironsight filter alpha
 cl_ironsight_min_channel_color | developmentonly,clientdll | Ironsight min channel color value
 cl_ironsight_usecrosshaircolor | clientdll,per_user | Should the scope dot match the user's crosshair color
@@ -2020,6 +2023,9 @@ r_csgo_cmaa_debug_edges | developmentonly,clientdll | debug visualize edges
 r_csgo_cmaa_enable | developmentonly,clientdll,defensive | 
 r_csgo_cmaa_extra_sharp | developmentonly,clientdll,defensive | trade more sharpness for reduced antialiasing
 r_csgo_cmaa_quality | developmentonly,clientdll,defensive | 0=low, 1=medium, 2=high, 3=ultra
+r_csgo_crosshair_debug_tiles | developmentonly,clientdll | 
+r_csgo_crosshair_debug_tiles_count_red | developmentonly,clientdll | 
+r_csgo_crosshair_tile_size | developmentonly,clientdll | 
 r_csgo_csm_max_visible_distance | developmentonly,clientdll | 
 r_csgo_csm_max_visible_distance_preview | developmentonly,clientdll | 
 r_csgo_csm_override_staticgeo_cascades_alphatest | developmentonly,clientdll,defensive | If lb_csm_override_staticgeo_cascades true, ensure objects with SCENEOBJECTFLAG_ALPHA_TESTED flag will be rendered into cascade.
