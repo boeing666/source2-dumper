@@ -786,10 +786,16 @@ citadel_enable_vdata_sound_preload | developmentonly,clientdll |
 citadel_end_of_match_additional_delay_s | developmentonly,gamedll,replicated | How long in addition to the tv_delay do we wait at the end of the match before going to the score screen in seconds
 citadel_enemy_consume_stamina_notification_range_close | developmentonly,gamedll,clientdll,replicated,defensive | If an enemy is this close, then we send a stamina consume usermessage to enemies.
 citadel_enemy_consume_stamina_notification_range_far | developmentonly,gamedll,clientdll,replicated,defensive | If an enemy is this far, then we never send a stamina consume usermessage to enemies.
+citadel_enemy_damage_delta_color_b | clientdll,per_user | Blue channel of the color used for the part of an enemy health bar just lost to damage.
+citadel_enemy_damage_delta_color_g | clientdll,per_user | Green channel of the color used for the part of an enemy health bar just lost to damage.
+citadel_enemy_damage_delta_color_r | clientdll,per_user | Red channel of the color used for the part of an enemy health bar just lost to damage.
 citadel_enemy_ui_color_b | clientdll,per_user | Blue channel of the color used for enemy health bars and other enemy indicators in the UI.
 citadel_enemy_ui_color_g | clientdll,per_user | Green channel of the color used for enemy health bars and other enemy indicators in the UI.
 citadel_enemy_ui_color_r | clientdll,per_user | Red channel of the color used for enemy health bars and other enemy indicators in the UI.
 citadel_enemy_visible_upon_reveal_duration | developmentonly,clientdll | How long an enemy appears through walls (outline or ui icon) after taking damage. Must also have fog of war visibility.
+citadel_enemy_zipline_color_b | clientdll,per_user | Blue channel of the color used for enemy ziplines and enemy objectives on the minimap.
+citadel_enemy_zipline_color_g | clientdll,per_user | Green channel of the color used for enemy ziplines and enemy objectives on the minimap.
+citadel_enemy_zipline_color_r | clientdll,per_user | Red channel of the color used for enemy ziplines and enemy objectives on the minimap.
 citadel_english_hero_names | clientdll,per_user | 
 citadel_english_mod_names | clientdll,per_user | 
 citadel_entity_ping_duration | gamedll,cheat | 
@@ -1135,9 +1141,9 @@ citadel_new_abandon_rules_early_end_countdown | developmentonly,gamedll,clientdl
 citadel_new_abandon_rules_early_t1 | developmentonly,gamedll,defensive | [New Abandon Rules] Abandon is considered 'early' if this is before the first T1 kill, no matter the match time.
 citadel_new_abandon_rules_early_time | developmentonly,gamedll,defensive | [New Abandon Rules] Time for the 'early' trigger to take effect. Match will not be scored, etc.
 citadel_new_mini_radial_delay_time | developmentonly,clientdll | 
-citadel_new_ping_coyote_time | developmentonly,clientdll | 
 citadel_new_ping_fow_window | developmentonly,clientdll | How long after an enemy drops off shared team vision they can still be pinged, in seconds.
 citadel_new_ping_free_cursor_world_trace | developmentonly,clientdll | Allow free cursor pings to trace through the HUD into the world (entities and ziplines).
+citadel_new_ping_hitbox_self_test | developmentonly,clientdll | When tracing in free cursor mode, turn on a more expensive trace vs the local player model (nearer objects will undergo more scrutiny)
 citadel_new_ping_minimap_left_click | developmentonly,clientdll | With citadel_new_ping_system on, left clicking anywhere on the minimap opens the ping radial, same as the ping keybind. Never overrides a minimap targeting ability like Mirage's teleport.
 citadel_new_ping_system | developmentonly,clientdll | Allow Minimap Radial to appear. 0: Off. 1: On. 2: Spew
 citadel_new_ping_system_fixed_slot_icons | developmentonly,clientdll,defensive | Draw the icon each slot pins in scripts/ping_targets.vdata on the radials whose layout is fixed, so the art stops moving when an override fires. A minimap sourced radial pins the generic_entity row's four, since one compass serves everything on the map; a radial from hud chrome pins its own row's, so a friendly and an enemy portrait stay distinct. 0 restores the per ping icons.
@@ -1497,7 +1503,7 @@ citadel_shop_items_appear_enhanced | clientdll,release | Makes all of the items 
 citadel_shop_open_focus_search | clientdll | Give the shop search box keyboard focus when the shop opens
 citadel_shop_reset_time | developmentonly,clientdll | 
 citadel_shop_scroll_snap_threshold | clientdll,release | How many pixels of scroll delta triggers a snap.  Source2 mouse wheel is hardcoded to 3.0 per integral mouse wheel click.
-citadel_shop_scroll_snap_to_tiers | clientdll,release | Snap mouse wheel scrolling in the shop's filtered tab to price tiers. The arrow keys step a tier either way.
+citadel_shop_scroll_snap_to_tiers | clientdll,release | Snap mouse wheel scrolling in the shop's filtered tab to price tiers. The tier keybinds step a tier either way.
 citadel_shop_search_use_name_only | clientdll | Only match items based on the name of the item when searching
 citadel_show_account_ids | clientdll,release | When set, account IDs will be shown on player tooltips
 citadel_show_active_slot_popup | clientdll,per_user,release | 
@@ -1743,6 +1749,7 @@ citadel_unit_status_enabled | clientdll,cheat,release | Show health bars and nam
 citadel_unit_status_fadeout_dist | developmentonly,clientdll | How far out of the players effective gun range do we show the health bar
 citadel_unit_status_healthbar_highlight_speed | developmentonly,clientdll | 
 citadel_unit_status_height | developmentonly,clientdll | 
+citadel_unit_status_hero_name_mode | clientdll,per_user,release | Name shown above hero health bars. 0: player name, 1: hero name, 2: none
 citadel_unit_status_hide_names | clientdll,cheat,release | 
 citadel_unit_status_max_distance_distance | developmentonly,clientdll | 
 citadel_unit_status_max_distance_scale | developmentonly,clientdll | 
@@ -1750,6 +1757,14 @@ citadel_unit_status_max_health_per_bar | developmentonly,clientdll |
 citadel_unit_status_max_health_segment_increment | developmentonly,clientdll | 
 citadel_unit_status_max_total_bars | developmentonly,clientdll | 
 citadel_unit_status_min_distance_scale | developmentonly,clientdll | 
+citadel_unit_status_name_fade_end_dist | developmentonly,clientdll | Distance in meters from the camera at which names above health bars are fully faded out
+citadel_unit_status_name_fade_start_dist | developmentonly,clientdll | Distance in meters from the camera at which names above health bars start fading out
+citadel_unit_status_offset_player_min_z | developmentonly,clientdll | Min z offset for character's whose offset attachment go very low
+citadel_unit_status_offset_player_z_offset_adjustment | developmentonly,clientdll | Z Offset for all charcters, indpendent of the vmdl offset.
+citadel_unit_status_offset_smooth_large_delta | developmentonly,clientdll | > this is a large delta
+citadel_unit_status_offset_smooth_max_rate | developmentonly,clientdll | Smoothing for large deltas
+citadel_unit_status_offset_smooth_min_rate | developmentonly,clientdll | Smoothing for small deltas
+citadel_unit_status_offset_smooth_small_delta | developmentonly,clientdll | Around this is a small delta
 citadel_unit_status_opaque_dist_sq | developmentonly,clientdll | 
 citadel_unit_status_recent_damage_time | developmentonly,clientdll | 
 citadel_unit_status_show_ally_health_value | clientdll,per_user | Show health numbers on allied heroes' health bars when they take damage.
@@ -1757,8 +1772,6 @@ citadel_unit_status_show_critical_state | clientdll |
 citadel_unit_status_show_health_value | clientdll | 
 citadel_unit_status_show_stats | developmentonly,clientdll,defensive | 
 citadel_unit_status_stamina_consume_linger | developmentonly,clientdll | 
-citadel_unit_status_stamina_low_pips | developmentonly,clientdll | Stamina is always shown while the target has this many pips or fewer.
-citadel_unit_status_stamina_low_show_window | developmentonly,clientdll | How long a low stamina reading stays trusted without a fresh stamina message.
 citadel_unit_status_transparent_dist_sq | developmentonly,clientdll | 
 citadel_unit_status_viewer_damage_match_window | developmentonly,clientdll | How long a viewing player damage message and an observed healthbar drop wait for each other before being discarded
 citadel_unit_status_width | developmentonly,clientdll | 
