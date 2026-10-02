@@ -1,6 +1,6 @@
 #pragma once
 
-struct CitadelHeroData_t  // sizeof 0x1078, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MVDataRoot MVDataAssociatedFile MVDataOverlayType MVDataOutlinerLeafNameFn}
+struct CitadelHeroData_t  // sizeof 0x1088, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MVDataRoot MVDataAssociatedFile MVDataOverlayType MVDataOutlinerLeafNameFn}
 {
     char _pad_0000[0x8]; // offset 0x0
     CUtlVector< HeroAnimGraphDefaultValueOverride_t > m_vecAnimGraphDefaultValueOverrides; // offset 0x8, size 0x18, align 8
@@ -49,64 +49,65 @@ struct CitadelHeroData_t  // sizeof 0x1078, align 0x8 [vtable] (client) {MGetKV3
     CSoundEventName m_strRosterRemovedSound; // offset 0xAA0, size 0x10, align 8
     CSoundEventName m_strRosterAvoidedSound; // offset 0xAB0, size 0x10, align 8
     CSoundEventName m_strHeroVotedSound; // offset 0xAC0, size 0x10, align 8
-    CSoundEventName m_strCharacterRevealDialog; // offset 0xAD0, size 0x10, align 8
-    CSoundEventName m_strCharacterRevealSfxStart; // offset 0xAE0, size 0x10, align 8
-    CSoundEventName m_strCharacterRevealSfxStop; // offset 0xAF0, size 0x10, align 8
-    CSoundEventName m_strLowHealthSound; // offset 0xB00, size 0x10, align 8
-    CSoundEventName m_strHeroSpecificLowHealthSound; // offset 0xB10, size 0x10, align 8
-    CSoundEventName m_strMovementLoop; // offset 0xB20, size 0x10, align 8
-    CSoundEventName m_strMovementLoopStart; // offset 0xB30, size 0x10, align 8
-    CSoundEventName m_strMovementLoopStop; // offset 0xB40, size 0x10, align 8
-    CSoundEventName m_strSlideLoop; // offset 0xB50, size 0x10, align 8
-    CSoundEventName m_strPostGameVictorySound; // offset 0xB60, size 0x10, align 8
-    CSoundEventName m_strPostGameDefeatSound; // offset 0xB70, size 0x10, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCVSoundEventScriptList > > m_hGameSoundEventScript; // offset 0xB80, size 0xE0, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCVSoundEventScriptList > > m_hGeneratedVOEventScript; // offset 0xC60, size 0xE0, align 8
-    float32 m_flStealthSpeedMetersPerSecond; // offset 0xD40, size 0x4, align 4
-    EHeroDevelopmentState m_eHeroDevelopmentState; // offset 0xD44, size 0x1, align 1 | MPropertyStartGroup
-    bool m_bInDevelopment; // offset 0xD45, size 0x1, align 1
-    bool m_bNewPlayerRecommended; // offset 0xD46, size 0x1, align 1
-    bool m_bLaneTestingRecommended; // offset 0xD47, size 0x1, align 1
-    bool m_bNeedsTesting; // offset 0xD48, size 0x1, align 1
-    bool m_bLimitedTesting; // offset 0xD49, size 0x1, align 1
-    bool m_bDisabled; // offset 0xD4A, size 0x1, align 1
-    char _pad_0D4B[0x1]; // offset 0xD4B
-    int32 m_nComplexity; // offset 0xD4C, size 0x4, align 4
-    int32 m_nAllyBotDifficulty; // offset 0xD50, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
-    int32 m_nEnemyBotDifficulty; // offset 0xD54, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
-    float32 m_flMinLowHealthPercentage; // offset 0xD58, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription MPropertyAttributeRange
-    float32 m_flMaxLowHealthPercentage; // offset 0xD5C, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
-    float32 m_flMinMidHealthPercentage; // offset 0xD60, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
-    float32 m_flMaxMidHealthPercentage; // offset 0xD64, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
-    float32 m_flMinHealthForThreshold; // offset 0xD68, size 0x4, align 4 | MPropertyDescription
-    float32 m_flMaxHealthForThreshold; // offset 0xD6C, size 0x4, align 4 | MPropertyDescription
-    float32 m_flInCombatWithHeroDuration; // offset 0xD70, size 0x4, align 4 | MPropertyDescription
-    float32 m_flInCombatWithNonHeroDuration; // offset 0xD74, size 0x4, align 4 | MPropertyDescription
-    float32 m_flInCombatWithNeutralDuration; // offset 0xD78, size 0x4, align 4 | MPropertyDescription
-    bool m_bNAGunFalloffRange; // offset 0xD7C, size 0x1, align 1 | MPropertyDescription
-    bool m_bAllowedInTunnels; // offset 0xD7D, size 0x1, align 1 | MPropertyDescription
-    char _pad_0D7E[0x2]; // offset 0xD7E
-    CUtlOrderedMap< EStatsType, float32 > m_mapStartingStats; // offset 0xD80, size 0x28, align 8 | MPropertyStartGroup
-    CUtlOrderedMap< EStatsType, HeroScalingStat_t > m_mapScalingStats; // offset 0xDA8, size 0x28, align 8
-    CPiecewiseCurve m_groundDashPositionCurve; // offset 0xDD0, size 0x40, align 8
-    CUtlOrderedMap< EItemSlotTypes_t, CUtlVector< ModCostBonuses_t > > m_mapModCostBonuses; // offset 0xE10, size 0x28, align 8
-    CUtlOrderedMap< EItemSlotTypes_t, ItemSlotInfo_t > m_mapItemSlotInfo; // offset 0xE38, size 0x28, align 8
-    char _pad_0E60[0x50]; // offset 0xE60
-    EAbilityResourceType m_eAbilityResourceType; // offset 0xEB0, size 0x4, align 4
-    char _pad_0EB4[0x4]; // offset 0xEB4
-    CUtlString m_strGunTag; // offset 0xEB8, size 0x8, align 8
-    CUtlVector< CUtlString > m_vecHeroTags; // offset 0xEC0, size 0x18, align 8
-    EHeroType m_eHeroType; // offset 0xED8, size 0x4, align 4
-    char _pad_0EDC[0x4]; // offset 0xEDC
-    CUtlString m_strRosterBackgroundLayout; // offset 0xEE0, size 0x8, align 8
-    CUtlString m_strHideoutRichPresence; // offset 0xEE8, size 0x8, align 8 | MPropertyDescription
-    CUtlDict< float32 > m_mapItemDraftCounterWeights; // offset 0xEF0, size 0x28, align 8 | MPropertyMapKeyLeafChoiceProviderFn
-    char _pad_0F18[0x18]; // offset 0xF18
-    CUtlOrderedMap< EModifierValue, float32 > m_mapStandardLevelUpUpgrades; // offset 0xF30, size 0x28, align 8
-    ItemPopularity_t m_PopularItems; // offset 0xF58, size 0x58, align 8
-    CUtlOrderedMap< int32, HeroLevel_t > m_mapLevelInfo; // offset 0xFB0, size 0x28, align 8
-    CUtlOrderedMap< EAbilitySlots_t, CSubclassName< 4 > > m_mapBoundAbilities; // offset 0xFD8, size 0x28, align 8
-    CUtlOrderedMap< EAbilitySlots_t, CSubclassName< 4 > > m_mapWIPAbilities; // offset 0x1000, size 0x28, align 8
-    CUtlOrderedMap< CUtlString, ItemDraftWeight_t > m_mapItemDraftBucketing; // offset 0x1028, size 0x28, align 8 | MPropertyMapKeyLeafChoiceProviderFn
-    char _pad_1050[0x28]; // offset 0x1050
+    CSoundEventName m_strHeroDebutSound; // offset 0xAD0, size 0x10, align 8
+    CSoundEventName m_strCharacterRevealDialog; // offset 0xAE0, size 0x10, align 8
+    CSoundEventName m_strCharacterRevealSfxStart; // offset 0xAF0, size 0x10, align 8
+    CSoundEventName m_strCharacterRevealSfxStop; // offset 0xB00, size 0x10, align 8
+    CSoundEventName m_strLowHealthSound; // offset 0xB10, size 0x10, align 8
+    CSoundEventName m_strHeroSpecificLowHealthSound; // offset 0xB20, size 0x10, align 8
+    CSoundEventName m_strMovementLoop; // offset 0xB30, size 0x10, align 8
+    CSoundEventName m_strMovementLoopStart; // offset 0xB40, size 0x10, align 8
+    CSoundEventName m_strMovementLoopStop; // offset 0xB50, size 0x10, align 8
+    CSoundEventName m_strSlideLoop; // offset 0xB60, size 0x10, align 8
+    CSoundEventName m_strPostGameVictorySound; // offset 0xB70, size 0x10, align 8
+    CSoundEventName m_strPostGameDefeatSound; // offset 0xB80, size 0x10, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCVSoundEventScriptList > > m_hGameSoundEventScript; // offset 0xB90, size 0xE0, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCVSoundEventScriptList > > m_hGeneratedVOEventScript; // offset 0xC70, size 0xE0, align 8
+    float32 m_flStealthSpeedMetersPerSecond; // offset 0xD50, size 0x4, align 4
+    EHeroDevelopmentState m_eHeroDevelopmentState; // offset 0xD54, size 0x1, align 1 | MPropertyStartGroup
+    bool m_bInDevelopment; // offset 0xD55, size 0x1, align 1
+    bool m_bNewPlayerRecommended; // offset 0xD56, size 0x1, align 1
+    bool m_bLaneTestingRecommended; // offset 0xD57, size 0x1, align 1
+    bool m_bNeedsTesting; // offset 0xD58, size 0x1, align 1
+    bool m_bLimitedTesting; // offset 0xD59, size 0x1, align 1
+    bool m_bDisabled; // offset 0xD5A, size 0x1, align 1
+    char _pad_0D5B[0x1]; // offset 0xD5B
+    int32 m_nComplexity; // offset 0xD5C, size 0x4, align 4
+    int32 m_nAllyBotDifficulty; // offset 0xD60, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
+    int32 m_nEnemyBotDifficulty; // offset 0xD64, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
+    float32 m_flMinLowHealthPercentage; // offset 0xD68, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription MPropertyAttributeRange
+    float32 m_flMaxLowHealthPercentage; // offset 0xD6C, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
+    float32 m_flMinMidHealthPercentage; // offset 0xD70, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
+    float32 m_flMaxMidHealthPercentage; // offset 0xD74, size 0x4, align 4 | MPropertyDescription MPropertyAttributeRange
+    float32 m_flMinHealthForThreshold; // offset 0xD78, size 0x4, align 4 | MPropertyDescription
+    float32 m_flMaxHealthForThreshold; // offset 0xD7C, size 0x4, align 4 | MPropertyDescription
+    float32 m_flInCombatWithHeroDuration; // offset 0xD80, size 0x4, align 4 | MPropertyDescription
+    float32 m_flInCombatWithNonHeroDuration; // offset 0xD84, size 0x4, align 4 | MPropertyDescription
+    float32 m_flInCombatWithNeutralDuration; // offset 0xD88, size 0x4, align 4 | MPropertyDescription
+    bool m_bNAGunFalloffRange; // offset 0xD8C, size 0x1, align 1 | MPropertyDescription
+    bool m_bAllowedInTunnels; // offset 0xD8D, size 0x1, align 1 | MPropertyDescription
+    char _pad_0D8E[0x2]; // offset 0xD8E
+    CUtlOrderedMap< EStatsType, float32 > m_mapStartingStats; // offset 0xD90, size 0x28, align 8 | MPropertyStartGroup
+    CUtlOrderedMap< EStatsType, HeroScalingStat_t > m_mapScalingStats; // offset 0xDB8, size 0x28, align 8
+    CPiecewiseCurve m_groundDashPositionCurve; // offset 0xDE0, size 0x40, align 8
+    CUtlOrderedMap< EItemSlotTypes_t, CUtlVector< ModCostBonuses_t > > m_mapModCostBonuses; // offset 0xE20, size 0x28, align 8
+    CUtlOrderedMap< EItemSlotTypes_t, ItemSlotInfo_t > m_mapItemSlotInfo; // offset 0xE48, size 0x28, align 8
+    char _pad_0E70[0x50]; // offset 0xE70
+    EAbilityResourceType m_eAbilityResourceType; // offset 0xEC0, size 0x4, align 4
+    char _pad_0EC4[0x4]; // offset 0xEC4
+    CUtlString m_strGunTag; // offset 0xEC8, size 0x8, align 8
+    CUtlVector< CUtlString > m_vecHeroTags; // offset 0xED0, size 0x18, align 8
+    EHeroType m_eHeroType; // offset 0xEE8, size 0x4, align 4
+    char _pad_0EEC[0x4]; // offset 0xEEC
+    CUtlString m_strRosterBackgroundLayout; // offset 0xEF0, size 0x8, align 8
+    CUtlString m_strHideoutRichPresence; // offset 0xEF8, size 0x8, align 8 | MPropertyDescription
+    CUtlDict< float32 > m_mapItemDraftCounterWeights; // offset 0xF00, size 0x28, align 8 | MPropertyMapKeyLeafChoiceProviderFn
+    char _pad_0F28[0x18]; // offset 0xF28
+    CUtlOrderedMap< EModifierValue, float32 > m_mapStandardLevelUpUpgrades; // offset 0xF40, size 0x28, align 8
+    ItemPopularity_t m_PopularItems; // offset 0xF68, size 0x58, align 8
+    CUtlOrderedMap< int32, HeroLevel_t > m_mapLevelInfo; // offset 0xFC0, size 0x28, align 8
+    CUtlOrderedMap< EAbilitySlots_t, CSubclassName< 4 > > m_mapBoundAbilities; // offset 0xFE8, size 0x28, align 8
+    CUtlOrderedMap< EAbilitySlots_t, CSubclassName< 4 > > m_mapWIPAbilities; // offset 0x1010, size 0x28, align 8
+    CUtlOrderedMap< CUtlString, ItemDraftWeight_t > m_mapItemDraftBucketing; // offset 0x1038, size 0x28, align 8 | MPropertyMapKeyLeafChoiceProviderFn
+    char _pad_1060[0x28]; // offset 0x1060
 };

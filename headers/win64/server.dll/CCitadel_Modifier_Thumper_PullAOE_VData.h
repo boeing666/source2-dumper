@@ -1,8 +1,8 @@
 #pragma once
 
-class CCitadel_Modifier_Thumper_PullAOE_VData : public CCitadelModifierAuraVData /*0x0*/  // sizeof 0x898, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Modifier_Thumper_PullAOE_VData : public CCitadelModifierAuraVData /*0x0*/  // sizeof 0x8C8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x7B8]; // offset 0x0
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_AuraParticle; // offset 0x7B8, size 0xE0, align 8 | MPropertyStartGroup
+    char _pad_0000[0x7E8]; // offset 0x0
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_AuraParticle; // offset 0x7E8, size 0xE0, align 8 | MPropertyStartGroup
 };

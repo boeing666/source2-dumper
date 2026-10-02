@@ -1,6 +1,6 @@
 #pragma once
 
-class CitadelAbilityVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x13A0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults MVDataOverlayType}
+class CitadelAbilityVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x13E8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults MVDataOverlayType}
 {
 public:
     char _pad_0000[0x28]; // offset 0x0
@@ -84,42 +84,42 @@ public:
     CUtlString m_strSecondaryStatName; // offset 0x988, size 0x8, align 8
     CUtlString m_strCastButtonLocToken; // offset 0x990, size 0x8, align 8 | MPropertyDescription
     CUtlString m_strAltCastButtonLocToken; // offset 0x998, size 0x8, align 8 | MPropertyDescription
-    CitadelCameraOperationsSequence_t m_cameraSequenceCastStart; // offset 0x9A0, size 0x88, align 8 | MPropertyStartGroup MPropertyDescription
-    bool m_bEndCastStartSequenceOnCastComplete; // offset 0xA28, size 0x1, align 1 | MPropertyDescription
-    char _pad_0A29[0x7]; // offset 0xA29
-    CitadelCameraOperationsSequence_t m_cameraSequenceCastComplete; // offset 0xA30, size 0x88, align 8 | MPropertyDescription
-    CitadelCameraOperationsSequence_t m_cameraSequenceChannelStart; // offset 0xAB8, size 0x88, align 8 | MPropertyDescription
-    bool m_bEndChannelStartSequenceOnChannelComplete; // offset 0xB40, size 0x1, align 1 | MPropertyDescription
-    char _pad_0B41[0x7]; // offset 0xB41
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_previewParticle; // offset 0xB48, size 0xE0, align 8 | MPropertyStartGroup MPropertyDescription
-    CUtlString m_strPreviewParticleEffectConfig; // offset 0xC28, size 0x8, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_PreviewPathParticle; // offset 0xC30, size 0xE0, align 8 | MPropertyDescription
-    bool m_bUseSatShapesOnPreview; // offset 0xD10, size 0x1, align 1 | MPropertyDescription
-    char _pad_0D11[0x7]; // offset 0xD11
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_AOEPreviewParticleOverride; // offset 0xD18, size 0xE0, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ConePreviewParticleOverride; // offset 0xDF8, size 0xE0, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_LinePreviewParticleOverride; // offset 0xED8, size 0xE0, align 8 | MPropertyDescription
-    CUtlOrderedMap< AbilityCastEvent_t, CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > > m_mapCastEventParticles; // offset 0xFB8, size 0x28, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_skillshotHitParticle; // offset 0xFE0, size 0xE0, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_skillshotMissParticle; // offset 0x10C0, size 0xE0, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_TargetingPreviewParticle; // offset 0x11A0, size 0xE0, align 8 | MPropertyDescription
-    CSoundEventName m_strSelectedSound; // offset 0x1280, size 0x10, align 8 | MPropertyStartGroup
-    CSoundEventName m_strUnselectedSound; // offset 0x1290, size 0x10, align 8
-    CSoundEventName m_strSelectedLoopSound; // offset 0x12A0, size 0x10, align 8
-    CSoundEventName m_strCastSound; // offset 0x12B0, size 0x10, align 8
-    CSoundEventName m_strChannelSound; // offset 0x12C0, size 0x10, align 8
-    CSoundEventName m_strChannelLoopSound; // offset 0x12D0, size 0x10, align 8
-    CSoundEventName m_strCastDelaySound; // offset 0x12E0, size 0x10, align 8
-    CSoundEventName m_strCastDelayLoopSound; // offset 0x12F0, size 0x10, align 8
-    CSoundEventName m_strHitConfirmationSound; // offset 0x1300, size 0x10, align 8 | MPropertyDescription
-    CSoundEventName m_strDamageTakenSound; // offset 0x1310, size 0x10, align 8 | MPropertyDescription
-    CSoundEventName m_strAbilityOffCooldownSound; // offset 0x1320, size 0x10, align 8
-    CSoundEventName m_strAbilityChargeReadySound; // offset 0x1330, size 0x10, align 8
-    bool m_bPlayMeepMop; // offset 0x1340, size 0x1, align 1
-    char _pad_1341[0x7]; // offset 0x1341
-    CEmbeddedSubclass< CBaseModifier > m_AutoChannelModifier; // offset 0x1348, size 0x10, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CBaseModifier > m_AutoCastDelayModifier; // offset 0x1358, size 0x10, align 8
-    CUtlVector< CEmbeddedSubclass< CBaseModifier > > m_AutoIntrinsicModifiers; // offset 0x1368, size 0x18, align 8
-    AbilityCosmeticInfo_t m_cosmeticInfo; // offset 0x1380, size 0x8, align 8 | MPropertySuppressExpr
-    CUtlVector< ItemSectionInfo_t > m_vecTooltipSectionInfo; // offset 0x1388, size 0x18, align 8 | MPropertySuppressExpr MPropertyFriendlyName
+    CitadelCameraOperationsSequence_t m_cameraSequenceCastStart; // offset 0x9A0, size 0xA0, align 8 | MPropertyStartGroup MPropertyDescription
+    bool m_bEndCastStartSequenceOnCastComplete; // offset 0xA40, size 0x1, align 1 | MPropertyDescription
+    char _pad_0A41[0x7]; // offset 0xA41
+    CitadelCameraOperationsSequence_t m_cameraSequenceCastComplete; // offset 0xA48, size 0xA0, align 8 | MPropertyDescription
+    CitadelCameraOperationsSequence_t m_cameraSequenceChannelStart; // offset 0xAE8, size 0xA0, align 8 | MPropertyDescription
+    bool m_bEndChannelStartSequenceOnChannelComplete; // offset 0xB88, size 0x1, align 1 | MPropertyDescription
+    char _pad_0B89[0x7]; // offset 0xB89
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_previewParticle; // offset 0xB90, size 0xE0, align 8 | MPropertyStartGroup MPropertyDescription
+    CUtlString m_strPreviewParticleEffectConfig; // offset 0xC70, size 0x8, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_PreviewPathParticle; // offset 0xC78, size 0xE0, align 8 | MPropertyDescription
+    bool m_bUseSatShapesOnPreview; // offset 0xD58, size 0x1, align 1 | MPropertyDescription
+    char _pad_0D59[0x7]; // offset 0xD59
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_AOEPreviewParticleOverride; // offset 0xD60, size 0xE0, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ConePreviewParticleOverride; // offset 0xE40, size 0xE0, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_LinePreviewParticleOverride; // offset 0xF20, size 0xE0, align 8 | MPropertyDescription
+    CUtlOrderedMap< AbilityCastEvent_t, CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > > m_mapCastEventParticles; // offset 0x1000, size 0x28, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_skillshotHitParticle; // offset 0x1028, size 0xE0, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_skillshotMissParticle; // offset 0x1108, size 0xE0, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_TargetingPreviewParticle; // offset 0x11E8, size 0xE0, align 8 | MPropertyDescription
+    CSoundEventName m_strSelectedSound; // offset 0x12C8, size 0x10, align 8 | MPropertyStartGroup
+    CSoundEventName m_strUnselectedSound; // offset 0x12D8, size 0x10, align 8
+    CSoundEventName m_strSelectedLoopSound; // offset 0x12E8, size 0x10, align 8
+    CSoundEventName m_strCastSound; // offset 0x12F8, size 0x10, align 8
+    CSoundEventName m_strChannelSound; // offset 0x1308, size 0x10, align 8
+    CSoundEventName m_strChannelLoopSound; // offset 0x1318, size 0x10, align 8
+    CSoundEventName m_strCastDelaySound; // offset 0x1328, size 0x10, align 8
+    CSoundEventName m_strCastDelayLoopSound; // offset 0x1338, size 0x10, align 8
+    CSoundEventName m_strHitConfirmationSound; // offset 0x1348, size 0x10, align 8 | MPropertyDescription
+    CSoundEventName m_strDamageTakenSound; // offset 0x1358, size 0x10, align 8 | MPropertyDescription
+    CSoundEventName m_strAbilityOffCooldownSound; // offset 0x1368, size 0x10, align 8
+    CSoundEventName m_strAbilityChargeReadySound; // offset 0x1378, size 0x10, align 8
+    bool m_bPlayMeepMop; // offset 0x1388, size 0x1, align 1
+    char _pad_1389[0x7]; // offset 0x1389
+    CEmbeddedSubclass< CBaseModifier > m_AutoChannelModifier; // offset 0x1390, size 0x10, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CBaseModifier > m_AutoCastDelayModifier; // offset 0x13A0, size 0x10, align 8
+    CUtlVector< CEmbeddedSubclass< CBaseModifier > > m_AutoIntrinsicModifiers; // offset 0x13B0, size 0x18, align 8
+    AbilityCosmeticInfo_t m_cosmeticInfo; // offset 0x13C8, size 0x8, align 8 | MPropertySuppressExpr
+    CUtlVector< ItemSectionInfo_t > m_vecTooltipSectionInfo; // offset 0x13D0, size 0x18, align 8 | MPropertySuppressExpr MPropertyFriendlyName
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-struct AttackData_t  // sizeof 0x530, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+struct AttackData_t  // sizeof 0x548, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
     char _pad_0000[0x8]; // offset 0x0
     float32 m_flReloadPauseDuration; // offset 0x8, size 0x4, align 4 | MPropertyDescription
@@ -34,5 +34,5 @@ struct AttackData_t  // sizeof 0x530, align 0x8 [vtable] (client) {MGetKV3ClassD
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeSwingParticle; // offset 0x208, size 0xE0, align 8
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeAttackParticle; // offset 0x2E8, size 0xE0, align 8
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeImpactParticle; // offset 0x3C8, size 0xE0, align 8
-    CitadelCameraOperationsSequence_t m_cameraSequenceAttackStart; // offset 0x4A8, size 0x88, align 8 | MPropertyStartGroup
+    CitadelCameraOperationsSequence_t m_cameraSequenceAttackStart; // offset 0x4A8, size 0xA0, align 8 | MPropertyStartGroup
 };

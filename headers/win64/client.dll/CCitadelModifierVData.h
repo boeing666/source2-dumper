@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelModifierVData : public CModifierVData /*0x0*/  // sizeof 0x760, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MPropertySuppressBaseClassField MPropertySuppressBaseClassField}
+class CCitadelModifierVData : public CModifierVData /*0x0*/  // sizeof 0x790, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MPropertySuppressBaseClassField MPropertySuppressBaseClassField}
 {
 public:
     char _pad_0000[0x410]; // offset 0x0
@@ -38,19 +38,19 @@ public:
     bool m_bHideInStatModifierUI; // offset 0x4D8, size 0x1, align 1 | MPropertyDescription
     char _pad_04D9[0x7]; // offset 0x4D9
     CCitadelModifierResponseRules_t m_OnCreateResponse; // offset 0x4E0, size 0x38, align 8 | MPropertyStartGroup
-    CitadelCameraOperationsSequence_t m_cameraSequenceCreated; // offset 0x518, size 0x88, align 8 | MPropertyStartGroup
-    bool m_bEndCreatedSequenceOnRemove; // offset 0x5A0, size 0x1, align 1 | MPropertyDescription
-    char _pad_05A1[0x7]; // offset 0x5A1
-    CitadelCameraOperationsSequence_t m_cameraSequenceRemoved; // offset 0x5A8, size 0x88, align 8
-    ModifierBarrierBehavior_t m_BarrierBehavior; // offset 0x630, size 0x4, align 4 | MPropertyStartGroup
-    char _pad_0634[0x4]; // offset 0x634
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_BarrierCreateParticle; // offset 0x638, size 0xE0, align 8
-    bool m_bSupressDefaultBarrierBreakParticle; // offset 0x718, size 0x1, align 1
-    bool m_bSuppressBarrierRefreshSound; // offset 0x719, size 0x1, align 1
-    char _pad_071A[0x6]; // offset 0x71A
-    CSoundEventName m_sExpiredSound; // offset 0x720, size 0x10, align 8 | MPropertyStartGroup
-    FootstepSound_t m_FootstepOverride; // offset 0x730, size 0x18, align 8 | MPropertyDescription
-    CSoundEventName m_FootstepAdditional; // offset 0x748, size 0x10, align 8 | MPropertyDescription
-    bool m_bRemoveOnInterrupted; // offset 0x758, size 0x1, align 1
-    char _pad_0759[0x7]; // offset 0x759
+    CitadelCameraOperationsSequence_t m_cameraSequenceCreated; // offset 0x518, size 0xA0, align 8 | MPropertyStartGroup
+    bool m_bEndCreatedSequenceOnRemove; // offset 0x5B8, size 0x1, align 1 | MPropertyDescription
+    char _pad_05B9[0x7]; // offset 0x5B9
+    CitadelCameraOperationsSequence_t m_cameraSequenceRemoved; // offset 0x5C0, size 0xA0, align 8
+    ModifierBarrierBehavior_t m_BarrierBehavior; // offset 0x660, size 0x4, align 4 | MPropertyStartGroup
+    char _pad_0664[0x4]; // offset 0x664
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_BarrierCreateParticle; // offset 0x668, size 0xE0, align 8
+    bool m_bSupressDefaultBarrierBreakParticle; // offset 0x748, size 0x1, align 1
+    bool m_bSuppressBarrierRefreshSound; // offset 0x749, size 0x1, align 1
+    char _pad_074A[0x6]; // offset 0x74A
+    CSoundEventName m_sExpiredSound; // offset 0x750, size 0x10, align 8 | MPropertyStartGroup
+    FootstepSound_t m_FootstepOverride; // offset 0x760, size 0x18, align 8 | MPropertyDescription
+    CSoundEventName m_FootstepAdditional; // offset 0x778, size 0x10, align 8 | MPropertyDescription
+    bool m_bRemoveOnInterrupted; // offset 0x788, size 0x1, align 1
+    char _pad_0789[0x7]; // offset 0x789
 };

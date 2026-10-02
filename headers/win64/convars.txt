@@ -1217,6 +1217,7 @@ citadel_ping_above_us_z | gamedll,cheat | If the pinged hero is above us by this
 citadel_ping_allow_responses_to_yourself | developmentonly,clientdll | Allow you to respond to yourself.
 citadel_ping_almost_respawned_seconds | gamedll,cheat | Pinging a dead hero whose respawn is at most this many seconds away says they are almost back rather than dead.
 citadel_ping_below_us_z | gamedll,cheat | If the pinged hero is below us by this many units, use the "below_us" voice variant
+citadel_ping_can_heal_range | gamedll,cheat | Pinging a low teammate offers a heal only if they are within this many units and in line of sight. Matches citadel_fow_player_range.
 citadel_ping_consecutive_window | developmentonly,clientdll | Seconds between taps on one subject for them to chain into a double (triple...) ping.
 citadel_ping_enemy_count_radius | clientdll,cheat | How close another visible enemy has to be to the pinged position to count toward the group callout.
 citadel_ping_indicator_display_time | developmentonly,clientdll | 
@@ -1477,6 +1478,7 @@ citadel_server_mm_ignore_engine_version | developmentonly,gamedll | Ignore engin
 citadel_settings_active_settings_section_read_only | clientdll,hidden | Last viewed settings section
 citadel_settings_active_settings_subsection_read_only | clientdll,hidden | Last viewed settings subsection
 citadel_settings_always_show_all_settings | clientdll,per_user | Keep the settings shared by all heroes visible while browsing a specific hero's settings
+citadel_settings_default_view | clientdll,per_user | Which hero the settings menu shows while hero-specific settings are enabled: 0 the hero being played, 1 the base settings
 citadel_settings_dismissed_new_settings | clientdll,per_user | New Settings which have already been dismissed by the user
 citadel_settings_hero_selector_search | clientdll,release | When the Settings hero selector is expanded, typing in the search bar filters heroes instead of settings.
 citadel_settings_hide_hero_specific_disabled_notice | clientdll,per_user | Suppress popups when disabling hero-specific settings
@@ -1486,6 +1488,7 @@ citadel_settings_hide_row_reset_confirm | clientdll,per_user | Suppress confirma
 citadel_settings_hide_show_all_settings_off_notice | clientdll,per_user | Suppress the notice shown when 'Always show all settings' is turned off
 citadel_settings_last_scrollbar_position_read_only | clientdll,hidden | Last Settings menu scrollbar offset
 citadel_settings_new_setting_newness_duration | developmentonly,clientdll,defensive | Maximum age a new setting will be shown without dismissing
+citadel_settings_remember_selected_hero | clientdll,per_user | Reopen the settings menu on the hero last selected in it, instead of its default view
 citadel_settings_scroll_panel_height_read_only | clientdll,hidden | Last Settings menu total scroll panel height
 citadel_settings_seen_new_settings | clientdll,per_user | New Settings which have already been seen by the user
 citadel_settings_selected_base_settings | clientdll,hidden,per_user | Whether the settings menu's base settings were deliberately selected

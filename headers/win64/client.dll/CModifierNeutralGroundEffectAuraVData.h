@@ -1,7 +1,7 @@
 #pragma once
 
-class CModifierNeutralGroundEffectAuraVData : public CCitadelModifierAuraVData /*0x0*/  // sizeof 0x7B8, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CModifierNeutralGroundEffectAuraVData : public CCitadelModifierAuraVData /*0x0*/  // sizeof 0x7E8, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x7B8]; // offset 0x0
+    char _pad_0000[0x7E8]; // offset 0x0
 };

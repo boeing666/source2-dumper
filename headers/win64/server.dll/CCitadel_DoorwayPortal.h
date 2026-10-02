@@ -1,10 +1,10 @@
 #pragma once
 
-class CCitadel_DoorwayPortal : public CBaseAnimGraph /*0x0*/  // sizeof 0xBD0, align 0x10 [vtable] (server)
+class CCitadel_DoorwayPortal : public CBaseAnimGraph /*0x0*/  // sizeof 0xC20, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0xA90]; // offset 0x0
-    CCitadelMinimapComponent m_CCitadelMinimapComponent; // offset 0xA90, size 0x20, align 255
-    CHandle< CCitadel_DoorwayPortal > m_hLinkedDoorway; // offset 0xAB0, size 0x4, align 4 | MNotSaved
-    char _pad_0AB4[0x11C]; // offset 0xAB4
+    char _pad_0000[0xAE0]; // offset 0x0
+    CCitadelMinimapComponent m_CCitadelMinimapComponent; // offset 0xAE0, size 0x20, align 255
+    CHandle< CCitadel_DoorwayPortal > m_hLinkedDoorway; // offset 0xB00, size 0x4, align 4 | MNotSaved
+    char _pad_0B04[0x11C]; // offset 0xB04
 };

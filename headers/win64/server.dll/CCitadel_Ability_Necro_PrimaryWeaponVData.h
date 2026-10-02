@@ -1,16 +1,16 @@
 #pragma once
 
-class CCitadel_Ability_Necro_PrimaryWeaponVData : public CCitadel_Ability_PrimaryWeaponVData /*0x0*/  // sizeof 0x1790, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Ability_Necro_PrimaryWeaponVData : public CCitadel_Ability_PrimaryWeaponVData /*0x0*/  // sizeof 0x1808, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x1660]; // offset 0x0
-    CEmbeddedSubclass< CCitadelModifier > m_TetherModifier; // offset 0x1660, size 0x10, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_DummyTetherModifier; // offset 0x1670, size 0x10, align 8
-    CEmbeddedSubclass< CCitadelModifier > m_TetheredModifier; // offset 0x1680, size 0x10, align 8
-    CEmbeddedSubclass< CCitadelModifier > m_SearchingModifier; // offset 0x1690, size 0x10, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ActiveParticle; // offset 0x16A0, size 0xE0, align 8 | MPropertyStartGroup
-    float32 m_flDefaultSpreadScale; // offset 0x1780, size 0x4, align 4
-    float32 m_flSearchingSpreadScale; // offset 0x1784, size 0x4, align 4
-    float32 m_flTetheredSpreadScale; // offset 0x1788, size 0x4, align 4
-    float32 m_flApproachSpeed; // offset 0x178C, size 0x4, align 4
+    char _pad_0000[0x16D8]; // offset 0x0
+    CEmbeddedSubclass< CCitadelModifier > m_TetherModifier; // offset 0x16D8, size 0x10, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CCitadelModifier > m_DummyTetherModifier; // offset 0x16E8, size 0x10, align 8
+    CEmbeddedSubclass< CCitadelModifier > m_TetheredModifier; // offset 0x16F8, size 0x10, align 8
+    CEmbeddedSubclass< CCitadelModifier > m_SearchingModifier; // offset 0x1708, size 0x10, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ActiveParticle; // offset 0x1718, size 0xE0, align 8 | MPropertyStartGroup
+    float32 m_flDefaultSpreadScale; // offset 0x17F8, size 0x4, align 4
+    float32 m_flSearchingSpreadScale; // offset 0x17FC, size 0x4, align 4
+    float32 m_flTetheredSpreadScale; // offset 0x1800, size 0x4, align 4
+    float32 m_flApproachSpeed; // offset 0x1804, size 0x4, align 4
 };

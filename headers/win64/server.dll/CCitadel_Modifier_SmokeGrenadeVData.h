@@ -1,13 +1,13 @@
 #pragma once
 
-class CCitadel_Modifier_SmokeGrenadeVData : public CCitadelModifierVData /*0x0*/  // sizeof 0x960, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Modifier_SmokeGrenadeVData : public CCitadelModifierVData /*0x0*/  // sizeof 0x990, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x760]; // offset 0x0
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_BlockerModel; // offset 0x760, size 0xE0, align 8 | MPropertyStartGroup
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_SmokeParticle; // offset 0x840, size 0xE0, align 8
-    CEmbeddedSubclass< CCitadelModifier > m_FriendlyAuraModifier; // offset 0x920, size 0x10, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_EnemyAuraModifier; // offset 0x930, size 0x10, align 8
-    CSoundEventName m_strDomeEndSound; // offset 0x940, size 0x10, align 8 | MPropertyStartGroup
-    CSoundEventName m_strTargetLoopingSound; // offset 0x950, size 0x10, align 8 | MPropertyGroupName
+    char _pad_0000[0x790]; // offset 0x0
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_BlockerModel; // offset 0x790, size 0xE0, align 8 | MPropertyStartGroup
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_SmokeParticle; // offset 0x870, size 0xE0, align 8
+    CEmbeddedSubclass< CCitadelModifier > m_FriendlyAuraModifier; // offset 0x950, size 0x10, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CCitadelModifier > m_EnemyAuraModifier; // offset 0x960, size 0x10, align 8
+    CSoundEventName m_strDomeEndSound; // offset 0x970, size 0x10, align 8 | MPropertyStartGroup
+    CSoundEventName m_strTargetLoopingSound; // offset 0x980, size 0x10, align 8 | MPropertyGroupName
 };

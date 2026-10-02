@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_HeroGravityVData : public CCitadel_Modifier_Intrinsic_BaseVData /*0x0*/  // sizeof 0x768, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_Modifier_HeroGravityVData : public CCitadel_Modifier_Intrinsic_BaseVData /*0x0*/  // sizeof 0x798, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x760]; // offset 0x0
-    float32 m_flGravityChange; // offset 0x760, size 0x4, align 4
-    char _pad_0764[0x4]; // offset 0x764
+    char _pad_0000[0x790]; // offset 0x0
+    float32 m_flGravityChange; // offset 0x790, size 0x4, align 4
+    char _pad_0794[0x4]; // offset 0x794
 };

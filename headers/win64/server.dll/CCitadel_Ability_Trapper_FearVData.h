@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Ability_Trapper_FearVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1490, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Ability_Trapper_FearVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x14D8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x13A0]; // offset 0x0
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ImpactParticle; // offset 0x13A0, size 0xE0, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_DebuffModifier; // offset 0x1480, size 0x10, align 8 | MPropertyStartGroup
+    char _pad_0000[0x13E8]; // offset 0x0
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ImpactParticle; // offset 0x13E8, size 0xE0, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CCitadelModifier > m_DebuffModifier; // offset 0x14C8, size 0x10, align 8 | MPropertyStartGroup
 };

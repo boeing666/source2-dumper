@@ -1,7 +1,7 @@
 #pragma once
 
-class CInfoTutorialController : public CDynamicProp /*0x0*/  // sizeof 0xE00, align 0x10 [vtable] (server)
+class CInfoTutorialController : public CDynamicProp /*0x0*/  // sizeof 0xE50, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0xE00]; // offset 0x0
+    char _pad_0000[0xE50]; // offset 0x0
 };
