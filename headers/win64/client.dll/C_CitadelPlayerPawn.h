@@ -1,6 +1,6 @@
 #pragma once
 
-class C_CitadelPlayerPawn : public CCitadelPlayerPawnBase /*0x0*/  // sizeof 0x1968, align 0x8 [vtable] (client)
+class C_CitadelPlayerPawn : public CCitadelPlayerPawnBase /*0x0*/  // sizeof 0x1950, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x10E4]; // offset 0x0
@@ -76,31 +76,31 @@ public:
     Vector m_vLastVelocity; // offset 0x16B8, size 0xC, align 4
     char _pad_16C4[0x34]; // offset 0x16C4
     float32 m_flRichPresenceUpdateInterval; // offset 0x16F8, size 0x4, align 4
-    char _pad_16FC[0xF4]; // offset 0x16FC
-    InputBitMask_t m_nQueuedAbility; // offset 0x17F0, size 0x8, align 8
-    GameTime_t m_QueuedAbilityEndTime; // offset 0x17F8, size 0x4, align 255
-    char _pad_17FC[0x4]; // offset 0x17FC
-    GameTime_t m_flPredTimeSlowedStart; // offset 0x1800, size 0x4, align 255
-    GameTime_t m_flPredTimeSlowedEnd; // offset 0x1804, size 0x4, align 255
-    float32 m_flPredSlowSpeed; // offset 0x1808, size 0x4, align 4
-    GameTime_t[4] m_flTimeSlowedStart; // offset 0x180C, size 0x10, align 4
-    GameTime_t[4] m_flTimeSlowedEnd; // offset 0x181C, size 0x10, align 4
-    float32[4] m_flSlowSpeed; // offset 0x182C, size 0x10, align 4
-    GameTime_t m_flForceInCombatAnimsUntilTime; // offset 0x183C, size 0x4, align 255
-    int32 m_iCurSlowSlot; // offset 0x1840, size 0x4, align 4
-    bool m_bLocoLeanTriggeredForDirection; // offset 0x1844, size 0x1, align 1
-    bool m_bLocoRunToStopCanTrigger; // offset 0x1845, size 0x1, align 1
-    char _pad_1846[0x2]; // offset 0x1846
-    float32 m_flCrouchFraction; // offset 0x1848, size 0x4, align 4
-    float32 m_flCrouchSpeed; // offset 0x184C, size 0x4, align 4
-    GameTime_t m_fidgetTime; // offset 0x1850, size 0x4, align 255
-    Vector m_vShootTestOffsetStanding; // offset 0x1854, size 0xC, align 4
-    Vector m_vShootTestOffsetCrouching; // offset 0x1860, size 0xC, align 4
-    GameTime_t m_leanStartTime; // offset 0x186C, size 0x4, align 255
-    char _pad_1870[0xA4]; // offset 0x1870
-    float32 m_fAudioEnclosure; // offset 0x1914, size 0x4, align 4
-    bool m_bAudioHasSkyExposure; // offset 0x1918, size 0x1, align 1
-    char _pad_1919[0x2F]; // offset 0x1919
-    C_NetworkUtlVectorBase< itemid_t > m_vecEquippedItemIDs; // offset 0x1948, size 0x18, align 8
-    char _pad_1960[0x8]; // offset 0x1960
+    char _pad_16FC[0xDC]; // offset 0x16FC
+    InputBitMask_t m_nQueuedAbility; // offset 0x17D8, size 0x8, align 8
+    GameTime_t m_QueuedAbilityEndTime; // offset 0x17E0, size 0x4, align 255
+    char _pad_17E4[0x4]; // offset 0x17E4
+    GameTime_t m_flPredTimeSlowedStart; // offset 0x17E8, size 0x4, align 255
+    GameTime_t m_flPredTimeSlowedEnd; // offset 0x17EC, size 0x4, align 255
+    float32 m_flPredSlowSpeed; // offset 0x17F0, size 0x4, align 4
+    GameTime_t[4] m_flTimeSlowedStart; // offset 0x17F4, size 0x10, align 4
+    GameTime_t[4] m_flTimeSlowedEnd; // offset 0x1804, size 0x10, align 4
+    float32[4] m_flSlowSpeed; // offset 0x1814, size 0x10, align 4
+    GameTime_t m_flForceInCombatAnimsUntilTime; // offset 0x1824, size 0x4, align 255
+    int32 m_iCurSlowSlot; // offset 0x1828, size 0x4, align 4
+    bool m_bLocoLeanTriggeredForDirection; // offset 0x182C, size 0x1, align 1
+    bool m_bLocoRunToStopCanTrigger; // offset 0x182D, size 0x1, align 1
+    char _pad_182E[0x2]; // offset 0x182E
+    float32 m_flCrouchFraction; // offset 0x1830, size 0x4, align 4
+    float32 m_flCrouchSpeed; // offset 0x1834, size 0x4, align 4
+    GameTime_t m_fidgetTime; // offset 0x1838, size 0x4, align 255
+    Vector m_vShootTestOffsetStanding; // offset 0x183C, size 0xC, align 4
+    Vector m_vShootTestOffsetCrouching; // offset 0x1848, size 0xC, align 4
+    GameTime_t m_leanStartTime; // offset 0x1854, size 0x4, align 255
+    char _pad_1858[0xA4]; // offset 0x1858
+    float32 m_fAudioEnclosure; // offset 0x18FC, size 0x4, align 4
+    bool m_bAudioHasSkyExposure; // offset 0x1900, size 0x1, align 1
+    char _pad_1901[0x2F]; // offset 0x1901
+    C_NetworkUtlVectorBase< itemid_t > m_vecEquippedItemIDs; // offset 0x1930, size 0x18, align 8
+    char _pad_1948[0x8]; // offset 0x1948
 };

@@ -1,13 +1,13 @@
 +bugvoice | developmentonly,dontrecord,defensive | Start recording bug voice attachment.
 +camdistance | developmentonly,clientdll,defensive | 
 +cammousemove | developmentonly,clientdll,defensive | 
-+chatwheel | clientdll,release | Opens chatwheel menu while held
++chatwheel | clientdll,release | Opens the comms wheel instantly while held
 +citadel_swtich_player_cam | clientdll,release | Player Cam switching button pressed
 +in_ability_ping | clientdll,release | Ping button pressed
 -bugvoice | developmentonly,dontrecord,defensive | Finish recording bug voice attachment.
 -camdistance | developmentonly,clientdll,defensive | 
 -cammousemove | developmentonly,clientdll,defensive | 
--chatwheel | clientdll,release | Executes the highlighted chatwheel menu item
+-chatwheel | clientdll,release | Sends the hovered comms wheel option
 -citadel_swtich_player_cam | clientdll,release | Player Cam switching button released
 -in_ability_ping | clientdll,release | Ping button released
 StackStats_Dump | developmentonly | Dump a named stackstats structure to disk. Usage: stackstats_dump "structname" ["filename"]
@@ -913,7 +913,7 @@ physics_highlight_active | developmentonly,gamedll | Turns on the absbox for all
 physics_remove_test | developmentonly,gamedll | remove test object
 physics_report_active | developmentonly,gamedll | Lists all active physics objects   -more : extra info 
 ping_quick_response | clientdll,release | Responds to the last ping message received
-pingkeypress | clientdll,release | Ping keybind pressed
+pingkeypress | clientdll,release | Quick ping keybind pressed. Arg is the slot, 1-12.
 playcast | release | Play a broadcast
 playdemo | release | Play a recorded demo file (.dem ).
 player_test_prediction_smoothing | gamedll,cheat | Teleport the player on the server, use with cl_smooth_root_infiniteteleporttolerance

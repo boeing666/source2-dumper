@@ -1,6 +1,6 @@
 #pragma once
 
-struct PingWheelMessage_t  // sizeof 0xD0, align 0x8 (client) {MVDataRoot MGetKV3ClassDefaults}
+struct PingWheelMessage_t  // sizeof 0xC8, align 0x8 (client) {MVDataRoot MGetKV3ClassDefaults}
 {
     CUtlVector< PingWheelOptionID_t > m_vecSubnavMessageIDs; // offset 0x0, size 0x18, align 8 | MPropertySuppressField
     char _pad_0018[0x8]; // offset 0x18
@@ -19,14 +19,12 @@ struct PingWheelMessage_t  // sizeof 0xD0, align 0x8 (client) {MVDataRoot MGetKV
     ECitadelPingWheelSound_t m_ePingWheelSoundType; // offset 0x68, size 0x4, align 4 | MPropertySuppressExpr MPropertyDescription
     bool m_bIsSubnavMessage; // offset 0x6C, size 0x1, align 1 | MPropertyDescription
     char _pad_006D[0x3]; // offset 0x6D
-    float32 m_flPhraseTopMarginOffset; // offset 0x70, size 0x4, align 4 | MPropertyDescription
-    char _pad_0074[0x4]; // offset 0x74
-    CUtlVector< CUtlString > m_vecSubnavMessageNames; // offset 0x78, size 0x18, align 8 | MPropertySuppressExpr MPropertyCustomFGDType MPropertyDescription
-    bool m_bSubnavsReadLeftToRight; // offset 0x90, size 0x1, align 1 | MPropertySuppressExpr MPropertyDescription
-    char _pad_0091[0x7]; // offset 0x91
-    CUtlVector< CitadelPingWheelConcept_t > m_vecRespondsToConcepts; // offset 0x98, size 0x18, align 8 | MPropertySuppressExpr MPropertyDescription
-    bool m_bCommsWheelBindable; // offset 0xB0, size 0x1, align 1 | MPropertyDescription
-    bool m_bKeybindable; // offset 0xB1, size 0x1, align 1 | MPropertyDescription
-    char _pad_00B2[0x6]; // offset 0xB2
-    CUtlVector< CUtlString > m_vecChatTextTriggers; // offset 0xB8, size 0x18, align 8 | MPropertyDescription
+    CUtlVector< CUtlString > m_vecSubnavMessageNames; // offset 0x70, size 0x18, align 8 | MPropertySuppressExpr MPropertyCustomFGDType MPropertyDescription
+    bool m_bSubnavsReadLeftToRight; // offset 0x88, size 0x1, align 1 | MPropertySuppressExpr MPropertyDescription
+    char _pad_0089[0x7]; // offset 0x89
+    CUtlVector< CitadelPingWheelConcept_t > m_vecRespondsToConcepts; // offset 0x90, size 0x18, align 8 | MPropertySuppressExpr MPropertyDescription
+    bool m_bCommsWheelBindable; // offset 0xA8, size 0x1, align 1 | MPropertyDescription
+    bool m_bKeybindable; // offset 0xA9, size 0x1, align 1 | MPropertyDescription
+    char _pad_00AA[0x6]; // offset 0xAA
+    CUtlVector< CUtlString > m_vecChatTextTriggers; // offset 0xB0, size 0x18, align 8 | MPropertyDescription
 };
