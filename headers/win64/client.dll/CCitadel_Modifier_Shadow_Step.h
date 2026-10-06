@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_Shadow_Step : public CCitadel_Modifier_Invis /*0x0*/  // sizeof 0x998, align 0xFF [vtable] (client)
+class CCitadel_Modifier_Shadow_Step : public CCitadel_Modifier_Invis /*0x0*/  // sizeof 0x9A0, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x620]; // offset 0x0
-    ParticleIndex_t m_nRevealedEffect; // offset 0x620, size 0x4, align 255
-    char _pad_0624[0x374]; // offset 0x624
+    char _pad_0000[0x628]; // offset 0x0
+    ParticleIndex_t m_nRevealedEffect; // offset 0x628, size 0x4, align 255
+    char _pad_062C[0x374]; // offset 0x62C
 };

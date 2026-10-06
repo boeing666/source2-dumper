@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseModifier  // sizeof 0x98, align 0xFF [vtable abstract] (server) {MGetKV3ClassDefaults}
+class CBaseModifier  // sizeof 0xA0, align 0xFF [vtable abstract] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x28]; // offset 0x0
@@ -27,10 +27,12 @@ public:
     bool m_bReadyOnClient; // offset 0x73, size 0x1, align 1 | MNotSaved
     float32 m_flThinkInterval; // offset 0x74, size 0x4, align 4
     GameTime_t m_flThinkIntervalStartTime; // offset 0x78, size 0x4, align 255
-    float32 m_flAsyncThinkInterval; // offset 0x7C, size 0x4, align 4
-    GameTime_t m_flAsyncThinkIntervalStartTime; // offset 0x80, size 0x4, align 255
-    float32 m_flTimeScale; // offset 0x84, size 0x4, align 4
-    CUtlVector< IModifierTrackedObject* >* m_pVecTrackedObjects; // offset 0x88, size 0x8, align 8 | MNotSaved
-    ModifierRuntimeHandle_t m_hModifierListHandle; // offset 0x90, size 0x4, align 255 | MNotSaved
-    int32 m_iStringIndex; // offset 0x94, size 0x4, align 4 | MNotSaved
+    GameTime_t m_flLastThinkTime; // offset 0x7C, size 0x4, align 255
+    float32 m_flAsyncThinkInterval; // offset 0x80, size 0x4, align 4
+    GameTime_t m_flAsyncThinkIntervalStartTime; // offset 0x84, size 0x4, align 255
+    float32 m_flTimeScale; // offset 0x88, size 0x4, align 4
+    char _pad_008C[0x4]; // offset 0x8C
+    CUtlVector< IModifierTrackedObject* >* m_pVecTrackedObjects; // offset 0x90, size 0x8, align 8 | MNotSaved
+    ModifierRuntimeHandle_t m_hModifierListHandle; // offset 0x98, size 0x4, align 255 | MNotSaved
+    int32 m_iStringIndex; // offset 0x9C, size 0x4, align 4 | MNotSaved
 };

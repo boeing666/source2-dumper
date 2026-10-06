@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_StickyBombOnGround : public CCitadel_Modifier_StickyBombAttached /*0x0*/  // sizeof 0x418, align 0xFF [vtable] (server)
+class CCitadel_Modifier_StickyBombOnGround : public CCitadel_Modifier_StickyBombAttached /*0x0*/  // sizeof 0x420, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x410]; // offset 0x0
-    GameTime_t m_tLastStopTime; // offset 0x410, size 0x4, align 255
-    char _pad_0414[0x4]; // offset 0x414
+    char _pad_0000[0x418]; // offset 0x0
+    GameTime_t m_tLastStopTime; // offset 0x418, size 0x4, align 255
+    char _pad_041C[0x4]; // offset 0x41C
 };

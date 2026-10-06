@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_ColdFrontAOE : public CCitadelModifier /*0x0*/  // sizeof 0x558, align 0xFF [vtable] (client)
+class CCitadel_Modifier_ColdFrontAOE : public CCitadelModifier /*0x0*/  // sizeof 0x560, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x550]; // offset 0x0
-    ParticleIndex_t m_hAOEEffect; // offset 0x550, size 0x4, align 255
-    char _pad_0554[0x4]; // offset 0x554
+    char _pad_0000[0x558]; // offset 0x0
+    ParticleIndex_t m_hAOEEffect; // offset 0x558, size 0x4, align 255
+    char _pad_055C[0x4]; // offset 0x55C
 };

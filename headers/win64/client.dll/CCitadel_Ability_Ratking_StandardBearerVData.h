@@ -15,14 +15,14 @@ public:
     float32 m_flDownTraceDistance; // offset 0x145C, size 0x4, align 4
     float32 m_flExplodeTimer; // offset 0x1460, size 0x4, align 4 | MPropertyDescription
     float32 m_flChargeAccelerationMeters; // offset 0x1464, size 0x4, align 4 | MPropertyDescription
-    float32 m_flTurnRateMax; // offset 0x1468, size 0x4, align 4 | MPropertyDescription
-    float32 m_flTurnRateMin; // offset 0x146C, size 0x4, align 4 | MPropertyDescription
-    float32 m_flFlagForwardDistance; // offset 0x1470, size 0x4, align 4
-    float32 m_flNearGroundDistance; // offset 0x1474, size 0x4, align 4 | MPropertyDescription
-    float32 m_flPlantAnticipationDistance; // offset 0x1478, size 0x4, align 4 | MPropertyDescription
-    float32 m_flPlantLeapUpSpeed; // offset 0x147C, size 0x4, align 4 | MPropertyDescription
-    float32 m_flPlantLeapRiseDuration; // offset 0x1480, size 0x4, align 4 | MPropertyDescription
-    char _pad_1484[0x4]; // offset 0x1484
+    float32 m_flChargeFallGravityScale; // offset 0x1468, size 0x4, align 4 | MPropertyDescription
+    float32 m_flTurnRateMax; // offset 0x146C, size 0x4, align 4 | MPropertyDescription
+    float32 m_flTurnRateMin; // offset 0x1470, size 0x4, align 4 | MPropertyDescription
+    float32 m_flFlagForwardDistance; // offset 0x1474, size 0x4, align 4
+    float32 m_flNearGroundDistance; // offset 0x1478, size 0x4, align 4 | MPropertyDescription
+    float32 m_flPlantAnticipationDistance; // offset 0x147C, size 0x4, align 4 | MPropertyDescription
+    float32 m_flPlantLeapUpSpeed; // offset 0x1480, size 0x4, align 4 | MPropertyDescription
+    float32 m_flPlantLeapRiseDuration; // offset 0x1484, size 0x4, align 4 | MPropertyDescription
     CPiecewiseCurve m_PlantLeapSpeedCurve; // offset 0x1488, size 0x40, align 8 | MPropertyDescription
     CPiecewiseCurve m_PlantLeapHorizontalCurve; // offset 0x14C8, size 0x40, align 8 | MPropertyDescription
     float32 m_flPlantLeapHoverDuration; // offset 0x1508, size 0x4, align 4 | MPropertyDescription

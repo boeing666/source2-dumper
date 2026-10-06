@@ -1,10 +1,10 @@
 #pragma once
 
-class CCitadel_Modifier_SpookyHide_Invis : public CCitadel_Modifier_Invis /*0x0*/  // sizeof 0x650, align 0xFF [vtable] (client)
+class CCitadel_Modifier_SpookyHide_Invis : public CCitadel_Modifier_Invis /*0x0*/  // sizeof 0x658, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x620]; // offset 0x0
-    CUtlOrderedMap< C_CitadelPlayerPawn*, GameTime_t > m_mapStartLookTime; // offset 0x620, size 0x28, align 8
-    GameTime_t m_flStartSpotted; // offset 0x648, size 0x4, align 255
-    char _pad_064C[0x4]; // offset 0x64C
+    char _pad_0000[0x628]; // offset 0x0
+    CUtlOrderedMap< C_CitadelPlayerPawn*, GameTime_t > m_mapStartLookTime; // offset 0x628, size 0x28, align 8
+    GameTime_t m_flStartSpotted; // offset 0x650, size 0x4, align 255
+    char _pad_0654[0x4]; // offset 0x654
 };

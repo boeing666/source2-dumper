@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_Necro_WallTether : public CCitadel_Modifier_Link /*0x0*/  // sizeof 0x218, align 0xFF [vtable] (client)
+class CCitadel_Modifier_Necro_WallTether : public CCitadel_Modifier_Link /*0x0*/  // sizeof 0x220, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x218]; // offset 0x0
+    char _pad_0000[0x220]; // offset 0x0
 };

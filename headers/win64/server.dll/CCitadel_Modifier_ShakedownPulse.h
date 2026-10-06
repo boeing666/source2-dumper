@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_ShakedownPulse : public CCitadelModifier /*0x0*/  // sizeof 0x4B8, align 0xFF [vtable] (server)
+class CCitadel_Modifier_ShakedownPulse : public CCitadelModifier /*0x0*/  // sizeof 0x4C0, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x140]; // offset 0x0
-    float32 m_flSharedDamage; // offset 0x140, size 0x4, align 4
-    char _pad_0144[0x374]; // offset 0x144
+    char _pad_0000[0x148]; // offset 0x0
+    float32 m_flSharedDamage; // offset 0x148, size 0x4, align 4
+    char _pad_014C[0x374]; // offset 0x14C
 };

@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_HeadshotBoosterWatcher : public CCitadel_Modifier_BaseBulletPreRollProc /*0x0*/  // sizeof 0x3B0, align 0xFF [vtable] (server)
+class CCitadel_Modifier_HeadshotBoosterWatcher : public CCitadel_Modifier_BaseBulletPreRollProc /*0x0*/  // sizeof 0x3B8, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x2F8]; // offset 0x0
-    ShotID_t m_ShotId; // offset 0x2F8, size 0x4, align 255
-    char _pad_02FC[0xB4]; // offset 0x2FC
+    char _pad_0000[0x300]; // offset 0x0
+    ShotID_t m_ShotId; // offset 0x300, size 0x4, align 255
+    char _pad_0304[0xB4]; // offset 0x304
 };

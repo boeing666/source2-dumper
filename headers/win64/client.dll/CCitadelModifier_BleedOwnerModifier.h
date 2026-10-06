@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadelModifier_BleedOwnerModifier : public CCitadelModifier /*0x0*/  // sizeof 0x130, align 0xFF [vtable abstract] (client)
+class CCitadelModifier_BleedOwnerModifier : public CCitadelModifier /*0x0*/  // sizeof 0x138, align 0xFF [vtable abstract] (client)
 {
 public:
-    char _pad_0000[0x130]; // offset 0x0
+    char _pad_0000[0x138]; // offset 0x0
 };

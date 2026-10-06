@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Modifier_GraveStone : public CCitadelModifierAura /*0x0*/  // sizeof 0xA90, align 0xFF [vtable] (server)
+class CCitadel_Modifier_GraveStone : public CCitadelModifierAura /*0x0*/  // sizeof 0xA98, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x190]; // offset 0x0
-    ParticleIndex_t m_nParticleIndexAura; // offset 0x190, size 0x4, align 255
-    ParticleIndex_t m_nParticleIndex; // offset 0x194, size 0x4, align 255
-    GameTime_t m_flStartTime; // offset 0x198, size 0x4, align 255
-    char _pad_019C[0x8F4]; // offset 0x19C
+    char _pad_0000[0x198]; // offset 0x0
+    ParticleIndex_t m_nParticleIndexAura; // offset 0x198, size 0x4, align 255
+    ParticleIndex_t m_nParticleIndex; // offset 0x19C, size 0x4, align 255
+    GameTime_t m_flStartTime; // offset 0x1A0, size 0x4, align 255
+    char _pad_01A4[0x8F4]; // offset 0x1A4
 };

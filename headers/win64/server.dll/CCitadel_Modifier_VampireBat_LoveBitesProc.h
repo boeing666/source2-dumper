@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_VampireBat_LoveBitesProc : public CCitadelModifier /*0x0*/  // sizeof 0x560, align 0xFF [vtable] (server)
+class CCitadel_Modifier_VampireBat_LoveBitesProc : public CCitadelModifier /*0x0*/  // sizeof 0x568, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x560]; // offset 0x0
+    char _pad_0000[0x568]; // offset 0x0
 };

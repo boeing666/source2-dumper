@@ -1,12 +1,12 @@
 #pragma once
 
-class CCitadel_Modifier_LashGrappleEnemy_Debuff : public CCitadel_Modifier_Stunned /*0x0*/  // sizeof 0x788, align 0xFF [vtable] (client)
+class CCitadel_Modifier_LashGrappleEnemy_Debuff : public CCitadel_Modifier_Stunned /*0x0*/  // sizeof 0x790, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x138]; // offset 0x0
-    Vector m_vCrashDir; // offset 0x138, size 0xC, align 4
-    VectorWS m_vLiftTarget; // offset 0x144, size 0xC, align 4
-    GameTime_t m_flStartTime; // offset 0x150, size 0x4, align 255
-    bool m_bCrashingDown; // offset 0x154, size 0x1, align 1
-    char _pad_0155[0x633]; // offset 0x155
+    char _pad_0000[0x140]; // offset 0x0
+    Vector m_vCrashDir; // offset 0x140, size 0xC, align 4
+    VectorWS m_vLiftTarget; // offset 0x14C, size 0xC, align 4
+    GameTime_t m_flStartTime; // offset 0x158, size 0x4, align 255
+    bool m_bCrashingDown; // offset 0x15C, size 0x1, align 1
+    char _pad_015D[0x633]; // offset 0x15D
 };
