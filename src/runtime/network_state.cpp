@@ -7,7 +7,7 @@
 #include <string_view>
 #include <unordered_set>
 
-#include <schemasystem/schemasystem.h>
+#include "core/sdk.hpp"
 
 #include <Zydis/Zydis.h>
 

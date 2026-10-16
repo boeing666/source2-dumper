@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include <tier0/keyvalues.h>
+#include "core/sdk.hpp"
 
 namespace schema {
 namespace fs = std::filesystem;

@@ -12,18 +12,9 @@
 #include <dynlibutils/module.hpp>
 #include <dynlibutils/virtual.hpp>
 #include <dynlibutils/vthook.hpp>
-#include <appframework/iappsystem.h>
-#include <entity2/entityinstance.h>
-#include <filesystem.h>
-#include <icvar.h>
-#include <networksystem/inetworkserializer.h>
-#include <schemasystem/schemasystem.h>
-#include <vscript/ivscript.h>
+#include "core/sdk.hpp"
 
 #include <ranges>
-#include "eiface.h"
-
-#include <tier1/tier1.h>
 
 #define DBG(...) std::println(stderr, __VA_ARGS__)
 
@@ -53,19 +44,19 @@ public:
 	bool IsSingleton() override { return true; }
 	AppSystemBuildType_t GetBuildType() override { return APP_SYSTEM_BUILD_UNKNOWN; }
 
-	void AddSystem(IAppSystem*, const char*, AppSystemErrorPolicy_t) override {}
-	void AddSystem(const char*, const char*, AppSystemErrorPolicy_t) override {}
-	void AddSystem(IAppSystem*, const char*) override {}
+	IAppSystem* AddSystem(IAppSystem*, const char*) override { return nullptr; }
+	IAppSystem* AddSystem(const char*, const char*, AppSystemErrorPolicy_t) override { return nullptr; }
+	IAppSystem* AddSystem(PlatModule_t, const char*, AppSystemErrorPolicy_t) override { return nullptr; }
 	void RemoveSystem(IAppSystem*) override {}
-	bool AddSystems(int, const AppSystemInfo_t**) override { return false; }
+	bool AddSystems(int, const AppSystemInfo_t*) override { return false; }
 	void* FindSystem(const char*) override { return nullptr; }
 	KeyValues* GetGameInfo() override { return nullptr; }
 	AppSystemBuildType_t GetAppSystemBuildType() override { return APP_SYSTEM_BUILD_UNKNOWN; }
 	const char* GetLanguage(LanguageType_t) override { return nullptr; }
-	const char* GetModPath(int) override { return nullptr; }
+	const char* GetSubLanguage(LanguageType_t) override { return nullptr; }
 	bool IsInToolsMode() override { return false; }
 	bool IsConsoleApp() override { return false; }
-	OpusRepacketizer* GetOpusRepacketizer() override { return nullptr; }
+	CAppSystemDict::WindowSize_t* GetWindowSizeOverride() override { return nullptr; }
 	bool IsInDeveloperMode() override { return false; }
 	const char* GetExecutablePath() override { return nullptr; }
 	const char* GetModGameSubdir() override { return nullptr; }
@@ -75,37 +66,35 @@ public:
 	int GetAppSystemFlags() override { return 0; }
 	CUtlString GetConsoleLogFilename() override { return {}; }
 	void ChangeLogFileSuffix(const char*) override {}
-	void AddSystemDontLoadStartupManifests(const char*, const char*) override {}
-	const char* GetGameMode() override { return nullptr; }
+	IAppSystem* AddSystemDontLoadStartupManifests(const char*, const char*) override { return nullptr; }
+	int GetGameMode() override { return 0; }
 	bool MountAddon(const char*) override { return false; }
 	bool UnmountAddon(const char*) override { return false; }
 	void GetMountedAddons(CUtlVector<CUtlString>&) override {}
 	int GetMountedAddons(const char**, int) override { return 0; }
-	bool GetAddonsDirectory(CUtlString&) override { return false; }
-	bool GetAddonsContentDirectory(CUtlString&) override { return false; }
+	bool GetAddonsDirectory(CBufferString&) override { return false; }
+	bool GetAddonsContentDirectory(CBufferString&) override { return false; }
 	bool IsFileInAddon(const char*) override { return false; }
 	void GetAvailableAddons(CUtlVector<CUtlString>&, int) override {}
-	bool GetAddonInfo(KeyValues*, const char*) override { return false; }
+	bool GetAddonInfo(KeyValues3*, const char*) override { return false; }
 	bool IsRunningOnCustomerMachine() override { return false; }
+	bool IsPerforceWorkspace() override { return false; }
 	bool IsLowViolence() override { return false; }
-	bool SetLowViolence(bool) override { return false; }
-	bool SetInitializationPhase(int) override { return false; }
+	void SetLowViolence(bool) override {}
+	void SetInitializationPhase(int) override {}
 	int GetInitializationPhase() override { return 0; }
 	const char* GetRestrictAddonsTo() override { return nullptr; }
 	void SetAllowAddonChanges(bool) override {}
 	void SetUGCAddonPathResolver(IUGCAddonPathResolver*) override {}
-	CUtlString GetAddonNameFromID(uint64) override { return {}; }
+	CUtlString GetFullAddonPathFromID(uint64) override { return {}; }
 	uint64 GetIDFromAddonName(const char*) override { return 0; }
 	CUtlString GetFullAddonPathFromAddonName(const char*) override { return {}; }
 	void GetAvailableAddonMaps(CUtlVector<CUtlString>&, const char*, bool) override {}
 	void LoadStartupManifestGroup(const char*) override {}
 	CUtlString GetAddonSourceFolder(const char*) override { return {}; }
 	void OnStartupManifestGroupLoaded() override {}
-	void AddStartupManifest(ResourceManifestDesc_t&) override {}
+	void unk061(void*) override {}
 	CAppSystemDict* GetAppSystemDict() override { return nullptr; }
-
-		// cs2-only vfunc (absent on dota/deadlock SDK branches), so no `override`.
-	virtual bool IsPerforceWorkspace() { return false; }
 };
 
 CStubApplication g_stubApp;

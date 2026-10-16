@@ -2,8 +2,7 @@
 
 #include <print>
 
-#include <icvar.h>
-#include <tier1/convar.h>
+#include "core/sdk.hpp"
 
 namespace schema {
 namespace fs = std::filesystem;

@@ -6,8 +6,7 @@
 #include <utility>
 #include <vector>
 
-#include <icvar.h>
-#include <tier1/convar.h>
+#include "core/sdk.hpp"
 
 namespace schema {
 

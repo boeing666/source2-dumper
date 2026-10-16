@@ -5,7 +5,7 @@
 #include <string>
 #include <unordered_set>
 
-#include <networksystem/inetworkserializer.h>
+#include "core/sdk.hpp"
 
 namespace schema {
 
@@ -16,7 +16,7 @@ static void ReadCodegenDatabase(CNetworkSerializerCodeGenDatabase* db, std::unor
 		if (!c) {
 			continue;
 		}
-		const char* cls = c->m_pszClassName.Get();
+		const char* cls = c->m_pszClassName;
 		if (!cls || !*cls) {
 			continue;
 		}
@@ -26,7 +26,7 @@ static void ReadCodegenDatabase(CNetworkSerializerCodeGenDatabase* db, std::unor
 			if (!f) {
 				continue;
 			}
-			if (const char* fn = f->m_pszFieldName.Get(); fn && *fn) {
+			if (const char* fn = f->m_pszFieldName; fn && *fn) {
 				out.insert(std::string(cls) + "::" + fn);
 			}
 		}

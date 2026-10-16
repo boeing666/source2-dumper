@@ -5,7 +5,7 @@
 #include <string_view>
 #include <tuple>
 
-#include <tier1/keyvalues3.h>
+#include "core/sdk.hpp"
 
 namespace schema {
 

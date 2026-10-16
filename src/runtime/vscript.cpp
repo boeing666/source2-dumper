@@ -7,9 +7,7 @@
 #include <string>
 #include <unordered_set>
 
-#include <igamesystem.h>
-#include <igamesystemfactory.h>
-#include <vscript/ivscript.h>
+#include "core/sdk.hpp"
 
 namespace schema {
 
@@ -75,7 +73,7 @@ public:
 
 	bool Init() override { return true; }
 	void Shutdown() override {}
-	void DisableExecution() override {}
+	void DisableExecuteFunction() override {}
 	ScriptLanguage_t GetLanguage() override { return SL_DEFAULT; }
 	const char* GetLanguageName() override { return "recording"; }
 	void* GetInternalVM() override { return nullptr; }
@@ -91,7 +89,7 @@ public:
 	ScriptStatus_t Run(HSCRIPT, HSCRIPT, bool) override { return SCRIPT_DONE; }
 	ScriptStatus_t Run(HSCRIPT, bool) override { return SCRIPT_DONE; }
 
-	HSCRIPT GetCurrentScope() override { return nullptr; }
+	HSCRIPT GetExecutingScript() override { return nullptr; }
 	HSCRIPT CreateScope(const char*, HSCRIPT) override { return nullptr; }
 	HSCRIPT ReferenceScope(HSCRIPT hScript) override { return hScript; }
 	void ReleaseScope(HSCRIPT) override {}
@@ -154,19 +152,19 @@ public:
 	int GetNumTableEntries(HSCRIPT) override { return 0; }
 	int GetNumElements(HSCRIPT) override { return 0; }
 	int GetKeyValue(HSCRIPT, int, ScriptVariant_t*, ScriptVariant_t*) override { return -1; }
-	bool CreateKeyValuesFromTable(HSCRIPT, const char*, void*, void*) override { return false; }
+	KeyValues* CreateKeyValuesFromTable(HSCRIPT, const char*, ScriptKeyValuesFromTableFunc_t, void*) override { return nullptr; }
 
 	bool GetValue(HSCRIPT, const char*, ScriptVariant_t*) override { return false; }
 	bool GetValue(HSCRIPT, int, ScriptVariant_t*) override { return false; }
 	bool GetScalarValue(HSCRIPT, ScriptVariant_t*) override { return false; }
-	ScriptVariant_t CopyValue(ScriptVariant_t&) override { return {}; }
+	void CopyValue(const ScriptVariant_t&, ScriptVariant_t*) override {}
 	void ReleaseValue(ScriptVariant_t&) override {}
 	bool ClearValue(HSCRIPT, const char*) override { return false; }
 
-	HSCRIPT CreateArray(ScriptVariant_t&) override { return nullptr; }
+	void CreateArray(ScriptVariant_t&) override {}
 	bool IsArray(HSCRIPT) override { return false; }
 	int GetArrayCount(HSCRIPT) override { return 0; }
-	void ArrayAddToTail(HSCRIPT, const ScriptVariant_t&) override {}
+	int ArrayAddToTail(HSCRIPT, const ScriptVariant_t&) override { return -1; }
 
 	void WriteState(CUtlBuffer*) override {}
 	void ReadState(CUtlBuffer*) override {}
@@ -237,7 +235,7 @@ public:
 	bool IsSingleton() override { return true; }
 	AppSystemBuildType_t GetBuildType() override { return APP_SYSTEM_BUILD_UNKNOWN; }
 
-	IScriptVM* CreateVM(ScriptLanguage_t) override { return &_vm; }
+	IScriptVM* CreateVM(ScriptLanguage_t, bool) override { return &_vm; }
 	void DestroyVM(IScriptVM*) override {}
 	IScriptDebugger* GetDebugger() override { return nullptr; }
 
