@@ -1,6 +1,6 @@
 #pragma once
 
-struct BabaBenchMeleeAttack_t  // sizeof 0x458, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+struct BabaBenchMeleeAttack_t  // sizeof 0x460, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
     char _pad_0000[0x8]; // offset 0x0
     bool m_bIsHeavyAttack; // offset 0x8, size 0x1, align 1
@@ -25,13 +25,15 @@ struct BabaBenchMeleeAttack_t  // sizeof 0x458, align 0x8 [vtable] (client) {MGe
     CPiecewiseCurve m_SpeedBonusCurve; // offset 0x80, size 0x40, align 8
     float32 m_flMovementAcc; // offset 0xC0, size 0x4, align 4
     float32 m_flAttackImpulse; // offset 0xC4, size 0x4, align 4
-    CSoundEventName m_strMeleeDashSound; // offset 0xC8, size 0x10, align 8 | MPropertyStartGroup
-    CSoundEventName m_strHitSound; // offset 0xD8, size 0x10, align 8
-    CSoundEventName m_strHitHeroSound; // offset 0xE8, size 0x10, align 8
-    CSoundEventName m_strHitDebrisSound; // offset 0xF8, size 0x10, align 8
-    CSoundEventName m_strMissSound; // offset 0x108, size 0x10, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeSwingParticle; // offset 0x118, size 0xE0, align 8 | MPropertyStartGroup
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeAttackParticle; // offset 0x1F8, size 0xE0, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeImpactParticle; // offset 0x2D8, size 0xE0, align 8
-    CitadelCameraOperationsSequence_t m_cameraSequenceAttackStart; // offset 0x3B8, size 0xA0, align 8 | MPropertyStartGroup
+    float32 m_flAttackImpulseMaxUpward; // offset 0xC8, size 0x4, align 4
+    char _pad_00CC[0x4]; // offset 0xCC
+    CSoundEventName m_strMeleeDashSound; // offset 0xD0, size 0x10, align 8 | MPropertyStartGroup
+    CSoundEventName m_strHitSound; // offset 0xE0, size 0x10, align 8
+    CSoundEventName m_strHitHeroSound; // offset 0xF0, size 0x10, align 8
+    CSoundEventName m_strHitDebrisSound; // offset 0x100, size 0x10, align 8
+    CSoundEventName m_strMissSound; // offset 0x110, size 0x10, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeSwingParticle; // offset 0x120, size 0xE0, align 8 | MPropertyStartGroup
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeAttackParticle; // offset 0x200, size 0xE0, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_MeleeImpactParticle; // offset 0x2E0, size 0xE0, align 8
+    CitadelCameraOperationsSequence_t m_cameraSequenceAttackStart; // offset 0x3C0, size 0xA0, align 8 | MPropertyStartGroup
 };

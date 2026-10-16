@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_Baba_BenchMelee : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1688, align 0x8 [vtable] (server) {MAbilityDynamicValuesSuppressCacheWhileActive}
+class CCitadel_Ability_Baba_BenchMelee : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1690, align 0x8 [vtable] (server) {MAbilityDynamicValuesSuppressCacheWhileActive}
 {
 public:
     char _pad_0000[0x14B8]; // offset 0x0
@@ -18,6 +18,7 @@ public:
     Vector m_vDashStartVelocity; // offset 0x14E0, size 0xC, align 4
     bool m_bAttackImpulseApplied; // offset 0x14EC, size 0x1, align 1
     char _pad_14ED[0x3]; // offset 0x14ED
-    QAngle m_angForced; // offset 0x14F0, size 0xC, align 4
-    char _pad_14FC[0x18C]; // offset 0x14FC
+    int32 m_nAirborneAttackImpulses; // offset 0x14F0, size 0x4, align 4
+    QAngle m_angForced; // offset 0x14F4, size 0xC, align 4
+    char _pad_1500[0x190]; // offset 0x1500
 };

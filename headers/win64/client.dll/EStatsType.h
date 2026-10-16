@@ -109,6 +109,7 @@ enum EStatsType : uint32_t  // sizeof 0x4
     EGameplayTimeScale = 104,
     EAnimationTimeScale = 105,
     EParticleTimeScale = 106,
-    EStatsCount = 107,
-    EStatsInvalid = 107,
+    ETechPowerStolen = 107,
+    EStatsCount = 108,
+    EStatsInvalid = 108,
 };

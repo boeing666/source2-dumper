@@ -6,7 +6,8 @@ public:
     char _pad_0000[0x230]; // offset 0x0
     ParticleOmni2LightTypeChoiceList_t m_nLightType; // offset 0x230, size 0x4, align 4 | MPropertyFriendlyName
     uint16 m_nMaxAllowed; // offset 0x234, size 0x2, align 2 | MPropertyFriendlyName MPropertyAttributeRange
-    char _pad_0236[0x2]; // offset 0x236
+    bool m_bIgnoreParticleLightsDisabled; // offset 0x236, size 0x1, align 1 | MPropertyFriendlyName
+    char _pad_0237[0x1]; // offset 0x237
     CParticleCollectionVecInput m_vColorBlend; // offset 0x238, size 0x6D8, align 8 | MPropertyFriendlyName
     ParticleColorBlendType_t m_nColorBlendType; // offset 0x910, size 0x4, align 4 | MPropertyFriendlyName MPropertySortPriority
     char _pad_0914[0x4]; // offset 0x914

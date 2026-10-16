@@ -697,6 +697,7 @@ citadel_damage_text_show_unit_health | developmentonly,clientdll | Show remainin
 citadel_damage_text_spacing | developmentonly,clientdll | Spacing between floating damage numbers.
 citadel_damage_text_x_offset_far | developmentonly,clientdll | How much to offset damage numbers left and right when far from the camera
 citadel_damage_text_x_offset_near | developmentonly,clientdll | How much to offset damage numbers left and right when near the camera
+citadel_deadpack_instant_shot | gamedll,clientdll,replicated,cheat,release | 
 citadel_death_linger_time | developmentonly,gamedll | How logn does the player icon linger on the minimap after they die
 citadel_death_ragdoll_duration | developmentonly,clientdll | How long a dead hero's ragdoll exists for before it despawns. Can outlive the death camera ( citadel_death_return_to_spawn_delay ) so that other players still see the body.
 citadel_death_replay_enabled | gamedll,clientdll,replicated,release | 
@@ -771,7 +772,6 @@ citadel_druid_debug_bush_network | developmentonly,gamedll,clientdll,replicated 
 citadel_duck_spam_slow_penalty_duration | developmentonly,gamedll,clientdll,replicated,defensive | How long the slow penalty is for spamming duck is
 citadel_dump_keybindings | developmentonly,clientdll,defensive | 
 citadel_enable_chat_rate_limiting | developmentonly,gamedll | 
-citadel_enable_new_ping_particle | developmentonly,clientdll | Convar to test new ping particle
 citadel_enable_parties | developmentonly,clientdll,defensive | Enable client side party UI
 citadel_enable_ping_rate_limiting | developmentonly,gamedll | 
 citadel_enable_slows_affect_air_drag | gamedll,clientdll,replicated,cheat,release | Whether slows affect air drag
@@ -895,6 +895,7 @@ citadel_hero_roster_high_priority | clientdll,per_user,release | A comma separat
 citadel_hero_roster_preferred | clientdll,per_user,release | A comma separated list of hero IDs that hold the currently preferred roster heroes
 citadel_hero_roster_random | clientdll,per_user,release | Is the hero roster set to random
 citadel_hero_settings_cloud_disable | developmentonly,clientdll,defensive | 
+citadel_hero_specific_settings_enabled | clientdll,per_user | Use hero-specific settings and keybinds
 citadel_hero_testing_dummy_bullet_resist | gamedll,clientdll,replicated,cheat | Bonus bullet resist % given to Target Dummies in Hero Testing
 citadel_hero_testing_dummy_debuff_resist | gamedll,clientdll,replicated,cheat | Bonus debuff resist % given to Target Dummies in Hero Testing
 citadel_hero_testing_dummy_health_regen | gamedll,clientdll,replicated,cheat | Bonus health regen per second given to Target Dummies in Hero Testing
@@ -968,6 +969,7 @@ citadel_hud_player_stats_delta_increment_time | developmentonly,clientdll,defens
 citadel_hud_player_stats_delta_time | developmentonly,clientdll,defensive | 
 citadel_hud_top_bar_enable_dynamic_player_position | developmentonly,clientdll,defensive | 
 citadel_hud_unit_indicators_v2_enable | developmentonly,clientdll | 
+citadel_hud_unit_indicators_v2_show_distance | clientdll | 
 citadel_hud_visible | clientdll,release | Turns on/off rendering the HUD
 citadel_idle_time | developmentonly,gamedll,defensive | How long a player needs to be idle before he counts as disconnected.
 citadel_idle_time_grace_period | developmentonly,gamedll,defensive | How long a player needs to be idle we start putting that time towards their stored idle time.
@@ -979,6 +981,7 @@ citadel_idol_think_bias_interval | gamedll,cheat |
 citadel_in_world_item_panel_dpi | developmentonly,clientdll,defensive | In-world texture resolution scale
 citadel_inactive_time_grace_period | developmentonly,gamedll,defensive | How long a player needs to be inactive (i.e. not taking any meaningful actions) before we start putting that time towards their stored inactive time.
 citadel_initial_wall_jump_stamina_cost | developmentonly,gamedll,clientdll,replicated,defensive | How much stamina is required, and costs, to perform your first wall jump.
+citadel_instant_ping_cancel_time | developmentonly,clientdll | Holding the instant ping key longer than this cancels the ping.
 citadel_item_draft_enabled | gamedll,clientdll,replicated,release | Use item drafting?  1=only street brawl 2=always
 citadel_item_draft_force_all_rares | developmentonly,gamedll,defensive | 
 citadel_item_draft_force_draw | developmentonly,gamedll,defensive | Comma-separated list of localized item names to force draft.  Ignores tier requirements.  ex, spirit lifesteal, extra charge
@@ -1192,7 +1195,7 @@ citadel_pause_resume_time_disconnected | developmentonly,gamedll,defensive | Num
 citadel_pending_replay_force_failure | developmentonly,clientdll,defensive | 
 citadel_pending_replay_num_retries | developmentonly,clientdll,defensive | 
 citadel_pending_replay_retry_seconds | developmentonly,clientdll,defensive | 
-citadel_per_unit_hotkeys_checked | clientdll,per_user | 
+citadel_per_unit_hotkeys_checked | clientdll,hidden,per_user,release | Old name of citadel_hero_specific_settings_enabled
 citadel_per_weapon_per_surface_impact_effects | developmentonly,gamedll,clientdll,replicated,defensive | 
 citadel_perf_interval_report_s | developmentonly,gamedll | The interval that we record performance stats to the log at measured in seconds
 citadel_perf_long_frame_time_threshold_ms | developmentonly,gamedll | The time in milliseconds where if a frame is beyond this, count it as a long frame
@@ -1258,6 +1261,7 @@ citadel_player_gold_reward_time | developmentonly,gamedll,clientdll,replicated,d
 citadel_player_ground_dash_max_percent | gamedll,clientdll,replicated,cheat | Max ground dash scale
 citadel_player_ground_dash_min_percent | gamedll,clientdll,replicated,cheat | Min ground dash scale
 citadel_player_level_hiding_extra_duration | developmentonly,clientdll,defensive | 
+citadel_player_model_force_highest_lod | clientdll,release | Forces the local player pawn to render using the highest LOD level.
 citadel_player_move_speed_min | gamedll,clientdll,replicated,cheat | Min walk speed
 citadel_player_move_speed_scale | gamedll,clientdll,replicated,cheat | Scales how fast players can move
 citadel_player_neutral_gold_drop_min | developmentonly,gamedll,defensive | 
@@ -1426,7 +1430,6 @@ citadel_recent_comms_session_attempt_throttled_count | gamedll,replicated,releas
 citadel_recent_comms_throttling_limit | gamedll,replicated,release | 
 citadel_recent_comms_throttling_penalty | gamedll,replicated,release | 
 citadel_reduce_camera_shake | clientdll,per_user | Turns off screen shake.
-citadel_region_override | clientdll,release | Override the region of the client
 citadel_replay_manager_download_chunk_size | clientdll | 
 citadel_replay_manager_download_simultaneous_requests | clientdll | 
 citadel_replay_marker_time_offset | developmentonly,clientdll,defensive | How many seconds to start the replay before the event marker.
@@ -1929,6 +1932,7 @@ cl_citadel_stat_value_cache_enabled | developmentonly,clientdll,cheat | Enable/d
 cl_citadel_stat_value_cache_validate_interval | developmentonly,clientdll | Validate cached stat values against freshly computed results every N hits. 0=off.
 cl_citadel_unit_query_draw_registry | developmentonly,clientdll,cheat | 
 cl_citadel_wrecker_ultimate_debug_physics | developmentonly,clientdll | 
+cl_citadel_zipline_and_mantle_same_bind | clientdll,hidden | 
 cl_citadel_zoom_is_toggle | clientdll,per_user | 
 cl_clock_buffer_ticks | developmentonly | Clock sync will try to maintain an additional margin of N ticks.  This is intended to smooth over packet loss, and is a replacement for cl_interp_ratio / cl_interp.  This value is simply added to cl_clock_recvmargin_desired
 cl_clock_buffer_ticks_spectator | developmentonly | Additional margin (in ticks) to apply when spectating.
@@ -2493,9 +2497,6 @@ labelled_debug_helper_show_position | gamedll,clientdll,replicated,cheat |
 labelled_debug_helper_show_text | gamedll,clientdll,replicated,cheat | 
 labelled_debug_helper_skeleton_show_bone_names | gamedll,clientdll,replicated,cheat | 
 lb_csm_cascade_size_override | reference | 
-lb_csm_override_bulb_radius | reference | 
-lb_csm_override_staticgeo_cascades | reference | 
-lb_csm_override_staticgeo_cascades_value | reference | 
 lb_dynamic_shadow_resolution_base | reference | 
 lb_shadow_texture_height_override | reference | 
 lb_shadow_texture_width_override | reference | 
@@ -2928,6 +2929,7 @@ panorama_label_wrap_before_shrink | developmentonly,clientdll,hidden,defensive |
 panorama_movie_async_load_size_bytes | developmentonly,clientdll,hidden,defensive | 
 panorama_movie_force_not_ready_behavior | developmentonly,clientdll,hidden,defensive | 
 panorama_streaming_load_local_images | developmentonly,clientdll,defensive | 
+panorama_synced_font_size_spew | developmentonly,clientdll,hidden,defensive | Log SyncedFontSizeLabel group constraints and shared font size changes
 panorama_toggledebugger_mode | reference | 
 panorama_worldpanel_update_cull_distance | developmentonly,clientdll,defensive | 
 panorama_worldpanel_update_cull_size_threshold | developmentonly,clientdll,defensive | 
@@ -3072,6 +3074,7 @@ r_citadel_depthoffield_enable | developmentonly,clientdll | Enable/Disable Depth
 r_citadel_depthoffield_focus_distance | developmentonly,clientdll | Depth of field focus distance in inches
 r_citadel_depthoffield_mode | developmentonly,clientdll | Depth of field mode, 0: Normal 1: Near field only 2: Far field only
 r_citadel_depthoffield_sensor_size | developmentonly,clientdll | Depth of field sensor size in inches
+r_citadel_disable_particle_lights | clientdll,release | Disable particle lights except when explicitly overriden in particle renderer ops.
 r_citadel_distancefield_ao_quality | developmentonly,clientdll,defensive | Distance Field AO quality
 r_citadel_distancefield_blur | developmentonly,clientdll | Enable/Disable distance field blur
 r_citadel_distancefield_blur_depth_threshold | developmentonly,clientdll | Distance field blur depth threshold

@@ -3,13 +3,15 @@
 +cammousemove | developmentonly,clientdll,defensive | 
 +chatwheel | clientdll,release | Opens the comms wheel instantly while held
 +citadel_swtich_player_cam | clientdll,release | Player Cam switching button pressed
-+in_ability_ping | clientdll,release | Ping button pressed
++in_ability_instant_ping | clientdll,release | Ping without radial
++in_ability_ping | clientdll,release | Ping button pressed. Long hold opens comms wheel.
 -bugvoice | developmentonly,dontrecord,defensive | Finish recording bug voice attachment.
 -camdistance | developmentonly,clientdll,defensive | 
 -cammousemove | developmentonly,clientdll,defensive | 
 -chatwheel | clientdll,release | Sends the hovered comms wheel option
 -citadel_swtich_player_cam | clientdll,release | Player Cam switching button released
--in_ability_ping | clientdll,release | Ping button released
+-in_ability_instant_ping | clientdll,release | Ping without radial
+-in_ability_ping | clientdll,release | Ping button released. Long hold opens comms wheel.
 StackStats_Dump | developmentonly | Dump a named stackstats structure to disk. Usage: stackstats_dump "structname" ["filename"]
 Test_Checkpoint | developmentonly,defensive | Indicate to a test script that a checkpoint has been reached
 Test_CreateEntity | gamedll,cheat | 

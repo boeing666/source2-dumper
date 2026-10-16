@@ -18,6 +18,7 @@ public:
     Vector m_vDashStartVelocity; // offset 0x1700, size 0xC, align 4
     bool m_bAttackImpulseApplied; // offset 0x170C, size 0x1, align 1
     char _pad_170D[0x3]; // offset 0x170D
-    QAngle m_angForced; // offset 0x1710, size 0xC, align 4
-    char _pad_171C[0x194]; // offset 0x171C
+    int32 m_nAirborneAttackImpulses; // offset 0x1710, size 0x4, align 4
+    QAngle m_angForced; // offset 0x1714, size 0xC, align 4
+    char _pad_1720[0x190]; // offset 0x1720
 };

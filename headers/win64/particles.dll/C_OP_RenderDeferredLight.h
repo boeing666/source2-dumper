@@ -1,6 +1,6 @@
 #pragma once
 
-class C_OP_RenderDeferredLight : public CParticleFunctionRenderer /*0x0*/  // sizeof 0x948, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults}
+class C_OP_RenderDeferredLight : public CParticleFunctionRenderer /*0x0*/  // sizeof 0x950, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x230]; // offset 0x0
@@ -22,4 +22,6 @@ public:
     float32 m_flDistanceFalloff; // offset 0x93C, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flSpotFoV; // offset 0x940, size 0x4, align 4 | MPropertyFriendlyName
     int32 m_nHSVShiftControlPoint; // offset 0x944, size 0x4, align 4 | MPropertyFriendlyName
+    bool m_bIgnoreParticleLightsDisabled; // offset 0x948, size 0x1, align 1 | MPropertyFriendlyName
+    char _pad_0949[0x7]; // offset 0x949
 };

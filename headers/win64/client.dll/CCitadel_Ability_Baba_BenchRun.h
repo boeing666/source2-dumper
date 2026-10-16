@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_Baba_BenchRun : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1FE0, align 0x8 [vtable] (client)
+class CCitadel_Ability_Baba_BenchRun : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1F30, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x1E50]; // offset 0x0
@@ -13,6 +13,6 @@ public:
     GameTime_t m_flEndLaunchTime; // offset 0x1E60, size 0x4, align 255
     float32 m_flLastChargeJumpFraction; // offset 0x1E64, size 0x4, align 4
     bool m_bInMelee; // offset 0x1E68, size 0x1, align 1
-    bool m_bMeleeIsHeavy; // offset 0x1E69, size 0x1, align 1
-    char _pad_1E6A[0x176]; // offset 0x1E6A
+    bool m_bRideCut; // offset 0x1E69, size 0x1, align 1
+    char _pad_1E6A[0xC6]; // offset 0x1E6A
 };

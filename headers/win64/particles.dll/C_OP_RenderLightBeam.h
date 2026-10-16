@@ -28,5 +28,6 @@ public:
     CParticleCollectionRendererFloatInput m_flFogContribution; // offset 0x1D40, size 0x178, align 8 | MPropertyFriendlyName MPropertySuppressExpr
     CPerParticleFloatInput m_flRenderFilter; // offset 0x1EB8, size 0x178, align 8 | MPropertyFriendlyName
     bool m_bDebugOrientation; // offset 0x2030, size 0x1, align 1 | MPropertyFriendlyName
-    char _pad_2031[0x7]; // offset 0x2031
+    bool m_bIgnoreParticleLightsDisabled; // offset 0x2031, size 0x1, align 1 | MPropertyFriendlyName
+    char _pad_2032[0x6]; // offset 0x2032
 };
