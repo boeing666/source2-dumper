@@ -125,6 +125,7 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	common
 	sourcesdk::tier1
+	sourcesdk::kv3lib
 	sourcesdk::entity2
 	cpp-memory_utils
 	Zydis

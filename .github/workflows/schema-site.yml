@@ -145,9 +145,10 @@ jobs:
 
   # Commit the per-class header dump to a per-game branch (schema-dump-<game>) so
   # each game's schema changes are diffable on GitHub in isolation.
+  # !cancelled(): run even when some dump legs failed — publish whatever succeeded.
   commit-headers:
     needs: [check, dump]
-    if: needs.check.outputs.changed == '1'
+    if: ${{ !cancelled() && needs.check.outputs.changed == '1' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -171,6 +172,11 @@ jobs:
           set -e
           g="${{ matrix.game }}"
           br="schema-dump-$g"
+          src="$RUNNER_TEMP/parts/headers/$g"
+          if [ ! -d "$src" ] || [ -z "$(ls -A "$src")" ]; then
+            echo "::warning::no $g dump produced (build/dump failed) — keeping $br as is"
+            exit 0
+          fi
           git config user.name  "schema-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if git ls-remote --exit-code --heads origin "$br" >/dev/null 2>&1; then
@@ -180,10 +186,15 @@ jobs:
             git checkout --orphan "$br"
             git rm -rfq . || true
           fi
-          rm -rf headers parts        # parts/ drops any stray copy committed by older runs
+          rm -rf parts                # drops any stray copy committed by older runs
           mkdir -p headers
           # Flatten the game level: on a per-game branch it is redundant -> headers/<platform>/...
-          cp -r "$RUNNER_TEMP/parts/headers/$g/"* headers/ 2>/dev/null || true
+          # Replace only the platforms dumped this run; a failed platform keeps its last good dump.
+          for p in "$src"/*/; do
+            p=$(basename "$p")
+            rm -rf "headers/$p"
+            cp -r "$src/$p" "headers/$p"
+          done
           # This game's OWN manifest GID (not the combined run key) — so an unchanged game's
           # README stays byte-identical and git skips its commit instead of touching every branch.
           manifest='${{ fromJson(needs.check.outputs.gids)[matrix.game] }}'
@@ -196,7 +207,7 @@ jobs:
 
   publish:
     needs: [check, dump]
-    if: needs.check.outputs.changed == '1'
+    if: ${{ !cancelled() && needs.check.outputs.changed == '1' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -222,14 +233,28 @@ jobs:
           cache-dependency-path: web/pnpm-lock.yaml
 
       - name: Stage JSON data into the frontend
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p web/public/data
+          # A failed dump leg falls back to the data currently live on Pages, so one broken
+          # game/platform doesn't vanish from the site.
+          site=$(gh api "repos/${{ github.repository }}/pages" --jq .html_url 2>/dev/null || true)
+          site="${site%/}"
           for g in cs2 dota2 deadlock; do
             for p in win64 linux; do
+              dst="web/public/data/$g/$p"
               if [ -d "$RUNNER_TEMP/parts/$g/$p" ]; then
-                mkdir -p "web/public/data/$g/$p"
-                cp "$RUNNER_TEMP/parts/$g/$p"/*.json "web/public/data/$g/$p/"
-                echo "staged $g/$p: $(ls "web/public/data/$g/$p" | wc -l) json"
+                mkdir -p "$dst"
+                cp "$RUNNER_TEMP/parts/$g/$p"/*.json "$dst/"
+                echo "staged $g/$p: $(ls "$dst" | wc -l) json"
+              elif [ -n "$site" ] && curl -fsSL "$site/data/$g/$p/meta.json" -o meta.tmp 2>/dev/null; then
+                mkdir -p "$dst"
+                mv meta.tmp "$dst/meta.json"
+                for f in index.json convars.json concommands.json events.json vscript.json $(jq -r '.scopes[].file' "$dst/meta.json"); do
+                  curl -fsSL "$site/data/$g/$p/$f" -o "$dst/$f" 2>/dev/null || rm -f "$dst/$f"
+                done
+                echo "::warning::$g/$p not dumped this run — re-published previous data ($(ls "$dst" | wc -l) json)"
               fi
             done
           done
