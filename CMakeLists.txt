@@ -80,7 +80,10 @@ set(SOURCE_FILES
 	src/schema/schema_util.cpp
 	src/output/header_writer.cpp
 	src/output/json_writer.cpp
-	src/runtime/appsystem.cpp
+	src/runtime/boot/app_system_group.cpp
+	src/runtime/boot/boot.cpp
+	src/runtime/boot/module_systems.cpp
+	src/runtime/boot/stub_application.cpp
 	src/runtime/convars.cpp
 	src/runtime/network_fields.cpp
 	src/runtime/network_state.cpp

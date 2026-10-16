@@ -3,10 +3,11 @@
 #include <string>
 #include <unordered_set>
 
-#include "core/game_module.hpp"
+class CNetworkSerializerCodeGenDatabase;
 
 namespace schema {
 
-std::unordered_set<std::string> CollectNetworkFields(const ModuleMap& mods);
+// "Class::field" for every networked field in the server's codegen database (empty for null).
+std::unordered_set<std::string> CollectNetworkFields(CNetworkSerializerCodeGenDatabase* db);
 
 }

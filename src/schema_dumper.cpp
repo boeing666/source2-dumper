@@ -8,7 +8,7 @@
 #include "runtime/network_state.hpp"
 #include "runtime/pulse_io.hpp"
 #include "runtime/vscript.hpp"
-#include "runtime/appsystem.hpp"
+#include "runtime/boot/boot.hpp"
 #include "runtime/convars.hpp"
 #include "gameevents/gameevents.hpp"
 
@@ -46,7 +46,7 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 		return 1;
 	}
 
-	std::unordered_set<std::string> network = CollectNetworkFields(mods);
+	std::unordered_set<std::string> network = CollectNetworkFields(boot::BootAppSystems(mods));
 	std::unordered_map<std::string, int> stateChanged = CollectNetworkStateIndices(mods, modules);
 	const auto pulseIO = CollectPulseIO(mods);
 	const ScriptApi scriptApi = CollectScriptApi(mods);
@@ -77,7 +77,7 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 	std::println("\n{} types / {} modules / {} network fields -> {}/{}/{} (json)",
 	             total, modules.size(), network.size(), outDir.string(), GAME_NAME, PLATFORM_NAME);
 
-	ShutdownAppSystems();
+	boot::ShutdownAppSystems();
 	return 0;
 }
 

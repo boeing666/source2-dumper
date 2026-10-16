@@ -1,5 +1,4 @@
 #include "runtime/network_fields.hpp"
-#include "runtime/appsystem.hpp"
 
 #include <print>
 #include <string>
@@ -9,7 +8,9 @@
 
 namespace schema {
 
-static void ReadCodegenDatabase(CNetworkSerializerCodeGenDatabase* db, std::unordered_set<std::string>& out) {
+namespace {
+
+void ReadCodegenDatabase(CNetworkSerializerCodeGenDatabase* db, std::unordered_set<std::string>& out) {
 	auto& dict = db->m_ClassInfos;
 	for (auto i = dict.First(); i != dict.InvalidIndex(); i = dict.Next(i)) {
 		const CNetworkSerializerClassInfo* c = dict.Element(i);
@@ -33,9 +34,11 @@ static void ReadCodegenDatabase(CNetworkSerializerCodeGenDatabase* db, std::unor
 	}
 }
 
-std::unordered_set<std::string> CollectNetworkFields(const ModuleMap& mods) {
+}
+
+std::unordered_set<std::string> CollectNetworkFields(CNetworkSerializerCodeGenDatabase* db) {
 	std::unordered_set<std::string> net;
-	if (auto db = ConnectAndBuildNetworkDatabase(mods)) {
+	if (db) {
 		ReadCodegenDatabase(db, net);
 	}
 
