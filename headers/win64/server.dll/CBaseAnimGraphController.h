@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseAnimGraphController : public CSkeletonAnimationController /*0x0*/  // sizeof 0x5D0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CBaseAnimGraphController : public CSkeletonAnimationController /*0x0*/  // sizeof 0x6E0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x18]; // offset 0x0
@@ -31,15 +31,15 @@ public:
     CNetworkUtlVectorBase< uint8 > m_SerializePoseRecipeAG2Dynamic; // offset 0x310, size 0x18, align 8 | MNotSaved
     uint32 m_nSerializePoseRecipeAG2ActiveSlot; // offset 0x328, size 0x4, align 4 | MNotSaved
     int32 m_nSerializePoseRecipeVersionAG2; // offset 0x32C, size 0x4, align 4 | MNotSaved
-    char _pad_0330[0x10]; // offset 0x330
-    int32 m_nServerGraphInstanceIteration; // offset 0x340, size 0x4, align 4
-    int32 m_nServerSerializationContextIteration; // offset 0x344, size 0x4, align 4
-    ResourceId_t m_primaryGraphId; // offset 0x348, size 0x8, align 255
-    CNetworkUtlVectorBase< ResourceId_t > m_vecExternalGraphIds; // offset 0x350, size 0x18, align 8
-    CNetworkUtlVectorBase< ResourceId_t > m_vecExternalClipIds; // offset 0x368, size 0x18, align 8
-    CGlobalSymbol m_sAnimGraph2Identifier; // offset 0x380, size 0x8, align 8
-    CAnimGraph2InstancePtr m_pGraphInstanceAG2; // offset 0x388, size 0x10, align 255
-    char _pad_0398[0x210]; // offset 0x398
-    CExternalAnimGraphList m_vecExternalGraphs; // offset 0x5A8, size 0x20, align 255
-    char _pad_05C8[0x8]; // offset 0x5C8
+    char _pad_0330[0x120]; // offset 0x330
+    int32 m_nServerGraphInstanceIteration; // offset 0x450, size 0x4, align 4
+    int32 m_nServerSerializationContextIteration; // offset 0x454, size 0x4, align 4
+    ResourceId_t m_primaryGraphId; // offset 0x458, size 0x8, align 255
+    CNetworkUtlVectorBase< ResourceId_t > m_vecExternalGraphIds; // offset 0x460, size 0x18, align 8
+    CNetworkUtlVectorBase< ResourceId_t > m_vecExternalClipIds; // offset 0x478, size 0x18, align 8
+    CGlobalSymbol m_sAnimGraph2Identifier; // offset 0x490, size 0x8, align 8
+    CAnimGraph2InstancePtr m_pGraphInstanceAG2; // offset 0x498, size 0x10, align 255
+    char _pad_04A8[0x210]; // offset 0x4A8
+    CExternalAnimGraphList m_vecExternalGraphs; // offset 0x6B8, size 0x20, align 255
+    char _pad_06D8[0x8]; // offset 0x6D8
 };

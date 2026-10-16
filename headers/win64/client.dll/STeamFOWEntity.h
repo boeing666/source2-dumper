@@ -14,8 +14,9 @@ public:
     char _pad_0043[0x1]; // offset 0x43
     GameTick_t m_nTickHidden; // offset 0x44, size 0x4, align 255
     CUtlString m_strCSSClass; // offset 0x48, size 0x8, align 8
-    uint8 m_nHealthPercent; // offset 0x50, size 0x1, align 1
-    uint8 m_nPositionX; // offset 0x51, size 0x1, align 1
-    uint8 m_nPositionY; // offset 0x52, size 0x1, align 1
-    char _pad_0053[0xD]; // offset 0x53
+    CEntityIndex m_nOwnerOnlyEntIndex; // offset 0x50, size 0x4, align 4
+    uint8 m_nHealthPercent; // offset 0x54, size 0x1, align 1
+    uint8 m_nPositionX; // offset 0x55, size 0x1, align 1
+    uint8 m_nPositionY; // offset 0x56, size 0x1, align 1
+    char _pad_0057[0x9]; // offset 0x57
 };

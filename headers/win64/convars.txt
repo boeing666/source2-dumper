@@ -676,7 +676,8 @@ citadel_damage_text_distance_far | developmentonly,clientdll | Far distances at 
 citadel_damage_text_distance_near | developmentonly,clientdll | Near distance at which we use the near offsets for damage numbers
 citadel_damage_text_dynamic_emphasis | developmentonly,clientdll | Dynamically emphasize damage number over a certain percent of the targets max health. See citadel_damage_text_dynamic_emphasis_percent
 citadel_damage_text_dynamic_emphasis_percent | developmentonly,clientdll | Percent of the victims max health the damage needs to be, for it to be dynamically emphasized.
-citadel_damage_text_follow_healthbar_pos | developmentonly,clientdll | Damage text follows the victim's healthbar position (only works on V2 healthbars)
+citadel_damage_text_follow_healthbar_pos | developmentonly,clientdll | Damage text follows the victim's healthbar position
+citadel_damage_text_follow_healthbar_scale | developmentonly,clientdll | Damage text follows the victim's healthbar scale
 citadel_damage_text_follow_victim_pos | developmentonly,clientdll | Damage text follows victim's position
 citadel_damage_text_healing_offset_x | developmentonly,clientdll | 
 citadel_damage_text_healing_offset_y | developmentonly,clientdll | 
@@ -958,6 +959,7 @@ citadel_hud_exclusive_visible_id | clientdll,cheat | When set, only show the pan
 citadel_hud_experiments_enabled | developmentonly,clientdll | Test hud experiments
 citadel_hud_heal_counter_duration | developmentonly,clientdll,defensive | 
 citadel_hud_hide_own_health | clientdll,release | Hides your own health bar on the HUD
+citadel_hud_high_unspent_souls_threshold | developmentonly,clientdll | Unspent souls at or above this amount set gHighUnspentSouls on the HUD (pulsing soul count, quickbuy bounce)
 citadel_hud_objective_health_debug_show_midboss | developmentonly,clientdll | 
 citadel_hud_objective_health_debug_show_t3 | developmentonly,clientdll | 0=default 1=friendly 2=enemy 3=both
 citadel_hud_objective_health_enabled | developmentonly,clientdll | Enable/Disable HUD-level objective health bars.  0=Off. 1=Shrines, Patron, Midboss. 2=T1s and T2s. 3=Barracks

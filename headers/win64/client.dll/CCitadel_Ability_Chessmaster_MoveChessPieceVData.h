@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Ability_Chessmaster_MoveChessPieceVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1970, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_Ability_Chessmaster_MoveChessPieceVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1960, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x13E8]; // offset 0x0
     CUtlOrderedMap< EChessPieceType, CSubclassName< 4 > > m_mapChessAbilities; // offset 0x13E8, size 0x28, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_MoveModifier; // offset 0x1410, size 0x10, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CCitadelModifier > m_MoveBishopModifier; // offset 0x1410, size 0x10, align 8 | MPropertyStartGroup
     CEmbeddedSubclass< CCitadelModifier > m_MoveAllyModifier; // offset 0x1420, size 0x10, align 8
     CEmbeddedSubclass< CCitadelModifier > m_MoveKingModifier; // offset 0x1430, size 0x10, align 8
     CEmbeddedSubclass< CCitadelModifier > m_MoveQueenModifier; // offset 0x1440, size 0x10, align 8
@@ -18,22 +18,24 @@ public:
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_TargetPreviewAllyParticle; // offset 0x1638, size 0xE0, align 8
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_TargetPreviewQueenParticle; // offset 0x1718, size 0xE0, align 8
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_TargetPreviewKingParticle; // offset 0x17F8, size 0xE0, align 8
-    CSoundEventName m_strHitConfirmSound; // offset 0x18D8, size 0x10, align 8 | MPropertyStartGroup
-    CSoundEventName m_strMoveBishopSound; // offset 0x18E8, size 0x10, align 8
-    CSoundEventName m_strMoveKnightSound; // offset 0x18F8, size 0x10, align 8
-    CSoundEventName m_strMoveQueenSound; // offset 0x1908, size 0x10, align 8
-    CSoundEventName m_strMoveKingSound; // offset 0x1918, size 0x10, align 8
-    CSoundEventName m_strSelectPieceSound; // offset 0x1928, size 0x10, align 8
-    float32 m_flHoverTime; // offset 0x1938, size 0x4, align 4 | MPropertyStartGroup
-    float32 m_flPassiveTargetingConeAngle; // offset 0x193C, size 0x4, align 4
-    float32 m_flPassiveTargetingHalfWidth; // offset 0x1940, size 0x4, align 4
-    float32 m_flPassiveTargetingNearbyCasterRadius; // offset 0x1944, size 0x4, align 4
-    float32 m_flPassiveTargetingNearbyCrosshairRadius; // offset 0x1948, size 0x4, align 4
-    float32 m_flSpawnPositionNavMeshSearchRange; // offset 0x194C, size 0x4, align 4
-    bool m_bCreateSatVolume; // offset 0x1950, size 0x1, align 1
-    bool m_bMoveAllFixedDistance; // offset 0x1951, size 0x1, align 1
-    bool m_bSweepToDestination; // offset 0x1952, size 0x1, align 1
-    bool m_bDebug; // offset 0x1953, size 0x1, align 1
-    char _pad_1954[0x4]; // offset 0x1954
-    CUtlVector< Class_T > m_vecPossibleClasses; // offset 0x1958, size 0x18, align 8
+    CSoundEventName m_strMoveBishopSound; // offset 0x18D8, size 0x10, align 8 | MPropertyStartGroup
+    CSoundEventName m_strMoveKnightSound; // offset 0x18E8, size 0x10, align 8
+    CSoundEventName m_strMoveQueenSound; // offset 0x18F8, size 0x10, align 8
+    CSoundEventName m_strMoveKingSound; // offset 0x1908, size 0x10, align 8
+    CSoundEventName m_strSelectPieceSound; // offset 0x1918, size 0x10, align 8
+    float32 m_flHoverTime; // offset 0x1928, size 0x4, align 4 | MPropertyStartGroup
+    float32 m_flPassiveTargetingConeAngle; // offset 0x192C, size 0x4, align 4
+    float32 m_flPassiveTargetingHalfWidth; // offset 0x1930, size 0x4, align 4
+    float32 m_flPassiveTargetingNearbyCasterRadius; // offset 0x1934, size 0x4, align 4
+    float32 m_flPassiveTargetingNearbyCrosshairRadius; // offset 0x1938, size 0x4, align 4
+    float32 m_flSpawnPositionNavMeshSearchRange; // offset 0x193C, size 0x4, align 4
+    bool m_bSweepToDestination; // offset 0x1940, size 0x1, align 1
+    bool m_bCreateSatVolume; // offset 0x1941, size 0x1, align 1
+    bool m_bAllowSelfTarget; // offset 0x1942, size 0x1, align 1
+    bool m_bAllowNonSelfTarget; // offset 0x1943, size 0x1, align 1
+    bool m_bDrawUIElements; // offset 0x1944, size 0x1, align 1
+    bool m_bDebug; // offset 0x1945, size 0x1, align 1
+    bool m_bApplyMoveCooldown; // offset 0x1946, size 0x1, align 1
+    char _pad_1947[0x1]; // offset 0x1947
+    CUtlVector< Class_T > m_vecPossibleClasses; // offset 0x1948, size 0x18, align 8
 };

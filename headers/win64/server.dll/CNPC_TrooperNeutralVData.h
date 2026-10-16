@@ -1,6 +1,6 @@
 #pragma once
 
-class CNPC_TrooperNeutralVData : public CAI_CitadelNPCVData /*0x0*/  // sizeof 0xF10, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CNPC_TrooperNeutralVData : public CAI_CitadelNPCVData /*0x0*/  // sizeof 0xF20, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xC50]; // offset 0x0
@@ -37,7 +37,8 @@ public:
     CUtlVector< CUtlString > m_vecRandomBodyGroup; // offset 0xE90, size 0x18, align 8 | MPropertyStartGroup
     CUtlVector< CUtlString > m_vecRandomSkin; // offset 0xEA8, size 0x18, align 8
     CSoundEventName m_SpawnSound; // offset 0xEC0, size 0x10, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_NeutralDamageGrowth; // offset 0xED0, size 0x10, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CCitadelModifier > m_SleepModifier; // offset 0xEE0, size 0x10, align 8
-    CUtlHashtable< int32, CUtlString > m_mapViewerSoulsClass; // offset 0xEF0, size 0x20, align 8 | MPropertyStartGroup
+    CSoundEventName m_AggroSound; // offset 0xED0, size 0x10, align 8
+    CEmbeddedSubclass< CCitadelModifier > m_NeutralDamageGrowth; // offset 0xEE0, size 0x10, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CCitadelModifier > m_SleepModifier; // offset 0xEF0, size 0x10, align 8
+    CUtlHashtable< int32, CUtlString > m_mapViewerSoulsClass; // offset 0xF00, size 0x20, align 8 | MPropertyStartGroup
 };

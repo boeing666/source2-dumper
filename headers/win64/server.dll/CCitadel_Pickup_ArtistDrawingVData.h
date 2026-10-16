@@ -1,0 +1,8 @@
+#pragma once
+
+class CCitadel_Pickup_ArtistDrawingVData : public CCitadel_Pickup_VData /*0x0*/  // sizeof 0xA20, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+{
+public:
+    char _pad_0000[0xA10]; // offset 0x0
+    CEmbeddedSubclass< CCitadelModifier > m_ArtistModifer; // offset 0xA10, size 0x10, align 8
+};
