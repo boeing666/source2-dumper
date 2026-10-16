@@ -318,6 +318,7 @@ cl_debug_round_stat_submission | developmentonly,clientdll |
 cl_debugviewangle | developmentonly,clientdll | Plots view angles yaw at various stages of the frame/tick in Tracy.
 cl_decryptdata_key | release | Key to decrypt encrypted GOTV messages
 cl_decryptdata_key_pub | release | Key to decrypt public encrypted GOTV messages
+cl_demo_freecam | clientdll,release | During demo playback, roaming spectator movement runs on real time so it works while paused and at any playback rate.
 cl_demo_predict | clientdll,release | Enable 'TrueView' when watching a demo, which attempts to recreate the client's experience more accurately.  0=disable, 1=only if demo version match, 2=always
 cl_demo_steadycam_blendframes | developmentonly,clientdll,defensive | blend over this many frames
 cl_demo_steadycam_deflection | developmentonly,clientdll,defensive | if camera orientation changes this much update orientation
@@ -886,7 +887,6 @@ demo_highlight_fade_duration | clientdll,release | Duration of the fade in and o
 demo_highlight_seconds_after | clientdll,release | How many seconds after the actual highlight event to show when viewing highlights.
 demo_highlight_seconds_before | clientdll,release | How many seconds before the actual highlight event to show when viewing highlights.
 demo_max_consecutive_skip_packets | developmentonly,defensive | Don't skip more than N messages in a row when skipping in a demo file.
-demo_mouse_enable_binding | clientdll | Name of the binding to enable mouse on demo playback UI
 demo_pause_at_end | clientdll,release | Pause demo playback when the end of the file is reached, otherwise quit to main menu.
 demo_playback_override_settings | developmentonly,clientdll,defensive | 
 demo_quitafterplayback | release | Quits game after demo playback.
@@ -2123,6 +2123,7 @@ r_csgo_shader_feature_test_value | developmentonly,clientdll |
 r_csgo_shader_perf_test | developmentonly,clientdll | 
 r_csgo_shadow_map_allocation_failure_policy | developmentonly,clientdll,cheat | What happens when a shadow map fails allocation? 0 = don't render, 1 = render unshadowed
 r_csgo_shadows_debug | clientdll,cheat | 
+r_csgo_sky_occluder | clientdll,cheat | 
 r_csgo_smoke_avoid_flat | developmentonly,clientdll | 
 r_csgo_smoke_clip_sniper | developmentonly,clientdll | 
 r_csgo_smoke_fullres_enhance | developmentonly,clientdll | Enhance edges of smokes to eliminate bad pixels
