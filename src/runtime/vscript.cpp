@@ -73,7 +73,11 @@ public:
 
 	bool Init() override { return true; }
 	void Shutdown() override {}
+#if SDK_MAIN_BRANCH
 	void DisableExecuteFunction() override {}
+#else
+	void DisableExecution() override {}
+#endif
 	ScriptLanguage_t GetLanguage() override { return SL_DEFAULT; }
 	const char* GetLanguageName() override { return "recording"; }
 	void* GetInternalVM() override { return nullptr; }
@@ -89,7 +93,11 @@ public:
 	ScriptStatus_t Run(HSCRIPT, HSCRIPT, bool) override { return SCRIPT_DONE; }
 	ScriptStatus_t Run(HSCRIPT, bool) override { return SCRIPT_DONE; }
 
+#if SDK_MAIN_BRANCH
 	HSCRIPT GetExecutingScript() override { return nullptr; }
+#else
+	HSCRIPT GetCurrentScope() override { return nullptr; }
+#endif
 	HSCRIPT CreateScope(const char*, HSCRIPT) override { return nullptr; }
 	HSCRIPT ReferenceScope(HSCRIPT hScript) override { return hScript; }
 	void ReleaseScope(HSCRIPT) override {}
@@ -152,19 +160,35 @@ public:
 	int GetNumTableEntries(HSCRIPT) override { return 0; }
 	int GetNumElements(HSCRIPT) override { return 0; }
 	int GetKeyValue(HSCRIPT, int, ScriptVariant_t*, ScriptVariant_t*) override { return -1; }
+#if SDK_MAIN_BRANCH
 	KeyValues* CreateKeyValuesFromTable(HSCRIPT, const char*, ScriptKeyValuesFromTableFunc_t, void*) override { return nullptr; }
+#else
+	bool CreateKeyValuesFromTable(HSCRIPT, const char*, void*, void*) override { return false; }
+#endif
 
 	bool GetValue(HSCRIPT, const char*, ScriptVariant_t*) override { return false; }
 	bool GetValue(HSCRIPT, int, ScriptVariant_t*) override { return false; }
 	bool GetScalarValue(HSCRIPT, ScriptVariant_t*) override { return false; }
+#if SDK_MAIN_BRANCH
 	void CopyValue(const ScriptVariant_t&, ScriptVariant_t*) override {}
+#else
+	ScriptVariant_t CopyValue(ScriptVariant_t&) override { return {}; }
+#endif
 	void ReleaseValue(ScriptVariant_t&) override {}
 	bool ClearValue(HSCRIPT, const char*) override { return false; }
 
+#if SDK_MAIN_BRANCH
 	void CreateArray(ScriptVariant_t&) override {}
+#else
+	HSCRIPT CreateArray(ScriptVariant_t&) override { return nullptr; }
+#endif
 	bool IsArray(HSCRIPT) override { return false; }
 	int GetArrayCount(HSCRIPT) override { return 0; }
+#if SDK_MAIN_BRANCH
 	int ArrayAddToTail(HSCRIPT, const ScriptVariant_t&) override { return -1; }
+#else
+	void ArrayAddToTail(HSCRIPT, const ScriptVariant_t&) override {}
+#endif
 
 	void WriteState(CUtlBuffer*) override {}
 	void ReadState(CUtlBuffer*) override {}
@@ -235,7 +259,11 @@ public:
 	bool IsSingleton() override { return true; }
 	AppSystemBuildType_t GetBuildType() override { return APP_SYSTEM_BUILD_UNKNOWN; }
 
+#if SDK_MAIN_BRANCH
 	IScriptVM* CreateVM(ScriptLanguage_t, bool) override { return &_vm; }
+#else
+	IScriptVM* CreateVM(ScriptLanguage_t) override { return &_vm; }
+#endif
 	void DestroyVM(IScriptVM*) override {}
 	IScriptDebugger* GetDebugger() override { return nullptr; }
 

@@ -125,11 +125,15 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	common
 	sourcesdk::tier1
-	sourcesdk::kv3lib
 	sourcesdk::entity2
 	cpp-memory_utils
 	Zydis
 )
+
+# kv3lib is a separate target only on the main SDK branch (cs2); the dota/deadlock branches lack it.
+if(TARGET sourcesdk::kv3lib)
+	target_link_libraries(${PROJECT_NAME} PRIVATE sourcesdk::kv3lib)
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/src"
