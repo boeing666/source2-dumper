@@ -69,14 +69,6 @@ constexpr ModuleSystem kModuleSystems[] = {
 	{ .module = "resourcecompiler",    .iface = "ResourceCompilerSystem001" }, // Init fails (tools deps missing) after ConVar_Register
 };
 
-// dota2's Linux build (older engine) faults in resourcesystem at varying points of these Inits
-// (vphysics2, steamaudio, ...), so it keeps the base boot only.
-#if defined(GAME_DOTA2) && !defined(_WIN32)
-constexpr bool kBootModuleSystems = false;
-#else
-constexpr bool kBootModuleSystems = true;
-#endif
-
 // IRenderDeviceMgr::CreateDevice(int adapter, int flags, int dxLevel): IAppSystem (0-10) + 7 adapter/mode
 // queries. Called by slot because only the main SDK branch declares the interface (dota's lacks it).
 constexpr int kCreateDeviceSlot = 18;
@@ -111,10 +103,6 @@ void CreateRenderDevice(IAppSystem* deviceManager) {
 
 std::vector<ResolvedModuleSystem> RegisterModuleSystems(const schema::ModuleMap& mods) {
 	std::vector<ResolvedModuleSystem> resolved;
-	if constexpr (!kBootModuleSystems) {
-		return resolved;
-	}
-
 	for (const ModuleSystem& entry : kModuleSystems) {
 		const auto it = mods.find(entry.module);
 		auto* system = (it != mods.end() && it->second->func) ? static_cast<IAppSystem*>(it->second->func(entry.iface, nullptr)) : nullptr;

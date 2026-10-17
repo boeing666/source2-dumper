@@ -88,7 +88,9 @@ jobs:
         shell: bash
         run: |
           case "${{ matrix.game }}" in
-            cs2) BR=main ;; dota2) BR=dota ;; deadlock) BR=deadlock ;;
+            # dota2 moved to the cs2 engine layout (IApplication, typedescription_t, IScriptVM) with
+            # build 6962; the old `dota` SDK branch now mismatches the game and the dump crashes.
+            cs2|dota2) BR=main ;; deadlock) BR=deadlock ;;
           esac
           git clone --recursive --depth 1 --branch "$BR" https://github.com/Wend4r/sourcesdk thirdparty/sourcesdk
           git clone --recursive --depth 1 https://github.com/Wend4r/cpp-dynlibutils thirdparty/cpp-dynlibutils

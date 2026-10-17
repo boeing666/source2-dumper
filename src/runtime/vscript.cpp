@@ -201,7 +201,8 @@ public:
 
 	HSCRIPT GetRootTable() override { return nullptr; }
 	HSCRIPT CopyHandle(HSCRIPT hScope) override { return hScope; }
-#if defined(GAME_CS2) || defined(GAME_DEADLOCK)
+// The signature follows the SDK header in use: the main branch (now every shipped game) returns a status.
+#if SDK_MAIN_BRANCH
 	int LoadAndCompileScriptFile(const char*, const char*, HSCRIPT* pScript) override {
 		if (pScript) {
 			*pScript = nullptr;
