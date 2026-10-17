@@ -3,9 +3,9 @@
 class C_OP_ControlpointLight : public CParticleFunctionOperator /*0x0*/  // sizeof 0x6E0, align 0x10 [vtable] (particles) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x1D0]; // offset 0x0
-    float32 m_flScale; // offset 0x1D0, size 0x4, align 4 | MPropertyFriendlyName
-    char _pad_01D4[0x48C]; // offset 0x1D4
+    char _pad_0000[0x1D8]; // offset 0x0
+    float32 m_flScale; // offset 0x1D8, size 0x4, align 4 | MPropertyFriendlyName
+    char _pad_01DC[0x484]; // offset 0x1DC
     int32 m_nControlPoint1; // offset 0x660, size 0x4, align 4 | MPropertyFriendlyName
     int32 m_nControlPoint2; // offset 0x664, size 0x4, align 4 | MPropertyFriendlyName
     int32 m_nControlPoint3; // offset 0x668, size 0x4, align 4 | MPropertyFriendlyName
@@ -22,10 +22,10 @@ public:
     float32 m_LightZeroDist3; // offset 0x6B4, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_LightFiftyDist4; // offset 0x6B8, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_LightZeroDist4; // offset 0x6BC, size 0x4, align 4 | MPropertyFriendlyName
-    Color m_LightColor1; // offset 0x6C0, size 0x4, align 1 | MPropertyFriendlyName
-    Color m_LightColor2; // offset 0x6C4, size 0x4, align 1 | MPropertyFriendlyName
-    Color m_LightColor3; // offset 0x6C8, size 0x4, align 1 | MPropertyFriendlyName
-    Color m_LightColor4; // offset 0x6CC, size 0x4, align 1 | MPropertyFriendlyName
+    Color m_LightColor1; // offset 0x6C0, size 0x4, align 4 | MPropertyFriendlyName
+    Color m_LightColor2; // offset 0x6C4, size 0x4, align 4 | MPropertyFriendlyName
+    Color m_LightColor3; // offset 0x6C8, size 0x4, align 4 | MPropertyFriendlyName
+    Color m_LightColor4; // offset 0x6CC, size 0x4, align 4 | MPropertyFriendlyName
     bool m_bLightType1; // offset 0x6D0, size 0x1, align 1 | MPropertyFriendlyName
     bool m_bLightType2; // offset 0x6D1, size 0x1, align 1 | MPropertyFriendlyName
     bool m_bLightType3; // offset 0x6D2, size 0x1, align 1 | MPropertyFriendlyName

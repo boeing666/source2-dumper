@@ -17,7 +17,7 @@ public:
     bool m_bTeamCanSeeExactRoshanTimer; // offset 0x86A, size 0x1, align 1
     bool m_bTeamCanSeeNextPowerRune; // offset 0x86B, size 0x1, align 1
     int32 m_nTeamCanSeeNextPowerRuneRefs; // offset 0x86C, size 0x4, align 4
-    Color m_CustomHealthbarColor; // offset 0x870, size 0x4, align 1
+    Color m_CustomHealthbarColor; // offset 0x870, size 0x4, align 4
     char[33] m_szTag; // offset 0x874, size 0x21, align 1
     char _pad_0895[0x3]; // offset 0x895
     int32 m_event_lobby_updated; // offset 0x898, size 0x4, align 4

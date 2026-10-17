@@ -1,6 +1,6 @@
 #pragma once
 
-class CParticleFloatInput : public CParticleInput /*0x0*/  // sizeof 0x170, align 0x8 [vtable] (particleslib) {MGetKV3ClassDefaults MCustomFGDMetadata}
+class CParticleFloatInput : public CParticleInput /*0x0*/  // sizeof 0x178, align 0x8 [vtable] (particleslib) {MGetKV3ClassDefaults MCustomFGDMetadata}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0
@@ -60,4 +60,6 @@ public:
     float32 m_flBiasParameter; // offset 0x128, size 0x4, align 4
     char _pad_012C[0x4]; // offset 0x12C
     CPiecewiseCurve m_Curve; // offset 0x130, size 0x40, align 8
+    float32 m_flCompareValue; // offset 0x170, size 0x4, align 4
+    char _pad_0174[0x4]; // offset 0x174
 };

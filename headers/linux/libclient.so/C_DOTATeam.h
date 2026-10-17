@@ -15,7 +15,7 @@ public:
     bool m_bTeamIsHomeTeam; // offset 0x851, size 0x1, align 1
     bool m_bTeamCanSeeExactRoshanTimer; // offset 0x852, size 0x1, align 1
     bool m_bTeamCanSeeNextPowerRune; // offset 0x853, size 0x1, align 1
-    Color m_CustomHealthbarColor; // offset 0x854, size 0x4, align 1
+    Color m_CustomHealthbarColor; // offset 0x854, size 0x4, align 4
     char[33] m_szTag; // offset 0x858, size 0x21, align 1
     char _pad_0879[0x7]; // offset 0x879
 };

@@ -31,7 +31,7 @@ struct PlayerResourcePlayerTeamData_t  // sizeof 0x238, align 0xFF [vtable] (cli
     char _pad_00F5[0x1]; // offset 0xF5
     uint16 m_iBattleBonusRate; // offset 0xF6, size 0x2, align 2
     int32 m_iCustomBuybackCost; // offset 0xF8, size 0x4, align 4
-    Color m_CustomPlayerColor; // offset 0xFC, size 0x4, align 1
+    Color m_CustomPlayerColor; // offset 0xFC, size 0x4, align 4
     bool m_bQualifiesForPAContractReward; // offset 0x100, size 0x1, align 1
     bool m_bHasPredictedVictory; // offset 0x101, size 0x1, align 1
     char _pad_0102[0x2]; // offset 0x102

@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTA_Item : public C_DOTABaseAbility /*0x0*/  // sizeof 0x8D0, align 0xFF [vtable abstract] (client)
+class C_DOTA_Item : public C_DOTABaseAbility /*0x0*/  // sizeof 0x8D8, align 0xFF [vtable abstract] (client)
 {
 public:
     char _pad_0000[0x824]; // offset 0x0
@@ -47,27 +47,29 @@ public:
     GameTime_t m_flPurchaseTime; // offset 0x86C, size 0x4, align 255
     GameTime_t m_flAssembledTime; // offset 0x870, size 0x4, align 255
     bool m_bPurchasedWhileDead; // offset 0x874, size 0x1, align 1
-    bool m_bCanBeUsedOutOfInventory; // offset 0x875, size 0x1, align 1
-    bool m_bItemEnabled; // offset 0x876, size 0x1, align 1
-    char _pad_0877[0x1]; // offset 0x877
-    GameTime_t m_flEnableTime; // offset 0x878, size 0x4, align 255
-    GameTime_t m_flReclaimTime; // offset 0x87C, size 0x4, align 255
-    bool m_bDisplayOwnership; // offset 0x880, size 0x1, align 1
-    bool m_bShowOnMinimap; // offset 0x881, size 0x1, align 1
-    char _pad_0882[0x2]; // offset 0x882
-    float32 m_flMinimapIconSize; // offset 0x884, size 0x4, align 4
-    bool m_bIsUpgradeable; // offset 0x888, size 0x1, align 1
-    char _pad_0889[0x3]; // offset 0x889
-    int32 m_nUpgradeProgress; // offset 0x88C, size 0x4, align 4
-    int32 m_nUpgradeGoal; // offset 0x890, size 0x4, align 4
-    bool m_bShowDroppedItemTooltip; // offset 0x894, size 0x1, align 1
-    char _pad_0895[0x3]; // offset 0x895
-    CHandle< C_BaseEntity > m_hOldOwnerEntity; // offset 0x898, size 0x4, align 4
-    int32 m_iOldCharges; // offset 0x89C, size 0x4, align 4
-    PlayerID_t m_iPlayerOwnerID; // offset 0x8A0, size 0x4, align 255
-    AbilityID_t m_nImbuedAbility; // offset 0x8A4, size 0x4, align 255
-    C_NetworkUtlVectorBase< uint8 > m_vecPreGameTransferPlayerIDs; // offset 0x8A8, size 0x18, align 8
-    char _pad_08C0[0x8]; // offset 0x8C0
-    bool m_bShowActivateToUseAnimation; // offset 0x8C8, size 0x1, align 1
-    char _pad_08C9[0x7]; // offset 0x8C9
+    char _pad_0875[0x3]; // offset 0x875
+    int32 m_nPurchasedPrice; // offset 0x878, size 0x4, align 4
+    bool m_bCanBeUsedOutOfInventory; // offset 0x87C, size 0x1, align 1
+    bool m_bItemEnabled; // offset 0x87D, size 0x1, align 1
+    char _pad_087E[0x2]; // offset 0x87E
+    GameTime_t m_flEnableTime; // offset 0x880, size 0x4, align 255
+    GameTime_t m_flReclaimTime; // offset 0x884, size 0x4, align 255
+    bool m_bDisplayOwnership; // offset 0x888, size 0x1, align 1
+    bool m_bShowOnMinimap; // offset 0x889, size 0x1, align 1
+    char _pad_088A[0x2]; // offset 0x88A
+    float32 m_flMinimapIconSize; // offset 0x88C, size 0x4, align 4
+    bool m_bIsUpgradeable; // offset 0x890, size 0x1, align 1
+    char _pad_0891[0x3]; // offset 0x891
+    int32 m_nUpgradeProgress; // offset 0x894, size 0x4, align 4
+    int32 m_nUpgradeGoal; // offset 0x898, size 0x4, align 4
+    bool m_bShowDroppedItemTooltip; // offset 0x89C, size 0x1, align 1
+    char _pad_089D[0x3]; // offset 0x89D
+    CHandle< C_BaseEntity > m_hOldOwnerEntity; // offset 0x8A0, size 0x4, align 4
+    int32 m_iOldCharges; // offset 0x8A4, size 0x4, align 4
+    PlayerID_t m_iPlayerOwnerID; // offset 0x8A8, size 0x4, align 255
+    AbilityID_t m_nImbuedAbility; // offset 0x8AC, size 0x4, align 255
+    C_NetworkUtlVectorBase< uint8 > m_vecPreGameTransferPlayerIDs; // offset 0x8B0, size 0x18, align 8
+    char _pad_08C8[0x8]; // offset 0x8C8
+    bool m_bShowActivateToUseAnimation; // offset 0x8D0, size 0x1, align 1
+    char _pad_08D1[0x7]; // offset 0x8D1
 };

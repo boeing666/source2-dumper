@@ -1,6 +1,6 @@
 #pragma once
 
-class CTakeDamageResult  // sizeof 0x60, align 0x8 (client) {MGetKV3ClassDefaults}
+class CTakeDamageResult  // sizeof 0x68, align 0x8 (client) {MGetKV3ClassDefaults}
 {
 public:
     CTakeDamageInfo* m_pOriginatingInfo; // offset 0x0, size 0x8, align 8 | MKV3TransferSaveOpsForField
@@ -20,5 +20,5 @@ public:
     bool m_bSuppressFlinch; // offset 0x51, size 0x1, align 1
     char _pad_0052[0x2]; // offset 0x52
     HitGroup_t m_nOverrideFlinchHitGroup; // offset 0x54, size 0x4, align 4
-    char _pad_0058[0x8]; // offset 0x58
+    char _pad_0058[0x10]; // offset 0x58
 };

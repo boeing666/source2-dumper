@@ -1,7 +1,7 @@
 #pragma once
 
-class CFuncMoveLinearAlias_momentary_door : public CFuncMoveLinear /*0x0*/  // sizeof 0x880, align 0x8 [vtable] (server)
+class CFuncMoveLinearAlias_momentary_door : public CFuncMoveLinear /*0x0*/  // sizeof 0x960, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x880]; // offset 0x0
+    char _pad_0000[0x960]; // offset 0x0
 };

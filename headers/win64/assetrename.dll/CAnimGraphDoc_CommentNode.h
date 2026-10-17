@@ -6,6 +6,6 @@ public:
     char _pad_0000[0x40]; // offset 0x0
     CUtlString m_commentText; // offset 0x40, size 0x8, align 8 | MPropertySuppressField
     Vector2D m_size; // offset 0x48, size 0x8, align 4 | MPropertySuppressField
-    Color m_color; // offset 0x50, size 0x4, align 1 | MPropertyFriendlyName
+    Color m_color; // offset 0x50, size 0x4, align 4 | MPropertyFriendlyName
     char _pad_0054[0x4]; // offset 0x54
 };

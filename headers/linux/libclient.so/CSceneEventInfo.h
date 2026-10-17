@@ -15,7 +15,8 @@ public:
     CGlobalSymbol m_sAnimClipSlot; // offset 0x28, size 0x8, align 8
     CGlobalSymbol m_sAnimClipSlotWeight; // offset 0x30, size 0x8, align 8
     bool m_bHasArrived; // offset 0x38, size 0x1, align 1
-    char _pad_0039[0x3]; // offset 0x39
+    bool m_bExternalGraphFinished; // offset 0x39, size 0x1, align 1
+    char _pad_003A[0x2]; // offset 0x3A
     int32 m_nType; // offset 0x3C, size 0x4, align 4
     GameTime_t m_flNext; // offset 0x40, size 0x4, align 255
     bool m_bIsGesture; // offset 0x44, size 0x1, align 1

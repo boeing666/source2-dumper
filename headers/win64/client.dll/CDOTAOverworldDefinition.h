@@ -24,7 +24,7 @@ public:
     float32 m_flInnerCameraDistanceThreshold; // offset 0x70, size 0x4, align 4 | MPropertyDescription
     Vector2D m_vMinCameraBounds; // offset 0x74, size 0x8, align 4 | MPropertyDescription
     Vector2D m_vMaxCameraBounds; // offset 0x7C, size 0x8, align 4 | MPropertyDescription
-    char _pad_0084[0x4]; // offset 0x84
+    float32 m_flRoomUIScale; // offset 0x84, size 0x4, align 4 | MPropertyDescription
     CUtlString m_sMapVisualsXmlPath; // offset 0x88, size 0x8, align 8
     CUtlVector< DOTAOverworldReleaseScheduledUnlock_t > m_vecReleaseSchedule; // offset 0x90, size 0x18, align 8 | MPropertyDescription
     CUtlVector< OverworldNodeID_t > m_vecStartNodeIds; // offset 0xA8, size 0x18, align 8 | MPropertyDescription

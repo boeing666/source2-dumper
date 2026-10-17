@@ -60,25 +60,25 @@ public:
     bool m_bIsDestructible; // offset 0x24A, size 0x1, align 1
     bool m_bHasGlowOutline; // offset 0x24B, size 0x1, align 1
     bool m_bOverrideGlowColor; // offset 0x24C, size 0x1, align 1
-    Color m_cOverriddenGlowColor; // offset 0x24D, size 0x4, align 1
-    bool m_bShowHealthBar; // offset 0x251, size 0x1, align 1
-    bool m_bCenterRooted; // offset 0x252, size 0x1, align 1
-    bool m_bRotates; // offset 0x253, size 0x1, align 1
-    bool m_bRandomizeSinTurnTimerOnSpawn; // offset 0x254, size 0x1, align 1
-    bool m_bInvulnerable; // offset 0x255, size 0x1, align 1
-    bool m_bPlayerFriendly; // offset 0x256, size 0x1, align 1
-    char _pad_0257[0x1]; // offset 0x257
-    int32 m_nSplitOnDeathNumUnits; // offset 0x258, size 0x4, align 4
-    SurvivorsEnemyID_t m_unSplitOnDeathEnemyID; // offset 0x25C, size 0x4, align 255
-    float32 m_flSplitOnDeathKnockbackDistance; // offset 0x260, size 0x4, align 4
-    ESurvivorsEnemyMovementBehavior m_eMovementBehavior; // offset 0x264, size 0x4, align 4
-    ESurvivorsEnemyMovementCapability m_eMovementCapability; // offset 0x268, size 0x4, align 4
-    GameActivity_t m_activityIdle; // offset 0x26C, size 0x4, align 4
-    GameActivity_t m_activityMove; // offset 0x270, size 0x4, align 4
-    GameActivity_t m_activityDie; // offset 0x274, size 0x4, align 4
-    GameActivity_t m_activityDisabled; // offset 0x278, size 0x4, align 4
-    bool m_bPlayDeathSound; // offset 0x27C, size 0x1, align 1
-    char _pad_027D[0x3]; // offset 0x27D
-    ESurvivorsEnemySeparationLayer m_eSeparationLayer; // offset 0x280, size 0x4, align 4
-    char _pad_0284[0x4]; // offset 0x284
+    char _pad_024D[0x3]; // offset 0x24D
+    Color m_cOverriddenGlowColor; // offset 0x250, size 0x4, align 4
+    bool m_bShowHealthBar; // offset 0x254, size 0x1, align 1
+    bool m_bCenterRooted; // offset 0x255, size 0x1, align 1
+    bool m_bRotates; // offset 0x256, size 0x1, align 1
+    bool m_bRandomizeSinTurnTimerOnSpawn; // offset 0x257, size 0x1, align 1
+    bool m_bInvulnerable; // offset 0x258, size 0x1, align 1
+    bool m_bPlayerFriendly; // offset 0x259, size 0x1, align 1
+    char _pad_025A[0x2]; // offset 0x25A
+    int32 m_nSplitOnDeathNumUnits; // offset 0x25C, size 0x4, align 4
+    SurvivorsEnemyID_t m_unSplitOnDeathEnemyID; // offset 0x260, size 0x4, align 255
+    float32 m_flSplitOnDeathKnockbackDistance; // offset 0x264, size 0x4, align 4
+    ESurvivorsEnemyMovementBehavior m_eMovementBehavior; // offset 0x268, size 0x4, align 4
+    ESurvivorsEnemyMovementCapability m_eMovementCapability; // offset 0x26C, size 0x4, align 4
+    GameActivity_t m_activityIdle; // offset 0x270, size 0x4, align 4
+    GameActivity_t m_activityMove; // offset 0x274, size 0x4, align 4
+    GameActivity_t m_activityDie; // offset 0x278, size 0x4, align 4
+    GameActivity_t m_activityDisabled; // offset 0x27C, size 0x4, align 4
+    bool m_bPlayDeathSound; // offset 0x280, size 0x1, align 1
+    char _pad_0281[0x3]; // offset 0x281
+    ESurvivorsEnemySeparationLayer m_eSeparationLayer; // offset 0x284, size 0x4, align 4
 };

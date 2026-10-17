@@ -5,31 +5,31 @@ class CLightInfoBase  // sizeof 0x3D0, align 0xFF [vtable] (client)
 public:
     char _pad_0000[0x10]; // offset 0x0
     Vector2D m_origin2D; // offset 0x10, size 0x8, align 4
-    Color[2] m_Color; // offset 0x18, size 0x8, align 1
+    Color[2] m_Color; // offset 0x18, size 0x8, align 4
     float32[2] m_LightScale; // offset 0x20, size 0x8, align 4
-    Color[2] m_AmbientColor; // offset 0x28, size 0x8, align 1
+    Color[2] m_AmbientColor; // offset 0x28, size 0x8, align 4
     float32[2] m_AmbientScale; // offset 0x30, size 0x8, align 4
-    Color[2] m_ShadowColor; // offset 0x38, size 0x8, align 1
-    Color[2] m_ShadowSecondaryColor; // offset 0x40, size 0x8, align 1
+    Color[2] m_ShadowColor; // offset 0x38, size 0x8, align 4
+    Color[2] m_ShadowSecondaryColor; // offset 0x40, size 0x8, align 4
     float32[2] m_ShadowScale; // offset 0x48, size 0x8, align 4
     float32[2] m_ShadowGroundScale; // offset 0x50, size 0x8, align 4
-    Color[2] m_SpecularColor; // offset 0x58, size 0x8, align 1
+    Color[2] m_SpecularColor; // offset 0x58, size 0x8, align 4
     float32[2] m_flSpecularPower; // offset 0x60, size 0x8, align 4
     float32[2] m_flSpecularIndependence; // offset 0x68, size 0x8, align 4
     Vector[2] m_SpecularDirection; // offset 0x70, size 0x18, align 4
     Vector[2] m_InspectorSpecularDirection; // offset 0x88, size 0x18, align 4
     Vector[2] m_LightDirection; // offset 0xA0, size 0x18, align 4
     Vector[2] m_AmbientDirection; // offset 0xB8, size 0x18, align 4
-    Color[2] m_FogColor; // offset 0xD0, size 0x8, align 1
+    Color[2] m_FogColor; // offset 0xD0, size 0x8, align 4
     float32[2] m_FogStart; // offset 0xD8, size 0x8, align 4
     float32[2] m_FogEnd; // offset 0xE0, size 0x8, align 4
     float32[2] m_HeightFogValue; // offset 0xE8, size 0x8, align 4
-    Color[2] m_HeightFogColor; // offset 0xF0, size 0x8, align 1
+    Color[2] m_HeightFogColor; // offset 0xF0, size 0x8, align 4
     float32[2] m_FoWDarkness; // offset 0xF8, size 0x8, align 4
     float32[2] m_FoWColorR; // offset 0x100, size 0x8, align 4
     float32[2] m_FoWColorG; // offset 0x108, size 0x8, align 4
     float32[2] m_FoWColorB; // offset 0x110, size 0x8, align 4
-    Color[2] m_InspectorViewFogColor; // offset 0x118, size 0x8, align 1
+    Color[2] m_InspectorViewFogColor; // offset 0x118, size 0x8, align 4
     QAngle m_windAngle; // offset 0x120, size 0xC, align 4
     float32[2] m_flWindAmount; // offset 0x12C, size 0x8, align 4
     float32 m_flMinWind; // offset 0x134, size 0x4, align 4
@@ -43,7 +43,7 @@ public:
     QAngle[2] m_skyboxAngle; // offset 0x154, size 0x18, align 4
     char _pad_016C[0x4]; // offset 0x16C
     CStrongHandle< InfoForResourceTypeIMaterial2 >[2] m_hSkyboxMaterial; // offset 0x170, size 0x10, align 8
-    Color[2] m_vSkyboxTintColor; // offset 0x180, size 0x8, align 1
+    Color[2] m_vSkyboxTintColor; // offset 0x180, size 0x8, align 4
     uint8 m_nSkyboxFogType; // offset 0x188, size 0x1, align 1
     char _pad_0189[0x3]; // offset 0x189
     float32 m_flSkyboxAngularFogMaxEnd; // offset 0x18C, size 0x4, align 4
@@ -51,7 +51,7 @@ public:
     float32 m_flSkyboxAngularFogMinStart; // offset 0x194, size 0x4, align 4
     float32 m_flSkyboxAngularFogMinEnd; // offset 0x198, size 0x4, align 4
     Vector4D m_vAngularParams; // offset 0x19C, size 0x10, align 4
-    Color[2] m_vHeightFogColor; // offset 0x1AC, size 0x8, align 1
+    Color[2] m_vHeightFogColor; // offset 0x1AC, size 0x8, align 4
     float32 m_flFogMaxZ; // offset 0x1B4, size 0x4, align 4
     float32[2] m_flFogDensity; // offset 0x1B8, size 0x8, align 4
     float32 m_flFogFalloff; // offset 0x1C0, size 0x4, align 4
@@ -81,7 +81,7 @@ public:
     float32 m_fOuterRadius; // offset 0x248, size 0x4, align 4
     float32 m_flLightning_specular_pow_scale_min; // offset 0x24C, size 0x4, align 4
     float32 m_flLightning_specular_pow_scale_max; // offset 0x250, size 0x4, align 4
-    Color m_lightningColor; // offset 0x254, size 0x4, align 1
+    Color m_lightningColor; // offset 0x254, size 0x4, align 4
     float32 m_flLightningIntensityMin; // offset 0x258, size 0x4, align 4
     float32 m_flLightningIntensityMax; // offset 0x25C, size 0x4, align 4
     float32 m_flLightningElevation; // offset 0x260, size 0x4, align 4

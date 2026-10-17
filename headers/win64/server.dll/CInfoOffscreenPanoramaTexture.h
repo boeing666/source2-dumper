@@ -5,7 +5,8 @@ class CInfoOffscreenPanoramaTexture : public CPointEntity /*0x0*/  // sizeof 0x5
 public:
     char _pad_0000[0x498]; // offset 0x0
     bool m_bDisabled; // offset 0x498, size 0x1, align 1
-    char _pad_0499[0x3]; // offset 0x499
+    bool m_bEnableMipGen; // offset 0x499, size 0x1, align 1
+    char _pad_049A[0x2]; // offset 0x49A
     int32 m_nResolutionX; // offset 0x49C, size 0x4, align 4
     int32 m_nResolutionY; // offset 0x4A0, size 0x4, align 4
     char _pad_04A4[0x4]; // offset 0x4A4

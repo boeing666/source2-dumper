@@ -10,7 +10,7 @@ public:
     CUtlString sLocName; // offset 0x18, size 0x8, align 8 | MPropertyDescription
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > sParticle; // offset 0x20, size 0xE0, align 8 | MPropertyDescription
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > sParticleTarget; // offset 0x100, size 0xE0, align 8 | MPropertyDescription
-    Color color; // offset 0x1E0, size 0x4, align 1 | MPropertyDescription MPropertyColorPlusAlpha
+    Color color; // offset 0x1E0, size 0x4, align 4 | MPropertyDescription MPropertyColorPlusAlpha
     char _pad_01E4[0x4]; // offset 0x1E4
     CPanoramaImageName sImage; // offset 0x1E8, size 0x10, align 8 | MPropertyDescription
     CUtlString sSound; // offset 0x1F8, size 0x8, align 8 | MPropertyDescription MPropertyCustomFGDType

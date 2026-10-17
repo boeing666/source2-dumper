@@ -134,6 +134,7 @@ cl_axis | clientdll,cheat | Draw an axis  Arguments:  x y z pitch yaw roll <life
 cl_box | clientdll,cheat | Draw a bbox  Arguments:  minx miny miny maxx maxy maxz <lifetime = 10.0> <r g b a> 
 cl_break_on_missing_resource | developmentonly | Break in debugger when missing resource match is found. Format: cl_break_on_missing_resource <substring> /(empty to break on all) / 0 to turn off. 
 cl_checkdeclareclasses | cheat | Check game code serializers
+cl_cleardraw | clientdll,cheat | Clears all lines drawn by drawline and drawcross
 cl_debugoverlay_cycle_domain | clientdll,cheat | Toggles visibility of the debug overlay system.
 cl_debugoverlay_cycle_state | clientdll,cheat | Toggles visibility of the debug overlay system.
 cl_debugoverlay_dashboard | clientdll,cheat | Makes the debug overlay dashboard visible.
@@ -276,6 +277,7 @@ claim_event_action | developmentonly,clientdll | Claim an event action
 claim_event_level_rewards | developmentonly,clientdll | Claim rewards for an event level
 clear | dontrecord,release | Clear console output.
 clearall | dontrecord,release | Clear console output from all views.
+cleardraw | gamedll,cheat | Clears all lines drawn by drawline and drawcross
 cli_ent_attachments | clientdll,cheat | Displays the interpolated attachment points on an entity.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cli_ent_hitbox | clientdll,cheat | Displays the skeleton for the given entity(ies).  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 cli_ent_pivot | clientdll,cheat | Displays the interpolated pivot for the given entity(ies).  (y=up=green, z=forward=blue, x=left=red).   Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -300,6 +302,7 @@ crash_error_job | cheat | Cause the engine to crash by Plat_FatalError on job th
 crash_error_thread | cheat | Cause the engine to crash by Plat_FatalError on non-main thread (Debug!!)
 crash_job | cheat | Cause the engine to crash in a job thread (Debug!!)
 crash_thread | cheat | Cause the engine to crash in a brand new non-main thread (Debug!!)
+create_explosion_damage | gamedll,cheat | Explosion where you're looking, or at x y z, with a real explosion's physics force (unlike create_radius_damage).
 create_radius_damage | gamedll,cheat | Causes radius damage where you're looking, at the passed in radius.
 creditsdone | developmentonly,gamedll,defensive | 
 custom_game_vote_popup | developmentonly,clientdll | Test vote popup for specified custom game ID
@@ -376,10 +379,10 @@ dota_bot_select_debug | gamedll,cheat | Displays general bot debugging informati
 dota_bot_select_debug_attack | gamedll,cheat | Displays debugging info on potential attack targets.
 dota_bot_set_difficulty | gamedll,cheat | Sets all bots to a particular difficulty (0 = easy, 1 = medium, 2 = hard, 3 = unfair.
 dota_bp_frontpage_takeover_test_live_matches | developmentonly,clientdll,defensive | Setup the frontpage takeover with some match data things.
-dota_bp_override_action | developmentonly,clientdll | <event action> [action score] - Calls dota_event_override_action for the current event
-dota_bp_override_clear | developmentonly,clientdll | Calls dota_event_override_clear for the current event
-dota_bp_override_level | developmentonly,clientdll | [level] - Calls dota_event_override_level for the current event
-dota_bp_override_owned | developmentonly,clientdll | [owned] - Calls dota_event_override_owned for the current event
+dota_bp_override_action | developmentonly,clientdll | <event action> [action score] - Calls event_override_action for the current event
+dota_bp_override_clear | developmentonly,clientdll | Calls event_override_clear for the current event
+dota_bp_override_level | developmentonly,clientdll | [level] - Calls event_override_level for the current event
+dota_bp_override_owned | developmentonly,clientdll | [owned] - Calls event_override_owned for the current event
 dota_bp_override_points | developmentonly,clientdll | [points] - Calls dota_event_override_points for the current event
 dota_bp_override_premium_points | developmentonly,clientdll | [premium points] - Calls dota_event_override_premium_points for the current event
 dota_bp_override_takeover | developmentonly,clientdll | [takeover_active] - Toggle the takeover for BP2022 events.  0 off, 1 on
@@ -482,12 +485,6 @@ dota_dump_scene_panel_state | developmentonly,clientdll |
 dota_dump_server_asset_modifiers | gamedll,cheat | Dump asset modifiers on the server.
 dota_dump_server_inventory | developmentonly,gamedll,defensive | 
 dota_dynamic_weather_toggle | developmentonly,clientdll,client_can_execute | Toggle dynamic weather on/off
-dota_event_override_action | developmentonly,clientdll | <event id> <action id> [action score] - Set a clientside override of an event action. -1 to remove the override.
-dota_event_override_clear | developmentonly,clientdll | <event id> - Clear any clientside overrides for an event
-dota_event_override_level | developmentonly,clientdll | <event id> [level] - Set a clientside override of the level value for an event. -1 to remove the override.
-dota_event_override_owned | developmentonly,clientdll | <event id> [owned] - Set a clientside override of whether an event is owned. -1 for not owned, 1 for owned, 0 for no override.
-dota_event_override_points | developmentonly,clientdll | <event id> [points] - Set a clientside override of the point value for an event
-dota_event_override_premium_points | developmentonly,clientdll | <event id> [premium points] - Set a clientside override of the premium points for an event. -1 to remove the override.
 dota_event_set_active_seasonid | developmentonly,clientdll | Sets the current season id for an event (zero will use current timestamp)
 dota_export_steam_inventory_layout | developmentonly,clientdll,defensive | Save the inventory layout to the Steam servers.
 dota_export_steam_inventory_layout_flow | developmentonly,clientdll,defensive | Save the inventory layout to the Steam servers.
@@ -513,7 +510,6 @@ dota_glyph | developmentonly,clientdll,defensive | trigger the Glyph of Fortific
 dota_gold_summary | developmentonly,clientdll,defensive | Print out gold info
 dota_grant_consumable_charges | developmentonly,gamedll,cheat | Grants a player a change in consumables
 dota_grant_event_action | developmentonly,clientdll | Grant all event 
-dota_grant_event_points | developmentonly,clientdll | Reset all state on your account relating to the given event id
 dota_gridnav_perf_test | developmentonly,gamedll,defensive | 
 dota_guild_level_formula_test | developmentonly,clientdll | Test the formulas for guild levels
 dota_guild_show_create_page | developmentonly,clientdll | 
@@ -598,14 +594,12 @@ dota_record_webm | developmentonly,clientdll,defensive | Record a hero for a tra
 dota_redeem_item_code | developmentonly,clientdll,defensive | Redeem a legacy Dota item code.
 dota_ref_winner_dire | developmentonly,gamedll,defensive | Causes the dire team to win
 dota_ref_winner_radiant | developmentonly,gamedll,defensive | Causes the radiant team to win
-dota_reload_event_schema | linked_concommand,developmentonly,gamedll,clientdll,defensive | 
 dota_reload_podseats | developmentonly,clientdll,defensive | Reload ti_podseats.txt data
 dota_reload_text_chat_macros | developmentonly,clientdll,defensive | Reload chat macros
 dota_remove_ability | gamedll,client_can_execute | Remove an ability from the player's hero. If no index is specified, remove all abilities except talents and stats.
 dota_remove_map_override | clientdll,hidden,cheat | Remove a test map override
 dota_reset_event_action | developmentonly,clientdll | <event id> <start action id> [remove audit]
 dota_reset_event_action_range | developmentonly,clientdll | <event id> <start action id> <end action id> [remove audit]
-dota_reset_event_state | developmentonly,clientdll | Reset all state on your account relating to the given event id
 dota_reset_muerta_ofrenda_state | developmentonly,clientdll,defensive | 
 dota_reset_violators | developmentonly,clientdll | Resets the state of all violators.
 dota_respawn_roshan | gamedll,cheat | Respawn Roshan
@@ -653,6 +647,7 @@ dota_show_international2022_collectors_cache_vote_page | developmentonly,clientd
 dota_show_invalid_role_selection_popup | developmentonly,clientdll | 
 dota_show_item_reward_toast | developmentonly,clientdll | 
 dota_show_killgraph | developmentonly,clientdll,defensive | 
+dota_show_offer_page | developmentonly,clientdll | 
 dota_show_purchase_team_fan_content_popup | developmentonly,clientdll | 
 dota_show_rank_calibration_popup | developmentonly,clientdll | Show the rank calibration popup
 dota_show_rate_coaching_session_popup | developmentonly,clientdll | [is coach] Shows the rate coaching session popup with fake data as a student or coach.
@@ -768,12 +763,18 @@ dump_client_projectiles | developmentonly,clientdll,defensive | Spews a list of 
 dump_emoticons_csv | developmentonly,clientdll | 
 dump_entity_report | clientdll,cheat | List all client-side entities in the scene
 dump_globals | developmentonly,gamedll,defensive | Dump all global entities/states
+dump_loc_token | developmentonly,defensive | List information on the given token
+dump_localization_files | developmentonly,defensive | List all loaded localization files
 dump_modifier_list | developmentonly,gamedll,defensive | Dumps all modifiers that exist in the game
+dump_panorama_css_properties | release | Prints out all valid panorama CSS properties and their documentation
+dump_panorama_events | release | print panorama event types and their documentation
+dump_panorama_render_command_stats | developmentonly,defensive | 
 dump_portrait_world_info_with_debug_name_containing | developmentonly,clientdll | 
 dump_quests | developmentonly,clientdll | dump_quests
 dump_response_symbols | developmentonly,gamedll,defensive | print all response symbols to the console
 dump_secondary_scene_worlds | developmentonly,clientdll,defensive | Lists secondary scene worlds and ref counts
 dump_visible_buffs | gamedll,cheat | Print out non-hidden buffs.
+dumpparticlelist | cheat | Print out information on existing particle systems
 dumpstringtable | developmentonly,defensive | Usage:  dumpstringtable <tablename |all> <sv | cl> <verbose | simple> <element>      Print string tables to console, verbose to dump data, simple to show name and count only, can specifiy a single numeric element index to restrict spew.
 echo | server_can_execute | Echo text to console.
 echoln | release | Echo the command arguments on the console
@@ -799,8 +800,10 @@ ent_debug_anim | developmentonly,clientdll,defensive | Use the specified entity 
 ent_debug_origin_changes | developmentonly,gamedll | turn on, off, or toggle origin changes on server for entity by index
 ent_find | gamedll,cheat | Find and list all entities with classnames or targetnames that contain the specified substrings. Format: find_ent <substring> 
 ent_find_index | gamedll,cheat | Display data for entity matching specified index. Format: find_ent_index <index> 
-ent_fire | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire <target> [action] [value] [delay] 
-ent_fire_output | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output <target> [output name] [value] [delay] 
+ent_fire | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire <target> [action] [value0] [value1] ... [valueN] 
+ent_fire_delay | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_delay <target> [action] [value0] [value1] ... [valueN] [delay] 
+ent_fire_output | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output <target> [output name] [value0] [value1] ... [valueN] 
+ent_fire_output_delay | gamedll,cheat,vconsole_fuzzy_matching | Usage:    ent_fire_output_delay <target> [output name] [value0] [value1] ... [valueN] [delay] 
 ent_gib | gamedll,cheat | Gibs the given entity(s)  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_grab | gamedll,cheat | grabs the object in front of the player. Options: -loose -multiple -toggle
 ent_hierarchy | gamedll,cheat | Prints the entity hierarchy tree rooted at the specified ent(s)
@@ -845,8 +848,19 @@ ent_viewentity | developmentonly,gamedll | Selects the picked entity as the view
 ent_viewoffset | gamedll,cheat | Displays the eye position for the given entity(ies) in red.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 ent_viewpunch | developmentonly,gamedll | Used to debug ViewPunch
 ent_visibility_traces | gamedll,cheat,vconsole_fuzzy_matching | Displays visibility traces for the given entity  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+entity_lump_list | developmentonly,defensive | List all known entity lumps
+entity_lump_spew | developmentonly,defensive | Dump the contents of an entity lump
 ents | developmentonly,gamedll,defensive | List server entities, sorted by spawn group
 escape | release,clientcmd_can_execute | Escape key pressed.
+event_grant_points | developmentonly,clientdll | Reset all state on your account relating to the given event id
+event_override_action | developmentonly,clientdll | <event id> <action id> [action score] - Set a clientside override of an event action. -1 to remove the override.
+event_override_clear | developmentonly,clientdll | <event id> - Clear any clientside overrides for an event
+event_override_level | developmentonly,clientdll | <event id> [level] - Set a clientside override of the level value for an event. -1 to remove the override.
+event_override_owned | developmentonly,clientdll | <event id> [owned] - Set a clientside override of whether an event is owned. -1 for not owned, 1 for owned, 0 for no override.
+event_override_points | developmentonly,clientdll | <event id> [points] - Set a clientside override of the point value for an event
+event_override_premium_points | developmentonly,clientdll | <event id> [premium points] - Set a clientside override of the premium points for an event. -1 to remove the override.
+event_reload_schema | linked_concommand,developmentonly,gamedll,clientdll,defensive | 
+event_reset_state | developmentonly,clientdll | Reset all state on your account relating to the given event id
 exec | dontrecord,release | Execute a cfg file
 exec_async | cheat,dontrecord | Execute a cfg file over time
 execifexists | dontrecord,release | Execute a cfg file if file exists
@@ -880,10 +894,13 @@ fow_client_stats | clientdll,cheat | displays fog of war stats
 fow_server_stats | gamedll,cheat | displays fog of war stats
 fow_server_test_tempviewer | gamedll,cheat | test a temp viewer
 fow_viz | developmentonly,gamedll | FoW viz commands
+fp_trace | developmentonly,defensive | Toggle field path tracing to file 
 fs_clear_open_duplicate_times | developmentonly,defensive | Clear the list of files that have been opened.
 fs_dump_open_duplicate_times | developmentonly,defensive | Set fs_report_long_reads 1 before loading to use this. Prints a list of files that were opened more than once and ~how long was spent reading from them.
+fs_spew_readfieldlist | cheat | index <threshold bytes>: spew changes to ent index, optionally only spewing if update is > than threshold bytes
 func_mover_count | gamedll,cheat | 
 func_mover_enable_debug_all | gamedll,cheat | 
+func_mover_step_movement | gamedll,cheat | 
 game_particle_manager_dump_requeue | developmentonly,clientdll | Dump contents of particle manager requeue
 game_particle_manager_list_active | developmentonly,clientdll | Dump counts of active particles
 gameevents_analyze | developmentonly,gamedll | compare game events across all mods
@@ -901,7 +918,9 @@ gameui_preventescape | hidden,release | Escape key doesn't hide game UI
 gameui_preventescapetoshow | hidden,release | Escape key doesn't show game UI
 generate_challenge_vdata | developmentonly,clientdll | generate_challenge_vdata
 generate_minidump_comment | developmentonly | Generate a minidump comment and spew the results to the console
+generate_null_container | linked_concommand,developmentonly,defensive | Generated a nulled out container.
 generate_split_challenge_files | developmentonly,clientdll | generate_split_challenge_files
+generate_trash_synth | linked_concommand,developmentonly,defensive | Args: [Asset directory Path]
 getpos | clientdll,cheat | dump position and angles to the console
 getpos_exact | clientdll,cheat | dump origin and angles to the console
 getposcopy | clientdll,cheat | dump position and angles to the console and clipboard
@@ -928,6 +947,11 @@ hud_toggle_visibility | clientdll,client_can_execute | Toggles the Hud on and of
 hurtme | gamedll,cheat,client_can_execute | Hurts the player.  Arguments: <health to lose>
 hurtthem | gamedll,cheat,client_can_execute | Hurts the enemy in front of you.  Arguments: <health to lose>
 ic | developmentonly,clientdll,defensive | interp entity count 
+ik_debug_fabrik_backwards_iteration_toggle | linked_concommand,developmentonly,defensive | 
+ik_debug_fabrik_forwards_iteration_toggle | linked_concommand,developmentonly,defensive | 
+ime_info | developmentonly,dontrecord,defensive | Spew IME info.
+ime_installed_names | hidden,dontrecord,release | Spew list of installed IMEs.
+imgui_cycle_undocked_window_focus | developmentonly,defensive | Cycles focus between the game window and undocked imgui windows
 imgui_debug_entity | gamedll,cheat | Shows the entity browser, focused on the entity you specify.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 imgui_set_selection | gamedll,cheat | Sets ImGui selection
 imgui_set_status_text | gamedll,cheat | Sets ImGui header status text
@@ -958,6 +982,7 @@ jointeam | gamedll,client_can_execute | Join a team
 jpeg_screenshot | developmentonly,defensive | Take a jpeg screenshot: jpeg_screenshot [filename] [quality 1-100].
 key_findbinding | release | Find key bound to specified command string.
 key_listboundkeys | release | List bound keys with bindings.
+key_updatelayout | developmentonly,defensive | Updates game keyboard layout to current windows keyboard setting.
 kick | dontrecord,release | Kick a player by name.
 kickid | dontrecord,release | Kick a player by userid or uniqueid, with a message.
 kickid_hltv | dontrecord,release | Kick a player by userid or uniqueid, with a message.
@@ -966,6 +991,9 @@ kill_streak_test | developmentonly,clientdll | <killer_id> <killer_streak> <kill
 killvector | gamedll,cheat,client_can_execute | Kills a player applying force. Usage: killvector <player> <x value> <y value> <z value>
 lastinv | clientdll,server_can_execute | 
 learn_refresh_item_sequence | developmentonly,clientdll,defensive | Manually causes a refresh of the item sequence
+lightbinner_precompute | developmentonly,defensive | 
+lightbinner_test_computespheresilhouette | developmentonly,defensive | 
+lightbinner_test_computesumsilhouette | developmentonly,defensive | 
 listRecentNPCSpeech | developmentonly,gamedll,dontrecord,defensive | Displays a list of the last 5 lines of speech from NPCs.
 listdemo | release | List demo file contents.
 listid | developmentonly,defensive | Lists banned users.
@@ -984,12 +1012,37 @@ lrucache_flush | developmentonly,defensive | Flushes the specified cache
 lrucache_reset_stats | developmentonly,defensive | Resets stats for the specified CUtlLRUCaches (or all if none specified)
 lrucache_set_size | developmentonly,defensive | Sets the specified cache to the specified size
 lrucache_stats | developmentonly,defensive | Spews information about all CUtlLRUCaches
+lua_report_memory | developmentonly,defensive | 
 map | release,vconsole_fuzzy_matching,vconsole_set_focus | map <mapname> :Load a new map.
 map_enable_portrait_worlds | clientdll,cheat | Enables/disables portrait worlds
 maps | release | Displays list of maps.
 markup_group_ent_bbox | gamedll,cheat | markup_group_ent_bbox <markup_group name> -> toggle ent_bbox for all members of the named markup group
 markup_group_ent_text | gamedll,cheat | markup_group_ent_text <markup_group name> -> toggle ent_text for all members of the named markup group
 markup_group_spew | gamedll,cheat | Spew all current markup groups and their members
+mat_assert_on_shader_use | developmentonly | Assert on shader used based on substring of shader name
+mat_clearshadercache | developmentonly,defensive | Clears the shader cache used for dynamic shader compile.
+mat_disable_dynamic_shader_compile | developmentonly,defensive | Reloads all shaders from vcs files until the next time mat_reloadshaders is called
+mat_forcereloadshaders | developmentonly,defensive | Force reloads all shaders (skips MD5 check). Takes optional substrings of shader names to recompile as arguments.
+mat_print_dead_materials | developmentonly,defensive | Print loaded materials that have no valid layers due to not supporting any of the modes in gameinfo.gi.
+mat_print_error_materials | developmentonly,defensive | Print loaded materials that are using the error shader or material.
+mat_print_expensive_materials | developmentonly,defensive | Print materials sorted by cost heuristic
+mat_print_material_info | developmentonly,defensive | Print info about a specific material
+mat_print_materials | developmentonly,defensive | Print loaded materials. Takes an optional substring as an argument.
+mat_print_materials_last_frame | developmentonly,defensive | Print materials used last frame
+mat_print_materials_unused | developmentonly,defensive | Print materials that have never been used
+mat_print_modes | developmentonly,defensive | Print supported rendering modes.
+mat_print_non_virtual_textures | developmentonly,defensive | Print textures that are neither procedural nor virtual, i.e. the ones the mip streaming system manages, in alphabetical order. Takes an optional substring as an argument.
+mat_print_procedural_textures | developmentonly,defensive | Print procedural textures ( render targets, UAVs, atlases and other textures created by code ) in ascending in memory size order. Takes an optional substring as an argument.
+mat_print_shader_info | developmentonly,defensive | Print detailed info about a single shader. Takes a shader name (hero.vfx) as an argument.
+mat_print_shader_quality | developmentonly,defensive | Print current shader quality setting
+mat_print_shaders | developmentonly,defensive | Print loaded shaders. Takes a substring as an argument.
+mat_print_textures | developmentonly,defensive | Print loaded textures in alphabetical order. Takes an optional substring as an argument.
+mat_print_textures_size | developmentonly,defensive | Print loaded textures in ascending size order. Takes an optional substring as an argument.
+mat_print_textures_size_in_memory | developmentonly,defensive | Print loaded textures in ascending size order as they are in memory. Takes an optional substring as an argument.
+mat_reinitmaterials | developmentonly,defensive | Reinitializes all loaded materials, reloading their shaders.
+mat_reloadshaders | developmentonly,defensive | Reloads all shaders. Takes optional substrings of shader names to recompile as arguments.
+mat_reset_material_costs | developmentonly,defensive | Reset material cost heuristic
+mat_set_shader_quality | developmentonly,defensive | Force shader quality setting (valid values are 0 or 1)
 mc_attack | developmentonly,clientdll,hidden,defensive | 
 mc_move | developmentonly,clientdll,hidden,defensive | 
 mc_patrol | developmentonly,clientdll,hidden,defensive | 
@@ -998,6 +1051,7 @@ mem_dump | developmentonly,defensive | Dump memory stats to text file or <stdout
 mem_test | developmentonly,defensive | 
 memory | developmentonly,defensive | Print memory stats.
 memory_check_limit | developmentonly | Assert if peak memory use is over the limit.
+mesh_trace_data_memory_report | developmentonly,defensive | Logs information about memory consumption by TraceDataForDraw_t/ToolsTraceData
 midi_connect_port | developmentonly,clientdll,defensive | Attempt to open a connection on the passed port ( or 0 if not specfied ). Will close existing connection
 midi_release | developmentonly,clientdll,defensive | Release any connected MIDI device
 midi_reset_notes | developmentonly,clientdll,defensive | Send emergency Note OFF for all active notes on all channels
@@ -1007,6 +1061,7 @@ midi_test_on | developmentonly,clientdll,defensive | Send a test note ON to the 
 minimap_create | clientdll,cheat | Does a bunch of work to create a minimap
 model_combiner_dumpstats | developmentonly,clientdll,defensive | Dump the stats for the model combiner manager.
 model_dump_convert_info | linked_concommand,developmentonly,clientdll,defensive | Print model load-time conversion info
+movie_fixwave | developmentonly,defensive | Fixup corrupted .wav file if engine crashed during startmovie/endmovie, etc.
 mp_disable_autokick | gamedll,release | Prevents a userid from being auto-kicked
 multiunit_page_next | developmentonly,clientdll,defensive | cycle to the next multiunit page
 multiunit_page_prev | developmentonly,clientdll,defensive | cycle to the previous multiunit page
@@ -1045,7 +1100,6 @@ nav_split | gamedll,cheat | To split an Area into two, align the split line usin
 nav_store_selected_set | gamedll,cheat | Stores the current selected set for later retrieval.
 nav_switch | developmentonly,gamedll,defensive | Switches to navmesh for the specified spawngroup
 nav_test_level_hull | gamedll,cheat | Find entities that intrude into the nav mesh.  List those entities in console output, and display bounding boxes around them for a while.
-nav_test_level_hull_move | gamedll,cheat | 
 nav_toggle_deselecting | gamedll,cheat | Start or stop continuously removing from the selected set.
 nav_toggle_in_selected_set | gamedll,cheat | Remove current area from the selected set.
 nav_toggle_selected_set | gamedll,cheat | Toggles all areas into/out of the selected set.
@@ -1059,8 +1113,28 @@ nb_force_look_at | gamedll,cheat | Force selected bot to look at the local playe
 nb_move_to_cursor | gamedll,cheat | Tell all NextBots to move to the cursor position
 nb_select | gamedll,cheat | Select the bot you are aiming at for further debug operations.
 nb_warp_selected_here | gamedll,cheat | Teleport the selected bot to your cursor position
+net_captureculldata | developmentonly,defensive | Captures low-level data to replay path culling algorithm behavior in controlled unit test environment
+net_channels | release | Shows net channel info
+net_connections_stats | release | Print detailed network statistics for each network connection
+net_fakeclear | release | Clear all simulated network conditions
+net_fakejitter | release | Shortcut to set jitter net options.  Run with no arguments for usage.
+net_fakelag | release | Shortcut to set both FakePacketLag_Recv and FakePacketLag_Send net options
+net_fakeloss | release | Shortcut to set both FakePacketLoss_Recv and FakePacketLoss_Send net options
+net_fakestatus | release | Print current simulated network condifions
+net_listallmessages | cheat | List all registered net messages
+net_messageinfo | cheat | Display info about a message (by classname or id)
+net_option | release | Get or set SteamNetworkingSockets options such as fake packet lag and loss
+net_permutation_info | cheat,vconsole_fuzzy_matching | show permutation information for serializer
+net_print_sdr_ping_times | release | Print current ping times to SDR points of presence, and selected route
 net_reloadgameevents | developmentonly,gamedll | Reload the game events
+net_serializedentitymemory | developmentonly,defensive | Spew CSerializedEntity memory
+net_serializedentitymetadatainfo | developmentonly,defensive | Spew CSerializedEntity metadata information
+net_spewcounts | developmentonly,defensive | Spew serializer counts, client only by default, specify server to spew server counts 
+net_spewserializer | developmentonly | Spew serializer info 
 net_stats_json | developmentonly,defensive | Output server networking statistics in json format
+net_status | release | Shows current network status
+net_validatemessages | cheat | Activates/deactivates net message validation
+net_why_field_excluded | developmentonly | <classname> <fieldname>:  spew why field was excluded from networking for classname.
 nextdemo | release | Play next demo in sequence.
 nian_cast_ability | developmentonly,gamedll,cheat | All nians on the map will cast the specified ability 
 nian_stun | developmentonly,gamedll,cheat | Stuns all nians with the specified stun type (flinch|knockdown|scared)
@@ -1072,20 +1146,33 @@ npc_select | gamedll,cheat,vconsole_fuzzy_matching | Select or deselects the giv
 npc_test_autostyle | developmentonly,gamedll | Debugging helper to try out different autostyle configurations  Arguments:    <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}> <var name> <value> 
 open_asset | developmentonly,defensive | Opens an asset in it's primary editor of choice. Specify the full path to the asset from the mod directory.
 open_current_map_in_hammer | developmentonly | opens the current map in hammer.
+open_current_map_pulse_in_tool | developmentonly,vconsole_fuzzy_matching | Opens the specified pulse used in this map in the editor.  Arguments: <pulse_file>
 openshop_category | developmentonly,clientdll,defensive | opens shop from clicks on the world shop model, specific tab request
 overwatch_show_report_popup | developmentonly,clientdll | Shows the report popup
 p2p_listpeers | developmentonly,defensive | List currently known peers.
 p2p_ping | developmentonly,clientdll,defensive | Ping a peer.
 panorama_console_reset_size_and_position | linked_concommand,developmentonly,clientdll,hidden,defensive | Resets the panorama console to its default size and position
+panorama_dispatch_event | developmentonly,defensive | Dispatch the event defined by the argument string. No creating panel is specified.
+panorama_dump_symbols | developmentonly,defensive | <ESymbolType> Dump all of the symbols in the Panorama symbol table
+panorama_generate_layout_xsd | developmentonly,defensive | Generate the Layout XML Schema Definition for the current run-time (types are dependent on which game DLL is running).
+panorama_print_cache_status | developmentonly,defensive | Print internal panorama refcounts for every file
+panorama_print_svg_stats | developmentonly | 
+particle_profile | developmentonly,defensive | Profile particle
+particle_profile_spike | developmentonly,defensive | Profile particle spike
+particle_reset_assertions | developmentonly | Causes all single-fire particle assertions to trigger once more.
+particle_stop_all | developmentonly,clientdll,cheat | Stops all particle systems currently playing
+particle_stop_specified | developmentonly,clientdll,cheat | Stops all particle systems that match specified name
+particle_stop_unspecified | developmentonly,clientdll,cheat | Stops all particle systems that don't match specified name
 particle_system_start | developmentonly,gamedll,defensive | start the specified particle system
 particle_system_stop | developmentonly,gamedll,defensive | stop the specified particle system
-particle_test_create | gamedll,cheat | Creates the named particle system where the player is looking.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+particle_test_create | gamedll,cheat | Creates the named particle system where the player is looking.  Can be used on an entity if pointed at the entity.  Optionally takes a particle config name.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_destroy | gamedll,cheat | Destroys all particle systems matching the specified name.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_start | gamedll,cheat | Dispatches the test particle system with the parameters specified in particle_test_file,  particle_test_attach_mode and particle_test_attach_param on the entity the player is looking at.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 particle_test_stop | gamedll,cheat | Stops all particle systems on the selected entities.  Arguments:    {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 path | developmentonly,defensive | Show the filesystem path.
 pause | release | Toggle the server pause state.
 phys_create_test_character_proxy | developmentonly,gamedll | Create test character proxy
+phys_debug_draw | developmentonly,defensive | Set up debug-draw of physics internal state
 phys_dump_intersection_controller | developmentonly,gamedll | Dump intersection controller status
 phys_dump_main_world | developmentonly,gamedll | Dump physics main world to file
 phys_dump_memory | developmentonly,gamedll | Dump memory usage
@@ -1098,25 +1185,41 @@ physics_debug_entity | developmentonly,gamedll,defensive | Dumps debug info for 
 physics_highlight_active | developmentonly,gamedll | Turns on the absbox for all active physics objects.   0 : un-highlight. 
 physics_remove_test | developmentonly,gamedll | remove test object
 physics_report_active | developmentonly,gamedll | Lists all active physics objects   -more : extra info 
+pixelvis_debug | cheat | Dump debug info
+play | server_can_execute | Play a sound.
 playcast | release | Play a broadcast
 playdemo | release | Play a recorded demo file (.dem ).
 playdemo_scripted | developmentonly,clientdll,defensive | Play a demo with an associated markup script.
 playsound | developmentonly,defensive | playsound <soundname>
 playsoundscape | clientdll,cheat | Forces a soundscape to play
+playvol | developmentonly,defensive | Play a sound at a specified volume.
 png_screenshot | developmentonly,defensive | Take a .png screenshot: png_screenshot [filename]
 pop_var_values | developmentonly,defensive | Restore previously pushed convars and config values
 popups_force_close | developmentonly,clientdll | Force close all the popups, useful when popup layout breaks after live editing
 print_changed_convars | release | Prints all convars that have changed from their default value
+print_model_bind_pose | developmentonly,defensive | Prints the bind pose of the specified model. Optionally limits to a particular bone and its parent chain, otherwise prints the entire skeleton.
 print_ti8_challenges | developmentonly,clientdll | print_ti8_challenges
 progress_enable | developmentonly,defensive | 
 projection_reload_ability_data | developmentonly,clientdll,defensive | Reload ability_projection.txt
 prop_debug | gamedll,cheat | Toggle prop debug mode. If on, props will show colorcoded bounding boxes. Red means ignore all damage. White means respond physically to damage but never break. Green maps health in the range of 100 down to 1.
 prop_dynamic_create | gamedll,cheat | Creates a dynamic prop with a specific .vmdl aimed away from where the player is looking.  Arguments: {.vmdl name}
 prop_physics_create | gamedll,cheat | Creates a physics prop with a specific .vmdl aimed away from where the player is looking.  Arguments: {.vmdl name}
+pulse_debug_print | developmentonly | Usage: pulse_debug_print <vpulse_resource>
+pulse_list_graphs | cheat | List all the active pulse graph instances
+pulse_open_graph_id | cheat | Open a specific graph instance by id
+pulse_print_graph_execution_history | cheat | Prints the execution history of a graph by filename or instanceid
 push_var_values | developmentonly,defensive | Save convars and config values
 quit | release,vconsole_set_focus | Quit the game
+r_dx11_report_live_objects | developmentonly,defensive | Prints out live D3D11 objects (requires -dx11debug)
 r_force_engine_render_frame | developmentonly,defensive | Force a single render of the engine viewport.
+r_gpu_mem_stats | linked_concommand,developmentonly,defensive | Display GPU memory usage.
+r_print_buffers | linked_concommand,developmentonly,defensive | Print Vertex/Index/GPU buffers.
+r_print_texture_stats | developmentonly,defensive | Texture stats
 r_render_coordination_state | developmentonly,defensive | Prints out the current render coordination state.
+r_renderdoc_capture_frame | linked_concommand,developmentonly,defensive | Triggers a RenderDoc capture
+r_renderdoc_capture_window_dx11 | developmentonly | Triggers a RenderDoc capture of a specific Window
+r_renderdoc_capture_window_vulkan | developmentonly | Triggers a RenderDoc capture of a specific Window
+r_textures_evict_all | linked_concommand,developmentonly,defensive | Evict all resident texture.
 r_toggleviewportsize | developmentonly,defensive | Toggles viewport size between small + full window.
 r_viewport | developmentonly,defensive | Slams viewport size to a specified value.
 ragdoll_cleanup_all | linked_concommand,gamedll,clientdll,cheat | Cleans up all ragdolls.
@@ -1129,6 +1232,7 @@ redirectend | hidden,release | Redirect server console output
 redirectstart | hidden,release | Redirect server console output
 reload_challenges | developmentonly,clientdll | reload_challenges
 reload_game_keyvalues | developmentonly,gamedll | Reloads hero and ability keyvalues files
+reload_model | developmentonly,defensive | Force a reload of a vmdl resource
 reload_neutral_camp_pull | developmentonly,clientdll | Dev reload the camp pull data
 reload_portrait_background_maps | developmentonly,clientdll | reloads all portrait background maps
 reloadgame | cheat,vconsole_set_focus | Reload the most recent saved game.
@@ -1166,6 +1270,13 @@ save_watchclass | developmentonly,gamedll,defensive | Restrict spew to entities 
 save_watchentity | developmentonly,gamedll,defensive | Restrict spew to entity index
 say | gamedll,client_can_execute | Display player message
 say_team | gamedll,client_can_execute | Display player message to team
+sc_cycleclassdebuglevel | cheat | Increment the debug level associated with an object class. sc_CycleClassDebugLevel <classname> <optional: max level> 
+sc_dumpworld | cheat | Dump a list of the objects in a sceneworld (Usage: sc_dumpworld <world_index>)
+sc_dumpworld3d | cheat | Dump the objects in a sceneworld into a 3d geoview buffer (Usage: sc_dumpworld3d <world_index>)
+sc_list_extradata_allocations | developmentonly,defensive | Prints out the overall extra data allocation counts
+sc_listworlds | cheat | List all the active sceneworlds
+sc_setclassflags | cheat | Low level command to set the flags byte associated with an object class. sc_SetClassFlags <classname> <value> 
+sc_showclasses | cheat | List the object class names known by scenesystem 
 scene_playvcd | gamedll,cheat | Play the given VCD as an instanced scripted scene.
 schema_all_list_bindings | developmentonly | schema_all_list_bindings <substring> - List all scopes registered schema bindings (classes & enums). If no substring, list them all.
 schema_detailed_class_layout | developmentonly | schema_detailed_class_layout <class_name> - Print a detailed memory layout of the class (including inline structs).
@@ -1199,6 +1310,7 @@ script_trace_enable_all | gamedll,cheat | Turn on all trace output
 script_trace_enable_key | gamedll,cheat | Turn on a particular trace output by table/instance
 scripted_demo_restart | developmentonly,clientdll,defensive | Play a demo with an associated markup script.
 scrubber | developmentonly,defensive | Scrub system off - not a dev build
+sdr | release | An old command that has been renamed to 'net_option'
 send_match_metadata | developmentonly,gamedll | 
 server_game_time | developmentonly,gamedll,defensive | Gives the game time in seconds (server's curtime)
 server_gc_status | developmentonly,gamedll,defensive | Check status of connection to the GC
@@ -1238,32 +1350,119 @@ slot7 | clientdll,server_can_execute |
 slot8 | clientdll,server_can_execute | 
 slot9 | clientdll,server_can_execute | 
 snapto | developmentonly,clientdll,defensive | 
+snd__beatpattern_stop_track | cheat | Stops the specified track
+snd_async_flush | developmentonly,defensive | Flush all unlocked async audio data
+snd_async_showmem | developmentonly,defensive | Show async memory stats
+snd_async_showmem_music | developmentonly,defensive | Show async memory stats for just non-streamed music
+snd_async_showmem_summary | developmentonly,defensive | Show brief async memory stats
+snd_beatpattern_flush | cheat | Purge and reload all beat pattern data and files.
+snd_beatpattern_print_activetracks | cheat | List all active tracks
+snd_beatpattern_print_patterns | cheat | List all available beat patterns
+snd_beatpattern_set_track_bpm | cheat | Sets the tempo of the specified track
+snd_beatpattern_set_track_transpose | cheat | Sets the transposition of the specified track
+snd_beatpattern_stop_all_tracks | cheat | Stops all currently playing patterns
+snd_cast | cheat | Casts a ray and starts a sound event where the ray hits. The sound event will retrigger periodically if cl_snd_cast_retrigger is set. The sound event will clear previous snd_cast events if cl_snd_cast_clear is set. Usage: snd_cast <eventname> [<retrigger time>] [<max distance>]. Arguments that are specified will become defaults for the remainder of the session.
+snd_compare_soundevents | developmentonly,cheat | Compare the compiled and loaded contents of 2 soundevents.
+snd_front_headphone_position | developmentonly,defensive | Specifies the position (in degrees) of the virtual front left/right headphones.
+snd_front_stereo_speaker_position | developmentonly,defensive | Specifies the position (in degrees) of the virtual front left/right speakers.
+snd_front_surround_speaker_position | developmentonly,defensive | Specifies the position (in degrees) of the virtual front left/right speakers.
+snd_get_physics_surface_properties | cheat | Get physics surface properties for all the materials.
+snd_headphone_pan_exponent | developmentonly,defensive | Specifies the exponent for the pan xfade from phone to phone if the "exp" pan law is being used.
+snd_headphone_pan_radial_weight | developmentonly,defensive | Apply cos(angle) * weight before pan law
+snd_list_deferred_soundevents | developmentonly,cheat | List all current deferred load soundevents
+snd_list_soundevents | developmentonly,cheat | List all available soundevents
+snd_list_soundevents_by_stack | developmentonly,cheat | List all available soundevents using specified stack name
+snd_print_current_mixer_mixgroup | developmentonly,defensive | Get data related to mix group matching string
+snd_print_samplers | cheat | List all available samplers
+snd_print_soundevent | developmentonly,vconsole_fuzzy_matching,vconsole_set_focus | Print the data associated with the specified soundevent.
+snd_print_soundevent_default_public_properties | developmentonly,vconsole_fuzzy_matching,vconsole_set_focus | Print the default public properties of a specified soundevent. Values do not reflect values set on the soundevent. For that see "snd_print_soundevent"
+snd_purge_vsnd_table | developmentonly | Purges the VSnd table
+snd_rear_headphone_position | developmentonly,defensive | Specifies the position  (in degrees) of the virtual rear left/right headphones.
+snd_rear_stereo_speaker_position | developmentonly,defensive | Specifies the position (in degrees) of the virtual rear left/right speakers.
+snd_rear_surround_speaker_position | developmentonly,defensive | Specifies the position (in degrees) of the virtual rear left/right speakers.
+snd_remove_all_soundevents | developmentonly,cheat | Remove all soundevents
+snd_remove_soundevent | developmentonly,cheat | Remove the specified soundevent
+snd_samplers_play_note | cheat | Play a note from a specified sampler
+snd_samplers_stop_note | cheat | Stop a note from a specified sampler
+snd_set_physics_surface_properties | cheat | Set physics surface properties for materials. Usage: <heuristic #> <commit>
+snd_setmixer | developmentonly | Set named Mixgroup of current mixer to mix vol, mute, solo.
+snd_setmixlayer | developmentonly | Set named Mixgroup of named mix layer to mix vol, mute, solo.
+snd_side_surround_speaker_position | developmentonly,defensive | Specifies the position (in degrees) of the virtual rear left/right speakers.
 snd_sos_cl_soundevent_pause_last | developmentonly,clientdll,defensive | Test
 snd_sos_cl_soundevent_start | developmentonly,clientdll,defensive | Test
 snd_sos_cl_soundevent_stop_last | developmentonly,clientdll,defensive | Test
 snd_sos_cl_soundevent_unpause_last | developmentonly,clientdll,defensive | Test
+snd_sos_compare_operator_stacks | cheat | Compares 2 operator stacks and spews any errors
+snd_sos_flush_operators | cheat | Flush and re-parse the sound operator system
+snd_sos_get_operator_field_info | cheat | Currently gets info for a single operator field
+snd_sos_pause_soundevent | cheat | Pause the specified soundevent in the list
+snd_sos_print_class_sizes | cheat | Prints the sizes of relevant sos classes.
+snd_sos_print_field_name_strings | cheat | Prints a list of currently cached field name strings
+snd_sos_print_groups | cheat | Prints the current state of the groups system
+snd_sos_print_operator_stack | cheat | Prints a master list of currently exposed variables
+snd_sos_print_operator_stack_operator | cheat | Prints an operator from a stack
+snd_sos_print_operator_stacks | cheat | Prints a list of currently available stacks
+snd_sos_print_operators | cheat | Prints a list of currently available operators
+snd_sos_print_stack_exec_list | cheat | Prints the current stack execution list
+snd_sos_print_strings | cheat | Prints a list of currently cached strings
+snd_sos_print_tool_properties | cheat | Prints the current state of tool properties.
+snd_sos_resolve_execute_operator | cheat | Resolve the inputs and execute one specified operator from a specified stack
+snd_sos_set_operator_field | cheat | Currently sets a single float operator field
+snd_sos_set_operator_field_by_guid | cheat | Currently sets a single float operator field
+snd_sos_soundevent_profile | cheat | Dump a record of current soundevents and profile data
+snd_sos_start_soundevent | cheat | Starts a specified soundevent
+snd_sos_start_soundevent_at_pos | cheat | Starts a specified soundevent at the given position
+snd_sos_start_stack | cheat | Starts a specified stack via an empty soundevent
+snd_sos_stop_all_soundevents | cheat | Stops all soundevents currently on the execution list
+snd_sos_stop_soundevent_guid | cheat | Stops a specified soundevent
+snd_sos_stop_soundevent_index | cheat | Stops a specified soundevent
+snd_sos_stop_track | cheat | Stop the specified track and it's queue.
 snd_sos_sv_soundevent_pause_last | developmentonly,gamedll,defensive | Test
 snd_sos_sv_soundevent_start | developmentonly,gamedll,defensive | Test
 snd_sos_sv_soundevent_stop_last | developmentonly,gamedll,defensive | Test
 snd_sos_sv_soundevent_unpause_last | developmentonly,gamedll,defensive | Test
 snd_sos_sv_test_gender | developmentonly,gamedll,defensive | Test
+snd_sos_test_soundmessage | cheat | test
+snd_sos_unpause_soundevent | cheat | UnPause the first soundevent in the list
+snd_soundevent_clear_deferred | developmentonly,cheat | Clear the list of deferred soundevents for loading.
+snd_soundmixer_flush | developmentonly,defensive | Reload soundmixers.txt file.
+snd_soundmixer_list_mix_groups | developmentonly,defensive | List all mix groups to dev console.
+snd_soundmixer_list_mix_layers | developmentonly,defensive | List all mix layers to dev console.
+snd_soundmixer_list_mixers | developmentonly,defensive | List all mixers to dev console.
+snd_soundmixer_set_trigger_factor | developmentonly | Set named mix layer / mix group, trigger amount.
+snd_soundmixer_setmixlayer_amount | developmentonly | Set named mix layer mix amount.
+snd_steamaudio_baked_data_stats | cheat | Display baked data stats for the current mod.
+snd_steamaudio_display_probes | developmentonly,defensive | Load all the probes from a file and display probes based on the passed on arguments.
+snd_steamaudio_enable_spatial_blend_fix | cheat | Toggles the speculative fix for low-frequency issues when using spatial blend.
+snd_steamaudio_halton_sequence | cheat | Generate Halton Sequence for a given order and number of samples.
+snd_stereo_speaker_pan_exponent | developmentonly,defensive | Specifies the exponent for the pan xfade from speaker to speaker if the "exp" pan law is being used.
+snd_stereo_speaker_pan_radial_weight | developmentonly,defensive | Apply cos(angle) * weight before pan law
+snd_surround_speaker_pan_exponent | developmentonly,defensive | Specifies the exponent for the pan xfade from speaker to speaker if the "exp" pan law is being used.
+snd_surround_speaker_pan_radial_weight | developmentonly,defensive | Apply cos(angle) * weight before pan law
+sndplaydelay | developmentonly,defensive | 
+soundinfo | release | Describe the current sound device with an active voice list.
+soundlist | developmentonly,defensive | List all known sounds.
 soundscape_dumpclient | clientdll,cheat | Dumps the client's soundscape data. 
 soundscape_flush | developmentonly,gamedll,defensive | Flushes the server & client side soundscapes
+soundsysteminfo | developmentonly,defensive | Describe the current sound device without an active voice list.
 spec_goto | clientdll,clientcmd_can_execute | Move the spectator camera to a specific location. `spec_goto x y z pitch yaw`
 spec_mode | clientdll,clientcmd_can_execute | Set spectator mode
 spec_next | clientdll,clientcmd_can_execute | Spectate next player
 spec_player | clientdll,clientcmd_can_execute | Spectate a player by name or slot
 spec_pos | clientdll,cheat | dump position and angles to the console
 spec_prev | clientdll,clientcmd_can_execute | Spectate previous player
+spec_stopsound | clientdll,release | (Spectators only) Stop all sounds
 spectator_lobby_create | developmentonly,clientdll | Create a dummy spectator lobby
 spectator_lobby_join | developmentonly,clientdll | Join specified spectator lobby
 spectator_lobby_leave | developmentonly,clientdll | Leave current spectator lobby
 spectator_lobby_list | developmentonly,clientdll | Request list of spectator lobbies from GC
 spectator_lobby_set_details | developmentonly,clientdll | Sets details on current spectator lobby
+spew_fonts | developmentonly,defensive | Spew information about font manager fonts
 splitscreen_testreadconfigconflict | developmentonly,defensive | 
 ss_add | developmentonly,defensive | Adds a splitscreen user.
 ss_remove | developmentonly,defensive | Removes a splitscreen user.
 ss_teleport | developmentonly,clientdll,cheat | Teleport other splitscreen player to my location.
+start_rec_mic | linked_concommand,developmentonly,defensive | Start recording to a desired wav.
 startdemos | release | Play demos in demo sequence.
 startmovie | developmentonly,dontrecord,defensive | Start recording movie frames.
 stash_grab_all | developmentonly,clientdll,defensive | grab all items from the stash
@@ -1277,7 +1476,10 @@ status | release | Print connection status
 status_json | release | Print status in JSON format
 steamvrevent_quit | developmentonly,gamedll,hidden,defensive | steamvrevent_quit
 stop | release | Finish recording demo.
+stop_rec_mic | linked_concommand,developmentonly,defensive | Stop recording to a desired wav.
+stop_rec_mic_all | linked_concommand,developmentonly,defensive | Stop recording all mic streams.
 stopdemos | release | Stop looping demos (current demo will complete).
+stopsound | cheat | 
 stopsoundscape | clientdll,cheat | Stops all soundscape processing and fades current looping sounds
 subclass_change | gamedll,cheat,vconsole_fuzzy_matching | Changes the subclass of the given entity.  Arguments:    <new_subclass> {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 subclass_create | gamedll,cheat,vconsole_fuzzy_matching | Creates an entity of the given subclass where the player is looking.
@@ -1316,6 +1518,8 @@ test_seasonpass_cm_game | developmentonly,clientdll |
 test_seasonpass_cm_game_event | developmentonly,clientdll | 
 test_shipping_assert | release | Generate an assert to test shipping assertion code
 test_trophy_achieved | developmentonly,clientdll | Show trophy upgraded dialog
+test_voice_container_nesting | linked_concommand,developmentonly,defensive | Test nesting voice containers.
+test_voice_containers | linked_concommand,developmentonly,defensive | Quick example for how we'd derive traits from voice containers.
 thirdperson | clientdll,cheat,execute_per_tick | Switch to thirdperson camera.
 thirdperson_mayamode | clientdll,cheat | Switch to thirdperson Maya-like camera controls.
 thirdpersonshoulder | developmentonly,clientdll,defensive | Switch to thirdperson-shoulder camera.
@@ -1353,6 +1557,8 @@ update_neutral_creep_gold_bounty | developmentonly,clientdll | Update gold bount
 url_execute | developmentonly,clientdll,defensive | Executes url-based commands, used for incoming commands from url-based launches when the game's already running.
 use_item_client | clientdll,dontrecord,clientcmd_can_execute | Use the item in the indicated slot. <hero name> <slot name>
 users | developmentonly,defensive | Show user info for players on server.
+v8_dump_heap_snapshot | developmentonly | 
+v8_write_heap_stats | developmentonly | Dump output of v8::Isolate::GetHeapStatistics.
 validate_challenges | developmentonly,gamedll | validate_challenges
 vis_debug_currentcluster | developmentonly,defensive | Show the current cluster number
 vis_debug_drawcluster | developmentonly,defensive | Add cluster # to visualization, (-1) to clear
@@ -1365,6 +1571,11 @@ vis_debug_show | developmentonly,defensive | Show/hide the vis debug visualizati
 vis_debug_sunclusters | developmentonly,defensive | Showing clusters for sun/csm rendering. Red (full sun csm & lighting), Orange (no viewmodel sun or csm), Green (no sun at all)
 vis_debug_tracelos | developmentonly,defensive | Trace rays and check vis from the current camera
 vmem_dump | developmentonly,defensive | Dump memory stats to log.
+vmix_debug_list | developmentonly,defensive | Debug dump the list of available vmix graphs
+vmix_input | cheat | Set an input mix value
+vmix_output | cheat | Dump main graph control output values
+voice_containers_get_instance_args | linked_concommand,developmentonly,defensive | Args: [Voice Container Path]
+voice_containers_get_instance_params | linked_concommand,developmentonly,defensive | Args: [Voice Container Path]
 vprof_dump_counters | developmentonly,defensive | Dump vprof counters to the console
 vprof_generate_report | developmentonly,defensive | Generate a report to the console.
 vprof_generate_report_budget | developmentonly,defensive | Generate a report to the console based on budget group.
@@ -1380,6 +1591,9 @@ vprof_time_scale | developmentonly,hidden | Scale used when displaying time (0 =
 vtune | developmentonly,defensive | Controls VTune's sampling.
 watch_server | developmentonly,clientdll,defensive | Watch a server steam id
 weapon_switch | developmentonly,gamedll | Use a particular weapon  Arguments: <weapon_name>
+world_dump_loaded_worlds | developmentonly,defensive | Dump all of the worlds that we know about
+world_layer_list | developmentonly,defensive | List all world layers
+world_layer_set_visible | developmentonly,defensive | Show or hide the specified world layer
 writeid | developmentonly,defensive | Writes a list of permanently-banned user IDs to file.
 writeip | developmentonly,defensive | Save the ban list to file.
 writekeybindings | release | Saves current key bindings to disk.

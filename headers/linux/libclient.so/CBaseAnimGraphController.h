@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseAnimGraphController : public CSkeletonAnimationController /*0x0*/  // sizeof 0x6B0, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CBaseAnimGraphController : public CSkeletonAnimationController /*0x0*/  // sizeof 0x630, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x18]; // offset 0x0
@@ -27,22 +27,22 @@ public:
     bool m_bSequenceFinished; // offset 0xE0, size 0x1, align 1
     char _pad_00E1[0x3]; // offset 0xE1
     GameTick_t m_nPrevAnimUpdateTick; // offset 0xE4, size 0x4, align 255
-    char _pad_00E8[0x298]; // offset 0xE8
-    CStrongHandle< InfoForResourceTypeCNmGraphDefinition > m_hGraphDefinitionAG2; // offset 0x380, size 0x8, align 8
-    C_UtlVectorEmbeddedNetworkVar< AnimGraph2SerializedPoseRecipeSlot_t > m_SerializePoseRecipeAG2Slots; // offset 0x388, size 0x68, align 8 | MNotSaved
-    C_NetworkUtlVectorBase< uint8 > m_SerializePoseRecipeAG2Dynamic; // offset 0x3F0, size 0x18, align 8 | MNotSaved
-    uint32 m_nSerializePoseRecipeAG2ActiveSlot; // offset 0x408, size 0x4, align 4 | MNotSaved
-    int32 m_nSerializePoseRecipeVersionAG2; // offset 0x40C, size 0x4, align 4 | MNotSaved
-    int32 m_nServerGraphInstanceIteration; // offset 0x410, size 0x4, align 4
-    int32 m_nServerSerializationContextIteration; // offset 0x414, size 0x4, align 4
-    ResourceId_t m_primaryGraphId; // offset 0x418, size 0x8, align 255
-    C_NetworkUtlVectorBase< ResourceId_t > m_vecExternalGraphIds; // offset 0x420, size 0x18, align 8
-    C_NetworkUtlVectorBase< ResourceId_t > m_vecExternalClipIds; // offset 0x438, size 0x18, align 8
-    CGlobalSymbol m_sAnimGraph2Identifier; // offset 0x450, size 0x8, align 8
-    CAnimGraph2InstancePtr m_pGraphInstanceAG2; // offset 0x458, size 0x10, align 255
-    char _pad_0468[0x210]; // offset 0x468
-    CExternalAnimGraphList m_vecExternalGraphs; // offset 0x678, size 0x20, align 255
-    char _pad_0698[0x11]; // offset 0x698
-    AnimationAlgorithm_t m_nPrevAnimationAlgorithm; // offset 0x6A9, size 0x1, align 1
-    char _pad_06AA[0x6]; // offset 0x6AA
+    char _pad_00E8[0x218]; // offset 0xE8
+    CStrongHandle< InfoForResourceTypeCNmGraphDefinition > m_hGraphDefinitionAG2; // offset 0x300, size 0x8, align 8
+    C_UtlVectorEmbeddedNetworkVar< AnimGraph2SerializedPoseRecipeSlot_t > m_SerializePoseRecipeAG2Slots; // offset 0x308, size 0x68, align 8 | MNotSaved
+    C_NetworkUtlVectorBase< uint8 > m_SerializePoseRecipeAG2Dynamic; // offset 0x370, size 0x18, align 8 | MNotSaved
+    uint32 m_nSerializePoseRecipeAG2ActiveSlot; // offset 0x388, size 0x4, align 4 | MNotSaved
+    int32 m_nSerializePoseRecipeVersionAG2; // offset 0x38C, size 0x4, align 4 | MNotSaved
+    int32 m_nServerGraphInstanceIteration; // offset 0x390, size 0x4, align 4
+    int32 m_nServerSerializationContextIteration; // offset 0x394, size 0x4, align 4
+    ResourceId_t m_primaryGraphId; // offset 0x398, size 0x8, align 255
+    C_NetworkUtlVectorBase< ResourceId_t > m_vecExternalGraphIds; // offset 0x3A0, size 0x18, align 8
+    C_NetworkUtlVectorBase< ResourceId_t > m_vecExternalClipIds; // offset 0x3B8, size 0x18, align 8
+    CGlobalSymbol m_sAnimGraph2Identifier; // offset 0x3D0, size 0x8, align 8
+    CAnimGraph2InstancePtr m_pGraphInstanceAG2; // offset 0x3D8, size 0x10, align 255
+    char _pad_03E8[0x210]; // offset 0x3E8
+    CExternalAnimGraphList m_vecExternalGraphs; // offset 0x5F8, size 0x20, align 255
+    char _pad_0618[0x11]; // offset 0x618
+    AnimationAlgorithm_t m_nPrevAnimationAlgorithm; // offset 0x629, size 0x1, align 1
+    char _pad_062A[0x6]; // offset 0x62A
 };

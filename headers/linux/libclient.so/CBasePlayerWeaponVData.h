@@ -20,9 +20,9 @@ public:
     float32 m_flMuzzleSmokeTimeout; // offset 0x4AC, size 0x4, align 4 | MPropertyDescription
     float32 m_flMuzzleSmokeDecrementRate; // offset 0x4B0, size 0x4, align 4 | MPropertyDescription
     bool m_bGenerateMuzzleLight; // offset 0x4B4, size 0x1, align 1
-    bool m_bLinkedCooldowns; // offset 0x4B5, size 0x1, align 1 | MPropertyStartGroup MPropertyDescription
-    ItemFlagTypes_t m_iFlags; // offset 0x4B6, size 0x1, align 1
-    char _pad_04B7[0x1]; // offset 0x4B7
+    bool m_bShouldAnimateInWorld; // offset 0x4B5, size 0x1, align 1 | MPropertyDescription
+    bool m_bLinkedCooldowns; // offset 0x4B6, size 0x1, align 1 | MPropertyStartGroup MPropertyDescription
+    ItemFlagTypes_t m_iFlags; // offset 0x4B7, size 0x1, align 1
     int32 m_iWeight; // offset 0x4B8, size 0x4, align 4 | MPropertyDescription
     bool m_bAutoSwitchTo; // offset 0x4BC, size 0x1, align 1 | MPropertyFriendlyName MPropertyDescription
     bool m_bAutoSwitchFrom; // offset 0x4BD, size 0x1, align 1 | MPropertyFriendlyName

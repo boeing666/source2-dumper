@@ -1,6 +1,6 @@
 #pragma once
 
-class C_BaseAnimatingController : public CSkeletonAnimationController /*0x0*/  // sizeof 0x5E8, align 0xFF [vtable] (client)
+class C_BaseAnimatingController : public CSkeletonAnimationController /*0x0*/  // sizeof 0x568, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x10]; // offset 0x0
@@ -25,8 +25,8 @@ public:
     float32 m_flCachedSequenceCycleRate; // offset 0xCC, size 0x4, align 4
     float32 m_flCachedGroundSpeed; // offset 0xD0, size 0x4, align 4
     SequenceFinishNotifyState_t m_nNotifyState; // offset 0xD4, size 0x1, align 1
-    char _pad_00D5[0x29B]; // offset 0xD5
-    C_CSequenceTransitioner2 m_SequenceTransitioner; // offset 0x370, size 0x1B8, align 255
-    HSequence m_hLastAnimEventSequence; // offset 0x528, size 0x4, align 255
-    char _pad_052C[0xBC]; // offset 0x52C
+    char _pad_00D5[0x21B]; // offset 0xD5
+    C_CSequenceTransitioner2 m_SequenceTransitioner; // offset 0x2F0, size 0x1B8, align 255
+    HSequence m_hLastAnimEventSequence; // offset 0x4A8, size 0x4, align 255
+    char _pad_04AC[0xBC]; // offset 0x4AC
 };

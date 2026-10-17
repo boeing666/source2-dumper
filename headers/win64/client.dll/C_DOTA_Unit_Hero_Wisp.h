@@ -1,16 +1,16 @@
 #pragma once
 
-class C_DOTA_Unit_Hero_Wisp : public C_DOTA_BaseNPC_Hero /*0x0*/  // sizeof 0x1DA0, align 0x8 [vtable] (client)
+class C_DOTA_Unit_Hero_Wisp : public C_DOTA_BaseNPC_Hero /*0x0*/  // sizeof 0x1EA0, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1D88]; // offset 0x0
-    ParticleIndex_t m_nAmbientFXIndex; // offset 0x1D88, size 0x4, align 255
-    ParticleIndex_t m_nStunnedFXIndex; // offset 0x1D8C, size 0x4, align 255
-    ParticleIndex_t m_nTalkFXIndex; // offset 0x1D90, size 0x4, align 255
-    ParticleIndex_t m_nIllusionFXIndex; // offset 0x1D94, size 0x4, align 255
-    bool m_bParticleHexed; // offset 0x1D98, size 0x1, align 1
-    bool m_bParticleStunned; // offset 0x1D99, size 0x1, align 1
-    bool m_bDetermineAmbientEffect; // offset 0x1D9A, size 0x1, align 1
-    char _pad_1D9B[0x1]; // offset 0x1D9B
-    float32 m_flPrevHealth; // offset 0x1D9C, size 0x4, align 4
+    char _pad_0000[0x1E88]; // offset 0x0
+    ParticleIndex_t m_nAmbientFXIndex; // offset 0x1E88, size 0x4, align 255
+    ParticleIndex_t m_nStunnedFXIndex; // offset 0x1E8C, size 0x4, align 255
+    ParticleIndex_t m_nTalkFXIndex; // offset 0x1E90, size 0x4, align 255
+    ParticleIndex_t m_nIllusionFXIndex; // offset 0x1E94, size 0x4, align 255
+    bool m_bParticleHexed; // offset 0x1E98, size 0x1, align 1
+    bool m_bParticleStunned; // offset 0x1E99, size 0x1, align 1
+    bool m_bDetermineAmbientEffect; // offset 0x1E9A, size 0x1, align 1
+    char _pad_1E9B[0x1]; // offset 0x1E9B
+    float32 m_flPrevHealth; // offset 0x1E9C, size 0x4, align 4
 };

@@ -4,10 +4,10 @@ struct fogparams_t  // sizeof 0x68, align 0x8 [vtable trivial_dtor] (server) {MG
 {
     char _pad_0000[0x8]; // offset 0x0
     Vector dirPrimary; // offset 0x8, size 0xC, align 4
-    Color colorPrimary; // offset 0x14, size 0x4, align 1
-    Color colorSecondary; // offset 0x18, size 0x4, align 1
-    Color colorPrimaryLerpTo; // offset 0x1C, size 0x4, align 1 | MNotSaved
-    Color colorSecondaryLerpTo; // offset 0x20, size 0x4, align 1 | MNotSaved
+    Color colorPrimary; // offset 0x14, size 0x4, align 4
+    Color colorSecondary; // offset 0x18, size 0x4, align 4
+    Color colorPrimaryLerpTo; // offset 0x1C, size 0x4, align 4 | MNotSaved
+    Color colorSecondaryLerpTo; // offset 0x20, size 0x4, align 4 | MNotSaved
     float32 start; // offset 0x24, size 0x4, align 4
     float32 end; // offset 0x28, size 0x4, align 4
     float32 farz; // offset 0x2C, size 0x4, align 4

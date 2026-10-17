@@ -1,18 +1,18 @@
 #pragma once
 
-class CSkeletonInstance : public CGameSceneNode /*0x0*/  // sizeof 0x470, align 0x10 [vtable] (server) {MGetKV3ClassDefaults}
+class CSkeletonInstance : public CGameSceneNode /*0x0*/  // sizeof 0x480, align 0x10 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x120]; // offset 0x0
-    CModelState m_modelState; // offset 0x120, size 0x2A0, align 255
-    bool m_bUseParentRenderBounds; // offset 0x3C0, size 0x1, align 1 | MNotSaved
-    bool m_bDisableSolidCollisionsForHierarchy; // offset 0x3C1, size 0x1, align 1
-    bool m_bDirtyMotionType; // offset 0x3C2, size 0x1, align 1 | MNotSaved
-    bool m_bIsGeneratingLatchedParentSpaceState; // offset 0x3C3, size 0x1, align 1 | MNotSaved
-    char _pad_03C4[0x4]; // offset 0x3C4
-    CUtlStringToken m_materialGroup; // offset 0x3C8, size 0x4, align 4
-    uint8 m_nHitboxSet; // offset 0x3CC, size 0x1, align 1
-    char _pad_03CD[0x5F]; // offset 0x3CD
-    bool m_bForceServerConstraintsEnabled; // offset 0x42C, size 0x1, align 1
-    char _pad_042D[0x43]; // offset 0x42D
+    CModelState m_modelState; // offset 0x120, size 0x2B0, align 255
+    bool m_bUseParentRenderBounds; // offset 0x3D0, size 0x1, align 1 | MNotSaved
+    bool m_bDisableSolidCollisionsForHierarchy; // offset 0x3D1, size 0x1, align 1
+    bool m_bDirtyMotionType; // offset 0x3D2, size 0x1, align 1 | MNotSaved
+    bool m_bIsGeneratingLatchedParentSpaceState; // offset 0x3D3, size 0x1, align 1 | MNotSaved
+    char _pad_03D4[0x4]; // offset 0x3D4
+    CUtlStringToken m_materialGroup; // offset 0x3D8, size 0x4, align 4
+    uint8 m_nHitboxSet; // offset 0x3DC, size 0x1, align 1
+    char _pad_03DD[0x63]; // offset 0x3DD
+    bool m_bForceServerConstraintsEnabled; // offset 0x440, size 0x1, align 1
+    char _pad_0441[0x3F]; // offset 0x441
 };

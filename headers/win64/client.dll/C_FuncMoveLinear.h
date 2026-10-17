@@ -1,7 +1,7 @@
 #pragma once
 
-class C_FuncMoveLinear : public C_BaseToggle /*0x0*/  // sizeof 0xA88, align 0x8 [vtable] (client)
+class C_FuncMoveLinear : public C_BaseToggle /*0x0*/  // sizeof 0xB78, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0xA88]; // offset 0x0
+    char _pad_0000[0xB78]; // offset 0x0
 };

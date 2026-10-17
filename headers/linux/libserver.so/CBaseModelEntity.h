@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseModelEntity : public CBaseEntity /*0x0*/  // sizeof 0xA58, align 0x8 [vtable] (server)
+class CBaseModelEntity : public CBaseEntity /*0x0*/  // sizeof 0xB38, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x778]; // offset 0x0
@@ -36,12 +36,13 @@ public:
     RenderFx_t m_nRenderFX; // offset 0x83E, size 0x1, align 1
     bool m_bAllowFadeInView; // offset 0x83F, size 0x1, align 1
     char _pad_0840[0x18]; // offset 0x840
-    Color m_clrRender; // offset 0x858, size 0x4, align 1
+    Color m_clrRender; // offset 0x858, size 0x4, align 4
     char _pad_085C[0x4]; // offset 0x85C
     CUtlVectorEmbeddedNetworkVar< EntityRenderAttribute_t > m_vecRenderAttributes; // offset 0x860, size 0x68, align 8
     bool m_bRenderToCubemaps; // offset 0x8C8, size 0x1, align 1
-    bool m_bNoInterpolate; // offset 0x8C9, size 0x1, align 1
-    char _pad_08CA[0x6]; // offset 0x8CA
+    bool m_bExpandRenderBoundsToIncludeCloth; // offset 0x8C9, size 0x1, align 1
+    bool m_bNoInterpolate; // offset 0x8CA, size 0x1, align 1
+    char _pad_08CB[0x5]; // offset 0x8CB
     CCollisionProperty m_Collision; // offset 0x8D0, size 0xB8, align 8
     CGlowProperty m_Glow; // offset 0x988, size 0x58, align 8
     float32 m_flGlowBackfaceMult; // offset 0x9E0, size 0x4, align 4
@@ -51,9 +52,12 @@ public:
     float32 m_flShadowStrength; // offset 0x9F0, size 0x4, align 4
     uint8 m_nObjectCulling; // offset 0x9F4, size 0x1, align 1
     char _pad_09F5[0x3]; // offset 0x9F5
-    CUtlOrderedMap< CGlobalSymbol, int32 > m_bodyGroupChoices; // offset 0x9F8, size 0x28, align 8
-    CNetworkViewOffsetVector m_vecViewOffset; // offset 0xA20, size 0x28, align 255
-    char _pad_0A48[0x8]; // offset 0xA48
-    uint32[1] m_bvDisabledHitGroups; // offset 0xA50, size 0x4, align 4 | MKV3TransferSaveOpsForField
-    char _pad_0A54[0x4]; // offset 0xA54
+    uint32 m_bodyGroupTotalRequestCount; // offset 0x9F8, size 0x4, align 4
+    char _pad_09FC[0x4]; // offset 0x9FC
+    CUtlVectorFixedGrowable< CBaseModelEntity::BodyGroupRequest_t, 8 > m_bodyGroupRequests; // offset 0xA00, size 0xD8, align 8
+    CUtlOrderedMap< CGlobalSymbol, int32 > m_bodyGroupChoices; // offset 0xAD8, size 0x28, align 8
+    CNetworkViewOffsetVector m_vecViewOffset; // offset 0xB00, size 0x28, align 255
+    char _pad_0B28[0x8]; // offset 0xB28
+    uint32[1] m_bvDisabledHitGroups; // offset 0xB30, size 0x4, align 4 | MKV3TransferSaveOpsForField
+    char _pad_0B34[0x4]; // offset 0xB34
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CPlayer_CameraServices : public CPlayerPawnComponent /*0x0*/  // sizeof 0x278, align 0xFF [vtable] (client)
+class CPlayer_CameraServices : public CPlayerPawnComponent /*0x0*/  // sizeof 0x280, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x48]; // offset 0x0
@@ -16,12 +16,14 @@ public:
     fogparams_t m_CurrentFog; // offset 0x130, size 0x68, align 8
     CHandle< C_FogController > m_hOldFogController; // offset 0x198, size 0x4, align 4
     bool[5] m_bOverrideFogColor; // offset 0x19C, size 0x5, align 1
-    Color[5] m_OverrideFogColor; // offset 0x1A1, size 0x14, align 1
-    bool[5] m_bOverrideFogStartEnd; // offset 0x1B5, size 0x5, align 1
-    char _pad_01BA[0x2]; // offset 0x1BA
-    float32[5] m_fOverrideFogStart; // offset 0x1BC, size 0x14, align 4
-    float32[5] m_fOverrideFogEnd; // offset 0x1D0, size 0x14, align 4
-    CHandle< C_PostProcessingVolume > m_hActivePostProcessingVolume; // offset 0x1E4, size 0x4, align 4
-    QAngle m_angDemoViewAngles; // offset 0x1E8, size 0xC, align 4
-    char _pad_01F4[0x84]; // offset 0x1F4
+    char _pad_01A1[0x3]; // offset 0x1A1
+    Color[5] m_OverrideFogColor; // offset 0x1A4, size 0x14, align 4
+    bool[5] m_bOverrideFogStartEnd; // offset 0x1B8, size 0x5, align 1
+    char _pad_01BD[0x3]; // offset 0x1BD
+    float32[5] m_fOverrideFogStart; // offset 0x1C0, size 0x14, align 4
+    float32[5] m_fOverrideFogEnd; // offset 0x1D4, size 0x14, align 4
+    CHandle< C_PostProcessingVolume > m_hActivePostProcessingVolume; // offset 0x1E8, size 0x4, align 4
+    char _pad_01EC[0x4]; // offset 0x1EC
+    QAngle m_angDemoViewAngles; // offset 0x1F0, size 0xC, align 4
+    char _pad_01FC[0x84]; // offset 0x1FC
 };

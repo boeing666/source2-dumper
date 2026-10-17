@@ -1,7 +1,7 @@
 #pragma once
 
-class CDynamicPropAlias_prop_dynamic_override : public CDynamicProp /*0x0*/  // sizeof 0x9F0, align 0x10 [vtable] (server)
+class CDynamicPropAlias_prop_dynamic_override : public CDynamicProp /*0x0*/  // sizeof 0xB60, align 0x10 [vtable] (server)
 {
 public:
-    char _pad_0000[0x9F0]; // offset 0x0
+    char _pad_0000[0xB60]; // offset 0x0
 };

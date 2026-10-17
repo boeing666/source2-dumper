@@ -1,7 +1,7 @@
 #pragma once
 
-class CDOTA_Unit_AghsFort_SpectralTusk_Tombstone : public C_DOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x19B8, align 0x8 [vtable] (client)
+class CDOTA_Unit_AghsFort_SpectralTusk_Tombstone : public C_DOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x1AB8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x19B8]; // offset 0x0
+    char _pad_0000[0x1AB8]; // offset 0x0
 };

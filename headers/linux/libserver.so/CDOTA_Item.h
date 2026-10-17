@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Item : public CDOTABaseAbility /*0x0*/  // sizeof 0x930, align 0xFF [vtable abstract] (server)
+class CDOTA_Item : public CDOTABaseAbility /*0x0*/  // sizeof 0x938, align 0xFF [vtable abstract] (server)
 {
 public:
     char _pad_0000[0x85C]; // offset 0x0
@@ -76,6 +76,7 @@ public:
     AbilityID_t m_nImbuedAbility; // offset 0x8FC, size 0x4, align 255
     bool m_bPurchasedWhileDead; // offset 0x900, size 0x1, align 1
     char _pad_0901[0x3]; // offset 0x901
-    int32 m_nCombineVersion; // offset 0x904, size 0x4, align 4
-    char _pad_0908[0x28]; // offset 0x908
+    int32 m_nPurchasedPrice; // offset 0x904, size 0x4, align 4
+    int32 m_nCombineVersion; // offset 0x908, size 0x4, align 4
+    char _pad_090C[0x2C]; // offset 0x90C
 };

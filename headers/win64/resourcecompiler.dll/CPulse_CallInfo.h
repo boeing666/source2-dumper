@@ -1,6 +1,6 @@
 #pragma once
 
-class CPulse_CallInfo  // sizeof 0x58, align 0x8 (pulse_runtime_lib) {MGetKV3ClassDefaults}
+class CPulse_CallInfo  // sizeof 0x60, align 0x8 (pulse_runtime_lib) {MGetKV3ClassDefaults}
 {
 public:
     PulseSymbol_t m_PortName; // offset 0x0, size 0x10, align 8
@@ -10,5 +10,7 @@ public:
     PulseDocNodeID_t m_CallMethodID; // offset 0x48, size 0x4, align 255
     PulseRuntimeChunkIndex_t m_nSrcChunk; // offset 0x4C, size 0x4, align 255
     int32 m_nSrcInstruction; // offset 0x50, size 0x4, align 4
-    char _pad_0054[0x4]; // offset 0x54
+    PulseRuntimeChunkIndex_t m_nBreakDestChunk; // offset 0x54, size 0x4, align 255
+    int32 m_nBreakDestInstruction; // offset 0x58, size 0x4, align 4
+    char _pad_005C[0x4]; // offset 0x5C
 };

@@ -10,5 +10,5 @@ struct BlessingPath_t  // sizeof 0x30, align 0x8 (client) {MGetKV3ClassDefaults 
     bool bOneWay; // offset 0x24, size 0x1, align 1 | MPropertyDescription
     char _pad_0025[0x3]; // offset 0x25
     float32 flCircleInvRadius; // offset 0x28, size 0x4, align 4 | MPropertyAttributeRange MPropertyDescription
-    Color color; // offset 0x2C, size 0x4, align 1 | MPropertyDescription
+    Color color; // offset 0x2C, size 0x4, align 4 | MPropertyDescription
 };

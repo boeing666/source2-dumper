@@ -9,9 +9,10 @@ public:
     Vector m_vExtentsMin; // offset 0x20, size 0xC, align 4
     Vector m_vExtentsMax; // offset 0x2C, size 0xC, align 4
     float32 m_flRadius; // offset 0x38, size 0x4, align 4
-    bool m_bOnlyWarpPosition; // offset 0x3C, size 0x1, align 1
-    char _pad_003D[0x3]; // offset 0x3D
-    CHandle< CBaseEntity > m_hParent; // offset 0x40, size 0x4, align 4
-    CInfoChoreoLocatorShapeType_t m_nShapeType; // offset 0x44, size 0x4, align 4
-    char _pad_0048[0x8]; // offset 0x48
+    float32 m_flToleranceAngle; // offset 0x3C, size 0x4, align 4
+    bool m_bOnlyWarpPosition; // offset 0x40, size 0x1, align 1
+    char _pad_0041[0x3]; // offset 0x41
+    CHandle< CBaseEntity > m_hParent; // offset 0x44, size 0x4, align 4
+    CInfoChoreoLocatorShapeType_t m_nShapeType; // offset 0x48, size 0x4, align 4
+    char _pad_004C[0x4]; // offset 0x4C
 };

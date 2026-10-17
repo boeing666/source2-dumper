@@ -52,7 +52,7 @@ public:
     Vector m_vCollisionIndicatorColorEnemy; // offset 0x944, size 0xC, align 4
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_sPhysicalWeaknessEffect; // offset 0x950, size 0xE0, align 8
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_sGenericStunEffect; // offset 0xA30, size 0xE0, align 8
-    Color m_cEliteGlowColor; // offset 0xB10, size 0x4, align 1
+    Color m_cEliteGlowColor; // offset 0xB10, size 0x4, align 4
     float32 m_flLevelUpDelay; // offset 0xB14, size 0x4, align 4
     float32 m_flLevelUpKnockbackRadius; // offset 0xB18, size 0x4, align 4
     float32 m_flLevelUpKnockbackDistance; // offset 0xB1C, size 0x4, align 4

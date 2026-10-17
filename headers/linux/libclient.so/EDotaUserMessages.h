@@ -171,4 +171,6 @@ enum EDotaUserMessages : uint32_t  // sizeof 0x4
     DOTA_UM_TormentorTimer = 634,
     DOTA_UM_KillEffect = 635,
     DOTA_UM_GiveItem = 636,
+    DOTA_UM_TidehunterArcanaProgress_Ravages = 637,
+    DOTA_UM_TidehunterArcanaProgress_Fish = 638,
 };

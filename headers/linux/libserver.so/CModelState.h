@@ -1,6 +1,6 @@
 #pragma once
 
-class CModelState  // sizeof 0x2A0, align 0xFF [vtable] (server) {MGetKV3ClassDefaults}
+class CModelState  // sizeof 0x2B0, align 0xFF [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xA0]; // offset 0x0
@@ -23,5 +23,5 @@ public:
     int8 m_nIdealMotionType; // offset 0x292, size 0x1, align 1
     int8 m_nForceLOD; // offset 0x293, size 0x1, align 1
     int8 m_nClothUpdateFlags; // offset 0x294, size 0x1, align 1
-    char _pad_0295[0xB]; // offset 0x295
+    char _pad_0295[0x1B]; // offset 0x295
 };

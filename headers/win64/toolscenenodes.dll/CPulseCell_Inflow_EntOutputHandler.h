@@ -6,5 +6,5 @@ public:
     char _pad_0000[0x80]; // offset 0x0
     PulseSymbol_t m_SourceEntity; // offset 0x80, size 0x10, align 8
     PulseSymbol_t m_SourceOutput; // offset 0x90, size 0x10, align 8
-    CPulseValueFullType m_ExpectedParamType; // offset 0xA0, size 0x18, align 8
+    CPulseType m_ExpectedParamType; // offset 0xA0, size 0x18, align 8
 };

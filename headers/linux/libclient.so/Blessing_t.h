@@ -12,5 +12,5 @@ struct Blessing_t  // sizeof 0x38, align 0x8 (client) {MGetKV3ClassDefaults MVDa
     char _pad_001D[0xB]; // offset 0x1D
     Vector2D vecPos; // offset 0x28, size 0x8, align 4
     float32 flSize; // offset 0x30, size 0x4, align 4 | MPropertyAttributeRange
-    Color color; // offset 0x34, size 0x4, align 1 | MPropertyDescription
+    Color color; // offset 0x34, size 0x4, align 4 | MPropertyDescription
 };

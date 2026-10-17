@@ -4,7 +4,7 @@ class CDeferredLightBase  // sizeof 0x290, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
-    Color m_LightColor; // offset 0x8, size 0x4, align 1
+    Color m_LightColor; // offset 0x8, size 0x4, align 4
     float32 m_flIntensity; // offset 0xC, size 0x4, align 4
     float32 m_flLightSize; // offset 0x10, size 0x4, align 4
     float32 m_flSpotFoV; // offset 0x14, size 0x4, align 4

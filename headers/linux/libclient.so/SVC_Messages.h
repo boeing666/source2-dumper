@@ -33,4 +33,6 @@ enum SVC_Messages : uint32_t  // sizeof 0x4
     svc_HltvFixupOperatorStatus = 75,
     svc_UserCmds = 76,
     svc_NextMsgPredicted = 77,
+    svc_EncryptedData = 78,
+    svc_UserCmdKeyframe = 79,
 };

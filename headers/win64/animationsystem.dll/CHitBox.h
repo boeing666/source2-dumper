@@ -15,7 +15,7 @@ public:
     bool m_bTranslationOnly; // offset 0x3D, size 0x1, align 1
     char _pad_003E[0x2]; // offset 0x3E
     uint32 m_CRC; // offset 0x40, size 0x4, align 4
-    Color m_cRenderColor; // offset 0x44, size 0x4, align 1
+    Color m_cRenderColor; // offset 0x44, size 0x4, align 4
     uint16 m_nHitBoxIndex; // offset 0x48, size 0x2, align 2
     char _pad_004A[0x26]; // offset 0x4A
 };
