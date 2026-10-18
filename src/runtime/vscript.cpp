@@ -201,17 +201,13 @@ public:
 
 	HSCRIPT GetRootTable() override { return nullptr; }
 	HSCRIPT CopyHandle(HSCRIPT hScope) override { return hScope; }
-// The signature follows the SDK header in use: the main branch (now every shipped game) returns a status.
-#if SDK_MAIN_BRANCH
-	int LoadAndCompileScriptFile(const char*, const char*, HSCRIPT* pScript) override {
+	int LoadAndCompileScriptFile(const char*, const char*, HSCRIPT* pScript) {
 		if (pScript) {
 			*pScript = nullptr;
 		}
 		return 0;
 	}
-#else
-	HSCRIPT LoadAndCompileScriptFile(const char*, const char*) override { return nullptr; }
-#endif
+	HSCRIPT LoadAndCompileScriptFile(const char*, const char*) { return nullptr; }
 	void GetSourceId(HSCRIPT, char* pBuf, unsigned int nBufSize) override {
 		if (pBuf && nBufSize) {
 			*pBuf = '\0';
