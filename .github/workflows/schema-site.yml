@@ -259,11 +259,31 @@ jobs:
             done
           done
 
+      - name: Install frontend dependencies
+        working-directory: web
+        run: pnpm install --frozen-lockfile
+
+      # GC / network / user message definitions, one JSON per game (not per platform). Taken at publish
+      # time, so they follow the game update that triggered this run.
+      - name: Protobufs (SteamTracking/Protobufs)
+        working-directory: web
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git clone -q --depth 1 https://github.com/SteamTracking/Protobufs.git "$RUNNER_TEMP/protobufs" \
+             && node scripts/protobufs.mjs "$RUNNER_TEMP/protobufs" public/data; then
+            exit 0
+          fi
+          echo "::warning::protobufs not rebuilt, re-publishing the ones live on Pages"
+          site=$(gh api "repos/${{ github.repository }}/pages" --jq .html_url 2>/dev/null || true)
+          for g in cs2 dota2 deadlock; do
+            mkdir -p "public/data/$g"
+            curl -fsSL "${site%/}/data/$g/protobufs.json" -o "public/data/$g/protobufs.json" || echo "::warning::no protobufs for $g"
+          done
+
       - name: Build static site (Vite)
         working-directory: web
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
+        run: pnpm build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

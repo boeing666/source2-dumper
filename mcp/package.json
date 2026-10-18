@@ -1,0 +1,25 @@
+{
+  "name": "s2dump-mcp",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MCP server over the s2dump Source 2 dumps (schema, convars, commands, events, vscript) for cs2, dota2 and deadlock",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "tsx scripts/dev.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.3.1",
+    "mcp-handler": "^2.3.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.0"
+  }
+}
