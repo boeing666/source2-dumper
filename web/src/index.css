@@ -257,6 +257,25 @@ a.fl:hover,a.fl.ok{color:var(--acc);opacity:1}
 .cvh{color:var(--mut);overflow-wrap:break-word;font-family:var(--ui);font-size:13px}
 @media(max-width:820px){.cv,.cmd{grid-template-columns:1fr 1fr}.cvh,.cvflags{grid-column:1/-1}.cvhdr{display:none}}
 
+/* ---------- convars / commands: facet rail + table ---------- */
+.cvlayout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:start}
+.facets{position:sticky;top:calc(var(--stick-h) + 16px);max-height:calc(100vh - var(--stick-h) - 32px);overflow:auto;border:1px solid var(--border);border-radius:10px;background:var(--panel);padding:6px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.fhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6px 8px 2px;font:12px var(--mono);color:var(--mut)}
+.fhead b{color:var(--fg);font-variant-numeric:tabular-nums}
+.fopt{display:flex;align-items:center;gap:8px;width:100%;padding:3px 8px;border:0;border-radius:5px;background:none;cursor:pointer;font:12.5px var(--mono);text-align:left}
+.fopt:hover:not(:disabled){background:var(--hov)}
+.fopt:disabled{opacity:.4;cursor:default}
+.fbox{width:13px;height:13px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid var(--mut);border-radius:3px;color:#fff}
+.fopt.on .fbox{background:var(--acc);border-color:var(--acc)}
+.fopt.on .fn{color:var(--acc)}
+.fn{min-width:0;overflow-wrap:anywhere}
+.fc{margin-left:auto;color:var(--mut);font-size:11px;font-variant-numeric:tabular-nums}
+.fmore{align-self:flex-start;padding:4px 8px}
+@media(max-width:820px){.cvlayout{grid-template-columns:1fr}.facets{position:static;max-height:40vh}}
+/* beside the rail the table can be narrower than the viewport breakpoint implies: compact rows by its own width */
+.cvlayout .cvcard{container-type:inline-size}
+@container (max-width:700px){.cv,.cmd{grid-template-columns:1fr 1fr}.cvh,.cvflags{grid-column:1/-1}.cvhdr{display:none}}
+
 /* ---------- events / vscript: list + detail ---------- */
 .evtp{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
 .evtree{position:sticky;top:calc(var(--stick-h) + 16px);max-height:calc(100vh - var(--stick-h) - 32px);overflow:auto;border:1px solid var(--border);border-radius:10px;background:var(--panel);padding:6px;box-shadow:var(--shadow)}

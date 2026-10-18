@@ -15,6 +15,7 @@ export type UrlState = {
   q: string; // one query shared by every section
   sort: string; kinds: Set<string>; libs: Set<string>;
   cvFlags: Set<string>; cmFlags: Set<string>;
+  cvLibs: Set<string>; cmLibs: Set<string>;
   evMods: Set<string>; evSel: string;
   vsSel: string;
 };
@@ -37,8 +38,8 @@ export function toHash(st: UrlState): string {
     if (st.tab === "schema") {
       if (st.sort !== "name") p.set("sort", st.sort);
       set("kinds", st.kinds); set("libs", st.libs);
-    } else if (st.tab === "convars") set("flags", st.cvFlags);
-    else if (st.tab === "concommands") set("flags", st.cmFlags);
+    } else if (st.tab === "convars") { set("libs", st.cvLibs); set("flags", st.cvFlags); }
+    else if (st.tab === "concommands") { set("libs", st.cmLibs); set("flags", st.cmFlags); }
     else if (st.tab === "events") { set("mods", st.evMods); if (st.evSel) p.set("ev", st.evSel); }
     else if (st.tab === "vscript" && st.vsSel) p.set("sel", st.vsSel);
   }

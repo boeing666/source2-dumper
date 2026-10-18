@@ -35,6 +35,8 @@ export default function App() {
   const [kinds, setKinds] = useState<Set<string>>(init.tab === "schema" ? init.kinds : new Set());
   const [cvFlags, setCvFlags] = useState<Set<string>>(init.tab === "convars" ? init.flags : new Set());
   const [cmFlags, setCmFlags] = useState<Set<string>>(init.tab === "concommands" ? init.flags : new Set());
+  const [cvLibs, setCvLibs] = useState<Set<string>>(init.tab === "convars" ? init.libs : new Set());
+  const [cmLibs, setCmLibs] = useState<Set<string>>(init.tab === "concommands" ? init.libs : new Set());
   const [evMods, setEvMods] = useState<Set<string>>(init.tab === "events" ? init.mods : new Set());
   const [evSel, setEvSel] = useState(init.ev);
   const [vsSel, setVsSel] = useState(init.sel);
@@ -134,8 +136,8 @@ export default function App() {
         const e = s.className ? lookup(s.className, s.sc) : undefined;
         setSelected(e ? { name: e.name, file: e.file, scope: e.scope, targetField: s.field } : null);
       } else setSelected(null);
-      if (s.tab === "convars") setCvFlags(s.flags);
-      else if (s.tab === "concommands") setCmFlags(s.flags);
+      if (s.tab === "convars") { setCvFlags(s.flags); setCvLibs(s.libs); }
+      else if (s.tab === "concommands") { setCmFlags(s.flags); setCmLibs(s.libs); }
       else if (s.tab === "vscript") setVsSel(s.sel);
       else if (s.tab === "events") { setEvMods(s.mods); setEvSel(s.ev); }
     };
@@ -150,9 +152,9 @@ export default function App() {
   // write state to URL (replaceState → no reload / no loop; wait until the initial class is resolved)
   useEffect(() => {
     if (pending.current) return;
-    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, q, sort, kinds, libs, cvFlags, cmFlags, evMods, evSel, vsSel });
+    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, q, sort, kinds, libs, cvFlags, cmFlags, cvLibs, cmLibs, evMods, evSel, vsSel });
     if (location.hash !== h) history.replaceState(null, "", h);
-  }, [tab, game, platform, selected, variants, q, sort, kinds, libs, cvFlags, cmFlags, evMods, evSel, vsSel]);
+  }, [tab, game, platform, selected, variants, q, sort, kinds, libs, cvFlags, cmFlags, cvLibs, cmLibs, evMods, evSel, vsSel]);
 
   useEffect(() => {
     if (!selected) { setScopeData(null); return; }
@@ -209,8 +211,8 @@ export default function App() {
     switch (h.k) {
       case "field": pick(h.entry, h.field); break;
       case "type": pick(h.entry); break;
-      case "convar": setCvFlags(new Set()); goTab("convars"); setHl(h.cv.name); break;
-      case "command": setCmFlags(new Set()); goTab("concommands"); setHl(h.cc.name); break;
+      case "convar": setCvFlags(new Set()); setCvLibs(new Set()); goTab("convars"); setHl(h.cv.name); break;
+      case "command": setCmFlags(new Set()); setCmLibs(new Set()); goTab("concommands"); setHl(h.cc.name); break;
       case "event": setEvMods(new Set()); setEvSel(h.ev.module + ":" + h.ev.name); goTab("events"); break;
       case "vsfn": setVsSel(h.cls ? "cls:" + h.cls.name : "functions"); goTab("vscript"); break;
       case "vscls": setVsSel("cls:" + h.cls.name); goTab("vscript"); break;
@@ -332,8 +334,8 @@ export default function App() {
                       libs={libs} toggleLib={toggle(setLibs)} kinds={kinds} toggleKind={toggle(setKinds)} onPick={pick} q={dq} />
         ))}
 
-        {!err && tab === "convars" && <ConVarsView game={game} platform={platform} q={dq} flags={cvFlags} toggleFlag={toggle(setCvFlags)} hl={hl} />}
-        {!err && tab === "concommands" && <ConCommandsView game={game} platform={platform} q={dq} flags={cmFlags} toggleFlag={toggle(setCmFlags)} hl={hl} />}
+        {!err && tab === "convars" && <ConVarsView game={game} platform={platform} q={dq} flags={cvFlags} toggleFlag={toggle(setCvFlags)} libs={cvLibs} toggleLib={toggle(setCvLibs)} clearFilters={() => { setCvFlags(new Set()); setCvLibs(new Set()); }} hl={hl} />}
+        {!err && tab === "concommands" && <ConCommandsView game={game} platform={platform} q={dq} flags={cmFlags} toggleFlag={toggle(setCmFlags)} libs={cmLibs} toggleLib={toggle(setCmLibs)} clearFilters={() => { setCmFlags(new Set()); setCmLibs(new Set()); }} hl={hl} />}
         {!err && tab === "events" && <EventsView game={game} platform={platform} q={dq} mods={evMods} toggleMod={toggle(setEvMods)} sel={evSel} setSel={setEvSel} />}
         {!err && tab === "vscript" && <VScriptView game={game} platform={platform} q={dq} sel={vsSel} setSel={setVsSel} />}
       </main>
