@@ -1,5 +1,0 @@
-# DepotDownloader filelist (game-agnostic). "regex:" lines match manifest paths (forward or back slash).
-# All engine + game shared libs (win64/linuxsteamrt64) + steam.inf, for any game subdir (csgo/dota/citadel).
-regex:game[\\/]bin[\\/](win64|linuxsteamrt64)[\\/][^\\/]+\.(dll|so)(\.[0-9]+)?$
-regex:game[\\/][^\\/]+[\\/]bin[\\/](win64|linuxsteamrt64)[\\/][^\\/]+\.(dll|so)(\.[0-9]+)?$
-regex:game[\\/][^\\/]+[\\/]steam\.inf$

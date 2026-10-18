@@ -1,12 +1,13 @@
-name: Download CS2 depots
+name: Download depots
 
 on:
   workflow_dispatch:
     inputs:
-      dd_version:
-        description: DepotDownloader release tag
-        default: DepotDownloader_3.4.0
-        required: false
+      game:
+        description: Game
+        type: choice
+        options: [cs2, dota2, deadlock]
+        default: cs2
 
 jobs:
   download:
@@ -22,17 +23,19 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Download ${{ matrix.target }} depot
+      - uses: ./.github/actions/steamfiledownloader
+
+      - name: Download ${{ matrix.target }} files
         env:
-          DD_VERSION: ${{ github.event.inputs.dd_version }}
+          GAME: ${{ github.event.inputs.game }}
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         shell: bash
         run: bash scripts/download-depots.sh ${{ matrix.target }}
 
-      - name: Upload ${{ matrix.target }} binaries
+      - name: Upload ${{ matrix.target }} files
         uses: actions/upload-artifact@v4
         with:
-          name: cs2-${{ matrix.target }}
+          name: ${{ github.event.inputs.game }}-${{ matrix.target }}
           path: game/
           if-no-files-found: error

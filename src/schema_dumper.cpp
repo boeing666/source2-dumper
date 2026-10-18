@@ -57,7 +57,11 @@ int DumpAll(const fs::path& binDir, const fs::path& moduleDir, const fs::path& o
 
 	std::vector<GameEventInfo> events = CollectGameEvents(GAME_ROOT);
 
-	const std::string patch = ReadInf("PatchVersion");
+	// PatchVersion (1.41.9.1) exists only in cs2's steam.inf; dota2 / deadlock carry just the build number.
+	std::string patch = ReadInf("PatchVersion");
+	if (patch.empty()) {
+		patch = ReadInf("ClientVersion");
+	}
 	const std::string serverVer = ReadInf("ServerVersion");
 	const fs::path headersDir = outDir / "headers" / GAME_NAME / PLATFORM_NAME;
 	WriteHeaders(modules, headersDir);

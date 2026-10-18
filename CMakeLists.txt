@@ -76,6 +76,7 @@ set(SOURCE_FILES
 	src/main.cpp
 	src/schema_dumper.cpp
 	src/core/game_module.cpp
+	src/core/vpk.cpp
 	src/schema/schema_parse.cpp
 	src/schema/schema_util.cpp
 	src/output/header_writer.cpp

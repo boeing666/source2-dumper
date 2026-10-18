@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "core/sdk.hpp"
+#include "core/vpk.hpp"
 
 namespace schema {
 namespace fs = std::filesystem;
@@ -41,18 +42,23 @@ void ParseInto(const std::string& text, const char* module, std::vector<GameEven
 }
 
 std::vector<GameEventInfo> CollectGameEvents(const fs::path& gameRoot) {
-	struct Source { fs::path path; const char* module; };
+	// Read from that folder's pak01_dir.vpk (a full install, or SteamFileDownloader's sparse archives holding
+	// just these entries); a loose resource/<file> is only the fallback, so a stale extracted copy can't win.
+	struct Source { fs::path folder; const char* file; const char* module; };
 	const Source sources[] = {
-		{ gameRoot / SE_GAME_DIR / "resource" / "game.gameevents", "game" },
-		{ gameRoot / SE_GAME_DIR / "resource" / "mod.gameevents",  "mod" },
-		{ gameRoot / "core" / "resource" / "core.gameevents",      "core" },
+		{ gameRoot / SE_GAME_DIR, "game.gameevents", "game" },
+		{ gameRoot / SE_GAME_DIR, "mod.gameevents",  "mod" },
+		{ gameRoot / "core",      "core.gameevents", "core" },
 	};
 
 	std::vector<GameEventInfo> out;
 	for (const Source& s : sources) {
-		std::string text = ReadFile(s.path);
+		std::string text = vpk::ReadEntry(s.folder / "pak01_dir.vpk", std::string("resource/") + s.file).value_or("");
 		if (text.empty()) {
-			std::println(stderr, "gameevents: missing {}", s.path.string());
+			text = ReadFile(s.folder / "resource" / s.file);
+		}
+		if (text.empty()) {
+			std::println(stderr, "gameevents: no {} in {}", s.file, s.folder.string());
 			continue;
 		}
 		ParseInto(text, s.module, out);

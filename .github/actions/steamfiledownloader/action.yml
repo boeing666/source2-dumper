@@ -1,0 +1,34 @@
+name: SteamFileDownloader
+description: Build SteamTracking/SteamFileDownloader at a pinned commit (cached per OS) into .tools/steamfiledownloader
+inputs:
+  ref:
+    # Pinned on purpose: this binary is handed the Steam password. Bump after reviewing upstream changes.
+    description: SteamFileDownloader commit to build
+    default: 4fe19cd2adfae9aec420d5a04d83359faf9da766
+runs:
+  using: composite
+  steps:
+    - id: rid
+      shell: bash
+      run: echo "rid=$([ "$RUNNER_OS" = Windows ] && echo win-x64 || echo linux-x64)" >> "$GITHUB_OUTPUT"
+
+    - id: cache
+      uses: actions/cache@v4
+      with:
+        path: .tools/steamfiledownloader
+        key: sfd-${{ steps.rid.outputs.rid }}-${{ inputs.ref }}
+
+    - if: steps.cache.outputs.cache-hit != 'true'
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      env:
+        DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: "1"
+        DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+      run: |
+        git clone -q https://github.com/SteamTracking/SteamFileDownloader.git "$RUNNER_TEMP/sfd"
+        git -C "$RUNNER_TEMP/sfd" checkout -q "${{ inputs.ref }}"
+        dotnet publish "$RUNNER_TEMP/sfd/SteamFileDownloader.csproj" -c Release -r "${{ steps.rid.outputs.rid }}" -o .tools/steamfiledownloader

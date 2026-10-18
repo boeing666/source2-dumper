@@ -1,40 +1,16 @@
 #!/usr/bin/env bash
-# Prints a version key (joined depot-manifest GIDs) for a game's app. Changes on every game update.
-# GAME=cs2|dota2|deadlock (default cs2). Used by CI as the rebuild gate.
+# Prints the public-branch build id of a game's app; it changes on every game update. CI's rebuild gate.
+# cs2 / dota2: anonymous PICS (`depots`), no login. deadlock hides its app info from anonymous users, so it
+# falls back to a logged-in `track` of steam.inf, which writes the build id.
+# Usage: GAME=cs2|dota2|deadlock scripts/game-version.sh
 set -euo pipefail
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+. "$(dirname "${BASH_SOURCE[0]}")/steam-common.sh"
 
-DD_VERSION="${DD_VERSION:-DepotDownloader_3.4.0}"
-GAME="${GAME:-cs2}"
-case "$GAME" in
-	cs2)      APP=730 ;;
-	dota2)    APP=570 ;;
-	deadlock) APP=1422450 ;;
-	*) echo "unknown GAME '$GAME'" >&2; exit 1 ;;
-esac
-
-DIR="${RUNNER_TEMP:-/tmp}/dd-version"
-mkdir -p "$DIR"
-cd "$DIR"
-
-if [ ! -x ./DepotDownloader ]; then
-	curl -fsSL "https://github.com/SteamRE/DepotDownloader/releases/download/${DD_VERSION}/DepotDownloader-linux-x64.zip" -o dd.zip
-	unzip -oq dd.zip
-	chmod +x DepotDownloader
+build=$("$SFD" depots "$APP" --anonymous 2>&1 >/dev/null | grep -oE 'public \(build [0-9]+' | grep -oE '[0-9]+$' || true)
+if [ -z "$build" ]; then
+	work="$ROOT/.tools/sfd-version/$GAME"
+	printf '{ "%s": ["game/%s/steam.inf"] }\n' "$DEPOT_CONTENT" "$GAME_SUBDIR" | sfd_track "$work" "$work/out" >&2
+	build=$(cat "$work/out/steam_buildid.txt")
 fi
-
-auth=()
-if [ -n "${STEAM_USERNAME:-}" ]; then
-	auth+=(-username "$STEAM_USERNAME")
-	[ -n "${STEAM_PASSWORD:-}" ] && auth+=(-password "$STEAM_PASSWORD")
-	auth+=(-remember-password)
-fi
-
-out=$(./DepotDownloader -app "$APP" -manifest-only -dir "mf-$GAME" "${auth[@]}" 2>&1 || true)
-gid=$(printf '%s\n' "$out" | grep -oE 'Manifest [0-9]+' | grep -oE '[0-9]+' | sort -u | tr '\n' '-' | sed 's/-$//')
-if [ -z "$gid" ]; then
-	printf '%s\n' "$out" >&2
-	echo "could not resolve manifest gid for $GAME (app $APP)" >&2
-	exit 1
-fi
-echo "$gid"
+[ -n "$build" ] || { echo "could not resolve the build id of $GAME (app $APP)" >&2; exit 1; }
+echo "$build"
