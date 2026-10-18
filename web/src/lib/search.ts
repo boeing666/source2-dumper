@@ -1,6 +1,6 @@
 // Unified search over every section: schema types + fields (from the compact index), convars, commands,
 // game events and the vscript API. One query string, results grouped per section.
-import type { ConCommand, ConVar, GameEvent, IndexEntry, ScriptApi, ScriptClass, ScriptFunction } from "@/types";
+import type { ConCommand, ConVar, GameEvent, IndexEntry, ProtoType, Protobufs, ScriptApi, ScriptClass, ScriptFunction } from "@/types";
 
 export type PrepEntry = { e: IndexEntry; names: string[]; lower: string[]; offs: number[] };
 
@@ -29,13 +29,14 @@ export type Hit =
   | { k: "event"; ev: GameEvent; fields: string[] }
   | { k: "vsfn"; fn: ScriptFunction; cls: ScriptClass | null }
   | { k: "vscls"; cls: ScriptClass }
-  | { k: "vsconst"; name: string; type: string; value: string };
+  | { k: "vsconst"; name: string; type: string; value: string }
+  | { k: "pb"; t: ProtoType; fields: string[] };
 
-export type GroupKey = "fields" | "types" | "convars" | "commands" | "events" | "vscript";
+export type GroupKey = "fields" | "types" | "convars" | "commands" | "events" | "vscript" | "protobufs";
 export type Group = { key: GroupKey; title: string; total: number; hits: Hit[] };
 
 export const GROUP_TAB: Record<GroupKey, string> = {
-  fields: "schema", types: "schema", convars: "convars", commands: "concommands", events: "events", vscript: "vscript",
+  fields: "schema", types: "schema", convars: "convars", commands: "concommands", events: "events", vscript: "vscript", protobufs: "protobufs",
 };
 
 const LIMIT = 60;
@@ -132,6 +133,18 @@ export function searchScript(api: ScriptApi, q: string): Group {
     hits: top(hits, (h) => rank(nameOf(h).toLowerCase(), ql), (h) => nameOf(h).length) };
 }
 
+// messages / enums by name, or by a field / enum value name (listed on the hit like event fields)
+export function searchProtobufs(pb: Protobufs, q: string): Group {
+  const ql = q.trim().toLowerCase();
+  const hits: Extract<Hit, { k: "pb" }>[] = [];
+  for (const t of pb.types) {
+    const members = (t.fields ?? t.values ?? []).filter((m) => hasQ(m.name, ql)).map((m) => m.name);
+    if (hasQ(t.name, ql) || members.length) hits.push({ k: "pb", t, fields: members });
+  }
+  return { key: "protobufs", title: "Protobufs", total: hits.length,
+    hits: top(hits, (h) => (hasQ(h.t.name, ql) ? rank(h.t.name.toLowerCase(), ql) : 9), (h) => h.t.name.length) };
+}
+
 // stable identity for keyboard selection / preview
 export function hitKey(h: Hit): string {
   switch (h.k) {
@@ -143,6 +156,7 @@ export function hitKey(h: Hit): string {
     case "vsfn": return `vf:${h.cls?.name ?? ""}:${h.fn.name}`;
     case "vscls": return `vc:${h.cls.name}`;
     case "vsconst": return `vk:${h.name}`;
+    case "pb": return `pb:${h.t.file}:${h.t.name}`;
   }
 }
 

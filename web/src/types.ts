@@ -158,3 +158,38 @@ export interface ScriptApi {
   classes: ScriptClass[];
   constants: { name: string; type: string; value: string }[];
 }
+
+// protobuf definitions from SteamTracking/Protobufs (web/scripts/protobufs.mjs), one file per game
+export interface ProtoField {
+  name: string;
+  id: number;
+  rule?: "optional" | "repeated" | "required"; // absent for map<> fields
+  type: string; // as written
+  ref?: string; // resolved message / enum name
+  default?: string;
+  oneof?: string;
+  comment?: string;
+}
+
+export interface ProtoType {
+  kind: "message" | "enum";
+  name: string; // nested types are Outer.Inner
+  file: string;
+  comment?: string;
+  fields?: ProtoField[];
+  values?: { name: string; value: number; comment?: string }[];
+}
+
+export interface ProtoService {
+  name: string;
+  file: string;
+  comment?: string;
+  methods: { name: string; request: string; response: string; requestRef?: string; responseRef?: string; comment?: string }[];
+}
+
+export interface Protobufs {
+  source: { repo: string; path: string; commit: string; date: string };
+  files: { name: string; imports: string[]; messages: number; enums: number }[];
+  types: ProtoType[];
+  services: ProtoService[];
+}

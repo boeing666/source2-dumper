@@ -3,10 +3,10 @@ import { GAMES, type Game, type Platform } from "@/lib/data";
 
 export type Selected = { name: string; file: string; scope: string; targetField?: string };
 
-export const TABS = ["all", "schema", "convars", "concommands", "events", "vscript"] as const;
+export const TABS = ["all", "schema", "convars", "concommands", "events", "vscript", "protobufs"] as const;
 export type Tab = (typeof TABS)[number];
 export const TAB_LABEL: Record<Tab, string> = {
-  all: "All", schema: "schema", convars: "convars", concommands: "commands", events: "events", vscript: "vscript",
+  all: "All", schema: "schema", convars: "convars", concommands: "commands", events: "events", vscript: "vscript", protobufs: "protobufs",
 };
 
 export type UrlState = {
@@ -18,6 +18,7 @@ export type UrlState = {
   cvLibs: Set<string>; cmLibs: Set<string>;
   evMods: Set<string>; evSel: string;
   vsSel: string;
+  pbSel: string;
 };
 
 export function toHash(st: UrlState): string {
@@ -42,6 +43,7 @@ export function toHash(st: UrlState): string {
     else if (st.tab === "concommands") { set("libs", st.cmLibs); set("flags", st.cmFlags); }
     else if (st.tab === "events") { set("mods", st.evMods); if (st.evSel) p.set("ev", st.evSel); }
     else if (st.tab === "vscript" && st.vsSel) p.set("sel", st.vsSel);
+    else if (st.tab === "protobufs" && st.pbSel) p.set("sel", st.pbSel);
   }
   const qs = p.toString();
   return "#" + path + (qs ? "?" + qs : "");

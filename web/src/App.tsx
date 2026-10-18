@@ -1,8 +1,8 @@
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import { type Game, type Platform, type GameAvail, loadMeta, loadIndex, loadScope, loadGameAvail, getConVars, getConCommands, getEvents, getScriptApi } from "@/lib/data";
-import type { Meta, IndexEntry, Scope, ConVar, ConCommand, GameEvent, ScriptApi, ClassInfo } from "@/types";
+import { type Game, type Platform, type GameAvail, loadMeta, loadIndex, loadScope, loadGameAvail, getConVars, getConCommands, getEvents, getScriptApi, getProtobufs } from "@/lib/data";
+import type { Meta, IndexEntry, Scope, ConVar, ConCommand, GameEvent, ScriptApi, ClassInfo, Protobufs } from "@/types";
 import { type Selected, type Tab, toHash, fromHash } from "@/lib/url";
-import { prepIndex, searchSchema, searchConVars, searchCommands, searchEvents, searchScript, vsTotal, type Group, type Hit } from "@/lib/search";
+import { prepIndex, searchSchema, searchConVars, searchCommands, searchEvents, searchScript, searchProtobufs, vsTotal, type Group, type Hit } from "@/lib/search";
 import { Header } from "@/components/Header";
 import { SearchBar } from "@/components/SearchBar";
 import { AllResults } from "@/components/AllResults";
@@ -13,6 +13,9 @@ import { ConVarsView } from "@/components/ConVarsView";
 import { ConCommandsView } from "@/components/ConCommandsView";
 import { EventsView } from "@/components/EventsView";
 import { VScriptView } from "@/components/VScriptView";
+import { ProtobufsView } from "@/components/ProtobufsView";
+
+const NO_PROTOBUFS: Protobufs = { source: { repo: "", path: "", commit: "", date: "" }, files: [], types: [], services: [] };
 
 const stored = (k: string) => { try { return localStorage.getItem(k) === "1"; } catch { return false; } };
 const store = (k: string, v: boolean) => { try { localStorage.setItem(k, v ? "1" : "0"); } catch { /* private mode */ } };
@@ -39,7 +42,8 @@ export default function App() {
   const [cmLibs, setCmLibs] = useState<Set<string>>(init.tab === "concommands" ? init.libs : new Set());
   const [evMods, setEvMods] = useState<Set<string>>(init.tab === "events" ? init.mods : new Set());
   const [evSel, setEvSel] = useState(init.ev);
-  const [vsSel, setVsSel] = useState(init.sel);
+  const [vsSel, setVsSel] = useState(init.tab === "vscript" ? init.sel : "");
+  const [pbSel, setPbSel] = useState(init.tab === "protobufs" ? init.sel : "");
   const [hl, setHl] = useState<string | undefined>();
   const [hex, setHexS] = useState(() => stored("hex"));
   const [pad, setPadS] = useState(() => stored("pad"));
@@ -64,13 +68,14 @@ export default function App() {
   const [cc, setCc] = useState<ConCommand[] | null>(null);
   const [ev, setEv] = useState<GameEvent[] | null>(null);
   const [vs, setVs] = useState<ScriptApi | null>(null);
+  const [pb, setPb] = useState<Protobufs | null>(null);
 
   useEffect(() => { document.body.classList.toggle("showpad", pad); }, [pad]);
   useEffect(() => { loadGameAvail().then(setAvail, () => {}); }, []);
 
   useEffect(() => {
     setErr(null); setMeta(null); setIndex([]); scopeCache.current.clear();
-    setCv(null); setCc(null); setEv(null); setVs(null);
+    setCv(null); setCc(null); setEv(null); setVs(null); setPb(null);
     Promise.all([loadMeta(game, platform), loadIndex(game, platform)])
       .then(([m, ix]) => { setMeta(m); setIndex(ix); })
       .catch((e) => setErr(String(e)));
@@ -84,7 +89,11 @@ export default function App() {
     if (!cc) getConCommands(game, platform).then(setCc, () => setCc([]));
     if (!ev) getEvents(game, platform).then(setEv, () => setEv([]));
     if (!vs) getScriptApi(game, platform).then(setVs, () => setVs({ functions: [], instances: [], classes: [], constants: [] }));
-  }, [searching, game, platform, cv, cc, ev, vs]);
+    if (!pb) getProtobufs(game).then(setPb, () => setPb(NO_PROTOBUFS));
+  }, [searching, game, platform, cv, cc, ev, vs, pb]);
+
+  // the tab badge shows the definition count as soon as the protobufs tab is opened
+  useEffect(() => { if (tab === "protobufs" && !pb) getProtobufs(game).then(setPb, () => setPb(NO_PROTOBUFS)); }, [tab, game, pb]);
 
   const getScope = useCallback((file: string) => {
     let p = scopeCache.current.get(file);
@@ -139,6 +148,7 @@ export default function App() {
       if (s.tab === "convars") { setCvFlags(s.flags); setCvLibs(s.libs); }
       else if (s.tab === "concommands") { setCmFlags(s.flags); setCmLibs(s.libs); }
       else if (s.tab === "vscript") setVsSel(s.sel);
+      else if (s.tab === "protobufs") setPbSel(s.sel);
       else if (s.tab === "events") { setEvMods(s.mods); setEvSel(s.ev); }
     };
     window.addEventListener("hashchange", onNav);
@@ -152,9 +162,9 @@ export default function App() {
   // write state to URL (replaceState → no reload / no loop; wait until the initial class is resolved)
   useEffect(() => {
     if (pending.current) return;
-    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, q, sort, kinds, libs, cvFlags, cmFlags, cvLibs, cmLibs, evMods, evSel, vsSel });
+    const h = toHash({ tab, game, platform, selected, dup: variants.length > 1, q, sort, kinds, libs, cvFlags, cmFlags, cvLibs, cmLibs, evMods, evSel, vsSel, pbSel });
     if (location.hash !== h) history.replaceState(null, "", h);
-  }, [tab, game, platform, selected, variants, q, sort, kinds, libs, cvFlags, cmFlags, cvLibs, cmLibs, evMods, evSel, vsSel]);
+  }, [tab, game, platform, selected, variants, q, sort, kinds, libs, cvFlags, cmFlags, cvLibs, cmLibs, evMods, evSel, vsSel, pbSel]);
 
   useEffect(() => {
     if (!selected) { setScopeData(null); return; }
@@ -217,6 +227,7 @@ export default function App() {
       case "vsfn": setVsSel(h.cls ? "cls:" + h.cls.name : "functions"); goTab("vscript"); break;
       case "vscls": setVsSel("cls:" + h.cls.name); goTab("vscript"); break;
       case "vsconst": setVsSel("constants"); goTab("vscript"); break;
+      case "pb": setPbSel(h.t.name); goTab("protobufs"); break;
     }
   };
 
@@ -242,13 +253,14 @@ export default function App() {
     if (cc) gs.push(searchCommands(cc, dq));
     if (ev) gs.push(searchEvents(ev, dq));
     if (vs) gs.push(searchScript(vs, dq));
+    if (pb) gs.push(searchProtobufs(pb, dq));
     return gs.filter((g) => g.total > 0);
-  }, [searching, schemaRes, cv, cc, ev, vs, dq]);
-  const pendingLists = searching ? ([[prep.length, "schema"], [cv, "convars"], [cc, "commands"], [ev, "events"], [vs, "vscript"]] as const).filter(([v]) => !v).map(([, n]) => n) : [];
+  }, [searching, schemaRes, cv, cc, ev, vs, pb, dq]);
+  const pendingLists = searching ? ([[prep.length, "schema"], [cv, "convars"], [cc, "commands"], [ev, "events"], [vs, "vscript"], [pb, "protobufs"]] as const).filter(([v]) => !v).map(([, n]) => n) : [];
 
   const counts = useMemo<Partial<Record<Tab, number>>>(() => {
     if (!searching) {
-      return meta ? { schema: meta.types, convars: meta.convars, concommands: meta.concommands, events: meta.events, ...(vs ? { vscript: vsTotal(vs) } : {}) } : {};
+      return meta ? { schema: meta.types, convars: meta.convars, concommands: meta.concommands, events: meta.events, ...(vs ? { vscript: vsTotal(vs) } : {}), ...(pb ? { protobufs: pb.types.length + pb.services.length } : {}) } : {};
     }
     const tot = (k: string) => groups.find((g) => g.key === k)?.total ?? 0;
     const c: Partial<Record<Tab, number>> = {};
@@ -257,9 +269,10 @@ export default function App() {
     if (cc) c.concommands = tot("commands");
     if (ev) c.events = tot("events");
     if (vs) c.vscript = tot("vscript");
+    if (pb) c.protobufs = tot("protobufs");
     c.all = groups.reduce((n, g) => n + g.total, 0);
     return c;
-  }, [searching, meta, vs, groups, schemaRes, cv, cc, ev]);
+  }, [searching, meta, vs, pb, groups, schemaRes, cv, cc, ev]);
 
   const filteredIndex = useMemo(() => {
     const m = schemaRes?.matched;
@@ -338,6 +351,7 @@ export default function App() {
         {!err && tab === "concommands" && <ConCommandsView game={game} platform={platform} q={dq} flags={cmFlags} toggleFlag={toggle(setCmFlags)} libs={cmLibs} toggleLib={toggle(setCmLibs)} clearFilters={() => { setCmFlags(new Set()); setCmLibs(new Set()); }} hl={hl} />}
         {!err && tab === "events" && <EventsView game={game} platform={platform} q={dq} mods={evMods} toggleMod={toggle(setEvMods)} sel={evSel} setSel={setEvSel} />}
         {!err && tab === "vscript" && <VScriptView game={game} platform={platform} q={dq} sel={vsSel} setSel={setVsSel} />}
+        {tab === "protobufs" && <ProtobufsView game={game} q={dq} sel={pbSel} setSel={setPbSel} />}
       </main>
     </>
   );

@@ -1,4 +1,4 @@
-import type { Meta, Scope, ConVar, ConCommand, GameEvent, IndexEntry, ScriptApi } from "@/types";
+import type { Meta, Scope, ConVar, ConCommand, GameEvent, IndexEntry, ScriptApi, Protobufs } from "@/types";
 
 const base = import.meta.env.BASE_URL;
 
@@ -27,6 +27,8 @@ export const loadConVars = (g: Game, p: Platform) => getJson<ConVar[]>(`${g}/${p
 export const loadConCommands = (g: Game, p: Platform) => getJson<ConCommand[]>(`${g}/${p}/concommands.json`);
 export const loadEvents = (g: Game, p: Platform) => getJson<GameEvent[]>(`${g}/${p}/events.json`);
 export const loadScriptApi = (g: Game, p: Platform) => getJson<ScriptApi>(`${g}/${p}/vscript.json`);
+// protobufs are per game, not per platform
+export const loadProtobufs = (g: Game) => getJson<Protobufs>(`${g}/protobufs.json`);
 
 // per game: patch version (for the game tab) and which platforms actually have a dump
 export type GameAvail = { patch: string; platforms: Platform[] };
@@ -52,3 +54,4 @@ export const getConVars = (g: Game, p: Platform) => cached(`cv:${g}/${p}`, () =>
 export const getConCommands = (g: Game, p: Platform) => cached(`cc:${g}/${p}`, () => loadConCommands(g, p));
 export const getEvents = (g: Game, p: Platform) => cached(`ev:${g}/${p}`, () => loadEvents(g, p));
 export const getScriptApi = (g: Game, p: Platform) => cached(`vs:${g}/${p}`, () => loadScriptApi(g, p));
+export const getProtobufs = (g: Game) => cached(`pb:${g}`, () => loadProtobufs(g));

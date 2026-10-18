@@ -1,6 +1,6 @@
 import { useEffect, useRef, type KeyboardEvent } from "react";
 import { TAB_LABEL, type Tab } from "@/lib/url";
-const ORDER: Tab[] = ["all", "schema", "convars", "concommands", "events", "vscript"];
+const ORDER: Tab[] = ["all", "schema", "convars", "concommands", "events", "vscript", "protobufs"];
 
 const fmt = (n: number) => n.toLocaleString("en-US").replace(/,/g, " ");
 
@@ -23,7 +23,7 @@ export function SearchBar({ q, setQ, tab, setTab, counts, onKey }: {
       <label className="qbox">
         <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><circle cx="7" cy="7" r="5" /><path d="m11 11 3.5 3.5" /></svg>
         <input ref={ref} value={q} spellCheck={false} autoComplete="off" aria-label="search"
-               placeholder="types, fields, offsets (720 / 0x2D0), convars, commands, events, vscript…"
+               placeholder="types, fields, offsets (720 / 0x2D0), convars, commands, events, vscript, protobufs…"
                onChange={(e) => setQ(e.target.value)}
                onKeyDown={(e) => {
                  if (e.key === "Escape") { if (q) setQ(""); else ref.current?.blur(); return; }

@@ -60,6 +60,10 @@ function HitRow({ h, q, hex }: { h: Hit; q: string; hex: boolean }) {
       return (<><span className="kb kb-vs">K</span>
         <span className="rn"><Mark s={h.name} q={q} /> = <span className="num">{h.value}</span></span>
         <span className="rc">{h.type}</span></>);
+    case "pb":
+      return (<><span className="kb kb-pb">{h.t.kind === "enum" ? "E" : "P"}</span>
+        <span className="rn"><Mark s={h.t.name} q={q} />{h.fields.length > 0 && <span className="mut"> {"{ "}{h.fields.slice(0, 6).map((f, i) => <span key={f}>{i > 0 && ", "}<Mark s={f} q={q} /></span>)}{h.fields.length > 6 && ", …"}{" }"}</span>}</span>
+        <span className="rc">{h.t.file} · {(h.t.fields ?? h.t.values ?? []).length} {h.t.kind === "enum" ? "values" : "fields"}</span></>);
   }
 }
 
@@ -145,7 +149,7 @@ export function AllResults({ q, setQ, groups, pending, hex, meta, prep, loadScop
 }
 
 function Home({ setQ, meta, onTab }: { setQ: (v: string) => void; meta: Meta | null; onTab: (t: Tab) => void }) {
-  const ex: [string, string][] = [["class", "CBaseEntity"], ["field", "m_iHealth"], ["offset", "720"], ["hex offset", "0x2D0"], ["convar", "sv_cheats"], ["event", "player_death"], ["vscript", "GetHealth"]];
+  const ex: [string, string][] = [["class", "CBaseEntity"], ["field", "m_iHealth"], ["offset", "720"], ["hex offset", "0x2D0"], ["convar", "sv_cheats"], ["event", "player_death"], ["vscript", "GetHealth"], ["protobuf", "CMsgGCCStrike15_v2_MatchmakingGC2ClientHello"]];
   const fmt = (n?: number) => (n ?? 0).toLocaleString("en-US").replace(/,/g, " ");
   const cards: [Tab, string, string][] = meta ? [
     ["schema", fmt(meta.types), `${fmt(meta.classes)} classes · ${fmt(meta.enums)} enums · ${fmt(meta.networkFields)} networked fields`],
@@ -153,6 +157,7 @@ function Home({ setQ, meta, onTab }: { setQ: (v: string) => void; meta: Meta | n
     ["concommands", fmt(meta.concommands), "console commands with flags and help"],
     ["events", fmt(meta.events), "game events and their fields"],
     ["vscript", "API", "script classes, functions, instances and constants"],
+    ["protobufs", "proto", "GC, network and user message definitions"],
   ] : [];
   return (
     <div className="home">
@@ -323,6 +328,25 @@ function Preview({ h, hex, prep, loadScope, onOpen, fieldLink }: {
         {c.description && <p className="help">{c.description}</p>}
         <div className="nb">{c.functions.slice(0, 12).map((f, i) => <div key={f.name + i}><span className="ty">{f.returnType}</span><span /><span className="mb">{f.name}()</span></div>)}</div>
         <div className="pva"><button className="btn pri" onClick={() => onOpen(h)}>Open in vscript <kbd className="kk">⏎</kbd></button></div>
+      </div>
+    );
+  }
+  if (h.k === "pb") {
+    const t = h.t;
+    const members = t.fields ?? t.values ?? [];
+    return (
+      <div className="pvb">
+        <span className="h">{t.kind} · {t.file}</span>
+        <div className="pvt">{t.name}</div>
+        {t.comment && <p className="help">{t.comment}</p>}
+        <div className="nb">{members.slice(0, 16).map((m, i) => (
+          <div key={m.name + i} className={h.fields.includes(m.name) ? "on" : ""}>
+            <span className="num">{"id" in m ? m.id : m.value}</span>
+            <span className="ty">{"type" in m ? m.type.replace(/^\./, "") : ""}</span>
+            <span className="mb">{m.name}</span>
+          </div>
+        ))}</div>
+        <div className="pva"><button className="btn pri" onClick={() => onOpen(h)}>Open in protobufs <kbd className="kk">⏎</kbd></button></div>
       </div>
     );
   }
