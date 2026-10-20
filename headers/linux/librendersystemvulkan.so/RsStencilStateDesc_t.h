@@ -1,6 +1,6 @@
 #pragma once
 
-struct RsStencilStateDesc_t  // sizeof 0x6, align 0xFF [trivial_dtor] (rendersystemempty)
+struct RsStencilStateDesc_t  // sizeof 0x6, align 0xFF [trivial_dtor] (rendersystemvulkan)
 {
     uint8_t m_frontStencilFunc : 4; // offset 0x0
     uint8_t m_backStencilFunc : 4; // offset 0x0
