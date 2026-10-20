@@ -1,6 +1,6 @@
 #pragma once
 
-struct WorldNode_t  // sizeof 0x190, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
+struct WorldNode_t  // sizeof 0x190, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
 {
     CUtlVector< SceneObject_t > m_sceneObjects; // offset 0x0, size 0x18, align 8
     CUtlVector< uint16 > m_visClusterMembership; // offset 0x18, size 0x18, align 8
