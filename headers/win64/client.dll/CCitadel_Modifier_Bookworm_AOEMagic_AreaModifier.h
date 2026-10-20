@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_Bookworm_AOEMagic_AreaModifier : public CCitadelModifier /*0x0*/  // sizeof 0x610, align 0xFF [vtable] (client)
+class CCitadel_Modifier_Bookworm_AOEMagic_AreaModifier : public CCitadelModifier /*0x0*/  // sizeof 0x618, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x608]; // offset 0x0
-    ParticleIndex_t m_nCastParticleIndex; // offset 0x608, size 0x4, align 255
-    char _pad_060C[0x4]; // offset 0x60C
+    char _pad_0000[0x610]; // offset 0x0
+    ParticleIndex_t m_nCastParticleIndex; // offset 0x610, size 0x4, align 255
+    char _pad_0614[0x4]; // offset 0x614
 };

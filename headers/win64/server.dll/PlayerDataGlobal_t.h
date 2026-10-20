@@ -37,15 +37,15 @@ struct PlayerDataGlobal_t  // sizeof 0x348, align 0xFF [vtable] (server)
     char _pad_007D[0x3]; // offset 0x7D
     GameTime_t m_flUltimateCooldownStart; // offset 0x80, size 0x4, align 255
     GameTime_t m_flUltimateCooldownEnd; // offset 0x84, size 0x4, align 255
-    bool m_bHasRejuvenator; // offset 0x88, size 0x1, align 1
-    bool m_bHasRebirth; // offset 0x89, size 0x1, align 1
-    bool m_bFlaggedAsCheater; // offset 0x8A, size 0x1, align 1
-    bool m_bAbandon; // offset 0x8B, size 0x1, align 1
-    int32 m_iHeroDamage; // offset 0x8C, size 0x4, align 4
-    int32 m_iHeroHealing; // offset 0x90, size 0x4, align 4
-    int32 m_iSelfHealing; // offset 0x94, size 0x4, align 4
-    int32 m_iObjectiveDamage; // offset 0x98, size 0x4, align 4
-    char _pad_009C[0x4]; // offset 0x9C
+    float32 m_flUltimateStoppedCooldownRemaining; // offset 0x88, size 0x4, align 4
+    bool m_bHasRejuvenator; // offset 0x8C, size 0x1, align 1
+    bool m_bHasRebirth; // offset 0x8D, size 0x1, align 1
+    bool m_bFlaggedAsCheater; // offset 0x8E, size 0x1, align 1
+    bool m_bAbandon; // offset 0x8F, size 0x1, align 1
+    int32 m_iHeroDamage; // offset 0x90, size 0x4, align 4
+    int32 m_iHeroHealing; // offset 0x94, size 0x4, align 4
+    int32 m_iSelfHealing; // offset 0x98, size 0x4, align 4
+    int32 m_iObjectiveDamage; // offset 0x9C, size 0x4, align 4
     CNetworkUtlVectorBase< CUtlStringToken > m_vecUpgrades; // offset 0xA0, size 0x18, align 8
     CNetworkUtlVectorBase< CUtlStringToken > m_vecBonusCounterAbilities; // offset 0xB8, size 0x18, align 8
     CNetworkUtlVectorBase< int32 > m_vecBonusCounterValues; // offset 0xD0, size 0x18, align 8

@@ -1,18 +1,18 @@
 #pragma once
 
-class CCitadel_Ability_Baba_BenchRun : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1F30, align 0x8 [vtable] (client)
+class CCitadel_Ability_Baba_BenchRun : public C_CitadelBaseAbility /*0x0*/  // sizeof 0x1F38, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1E50]; // offset 0x0
-    bool m_bHoldingJump; // offset 0x1E50, size 0x1, align 1
-    bool m_bHeldJumpAborted; // offset 0x1E51, size 0x1, align 1
-    char _pad_1E52[0x2]; // offset 0x1E52
-    GameTime_t m_flHoldJumpStartTime; // offset 0x1E54, size 0x4, align 255
-    GameTime_t m_flRideStartTime; // offset 0x1E58, size 0x4, align 255
-    GameTime_t m_flRideEndTime; // offset 0x1E5C, size 0x4, align 255
-    GameTime_t m_flEndLaunchTime; // offset 0x1E60, size 0x4, align 255
-    float32 m_flLastChargeJumpFraction; // offset 0x1E64, size 0x4, align 4
-    bool m_bInMelee; // offset 0x1E68, size 0x1, align 1
-    bool m_bRideCut; // offset 0x1E69, size 0x1, align 1
-    char _pad_1E6A[0xC6]; // offset 0x1E6A
+    char _pad_0000[0x1E58]; // offset 0x0
+    bool m_bHoldingJump; // offset 0x1E58, size 0x1, align 1
+    bool m_bHeldJumpAborted; // offset 0x1E59, size 0x1, align 1
+    char _pad_1E5A[0x2]; // offset 0x1E5A
+    GameTime_t m_flHoldJumpStartTime; // offset 0x1E5C, size 0x4, align 255
+    GameTime_t m_flRideStartTime; // offset 0x1E60, size 0x4, align 255
+    GameTime_t m_flRideEndTime; // offset 0x1E64, size 0x4, align 255
+    GameTime_t m_flEndLaunchTime; // offset 0x1E68, size 0x4, align 255
+    float32 m_flLastChargeJumpFraction; // offset 0x1E6C, size 0x4, align 4
+    bool m_bInMelee; // offset 0x1E70, size 0x1, align 1
+    bool m_bRideCut; // offset 0x1E71, size 0x1, align 1
+    char _pad_1E72[0xC6]; // offset 0x1E72
 };

@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Projectile_DeadpackMissile : public CCitadelTrackedProjectile /*0x0*/  // sizeof 0xA00, align 0x8 [vtable] (server)
+class CCitadel_Projectile_DeadpackMissile : public CCitadelTrackedProjectile /*0x0*/  // sizeof 0xA08, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xA00]; // offset 0x0
+    char _pad_0000[0xA08]; // offset 0x0
 };

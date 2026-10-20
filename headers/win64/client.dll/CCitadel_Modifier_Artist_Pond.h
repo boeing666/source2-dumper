@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_Artist_Pond : public CCitadelModifierAura /*0x0*/  // sizeof 0x450, align 0xFF [vtable] (client)
+class CCitadel_Modifier_Artist_Pond : public CCitadelModifierAura /*0x0*/  // sizeof 0x458, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x450]; // offset 0x0
+    char _pad_0000[0x458]; // offset 0x0
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelBaseAbility : public CBaseEntity /*0x0*/  // sizeof 0x14A0, align 0xFF [vtable abstract] (server)
+class CCitadelBaseAbility : public CBaseEntity /*0x0*/  // sizeof 0x14A8, align 0xFF [vtable abstract] (server)
 {
 public:
     char _pad_0000[0x590]; // offset 0x0
@@ -24,27 +24,29 @@ public:
     char _pad_0625[0x3]; // offset 0x625
     GameTime_t m_flCooldownStart; // offset 0x628, size 0x4, align 255
     GameTime_t m_flCooldownEnd; // offset 0x62C, size 0x4, align 255
-    GameTime_t m_flCastCompletedTime; // offset 0x630, size 0x4, align 255
-    GameTime_t m_flChannelStartTime; // offset 0x634, size 0x4, align 255
-    GameTime_t m_flCastDelayStartTime; // offset 0x638, size 0x4, align 255
-    EAbilitySlots_t m_eAbilitySlot; // offset 0x63C, size 0x2, align 2
-    char _pad_063E[0x2]; // offset 0x63E
-    GameTime_t m_flPostCastDelayEndTime; // offset 0x640, size 0x4, align 255
-    int32 m_iRemainingCharges; // offset 0x644, size 0x4, align 4
-    GameTime_t m_flChargeRechargeStart; // offset 0x648, size 0x4, align 255
-    GameTime_t m_flChargeRechargeEnd; // offset 0x64C, size 0x4, align 255
-    GameTime_t m_flMovementControlActiveTime; // offset 0x650, size 0x4, align 255
-    GameTime_t m_flSelectedChangedTime; // offset 0x654, size 0x4, align 255
-    GameTime_t m_flAltCastHoldStartTime; // offset 0x658, size 0x4, align 255
-    GameTime_t m_flAltCastDoubleTapStartTime; // offset 0x65C, size 0x4, align 255
-    bool m_bCanBeImbued; // offset 0x660, size 0x1, align 1
-    char _pad_0661[0x7]; // offset 0x661
-    CNetworkUtlVectorBase< CUtlStringToken > m_vecImbuedAbilities; // offset 0x668, size 0x18, align 8
-    bool m_bSelectionModeIsAltMode; // offset 0x680, size 0x1, align 1
-    char _pad_0681[0x3]; // offset 0x681
-    float32 m_flPreviousEffectiveCooldown; // offset 0x684, size 0x4, align 4
-    char _pad_0688[0xC9C]; // offset 0x688
-    EAbilityActiveReasonBits m_enActiveReasonBits; // offset 0x1324, size 0x4, align 4
-    GameTime_t[8] m_flActiveWindowDeadlines; // offset 0x1328, size 0x20, align 4
-    char _pad_1348[0x158]; // offset 0x1348
+    float32 m_flStoppedCooldownRemaining; // offset 0x630, size 0x4, align 4
+    GameTime_t m_flCastCompletedTime; // offset 0x634, size 0x4, align 255
+    GameTime_t m_flChannelStartTime; // offset 0x638, size 0x4, align 255
+    GameTime_t m_flCastDelayStartTime; // offset 0x63C, size 0x4, align 255
+    float32 m_flCastDelaySpeedScale; // offset 0x640, size 0x4, align 4
+    EAbilitySlots_t m_eAbilitySlot; // offset 0x644, size 0x2, align 2
+    char _pad_0646[0x2]; // offset 0x646
+    GameTime_t m_flPostCastDelayEndTime; // offset 0x648, size 0x4, align 255
+    int32 m_iRemainingCharges; // offset 0x64C, size 0x4, align 4
+    GameTime_t m_flChargeRechargeStart; // offset 0x650, size 0x4, align 255
+    GameTime_t m_flChargeRechargeEnd; // offset 0x654, size 0x4, align 255
+    GameTime_t m_flMovementControlActiveTime; // offset 0x658, size 0x4, align 255
+    GameTime_t m_flSelectedChangedTime; // offset 0x65C, size 0x4, align 255
+    GameTime_t m_flAltCastHoldStartTime; // offset 0x660, size 0x4, align 255
+    GameTime_t m_flAltCastDoubleTapStartTime; // offset 0x664, size 0x4, align 255
+    bool m_bCanBeImbued; // offset 0x668, size 0x1, align 1
+    char _pad_0669[0x7]; // offset 0x669
+    CNetworkUtlVectorBase< CUtlStringToken > m_vecImbuedAbilities; // offset 0x670, size 0x18, align 8
+    bool m_bSelectionModeIsAltMode; // offset 0x688, size 0x1, align 1
+    char _pad_0689[0x3]; // offset 0x689
+    float32 m_flPreviousEffectiveCooldown; // offset 0x68C, size 0x4, align 4
+    char _pad_0690[0xC9C]; // offset 0x690
+    EAbilityActiveReasonBits m_enActiveReasonBits; // offset 0x132C, size 0x4, align 4
+    GameTime_t[8] m_flActiveWindowDeadlines; // offset 0x1330, size 0x20, align 4
+    char _pad_1350[0x158]; // offset 0x1350
 };

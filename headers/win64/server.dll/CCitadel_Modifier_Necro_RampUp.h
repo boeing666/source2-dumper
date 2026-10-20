@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Modifier_Necro_RampUp : public CCitadel_Modifier_Base_Buildup /*0x0*/  // sizeof 0x7A0, align 0xFF [vtable] (server)
+class CCitadel_Modifier_Necro_RampUp : public CCitadel_Modifier_Base_Buildup /*0x0*/  // sizeof 0x7A8, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x15C]; // offset 0x0
-    float32 m_flCurrBuildup; // offset 0x15C, size 0x4, align 4
-    char _pad_0160[0x638]; // offset 0x160
-    GameTime_t m_tLastTetherTime; // offset 0x798, size 0x4, align 255
-    char _pad_079C[0x4]; // offset 0x79C
+    char _pad_0000[0x164]; // offset 0x0
+    float32 m_flCurrBuildup; // offset 0x164, size 0x4, align 4
+    char _pad_0168[0x638]; // offset 0x168
+    GameTime_t m_tLastTetherTime; // offset 0x7A0, size 0x4, align 255
+    char _pad_07A4[0x4]; // offset 0x7A4
 };

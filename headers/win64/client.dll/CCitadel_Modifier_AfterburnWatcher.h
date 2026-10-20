@@ -1,7 +1,7 @@
 #pragma once
 
-class CCitadel_Modifier_AfterburnWatcher : public CCitadel_Modifier_BaseEventProc /*0x0*/  // sizeof 0x858, align 0xFF [vtable] (client)
+class CCitadel_Modifier_AfterburnWatcher : public CCitadel_Modifier_BaseEventProc /*0x0*/  // sizeof 0x860, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x858]; // offset 0x0
+    char _pad_0000[0x860]; // offset 0x0
 };

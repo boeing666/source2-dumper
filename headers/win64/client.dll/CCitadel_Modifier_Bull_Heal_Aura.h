@@ -1,10 +1,10 @@
 #pragma once
 
-class CCitadel_Modifier_Bull_Heal_Aura : public CCitadelModifierAura /*0x0*/  // sizeof 0x248, align 0xFF [vtable] (client)
+class CCitadel_Modifier_Bull_Heal_Aura : public CCitadelModifierAura /*0x0*/  // sizeof 0x250, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x188]; // offset 0x0
-    QAngle m_playerAngles; // offset 0x188, size 0xC, align 4
-    ParticleIndex_t m_AuraParticle; // offset 0x194, size 0x4, align 255
-    char _pad_0198[0xB0]; // offset 0x198
+    char _pad_0000[0x190]; // offset 0x0
+    QAngle m_playerAngles; // offset 0x190, size 0xC, align 4
+    ParticleIndex_t m_AuraParticle; // offset 0x19C, size 0x4, align 255
+    char _pad_01A0[0xB0]; // offset 0x1A0
 };

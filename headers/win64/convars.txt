@@ -739,6 +739,7 @@ citadel_damage_text_spacing | developmentonly,clientdll | Spacing between floati
 citadel_damage_text_x_offset_far | developmentonly,clientdll | How much to offset damage numbers left and right when far from the camera
 citadel_damage_text_x_offset_near | developmentonly,clientdll | How much to offset damage numbers left and right when near the camera
 citadel_deadpack_instant_shot | gamedll,clientdll,replicated,cheat,release | 
+citadel_deadpack_ult_charge_navpath | gamedll,clientdll,replicated,cheat,release | Experimental: the ultimate charge follows a server-side NavSpace path to its target, and the client stops predicting it
 citadel_death_linger_time | developmentonly,gamedll | How logn does the player icon linger on the minimap after they die
 citadel_death_ragdoll_duration | developmentonly,clientdll | How long a dead hero's ragdoll exists for before it despawns. Can outlive the death camera ( citadel_death_return_to_spawn_delay ) so that other players still see the body.
 citadel_death_replay_enabled | gamedll,clientdll,replicated,release | 
@@ -2691,6 +2692,7 @@ lb_debug_silhouette_sum | developmentonly,cheat | If we should draw normal silho
 lb_debug_tiles | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Tiles
 lb_debug_visualize_fog_shadowed_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Fog Shadowed Lights
 lb_debug_visualize_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Lights
+lb_debug_visualize_precomputed_shadow_atlas_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Precomputed Shadow Atlas Lights
 lb_debug_visualize_shadowed_light_details | developmentonly,cheat | 
 lb_debug_visualize_shadowed_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Shadowed Lights
 lb_dynamic_shadow_penumbra | developmentonly,defensive | Adjust shadow penumbra based on light size

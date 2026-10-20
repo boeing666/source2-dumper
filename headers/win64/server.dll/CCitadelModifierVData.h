@@ -14,8 +14,8 @@ public:
     float32 m_flLingeringAssistWindow; // offset 0x434, size 0x4, align 4 | MPropertyDescription
     bool m_bDurationCanBeTimeScaled; // offset 0x438, size 0x1, align 1 | MPropertyStartGroup MPropertyDescription
     bool m_bDurationReducible; // offset 0x439, size 0x1, align 1
-    bool m_bDurationReducibleByCrowdControlDiminish; // offset 0x43A, size 0x1, align 1 | MPropertyDescription
-    char _pad_043B[0x1]; // offset 0x43B
+    bool m_bDurationExtendible; // offset 0x43A, size 0x1, align 1
+    bool m_bDurationReducibleByCrowdControlDiminish; // offset 0x43B, size 0x1, align 1 | MPropertyDescription
     ModifierTimeScaleSource_t m_eTimeScaleSource; // offset 0x43C, size 0x4, align 4 | MPropertyDescription
     bool m_bDurationAffectedByEffectiveness; // offset 0x440, size 0x1, align 1 | MPropertyDescription
     char _pad_0441[0x7]; // offset 0x441

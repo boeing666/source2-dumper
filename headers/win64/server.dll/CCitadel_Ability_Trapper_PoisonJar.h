@@ -1,10 +1,10 @@
 #pragma once
 
-class CCitadel_Ability_Trapper_PoisonJar : public CCitadelBaseAbility /*0x0*/  // sizeof 0x16C8, align 0x8 [vtable] (server)
+class CCitadel_Ability_Trapper_PoisonJar : public CCitadelBaseAbility /*0x0*/  // sizeof 0x16D0, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x14A0]; // offset 0x0
-    VectorWS m_vLaunchPosition; // offset 0x14A0, size 0xC, align 4
-    QAngle m_qLaunchAngle; // offset 0x14AC, size 0xC, align 4
-    char _pad_14B8[0x210]; // offset 0x14B8
+    char _pad_0000[0x14A8]; // offset 0x0
+    VectorWS m_vLaunchPosition; // offset 0x14A8, size 0xC, align 4
+    QAngle m_qLaunchAngle; // offset 0x14B4, size 0xC, align 4
+    char _pad_14C0[0x210]; // offset 0x14C0
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CBarnLight : public CBaseModelEntity /*0x0*/  // sizeof 0xB60, align 0x8 [vtable] (server) {MEntityAllowsPortraitWorldSpawn}
+class CBarnLight : public CBaseModelEntity /*0x0*/  // sizeof 0xBC0, align 0x8 [vtable] (server) {MEntityAllowsPortraitWorldSpawn}
 {
 public:
     char _pad_0000[0x878]; // offset 0x0
@@ -84,9 +84,15 @@ public:
     Vector m_vPrecomputedOBBOrigin5; // offset 0xB18, size 0xC, align 4
     QAngle m_vPrecomputedOBBAngles5; // offset 0xB24, size 0xC, align 4
     Vector m_vPrecomputedOBBExtent5; // offset 0xB30, size 0xC, align 4
-    bool m_bPvsModifyEntity; // offset 0xB3C, size 0x1, align 1
-    bool m_bTransmitAlways; // offset 0xB3D, size 0x1, align 1
-    char _pad_0B3E[0x2]; // offset 0xB3E
-    CNetworkUtlVectorBase< uint16 > m_VisClusters; // offset 0xB40, size 0x18, align 8
-    char _pad_0B58[0x8]; // offset 0xB58
+    Vector4D m_vPrecomputedShadowmapAtlasRect0; // offset 0xB3C, size 0x10, align 4
+    Vector4D m_vPrecomputedShadowmapAtlasRect1; // offset 0xB4C, size 0x10, align 4
+    Vector4D m_vPrecomputedShadowmapAtlasRect2; // offset 0xB5C, size 0x10, align 4
+    Vector4D m_vPrecomputedShadowmapAtlasRect3; // offset 0xB6C, size 0x10, align 4
+    Vector4D m_vPrecomputedShadowmapAtlasRect4; // offset 0xB7C, size 0x10, align 4
+    Vector4D m_vPrecomputedShadowmapAtlasRect5; // offset 0xB8C, size 0x10, align 4
+    bool m_bPvsModifyEntity; // offset 0xB9C, size 0x1, align 1
+    bool m_bTransmitAlways; // offset 0xB9D, size 0x1, align 1
+    char _pad_0B9E[0x2]; // offset 0xB9E
+    CNetworkUtlVectorBase< uint16 > m_VisClusters; // offset 0xBA0, size 0x18, align 8
+    char _pad_0BB8[0x8]; // offset 0xBB8
 };

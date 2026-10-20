@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Ability_Artist_ProjectileWeapon : public CCitadel_Ability_PrimaryWeapon /*0x0*/  // sizeof 0x1AD8, align 0x8 [vtable] (client)
+class CCitadel_Ability_Artist_ProjectileWeapon : public CCitadel_Ability_PrimaryWeapon /*0x0*/  // sizeof 0x1AE0, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1970]; // offset 0x0
-    int32 m_iCurrentShotCount; // offset 0x1970, size 0x4, align 4
-    char _pad_1974[0x164]; // offset 0x1974
+    char _pad_0000[0x1978]; // offset 0x0
+    int32 m_iCurrentShotCount; // offset 0x1978, size 0x4, align 4
+    char _pad_197C[0x164]; // offset 0x197C
 };

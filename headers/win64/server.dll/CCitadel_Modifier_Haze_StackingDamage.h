@@ -1,9 +1,9 @@
 #pragma once
 
-class CCitadel_Modifier_Haze_StackingDamage : public CCitadelModifier /*0x0*/  // sizeof 0x410, align 0xFF [vtable] (server)
+class CCitadel_Modifier_Haze_StackingDamage : public CCitadelModifier /*0x0*/  // sizeof 0x418, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x408]; // offset 0x0
-    int32 m_nTotalProcs; // offset 0x408, size 0x4, align 4
-    char _pad_040C[0x4]; // offset 0x40C
+    char _pad_0000[0x410]; // offset 0x0
+    int32 m_nTotalProcs; // offset 0x410, size 0x4, align 4
+    char _pad_0414[0x4]; // offset 0x414
 };

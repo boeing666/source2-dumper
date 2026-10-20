@@ -1,10 +1,10 @@
 #pragma once
 
-class CCitadel_Modifier_LurkersAmbush_Invis : public CCitadel_Modifier_Invis /*0x0*/  // sizeof 0x660, align 0xFF [vtable] (server)
+class CCitadel_Modifier_LurkersAmbush_Invis : public CCitadel_Modifier_Invis /*0x0*/  // sizeof 0x668, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x630]; // offset 0x0
-    CUtlOrderedMap< CCitadelPlayerPawn*, GameTime_t > m_mapStartLookTime; // offset 0x630, size 0x28, align 8
-    GameTime_t m_flStartSpotted; // offset 0x658, size 0x4, align 255
-    char _pad_065C[0x4]; // offset 0x65C
+    char _pad_0000[0x638]; // offset 0x0
+    CUtlOrderedMap< CCitadelPlayerPawn*, GameTime_t > m_mapStartLookTime; // offset 0x638, size 0x28, align 8
+    GameTime_t m_flStartSpotted; // offset 0x660, size 0x4, align 255
+    char _pad_0664[0x4]; // offset 0x664
 };
