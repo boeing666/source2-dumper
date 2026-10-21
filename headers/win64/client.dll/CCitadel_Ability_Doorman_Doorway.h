@@ -10,6 +10,6 @@ public:
     char _pad_1720[0x210]; // offset 0x1720
     float32 m_flDoorBreakableRadius; // offset 0x1930, size 0x4, align 4
     char _pad_1934[0x4]; // offset 0x1934
-    SatVolumeIndex_t m_nDoorPlacementSphere; // offset 0x1938, size 0x4, align 255
-    char _pad_193C[0x4]; // offset 0x193C
+    float32 m_flDebugDrawDuration; // offset 0x1938, size 0x4, align 4
+    SatVolumeIndex_t m_nDoorPlacementSphere; // offset 0x193C, size 0x4, align 255
 };
