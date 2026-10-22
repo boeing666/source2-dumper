@@ -10,5 +10,5 @@ public:
     int32 m_nChannels; // offset 0x30, size 0x4, align 4
     VMixSendOperator_t m_nSendOperator; // offset 0x34, size 0x2, align 2 | MPropertyFriendlyName
     VMixMixDownRule_t m_nMixDownRule; // offset 0x36, size 0x1, align 1
-    char _pad_0037[0x1]; // offset 0x37
+    VMixUpMixRule_t m_nUpMixRule; // offset 0x37, size 0x1, align 1
 };

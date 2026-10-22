@@ -4027,6 +4027,15 @@ voice_threshold_hold | developmentonly | Amount of time after the talker starts 
 voice_threshold_ramp_min_db | developmentonly | A dB floor of when to stop transmitting packets, the volume between this and voice_threshold will still transmit packets to allow for volume ramping.
 voice_vox | clientdll,per_user | Voice chat uses a vox-style always on
 voice_vox_current_peak | developmentonly,clientdll,defensive | Current peak value (out of 64k) of the incoming voice stream
+voice_webrtc_aec |  | WebRTC: cancel game audio echoing from the speakers into the microphone (AEC3).
+voice_webrtc_agc |  | WebRTC: adaptive digital automatic gain control (AGC2).
+voice_webrtc_apm |  | Process in-process voice chat microphone audio with the WebRTC audio processing module (requires voice_in_process).
+voice_webrtc_fixed_gain_db |  | WebRTC: fixed digital gain in dB applied to the microphone before the adaptive gain stage.
+voice_webrtc_hpf |  | WebRTC: high-pass filter to remove DC offset and low rumble.
+voice_webrtc_ns |  | WebRTC: noise suppression.
+voice_webrtc_ns_level |  | WebRTC: noise suppression aggressiveness, 0 (low) to 3 (very high).
+voice_webrtc_stats | developmentonly | WebRTC: periodically print echo canceller statistics.
+voice_webrtc_stream_delay_ms | developmentonly | WebRTC: speaker-to-microphone delay hint in ms for the echo canceller; -1 relies on AEC3's own delay estimation.
 volume |  | Sound volume
 volume_fog_debug_volumes | cheat | 
 volume_fog_density_scale | developmentonly,cheat | Scale global volume fog density

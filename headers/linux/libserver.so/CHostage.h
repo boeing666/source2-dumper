@@ -44,15 +44,16 @@ public:
     char _pad_2FEE[0x2]; // offset 0x2FEE
     CHandle< CCSPlayerPawn > m_hHostageGrabber; // offset 0x2FF0, size 0x4, align 4
     GameTime_t m_fLastGrabTime; // offset 0x2FF4, size 0x4, align 255
-    VectorWS m_vecPositionWhenStartedDroppingToGround; // offset 0x2FF8, size 0xC, align 4
-    VectorWS m_vecGrabbedPos; // offset 0x3004, size 0xC, align 4
-    GameTime_t m_flRescueStartTime; // offset 0x3010, size 0x4, align 255
-    GameTime_t m_flGrabSuccessTime; // offset 0x3014, size 0x4, align 255
-    GameTime_t m_flDropStartTime; // offset 0x3018, size 0x4, align 255
-    int32 m_nApproachRewardPayouts; // offset 0x301C, size 0x4, align 4
-    int32 m_nPickupEventCount; // offset 0x3020, size 0x4, align 4
-    VectorWS m_vecSpawnGroundPos; // offset 0x3024, size 0xC, align 4
-    char _pad_3030[0x2C]; // offset 0x3030
-    VectorWS m_vecHostageResetPosition; // offset 0x305C, size 0xC, align 4
-    char _pad_3068[0x8]; // offset 0x3068
+    GameTime_t m_flGrabStartTime; // offset 0x2FF8, size 0x4, align 255
+    VectorWS m_vecPositionWhenStartedDroppingToGround; // offset 0x2FFC, size 0xC, align 4
+    VectorWS m_vecGrabbedPos; // offset 0x3008, size 0xC, align 4
+    GameTime_t m_flRescueStartTime; // offset 0x3014, size 0x4, align 255
+    GameTime_t m_flGrabSuccessTime; // offset 0x3018, size 0x4, align 255
+    GameTime_t m_flDropStartTime; // offset 0x301C, size 0x4, align 255
+    int32 m_nApproachRewardPayouts; // offset 0x3020, size 0x4, align 4
+    int32 m_nPickupEventCount; // offset 0x3024, size 0x4, align 4
+    VectorWS m_vecSpawnGroundPos; // offset 0x3028, size 0xC, align 4
+    char _pad_3034[0x2C]; // offset 0x3034
+    VectorWS m_vecHostageResetPosition; // offset 0x3060, size 0xC, align 4
+    char _pad_306C[0x4]; // offset 0x306C
 };
