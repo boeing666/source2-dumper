@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Modifier_ItemWalkBackVData : public CCitadelModifierVData /*0x0*/  // sizeof 0xB50, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_Modifier_ItemWalkBackVData : public CCitadelModifierVData /*0x0*/  // sizeof 0xB58, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x790]; // offset 0x0
@@ -15,7 +15,9 @@ public:
     float32 m_flVerticalOffset; // offset 0xB38, size 0x4, align 4
     float32 m_flTolerance; // offset 0xB3C, size 0x4, align 4
     float32 m_flRepathTime; // offset 0xB40, size 0x4, align 4
-    float32 m_flWaitTimeLimit; // offset 0xB44, size 0x4, align 4
-    float32 m_flWaitTimeLimitOverheld; // offset 0xB48, size 0x4, align 4
-    float32 m_flCheckPlayerRate; // offset 0xB4C, size 0x4, align 4
+    float32 m_flPathHeightPenaltyScale; // offset 0xB44, size 0x4, align 4
+    float32 m_flWaitTimeLimit; // offset 0xB48, size 0x4, align 4
+    float32 m_flWaitTimeLimitOverheld; // offset 0xB4C, size 0x4, align 4
+    float32 m_flCheckPlayerRate; // offset 0xB50, size 0x4, align 4
+    char _pad_0B54[0x4]; // offset 0xB54
 };
