@@ -16,7 +16,7 @@ public:
     bool m_bShowDesatVolume; // offset 0x108C, size 0x1, align 1
     char _pad_108D[0x3]; // offset 0x108D
     float32 m_flBlockerExtent; // offset 0x1090, size 0x4, align 4
-    char _pad_1094[0x4]; // offset 0x1094
+    float32 m_flMinStrokeDistance; // offset 0x1094, size 0x4, align 4
     CEmbeddedSubclass< CCitadelModifier > m_CollisionModifier; // offset 0x1098, size 0x10, align 8 | MPropertyStartGroup
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_SpawnParticle; // offset 0x10A8, size 0xE0, align 8 | MPropertyStartGroup
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_DragParticle; // offset 0x1188, size 0xE0, align 8
