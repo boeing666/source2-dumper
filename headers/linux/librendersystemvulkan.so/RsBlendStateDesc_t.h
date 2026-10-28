@@ -1,6 +1,6 @@
 #pragma once
 
-struct RsBlendStateDesc_t  // sizeof 0x20, align 0xFF [trivial_dtor] (rendersystemempty)
+struct RsBlendStateDesc_t  // sizeof 0x20, align 0xFF [trivial_dtor] (rendersystemvulkan)
 {
     uint32 m_srcBlendBits; // offset 0x0, size 0x4, align 4
     uint32_t m_blendOpBits : 30; // offset 0x0
