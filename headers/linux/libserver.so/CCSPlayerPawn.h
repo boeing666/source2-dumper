@@ -134,7 +134,7 @@ public:
     GameTime_t m_fImmuneToGunGameDamageTime; // offset 0x186C, size 0x4, align 255
     bool m_bGunGameImmunity; // offset 0x1870, size 0x1, align 1
     char _pad_1871[0x3]; // offset 0x1871
-    float32 m_flModifier0; // offset 0x1874, size 0x4, align 4
+    float32 m_flBigHeadScale; // offset 0x1874, size 0x4, align 4
     float32 m_fMolotovDamageTime; // offset 0x1878, size 0x4, align 4
     QAngle m_angEyeAngles; // offset 0x187C, size 0xC, align 4
     char _pad_1888[0x8]; // offset 0x1888

@@ -1,6 +1,6 @@
 #pragma once
 
-class C_CSGameRules : public C_TeamplayRules /*0x0*/  // sizeof 0x4F58, align 0xFF [vtable] (client)
+class C_CSGameRules : public C_TeamplayRules /*0x0*/  // sizeof 0x4F60, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x39]; // offset 0x0
@@ -75,48 +75,50 @@ public:
     int32[30] m_iMatchStats_PlayersAlive_CT; // offset 0xA28, size 0x78, align 4
     int32[30] m_iMatchStats_PlayersAlive_T; // offset 0xAA0, size 0x78, align 4
     float32[32] m_TeamRespawnWaveTimes; // offset 0xB18, size 0x80, align 4
-    GameTime_t[32] m_flNextRespawnWave; // offset 0xB98, size 0x80, align 4
-    VectorWS m_vMinimapMins; // offset 0xC18, size 0xC, align 4
-    VectorWS m_vMinimapMaxs; // offset 0xC24, size 0xC, align 4
-    float32[8] m_MinimapVerticalSectionHeights; // offset 0xC30, size 0x20, align 4
-    uint64 m_ullLocalMatchID; // offset 0xC50, size 0x8, align 8
-    int32[10] m_nEndMatchMapGroupVoteTypes; // offset 0xC58, size 0x28, align 4
-    int32[10] m_nEndMatchMapGroupVoteOptions; // offset 0xC80, size 0x28, align 4
-    int32 m_nEndMatchMapVoteWinner; // offset 0xCA8, size 0x4, align 4
-    int32 m_iNumConsecutiveCTLoses; // offset 0xCAC, size 0x4, align 4
-    int32 m_iNumConsecutiveTerroristLoses; // offset 0xCB0, size 0x4, align 4
-    char _pad_0CB4[0xBC]; // offset 0xCB4
-    int32 m_nMatchAbortedEarlyReason; // offset 0xD70, size 0x4, align 4
-    bool m_bHasTriggeredRoundStartMusic; // offset 0xD74, size 0x1, align 1
-    bool m_bSwitchingTeamsAtRoundReset; // offset 0xD75, size 0x1, align 1
-    char _pad_0D76[0x1A]; // offset 0xD76
-    CCSGameModeRules* m_pGameModeRules; // offset 0xD90, size 0x8, align 8
-    C_RetakeGameRules m_RetakeRules; // offset 0xD98, size 0x158, align 255
-    uint8 m_nMatchEndCount; // offset 0xEF0, size 0x1, align 1
-    char _pad_0EF1[0x3]; // offset 0xEF1
-    int32 m_nTTeamIntroVariant; // offset 0xEF4, size 0x4, align 4
-    int32 m_nCTTeamIntroVariant; // offset 0xEF8, size 0x4, align 4
-    bool m_bTeamIntroPeriod; // offset 0xEFC, size 0x1, align 1
-    char _pad_0EFD[0x3]; // offset 0xEFD
-    int32 m_iRoundEndWinnerTeam; // offset 0xF00, size 0x4, align 4
-    int32 m_eRoundEndReason; // offset 0xF04, size 0x4, align 4
-    bool m_bRoundEndShowTimerDefend; // offset 0xF08, size 0x1, align 1
-    char _pad_0F09[0x3]; // offset 0xF09
-    int32 m_iRoundEndTimerTime; // offset 0xF0C, size 0x4, align 4
-    CUtlString m_sRoundEndFunFactToken; // offset 0xF10, size 0x8, align 8
-    CPlayerSlot m_iRoundEndFunFactPlayerSlot; // offset 0xF18, size 0x4, align 4
-    int32 m_iRoundEndFunFactData1; // offset 0xF1C, size 0x4, align 4
-    int32 m_iRoundEndFunFactData2; // offset 0xF20, size 0x4, align 4
-    int32 m_iRoundEndFunFactData3; // offset 0xF24, size 0x4, align 4
-    CUtlString m_sRoundEndMessage; // offset 0xF28, size 0x8, align 8
-    int32 m_iRoundEndPlayerCount; // offset 0xF30, size 0x4, align 4
-    bool m_bRoundEndNoMusic; // offset 0xF34, size 0x1, align 1
-    char _pad_0F35[0x3]; // offset 0xF35
-    int32 m_iRoundEndLegacy; // offset 0xF38, size 0x4, align 4
-    uint8 m_nRoundEndCount; // offset 0xF3C, size 0x1, align 1
+    int32 m_nActiveMutators; // offset 0xB98, size 0x4, align 4
+    GameTime_t[32] m_flNextRespawnWave; // offset 0xB9C, size 0x80, align 4
+    VectorWS m_vMinimapMins; // offset 0xC1C, size 0xC, align 4
+    VectorWS m_vMinimapMaxs; // offset 0xC28, size 0xC, align 4
+    float32[8] m_MinimapVerticalSectionHeights; // offset 0xC34, size 0x20, align 4
+    char _pad_0C54[0x4]; // offset 0xC54
+    uint64 m_ullLocalMatchID; // offset 0xC58, size 0x8, align 8
+    int32[10] m_nEndMatchMapGroupVoteTypes; // offset 0xC60, size 0x28, align 4
+    int32[10] m_nEndMatchMapGroupVoteOptions; // offset 0xC88, size 0x28, align 4
+    int32 m_nEndMatchMapVoteWinner; // offset 0xCB0, size 0x4, align 4
+    int32 m_iNumConsecutiveCTLoses; // offset 0xCB4, size 0x4, align 4
+    int32 m_iNumConsecutiveTerroristLoses; // offset 0xCB8, size 0x4, align 4
+    char _pad_0CBC[0xBC]; // offset 0xCBC
+    int32 m_nMatchAbortedEarlyReason; // offset 0xD78, size 0x4, align 4
+    bool m_bHasTriggeredRoundStartMusic; // offset 0xD7C, size 0x1, align 1
+    bool m_bSwitchingTeamsAtRoundReset; // offset 0xD7D, size 0x1, align 1
+    char _pad_0D7E[0x1A]; // offset 0xD7E
+    CCSGameModeRules* m_pGameModeRules; // offset 0xD98, size 0x8, align 8
+    C_RetakeGameRules m_RetakeRules; // offset 0xDA0, size 0x158, align 255
+    uint8 m_nMatchEndCount; // offset 0xEF8, size 0x1, align 1
+    char _pad_0EF9[0x3]; // offset 0xEF9
+    int32 m_nTTeamIntroVariant; // offset 0xEFC, size 0x4, align 4
+    int32 m_nCTTeamIntroVariant; // offset 0xF00, size 0x4, align 4
+    bool m_bTeamIntroPeriod; // offset 0xF04, size 0x1, align 1
+    char _pad_0F05[0x3]; // offset 0xF05
+    int32 m_iRoundEndWinnerTeam; // offset 0xF08, size 0x4, align 4
+    int32 m_eRoundEndReason; // offset 0xF0C, size 0x4, align 4
+    bool m_bRoundEndShowTimerDefend; // offset 0xF10, size 0x1, align 1
+    char _pad_0F11[0x3]; // offset 0xF11
+    int32 m_iRoundEndTimerTime; // offset 0xF14, size 0x4, align 4
+    CUtlString m_sRoundEndFunFactToken; // offset 0xF18, size 0x8, align 8
+    CPlayerSlot m_iRoundEndFunFactPlayerSlot; // offset 0xF20, size 0x4, align 4
+    int32 m_iRoundEndFunFactData1; // offset 0xF24, size 0x4, align 4
+    int32 m_iRoundEndFunFactData2; // offset 0xF28, size 0x4, align 4
+    int32 m_iRoundEndFunFactData3; // offset 0xF2C, size 0x4, align 4
+    CUtlString m_sRoundEndMessage; // offset 0xF30, size 0x8, align 8
+    int32 m_iRoundEndPlayerCount; // offset 0xF38, size 0x4, align 4
+    bool m_bRoundEndNoMusic; // offset 0xF3C, size 0x1, align 1
     char _pad_0F3D[0x3]; // offset 0xF3D
-    int32 m_iRoundStartRoundNumber; // offset 0xF40, size 0x4, align 4
-    uint8 m_nRoundStartCount; // offset 0xF44, size 0x1, align 1
-    char _pad_0F45[0x400B]; // offset 0xF45
-    float64 m_flLastPerfSampleTime; // offset 0x4F50, size 0x8, align 8
+    int32 m_iRoundEndLegacy; // offset 0xF40, size 0x4, align 4
+    uint8 m_nRoundEndCount; // offset 0xF44, size 0x1, align 1
+    char _pad_0F45[0x3]; // offset 0xF45
+    int32 m_iRoundStartRoundNumber; // offset 0xF48, size 0x4, align 4
+    uint8 m_nRoundStartCount; // offset 0xF4C, size 0x1, align 1
+    char _pad_0F4D[0x400B]; // offset 0xF4D
+    float64 m_flLastPerfSampleTime; // offset 0x4F58, size 0x8, align 8
 };

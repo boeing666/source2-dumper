@@ -786,6 +786,7 @@ cl_weapon_debug_print_accuracy | developmentonly,clientdll,replicated |
 cl_weapon_debug_show_accuracy | clientdll,cheat,release | Draws a circle representing the effective range with every shot.
 cl_weapon_debug_show_accuracy_duration | clientdll,cheat,release | 
 cl_weapon_selection_rarity_color | clientdll,release | 
+cl_weapon_stealth_reload_toggle | clientdll,per_user | Should the silent reload act like a toggle
 cl_workshop_map_download_timeout | developmentonly,clientdll,defensive | 
 cl_yawspeed | developmentonly,clientdll,defensive | 
 clear_debug_flags_on_death | developmentonly,gamedll,defensive | 

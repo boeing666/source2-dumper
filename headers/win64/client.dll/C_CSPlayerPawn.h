@@ -122,7 +122,7 @@ public:
     bool m_bGunGameImmunity; // offset 0x3508, size 0x1, align 1
     char _pad_3509[0x3]; // offset 0x3509
     GameTime_t m_fImmuneToGunGameDamageTimeLast; // offset 0x350C, size 0x4, align 255
-    float32 m_flModifier0; // offset 0x3510, size 0x4, align 4
+    float32 m_flBigHeadScale; // offset 0x3510, size 0x4, align 4
     float32 m_fMolotovDamageTime; // offset 0x3514, size 0x4, align 4
     char _pad_3518[0x70]; // offset 0x3518
     ParticleIndex_t m_nPlayerInfernoBodyFx; // offset 0x3588, size 0x4, align 255

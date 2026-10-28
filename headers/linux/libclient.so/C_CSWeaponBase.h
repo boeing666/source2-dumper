@@ -39,10 +39,10 @@ public:
     bool m_bSilencerOn; // offset 0x28E1, size 0x1, align 1
     char _pad_28E2[0x2]; // offset 0x28E2
     GameTime_t m_flTimeSilencerSwitchComplete; // offset 0x28E4, size 0x4, align 255
-    bool m_bStealthy; // offset 0x28E8, size 0x1, align 1
+    bool m_bIsInStealthReload; // offset 0x28E8, size 0x1, align 1
     bool m_bInSilentReloadSection; // offset 0x28E9, size 0x1, align 1
     char _pad_28EA[0x2]; // offset 0x28EA
-    GameTime_t m_flStealthHoldStartTime; // offset 0x28EC, size 0x4, align 255
+    GameTime_t m_flStealthReloadHoldStartTime; // offset 0x28EC, size 0x4, align 255
     bool m_bReloadHeldSinceStart; // offset 0x28F0, size 0x1, align 1
     char _pad_28F1[0x3]; // offset 0x28F1
     float32 m_flWeaponActionPlaybackRate; // offset 0x28F4, size 0x4, align 4
