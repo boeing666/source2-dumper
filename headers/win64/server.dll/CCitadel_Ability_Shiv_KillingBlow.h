@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_Shiv_KillingBlow : public CCitadelBaseShivAbility /*0x0*/  // sizeof 0x1FC8, align 0x8 [vtable] (server) {MModifierDynamicValuesSuppressCache}
+class CCitadel_Ability_Shiv_KillingBlow : public CCitadelBaseShivAbility /*0x0*/  // sizeof 0x1FD0, align 0x8 [vtable] (server) {MModifierDynamicValuesSuppressCache}
 {
 public:
     char _pad_0000[0x14A8]; // offset 0x0
@@ -19,9 +19,10 @@ public:
     bool m_bMadeSlashParticle; // offset 0x1B54, size 0x1, align 1
     char _pad_1B55[0x3]; // offset 0x1B55
     ParticleIndex_t m_ChannelParticle; // offset 0x1B58, size 0x4, align 255
-    GameTime_t m_flRecastWindowEnd; // offset 0x1B5C, size 0x4, align 255
-    char _pad_1B60[0x420]; // offset 0x1B60
-    CModifierHandleTyped< CCitadelModifier > m_BuffModifier; // offset 0x1F80, size 0x18, align 8
-    CModifierHandleTyped< CCitadelModifier > m_RecastWindowModifierHandle; // offset 0x1F98, size 0x18, align 8
-    CModifierHandleTyped< CCitadelModifier > m_RageDrainSuppressedHandle; // offset 0x1FB0, size 0x18, align 8
+    char _pad_1B5C[0x8]; // offset 0x1B5C
+    GameTime_t m_flRecastWindowEnd; // offset 0x1B64, size 0x4, align 255
+    char _pad_1B68[0x420]; // offset 0x1B68
+    CModifierHandleTyped< CCitadelModifier > m_BuffModifier; // offset 0x1F88, size 0x18, align 8
+    CModifierHandleTyped< CCitadelModifier > m_RecastWindowModifierHandle; // offset 0x1FA0, size 0x18, align 8
+    CModifierHandleTyped< CCitadelModifier > m_RageDrainSuppressedHandle; // offset 0x1FB8, size 0x18, align 8
 };
