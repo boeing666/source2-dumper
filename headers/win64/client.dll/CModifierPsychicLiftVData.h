@@ -15,12 +15,12 @@ public:
     float32 m_flOccilateDegreesPerSecond; // offset 0xB5C, size 0x4, align 4
     float32 m_flRiseTime; // offset 0xB60, size 0x4, align 4
     float32 m_flSlamTime; // offset 0xB64, size 0x4, align 4 | MPropertyDescription
-    float32 m_flRiseAcc; // offset 0xB68, size 0x4, align 4
-    float32 m_flRiseMaxSpeed; // offset 0xB6C, size 0x4, align 4
-    float32 m_flRiseDecayFracStart; // offset 0xB70, size 0x4, align 4
-    float32 m_flRiseDecayFracEnd; // offset 0xB74, size 0x4, align 4
-    float32 m_flSlamAcc; // offset 0xB78, size 0x4, align 4
-    float32 m_flSlamMaxSpeed; // offset 0xB7C, size 0x4, align 4
-    float32 m_flSlamImpactRadius; // offset 0xB80, size 0x4, align 4
-    char _pad_0B84[0x4]; // offset 0xB84
+    float32 m_flSlamFailSafeTime; // offset 0xB68, size 0x4, align 4
+    float32 m_flRiseAcc; // offset 0xB6C, size 0x4, align 4
+    float32 m_flRiseMaxSpeed; // offset 0xB70, size 0x4, align 4
+    float32 m_flRiseDecayFracStart; // offset 0xB74, size 0x4, align 4
+    float32 m_flRiseDecayFracEnd; // offset 0xB78, size 0x4, align 4
+    float32 m_flSlamAcc; // offset 0xB7C, size 0x4, align 4
+    float32 m_flSlamMaxSpeed; // offset 0xB80, size 0x4, align 4
+    float32 m_flSlamImpactRadius; // offset 0xB84, size 0x4, align 4
 };
