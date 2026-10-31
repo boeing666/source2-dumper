@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Hideout_BallVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x4A8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Hideout_BallVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x4B8, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x28]; // offset 0x0
@@ -11,23 +11,24 @@ public:
     float32 m_flMaxDistanceAway; // offset 0x38, size 0x4, align 4
     float32 m_flDamagePositionOffset; // offset 0x3C, size 0x4, align 4
     CSoundEventName m_strKickSoundName; // offset 0x40, size 0x10, align 8
-    CSoundEventName m_strGoalSoundName; // offset 0x50, size 0x10, align 8
-    float32 m_flMinPlayerBallTouchForce; // offset 0x60, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
-    float32 m_flMinPlayerLightMeleeForce; // offset 0x64, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
-    float32 m_flPlayerLightMeleeChipAngle; // offset 0x68, size 0x4, align 4 | MPropertyDescription
-    float32 m_flMinPlayerHeavyMeleeForce; // offset 0x6C, size 0x4, align 4 | MPropertyDescription
-    float32 m_flForceMultPlayer; // offset 0x70, size 0x4, align 4 | MPropertyDescription
-    float32 m_flInheritPlayerSpeedMultiplier; // offset 0x74, size 0x4, align 4 | MPropertyDescription
-    float32 m_flVPhysicsForceMul; // offset 0x78, size 0x4, align 4 | MPropertyDescription
-    char _pad_007C[0x4]; // offset 0x7C
-    CPiecewiseCurve m_ForceVSCameraPitch; // offset 0x80, size 0x40, align 8 | MPropertyDescription
-    CPiecewiseCurve m_ConsecutiveJugglesVsRandomness; // offset 0xC0, size 0x40, align 8 | MPropertyStartGroup MPropertyDescription
-    float32 fl_MaxExtraGravityScale; // offset 0x100, size 0x4, align 4 | MPropertyDescription
-    int32 m_nMinJugglesBeforeDisplay; // offset 0x104, size 0x4, align 4 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_BallApexParticle; // offset 0x108, size 0xE0, align 8
-    CSoundEventName m_strBallApexSound; // offset 0x1E8, size 0x10, align 8 | MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_JuggleRunEnded; // offset 0x1F8, size 0xE0, align 8 | MPropertyDescription
-    CSoundEventName m_strJuggleRunEnded; // offset 0x2D8, size 0x10, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_hModel; // offset 0x2E8, size 0xE0, align 8 | MPropertyStartGroup MPropertyDescription
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_AmbientParticle; // offset 0x3C8, size 0xE0, align 8
+    CSoundEventName m_strHeavyKickSoundName; // offset 0x50, size 0x10, align 8
+    CSoundEventName m_strGoalSoundName; // offset 0x60, size 0x10, align 8
+    float32 m_flMinPlayerBallTouchForce; // offset 0x70, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
+    float32 m_flMinPlayerLightMeleeForce; // offset 0x74, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
+    float32 m_flPlayerLightMeleeChipAngle; // offset 0x78, size 0x4, align 4 | MPropertyDescription
+    float32 m_flMinPlayerHeavyMeleeForce; // offset 0x7C, size 0x4, align 4 | MPropertyDescription
+    float32 m_flForceMultPlayer; // offset 0x80, size 0x4, align 4 | MPropertyDescription
+    float32 m_flInheritPlayerSpeedMultiplier; // offset 0x84, size 0x4, align 4 | MPropertyDescription
+    float32 m_flVPhysicsForceMul; // offset 0x88, size 0x4, align 4 | MPropertyDescription
+    char _pad_008C[0x4]; // offset 0x8C
+    CPiecewiseCurve m_ForceVSCameraPitch; // offset 0x90, size 0x40, align 8 | MPropertyDescription
+    CPiecewiseCurve m_ConsecutiveJugglesVsRandomness; // offset 0xD0, size 0x40, align 8 | MPropertyStartGroup MPropertyDescription
+    float32 fl_MaxExtraGravityScale; // offset 0x110, size 0x4, align 4 | MPropertyDescription
+    int32 m_nMinJugglesBeforeDisplay; // offset 0x114, size 0x4, align 4 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_BallApexParticle; // offset 0x118, size 0xE0, align 8
+    CSoundEventName m_strBallApexSound; // offset 0x1F8, size 0x10, align 8 | MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_JuggleRunEnded; // offset 0x208, size 0xE0, align 8 | MPropertyDescription
+    CSoundEventName m_strJuggleRunEnded; // offset 0x2E8, size 0x10, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_hModel; // offset 0x2F8, size 0xE0, align 8 | MPropertyStartGroup MPropertyDescription
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_AmbientParticle; // offset 0x3D8, size 0xE0, align 8
 };

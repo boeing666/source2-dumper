@@ -19,8 +19,7 @@ public:
     char _pad_0034[0x4]; // offset 0x34
     CUtlVector< CHandle< CBaseEntity > > m_vTeamSapphireBoss; // offset 0x38, size 0x18, align 8
     CUtlVector< CHandle< CBaseEntity > > m_vTeamAmberBoss; // offset 0x50, size 0x18, align 8
-    char _pad_0068[0x28]; // offset 0x68
-    CUtlOrderedMap< CUtlString, CUtlString > m_mapOriginalConVarVals; // offset 0x90, size 0x28, align 8
+    char _pad_0068[0x50]; // offset 0x68
     CUtlVector< int32 > m_vecOfferedLegendaries; // offset 0xB8, size 0x18, align 8
     CUtlVector< int32 > m_vecOfferedRares; // offset 0xD0, size 0x18, align 8
     CUtlVector< int32 > m_vecOfferedEnhanced; // offset 0xE8, size 0x18, align 8

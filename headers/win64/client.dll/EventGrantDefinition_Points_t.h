@@ -10,6 +10,5 @@ struct EventGrantDefinition_Points_t : public EventGrantDefinition_t /*0x0*/  //
     uint64 m_unAuditData; // offset 0x18, size 0x8, align 8
     EEvent m_eEventID; // offset 0x20, size 0x4, align 4
     bool m_bRequireEventOwnership; // offset 0x24, size 0x1, align 1
-    bool m_bRewardSeasonalPoints; // offset 0x25, size 0x1, align 1
-    char _pad_0026[0x2]; // offset 0x26
+    char _pad_0025[0x3]; // offset 0x25
 };

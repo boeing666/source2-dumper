@@ -17,11 +17,12 @@ struct CitadelAbilityProperty_t  // sizeof 0xF8, align 0x8 (client) {MGetKV3Clas
     AbilityUpgradeBits_t m_nRequiredUpgradeBits; // offset 0x6A, size 0x2, align 2 | MPropertyDescription
     EStatsType m_eDisplayType; // offset 0x6C, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
     int32 m_nMaxDecimalsDisplayed; // offset 0x70, size 0x4, align 4 | MPropertyDescription
-    ModifierValueDisplayUnits_t m_eDisplayUnits; // offset 0x74, size 0x4, align 4
-    bool m_bIsHidden; // offset 0x78, size 0x1, align 1 | MPropertyDescription
-    bool m_bIsNegativeAttribute; // offset 0x79, size 0x1, align 1 | MPropertyDescription
-    bool m_bIsDetailedOnly; // offset 0x7A, size 0x1, align 1 | MPropertyDescription
-    char _pad_007B[0x5]; // offset 0x7B
+    int32 m_nMaxScaleDecimalsDisplayed; // offset 0x74, size 0x4, align 4 | MPropertyDescription
+    ModifierValueDisplayUnits_t m_eDisplayUnits; // offset 0x78, size 0x4, align 4
+    bool m_bIsHidden; // offset 0x7C, size 0x1, align 1 | MPropertyDescription
+    bool m_bIsNegativeAttribute; // offset 0x7D, size 0x1, align 1 | MPropertyDescription
+    bool m_bIsDetailedOnly; // offset 0x7E, size 0x1, align 1 | MPropertyDescription
+    char _pad_007F[0x1]; // offset 0x7F
     CUtlString m_strCSSClass; // offset 0x80, size 0x8, align 8 | MPropertyFriendlyName MPropertyLeafSuggestionProviderFn
     CUtlString m_strLocTokenOverride; // offset 0x88, size 0x8, align 8 | MPropertyDescription MPropertySuppressExpr
     bool m_bCanSetTokenOverride; // offset 0x90, size 0x1, align 1 | MPropertySuppressField

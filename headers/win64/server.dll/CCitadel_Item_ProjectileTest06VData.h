@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Item_ProjectileTest06VData : public CCitadel_Item_ProjectileTestVData /*0x0*/  // sizeof 0x11A0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Item_ProjectileTest06VData : public CCitadel_Item_ProjectileTestVData /*0x0*/  // sizeof 0x11B0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x1190]; // offset 0x0
-    float32 m_flMaxDrag; // offset 0x1190, size 0x4, align 4 | MPropertyStartGroup
-    float32 m_flMinDrag; // offset 0x1194, size 0x4, align 4
-    float32 m_flMinGravity; // offset 0x1198, size 0x4, align 4
-    float32 m_flMaxGravity; // offset 0x119C, size 0x4, align 4
+    char _pad_0000[0x11A0]; // offset 0x0
+    float32 m_flMaxDrag; // offset 0x11A0, size 0x4, align 4 | MPropertyStartGroup
+    float32 m_flMinDrag; // offset 0x11A4, size 0x4, align 4
+    float32 m_flMinGravity; // offset 0x11A8, size 0x4, align 4
+    float32 m_flMaxGravity; // offset 0x11AC, size 0x4, align 4
 };

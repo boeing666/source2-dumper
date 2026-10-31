@@ -9,5 +9,5 @@ public:
     char _pad_0152[0x2]; // offset 0x152
     Vector m_vTossUpForce; // offset 0x154, size 0xC, align 4
     float32 m_flCurrentVelocityScale; // offset 0x160, size 0x4, align 4
-    char _pad_0164[0x4]; // offset 0x164
+    float32 m_flGravityScale; // offset 0x164, size 0x4, align 4
 };

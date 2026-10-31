@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_BreakablePropVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x500, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_BreakablePropVData : public CEntitySubclassVDataBase /*0x0*/  // sizeof 0x610, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x28]; // offset 0x0
@@ -32,38 +32,46 @@ public:
     float32 m_flOutlineRadius; // offset 0x68, size 0x4, align 4 | MPropertyDescription
     bool m_bRequireVisibleOnMinimapForOutline; // offset 0x6C, size 0x1, align 1 | MPropertyDescription MPropertySuppressExpr
     char _pad_006D[0x3]; // offset 0x6D
-    Color m_colorOutline; // offset 0x70, size 0x4, align 4 | MPropertyDescription MPropertySuppressExpr
-    char _pad_0074[0x4]; // offset 0x74
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_hModel; // offset 0x78, size 0xE0, align 8 | MPropertyStartGroup MPropertyDescription MPropertyProvidesEditContextString
-    float32 m_flModelScale; // offset 0x158, size 0x4, align 4
-    char _pad_015C[0x4]; // offset 0x15C
-    CModelMaterialGroupName m_sMaterialGroupName; // offset 0x160, size 0x8, align 8 | MPropertyFriendlyName
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ambientParticle; // offset 0x168, size 0xE0, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_breakParticle; // offset 0x248, size 0xE0, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_breakRollFailParticle; // offset 0x328, size 0xE0, align 8
-    CSoundEventName m_sBreakSound; // offset 0x408, size 0x10, align 8 | MPropertyStartGroup MPropertyDescription
-    CSoundEventName m_sSpawnSound; // offset 0x418, size 0x10, align 8
-    CSoundEventName m_sBreakRollFailSound; // offset 0x428, size 0x10, align 8
-    CSoundEventName m_sMeleeDamageSound; // offset 0x438, size 0x10, align 8 | MPropertyDescription
-    CSoundEventName m_sOtherDamageSound; // offset 0x448, size 0x10, align 8
-    CSoundEventName m_sMeleeRejectSound; // offset 0x458, size 0x10, align 8 | MPropertyDescription
-    CSoundEventName m_OtherRejectSound; // offset 0x468, size 0x10, align 8
-    CSoundEventName m_sAmbientSound; // offset 0x478, size 0x10, align 8 | MPropertyDescription
-    float32 m_flInitialSpawnTime; // offset 0x488, size 0x4, align 4 | MPropertyStartGroup
-    float32 m_flInitialSpawnTimeTest; // offset 0x48C, size 0x4, align 4 | MPropertyDescription
-    float32 m_flRespawnTime; // offset 0x490, size 0x4, align 4 | MPropertyDescription
-    float32 m_flRespawnTimeTest; // offset 0x494, size 0x4, align 4 | MPropertyDescription
-    CUtlString m_strMinimapCSSClassAlive; // offset 0x498, size 0x8, align 8 | MPropertyStartGroup MPropertyDescription
-    CUtlString m_strMinimapCSSClassDead; // offset 0x4A0, size 0x8, align 8 | MPropertyDescription
-    float32 m_flMinDistanceToRevealOnMinimap; // offset 0x4A8, size 0x4, align 4 | MPropertyDescription
-    char _pad_04AC[0x4]; // offset 0x4AC
-    CUtlString m_strLayoutFile; // offset 0x4B0, size 0x8, align 8 | MPropertyStartGroup MPropertyCustomFGDType
-    float32 m_flPanelHeightOffset; // offset 0x4B8, size 0x4, align 4 | MPropertySuppressExpr
-    float32 m_flPanelDrawDistance; // offset 0x4BC, size 0x4, align 4 | MPropertySuppressExpr
-    CUtlString m_strInWorldCSSClasses; // offset 0x4C0, size 0x8, align 8 | MPropertyDescription MPropertySuppressExpr
-    float32 m_flPanelWidth; // offset 0x4C8, size 0x4, align 4 | MPropertySuppressExpr
-    float32 m_flPanelHeight; // offset 0x4CC, size 0x4, align 4 | MPropertySuppressExpr
-    float32 m_flPowerupDropChance; // offset 0x4D0, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
-    ECitadelRandomRollTypes m_eRollType; // offset 0x4D4, size 0x4, align 4 | MPropertyDescription
-    CUtlOrderedMap< CSubclassName< 0 >, float32 > m_mapPickupChances; // offset 0x4D8, size 0x28, align 8 | MPropertyDescription MPropertyFriendlyName MPropertySuppressExpr
+    CEmbeddedSubclass< CCitadelModifier > m_NearbyAuraModifier; // offset 0x70, size 0x10, align 8 | MPropertyDescription
+    Color m_colorOutline; // offset 0x80, size 0x4, align 4 | MPropertyDescription MPropertySuppressExpr
+    char _pad_0084[0x4]; // offset 0x84
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_hModel; // offset 0x88, size 0xE0, align 8 | MPropertyStartGroup MPropertyDescription MPropertyProvidesEditContextString
+    float32 m_flModelScale; // offset 0x168, size 0x4, align 4
+    Vector m_vecLocalOffset; // offset 0x16C, size 0xC, align 4 | MPropertyDescription MPropertyFriendlyName
+    QAngle m_angLocalRotation; // offset 0x178, size 0xC, align 4 | MPropertyDescription MPropertyFriendlyName
+    char _pad_0184[0x4]; // offset 0x184
+    CModelMaterialGroupName m_sMaterialGroupName; // offset 0x188, size 0x8, align 8 | MPropertyFriendlyName
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ambientParticle; // offset 0x190, size 0xE0, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_breakParticle; // offset 0x270, size 0xE0, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_breakRollFailParticle; // offset 0x350, size 0xE0, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_damageParticle; // offset 0x430, size 0xE0, align 8
+    CSoundEventName m_sBreakSound; // offset 0x510, size 0x10, align 8 | MPropertyStartGroup MPropertyDescription
+    CSoundEventName m_sSpawnSound; // offset 0x520, size 0x10, align 8
+    CSoundEventName m_sBreakRollFailSound; // offset 0x530, size 0x10, align 8
+    CSoundEventName m_sMeleeDamageSound; // offset 0x540, size 0x10, align 8 | MPropertyDescription
+    CSoundEventName m_sOtherDamageSound; // offset 0x550, size 0x10, align 8
+    CSoundEventName m_sMeleeRejectSound; // offset 0x560, size 0x10, align 8 | MPropertyDescription
+    CSoundEventName m_OtherRejectSound; // offset 0x570, size 0x10, align 8
+    CSoundEventName m_sAmbientSound; // offset 0x580, size 0x10, align 8 | MPropertyDescription
+    bool m_bUseVDataSpawnTimes; // offset 0x590, size 0x1, align 1 | MPropertyStartGroup MPropertyDescription
+    char _pad_0591[0x3]; // offset 0x591
+    float32 m_flInitialSpawnTime; // offset 0x594, size 0x4, align 4
+    float32 m_flInitialSpawnTimeTest; // offset 0x598, size 0x4, align 4 | MPropertyDescription
+    float32 m_flRespawnTime; // offset 0x59C, size 0x4, align 4 | MPropertyDescription
+    float32 m_flRespawnTimeTest; // offset 0x5A0, size 0x4, align 4 | MPropertyDescription
+    bool m_bSpawnInStreetBrawl; // offset 0x5A4, size 0x1, align 1 | MPropertyDescription
+    char _pad_05A5[0x3]; // offset 0x5A5
+    CUtlString m_strMinimapCSSClassAlive; // offset 0x5A8, size 0x8, align 8 | MPropertyStartGroup MPropertyDescription
+    CUtlString m_strMinimapCSSClassDead; // offset 0x5B0, size 0x8, align 8 | MPropertyDescription
+    float32 m_flMinDistanceToRevealOnMinimap; // offset 0x5B8, size 0x4, align 4 | MPropertyDescription
+    char _pad_05BC[0x4]; // offset 0x5BC
+    CUtlString m_strLayoutFile; // offset 0x5C0, size 0x8, align 8 | MPropertyStartGroup MPropertyCustomFGDType
+    float32 m_flPanelHeightOffset; // offset 0x5C8, size 0x4, align 4 | MPropertySuppressExpr
+    float32 m_flPanelDrawDistance; // offset 0x5CC, size 0x4, align 4 | MPropertySuppressExpr
+    CUtlString m_strInWorldCSSClasses; // offset 0x5D0, size 0x8, align 8 | MPropertyDescription MPropertySuppressExpr
+    float32 m_flPanelWidth; // offset 0x5D8, size 0x4, align 4 | MPropertySuppressExpr
+    float32 m_flPanelHeight; // offset 0x5DC, size 0x4, align 4 | MPropertySuppressExpr
+    float32 m_flPowerupDropChance; // offset 0x5E0, size 0x4, align 4 | MPropertyStartGroup MPropertyDescription
+    ECitadelRandomRollTypes m_eRollType; // offset 0x5E4, size 0x4, align 4 | MPropertyDescription
+    CUtlOrderedMap< CSubclassName< 0 >, float32 > m_mapPickupChances; // offset 0x5E8, size 0x28, align 8 | MPropertyDescription MPropertyFriendlyName MPropertySuppressExpr
 };

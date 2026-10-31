@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelPlayerPawn_GraphController2 : public CAnimGraphControllerBase /*0x0*/  // sizeof 0x570, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadelPlayerPawn_GraphController2 : public CAnimGraphControllerBase /*0x0*/  // sizeof 0x5B0, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xC8]; // offset 0x0
@@ -41,5 +41,5 @@ public:
     CAnimGraph2ParamOptionalRef< float32 > m_flHeroFloat2; // offset 0x3F8, size 0x18, align 8
     CAnimGraph2ParamOptionalRef< float32 > m_flHeroFloat3; // offset 0x410, size 0x18, align 8
     CAnimGraphTagOptionalRef m_tagEmote; // offset 0x428, size 0x18, align 8
-    char _pad_0440[0x130]; // offset 0x440
+    char _pad_0440[0x170]; // offset 0x440
 };

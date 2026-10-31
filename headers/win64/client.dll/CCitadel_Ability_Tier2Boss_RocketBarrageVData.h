@@ -1,13 +1,13 @@
 #pragma once
 
-class CCitadel_Ability_Tier2Boss_RocketBarrageVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1188, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_Ability_Tier2Boss_RocketBarrageVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1198, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x1070]; // offset 0x0
-    float32 m_LaunchAngle; // offset 0x1070, size 0x4, align 4 | MPropertyStartGroup
-    char _pad_1074[0x4]; // offset 0x1074
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ExplosionParticle; // offset 0x1078, size 0xE0, align 8
-    CSoundEventName m_ExplosionSound; // offset 0x1158, size 0x10, align 8 | MPropertyStartGroup
-    CSoundEventName m_RocketFireSound; // offset 0x1168, size 0x10, align 8
-    CEmbeddedSubclass< CCitadelModifier > m_AuraModifier; // offset 0x1178, size 0x10, align 8 | MPropertyStartGroup
+    char _pad_0000[0x1080]; // offset 0x0
+    float32 m_LaunchAngle; // offset 0x1080, size 0x4, align 4 | MPropertyStartGroup
+    char _pad_1084[0x4]; // offset 0x1084
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_ExplosionParticle; // offset 0x1088, size 0xE0, align 8
+    CSoundEventName m_ExplosionSound; // offset 0x1168, size 0x10, align 8 | MPropertyStartGroup
+    CSoundEventName m_RocketFireSound; // offset 0x1178, size 0x10, align 8
+    CEmbeddedSubclass< CCitadelModifier > m_AuraModifier; // offset 0x1188, size 0x10, align 8 | MPropertyStartGroup
 };

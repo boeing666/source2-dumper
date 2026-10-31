@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelAbilityComponent : public CEntityComponent /*0x0*/  // sizeof 0x268, align 0xFF [vtable] (server)
+class CCitadelAbilityComponent : public CEntityComponent /*0x0*/  // sizeof 0x270, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0x80]; // offset 0x0
@@ -26,5 +26,5 @@ public:
     uint32 m_nExecuteAbilityMask; // offset 0x1EC, size 0x4, align 4
     char _pad_01F0[0x4]; // offset 0x1F0
     bool m_bSelectedEffectsStarted; // offset 0x1F4, size 0x1, align 1
-    char _pad_01F5[0x73]; // offset 0x1F5
+    char _pad_01F5[0x7B]; // offset 0x1F5
 };

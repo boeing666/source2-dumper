@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Modifier_SuperAcolytesGlove_VData : public CCitadel_Modifier_BaseEventProcVData /*0x0*/  // sizeof 0xA78, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_Modifier_SuperAcolytesGlove_VData : public CCitadel_Modifier_BaseEventProcVData /*0x0*/  // sizeof 0xA80, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x7C8]; // offset 0x0
-    CEmbeddedSubclass< CBaseModifier > m_DebuffModifier; // offset 0x7C8, size 0x10, align 8 | MPropertyGroupName
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_SwingParticle; // offset 0x7D8, size 0xE0, align 8 | MPropertyStartGroup
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_HitParticle; // offset 0x8B8, size 0xE0, align 8
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_FistReadyEffect; // offset 0x998, size 0xE0, align 8
+    char _pad_0000[0x7D0]; // offset 0x0
+    CEmbeddedSubclass< CBaseModifier > m_DebuffModifier; // offset 0x7D0, size 0x10, align 8 | MPropertyGroupName
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_SwingParticle; // offset 0x7E0, size 0xE0, align 8 | MPropertyStartGroup
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_HitParticle; // offset 0x8C0, size 0xE0, align 8
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_FistReadyEffect; // offset 0x9A0, size 0xE0, align 8
 };

@@ -1,13 +1,13 @@
 #pragma once
 
-class CCitadelModifierItemPickupTimerVData : public CCitadelModifierVData /*0x0*/  // sizeof 0x890, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadelModifierItemPickupTimerVData : public CCitadelModifierVData /*0x0*/  // sizeof 0x898, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x790]; // offset 0x0
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_OnExpireParticle; // offset 0x790, size 0xE0, align 8 | MPropertyStartGroup
-    float32 m_TimerToSilence; // offset 0x870, size 0x4, align 4 | MPropertyGroupName
-    float32 m_SilenceDuration; // offset 0x874, size 0x4, align 4
-    CEmbeddedSubclass< CCitadelModifier > m_SilenceModifier; // offset 0x878, size 0x10, align 8 | MPropertyStartGroup
-    bool m_bIsIdolPickup; // offset 0x888, size 0x1, align 1 | MPropertyStartGroup
-    char _pad_0889[0x7]; // offset 0x889
+    char _pad_0000[0x798]; // offset 0x0
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_OnExpireParticle; // offset 0x798, size 0xE0, align 8 | MPropertyStartGroup
+    float32 m_TimerToSilence; // offset 0x878, size 0x4, align 4 | MPropertyGroupName
+    float32 m_SilenceDuration; // offset 0x87C, size 0x4, align 4
+    CEmbeddedSubclass< CCitadelModifier > m_SilenceModifier; // offset 0x880, size 0x10, align 8 | MPropertyStartGroup
+    bool m_bIsIdolPickup; // offset 0x890, size 0x1, align 1 | MPropertyStartGroup
+    char _pad_0891[0x7]; // offset 0x891
 };

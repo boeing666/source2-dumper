@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_HoldMelee : public CCitadel_Ability_Melee_Base /*0x0*/  // sizeof 0x18D0, align 0x8 [vtable] (client)
+class CCitadel_Ability_HoldMelee : public CCitadel_Ability_Melee_Base /*0x0*/  // sizeof 0x18D8, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x1850]; // offset 0x0
@@ -17,5 +17,5 @@ public:
     char _pad_1879[0x3]; // offset 0x1879
     QAngle m_angForced; // offset 0x187C, size 0xC, align 4
     Vector m_vGoalDir; // offset 0x1888, size 0xC, align 4
-    char _pad_1894[0x3C]; // offset 0x1894
+    char _pad_1894[0x44]; // offset 0x1894
 };

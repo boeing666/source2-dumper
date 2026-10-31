@@ -1,11 +1,11 @@
 #pragma once
 
-class CCitadel_Ability_Gravity_Lasso_VData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1180, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCitadel_Ability_Gravity_Lasso_VData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1190, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x1070]; // offset 0x0
-    CEmbeddedSubclass< CBaseModifier > m_GravityLassoSelf; // offset 0x1070, size 0x10, align 8 | MPropertyStartGroup
-    CEmbeddedSubclass< CBaseModifier > m_GravityLassoTarget; // offset 0x1080, size 0x10, align 8
-    CSoundEventName m_TargetWarningSound; // offset 0x1090, size 0x10, align 8 | MPropertyStartGroup
-    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_PreCastParticle; // offset 0x10A0, size 0xE0, align 8 | MPropertyStartGroup
+    char _pad_0000[0x1080]; // offset 0x0
+    CEmbeddedSubclass< CBaseModifier > m_GravityLassoSelf; // offset 0x1080, size 0x10, align 8 | MPropertyStartGroup
+    CEmbeddedSubclass< CBaseModifier > m_GravityLassoTarget; // offset 0x1090, size 0x10, align 8
+    CSoundEventName m_TargetWarningSound; // offset 0x10A0, size 0x10, align 8 | MPropertyStartGroup
+    CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_PreCastParticle; // offset 0x10B0, size 0xE0, align 8 | MPropertyStartGroup
 };

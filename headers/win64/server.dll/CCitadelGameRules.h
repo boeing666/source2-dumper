@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadelGameRules : public CTeamplayRules /*0x0*/  // sizeof 0x29D0, align 0xFF [vtable] (server)
+class CCitadelGameRules : public CTeamplayRules /*0x0*/  // sizeof 0x29D8, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0xE0]; // offset 0x0
@@ -121,6 +121,7 @@ public:
     GameTime_t m_flHeroDiedTime; // offset 0x2878, size 0x4, align 255
     char _pad_287C[0x4]; // offset 0x287C
     CCitadelPlayOfTheGame* m_pPlayOfTheGame; // offset 0x2880, size 0x8, align 8
-    CStreetBrawlController m_tStreetBrawl; // offset 0x2888, size 0x130, align 255
-    char _pad_29B8[0x18]; // offset 0x29B8
+    char _pad_2888[0x8]; // offset 0x2888
+    CStreetBrawlController m_tStreetBrawl; // offset 0x2890, size 0x130, align 255
+    char _pad_29C0[0x18]; // offset 0x29C0
 };

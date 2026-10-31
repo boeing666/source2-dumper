@@ -21,6 +21,7 @@ public:
     char _pad_24E5[0x3]; // offset 0x24E5
     float32 m_flCastDelayFrac; // offset 0x24E8, size 0x4, align 4
     GameTime_t m_tHeatDecayStartTime; // offset 0x24EC, size 0x4, align 255
-    ERocketeerState m_eState; // offset 0x24F0, size 0x1, align 1
-    char _pad_24F1[0x7]; // offset 0x24F1
+    bool m_bJetpackDisabledUntilGrounded; // offset 0x24F0, size 0x1, align 1
+    ERocketeerState m_eState; // offset 0x24F1, size 0x1, align 1
+    char _pad_24F2[0x6]; // offset 0x24F2
 };

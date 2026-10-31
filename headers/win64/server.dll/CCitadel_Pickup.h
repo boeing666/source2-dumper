@@ -15,9 +15,8 @@ public:
     char _pad_0B24[0x18]; // offset 0xB24
     VectorWS m_vVacuumPos; // offset 0xB3C, size 0xC, align 4
     GameTime_t m_flVacuumStartTime; // offset 0xB48, size 0x4, align 255
-    char _pad_0B4C[0x4]; // offset 0xB4C
-    Vector m_vImpactVel; // offset 0xB50, size 0xC, align 4
-    VectorWS m_vImpactPos; // offset 0xB5C, size 0xC, align 4
-    GameTime_t m_flImpactTime; // offset 0xB68, size 0x4, align 255
-    char _pad_0B6C[0x4]; // offset 0xB6C
+    char _pad_0B4C[0x8]; // offset 0xB4C
+    Vector m_vImpactVel; // offset 0xB54, size 0xC, align 4
+    VectorWS m_vImpactPos; // offset 0xB60, size 0xC, align 4
+    GameTime_t m_flImpactTime; // offset 0xB6C, size 0x4, align 255
 };

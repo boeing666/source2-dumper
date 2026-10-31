@@ -25,10 +25,10 @@ public:
     char _pad_0DA0[0x8]; // offset 0xDA0
     CUtlSymbolLarge m_strTrooperApproach; // offset 0xDA8, size 0x8, align 8
     char _pad_0DB0[0x20]; // offset 0xDB0
-    CCitadelAbilityComponent m_CCitadelAbilityComponent; // offset 0xDD0, size 0x268, align 255
-    CUtlVectorEmbeddedNetworkVar< WeakPoint_t > m_vecWeakPoints; // offset 0x1038, size 0x68, align 8 | MNotSaved
-    bool m_bDestroyed; // offset 0x10A0, size 0x1, align 1 | MNotSaved
-    bool m_bActive; // offset 0x10A1, size 0x1, align 1 | MNotSaved
-    bool m_bFinal; // offset 0x10A2, size 0x1, align 1
-    char _pad_10A3[0xD]; // offset 0x10A3
+    CCitadelAbilityComponent m_CCitadelAbilityComponent; // offset 0xDD0, size 0x270, align 255
+    CUtlVectorEmbeddedNetworkVar< WeakPoint_t > m_vecWeakPoints; // offset 0x1040, size 0x68, align 8 | MNotSaved
+    bool m_bDestroyed; // offset 0x10A8, size 0x1, align 1 | MNotSaved
+    bool m_bActive; // offset 0x10A9, size 0x1, align 1 | MNotSaved
+    bool m_bFinal; // offset 0x10AA, size 0x1, align 1
+    char _pad_10AB[0x5]; // offset 0x10AB
 };

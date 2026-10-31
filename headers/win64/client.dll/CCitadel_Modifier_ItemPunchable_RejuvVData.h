@@ -3,9 +3,7 @@
 class CCitadel_Modifier_ItemPunchable_RejuvVData : public CCitadelModifierVData /*0x0*/  // sizeof 0xC30, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x790]; // offset 0x0
-    int32 m_iRejuvBossKill01; // offset 0x790, size 0x4, align 4
-    int32 m_iRejuvBossKill02; // offset 0x794, size 0x4, align 4
+    char _pad_0000[0x798]; // offset 0x0
     float32 m_flPhysicsRadius; // offset 0x798, size 0x4, align 4
     float32 m_flMaxDistForHeal; // offset 0x79C, size 0x4, align 4
     CResourceNameTyped< CWeakHandle< InfoForResourceTypeIParticleSystemDefinition > > m_IsDroppingParticle; // offset 0x7A0, size 0xE0, align 8 | MPropertyStartGroup
