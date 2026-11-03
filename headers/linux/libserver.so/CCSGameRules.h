@@ -124,11 +124,13 @@ public:
     uint32 m_numSpectatorsCountMaxTV; // offset 0xE08, size 0x4, align 4
     uint32 m_numSpectatorsCountMaxLnk; // offset 0xE0C, size 0x4, align 4
     char _pad_0E10[0x8]; // offset 0xE10
-    int32 m_nCTsAliveAtFreezetimeEnd; // offset 0xE18, size 0x4, align 4
-    int32 m_nTerroristsAliveAtFreezetimeEnd; // offset 0xE1C, size 0x4, align 4
-    bool m_bForceTeamChangeSilent; // offset 0xE20, size 0x1, align 1
-    bool m_bLoadingRoundBackupData; // offset 0xE21, size 0x1, align 1
-    char _pad_0E22[0x36]; // offset 0xE22
+    bool m_bQueuedMatchmakingReportedRoundStatsPendingSend; // offset 0xE18, size 0x1, align 1
+    char _pad_0E19[0x3]; // offset 0xE19
+    int32 m_nCTsAliveAtFreezetimeEnd; // offset 0xE1C, size 0x4, align 4
+    int32 m_nTerroristsAliveAtFreezetimeEnd; // offset 0xE20, size 0x4, align 4
+    bool m_bForceTeamChangeSilent; // offset 0xE24, size 0x1, align 1
+    bool m_bLoadingRoundBackupData; // offset 0xE25, size 0x1, align 1
+    char _pad_0E26[0x32]; // offset 0xE26
     int32 m_nMatchInfoShowType; // offset 0xE58, size 0x4, align 4
     float32 m_flMatchInfoDecidedTime; // offset 0xE5C, size 0x4, align 4
     char _pad_0E60[0x18]; // offset 0xE60
