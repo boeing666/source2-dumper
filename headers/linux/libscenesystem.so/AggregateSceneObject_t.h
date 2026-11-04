@@ -1,6 +1,6 @@
 #pragma once
 
-struct AggregateSceneObject_t  // sizeof 0x78, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
+struct AggregateSceneObject_t  // sizeof 0x78, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
 {
     ObjectTypeFlags_t m_allFlags; // offset 0x0, size 0x4, align 4
     ObjectTypeFlags_t m_anyFlags; // offset 0x4, size 0x4, align 4

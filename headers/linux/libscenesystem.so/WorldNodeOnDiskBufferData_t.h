@@ -1,6 +1,6 @@
 #pragma once
 
-struct WorldNodeOnDiskBufferData_t  // sizeof 0x38, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
+struct WorldNodeOnDiskBufferData_t  // sizeof 0x38, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
 {
     int32 m_nElementCount; // offset 0x0, size 0x4, align 4
     int32 m_nElementSizeInBytes; // offset 0x4, size 0x4, align 4

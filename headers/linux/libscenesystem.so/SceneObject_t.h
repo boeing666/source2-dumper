@@ -1,6 +1,6 @@
 #pragma once
 
-struct SceneObject_t  // sizeof 0x90, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
+struct SceneObject_t  // sizeof 0x90, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
 {
     uint32 m_nObjectID; // offset 0x0, size 0x4, align 4
     Vector4D[3] m_vTransform; // offset 0x4, size 0x30, align 4
