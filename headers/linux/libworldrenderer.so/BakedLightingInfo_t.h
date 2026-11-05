@@ -1,6 +1,6 @@
 #pragma once
 
-struct BakedLightingInfo_t  // sizeof 0x48, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
+struct BakedLightingInfo_t  // sizeof 0x48, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
 {
     uint32 m_nLightmapVersionNumber; // offset 0x0, size 0x4, align 4
     uint32 m_nLightmapGameVersionNumber; // offset 0x4, size 0x4, align 4
