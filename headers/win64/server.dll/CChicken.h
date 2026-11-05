@@ -34,7 +34,7 @@ public:
     CountdownTimer m_followMinuteTimer; // offset 0x32A8, size 0x18, align 8
     char _pad_32C0[0x8]; // offset 0x32C0
     CountdownTimer m_BlockDirectionTimer; // offset 0x32C8, size 0x18, align 8
-    char _pad_32E0[0x2]; // offset 0x32E0
-    bool m_bSpawnDyingParticles; // offset 0x32E2, size 0x1, align 1
-    char _pad_32E3[0xD]; // offset 0x32E3
+    char _pad_32E0[0x3]; // offset 0x32E0
+    bool m_bSpawnDyingParticles; // offset 0x32E3, size 0x1, align 1
+    char _pad_32E4[0xC]; // offset 0x32E4
 };
