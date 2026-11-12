@@ -21,5 +21,6 @@ public:
     float32 m_flEnvPuddleRippleDirection; // offset 0x7A0, size 0x4, align 4
     float32 m_flEnvWetnessCoverage; // offset 0x7A4, size 0x4, align 4
     float32 m_flEnvWetnessDryingAmount; // offset 0x7A8, size 0x4, align 4
-    char _pad_07AC[0x4]; // offset 0x7AC
+    bool m_bFrostEnabled; // offset 0x7AC, size 0x1, align 1
+    char _pad_07AD[0x3]; // offset 0x7AD
 };

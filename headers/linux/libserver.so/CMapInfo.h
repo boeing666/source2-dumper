@@ -1,6 +1,6 @@
 #pragma once
 
-class CMapInfo : public CPointEntity /*0x0*/  // sizeof 0x7B8, align 0x8 [vtable] (server)
+class CMapInfo : public CPointEntity /*0x0*/  // sizeof 0x7C0, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x788]; // offset 0x0
@@ -21,4 +21,6 @@ public:
     float32 m_flEnvPuddleRippleDirection; // offset 0x7AC, size 0x4, align 4
     float32 m_flEnvWetnessCoverage; // offset 0x7B0, size 0x4, align 4
     float32 m_flEnvWetnessDryingAmount; // offset 0x7B4, size 0x4, align 4
+    bool m_bFrostEnabled; // offset 0x7B8, size 0x1, align 1
+    char _pad_07B9[0x7]; // offset 0x7B9
 };

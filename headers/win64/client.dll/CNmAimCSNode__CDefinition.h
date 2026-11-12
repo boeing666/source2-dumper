@@ -15,5 +15,5 @@ public:
     float32 m_flHandIKBlendInTimeSeconds; // offset 0x28, size 0x4, align 4
     float32 m_flActionBlendTimeSeconds; // offset 0x2C, size 0x4, align 4
     float32 m_flPlantingBlendTimeSeconds; // offset 0x30, size 0x4, align 4
-    char _pad_0034[0x4]; // offset 0x34
+    float32 m_flTransitionBlendTimeSeconds; // offset 0x34, size 0x4, align 4
 };

@@ -306,7 +306,7 @@ cl_clock_recvmargin_timeconstant_slowdown | developmentonly | Clock sync will re
 cl_clock_recvmargin_timeconstant_speedup | developmentonly | Clock sync will remove 63.2% of the error in N seconds
 cl_clock_recvmargin_window | developmentonly | Clock sync will use past N seconds
 cl_clockdbg | developmentonly,defensive | 
-cl_clockdrift_max_ticks | hidden,release | Maximum number of ticks the clock is allowed to drift before the client snaps its clock to the server's.
+cl_clockdrift_max_secs | hidden,release | Maximum duration the client clock is allowed to drift from server snapshots, before the client snaps its clock to the latest server snapshot received
 cl_clutch_mode | clientdll,release | Silence voice and other distracting sounds until the end of round or next death.
 cl_color | clientdll | Preferred teammate color
 cl_connectionretrytime_p2p | release | Number of seconds over which to spread retry attempts for P2P.
@@ -528,6 +528,7 @@ cl_new_user_phase | clientdll,release | 0: Not Started, 1: Needs Training, 2: Tr
 cl_obs_interp_enable | clientdll | Enables interpolation between observer targets
 cl_obs_interp_speed | clientdll | Spectator camera interpolation speed
 cl_observed_bot_crosshair | clientdll,release | Crosshair shown when observing a bot. 0 = show your crosshair, 1 = show your crosshair only when the bot can be taken over (otherwise default), 2 = always show the default crosshair
+cl_packetentities_merge_before_decode | developmentonly,defensive | When an entity is decoded from a baseline plus a wire delta, merge the two and decode once (true), or decode the baseline and then the delta as two passes (false, the old behaviour, which can invoke change callbacks with baseline values for an entity that already exists).
 cl_paintkit_override | clientdll,cheat,release | 
 cl_panel_freeze_time_after_press | developmentonly,clientdll,defensive | time to freeze mouse/pointer motion after a mouse button press
 cl_parallel_readpacketentities | developmentonly,defensive | Set to 1 to use threading snapshot reading (if game supports and server is sending bitcounts).
@@ -2053,10 +2054,20 @@ net_debug_to_file | developmentonly,gamedll,defensive |
 net_detailed_canpacket_log | developmentonly,defensive | 
 net_filelogging | developmentonly | Log packets to files
 net_fs_showindirections | developmentonly | 
-net_limit_sv_recv_max_message_size_kb | release | Server will reject message larger than N kb
-net_limit_sv_recv_segments_per_packet | release | Server will reject packets with more than N segments
-net_limit_sv_recvbuffer_kb | release | Server will not buffer more than N kb from connected clients
-net_limit_sv_recvbuffer_msg | release | Server will not buffer more than N messages from connected clients
+net_gather_child_fields_only | release | GatherSendProxyResults only walks struct and array fields, skipping scalar fields.
+net_limit_sv_listen_max_message_size_kb | release | Server: max SteamNetworkingSockets message size in kb accepted from a connection that does not yet have a netchan
+net_limit_sv_listen_recvbuffer_kb | release | Server: SteamNetworkingSockets will not buffer more than N kb from a connection that does not yet have a netchan
+net_limit_sv_listen_recvbuffer_msg | release | Server: SteamNetworkingSockets will not buffer more than N messages from a connection that does not yet have a netchan
+net_limit_sv_message_process_time_ms_drop_burst | release | Drop a client if processing their messages consumes more than N ms of CPU time in a burst (token bucket capacity)
+net_limit_sv_message_process_time_ms_drop_rate_per_sec | release | Drop a client if processing their messages consumes more than N ms of CPU time *PER SECOND*, sustained (token bucket fill rate)
+net_limit_sv_message_process_time_ms_warn_burst | release | Warn if processing messages from a client consumes more than N ms of CPU time in a burst (token bucket capacity)
+net_limit_sv_message_process_time_ms_warn_rate_per_sec | release | Warn if processing messages from a client consumes more than N ms of CPU time *PER SECOND*, sustained (token bucket fill rate)
+net_limit_sv_recv_chan_buffer_messages | release | Max number of source engine messages that can be queued in a netchan receive buffer for an ordinary connection from a client.
+net_limit_sv_recv_chan_msgs_per_frame | release | Max number of source engine messages an ordinary client connection may put in a single network frame.  Exceeding this disconnects the client.
+net_limit_sv_recv_max_frame_size_kb | release | Server will reject uncompressed Source engine frame larger than N kb.  Also sets limit on SteamNetworkingSockets message size
+net_limit_sv_recv_segments_per_packet | release | Server: SteamNetworkingSockets will reject packets with more than N message segments
+net_limit_sv_recvbuffer_kb | release | Server: SteamNetworkingSockets will not buffer more than N kb from connected clients
+net_limit_sv_recvbuffer_msg | release | Server: SteamNetworkingSockets will not buffer more than N messages from connected clients
 net_log_processing | developmentonly,defensive | Log network processing
 net_max_message_process_count | developmentonly,defensive | Maximum number of messages to process from a client in a single frame (0 == no limit).
 net_max_message_queue_size | developmentonly,defensive | Maximum number of messages to allow waiting in queue after processing; exceeding this disconnects the client. 0 == no limit
@@ -2388,6 +2399,16 @@ r_csgo_enable_tonemapping | clientdll,cheat |
 r_csgo_enable_translucent_screen_space | clientdll,cheat | 
 r_csgo_enable_volume_fog | developmentonly,clientdll | 
 r_csgo_firstpersonlegs_nearz_offset | developmentonly,clientdll | 
+r_csgo_frost_dry_time | developmentonly,clientdll | Seconds for the melted frost to dry
+r_csgo_frost_force | developmentonly,clientdll | Frost on players, weapons and chickens: -1 = the map's (info_map_parameters frostenabled), 0 = off, 1 = on (outdoors; melts indoors)
+r_csgo_frost_grow_time | developmentonly,clientdll | Seconds outdoors for frost to grow to full
+r_csgo_frost_heat_barrel_position | developmentonly,clientdll | Frost: where the barrel heat sits, from the shell eject (0) to the muzzle (1)
+r_csgo_frost_heat_cool_time | developmentonly,clientdll | Frost: seconds for a hot barrel to cool down
+r_csgo_frost_heat_light_delay | developmentonly,clientdll | Frost: seconds after a molotov is lit before its rag starts to heat (the flame shows a moment after)
+r_csgo_frost_heat_light_time | developmentonly,clientdll | Frost: seconds for a lit molotov's rag to reach full heat
+r_csgo_frost_heat_per_shot | developmentonly,clientdll | Frost: barrel heat per shot (1 = hot enough to clear the whole barrel)
+r_csgo_frost_indoor_distance | developmentonly,clientdll | Frost: distance under cover (no sky) over which the cold fades out (indoors)
+r_csgo_frost_melt_time | developmentonly,clientdll | Seconds indoors for full frost to melt
 r_csgo_fsr_enable_mip_bias | developmentonly,clientdll,defensive | Apply negative mip bias when rendering with FSR.
 r_csgo_fsr_rcas_sharpness | developmentonly,clientdll,defensive | RCAS sharpness when using FSR + RCAS upsample.
 r_csgo_fsr_upsample | developmentonly,clientdll,defensive | 0 == bilinear upsampe, 1 == FSR upsample, 2 == FSR + RCAS upsample
@@ -2429,6 +2450,7 @@ r_csgo_no_shader_resolve | clientdll,cheat |
 r_csgo_opaquerefract_viewmodel_depthcopy | developmentonly,clientdll | Copy depth in viewmodel for opaquerefract 
 r_csgo_opaquerefract_viewmodel_quality | developmentonly,clientdll | Opaque refract quality in viewmodel: 0 = no background copy, no depth, 1= background copy, depth if enabled 
 r_csgo_outline_glow_scaledenom | developmentonly,clientdll,cheat | 
+r_csgo_parallax | developmentonly,clientdll,defensive | Parallax occlusion mapping (Advanced Video setting): 0 = off, 1 = on
 r_csgo_player_occlusion_query | developmentonly,clientdll | 
 r_csgo_player_occlusion_query_debug | developmentonly,clientdll | 
 r_csgo_postprocess_enable | clientdll,cheat | 
@@ -3577,10 +3599,6 @@ sv_mover_maxslope | developmentonly,gamedll,clientdll,replicated,defensive | The
 sv_mover_pogodampingratio | developmentonly,gamedll,clientdll,replicated,defensive | The capsule pogo stick damping ratio [-]
 sv_mover_pogofrequency | developmentonly,gamedll,clientdll,replicated,defensive | The capsule pogo stick frequency [hz].
 sv_mute_players_with_social_penalties | developmentonly,gamedll,defensive | 
-sv_net_client_message_process_time_ms_drop_burst | release | Drop a client if processing their messages consumes more than N ms of CPU time in a burst (token bucket capacity)
-sv_net_client_message_process_time_ms_drop_rate | release | Drop a client if processing their messages consumes more than N ms of CPU time per second, sustained (token bucket fill rate)
-sv_net_client_message_process_time_ms_warn_burst | release | Warn if processing messages from a client consumes more than N ms of CPU time in a burst (token bucket capacity)
-sv_net_client_message_process_time_ms_warn_rate | release | Warn if processing messages from a client consumes more than N ms of CPU time per second, sustained (token bucket fill rate)
 sv_netprof_delta_sharing_temp | release | Temp counter for measuring performance impact of some network changes. To be removed by the end of Sept 2026
 sv_networkvar_log_fullchanges | developmentonly,gamedll | Log FUL_FULL_EDICT_CHANGED calls.
 sv_networkvar_perfieldtracking | release | Track individual field offset changes, rather than a single dirty flag for the whole entity.
@@ -3643,7 +3661,6 @@ sv_rcon_maxfailures | developmentonly,defensive | Max number of times a user can
 sv_rcon_minfailures | developmentonly,defensive | Number of times a user can fail rcon authentication in sv_rcon_minfailuretime before being banned
 sv_rcon_minfailuretime | developmentonly,defensive | Number of seconds to track failed rcon authentications
 sv_record_item_time_data | gamedll,release | Turn on recording of per player item time data into the server log.
-sv_recvbuf_messages | developmentonly,defensive | Max number of messages that can be queued in a netchan receive buffer for an ordinary connection from a client.
 sv_regeneration_force_on | gamedll,cheat | Cheat to test regenerative health systems
 sv_regeneration_wait_time | developmentonly,gamedll,replicated,defensive | 
 sv_region | release | The region of the world to report this server in.
@@ -3983,6 +4000,7 @@ vehicle_debug_impact_damage | developmentonly,gamedll |
 videocfg_ao_detail | developmentonly,clientdll,defensive | 
 videocfg_fsr_detail | developmentonly,clientdll,defensive | 
 videocfg_hdr_detail | developmentonly,clientdll,defensive | 
+videocfg_parallax_detail | developmentonly,clientdll,defensive | 
 videocfg_particle_detail | developmentonly,clientdll,defensive | 
 videocfg_shadow_quality | developmentonly,clientdll,defensive | 
 videocfg_texture_detail | developmentonly,clientdll,defensive | 
@@ -4054,6 +4072,7 @@ volume_fog_width | developmentonly,defensive | Width of volume fog texture
 vprof_all_threads | developmentonly | Capture VProf scopes on background threads as well as the target thread. Same option as the All Threads checkbox in the VProf tools -- setting either one updates the other
 vprof_counters | developmentonly,defensive | 
 vprof_counters_show_minmax | developmentonly,defensive | 
+vprof_lite_auto | release | Let demo playback and the game rules start, dump and stop the vprof lite profiler on their own.  The vprof_lite_start, vprof_lite_stop and vprof_lite_dump commands set this to 0 so that a script can drive the profiler itself.
 vprof_scope_entity_clientthink | developmentonly,clientdll,hidden,defensive | Does nothing whatsoever.
 vprof_scope_entity_thinks | developmentonly,gamedll,clientdll,replicated,defensive | 
 vprof_think_limit | developmentonly,gamedll,defensive | 
