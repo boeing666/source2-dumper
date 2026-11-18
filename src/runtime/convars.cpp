@@ -43,6 +43,11 @@ std::string CvarValueStr(EConVarType type, const CVValue_t* v) {
 	}
 	switch (type) {
 		case EConVarType_Bool:    return v->m_bValue ? "true" : "false";
+#if !defined(GAME_CS2)
+		// dota2 / deadlock tier0 has int8 / uint8 convars (sourcesdk `dota` / `deadlock` branches)
+		case EConVarType_Int8:    return std::to_string(v->m_i8Value);
+		case EConVarType_UInt8:   return std::to_string(v->m_u8Value);
+#endif
 		case EConVarType_Int16:   return std::to_string(v->m_i16Value);
 		case EConVarType_UInt16:  return std::to_string(v->m_u16Value);
 		case EConVarType_Int32:   return std::to_string(v->m_i32Value);
