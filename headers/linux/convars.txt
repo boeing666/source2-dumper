@@ -1607,7 +1607,7 @@ mp_endmatch_votenextmap_keepcurrent | gamedll,clientdll,replicated,release | If 
 mp_endmatch_votenextmap_wargames_modes | gamedll,release | Modes available for endmatch voting during War Games. Separate names with spaces.
 mp_endmatch_votenextmap_wargames_nummaps | gamedll,release | Maximum number of maps to include in endmatch voting during War Games
 mp_endmatch_votenextmap_wargames_nummodes | gamedll,release | Maximum number of other War Games to include in endmatch voting during War Games
-mp_endwarmup_player_count | gamedll,clientdll,replicated,release | Number of players required to be connected to end warmup early. 0 to require maximum players for mode.
+mp_endwarmup_player_count | gamedll,release,commandline_enforced | Number of players required to be connected to end warmup early. 0 to require maximum players for mode.
 mp_equipment_reset_rounds | gamedll,clientdll,replicated,release,commandline_enforced | Reset all player equipment every N rounds (0 for never)
 mp_fadetoblack | developmentonly,gamedll,clientdll,replicated,defensive | fade a player's screen to black when he dies
 mp_flinch_punch_scale | developmentonly,gamedll,clientdll,replicated,cheat | Scalar for first person view punch when getting hit.
@@ -1645,8 +1645,8 @@ mp_logdetail | gamedll,release | Logs attacks.  Values are: 0=off, 1=enemy, 2=te
 mp_logdetail_items | gamedll,release | Logs a line any time a player acquires or loses an item.
 mp_logmoney | gamedll,release | Enables money logging.  Values are: 0=off, 1=on
 mp_match_can_clinch | gamedll,clientdll,replicated,release,commandline_enforced | Can a team clinch and end the match by being so far ahead that the other team has no way to catching up?
-mp_match_end_changelevel | gamedll,clientdll,replicated,release,commandline_enforced | At the end of the match, perform a changelevel even if next map is the same
-mp_match_end_restart | gamedll,clientdll,replicated,release | At the end of the match, perform a restart instead of loading a new map
+mp_match_end_changelevel | gamedll,release,commandline_enforced | At the end of the match, perform a changelevel even if next map is the same
+mp_match_end_restart | gamedll,release,commandline_enforced | At the end of the match, perform a restart instead of loading a new map
 mp_match_restart_delay | gamedll,clientdll,replicated,release | Time (in seconds) until a match restarts.
 mp_max_armor | gamedll,clientdll,replicated,release,commandline_enforced | Determines the highest level of armor allowed to be purchased. (0) None, (1) Kevlar, (2) Helmet
 mp_maxmoney | gamedll,clientdll,replicated,release,commandline_enforced | maximum amount of money allowed in a player's account
@@ -1747,7 +1747,7 @@ mp_tkpunish | gamedll,replicated,release | Will TK'ers and team damagers be puni
 mp_tournament | developmentonly,gamedll,clientdll,replicated,defensive | 
 mp_tournament_whitelist | developmentonly,gamedll,defensive | Specifies the item whitelist file to use.
 mp_use_respawn_waves | gamedll,clientdll,replicated,release,commandline_enforced | When set to 1, and that player's team is set to respawn, they will respawn in waves. If set to 2, teams will respawn when the whole team is dead.
-mp_verbose_changelevel_spew | gamedll,clientdll,replicated,release | 
+mp_verbose_changelevel_spew | gamedll,release | 
 mp_warmup_items_drop_policy | gamedll,clientdll,replicated,release,commandline_enforced | Which items can drop during warmup (bitfield, 1=gun, 2=c4, 4=nade, 8=defuser, 16=taser, 32=healthshot)
 mp_warmup_items_nocost | gamedll,clientdll,replicated,release,commandline_enforced | Determines whether weapons are free to buy during warmup.
 mp_warmup_items_nocount_policy | gamedll,clientdll,replicated,release,commandline_enforced | Which items are unlimited during warmup (bitfield, 1=gun, 2=c4, 4=nade, 8=defuser/kevlar, 16=taser, 32=healthshot)
@@ -1756,8 +1756,8 @@ mp_warmup_offline_enabled | gamedll,clientdll,replicated,release | Whether or no
 mp_warmup_online_enabled | gamedll,clientdll,replicated,release | Whether or not to do a warmup period at the start of an online match.
 mp_warmup_pausetimer | gamedll,clientdll,replicated,release,commandline_enforced | Set to 1 to stay in warmup indefinitely. Set to 0 to resume the timer.
 mp_warmuptime | gamedll,clientdll,replicated,release,commandline_enforced | How long the warmup period lasts. Changing this value resets warmup.
-mp_warmuptime_all_players_connected | gamedll,clientdll,replicated,release,commandline_enforced | Warmup time to use when all players have connected. 0 to disable.
-mp_warmuptime_match_cancelled | gamedll,clientdll,replicated,release,commandline_enforced | Warmup time to use when the match will be cancelled (eg. due to a live VAC ban).
+mp_warmuptime_all_players_connected | gamedll,release,commandline_enforced | Warmup time to use when all players have connected. 0 to disable.
+mp_warmuptime_match_cancelled | gamedll,release,commandline_enforced | Warmup time to use when the match will be cancelled (eg. due to a live VAC ban).
 mp_weapon_next_owner_touch_time | gamedll,cheat,release | 
 mp_weapon_prev_owner_touch_time | gamedll,clientdll,replicated,cheat,release | 
 mp_weapon_self_inflict_amount | gamedll,replicated,release,commandline_enforced | If Set to non-0, will hurt the attacker by the specified fraction of max damage if they miss.
@@ -2284,8 +2284,8 @@ phys_visualize_awake_unattached_only | developmentonly,gamedll,clientdll,replica
 pickup_check_period | developmentonly,gamedll,defensive | 
 player0_using_joystick |  | 
 player_botdifflast_s | clientdll,release | 
-player_competitive_maplist_2v2_10_0_D684D4E1 | clientdll | 
-player_competitive_maplist_8_10_0_A062AC6A | clientdll | 
+player_competitive_maplist_2v2_10_0_7B2B4F7 | clientdll | 
+player_competitive_maplist_8_10_0_25074C46 | clientdll | 
 player_debug_off_nav | gamedll,cheat | 
 player_debug_print_damage | gamedll,cheat | When true, print amount and type of all damage received by player to console.
 player_nevershow_communityservermessage | clientdll,per_user | 
@@ -2399,16 +2399,6 @@ r_csgo_enable_tonemapping | clientdll,cheat |
 r_csgo_enable_translucent_screen_space | clientdll,cheat | 
 r_csgo_enable_volume_fog | developmentonly,clientdll | 
 r_csgo_firstpersonlegs_nearz_offset | developmentonly,clientdll | 
-r_csgo_frost_dry_time | developmentonly,clientdll | Seconds for the melted frost to dry
-r_csgo_frost_force | developmentonly,clientdll | Frost on players, weapons and chickens: -1 = the map's (info_map_parameters frostenabled), 0 = off, 1 = on (outdoors; melts indoors)
-r_csgo_frost_grow_time | developmentonly,clientdll | Seconds outdoors for frost to grow to full
-r_csgo_frost_heat_barrel_position | developmentonly,clientdll | Frost: where the barrel heat sits, from the shell eject (0) to the muzzle (1)
-r_csgo_frost_heat_cool_time | developmentonly,clientdll | Frost: seconds for a hot barrel to cool down
-r_csgo_frost_heat_light_delay | developmentonly,clientdll | Frost: seconds after a molotov is lit before its rag starts to heat (the flame shows a moment after)
-r_csgo_frost_heat_light_time | developmentonly,clientdll | Frost: seconds for a lit molotov's rag to reach full heat
-r_csgo_frost_heat_per_shot | developmentonly,clientdll | Frost: barrel heat per shot (1 = hot enough to clear the whole barrel)
-r_csgo_frost_indoor_distance | developmentonly,clientdll | Frost: distance under cover (no sky) over which the cold fades out (indoors)
-r_csgo_frost_melt_time | developmentonly,clientdll | Seconds indoors for full frost to melt
 r_csgo_fsr_enable_mip_bias | developmentonly,clientdll,defensive | Apply negative mip bias when rendering with FSR.
 r_csgo_fsr_rcas_sharpness | developmentonly,clientdll,defensive | RCAS sharpness when using FSR + RCAS upsample.
 r_csgo_fsr_upsample | developmentonly,clientdll,defensive | 0 == bilinear upsampe, 1 == FSR upsample, 2 == FSR + RCAS upsample
