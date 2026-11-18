@@ -23,9 +23,10 @@ public:
     float32 m_flSFXSDetailScrollY; // offset 0x21C, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flSFXSDetailScrollZ; // offset 0x220, size 0x4, align 4 | MPropertyFriendlyName
     bool m_bAnimatedDetail; // offset 0x224, size 0x1, align 1 | MPropertyFriendlyName
-    char _pad_0225[0x3]; // offset 0x225
-    float32 m_flSFXDetailAnimationTimePerFrame; // offset 0x228, size 0x4, align 4 | MPropertyFriendlyName
-    float32 m_flSFXDetailAnimationTimeOffset; // offset 0x22C, size 0x4, align 4 | MPropertyFriendlyName
+    bool m_bAnimatedNormal; // offset 0x225, size 0x1, align 1 | MPropertyFriendlyName
+    char _pad_0226[0x2]; // offset 0x226
+    float32 m_flSFXAnimationTimePerFrame; // offset 0x228, size 0x4, align 4 | MPropertyFriendlyName
+    float32 m_flSFXAnimationTimeOffset; // offset 0x22C, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flSFXSUseModelUVs; // offset 0x230, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flSFXEnvMapAmount; // offset 0x234, size 0x4, align 4 | MPropertyFriendlyName
 };

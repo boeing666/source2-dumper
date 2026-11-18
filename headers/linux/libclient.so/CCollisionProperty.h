@@ -1,6 +1,6 @@
 #pragma once
 
-class CCollisionProperty  // sizeof 0xB8, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CCollisionProperty  // sizeof 0xD0, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x10]; // offset 0x0
@@ -19,8 +19,9 @@ public:
     Vector m_vecSpecifiedSurroundingMaxs; // offset 0x70, size 0xC, align 4
     Vector m_vecSurroundingMaxs; // offset 0x7C, size 0xC, align 4
     Vector m_vecSurroundingMins; // offset 0x88, size 0xC, align 4
-    Vector m_vCapsuleCenter1; // offset 0x94, size 0xC, align 4
-    Vector m_vCapsuleCenter2; // offset 0xA0, size 0xC, align 4
-    float32 m_flCapsuleRadius; // offset 0xAC, size 0x4, align 4
-    char _pad_00B0[0x8]; // offset 0xB0
+    char _pad_0094[0x14]; // offset 0x94
+    Vector m_vCapsuleCenter1; // offset 0xA8, size 0xC, align 4
+    Vector m_vCapsuleCenter2; // offset 0xB4, size 0xC, align 4
+    float32 m_flCapsuleRadius; // offset 0xC0, size 0x4, align 4
+    char _pad_00C4[0xC]; // offset 0xC4
 };

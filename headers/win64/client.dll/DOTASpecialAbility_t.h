@@ -19,12 +19,14 @@ struct DOTASpecialAbility_t  // sizeof 0x118, align 0xFF (client)
     DAMAGE_TYPES m_nDamageTypeField; // offset 0x104, size 0x4, align 4
     uint8 m_unLevelUpInterval; // offset 0x108, size 0x1, align 1
     uint8 m_unLevelUpBonusRequiredLevel; // offset 0x109, size 0x1, align 1
-    bool m_bSpellDamageField; // offset 0x10A, size 0x1, align 1
-    bool m_bRequiresScepterField; // offset 0x10B, size 0x1, align 1
-    bool m_bRequiresShardField; // offset 0x10C, size 0x1, align 1
-    bool m_bAffectedByAoEIncrease; // offset 0x10D, size 0x1, align 1
-    bool m_bDynamicValue; // offset 0x10E, size 0x1, align 1
-    bool m_bAffectedByCurio; // offset 0x10F, size 0x1, align 1
-    bool m_bShowAbsoluteValues; // offset 0x110, size 0x1, align 1
-    char _pad_0111[0x7]; // offset 0x111
+    char _pad_010A[0x2]; // offset 0x10A
+    float32 m_flLevelUpMaxValue; // offset 0x10C, size 0x4, align 4
+    bool m_bSpellDamageField; // offset 0x110, size 0x1, align 1
+    bool m_bRequiresScepterField; // offset 0x111, size 0x1, align 1
+    bool m_bRequiresShardField; // offset 0x112, size 0x1, align 1
+    bool m_bAffectedByAoEIncrease; // offset 0x113, size 0x1, align 1
+    bool m_bDynamicValue; // offset 0x114, size 0x1, align 1
+    int8 m_nAffectedByCurio; // offset 0x115, size 0x1, align 1
+    bool m_bApplyEffectiveness; // offset 0x116, size 0x1, align 1
+    bool m_bShowAbsoluteValues; // offset 0x117, size 0x1, align 1
 };

@@ -11,5 +11,7 @@ public:
     char _pad_0018[0x8]; // offset 0x18
     matrix3x4a_t m_vecWorldOffset; // offset 0x20, size 0x30, align 16
     float32 m_flSaveTime; // offset 0x50, size 0x4, align 4
-    char _pad_0054[0xC]; // offset 0x54
+    int32 m_nGameSavedTick; // offset 0x54, size 0x4, align 4
+    int32 m_nGameDeltaTicks; // offset 0x58, size 0x4, align 4
+    char _pad_005C[0x4]; // offset 0x5C
 };

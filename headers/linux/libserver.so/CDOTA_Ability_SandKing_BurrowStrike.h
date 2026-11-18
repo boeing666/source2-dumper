@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Ability_SandKing_BurrowStrike : public CDOTABaseAbility /*0x0*/  // sizeof 0x878, align 0x8 [vtable] (server)
+class CDOTA_Ability_SandKing_BurrowStrike : public CDOTABaseAbility /*0x0*/  // sizeof 0x890, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x85C]; // offset 0x0
@@ -10,4 +10,9 @@ public:
     bool m_bIsVectorTargeted; // offset 0x868, size 0x1, align 1
     char _pad_0869[0x3]; // offset 0x869
     VectorWS m_vEndpoint; // offset 0x86C, size 0xC, align 4
+    VectorWS m_vLastThinkerLocation; // offset 0x878, size 0xC, align 4
+    float32 spine_radius; // offset 0x884, size 0x4, align 4
+    float32 spine_duration; // offset 0x888, size 0x4, align 4
+    bool bHasStartedSpines; // offset 0x88C, size 0x1, align 1
+    char _pad_088D[0x3]; // offset 0x88D
 };

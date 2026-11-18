@@ -3,17 +3,17 @@
 class CDOTA_AttackRecord  // sizeof 0x120, align 0xFF (client)
 {
 public:
-    uint8_t m_bAutoCastAttack : 1; // offset 0x0
-    uint8_t m_bNoCooldown : 1; // offset 0x0
-    uint8_t m_bProcessProcs : 1; // offset 0x0
+    uint8_t m_bIgnoreObstructions : 1; // offset 0x0
     uint8_t m_bUseProjectile : 1; // offset 0x0
+    uint8_t m_bAutoCastAttack : 1; // offset 0x0
+    uint8_t m_bIgnoreBaseArmor : 1; // offset 0x0
+    uint8_t m_bNoCrit : 1; // offset 0x0
+    uint8_t m_bNoLifesteal : 1; // offset 0x0
     uint8_t m_bSuppressCleave : 1; // offset 0x0
     uint8_t m_bSuppressDamageEffects : 1; // offset 0x0
     uint8_t m_bSuppressDamageSounds : 1; // offset 0x0
     uint8_t m_bForceAttackMissSound : 1; // offset 0x0
     uint8_t m_bSuppressAttackSounds : 1; // offset 0x0
-    uint8_t m_bIgnoreObstructions : 1; // offset 0x0
-    uint8_t m_bIgnoreBaseArmor : 1; // offset 0x0
     uint8_t m_bAttack : 1; // offset 0x0
     uint8_t m_bRangedAttack : 1; // offset 0x0
     uint8_t m_bDirectionalRangedAttack : 1; // offset 0x0
@@ -22,6 +22,8 @@ public:
     uint8_t m_bNeverMiss : 1; // offset 0x0
     uint8_t m_bLethalAttack : 1; // offset 0x0
     uint8_t m_bTriggeredAttack : 1; // offset 0x0
+    uint8_t m_bNoCooldown : 1; // offset 0x0
+    uint8_t m_bProcessProcs : 1; // offset 0x0
     char _pad_0001[0x7]; // offset 0x1
     CHandle< C_BaseEntity > m_hSource; // offset 0x8, size 0x4, align 4
     CHandle< C_DOTABaseAbility > m_hInflictor; // offset 0xC, size 0x4, align 4
@@ -53,11 +55,11 @@ public:
     float32 m_flDeadlyBlowBonus; // offset 0x70, size 0x4, align 4
     float32 m_flDeadlyBlowDamage; // offset 0x74, size 0x4, align 4
     float32 m_flDeadlyBlowDisplay; // offset 0x78, size 0x4, align 4
-    int32 m_iProjectileSpeed; // offset 0x7C, size 0x4, align 4
-    Vector m_vForceDirectionOverride; // offset 0x80, size 0xC, align 4
-    VectorWS m_vTargetLoc; // offset 0x8C, size 0xC, align 4
-    VectorWS m_vBlockLoc; // offset 0x98, size 0xC, align 4
-    char _pad_00A4[0x4]; // offset 0xA4
+    float32 m_flEffectiveness; // offset 0x7C, size 0x4, align 4
+    int32 m_iProjectileSpeed; // offset 0x80, size 0x4, align 4
+    Vector m_vForceDirectionOverride; // offset 0x84, size 0xC, align 4
+    VectorWS m_vTargetLoc; // offset 0x90, size 0xC, align 4
+    VectorWS m_vBlockLoc; // offset 0x9C, size 0xC, align 4
     CUtlSymbolLarge m_iszAutoAttackRangedParticle; // offset 0xA8, size 0x8, align 8
     CUtlSymbolLarge m_iszAutoAttackRangedParticleAdditionalEffect; // offset 0xB0, size 0x8, align 8
     char _pad_00B8[0x14]; // offset 0xB8

@@ -33,5 +33,6 @@ enum PulseValueType_t : uint32_t  // sizeof 0x4
     PVAL_PARTICLE_EHANDLE = 27,
     PVAL_ANIM_SEQUENCE = 28,
     PVAL_VDATA_CHOICE = 29,
-    PVAL_COUNT = 30,
+    PVAL_LAMBDA = 30,
+    PVAL_COUNT = 31,
 };

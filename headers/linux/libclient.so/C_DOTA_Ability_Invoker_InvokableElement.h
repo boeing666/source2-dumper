@@ -1,9 +1,9 @@
 #pragma once
 
-class C_DOTA_Ability_Invoker_InvokableElement : public C_DOTABaseAbility /*0x0*/  // sizeof 0x828, align 0xFF [vtable abstract] (client)
+class C_DOTA_Ability_Invoker_InvokableElement : public C_DOTABaseAbility /*0x0*/  // sizeof 0x830, align 0xFF [vtable abstract] (client)
 {
 public:
-    char _pad_0000[0x824]; // offset 0x0
-    bool m_bGainedScepterLevels; // offset 0x824, size 0x1, align 1
-    char _pad_0825[0x3]; // offset 0x825
+    char _pad_0000[0x828]; // offset 0x0
+    bool m_bGainedScepterLevels; // offset 0x828, size 0x1, align 1
+    char _pad_0829[0x7]; // offset 0x829
 };

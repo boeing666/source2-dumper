@@ -1,9 +1,9 @@
 #pragma once
 
-class CDOTA_PhantomAssassin_Gravestone : public CDOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x19A0, align 0x8 [vtable] (server)
+class CDOTA_PhantomAssassin_Gravestone : public CDOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x1A30, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x1998]; // offset 0x0
-    PlayerID_t m_nVictimPlayerID; // offset 0x1998, size 0x4, align 255
-    char _pad_199C[0x4]; // offset 0x199C
+    char _pad_0000[0x1A28]; // offset 0x0
+    PlayerID_t m_nVictimPlayerID; // offset 0x1A28, size 0x4, align 255
+    char _pad_1A2C[0x4]; // offset 0x1A2C
 };

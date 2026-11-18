@@ -1,6 +1,6 @@
 #pragma once
 
-struct PhysFeModelDesc_t  // sizeof 0x758, align 0x8 (physicslib) {MGetKV3ClassDefaults}
+struct PhysFeModelDesc_t  // sizeof 0x770, align 0x8 (physicslib) {MGetKV3ClassDefaults}
 {
     CUtlVector< uint32 > m_CtrlHash; // offset 0x0, size 0x18, align 8
     CUtlVector< CUtlString > m_CtrlName; // offset 0x18, size 0x18, align 8
@@ -99,23 +99,24 @@ struct PhysFeModelDesc_t  // sizeof 0x758, align 0x8 (physicslib) {MGetKV3ClassD
     CUtlVector< int16 > m_SkelParents; // offset 0x6C8, size 0x18, align 8
     CUtlVector< FeNodeWindBase_t > m_DynNodeWindBases; // offset 0x6E0, size 0x18, align 8
     CUtlVector< FeModelSelfCollisionLayer_t > m_SelfCollisionLayers; // offset 0x6F8, size 0x18, align 8
-    float32 m_flInternalPressure; // offset 0x710, size 0x4, align 4
-    float32 m_flDefaultTimeDilation; // offset 0x714, size 0x4, align 4
-    float32 m_flWindage; // offset 0x718, size 0x4, align 4
-    float32 m_flWindDrag; // offset 0x71C, size 0x4, align 4
-    float32 m_flDefaultSurfaceStretch; // offset 0x720, size 0x4, align 4
-    float32 m_flDefaultThreadStretch; // offset 0x724, size 0x4, align 4
-    float32 m_flDefaultGravityScale; // offset 0x728, size 0x4, align 4
-    float32 m_flDefaultVelAirDrag; // offset 0x72C, size 0x4, align 4
-    float32 m_flDefaultExpAirDrag; // offset 0x730, size 0x4, align 4
-    float32 m_flDefaultVelQuadAirDrag; // offset 0x734, size 0x4, align 4
-    float32 m_flDefaultExpQuadAirDrag; // offset 0x738, size 0x4, align 4
-    float32 m_flRodVelocitySmoothRate; // offset 0x73C, size 0x4, align 4
-    float32 m_flQuadVelocitySmoothRate; // offset 0x740, size 0x4, align 4
-    float32 m_flAddWorldCollisionRadius; // offset 0x744, size 0x4, align 4
-    float32 m_flDefaultVolumetricSolveAmount; // offset 0x748, size 0x4, align 4
-    float32 m_flMotionSmoothCDT; // offset 0x74C, size 0x4, align 4
-    float32 m_flLocalDrag1; // offset 0x750, size 0x4, align 4
-    uint16 m_nRodVelocitySmoothIterations; // offset 0x754, size 0x2, align 2
-    uint16 m_nQuadVelocitySmoothIterations; // offset 0x756, size 0x2, align 2
+    CUtlVector< FeModelDeformer_t > m_Deformers; // offset 0x710, size 0x18, align 8
+    float32 m_flInternalPressure; // offset 0x728, size 0x4, align 4
+    float32 m_flDefaultTimeDilation; // offset 0x72C, size 0x4, align 4
+    float32 m_flWindage; // offset 0x730, size 0x4, align 4
+    float32 m_flWindDrag; // offset 0x734, size 0x4, align 4
+    float32 m_flDefaultSurfaceStretch; // offset 0x738, size 0x4, align 4
+    float32 m_flDefaultThreadStretch; // offset 0x73C, size 0x4, align 4
+    float32 m_flDefaultGravityScale; // offset 0x740, size 0x4, align 4
+    float32 m_flDefaultVelAirDrag; // offset 0x744, size 0x4, align 4
+    float32 m_flDefaultExpAirDrag; // offset 0x748, size 0x4, align 4
+    float32 m_flDefaultVelQuadAirDrag; // offset 0x74C, size 0x4, align 4
+    float32 m_flDefaultExpQuadAirDrag; // offset 0x750, size 0x4, align 4
+    float32 m_flRodVelocitySmoothRate; // offset 0x754, size 0x4, align 4
+    float32 m_flQuadVelocitySmoothRate; // offset 0x758, size 0x4, align 4
+    float32 m_flAddWorldCollisionRadius; // offset 0x75C, size 0x4, align 4
+    float32 m_flDefaultVolumetricSolveAmount; // offset 0x760, size 0x4, align 4
+    float32 m_flMotionSmoothCDT; // offset 0x764, size 0x4, align 4
+    float32 m_flLocalDrag1; // offset 0x768, size 0x4, align 4
+    uint16 m_nRodVelocitySmoothIterations; // offset 0x76C, size 0x2, align 2
+    uint16 m_nQuadVelocitySmoothIterations; // offset 0x76E, size 0x2, align 2
 };

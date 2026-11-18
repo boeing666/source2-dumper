@@ -130,4 +130,5 @@ enum EDotaClientMessages : uint32_t  // sizeof 0x4
     DOTA_CM_ChooseAghanimUpgrade = 832,
     DOTA_CM_ChooseAbilityImbue = 833,
     DOTA_CM_NetworkStats = 834,
+    DOTA_CM_BrewmasterAssignScepterItem = 835,
 };

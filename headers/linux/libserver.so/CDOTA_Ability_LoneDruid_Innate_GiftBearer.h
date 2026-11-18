@@ -4,5 +4,6 @@ class CDOTA_Ability_LoneDruid_Innate_GiftBearer : public CDOTABaseAbility /*0x0*
 {
 public:
     char _pad_0000[0x85C]; // offset 0x0
-    int32[5] m_tierReroll; // offset 0x85C, size 0x14, align 4
+    int32[4] m_tierReroll; // offset 0x85C, size 0x10, align 4
+    char _pad_086C[0x4]; // offset 0x86C
 };

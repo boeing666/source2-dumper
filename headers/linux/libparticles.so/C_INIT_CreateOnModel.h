@@ -1,6 +1,6 @@
 #pragma once
 
-class C_INIT_CreateOnModel : public CParticleFunctionInitializer /*0x0*/  // sizeof 0x1378, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults MGPUParticleFunction}
+class C_INIT_CreateOnModel : public CParticleFunctionInitializer /*0x0*/  // sizeof 0x1388, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults MGPUParticleFunction}
 {
 public:
     char _pad_0000[0x1E0]; // offset 0x0
@@ -23,5 +23,9 @@ public:
     bool m_bUseMesh; // offset 0x1202, size 0x1, align 1 | MPropertyFriendlyName
     char _pad_1203[0x1]; // offset 0x1203
     float32 m_flMeshNormalOffset; // offset 0x1204, size 0x4, align 4 | MPropertyFriendlyName MPropertySuppressExpr
-    CParticleCollectionFloatInput m_flShellSize; // offset 0x1208, size 0x170, align 8 | MPropertyFriendlyName MPropertySuppressExpr
+    bool m_bInitColorToAlbedo; // offset 0x1208, size 0x1, align 1 | MPropertyFriendlyName MPropertySuppressExpr
+    bool m_bInitNormal; // offset 0x1209, size 0x1, align 1 | MPropertyFriendlyName MPropertySuppressExpr
+    char _pad_120A[0x6]; // offset 0x120A
+    CParticleCollectionFloatInput m_flShellSize; // offset 0x1210, size 0x170, align 8 | MPropertyFriendlyName MPropertySuppressExpr
+    char _pad_1380[0x8]; // offset 0x1380
 };

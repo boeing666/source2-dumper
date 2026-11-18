@@ -8,5 +8,6 @@ enum PulseVariableKeysSource_t : uint32_t  // sizeof 0x4
     VMDL = 3,
     XML = 4,
     VDATA = 5,
-    COUNT = 6,
+    VMAP_AND_VDATA = 6,
+    COUNT = 7,
 };

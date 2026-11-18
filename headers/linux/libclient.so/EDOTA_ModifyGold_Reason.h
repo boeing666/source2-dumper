@@ -25,4 +25,5 @@ enum EDOTA_ModifyGold_Reason : uint32_t  // sizeof 0x4
     DOTA_ModifyGold_WardKill = 20,
     DOTA_ModifyGold_CourierKilledByThisPlayer = 21,
     DOTA_ModifyGold_SummonKill = 22,
+    DOTA_ModifyGold_Midas = 23,
 };

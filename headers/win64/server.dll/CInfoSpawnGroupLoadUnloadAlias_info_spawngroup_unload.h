@@ -1,7 +1,7 @@
 #pragma once
 
-class CInfoSpawnGroupLoadUnloadAlias_info_spawngroup_unload : public CInfoSpawnGroupLoadUnload /*0x0*/  // sizeof 0x570, align 0x8 [vtable] (server)
+class CInfoSpawnGroupLoadUnloadAlias_info_spawngroup_unload : public CInfoSpawnGroupLoadUnload /*0x0*/  // sizeof 0x578, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x570]; // offset 0x0
+    char _pad_0000[0x578]; // offset 0x0
 };

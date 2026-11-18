@@ -1,6 +1,6 @@
 #pragma once
 
-class C_OP_LockToBone : public CParticleFunctionOperator /*0x0*/  // sizeof 0xBA0, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults MGPUParticleFunction}
+class C_OP_LockToBone : public CParticleFunctionOperator /*0x0*/  // sizeof 0xBA8, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults MGPUParticleFunction}
 {
 public:
     char _pad_0000[0x1E0]; // offset 0x0
@@ -21,4 +21,5 @@ public:
     char _pad_0349[0x7]; // offset 0x349
     CPerParticleVecInput m_vecRotation; // offset 0x350, size 0x6D8, align 8 | MPropertyFriendlyName
     CPerParticleFloatInput m_flRotLerp; // offset 0xA28, size 0x178, align 8 | MPropertyFriendlyName
+    char _pad_0BA0[0x8]; // offset 0xBA0
 };

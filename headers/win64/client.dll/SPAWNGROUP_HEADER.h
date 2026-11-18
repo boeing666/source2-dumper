@@ -8,5 +8,8 @@ public:
     matrix3x4a_t m_vecWorldOffset; // offset 0x10, size 0x30, align 16
     bool m_bClientSpawnGroup; // offset 0x40, size 0x1, align 1
     bool m_bSuppressAllEntities; // offset 0x41, size 0x1, align 1
-    char _pad_0042[0xE]; // offset 0x42
+    bool m_bPersistentSpawnGroup; // offset 0x42, size 0x1, align 1
+    char _pad_0043[0x1]; // offset 0x43
+    int32 m_nSaveSlot; // offset 0x44, size 0x4, align 4
+    char _pad_0048[0x8]; // offset 0x48
 };

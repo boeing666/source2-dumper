@@ -9,7 +9,7 @@ public:
     CTransform m_xInitialPathWorldToLocal; // offset 0x720, size 0x20, align 16
     DirectionAlongSimplePath_t m_eDesiredDirection; // offset 0x740, size 0x4, align 4
     bool m_bIgnoreParentRotation; // offset 0x744, size 0x1, align 1
-    char _pad_0745[0x1B]; // offset 0x745
-    bool m_bAlwaysReevaluateSpline; // offset 0x760, size 0x1, align 1
-    char _pad_0761[0xF]; // offset 0x761
+    char _pad_0745[0x1F]; // offset 0x745
+    bool m_bAlwaysReevaluateSpline; // offset 0x764, size 0x1, align 1
+    char _pad_0765[0xB]; // offset 0x765
 };

@@ -4,6 +4,7 @@ class CDOTA_Ability_Pugna_LifeDrain : public CDOTABaseAbility /*0x0*/  // sizeof
 {
 public:
     char _pad_0000[0x580]; // offset 0x0
-    CHandle< CBaseEntity > m_hTarget; // offset 0x580, size 0x4, align 4
-    char _pad_0584[0x4]; // offset 0x584
+    bool m_bIgnoreActiveDrains; // offset 0x580, size 0x1, align 1
+    char _pad_0581[0x3]; // offset 0x581
+    GameTime_t m_flChannelEndTime; // offset 0x584, size 0x4, align 255
 };

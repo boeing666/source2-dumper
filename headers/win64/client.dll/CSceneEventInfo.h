@@ -1,6 +1,6 @@
 #pragma once
 
-class CSceneEventInfo  // sizeof 0x78, align 0xFF (client)
+class CSceneEventInfo  // sizeof 0x210, align 0xFF (client)
 {
 public:
     int32 m_iLayer; // offset 0x0, size 0x4, align 4
@@ -13,18 +13,18 @@ public:
     float32 m_flLastCycle; // offset 0x1C, size 0x4, align 4
     CStrongHandle< InfoForResourceTypeCNmClip > m_hAnimClip; // offset 0x20, size 0x8, align 8
     CGlobalSymbol m_sAnimClipSlot; // offset 0x28, size 0x8, align 8
-    CGlobalSymbol m_sAnimClipSlotWeight; // offset 0x30, size 0x8, align 8
-    bool m_bHasArrived; // offset 0x38, size 0x1, align 1
-    bool m_bExternalGraphFinished; // offset 0x39, size 0x1, align 1
-    char _pad_003A[0x2]; // offset 0x3A
-    int32 m_nType; // offset 0x3C, size 0x4, align 4
-    GameTime_t m_flNext; // offset 0x40, size 0x4, align 255
-    bool m_bIsGesture; // offset 0x44, size 0x1, align 1
-    bool m_bShouldRemove; // offset 0x45, size 0x1, align 1
-    char _pad_0046[0x26]; // offset 0x46
-    CHandle< C_BaseEntity > m_hTarget; // offset 0x6C, size 0x4, align 4
-    SceneEventId_t m_nSceneEventId; // offset 0x70, size 0x4, align 255
-    bool m_bClientSide; // offset 0x74, size 0x1, align 1
-    bool m_bStarted; // offset 0x75, size 0x1, align 1
-    char _pad_0076[0x2]; // offset 0x76
+    char _pad_0030[0x1A1]; // offset 0x30
+    bool m_bHasArrived; // offset 0x1D1, size 0x1, align 1
+    bool m_bExternalGraphFinished; // offset 0x1D2, size 0x1, align 1
+    char _pad_01D3[0x1]; // offset 0x1D3
+    int32 m_nType; // offset 0x1D4, size 0x4, align 4
+    GameTime_t m_flNext; // offset 0x1D8, size 0x4, align 255
+    bool m_bIsGesture; // offset 0x1DC, size 0x1, align 1
+    bool m_bShouldRemove; // offset 0x1DD, size 0x1, align 1
+    char _pad_01DE[0x26]; // offset 0x1DE
+    CHandle< C_BaseEntity > m_hTarget; // offset 0x204, size 0x4, align 4
+    SceneEventId_t m_nSceneEventId; // offset 0x208, size 0x4, align 255
+    bool m_bClientSide; // offset 0x20C, size 0x1, align 1
+    bool m_bStarted; // offset 0x20D, size 0x1, align 1
+    char _pad_020E[0x2]; // offset 0x20E
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CSceneEntity : public CPointEntity /*0x0*/  // sizeof 0xAF8, align 0x8 [vtable] (server)
+class CSceneEntity : public CPointEntity /*0x0*/  // sizeof 0xB28, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x780]; // offset 0x0
@@ -51,39 +51,42 @@ public:
     char _pad_082B[0x5]; // offset 0x82B
     CNetworkUtlVectorBase< CHandle< CBaseModelEntity > > m_hActorList; // offset 0x830, size 0x18, align 8
     CUtlVector< CHandle< CBaseEntity > > m_hRemoveActorList; // offset 0x848, size 0x18, align 8
-    char _pad_0860[0x30]; // offset 0x860
-    uint16 m_nSceneStringIndex; // offset 0x890, size 0x2, align 2 | MNotSaved
-    char _pad_0892[0x6]; // offset 0x892
-    CEntityIOOutput m_OnStart; // offset 0x898, size 0x18, align 255
-    CEntityIOOutput m_OnCompletion; // offset 0x8B0, size 0x18, align 255
-    CEntityIOOutput m_OnCanceled; // offset 0x8C8, size 0x18, align 255
-    CEntityIOOutput m_OnPaused; // offset 0x8E0, size 0x18, align 255
-    CEntityIOOutput m_OnResumed; // offset 0x8F8, size 0x18, align 255
-    CEntityIOOutput m_OnPulseRequirement; // offset 0x910, size 0x18, align 255
-    CUtlDict< SceneLocatorSettings_t > m_LocatorSettingsMap; // offset 0x928, size 0x28, align 8
-    char _pad_0950[0x78]; // offset 0x950
-    CUtlDict< CUtlSymbolLarge > m_TargetNameMap; // offset 0x9C8, size 0x28, align 8
-    CUtlDict< CUtlSymbolLarge > m_AnchorNameMap; // offset 0x9F0, size 0x28, align 8
-    CUtlDict< CUtlSymbolLarge > m_ActorGraphMap; // offset 0xA18, size 0x28, align 8
-    CUtlDict< ActorClipEntry_t > m_ActorClipMap; // offset 0xA40, size 0x28, align 8
-    CUtlVector< ActorMapping_t > m_ActorMap; // offset 0xA68, size 0x18, align 8
-    CHandle< CSceneEntity > m_hInterruptScene; // offset 0xA80, size 0x4, align 4
-    int32 m_nInterruptCount; // offset 0xA84, size 0x4, align 4
-    CUtlString m_responseConcept; // offset 0xA88, size 0x8, align 8
-    CUtlString m_responseCriteria; // offset 0xA90, size 0x8, align 8
-    bool m_bSceneMissing; // offset 0xA98, size 0x1, align 1 | MNotSaved
-    bool m_bInterrupted; // offset 0xA99, size 0x1, align 1
-    bool m_bCompletedEarly; // offset 0xA9A, size 0x1, align 1
-    bool m_bInterruptSceneFinished; // offset 0xA9B, size 0x1, align 1
-    bool m_bRestoring; // offset 0xA9C, size 0x1, align 1 | MNotSaved
-    char _pad_0A9D[0x3]; // offset 0xA9D
-    CUtlVector< CHandle< CSceneEntity > > m_hNotifySceneCompletion; // offset 0xAA0, size 0x18, align 8
-    CUtlVector< CHandle< CSceneListManager > > m_hListManagers; // offset 0xAB8, size 0x18, align 8
-    CUtlSymbolLarge m_iszSoundName; // offset 0xAD0, size 0x8, align 8
-    CUtlSymbolLarge m_iszSequenceName; // offset 0xAD8, size 0x8, align 8
-    CHandle< CBaseModelEntity > m_hActor; // offset 0xAE0, size 0x4, align 4
-    CHandle< CBaseEntity > m_hActivator; // offset 0xAE4, size 0x4, align 4
-    int32 m_BusyActor; // offset 0xAE8, size 0x4, align 4
-    SceneOnPlayerDeath_t m_iPlayerDeathBehavior; // offset 0xAEC, size 0x4, align 4
-    char _pad_0AF0[0x8]; // offset 0xAF0
+    char _pad_0860[0x50]; // offset 0x860
+    uint16 m_nSceneStringIndex; // offset 0x8B0, size 0x2, align 2 | MNotSaved
+    char _pad_08B2[0x6]; // offset 0x8B2
+    CEntityIOOutput m_OnStart; // offset 0x8B8, size 0x18, align 255
+    CEntityIOOutput m_OnCompletion; // offset 0x8D0, size 0x18, align 255
+    CEntityIOOutput m_OnCanceled; // offset 0x8E8, size 0x18, align 255
+    CEntityIOOutput m_OnPaused; // offset 0x900, size 0x18, align 255
+    CEntityIOOutput m_OnResumed; // offset 0x918, size 0x18, align 255
+    CEntityIOOutput m_OnPulseRequirement; // offset 0x930, size 0x18, align 255
+    CUtlDict< SceneLocatorSettings_t > m_LocatorSettingsMap; // offset 0x948, size 0x28, align 8
+    char _pad_0970[0x78]; // offset 0x970
+    bool m_bOutputListLoaded; // offset 0x9E8, size 0x1, align 1 | MNotSaved
+    char _pad_09E9[0x7]; // offset 0x9E9
+    CUtlDict< CUtlSymbolLarge > m_TargetNameMap; // offset 0x9F0, size 0x28, align 8
+    CUtlDict< CUtlSymbolLarge > m_AnchorNameMap; // offset 0xA18, size 0x28, align 8
+    CUtlDict< ActorGraphEntry_t > m_ActorGraphMap; // offset 0xA40, size 0x28, align 8
+    CUtlDict< ActorClipEntry_t > m_ActorClipMap; // offset 0xA68, size 0x28, align 8
+    CUtlVector< ActorMapping_t > m_ActorMap; // offset 0xA90, size 0x18, align 8
+    CHandle< CSceneEntity > m_hInterruptScene; // offset 0xAA8, size 0x4, align 4
+    int32 m_nInterruptCount; // offset 0xAAC, size 0x4, align 4
+    CUtlString m_responseConcept; // offset 0xAB0, size 0x8, align 8
+    CUtlString m_responseCriteria; // offset 0xAB8, size 0x8, align 8
+    bool m_bSceneMissing; // offset 0xAC0, size 0x1, align 1 | MNotSaved
+    bool m_bInterrupted; // offset 0xAC1, size 0x1, align 1
+    bool m_bCompletedEarly; // offset 0xAC2, size 0x1, align 1
+    bool m_bInterruptSceneFinished; // offset 0xAC3, size 0x1, align 1
+    bool m_bRestoring; // offset 0xAC4, size 0x1, align 1 | MNotSaved
+    char _pad_0AC5[0x3]; // offset 0xAC5
+    CUtlVector< CHandle< CSceneEntity > > m_hNotifySceneCompletion; // offset 0xAC8, size 0x18, align 8
+    CUtlVector< CHandle< CSceneListManager > > m_hListManagers; // offset 0xAE0, size 0x18, align 8
+    CUtlSymbolLarge m_iszSoundName; // offset 0xAF8, size 0x8, align 8
+    CUtlSymbolLarge m_iszSequenceName; // offset 0xB00, size 0x8, align 8
+    CUtlSymbolLarge m_iszLookTarget; // offset 0xB08, size 0x8, align 8
+    CHandle< CBaseModelEntity > m_hActor; // offset 0xB10, size 0x4, align 4
+    CHandle< CBaseEntity > m_hActivator; // offset 0xB14, size 0x4, align 4
+    int32 m_BusyActor; // offset 0xB18, size 0x4, align 4
+    SceneOnPlayerDeath_t m_iPlayerDeathBehavior; // offset 0xB1C, size 0x4, align 4
+    char _pad_0B20[0x8]; // offset 0xB20
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_DataNonSpectator : public CBaseEntity /*0x0*/  // sizeof 0x1FC8, align 0x8 [vtable] (server)
+class CDOTA_DataNonSpectator : public CBaseEntity /*0x0*/  // sizeof 0x1FE0, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x778]; // offset 0x0
@@ -27,9 +27,13 @@ public:
     float32[100] m_vPossibleWardRadii; // offset 0x1D40, size 0x190, align 4
     CUtlVectorEmbeddedNetworkVar< DOTATeleportInfo_t > m_vecTrackedTeleports; // offset 0x1ED0, size 0x68, align 8
     CUtlVectorEmbeddedNetworkVar< DOTANeutralCampInfo_t > m_vecKnownCampStacks; // offset 0x1F38, size 0x68, align 8
-    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1FA0, size 0x18, align 255
-    int32 m_nNextPowerRuneType; // offset 0x1FB8, size 0x4, align 4
-    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1FBC, size 0x4, align 4
-    int32 m_iTowerKills; // offset 0x1FC0, size 0x4, align 4
-    char _pad_1FC4[0x4]; // offset 0x1FC4
+    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1FA0, size 0x20, align 255
+    int32 m_nNextPowerRuneType; // offset 0x1FC0, size 0x4, align 4
+    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1FC4, size 0x4, align 4
+    CHandle< CBaseEntity > m_hNextPowerRuneSpawner; // offset 0x1FC8, size 0x4, align 4
+    int32 m_iTowerKills; // offset 0x1FCC, size 0x4, align 4
+    ERoshanSpawnPhase m_eKnownRoshanPhase; // offset 0x1FD0, size 0x4, align 4
+    GameTime_t m_flKnownRoshanPhaseStartTime; // offset 0x1FD4, size 0x4, align 255
+    GameTime_t m_flKnownRoshanPhaseEndTime; // offset 0x1FD8, size 0x4, align 255
+    char _pad_1FDC[0x4]; // offset 0x1FDC
 };

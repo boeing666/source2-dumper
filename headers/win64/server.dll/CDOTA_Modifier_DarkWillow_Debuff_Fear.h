@@ -1,9 +1,9 @@
 #pragma once
 
-class CDOTA_Modifier_DarkWillow_Debuff_Fear : public CDOTA_Modifier_Fear /*0x0*/  // sizeof 0x1AB0, align 0xFF [vtable] (server)
+class CDOTA_Modifier_DarkWillow_Debuff_Fear : public CDOTA_Modifier_Fear /*0x0*/  // sizeof 0x1B10, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x1AA8]; // offset 0x0
-    bool m_bDidGiveOrder; // offset 0x1AA8, size 0x1, align 1
-    char _pad_1AA9[0x7]; // offset 0x1AA9
+    char _pad_0000[0x1B08]; // offset 0x0
+    bool m_bDidGiveOrder; // offset 0x1B08, size 0x1, align 1
+    char _pad_1B09[0x7]; // offset 0x1B09
 };

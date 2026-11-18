@@ -1,7 +1,7 @@
 #pragma once
 
-class CDarkCarnivalCrateDropGameEffectsEntity : public C_BaseModelEntity /*0x0*/  // sizeof 0xD00, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
+class CDarkCarnivalCrateDropGameEffectsEntity : public C_BaseModelEntity /*0x0*/  // sizeof 0xD68, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
 {
 public:
-    char _pad_0000[0xD00]; // offset 0x0
+    char _pad_0000[0xD68]; // offset 0x0
 };

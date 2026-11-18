@@ -3,7 +3,6 @@
 enum InputBitMask_t : uint64_t  // sizeof 0x8
 {
     IN_NONE = 0,
-    IN_ALL = -1,
     IN_ATTACK = 1,
     IN_JUMP = 2,
     IN_DUCK = 4,

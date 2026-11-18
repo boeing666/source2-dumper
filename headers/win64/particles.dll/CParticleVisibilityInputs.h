@@ -1,6 +1,6 @@
 #pragma once
 
-class CParticleVisibilityInputs  // sizeof 0x48, align 0x4 [trivial_dtor] (particles) {MGetKV3ClassDefaults}
+class CParticleVisibilityInputs  // sizeof 0x44, align 0x4 [trivial_dtor] (particles) {MGetKV3ClassDefaults}
 {
 public:
     float32 m_flCameraBias; // offset 0x0, size 0x4, align 4 | MPropertyFriendlyName
@@ -21,7 +21,6 @@ public:
     float32 m_flAlphaScaleMax; // offset 0x34, size 0x4, align 4 | MPropertyFriendlyName MPropertySuppressExpr
     float32 m_flRadiusScaleMin; // offset 0x38, size 0x4, align 4 | MPropertyFriendlyName MPropertySuppressExpr
     float32 m_flRadiusScaleMax; // offset 0x3C, size 0x4, align 4 | MPropertyFriendlyName MPropertySuppressExpr
-    float32 m_flRadiusScaleFOVBase; // offset 0x40, size 0x4, align 4 | MPropertyFriendlyName MPropertySuppressExpr
-    bool m_bRightEye; // offset 0x44, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
-    char _pad_0045[0x3]; // offset 0x45
+    bool m_bRightEye; // offset 0x40, size 0x1, align 1 | MPropertyFriendlyName MParticleAdvancedField
+    char _pad_0041[0x3]; // offset 0x41
 };

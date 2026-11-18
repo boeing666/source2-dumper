@@ -11,7 +11,8 @@ struct VMixDynamicsCompressorDesc_t  // sizeof 0x28, align 0x4 [trivial_dtor] (s
     float32 m_flRMSTimeMS; // offset 0x18, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flWetMix; // offset 0x1C, size 0x4, align 4 | MPropertyFriendlyName
     float32 m_flSCHighPassFreq; // offset 0x20, size 0x4, align 4 | MPropertyFriendlyName
-    bool m_bPeakMode; // offset 0x24, size 0x1, align 1 | MPropertyFriendlyName
-    bool m_bAutoMakeupGain; // offset 0x25, size 0x1, align 1 | MPropertyFriendlyName
-    char _pad_0026[0x2]; // offset 0x26
+    VMixCompressorType_t m_nCompressorType; // offset 0x24, size 0x1, align 1 | MPropertyFriendlyName
+    bool m_bPeakMode; // offset 0x25, size 0x1, align 1 | MPropertyFriendlyName
+    bool m_bAutoMakeupGain; // offset 0x26, size 0x1, align 1 | MPropertyFriendlyName
+    char _pad_0027[0x1]; // offset 0x27
 };

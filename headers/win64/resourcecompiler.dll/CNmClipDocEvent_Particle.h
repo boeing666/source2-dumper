@@ -12,7 +12,8 @@ public:
     bool m_bDetachFromOwner; // offset 0x30, size 0x1, align 1
     bool m_bStopImmediately; // offset 0x31, size 0x1, align 1
     bool m_bPlayEndCap; // offset 0x32, size 0x1, align 1
-    char _pad_0033[0x5]; // offset 0x33
+    bool m_bAggregate; // offset 0x33, size 0x1, align 1 | MPropertyFriendlyName
+    char _pad_0034[0x4]; // offset 0x34
     CUtlString m_attachmentPoint0; // offset 0x38, size 0x8, align 8 | MPropertyStartGroup MPropertyAttrStateCallback
     ParticleAttachment_t m_attachmentType0; // offset 0x40, size 0x4, align 4 | MPropertyAttrStateCallback
     char _pad_0044[0x4]; // offset 0x44

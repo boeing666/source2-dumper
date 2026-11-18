@@ -1,6 +1,6 @@
 #pragma once
 
-class CModelState  // sizeof 0x2C0, align 0xFF [vtable] (client) {MGetKV3ClassDefaults}
+class CModelState  // sizeof 0x2B0, align 0xFF [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0xA0]; // offset 0x0
@@ -14,15 +14,15 @@ public:
     uint8 m_nRootBoneOffsetResetSerialNumber; // offset 0xF4, size 0x1, align 1
     char _pad_00F5[0x23]; // offset 0xF5
     bool m_bClientClothCreationSuppressed; // offset 0x118, size 0x1, align 1
-    char _pad_0119[0xE7]; // offset 0x119
-    uint8 m_nAnimStateNoInterpSerialNumber; // offset 0x200, size 0x1, align 1
-    char _pad_0201[0x7]; // offset 0x201
-    uint64 m_MeshGroupMask; // offset 0x208, size 0x8, align 8
-    char _pad_0210[0x48]; // offset 0x210
-    C_NetworkUtlVectorBase< int32 > m_nBodyGroupChoices; // offset 0x258, size 0x18, align 8
-    char _pad_0270[0x32]; // offset 0x270
-    int8 m_nIdealMotionType; // offset 0x2A2, size 0x1, align 1
-    int8 m_nForceLOD; // offset 0x2A3, size 0x1, align 1
-    int8 m_nClothUpdateFlags; // offset 0x2A4, size 0x1, align 1
-    char _pad_02A5[0x1B]; // offset 0x2A5
+    char _pad_0119[0xC7]; // offset 0x119
+    uint8 m_nAnimStateNoInterpSerialNumber; // offset 0x1E0, size 0x1, align 1
+    char _pad_01E1[0x7]; // offset 0x1E1
+    uint64 m_MeshGroupMask; // offset 0x1E8, size 0x8, align 8
+    char _pad_01F0[0x48]; // offset 0x1F0
+    C_NetworkUtlVectorBase< int32 > m_nBodyGroupChoices; // offset 0x238, size 0x18, align 8
+    char _pad_0250[0x32]; // offset 0x250
+    int8 m_nIdealMotionType; // offset 0x282, size 0x1, align 1
+    int8 m_nForceLOD; // offset 0x283, size 0x1, align 1
+    int8 m_nClothUpdateFlags; // offset 0x284, size 0x1, align 1
+    char _pad_0285[0x2B]; // offset 0x285
 };

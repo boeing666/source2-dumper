@@ -7,5 +7,6 @@ struct CPulseCell_IntervalTimer::CursorState_t  // sizeof 0x14, align 0x4 [trivi
     float32 m_flWaitInterval; // offset 0x8, size 0x4, align 4
     float32 m_flWaitIntervalHigh; // offset 0xC, size 0x4, align 4
     bool m_bCompleteOnNextWake; // offset 0x10, size 0x1, align 1
-    char _pad_0011[0x3]; // offset 0x11
+    bool m_bCompletingVeryCloseToEndOfInterval; // offset 0x11, size 0x1, align 1
+    char _pad_0012[0x2]; // offset 0x12
 };

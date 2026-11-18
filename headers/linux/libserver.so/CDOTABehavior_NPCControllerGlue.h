@@ -1,7 +1,7 @@
 #pragma once
 
-class CDOTABehavior_NPCControllerGlue  // sizeof 0x68, align 0xFF [vtable] (server)
+class CDOTABehavior_NPCControllerGlue  // sizeof 0x60, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x68]; // offset 0x0
+    char _pad_0000[0x60]; // offset 0x0
 };

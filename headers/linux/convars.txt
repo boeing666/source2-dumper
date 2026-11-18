@@ -93,6 +93,7 @@ bot_mimic | clientdll,replicated,cheat |
 bot_mimic_spec_buttons | clientdll,cheat | +attack, +jump etc are used for spectator control instead of being passed on to spectated bot
 break_damage_inherit_scale | developmentonly,gamedll,clientdll,replicated,defensive | 
 break_invulnerable_spawn_duration | developmentonly,gamedll,clientdll,replicated,defensive | 
+breakable_debug_draw_time | developmentonly,gamedll,clientdll,replicated | Debug draw breakpiece names, break force commands and joints made on break, for this many seconds.
 breakable_debug_spawn_transform_time | developmentonly,gamedll,clientdll,replicated | Debug draw the spawn transform location.
 breakable_multiplayer | developmentonly,gamedll,defensive | 
 broadcaster_quickstats_baselen | developmentonly,clientdll,defensive | 
@@ -107,6 +108,7 @@ buddha_ignore_bots | gamedll,cheat | Bots always buddha 0
 buddha_reset_hp | gamedll,cheat | HP to set when damaged below zero in Buddha Mode
 bug_submitter_override |  | 
 buildcubemaps_renderdoc_capture | developmentonly,clientdll | Capture a specific cubemap with RenderDoc during buildcubemaps.
+buildcubemaps_warmup_frames | developmentonly,clientdll | Frames to render each cubemap face before it is read back, so temporal lighting can converge. -1 uses WorldRenderer/EnvironmentMapWarmupFrames from gameinfo.
 c_maxdistance | clientdll | 
 c_maxpitch | clientdll | 
 c_maxyaw | clientdll | 
@@ -192,6 +194,7 @@ chat_wheel_phrase_8 | clientdll,per_user |
 chat_wheel_phrase_9 | clientdll,per_user | 
 check_transmit_dump_ents | developmentonly,gamedll | 
 cheers_batch_delay | developmentonly,clientdll | 
+choreo_debug_root_motion_warp | gamedll,cheat | Draws the warped root motion of choreo anim clips.
 cl_ShowBoneSetupEnts | developmentonly,clientdll,defensive | Show which entities are having their bones setup each frame.
 cl_ag2_record_entity_graph | developmentonly,clientdll | Automatically start AG2 recording when an entity with this name (wildcard) or id is created.
 cl_aggregate_particles | developmentonly,defensive | 
@@ -201,7 +204,6 @@ cl_anim_queue_changes | developmentonly,clientdll,defensive |
 cl_anim_sequence_transitioner | developmentonly,clientdll,replicated | Enable animation sequence transitioner.
 cl_async_restore_server_authoritative_state | developmentonly,clientdll | 
 cl_async_usercmd_send | developmentonly | 
-cl_async_usercmd_send_recvmargin_min | developmentonly,defensive | Min size of the recv margin queue when async usercmd send is disabled
 cl_auto_cursor_scale |  | Automatic cursor size scaling.
 cl_batch_entity_list_ops_during_latch | developmentonly,clientdll | Batch entity list adds / removes while latching interpolated variables to avoid mutex contention.
 cl_bone_cache_optimization | developmentonly,clientdll | 
@@ -349,6 +351,7 @@ cl_max_particle_pvs_aabb_edge_length | release |
 cl_net_showeventlisteners | developmentonly,clientdll,defensive | Show listening addition/removals
 cl_net_showevents | developmentonly,clientdll,defensive | Dump game events to console (1=client only, 2=all).
 cl_network_quality2 | clientdll | 
+cl_packetentities_merge_before_decode | developmentonly,defensive | When an entity is decoded from a baseline plus a wire delta, merge the two and decode once (true), or decode the baseline and then the delta as two passes (false, the old behaviour, which can invoke change callbacks with baseline values for an entity that already exists).
 cl_panel_freeze_time_after_press | developmentonly,clientdll,defensive | time to freeze mouse/pointer motion after a mouse button press
 cl_parallel_readpacketentities | developmentonly,defensive | Set to 1 to use threading snapshot reading (if game supports and server is sending bitcounts).
 cl_parallel_readpacketentities_threshold | developmentonly,defensive | Use parallel processing of snapshot reading if above this many entries.
@@ -446,11 +449,13 @@ cl_snd_cast_retrigger | developmentonly,defensive |
 cl_snd_new_visualize | clientdll,cheat | Displays soundevent name played at it's 3d position
 cl_spawngroup_log | developmentonly | Dump the contents of the next spawngroup manifest to file.
 cl_spawngroup_spewresources | developmentonly | Spew all manifest add/updates.
+cl_spawngroup_unload_destroys_networked_entities | developmentonly,clientdll,defensive | Unloading a server spawn group destroys the client's copies of its entities before PostSpawnGroupUnload
 cl_spectator_interp_ratio | developmentonly,clientdll,defensive | When connected to hltv or playing a demo, multiply the interp time by this.
 cl_svc_usercmds_delta_validate | developmentonly,clientdll | Validate consistency of delta-encoded user commands.  Requires server to have sv_cq_validate_encoded_svc_usercmds enabled.
 cl_tickpacket_desired_queuelength |  | This value, multiplied by the tick interval, is added to cl_tickpacket_recvmargin_desired to obtain the effective desired recv margin.
 cl_tickpacket_recvmargin_adjust_limit | developmentonly | Recvmargin-based usercommand pacing will not speed up or slow down command pacing by more than N% compared to realtime
 cl_tickpacket_recvmargin_desired | developmentonly | Recvmargin-based usercommand pacing will try to maintain N ms margin between user command arriving at the server and the server needing that user command.  See also cl_tickpacket_desired_queuelength.
+cl_tickpacket_recvmargin_extra_async_usercmd_send_disabled | developmentonly,defensive | Min size of the recv margin queue when async usercmd send is disabled
 cl_tickpacket_recvmargin_minsamples | developmentonly | Recvmargin-based usercommand pacing will not take action unless we have N samples
 cl_tickpacket_recvmargin_spew_interval | release | 
 cl_tickpacket_recvmargin_timeconstant | developmentonly | Recvmargin-based usercommand pacing will remove 63.2% of the error in N seconds
@@ -546,6 +551,7 @@ custom_game_overview_friend_lobbies_to_hide_ingame_friends | developmentonly,cli
 custom_game_overview_max_friend_lobbies | developmentonly,clientdll,defensive | Max number of friend lobbies shown in custom game overview UI.
 custom_game_overview_suppress_friend_data | developmentonly,clientdll,defensive | Suppress friend active and historical data on custom game overview UI
 customgamesetup_test_parties | developmentonly,gamedll,cheat | 
+debug_ai_choreo_timing | gamedll,cheat | Log per-tick timing of goal arrival, motor state changes, choreo requirements and choreo external graph start / handshake.
 debug_async_data_panel_override_state | developmentonly,clientdll | Force ALL async data panels to be in a specific state. -1:disabled, 0:failure, 1:loading, 2:success
 debug_dashboard_cell_end_timer | developmentonly,clientdll | 
 debug_dashboard_overlay_opacity | developmentonly,clientdll | 
@@ -799,6 +805,7 @@ dota_bounty_rune_spawn_time | developmentonly,gamedll,clientdll,replicated,cheat
 dota_bp_fake_friend_count | developmentonly,clientdll | Fake the count of Battle Pass friends
 dota_bp_gift_level | developmentonly,clientdll | 
 dota_bp_team_fandom_last_seen | clientdll | 
+dota_bright_glows | developmentonly,clientdll,defensive | Enable brighter glows.
 dota_broadcast_is_live_cache_duration_s | developmentonly,clientdll,defensive | 
 dota_broadcaster_camera_interp | developmentonly,clientdll,defensive | 
 dota_broadcaster_channel_country_name | clientdll | Broadcaster Channel Country Name
@@ -807,6 +814,7 @@ dota_broadcaster_channel_language | clientdll | Broadcaster Channel Language
 dota_broadcaster_channel_save_settings | clientdll | 
 dota_building_defended_radius | gamedll,cheat | 
 dota_building_health_loss_warn_interval | gamedll,cheat | Minimum seconds between announcer warning a particular building is under attack
+dota_cache_clientside_wearables | clientdll,release | 
 dota_cache_duration_all_hero_challenge_s | developmentonly,clientdll,defensive | 
 dota_cache_duration_available_private_coaching_sessions_s | developmentonly,clientdll | 
 dota_cache_duration_available_private_coaching_sessions_summary_s | developmentonly,clientdll | 
@@ -989,7 +997,6 @@ dota_chat_wheel_duplicate_minimum_time | developmentonly,clientdll |
 dota_chat_wheel_use_panel | developmentonly,clientdll | 
 dota_cheap_water | developmentonly,clientdll,defensive | 
 dota_cheers_enable_scene_reload | clientdll | 
-dota_claim_item_action_async_rewards_timeout_duration | developmentonly,clientdll,defensive | 
 dota_client_filesystem_warnings | developmentonly,clientdll,defensive | Set fs_warning_level and fs_warning_mode to warn on synchronous file warnings.
 dota_client_first_session | clientdll,per_user | 
 dota_client_ping_max_allowance | clientdll,cheat | 
@@ -1146,10 +1153,10 @@ dota_custom_games_exclude | developmentonly,clientdll,defensive | Comma separate
 dota_custom_games_overview_sort_mode_mode | clientdll,per_user | Sort method used for the custom games overview page
 dota_custom_invoker_spell_keys | clientdll | 
 dota_damage_flash | gamedll | Flash when enemies take damage from the player
+dota_dark_carnival_act_switch_confirmed | clientdll,hidden | 
 dota_dark_carnival_click_rooms_to_focus | developmentonly,clientdll | 
 dota_dark_carnival_darken_path_ends | developmentonly,clientdll | 
 dota_dark_carnival_debug_playtest | developmentonly,clientdll | 
-dota_dark_carnival_disable_room_characters | developmentonly,clientdll | 
 dota_dark_carnival_fake_current_time_days | developmentonly,clientdll | 
 dota_dark_carnival_fortune_teller_time_between_welcome_backs | developmentonly,clientdll,defensive | 
 dota_dark_carnival_max_pan_away_before_zoom_out | developmentonly,clientdll | 
@@ -1183,6 +1190,7 @@ dota_death_effect_particle_pre | developmentonly,gamedll |
 dota_debug_breakable | developmentonly,gamedll,clientdll,replicated | 
 dota_debug_change_cursor_during_pending_order | developmentonly,clientdll,defensive | 
 dota_debug_cleave | developmentonly,gamedll | 
+dota_debug_econ_set_preview_clicks | developmentonly,clientdll,defensive | 
 dota_debug_force_ping_particle_player_color | developmentonly,clientdll | Forces ping particle colors to use a certain player color, given an player ID. (0-9)
 dota_debug_global_light | clientdll,cheat | 
 dota_debug_hero_attribute_level | developmentonly,gamedll,cheat | 
@@ -1654,6 +1662,7 @@ dota_hud_colorblind | clientdll,per_user | Which color mode to use for HUD eleme
 dota_hud_combine_move_speed | developmentonly,clientdll,defensive | Combine base and bonus move speed numbers on the HUD
 dota_hud_contextual_tips_disable | clientdll,per_user | Disable in-game contextual tips
 dota_hud_custom_css_class | clientdll,cheat | Add a custom class to the root of the HUD for testing purposes.
+dota_hud_custom_label_name_offset | developmentonly,clientdll,defensive | 
 dota_hud_custom_label_offset | developmentonly,clientdll,defensive | 
 dota_hud_debug_name_all_entities | developmentonly,clientdll,defensive | If set, shows debug names for all entities.
 dota_hud_debug_test_aegis | developmentonly,clientdll,cheat | Enable to test the Aegis UI.
@@ -1678,7 +1687,6 @@ dota_hud_hide_mainhud | developmentonly,clientdll,defensive |
 dota_hud_hide_minimap | developmentonly,clientdll,defensive | 
 dota_hud_hide_overlaymap | developmentonly,clientdll,defensive | 
 dota_hud_hide_topbar | developmentonly,clientdll,defensive | 
-dota_hud_ingame_predictions_hide | developmentonly,clientdll,defensive | 
 dota_hud_killcam_delay | clientdll,hidden,cheat | 
 dota_hud_ministun_duration | developmentonly,clientdll,defensive | Stuns lower than this will add UnitMiniStunned class to the HUD
 dota_hud_netgraph | clientdll,per_user | Display net statistics on the hud
@@ -2079,6 +2087,8 @@ dota_ogre_magi_arcana_streak_summary_duration | developmentonly,clientdll,cheat 
 dota_ogre_magi_arcana_streak_update_interval | developmentonly,clientdll,cheat | 
 dota_open_party_manual_accept_invites | clientdll,per_user | Set this to disable auto-accepting invites when the leader of an open party
 dota_orders_update_bots_immediately | gamedll,cheat | 
+dota_outline_brightness | developmentonly,clientdll,defensive | 
+dota_outline_thickness | developmentonly,clientdll,defensive | 
 dota_overhead_damage_threshold_percent | developmentonly,gamedll,defensive | 
 dota_overhead_on_received_item | developmentonly,gamedll,clientdll,replicated,defensive | Emit an overhead particle effect on receiving an item from an ally.
 dota_overhead_on_received_item_use_model | developmentonly,clientdll,defensive | 
@@ -2832,6 +2842,9 @@ dota_unit_orders_rate | developmentonly,clientdll,hidden,defensive |
 dota_unit_orders_retransmit_rate | developmentonly,clientdll,hidden,defensive | 
 dota_unit_pose_run_rate | developmentonly,gamedll,clientdll,hidden,replicated,defensive | 
 dota_unit_relative_move_bounce | gamedll,cheat | 
+dota_unit_separation_acceleration | gamedll,cheat | Maximum change in separation velocity per second for soft-collision units.
+dota_unit_separation_max_speed | gamedll,cheat | Separation speed for soft-collision units at full overlap.
+dota_unit_separation_padding | gamedll,cheat | Extra distance beyond both hull radii at which soft-collision units start pushing apart.
 dota_unit_short_path_search_debug | gamedll,cheat | 
 dota_unit_show_bounding_radius | gamedll,cheat | 
 dota_unit_show_collision_radius | gamedll,cheat | 
@@ -2839,6 +2852,7 @@ dota_unit_show_missing_selection_boxes | developmentonly,clientdll,defensive |
 dota_unit_show_selection_boxes | clientdll,cheat | Draws selection hitboxes. 0 = off, 1 = non-trees, 2 = trees, 3 = all entities.
 dota_unit_sink_delay | developmentonly,clientdll,defensive | 
 dota_unit_sink_speed | developmentonly,clientdll,defensive | 
+dota_unit_soft_collision | gamedll,cheat | Non-player-controlled ground units stop blocking each other and are pushed apart with separation impulses instead.
 dota_unit_use_new_tp_fow_logic | developmentonly,gamedll | 
 dota_unit_use_player_color | developmentonly,clientdll,defensive | 
 dota_unit_z_speed | developmentonly,clientdll,defensive | 
@@ -2886,6 +2900,7 @@ dota_victory_timer | developmentonly,gamedll,cheat |
 dota_visual_novel_disable_auto_advance | developmentonly,clientdll | 
 dota_visual_novel_max_wait_for_images_seconds | developmentonly,clientdll | 
 dota_visual_novel_minimum_dialogue_finished_wait_time | developmentonly,clientdll | 
+dota_visual_novel_show_debug_line_list | developmentonly,clientdll | 
 dota_visual_novel_vo_auto_advance_delay | developmentonly,clientdll | 
 dota_visual_novel_wait_for_images_loaded | developmentonly,clientdll | 
 dota_wagering_info_cache_duration | developmentonly,clientdll,defensive | 
@@ -3017,6 +3032,7 @@ ent_joint_only_ik_joints | developmentonly,gamedll,defensive |
 ent_joint_use_bind_pose | developmentonly,gamedll,defensive | 
 ent_messages_draw | gamedll,clientdll,replicated,cheat | Visualizes all entity input/output activity.
 ent_pivot_size | gamedll,cheat | 
+ent_record_rewind_data | developmentonly,gamedll | 0: no rewind data, 1: record NPC skeletons, 2: record all entities
 ent_revert_dormancy_change | developmentonly,clientdll,defensive | 
 ent_show_contexts | gamedll,cheat | Show entity contexts in ent_text display
 ent_showonlyattachment | gamedll,cheat | 
@@ -3056,15 +3072,9 @@ filesystem_unbuffered_io | developmentonly,defensive |
 filter_player_simulation_time | developmentonly,gamedll,clientdll,replicated | 
 fire_use_modifier | developmentonly,gamedll,clientdll,replicated,defensive | 
 fog_color | clientdll,cheat | 
-fog_colorskybox | clientdll,cheat | 
 fog_enable | clientdll,cheat | Enable fog
-fog_enableskybox | clientdll,cheat | 
 fog_end | clientdll,cheat | 
-fog_endskybox | clientdll,cheat | 
 fog_hdrcolorscale | clientdll,cheat | 
-fog_hdrcolorscaleskybox | clientdll,cheat | 
-fog_maxdensity | clientdll,cheat | 
-fog_maxdensityskybox | clientdll,cheat | 
 fog_override | clientdll,cheat | Overrides the map's fog settings (-1 populates fog_ vars with map's values)
 fog_override_enable | cheat | Use fog_override convars instead of world fog data
 fog_override_end | cheat | 
@@ -3072,7 +3082,6 @@ fog_override_exponent | cheat |
 fog_override_max_density | cheat | 
 fog_override_start | cheat | 
 fog_start | clientdll,cheat | 
-fog_startskybox | clientdll,cheat | 
 fog_volume_debug | developmentonly,gamedll,defensive | If enabled, prints diagnostic information about the current fog volume
 font_show_glyph_miss | developmentonly | 
 footstep_debug | developmentonly,gamedll,clientdll,replicated,defensive | 
@@ -3144,6 +3153,8 @@ func_mover_get_speed_override | developmentonly,gamedll,defensive |
 func_mover_imgui_log_count | developmentonly,gamedll,defensive | 
 func_mover_run_parallel | developmentonly,gamedll,defensive | 
 func_rotator_debug | developmentonly,gamedll,defensive | 
+func_rotator_imgui_graph_seconds | developmentonly,gamedll,defensive | 
+func_rotator_imgui_log_count | developmentonly,gamedll,defensive | 
 func_rotator_run_parallel | developmentonly,gamedll,defensive | 
 fx_drawmetalspark | developmentonly,clientdll | Draw metal spark effects.
 g_debug_angularsensor | gamedll,cheat | 
@@ -3162,7 +3173,6 @@ gameinstructor_find_errors | clientdll,cheat | Set to 1 and the game instructor 
 gameinstructor_start_sound_cooldown | developmentonly,clientdll,defensive | Number of seconds forced between similar lesson start sounds.
 gameinstructor_verbose | clientdll,cheat | Set to 1 for standard debugging or 2 (in combo with gameinstructor_verbose_lesson) to show update actions.
 gameinstructor_verbose_lesson | clientdll,cheat | Display more verbose information for lessons have this name.
-gl_clear | developmentonly,clientdll,defensive | 
 glow_use_tolerance | clientdll,replicated,cheat | 
 gpu_level | developmentonly,clientdll,defensive | GPU Level - Default: High
 gpu_mem_level | developmentonly,clientdll,defensive | Memory Level - Default: High
@@ -3183,6 +3193,8 @@ hostport | release | Host game server port
 hud_fastswitch | clientdll | 
 hud_max_minimap_distance | developmentonly,clientdll,defensive | 
 hud_river_vial_ui_expanded | clientdll,per_user | 
+hud_showstreaming | developmentonly,gamedll,defensive | Show the map spawn groups being streamed in and out (listen server). 1: what's loaded and the levels and environments next to it, 2: every one seen
+hud_showstreaming_font_size | developmentonly,gamedll,defensive | hud_showstreaming text size
 hud_sticky_item_name | clientdll | 
 hullivr_edge_merge_tan | developmentonly,gamedll,clientdll,replicated,defensive | Should we try to straighten two faces connected to this edge? (tangent)
 hullivr_faceisland_merge_disp | developmentonly,gamedll,clientdll,replicated,defensive | Should we straighten face island if the displacement is this much? (inches)
@@ -3226,7 +3238,6 @@ in_spewbuttondelta | developmentonly,gamedll,clientdll,replicated | Spew button 
 in_spewbuttonhold | developmentonly,gamedll,clientdll,replicated | Spew button hold times, 0 = off, 1 = server, 2 = client, 3 = both
 in_spewent | developmentonly,gamedll,clientdll,replicated | Which entity should we spew input for? (Useful for debugging bot input)
 in_spewinput | developmentonly,gamedll,clientdll,replicated | Spew input, 0 = off, 1 = server, 2 = client, 3 = both
-ingame_predictions_allow_players_to_vote | developmentonly,clientdll | 
 input_button_code_is_scan_code_scd | per_user | Bind keys based on keyboard position instead of key name
 input_downimpulsevalue | developmentonly,clientdll | 
 input_filter_relative_analog_inputs | clientdll | 
@@ -3237,6 +3248,7 @@ instant_replay_history_limit | developmentonly,defensive | Maximum amount of min
 ip | release | Overrides IP for multihomed hosts
 item_debug | developmentonly,gamedll,clientdll,replicated | 
 item_debug_thread_item_load | developmentonly,clientdll,defensive | 
+iv_combined_restore | developmentonly,clientdll,defensive | When leaving the rendering phase, restore client- and server-authoritative values in a single pass instead of two
 iv_debugbone | release | Debug bone name for interpolation spew of CAnimationState.
 iv_parallel_latch | developmentonly,clientdll,defensive | 
 iv_parallel_restore | developmentonly,clientdll,defensive | 
@@ -3328,6 +3340,7 @@ lb_debug_silhouette_sum | developmentonly,cheat | If we should draw normal silho
 lb_debug_tiles | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Tiles
 lb_debug_visualize_fog_shadowed_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Fog Shadowed Lights
 lb_debug_visualize_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Lights
+lb_debug_visualize_precomputed_shadow_atlas_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Precomputed Shadow Atlas Lights
 lb_debug_visualize_shadowed_light_details | developmentonly,cheat | 
 lb_debug_visualize_shadowed_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Debug Visualize Shadowed Lights
 lb_dynamic_shadow_penumbra | developmentonly,defensive | Adjust shadow penumbra based on light size
@@ -3346,7 +3359,7 @@ lb_enable_lights | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/
 lb_enable_shadow_casting | developmentonly,defensive | Allow stationary/dynamic lights to cast shadows.
 lb_enable_stationary_lights | developmentonly,cheat | Allows rendering stationary/mixed lights
 lb_enable_sunlight | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Enable Sunlight
-lb_low_quality_shader_fade_region_rescale | developmentonly,cheat | For envmaps in low quality shader mode, how much of the fade region to scale the envmap box by.
+lb_low_quality_shader_fade_region_rescale | developmentonly | For envmaps in low quality shader mode, how much of the fade region to scale the envmap box by.
 lb_max_visible_barn_lights_override | developmentonly,cheat | Override maximum visible barn lights
 lb_max_visible_envmaps_override | developmentonly,cheat | Override maximum visible envmaps
 lb_mixed_shadows | developmentonly,cheat,menubar_item | SceneSystem/LightBinner/Enable Mixed Shadows
@@ -3539,6 +3552,8 @@ nav_gen_connect_dist_z_mult | gamedll,cheat |
 nav_gen_connect_overlap | gamedll,cheat | 
 nav_gen_degen_limit | gamedll,cheat | 
 nav_gen_false | gamedll,cheat | Always false
+nav_gen_freeway_split_tol | gamedll,cheat | 
+nav_gen_freeway_split_vertical_extent | gamedll,cheat | Half height of the freeway split slab, 0 uses the freeway half width
 nav_gen_island_removal | gamedll,cheat | 
 nav_gen_island_removal_all_hulls | gamedll,cheat | 
 nav_gen_join_nonzup | gamedll,cheat | 
@@ -3566,6 +3581,7 @@ nav_gen_remove_vertical_polys | gamedll,cheat |
 nav_gen_split_boundary_polys | gamedll,cheat | 
 nav_gen_split_multi_connection_polys | gamedll,cheat | 
 nav_gen_split_multi_connection_polys_tol | gamedll,cheat | 
+nav_gen_split_polys_by_freeway | gamedll,cheat | 
 nav_gen_true | gamedll,cheat | Always true
 nav_gen_vertical_limit | gamedll,cheat | 
 nav_genrt_debug | gamedll,cheat | 
@@ -3756,9 +3772,9 @@ net_limit_sv_listen_max_message_size_kb | release | Server: max SteamNetworkingS
 net_limit_sv_listen_recvbuffer_kb | release | Server: SteamNetworkingSockets will not buffer more than N kb from a connection that does not yet have a netchan
 net_limit_sv_listen_recvbuffer_msg | release | Server: SteamNetworkingSockets will not buffer more than N messages from a connection that does not yet have a netchan
 net_limit_sv_message_process_time_ms_drop_burst | release | Drop a client if processing their messages consumes more than N ms of CPU time in a burst (token bucket capacity)
-net_limit_sv_message_process_time_ms_drop_rate | release | Drop a client if processing their messages consumes more than N ms of CPU time *PER SECOND*, sustained (token bucket fill rate)
+net_limit_sv_message_process_time_ms_drop_rate_per_sec | release | Drop a client if processing their messages consumes more than N ms of CPU time *PER SECOND*, sustained (token bucket fill rate)
 net_limit_sv_message_process_time_ms_warn_burst | release | Warn if processing messages from a client consumes more than N ms of CPU time in a burst (token bucket capacity)
-net_limit_sv_message_process_time_ms_warn_rate | release | Warn if processing messages from a client consumes more than N ms of CPU time *PER SECOND*, sustained (token bucket fill rate)
+net_limit_sv_message_process_time_ms_warn_rate_per_sec | release | Warn if processing messages from a client consumes more than N ms of CPU time *PER SECOND*, sustained (token bucket fill rate)
 net_limit_sv_recv_chan_buffer_messages | release | Max number of source engine messages that can be queued in a netchan receive buffer for an ordinary connection from a client.
 net_limit_sv_recv_chan_msgs_per_frame | release | Max number of source engine messages an ordinary client connection may put in a single network frame.  Exceeding this disconnects the client.
 net_limit_sv_recv_max_frame_size_kb | release | Server will reject uncompressed Source engine frame larger than N kb.  Also sets limit on SteamNetworkingSockets message size
@@ -3791,7 +3807,6 @@ nian_fight_duration | gamedll,clientdll,replicated,cheat |
 noclip_fixup | gamedll,cheat | 
 npc_go_do_run | developmentonly,gamedll,defensive | Set whether should run on NPC go
 npc_go_max_distance | developmentonly,gamedll,defensive | How far is the trace we shoot when using NPC Go
-npc_record_skeleton_snapshot | developmentonly,gamedll | 
 npc_record_snapshot_data | developmentonly,gamedll | 
 npcsolve_attract_draw | developmentonly,gamedll,defensive | 
 npcsolve_constraint_nav | developmentonly,gamedll,defensive | 
@@ -3908,6 +3923,7 @@ panorama_streaming_load_local_images | developmentonly,clientdll,defensive |
 panorama_style_flag_force_invalidate | developmentonly,hidden,defensive | Force style invalidation of the entire panel subtree when adding / removing style flags.
 panorama_suspend_animation | developmentonly,hidden,defensive | 
 panorama_suspend_paint | developmentonly,hidden,defensive | 
+panorama_synced_font_size_spew | developmentonly,clientdll,hidden,defensive | Log SyncedFontSizeLabel group constraints and shared font size changes
 panorama_temp_comp_layer_min_dimension | developmentonly,hidden,defensive | 
 panorama_toggledebugger_mode | hidden | Toggledebugger key operation : 0 = open/inspect, 1 = open/close
 panorama_track_render_commands | developmentonly,hidden,defensive | 
@@ -3935,7 +3951,7 @@ particle_test_attach_mode | gamedll,cheat | Possible Values: 'start_at_attachmen
 particle_test_file | gamedll,cheat | Name of the particle system to dynamically spawn
 password | dontrecord,server_cannot_query | Current server access password
 path_closest_point_debug | developmentonly,gamedll,clientdll,replicated | 
-path_mover_enable_high_resolution_debug_rendering | developmentonly,gamedll,defensive | 
+path_enable_high_resolution_debug_rendering | developmentonly,gamedll,defensive | 
 path_mover_entity_spawner_debug | developmentonly,gamedll,defensive | 
 path_node_evaluation_debug | developmentonly,gamedll,clientdll,replicated | 
 pawn_mimic_all | developmentonly,gamedll,clientdll,replicated | 
@@ -3945,6 +3961,7 @@ phonemefilter | developmentonly,clientdll,defensive | Time duration of box filte
 phonemesnap | developmentonly,clientdll,defensive | Lod at level at which visemes stops always considering two phonemes, regardless of duration.
 phys_agg_world_compounds | developmentonly,gamedll,clientdll,replicated | 
 phys_batch_ray_test | developmentonly,clientdll,defensive | 
+phys_body_dynamic_ccd_mode | developmentonly,replicated | Change dynamic vs. dynamic CCD (0=disable always, 1=opt-in, 2=enable always)
 phys_continuous_kinematic_update | developmentonly,gamedll,clientdll,replicated,defensive | 
 phys_cull_internal_mesh_contacts | developmentonly,replicated,defensive | 
 phys_dynamic_scaling | gamedll,clientdll,replicated,cheat | 
@@ -4022,18 +4039,13 @@ props_break_apply_radial_forces | developmentonly,gamedll,clientdll,replicated |
 props_break_max_pieces_perframe | developmentonly,gamedll,clientdll,replicated,defensive | Maximum prop breakable piece count per frame (-1 = model default)
 props_break_radial_force_ratio | developmentonly,gamedll,clientdll,replicated | 
 pulse_cursor_infinite_loop_detection_threshold | developmentonly,gamedll,clientdll,replicated | 
+pulse_save_cursor_info_limit | developmentonly,gamedll,clientdll,replicated | How many cursors to track history for before the oldest is evicted.
 pulse_save_execution_history | developmentonly,gamedll,clientdll,replicated | Keep a history of all instructions run on a per graph basis.
-pulse_save_execution_history_limit | developmentonly,gamedll,clientdll,replicated | Keep a history of all instructions run on a per graph basis.
+pulse_save_execution_history_limit | developmentonly,gamedll,clientdll,replicated | Keep a history of all instructions run on a per cursor basis.
 pvs_debugentity | gamedll,release | Verbose spew for this entity when doing IsInPVS computation.
 pvs_flowtype | gamedll,release | Flow through spawn groups for vis (0 == default, 1 == always visible, 2 == never visible.
 pwatchent | clientdll,cheat | Entity to watch for prediction system changes.
 pwatchvar | clientdll,cheat | Entity variable to watch in prediction system for changes.
-r_AirboatViewDampenDamp | gamedll,clientdll,replicated,cheat | 
-r_AirboatViewDampenFreq | gamedll,clientdll,replicated,cheat | 
-r_AirboatViewZHeight | gamedll,clientdll,replicated,cheat | 
-r_JeepViewDampenDamp | gamedll,clientdll,replicated,cheat | 
-r_JeepViewDampenFreq | gamedll,clientdll,replicated,cheat | 
-r_JeepViewZHeight | gamedll,clientdll,replicated,cheat | 
 r_RainAllowInSplitScreen | developmentonly,clientdll,defensive | Allows rain in splitscreen
 r_RainParticleDensity | developmentonly,clientdll,defensive | Density of Particle Rain 0-1
 r_add_views_in_pre_output | developmentonly,clientdll,defensive | 
@@ -4108,7 +4120,6 @@ r_dota_caustic_fog_exclusion_radius | developmentonly,clientdll,defensive |
 r_dota_caustic_fog_plane_min | developmentonly,clientdll,defensive | 
 r_dota_clouds | clientdll,cheat | 
 r_dota_color_correction | developmentonly,clientdll,defensive | 
-r_dota_debug_reflection_rects | clientdll,cheat | 
 r_dota_default_post_process_fade | developmentonly,clientdll,hidden,defensive | 
 r_dota_default_post_process_fade_ui | developmentonly,clientdll,hidden,defensive | 
 r_dota_depthbias | clientdll,cheat | 
@@ -4133,7 +4144,7 @@ r_dota_reflection_min_far_plane | clientdll,cheat |
 r_dota_refract_heroes | clientdll | 
 r_dota_render_2d_skybox | developmentonly,clientdll,defensive | 
 r_dota_render_3d_skybox | developmentonly,clientdll,defensive | 
-r_dota_render_ground_last | developmentonly,clientdll,cheat | 
+r_dota_render_occluded_npcs | clientdll,per_user,release | Enable rendering of occluded NPCs.
 r_dota_shadow_ambient_light | developmentonly,clientdll,defensive | 
 r_dota_shadows | clientdll,cheat | 
 r_dota_shadows_debug | clientdll,cheat | 
@@ -4144,6 +4155,7 @@ r_dota_tonemap | developmentonly,clientdll,defensive |
 r_dota_tools_full_renderer | clientdll,cheat | 
 r_dota_ultra_slopescaledepthbias | clientdll,cheat | 
 r_dota_unseen_fow | clientdll,cheat | 
+r_dota_water_reflect_combined | developmentonly,clientdll,defensive | 
 r_dota_water_reflection | clientdll,cheat | 
 r_dota_water_refraction | clientdll,cheat | 
 r_dota_white_skybox | clientdll,cheat | 
@@ -4244,6 +4256,7 @@ r_morphing_enabled | cheat |
 r_muzzleflashbrightness | clientdll,replicated,cheat | 
 r_muzzleflashlinear | clientdll,replicated,cheat | 
 r_nearz | clientdll,cheat | Override the near clipping plane. -1 means use the default.
+r_particle_allow_transform_instancing | developmentonly | 
 r_particle_allowprerender | developmentonly | 
 r_particle_batch_collections | developmentonly | 
 r_particle_batch_in_fullsort | developmentonly | 
@@ -4264,7 +4277,6 @@ r_particle_debug_show_rope_segments | developmentonly | Show rope segments when 
 r_particle_debug_show_sort_position | developmentonly | Show the sorting position when debugging particle systems
 r_particle_debug_vector_attribute_scale | developmentonly | Scale attribute vectors by this much for 3d rendering
 r_particle_enable_fastpath | developmentonly | 
-r_particle_explicit_fetch | developmentonly | 
 r_particle_fixedrandomseeds | developmentonly | Use fixed seeds for easier debugging
 r_particle_gpu_implicit | developmentonly,defensive | 
 r_particle_gpu_implicit_cull_columns | developmentonly | 
@@ -4272,6 +4284,7 @@ r_particle_gpu_implicit_debug_bricks | developmentonly |
 r_particle_gpu_implicit_debug_stats | developmentonly | 
 r_particle_gpu_implicit_debug_wireframe | developmentonly | 
 r_particle_gpu_implicit_lds_cache | developmentonly | 
+r_particle_gpu_implicit_skip_empty_bricks | developmentonly | 
 r_particle_max_detail_level | developmentonly,defensive | The maximum detail level of particle to create
 r_particle_max_draw_distance | cheat | The maximum distance that particles will render
 r_particle_max_size_cull | developmentonly,defensive | Particle systems larger than this in every dimension skip culling to save CPU.  They will be drawn anyway.
@@ -4283,11 +4296,11 @@ r_particle_model_new8 | developmentonly |
 r_particle_model_per_thread_count | developmentonly | 
 r_particle_multiplier | cheat | Render each particle system N times for perf testing
 r_particle_newinput | developmentonly | Enable input path in particle ops
+r_particle_render_nonsprites_issue_vizquery | developmentonly | 
 r_particle_render_refreshes_sleep_timer | developmentonly | Disable to get a better look at what's happening offscreen
 r_particle_render_sprites_issue_vizquery | developmentonly | 
 r_particle_render_test | developmentonly,defensive | render particles 100 times and show perf
 r_particle_skip_postsim | developmentonly | 
-r_particle_testbuffers | developmentonly,defensive | 
 r_particle_timescale | developmentonly,defensive | 
 r_particle_warn_threshold_ms | developmentonly,defensive | Threshold to warn about when rendering particles.
 r_particles_memset_at_init | developmentonly | 0=don't clear particle attrs at init 1=clear to zero 2=clear to 0xdb -1=clear to zero at first sim
@@ -4339,6 +4352,7 @@ r_ui_update_parallel_with_server | developmentonly,defensive |
 r_update_particles_on_render_only_frames | developmentonly,clientdll,defensive | 
 r_validate_texture_streaming | developmentonly,defensive | Dumps state of texture streaming at the next frame boundary.
 r_vconsole_foregroundforcerender | developmentonly,defensive | When VConsole is in the foreground, force all engine & tools to render
+r_wait_for_shader_compiles | developmentonly | Wait for async shader compiles to finish before completing a level load.
 r_wait_on_present | developmentonly,defensive | 
 r_world_frame_load_threshold_ms | developmentonly,defensive | 
 r_world_wind_dir | developmentonly,defensive | 
@@ -4405,10 +4419,12 @@ save_async | developmentonly,gamedll,defensive |
 save_debug_snapshots | developmentonly,gamedll,clientdll,replicated,defensive | Save/Load debug snapshot data
 save_fake_hitch | developmentonly,gamedll,defensive | Force a busy wait for the specified number of milliseconds during save to simulate a hitch
 save_history_count | developmentonly,gamedll,defensive | Keep this many old copies in history of autosaves and quicksaves.
-save_maxarray_spew | gamedll,release | Max number of array entries to spew when using SaveRestoreIO spewing.
 save_parallel | developmentonly,gamedll,clientdll,replicated,defensive | 
 save_screenshot | developmentonly,gamedll,defensive | 0 = none, 1 = non-autosave, 2 = always, 3 = bug_only
 save_spew | developmentonly,gamedll,clientdll,replicated,defensive | 
+save_streamed_out_level_async | developmentonly,gamedll,clientdll,replicated,defensive | A level streaming out encodes and writes its .hl1 (server) and .hl2 (client) on a save thread rather than in the frame it unloads
+save_streamed_out_level_debug_delay | gamedll,clientdll,replicated,cheat | Sleep the save thread for this many milliseconds before writing a streamed out level's .hl1/.hl2, to test what waits for the write
+save_timestamp_autosaves | developmentonly,gamedll | Add a timestamp to the autosave or quicksave filename.
 save_write_kv3 | developmentonly,gamedll,clientdll,replicated,defensive | Write the KV3 entity data as a text file in the save directory
 saving_enabled | developmentonly,gamedll,clientdll,replicated | 
 sc_aggregate_bvh | developmentonly | 
@@ -4443,11 +4459,11 @@ sc_clutter_density_full_size | developmentonly,defensive | Screen-size where clu
 sc_clutter_density_none_size | developmentonly,defensive | Screen-size where clutter will be gone
 sc_clutter_desity_override | developmentonly | 
 sc_clutter_enable | developmentonly,menubar_item | SceneSystem/Clutter/Draw Clutter
-sc_disableThreading | cheat | 
+sc_disableThreading | developmentonly,defensive | 
 sc_disable_baked_lighting | developmentonly,defensive | 
 sc_disable_culling_boxes | cheat | 
 sc_disable_procedural_layer_rendering | cheat | 
-sc_disable_shadow_fastpath | cheat | 
+sc_disable_shadow_fastpath | developmentonly,defensive | 
 sc_disable_spotlight_shadows | cheat | 
 sc_disable_world_materials | cheat | 
 sc_distancefield_visualize_atlas | developmentonly,defensive | 
@@ -4462,6 +4478,7 @@ sc_force_lod_level | cheat |
 sc_force_materials_batchable | cheat | 
 sc_force_single_display_list_per_layer | developmentonly,defensive | 
 sc_force_translation_in_projection | cheat | If enabled, the camera's translation will be included in the projection matrix.
+sc_gpu_profiler_record_min_ms | developmentonly | Markers averaging less than this are left out of the GPU profiler per-frame CSV. They are still in the summary.
 sc_hdr_enabled_override | developmentonly,defensive | Override default setting for HDR rendering. -1 default, 0 NoHdr, 1 Hdr, 2 Hdr 1010102 3 Hdr 111110
 sc_imgui_show_debug_log | developmentonly,cheat,menubar_item | SceneSystem/Imgui/Show Debug Log
 sc_imgui_show_id_stack | developmentonly,cheat,menubar_item | SceneSystem/Imgui/Show ID Stack Tool
@@ -4498,9 +4515,11 @@ sc_no_vis | developmentonly,defensive |
 sc_only_render_opaque | cheat | 
 sc_only_render_shadowcasters | cheat | 
 sc_particle_debug_visualizer | developmentonly,cheat,menubar_item | SceneSystem/Particles/Debug Visualizer
-sc_reject_all_objects | cheat | 
+sc_reject_all_objects | developmentonly,defensive | 
 sc_rendergraph_debug_visualizer | developmentonly,menubar_item | SceneSystem/RenderGraph Visualizer
-sc_screen_size_lod_scale_override | cheat | 
+sc_rendergraph_schedule | developmentonly | Enable scheduler to migrate barriers
+sc_rendergraph_schedule_memory_growth_threshold_pct | developmentonly | How much more estimated pooled memory than submission order a run of reordered passes may use, as a percentage of the submission order peak
+sc_screen_size_lod_scale_override | developmentonly,defensive | 
 sc_shadow_depth_bias | developmentonly,defensive | 
 sc_shadow_depth_bias_clamp | developmentonly,defensive | 
 sc_shadow_depth_bias_state_override | developmentonly,defensive | 
@@ -4512,7 +4531,7 @@ sc_show_object_browser | developmentonly,cheat,menubar_item | SceneSystem/SceneO
 sc_show_texture_visualizer | developmentonly,cheat,menubar_item | SceneSystem/Texture Visualizer
 sc_show_view_profiler | developmentonly,cheat,menubar_item | SceneSystem/View Profiler
 sc_show_vt_stats | developmentonly,cheat | SceneSystem/Virtual Texturing
-sc_skip_traversal | cheat | 
+sc_skip_traversal | developmentonly,defensive | 
 sc_spew_cmt_usage | developmentonly,defensive | 
 sc_stats_sections | developmentonly,cheat | Which stats groups to show
 sc_throw_away_all_layers | developmentonly,defensive | 
@@ -4557,6 +4576,7 @@ skeleton_physics_joint_fixup | developmentonly,gamedll,clientdll,replicated,chea
 skill | gamedll,clientdll,replicated,per_user | Game skill level.
 smoothstairs | developmentonly,gamedll,clientdll,replicated,defensive | Smooth player eye z coordinate when traversing stairs.
 snd_async_spew_blocking | developmentonly,defensive | Spew message to console any time async sound loading blocks on file i/o.
+snd_audio_nan_paranoid_check | developmentonly | 
 snd_autodetect_latency |  | 
 snd_beatpattern_show_bpm | cheat | 
 snd_beatpattern_show_events | cheat | 
@@ -4633,7 +4653,7 @@ snd_opvar_set_precipitation_debug | gamedll,clientdll,replicated,cheat |
 snd_rear_stereo_scale | replicated,cheat | 
 snd_refdb | cheat | Reference dB at snd_refdist
 snd_refdist | cheat | Reference distance for snd_refdb
-snd_report_audio_nan | release | 
+snd_report_audio_nan | developmentonly | 
 snd_report_verbose_error | cheat | If set to 1, report more error found when playing sounds. 
 snd_showclassname | cheat | 
 snd_showstart | cheat | 
@@ -4698,21 +4718,28 @@ snd_spatialize_lerp | release |
 snd_steamaudio_active_hrtf | developmentonly | Index of active HRTF.
 snd_steamaudio_ambisonics_correction_type | developmentonly,defensive | 0: Use order-truncated Ambisonics HRTF without correction. 1: Use diffuse field equalization to correct order-truncated Ambisonics HRTFs.
 snd_steamaudio_baked_dimensions_probelookup_usealternate | developmentonly,defensive | Use alternate probe lookup algorithm to query dimensions for listener position based on kd-tree of probe points.
-snd_steamaudio_baked_occlusion_air_absorption_coefficient | developmentonly,defensive | Air absorption coefficient sued for baked occlusion calculation.
-snd_steamaudio_baked_occlusion_mode | cheat | 0: distance ratio only. 1: deviation only (1/r). 2: deviation only (linear). 3: Mode 0 and Mode 1, 4: Mode 0 and Mode 2, 5: Mode 2 and exponential pathing delta, 6: reflection energy ratios. 7: no baked value - occlusion is traced per probe pair the way the calc_occlusion_info operator does, then interpolated like any other mode.
+snd_steamaudio_baked_materials_probelookup_usealternate | developmentonly,defensive | Use alternate probe lookup algorithm to query materials for listener position based on kd-tree of probe points.
+snd_steamaudio_baked_occlusion_dynamic_object_delta_scale | cheat | Scales the deltas of the open dynamic objects before they are added to the baked occlusion.
+snd_steamaudio_baked_occlusion_dynamic_objects | developmentonly,defensive | Add the baked deltas of open dynamic objects (doors, windows) to the baked occlusion.
+snd_steamaudio_baked_occlusion_mode | cheat | 0: distance ratio only. 1: deviation only (1/r). 2: deviation only (linear). 3: Mode 0 and Mode 1, 4: Mode 0 and Mode 2, 5: Mode 2 and exponential pathing delta, 6: reflection energy ratios.
 snd_steamaudio_baked_occlusion_pathing_deviation_slope | cheat | Adjust how much occlusion goes does with deviation angle.
 snd_steamaudio_baked_occlusion_pathing_exponent | cheat | Adjust scaling of pathing energy by exponentiall scaling with pathing delta.
-snd_steamaudio_baked_occlusion_probelookup_usealternate | developmentonly,defensive | Use alternate probe lookup algorithm to query occlusion for source and listener position based on kd-tree of probe points.
 snd_steamaudio_baked_occlusion_reflection_factor | cheat | Adjust scaling for reflection energy when combining it to calculate occlusion value.
 snd_steamaudio_baked_occlusion_reflection_regularization | cheat | Ambient noise energy to serve as a floor for reflection energy.
-snd_steamaudio_baked_occlusion_spatialfilter_mode | developmentonly,defensive | 0: No spatial filtering. 1: bidirectional spatial filter.
-snd_steamaudio_baked_occlusion_spatialfilter_radius_factor | developmentonly,defensive | Radius factor to multiply the distance between probes with to get the radius withing which probes are averaged.
 snd_steamaudio_custombake_dimensions_outsidefield_bake_enabled | developmentonly,defensive | Enable baking outside field for probes baking custom dimensions data.
 snd_steamaudio_custombake_dimensions_size_and_inout_bake_enabled | developmentonly,defensive | Enable baking size and inout data for probes when baking custom dimensions data.
 snd_steamaudio_custombake_dimensions_smallsizefield_bake_enabled | developmentonly,defensive | Enable baking insize size field for probes when baking custom dimensions data.
+snd_steamaudio_custombake_dynamic_object_energy_threshold | developmentonly,defensive | A probe pair keeps the deltas of a dynamic object only if opening it changes the reflection energy by more than this fraction of the energy with all dynamic objects closed, or of snd_steamaudio_baked_occlusion_reflection_regularization if that is higher.
+snd_steamaudio_custombake_materials_coneangle | developmentonly,defensive | Rays are only sampled in half angle measured from +Z. 120 deg covers everything except a 60 deg cap around straight down.
+snd_steamaudio_custombake_materials_max_raylength | developmentonly,defensive | Max ray length in meters to find resonant material.
+snd_steamaudio_custombake_materials_numrays | developmentonly,defensive | Number of rays to trace to find resonant materials.
+snd_steamaudio_custombake_occlusion_air_absorption_coefficient | developmentonly,defensive | Air absorption coefficient used when baking occlusion.
 snd_steamaudio_custombake_occlusion_bidirectional | developmentonly,defensive | Run simulation from both source and listner and average the results. Potential way to reduce noise.
 snd_steamaudio_custombake_occlusion_numsimulations | developmentonly,defensive | Number of reflection simulations to run when baking occlusion. Potential way to reduce noise.
+snd_steamaudio_custombake_occlusion_spatialfilter_mode | developmentonly,defensive | Spatial filter of the occlusion reflection energy, applied when baking. 0: No spatial filtering. 1: bidirectional spatial filter.
+snd_steamaudio_custombake_occlusion_spatialfilter_radius_factor | developmentonly,defensive | Radius factor to multiply the distance between probes with to get the radius within which probes are averaged by the occlusion spatial filter, applied when baking.
 snd_steamaudio_customdata_dimensions_inout_mode | developmentonly,defensive | Inside / outside estimator used when baking dimensions. 0 - direct sky fraction, 1 - multi-bounce escape. Any other value bakes mode 0.
+snd_steamaudio_debug_scene_spew | developmentonly,defensive | Spew Steam Audio scene list changes and realtime direct occlusion results (at most 10 lines a second).
 snd_steamaudio_default_hrtf_volume_gain | developmentonly | Adjust overall volume of the default HRTF by the specified gain (dB).
 snd_steamaudio_diagnostic_baked_occlusion_single_probe | developmentonly,defensive | Bake occlusion for a single source probe with the given probe id.
 snd_steamaudio_dimensions_grid_height_max | developmentonly,defensive | The maximum height (from the ground) we allow probes to be added above the initial layer. (meters)
@@ -4773,6 +4800,7 @@ snd_toolvolume |  | Volume of sounds in tools (e.g. Hammer, SFM)
 snd_ui_positional | developmentonly,cheat | 
 snd_ui_spatialization_spread | developmentonly,cheat | 
 snd_use_baked_occlusion | replicated,cheat,release | 
+snd_use_baked_occlusion_mode | developmentonly,replicated,cheat | 
 snd_vmix_override_mix_decay_time | cheat | If set > 0, overrides how long the decay time is on all mix graphs (in seconds). 
 snd_voipvolume |  | Voice volume
 sos_debug_emit | developmentonly,gamedll,clientdll,replicated,defensive | 
@@ -4813,7 +4841,12 @@ sparseshadowtree_renderdoc_capture_generation | developmentonly | Capture dual s
 sparseshadowtree_unpack_direct_to_shadow_atlas | developmentonly | unpack SST directly into shadow atlas cascade vs via staging texture PS copy (NOTE - rendersystem fix reqd for AMD + driver fix required for NV + VK only.
 sparseshadowtree_uv_frac_offset_x | developmentonly | uv x offset during copy to cascade.
 sparseshadowtree_uv_frac_offset_y | developmentonly | uv y offset during copy to cascade.
+spawngroup_debug_check_ownership | gamedll,cheat | periodically warn about entities that belong to a different level than the one they do
+spawngroup_debug_delay_unload | gamedll,clientdll,replicated,cheat | Keep queued spawn group unloads waiting this many seconds before they start (debug, e.g. to save while one is pending)
 spawngroup_ignore_timeouts | developmentonly,defensive | 
+spawngroup_prebuild_persistent_manifest | developmentonly,gamedll,clientdll,replicated,defensive | Build the persistent entity manifests as soon as the player is in, rather than in the frame the first level streams out
+spawngroup_save_on_unload | developmentonly,gamedll,clientdll,replicated,defensive | A level unloading mid-game saves its entities to save/<level>.hl1/.hl2, which point_level_stream restores when it streams the level back in
+spawngroup_transfer_entities | developmentonly,gamedll,clientdll,replicated,defensive | Entities that leave their level (teleported or carried into another one, or left inside another level when theirs unloads) change to belonging to the level they're in, so they stay when the level they came from streams out
 speaker_config |  | 
 spec_autodirector | clientdll,clientcmd_can_execute | Auto-director chooses best view modes while spectating
 spec_centerchasecam | clientdll | Looks at the target player's center, instead of his eye position, in chase came mode
@@ -4874,7 +4907,7 @@ sv_backspeed | developmentonly,gamedll,clientdll,replicated | How much to slow d
 sv_banid_enabled | release | Whether server supports banid command
 sv_bounce | gamedll,clientdll,replicated,release | Bounce multiplier for when physically simulated objects collide with other objects.
 sv_cheats | replicated,release | Allow cheats on server
-sv_clanserver_gms | developmentonly | 
+sv_clanserver_gms | developmentonly | Should this server advertise on the GMS as a steam group server
 sv_client_max_interp_ratio | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected).
 sv_client_min_interp_ratio | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected). 
 sv_client_predict | developmentonly,gamedll,clientdll,replicated,defensive | This can be used to force the value of cl_predict for connected clients (only while they are connected).    -1 = let clients set cl_predict to anything     0 = force cl_predict to 0     1 = force cl_predict to 1
@@ -5267,6 +5300,15 @@ voice_threshold_hold | developmentonly | Amount of time after the talker starts 
 voice_threshold_ramp_min_db | developmentonly | A dB floor of when to stop transmitting packets, the volume between this and voice_threshold will still transmit packets to allow for volume ramping.
 voice_vox | clientdll,per_user | Voice chat uses a vox-style always on
 voice_vox_current_peak | developmentonly,clientdll,defensive | Current peak value (out of 64k) of the incoming voice stream
+voice_webrtc_aec |  | WebRTC: cancel game audio echoing from the speakers into the microphone (AEC3).
+voice_webrtc_agc |  | WebRTC: adaptive digital automatic gain control (AGC2).
+voice_webrtc_apm |  | Process in-process voice chat microphone audio with the WebRTC audio processing module (requires voice_in_process).
+voice_webrtc_fixed_gain_db |  | WebRTC: fixed digital gain in dB applied to the microphone before the adaptive gain stage.
+voice_webrtc_hpf |  | WebRTC: high-pass filter to remove DC offset and low rumble.
+voice_webrtc_ns |  | WebRTC: noise suppression.
+voice_webrtc_ns_level |  | WebRTC: noise suppression aggressiveness, 0 (low) to 3 (very high).
+voice_webrtc_stats | developmentonly | WebRTC: periodically print echo canceller statistics.
+voice_webrtc_stream_delay_ms | developmentonly | WebRTC: speaker-to-microphone delay hint in ms for the echo canceller; -1 relies on AEC3's own delay estimation.
 volume |  | Sound volume
 volume_fog_debug_volumes | cheat | 
 volume_fog_density_scale | developmentonly,cheat | Scale global volume fog density
@@ -5284,11 +5326,11 @@ volume_fog_width | developmentonly,defensive | Width of volume fog texture
 vprof_all_threads | developmentonly | Capture VProf scopes on background threads as well as the target thread. Same option as the All Threads checkbox in the VProf tools -- setting either one updates the other
 vprof_counters | developmentonly,defensive | 
 vprof_counters_show_minmax | developmentonly,defensive | 
+vprof_lite_auto | release | Let demo playback and the game rules start, dump and stop the vprof lite profiler on their own.  The vprof_lite_start, vprof_lite_stop and vprof_lite_dump commands set this to 0 so that a script can drive the profiler itself.
 vprof_scope_entity_clientthink | developmentonly,clientdll,defensive | Set to 1 to generate individual VPROF nodes for each client entity's think function.
 vprof_scope_entity_thinks | developmentonly,gamedll,clientdll,replicated,defensive | 
 vprof_think_limit | developmentonly,gamedll,defensive | 
-vt_page_atlas_size | developmentonly,defensive | Virtual texture page atlas size in 16k x 16k slices of about 256MB each, 2 to 32 ( 512MB to 8GB ). Changing it evicts every virtual texture tile.
-vt_sim_streaming_delay_ms | developmentonly,defensive | 
+vt_page_atlas_size | developmentonly,defensive | Virtual texture page atlas size in 16k x 16k slices of about 256MB each, 2 to 32 ( 512MB to 8GB ). 0 picks 4, 6, 8, 12 or 16 slices for GPUs below 8GB, 8GB, 12GB, 16GB and larger. Changing it evicts every virtual texture tile.
 waiting_joined | developmentonly,clientdll | 
 waiting_test | developmentonly,clientdll | 
 waiting_valid | developmentonly,clientdll | 

@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Ability_Nevermore_Requiem : public CDOTABaseAbility /*0x0*/  // sizeof 0x888, align 0x8 [vtable] (server)
+class CDOTA_Ability_Nevermore_Requiem : public CDOTABaseAbility /*0x0*/  // sizeof 0x8B8, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x85C]; // offset 0x0
@@ -10,4 +10,6 @@ public:
     ParticleIndex_t m_nFXIndex; // offset 0x868, size 0x4, align 255
     int32 m_nKilleater_nLines; // offset 0x86C, size 0x4, align 4
     CUtlVector< CHandle< CBaseEntity > > m_vecHeroesReqd; // offset 0x870, size 0x18, align 8
+    CUtlVector< CHandle< CBaseEntity > > m_vecHitTargets; // offset 0x888, size 0x18, align 8
+    CUtlVector< CHandle< CBaseEntity > > m_vecReturnHitTargets; // offset 0x8A0, size 0x18, align 8
 };

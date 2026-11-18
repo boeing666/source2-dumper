@@ -1,11 +1,11 @@
 #pragma once
 
-class C_DOTA_Unit_Hero_MonkeyKing : public C_DOTA_BaseNPC_Hero /*0x0*/  // sizeof 0x1E98, align 0x8 [vtable] (client)
+class C_DOTA_Unit_Hero_MonkeyKing : public C_DOTA_BaseNPC_Hero /*0x0*/  // sizeof 0x1F20, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1E88]; // offset 0x0
-    uint32 m_nTreeDisguise; // offset 0x1E88, size 0x4, align 4
-    uint32 m_nPerchedTree; // offset 0x1E8C, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hTreeDisguiseEnt; // offset 0x1E90, size 0x4, align 4
-    char _pad_1E94[0x4]; // offset 0x1E94
+    char _pad_0000[0x1F10]; // offset 0x0
+    uint32 m_nTreeDisguise; // offset 0x1F10, size 0x4, align 4
+    uint32 m_nPerchedTree; // offset 0x1F14, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hTreeDisguiseEnt; // offset 0x1F18, size 0x4, align 4
+    char _pad_1F1C[0x4]; // offset 0x1F1C
 };

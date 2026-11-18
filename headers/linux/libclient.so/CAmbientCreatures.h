@@ -1,8 +1,8 @@
 #pragma once
 
-class CAmbientCreatures : public C_DOTAWorldParticleSystem /*0x0*/  // sizeof 0xD50, align 0x8 [vtable] (client)
+class CAmbientCreatures : public C_DOTAWorldParticleSystem /*0x0*/  // sizeof 0xDB8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0xD48]; // offset 0x0
-    CUtlString m_szAnimationName; // offset 0xD48, size 0x8, align 8
+    char _pad_0000[0xDB0]; // offset 0x0
+    CUtlString m_szAnimationName; // offset 0xDB0, size 0x8, align 8
 };

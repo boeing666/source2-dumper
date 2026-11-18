@@ -14,7 +14,8 @@ public:
     ParticleAttributeIndex_t m_nVectorAttribute; // offset 0x68, size 0x4, align 255
     int32 m_nVectorComponent; // offset 0x6C, size 0x4, align 4
     bool m_bReverseOrder; // offset 0x70, size 0x1, align 1
-    char _pad_0071[0x3]; // offset 0x71
+    bool m_bAbsoluteValue; // offset 0x71, size 0x1, align 1
+    char _pad_0072[0x2]; // offset 0x72
     float32 m_flRandomMin; // offset 0x74, size 0x4, align 4
     float32 m_flRandomMax; // offset 0x78, size 0x4, align 4
     bool m_bHasRandomSignFlip; // offset 0x7C, size 0x1, align 1

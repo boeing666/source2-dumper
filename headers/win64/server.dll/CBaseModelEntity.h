@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseModelEntity : public CBaseEntity /*0x0*/  // sizeof 0x858, align 0x8 [vtable] (server)
+class CBaseModelEntity : public CBaseEntity /*0x0*/  // sizeof 0x8B8, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x498]; // offset 0x0
@@ -25,39 +25,40 @@ public:
     char _pad_04ED[0x3]; // offset 0x4ED
     CDestructiblePartsComponent* m_pDestructiblePartsSystemComponent; // offset 0x4F0, size 0x8, align 8
     CEntityOutputTemplate< CBaseModelEntity::OnDamageLevelChangedArgs_t > m_OnDestructibleHitGroupDamageLevelChanged; // offset 0x4F8, size 0x28, align 8
-    GameTime_t m_flDissolveStartTime; // offset 0x520, size 0x4, align 255
-    char _pad_0524[0x4]; // offset 0x524
-    CEntityIOOutput m_OnIgnite; // offset 0x528, size 0x18, align 255
-    int32 m_iViewerID; // offset 0x540, size 0x4, align 4
-    int32 m_iTeamVisibilityBitmask; // offset 0x544, size 0x4, align 4
-    RenderMode_t m_nRenderMode; // offset 0x548, size 0x1, align 1
-    bool m_bVisibilityDirtyFlag; // offset 0x549, size 0x1, align 1
-    int16[10] m_iFOWTempViewerID; // offset 0x54A, size 0x14, align 2
-    RenderFx_t m_nRenderFX; // offset 0x55E, size 0x1, align 1
-    bool m_bAllowFadeInView; // offset 0x55F, size 0x1, align 1
-    char _pad_0560[0x18]; // offset 0x560
-    Color m_clrRender; // offset 0x578, size 0x4, align 4
-    char _pad_057C[0x4]; // offset 0x57C
-    CUtlVectorEmbeddedNetworkVar< EntityRenderAttribute_t > m_vecRenderAttributes; // offset 0x580, size 0x68, align 8
-    bool m_bRenderToCubemaps; // offset 0x5E8, size 0x1, align 1
-    bool m_bExpandRenderBoundsToIncludeCloth; // offset 0x5E9, size 0x1, align 1
-    bool m_bNoInterpolate; // offset 0x5EA, size 0x1, align 1
-    char _pad_05EB[0x5]; // offset 0x5EB
-    CCollisionProperty m_Collision; // offset 0x5F0, size 0xB8, align 8
-    CGlowProperty m_Glow; // offset 0x6A8, size 0x58, align 8
-    float32 m_flGlowBackfaceMult; // offset 0x700, size 0x4, align 4
-    float32 m_fadeMinDist; // offset 0x704, size 0x4, align 4
-    float32 m_fadeMaxDist; // offset 0x708, size 0x4, align 4
-    float32 m_flFadeScale; // offset 0x70C, size 0x4, align 4
-    float32 m_flShadowStrength; // offset 0x710, size 0x4, align 4
-    uint8 m_nObjectCulling; // offset 0x714, size 0x1, align 1
-    char _pad_0715[0x3]; // offset 0x715
-    uint32 m_bodyGroupTotalRequestCount; // offset 0x718, size 0x4, align 4
-    char _pad_071C[0x4]; // offset 0x71C
-    CUtlVectorFixedGrowable< CBaseModelEntity::BodyGroupRequest_t, 8 > m_bodyGroupRequests; // offset 0x720, size 0xD8, align 8
-    CUtlOrderedMap< CGlobalSymbol, int32 > m_bodyGroupChoices; // offset 0x7F8, size 0x28, align 8
-    CNetworkViewOffsetVector m_vecViewOffset; // offset 0x820, size 0x28, align 255
-    char _pad_0848[0x8]; // offset 0x848
-    uint32[1] m_bvDisabledHitGroups; // offset 0x850, size 0x4, align 4 | MKV3TransferSaveOpsForField
-    char _pad_0854[0x4]; // offset 0x854
+    char _pad_0520[0x50]; // offset 0x520
+    GameTime_t m_flDissolveStartTime; // offset 0x570, size 0x4, align 255
+    char _pad_0574[0x4]; // offset 0x574
+    CEntityIOOutput m_OnIgnite; // offset 0x578, size 0x18, align 255
+    int32 m_iViewerID; // offset 0x590, size 0x4, align 4
+    int32 m_iTeamVisibilityBitmask; // offset 0x594, size 0x4, align 4
+    RenderMode_t m_nRenderMode; // offset 0x598, size 0x1, align 1
+    bool m_bVisibilityDirtyFlag; // offset 0x599, size 0x1, align 1
+    int16[10] m_iFOWTempViewerID; // offset 0x59A, size 0x14, align 2
+    RenderFx_t m_nRenderFX; // offset 0x5AE, size 0x1, align 1
+    bool m_bAllowFadeInView; // offset 0x5AF, size 0x1, align 1
+    char _pad_05B0[0x18]; // offset 0x5B0
+    Color m_clrRender; // offset 0x5C8, size 0x4, align 4
+    char _pad_05CC[0x4]; // offset 0x5CC
+    CUtlVectorEmbeddedNetworkVar< EntityRenderAttribute_t > m_vecRenderAttributes; // offset 0x5D0, size 0x68, align 8
+    bool m_bRenderToCubemaps; // offset 0x638, size 0x1, align 1
+    bool m_bExpandRenderBoundsToIncludeCloth; // offset 0x639, size 0x1, align 1
+    bool m_bNoInterpolate; // offset 0x63A, size 0x1, align 1
+    char _pad_063B[0x5]; // offset 0x63B
+    CCollisionProperty m_Collision; // offset 0x640, size 0xC8, align 8
+    CGlowProperty m_Glow; // offset 0x708, size 0x58, align 8
+    float32 m_flGlowBackfaceMult; // offset 0x760, size 0x4, align 4
+    float32 m_fadeMinDist; // offset 0x764, size 0x4, align 4
+    float32 m_fadeMaxDist; // offset 0x768, size 0x4, align 4
+    float32 m_flFadeScale; // offset 0x76C, size 0x4, align 4
+    float32 m_flShadowStrength; // offset 0x770, size 0x4, align 4
+    uint8 m_nObjectCulling; // offset 0x774, size 0x1, align 1
+    char _pad_0775[0x3]; // offset 0x775
+    uint32 m_bodyGroupTotalRequestCount; // offset 0x778, size 0x4, align 4
+    char _pad_077C[0x4]; // offset 0x77C
+    CUtlVectorFixedGrowable< CBaseModelEntity::BodyGroupRequest_t, 8 > m_bodyGroupRequests; // offset 0x780, size 0xD8, align 8
+    CUtlOrderedMap< CGlobalSymbol, int32 > m_bodyGroupChoices; // offset 0x858, size 0x28, align 8
+    CNetworkViewOffsetVector m_vecViewOffset; // offset 0x880, size 0x28, align 255
+    char _pad_08A8[0x8]; // offset 0x8A8
+    uint32[1] m_bvDisabledHitGroups; // offset 0x8B0, size 0x4, align 4 | MKV3TransferSaveOpsForField
+    char _pad_08B4[0x4]; // offset 0x8B4
 };

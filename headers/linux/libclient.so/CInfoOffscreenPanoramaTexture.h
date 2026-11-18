@@ -1,6 +1,6 @@
 #pragma once
 
-class CInfoOffscreenPanoramaTexture : public C_PointEntity /*0x0*/  // sizeof 0x968, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
+class CInfoOffscreenPanoramaTexture : public C_PointEntity /*0x0*/  // sizeof 0x950, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
 {
 public:
     char _pad_0000[0x76C]; // offset 0x0
@@ -18,7 +18,7 @@ public:
     C_NetworkUtlVectorBase< CUtlSymbolLarge > m_vecCSSClasses; // offset 0x7B0, size 0x18, align 8
     CUtlSymbolLarge m_szTargetsName; // offset 0x7C8, size 0x8, align 8
     CUtlVector< CHandle< C_BaseModelEntity > > m_AdditionalTargetEntities; // offset 0x7D0, size 0x18, align 8
-    char _pad_07E8[0x158]; // offset 0x7E8
-    bool m_bCheckCSSClasses; // offset 0x940, size 0x1, align 1 | MNotSaved
-    char _pad_0941[0x27]; // offset 0x941
+    char _pad_07E8[0x140]; // offset 0x7E8
+    bool m_bCheckCSSClasses; // offset 0x928, size 0x1, align 1 | MNotSaved
+    char _pad_0929[0x27]; // offset 0x929
 };

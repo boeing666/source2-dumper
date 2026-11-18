@@ -68,5 +68,5 @@ public:
     bool m_bUpgradedWithTome; // offset 0x694, size 0x1, align 1
     char _pad_0695[0xB]; // offset 0x695
     float32 m_flLastCastClickTime; // offset 0x6A0, size 0x4, align 4
-    char _pad_06A4[0x4]; // offset 0x6A4
+    float32 m_flLastDoubleTapCastTime; // offset 0x6A4, size 0x4, align 4
 };

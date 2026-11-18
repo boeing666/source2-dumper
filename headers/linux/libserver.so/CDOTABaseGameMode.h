@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTABaseGameMode : public CBaseEntity /*0x0*/  // sizeof 0xAC0, align 0x8 [vtable] (server)
+class CDOTABaseGameMode : public CBaseEntity /*0x0*/  // sizeof 0xAC8, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x790]; // offset 0x0
@@ -83,52 +83,54 @@ public:
     int32 m_iCustomScanMaxCharges; // offset 0x87C, size 0x4, align 4
     float32 m_flCustomScanCooldown; // offset 0x880, size 0x4, align 4
     float32 m_flCustomGlyphCooldown; // offset 0x884, size 0x4, align 4
-    float32 m_flCustomBackpackSwapCooldown; // offset 0x888, size 0x4, align 4
-    float32 m_flCustomBackpackCooldownPercent; // offset 0x88C, size 0x4, align 4
-    bool m_bDefaultRuneSpawnLogic; // offset 0x890, size 0x1, align 1
-    bool m_bEnableFreeCourierMode; // offset 0x891, size 0x1, align 1
-    bool m_bAllowNeutralItemDrops; // offset 0x892, size 0x1, align 1
-    bool m_bEnableNeutralStash; // offset 0x893, size 0x1, align 1
-    bool m_bEnableNeutralStashTeamViewOnly; // offset 0x894, size 0x1, align 1
-    bool m_bEnableNeutralItemHideUndiscovered; // offset 0x895, size 0x1, align 1
-    bool m_bEnableSendToStash; // offset 0x896, size 0x1, align 1
-    bool m_bForceRightClickAttackDisabled; // offset 0x897, size 0x1, align 1
-    CUtlVectorEmbeddedNetworkVar< CDOTACustomShopInfo > m_vecCustomShopInfo; // offset 0x898, size 0x68, align 8
-    bool m_bCanSellAnywhere; // offset 0x900, size 0x1, align 1
-    char _pad_0901[0x3]; // offset 0x901
-    float32 m_flCameraNearZ; // offset 0x904, size 0x4, align 4
-    float32 m_flCameraFarZ; // offset 0x908, size 0x4, align 4
-    int32 m_nCustomRadiantScore; // offset 0x90C, size 0x4, align 4
-    int32 m_nCustomDireScore; // offset 0x910, size 0x4, align 4
-    bool m_bAbilityUpgradeWhitelistEnabled; // offset 0x914, size 0x1, align 1
-    char _pad_0915[0x3]; // offset 0x915
-    CNetworkUtlVectorBase< AbilityID_t > m_vecAbilityUpgradeWhitelist; // offset 0x918, size 0x18, align 8
-    bool m_bGiveFreeTPOnDeath; // offset 0x930, size 0x1, align 1
-    char _pad_0931[0x3]; // offset 0x931
-    int32 m_nInnateMeleeDamageBlockPct; // offset 0x934, size 0x4, align 4
-    int32 m_nInnateMeleeDamageBlockAmount; // offset 0x938, size 0x4, align 4
-    int32 m_nInnateMeleeDamageBlockPerLevelAmount; // offset 0x93C, size 0x4, align 4
-    float32 m_flWaterRuneSpawnInterval; // offset 0x940, size 0x4, align 4
-    char _pad_0944[0x4]; // offset 0x944
-    CNetworkUtlVectorBase< CHandle< CDOTA_BaseNPC > > m_vecBigHealthBarUnits; // offset 0x948, size 0x18, align 8
-    char _pad_0960[0x30]; // offset 0x960
-    bool m_bSelectionGoldPenaltyEnabled; // offset 0x990, size 0x1, align 1
-    bool m_bRemoveIllusionsOnDeath; // offset 0x991, size 0x1, align 1
-    bool m_bRandomHeroBonusItemGrantDisabled; // offset 0x992, size 0x1, align 1
-    bool m_bDisableClumpingBehaviorByDefault; // offset 0x993, size 0x1, align 1
-    bool[10] m_bRuneTypeEnabled; // offset 0x994, size 0xA, align 1
-    bool m_bOverrideBotLateGame; // offset 0x99E, size 0x1, align 1
-    bool m_bBotsAlwaysPushWithHuman; // offset 0x99F, size 0x1, align 1
-    bool m_bBotsInLateGame; // offset 0x9A0, size 0x1, align 1
-    char _pad_09A1[0x3]; // offset 0x9A1
-    int32 m_nBotMaxPushTier; // offset 0x9A4, size 0x4, align 4
-    float32 m_flFountainPercentageHealthRegen; // offset 0x9A8, size 0x4, align 4
-    float32 m_flFountainPercentageManaRegen; // offset 0x9AC, size 0x4, align 4
-    float32 m_flFountainConstantManaRegen; // offset 0x9B0, size 0x4, align 4
-    float32 m_flPowerRuneSpawnInterval; // offset 0x9B4, size 0x4, align 4
-    float32 m_flBountyRuneSpawnInterval; // offset 0x9B8, size 0x4, align 4
-    float32 m_flXPRuneSpawnInterval; // offset 0x9BC, size 0x4, align 4
-    float32 m_flThinkInterval; // offset 0x9C0, size 0x4, align 4
-    int32 m_nForcedHeroCapOnReset; // offset 0x9C4, size 0x4, align 4
-    char _pad_09C8[0xF8]; // offset 0x9C8
+    int32 m_iCustomGlyphMaxCharges; // offset 0x888, size 0x4, align 4
+    float32 m_flCustomBackpackSwapCooldown; // offset 0x88C, size 0x4, align 4
+    float32 m_flCustomBackpackCooldownPercent; // offset 0x890, size 0x4, align 4
+    bool m_bDefaultRuneSpawnLogic; // offset 0x894, size 0x1, align 1
+    bool m_bEnableFreeCourierMode; // offset 0x895, size 0x1, align 1
+    bool m_bAllowNeutralItemDrops; // offset 0x896, size 0x1, align 1
+    bool m_bEnableNeutralStash; // offset 0x897, size 0x1, align 1
+    bool m_bEnableNeutralStashTeamViewOnly; // offset 0x898, size 0x1, align 1
+    bool m_bEnableNeutralItemHideUndiscovered; // offset 0x899, size 0x1, align 1
+    bool m_bEnableSendToStash; // offset 0x89A, size 0x1, align 1
+    bool m_bForceRightClickAttackDisabled; // offset 0x89B, size 0x1, align 1
+    char _pad_089C[0x4]; // offset 0x89C
+    CUtlVectorEmbeddedNetworkVar< CDOTACustomShopInfo > m_vecCustomShopInfo; // offset 0x8A0, size 0x68, align 8
+    bool m_bCanSellAnywhere; // offset 0x908, size 0x1, align 1
+    char _pad_0909[0x3]; // offset 0x909
+    float32 m_flCameraNearZ; // offset 0x90C, size 0x4, align 4
+    float32 m_flCameraFarZ; // offset 0x910, size 0x4, align 4
+    int32 m_nCustomRadiantScore; // offset 0x914, size 0x4, align 4
+    int32 m_nCustomDireScore; // offset 0x918, size 0x4, align 4
+    bool m_bAbilityUpgradeWhitelistEnabled; // offset 0x91C, size 0x1, align 1
+    char _pad_091D[0x3]; // offset 0x91D
+    CNetworkUtlVectorBase< AbilityID_t > m_vecAbilityUpgradeWhitelist; // offset 0x920, size 0x18, align 8
+    bool m_bGiveFreeTPOnDeath; // offset 0x938, size 0x1, align 1
+    char _pad_0939[0x3]; // offset 0x939
+    int32 m_nInnateMeleeDamageBlockPct; // offset 0x93C, size 0x4, align 4
+    int32 m_nInnateMeleeDamageBlockAmount; // offset 0x940, size 0x4, align 4
+    int32 m_nInnateMeleeDamageBlockPerLevelAmount; // offset 0x944, size 0x4, align 4
+    float32 m_flWaterRuneSpawnInterval; // offset 0x948, size 0x4, align 4
+    char _pad_094C[0x4]; // offset 0x94C
+    CNetworkUtlVectorBase< CHandle< CDOTA_BaseNPC > > m_vecBigHealthBarUnits; // offset 0x950, size 0x18, align 8
+    char _pad_0968[0x30]; // offset 0x968
+    bool m_bSelectionGoldPenaltyEnabled; // offset 0x998, size 0x1, align 1
+    bool m_bRemoveIllusionsOnDeath; // offset 0x999, size 0x1, align 1
+    bool m_bRandomHeroBonusItemGrantDisabled; // offset 0x99A, size 0x1, align 1
+    bool m_bDisableClumpingBehaviorByDefault; // offset 0x99B, size 0x1, align 1
+    bool[10] m_bRuneTypeEnabled; // offset 0x99C, size 0xA, align 1
+    bool m_bOverrideBotLateGame; // offset 0x9A6, size 0x1, align 1
+    bool m_bBotsAlwaysPushWithHuman; // offset 0x9A7, size 0x1, align 1
+    bool m_bBotsInLateGame; // offset 0x9A8, size 0x1, align 1
+    char _pad_09A9[0x3]; // offset 0x9A9
+    int32 m_nBotMaxPushTier; // offset 0x9AC, size 0x4, align 4
+    float32 m_flFountainPercentageHealthRegen; // offset 0x9B0, size 0x4, align 4
+    float32 m_flFountainPercentageManaRegen; // offset 0x9B4, size 0x4, align 4
+    float32 m_flFountainConstantManaRegen; // offset 0x9B8, size 0x4, align 4
+    float32 m_flPowerRuneSpawnInterval; // offset 0x9BC, size 0x4, align 4
+    float32 m_flBountyRuneSpawnInterval; // offset 0x9C0, size 0x4, align 4
+    float32 m_flXPRuneSpawnInterval; // offset 0x9C4, size 0x4, align 4
+    float32 m_flThinkInterval; // offset 0x9C8, size 0x4, align 4
+    int32 m_nForcedHeroCapOnReset; // offset 0x9CC, size 0x4, align 4
+    char _pad_09D0[0xF8]; // offset 0x9D0
 };

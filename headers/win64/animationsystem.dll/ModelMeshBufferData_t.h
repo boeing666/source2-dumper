@@ -9,11 +9,12 @@ struct ModelMeshBufferData_t  // sizeof 0x30, align 0x8 (modellib) {MGetKV3Class
     bool m_bMeshoptIndexSequence; // offset 0xD, size 0x1, align 1
     int8 m_nMeshoptMeshletEncodeVersion; // offset 0xE, size 0x1, align 1
     bool m_bCompressedZSTD; // offset 0xF, size 0x1, align 1
-    bool m_bCreateBufferSRV; // offset 0x10, size 0x1, align 1
-    bool m_bCreateBufferUAV; // offset 0x11, size 0x1, align 1
-    bool m_bCreateRawBuffer; // offset 0x12, size 0x1, align 1
-    bool m_bCreatePooledBuffer; // offset 0x13, size 0x1, align 1
-    uint16 m_nBufferUsage; // offset 0x14, size 0x2, align 2
-    char _pad_0016[0x2]; // offset 0x16
+    bool m_bCompressedZ3; // offset 0x10, size 0x1, align 1
+    bool m_bCreateBufferSRV; // offset 0x11, size 0x1, align 1
+    bool m_bCreateBufferUAV; // offset 0x12, size 0x1, align 1
+    bool m_bCreateRawBuffer; // offset 0x13, size 0x1, align 1
+    bool m_bCreatePooledBuffer; // offset 0x14, size 0x1, align 1
+    char _pad_0015[0x1]; // offset 0x15
+    uint16 m_nBufferUsage; // offset 0x16, size 0x2, align 2
     CUtlVector< RenderInputLayoutField_t > m_inputLayoutFields; // offset 0x18, size 0x18, align 8
 };

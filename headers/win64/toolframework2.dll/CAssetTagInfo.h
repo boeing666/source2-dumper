@@ -1,6 +1,6 @@
 #pragma once
 
-class CAssetTagInfo  // sizeof 0x1E0, align 0x8 (toolutils2) {MGetKV3ClassDefaults MVDataRoot MVDataOutlinerDetailExpr MVDataOutlinerIconExpr}
+class CAssetTagInfo  // sizeof 0x1C0, align 0x8 (toolutils2) {MGetKV3ClassDefaults MVDataRoot MVDataOutlinerDetailExpr MVDataOutlinerIconExpr}
 {
 public:
     char _pad_0000[0x30]; // offset 0x0
@@ -16,5 +16,5 @@ public:
     char _pad_0072[0x6]; // offset 0x72
     CUtlString m_RestrictAutoTagToAssetType; // offset 0x78, size 0x8, align 8 | MPropertyStartGroup MPropertyDescription
     CUtlString m_AutoFilterTag; // offset 0x80, size 0x8, align 8 | MPropertyDescription MPropertyAutoExpandSelf MPropertySuppressExpr
-    AutoTagVDataCondition_t m_AutoDataTag; // offset 0x88, size 0x158, align 8 | MPropertyDescription MPropertyAutoExpandSelf MPropertySuppressExpr
+    AutoTagVDataCondition_t m_AutoDataTag; // offset 0x88, size 0x138, align 8 | MPropertyDescription MPropertyAutoExpandSelf MPropertySuppressExpr
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class C_OP_RtEnvCull : public CParticleFunctionOperator /*0x0*/  // sizeof 0x288, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults}
+class C_OP_RtEnvCull : public CParticleFunctionOperator /*0x0*/  // sizeof 0x288, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults MGPUParticleFunction}
 {
 public:
     char _pad_0000[0x1E0]; // offset 0x0

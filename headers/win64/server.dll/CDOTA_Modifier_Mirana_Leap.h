@@ -1,23 +1,23 @@
 #pragma once
 
-class CDOTA_Modifier_Mirana_Leap : public CDOTA_Buff /*0x0*/  // sizeof 0x1AF8, align 0xFF [vtable] (server)
+class CDOTA_Modifier_Mirana_Leap : public CDOTA_Buff /*0x0*/  // sizeof 0x1B48, align 0xFF [vtable] (server)
 {
 public:
-    char _pad_0000[0x1AA8]; // offset 0x0
-    float32 m_flTotalTime; // offset 0x1AA8, size 0x4, align 4
-    float32 m_flInitialVelocity; // offset 0x1AAC, size 0x4, align 4
-    VectorWS m_vStartPosition; // offset 0x1AB0, size 0xC, align 4
-    Vector m_vTargetHorizontalDirection; // offset 0x1ABC, size 0xC, align 4
-    float32 m_flCurrentTimeHoriz; // offset 0x1AC8, size 0x4, align 4
-    float32 m_flCurrentTimeVert; // offset 0x1ACC, size 0x4, align 4
-    bool m_bInterrupted; // offset 0x1AD0, size 0x1, align 1
-    char _pad_1AD1[0x3]; // offset 0x1AD1
-    Vector m_vFaceDirection; // offset 0x1AD4, size 0xC, align 4
-    int32 leap_distance; // offset 0x1AE0, size 0x4, align 4
-    float32 leap_speed; // offset 0x1AE4, size 0x4, align 4
-    float32 leap_acceleration; // offset 0x1AE8, size 0x4, align 4
-    int32 leap_radius; // offset 0x1AEC, size 0x4, align 4
-    float32 leap_bonus_duration; // offset 0x1AF0, size 0x4, align 4
-    bool m_bLaunched; // offset 0x1AF4, size 0x1, align 1
-    char _pad_1AF5[0x3]; // offset 0x1AF5
+    char _pad_0000[0x1AF8]; // offset 0x0
+    float32 m_flTotalTime; // offset 0x1AF8, size 0x4, align 4
+    float32 m_flInitialVelocity; // offset 0x1AFC, size 0x4, align 4
+    VectorWS m_vStartPosition; // offset 0x1B00, size 0xC, align 4
+    Vector m_vTargetHorizontalDirection; // offset 0x1B0C, size 0xC, align 4
+    float32 m_flCurrentTimeHoriz; // offset 0x1B18, size 0x4, align 4
+    float32 m_flCurrentTimeVert; // offset 0x1B1C, size 0x4, align 4
+    bool m_bInterrupted; // offset 0x1B20, size 0x1, align 1
+    char _pad_1B21[0x3]; // offset 0x1B21
+    Vector m_vFaceDirection; // offset 0x1B24, size 0xC, align 4
+    int32 leap_distance; // offset 0x1B30, size 0x4, align 4
+    float32 leap_speed; // offset 0x1B34, size 0x4, align 4
+    float32 leap_acceleration; // offset 0x1B38, size 0x4, align 4
+    int32 leap_radius; // offset 0x1B3C, size 0x4, align 4
+    float32 leap_bonus_duration; // offset 0x1B40, size 0x4, align 4
+    bool m_bLaunched; // offset 0x1B44, size 0x1, align 1
+    char _pad_1B45[0x3]; // offset 0x1B45
 };

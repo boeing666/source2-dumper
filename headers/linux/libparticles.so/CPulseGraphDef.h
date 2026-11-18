@@ -1,6 +1,6 @@
 #pragma once
 
-class CPulseGraphDef  // sizeof 0x1C0, align 0x8 [vtable] (pulse_runtime_lib) {MGetKV3ClassDefaults}
+class CPulseGraphDef  // sizeof 0x1D8, align 0x8 [vtable] (pulse_runtime_lib) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
@@ -18,6 +18,7 @@ public:
     CUtlVector< CPulse_Constant > m_Constants; // offset 0xF8, size 0x18, align 8
     CUtlVector< CPulse_DomainValue > m_DomainValues; // offset 0x110, size 0x18, align 8
     CUtlVector< CPulse_BlackboardReference > m_BlackboardReferences; // offset 0x128, size 0x18, align 8
-    CUtlVector< CPulse_OutputConnection* > m_OutputConnections; // offset 0x140, size 0x18, align 8
-    char _pad_0158[0x68]; // offset 0x158
+    CUtlVector< CPulse_LambdaDef > m_LambdaDefs; // offset 0x140, size 0x18, align 8
+    CUtlVector< CPulse_OutputConnection* > m_OutputConnections; // offset 0x158, size 0x18, align 8
+    char _pad_0170[0x68]; // offset 0x170
 };

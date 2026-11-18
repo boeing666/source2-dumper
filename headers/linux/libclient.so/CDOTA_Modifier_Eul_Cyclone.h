@@ -1,10 +1,10 @@
 #pragma once
 
-class CDOTA_Modifier_Eul_Cyclone : public CDOTA_Modifier_Cyclone /*0x0*/  // sizeof 0x1AB8, align 0xFF [vtable] (client)
+class CDOTA_Modifier_Eul_Cyclone : public CDOTA_Modifier_Cyclone /*0x0*/  // sizeof 0x1B08, align 0xFF [vtable] (client)
 {
 public:
-    char _pad_0000[0x1AAC]; // offset 0x0
-    CHandle< C_BaseEntity > m_hBlocker; // offset 0x1AAC, size 0x4, align 4
-    bool m_bBlockerCreated; // offset 0x1AB0, size 0x1, align 1
-    char _pad_1AB1[0x7]; // offset 0x1AB1
+    char _pad_0000[0x1AFC]; // offset 0x0
+    CHandle< C_BaseEntity > m_hBlocker; // offset 0x1AFC, size 0x4, align 4
+    bool m_bBlockerCreated; // offset 0x1B00, size 0x1, align 1
+    char _pad_1B01[0x7]; // offset 0x1B01
 };

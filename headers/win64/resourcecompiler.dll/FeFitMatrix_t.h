@@ -7,5 +7,6 @@ struct FeFitMatrix_t  // sizeof 0x40, align 0x10 [trivial_dtor] (physicslib) {MG
     uint16 nEnd; // offset 0x2C, size 0x2, align 2
     uint16 nNode; // offset 0x2E, size 0x2, align 2
     uint16 nBeginDynamic; // offset 0x30, size 0x2, align 2
-    char _pad_0032[0xE]; // offset 0x32
+    uint16 nFlags; // offset 0x32, size 0x2, align 2
+    char _pad_0034[0xC]; // offset 0x34
 };

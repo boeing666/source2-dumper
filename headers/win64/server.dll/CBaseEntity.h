@@ -48,8 +48,8 @@ public:
     float32 m_flMoveDoneTime; // offset 0x318, size 0x4, align 4
     CUtlStringToken m_nSubclassID; // offset 0x31C, size 0x4, align 4
     char _pad_0320[0x8]; // offset 0x320
-    float32 m_flAnimTime; // offset 0x328, size 0x4, align 4 | MKV3TransferSaveOpsForField
-    float32 m_flSimulationTime; // offset 0x32C, size 0x4, align 4 | MKV3TransferSaveOpsForField
+    float32 m_flAnimTime; // offset 0x328, size 0x4, align 4
+    float32 m_flSimulationTime; // offset 0x32C, size 0x4, align 4
     GameTime_t m_flCreateTime; // offset 0x330, size 0x4, align 255
     bool m_bClientSideRagdoll; // offset 0x334, size 0x1, align 1
     uint8 m_ubInterpolationFrame; // offset 0x335, size 0x1, align 1
@@ -61,10 +61,10 @@ public:
     int32 m_iSentToClients; // offset 0x350, size 0x4, align 4 | MNotSaved
     char _pad_0354[0x4]; // offset 0x354
     CUtlString m_sUniqueHammerID; // offset 0x358, size 0x8, align 8
-    uint32 m_spawnflags; // offset 0x360, size 0x4, align 4
-    GameTick_t m_nNextThinkTick; // offset 0x364, size 0x4, align 255
-    int32 m_nSimulationTick; // offset 0x368, size 0x4, align 4 | MKV3TransferSaveOpsForField
-    char _pad_036C[0x4]; // offset 0x36C
+    uint32 m_nHammerHashKey; // offset 0x360, size 0x4, align 4
+    uint32 m_spawnflags; // offset 0x364, size 0x4, align 4
+    GameTick_t m_nNextThinkTick; // offset 0x368, size 0x4, align 255
+    int32 m_nSimulationTick; // offset 0x36C, size 0x4, align 4
     CEntityIOOutput m_OnKilled; // offset 0x370, size 0x18, align 255
     uint32 m_fFlags; // offset 0x388, size 0x4, align 4
     Vector m_vecAbsVelocity; // offset 0x38C, size 0xC, align 4

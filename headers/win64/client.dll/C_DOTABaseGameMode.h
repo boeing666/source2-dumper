@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTABaseGameMode : public C_BaseEntity /*0x0*/  // sizeof 0x7E0, align 0x8 [vtable] (client)
+class C_DOTABaseGameMode : public C_BaseEntity /*0x0*/  // sizeof 0x7E8, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x5F0]; // offset 0x0
@@ -83,35 +83,37 @@ public:
     int32 m_iCustomScanMaxCharges; // offset 0x6DC, size 0x4, align 4
     float32 m_flCustomScanCooldown; // offset 0x6E0, size 0x4, align 4
     float32 m_flCustomGlyphCooldown; // offset 0x6E4, size 0x4, align 4
-    float32 m_flCustomBackpackSwapCooldown; // offset 0x6E8, size 0x4, align 4
-    float32 m_flCustomBackpackCooldownPercent; // offset 0x6EC, size 0x4, align 4
-    bool m_bDefaultRuneSpawnLogic; // offset 0x6F0, size 0x1, align 1
-    bool m_bEnableFreeCourierMode; // offset 0x6F1, size 0x1, align 1
-    bool m_bAllowNeutralItemDrops; // offset 0x6F2, size 0x1, align 1
-    bool m_bEnableNeutralStash; // offset 0x6F3, size 0x1, align 1
-    bool m_bEnableNeutralStashTeamViewOnly; // offset 0x6F4, size 0x1, align 1
-    bool m_bEnableNeutralItemHideUndiscovered; // offset 0x6F5, size 0x1, align 1
-    bool m_bEnableSendToStash; // offset 0x6F6, size 0x1, align 1
-    bool m_bForceRightClickAttackDisabled; // offset 0x6F7, size 0x1, align 1
-    C_UtlVectorEmbeddedNetworkVar< CDOTACustomShopInfo > m_vecCustomShopInfo; // offset 0x6F8, size 0x68, align 8
-    bool m_bCanSellAnywhere; // offset 0x760, size 0x1, align 1
-    char _pad_0761[0x3]; // offset 0x761
-    float32 m_flCameraNearZ; // offset 0x764, size 0x4, align 4
-    float32 m_flCameraFarZ; // offset 0x768, size 0x4, align 4
-    int32 m_nCustomRadiantScore; // offset 0x76C, size 0x4, align 4
-    int32 m_nCustomDireScore; // offset 0x770, size 0x4, align 4
-    bool m_bAbilityUpgradeWhitelistEnabled; // offset 0x774, size 0x1, align 1
-    char _pad_0775[0x3]; // offset 0x775
-    C_NetworkUtlVectorBase< AbilityID_t > m_vecAbilityUpgradeWhitelist; // offset 0x778, size 0x18, align 8
-    bool m_bGiveFreeTPOnDeath; // offset 0x790, size 0x1, align 1
-    char _pad_0791[0x3]; // offset 0x791
-    int32 m_nInnateMeleeDamageBlockPct; // offset 0x794, size 0x4, align 4
-    int32 m_nInnateMeleeDamageBlockAmount; // offset 0x798, size 0x4, align 4
-    int32 m_nInnateMeleeDamageBlockPerLevelAmount; // offset 0x79C, size 0x4, align 4
-    float32 m_flWaterRuneSpawnInterval; // offset 0x7A0, size 0x4, align 4
-    char _pad_07A4[0x4]; // offset 0x7A4
-    C_NetworkUtlVectorBase< CHandle< C_DOTA_BaseNPC > > m_vecBigHealthBarUnits; // offset 0x7A8, size 0x18, align 8
-    char _pad_07C0[0x18]; // offset 0x7C0
-    uint32 m_nHUDVisibilityBitsPrevious; // offset 0x7D8, size 0x4, align 4
-    char _pad_07DC[0x4]; // offset 0x7DC
+    int32 m_iCustomGlyphMaxCharges; // offset 0x6E8, size 0x4, align 4
+    float32 m_flCustomBackpackSwapCooldown; // offset 0x6EC, size 0x4, align 4
+    float32 m_flCustomBackpackCooldownPercent; // offset 0x6F0, size 0x4, align 4
+    bool m_bDefaultRuneSpawnLogic; // offset 0x6F4, size 0x1, align 1
+    bool m_bEnableFreeCourierMode; // offset 0x6F5, size 0x1, align 1
+    bool m_bAllowNeutralItemDrops; // offset 0x6F6, size 0x1, align 1
+    bool m_bEnableNeutralStash; // offset 0x6F7, size 0x1, align 1
+    bool m_bEnableNeutralStashTeamViewOnly; // offset 0x6F8, size 0x1, align 1
+    bool m_bEnableNeutralItemHideUndiscovered; // offset 0x6F9, size 0x1, align 1
+    bool m_bEnableSendToStash; // offset 0x6FA, size 0x1, align 1
+    bool m_bForceRightClickAttackDisabled; // offset 0x6FB, size 0x1, align 1
+    char _pad_06FC[0x4]; // offset 0x6FC
+    C_UtlVectorEmbeddedNetworkVar< CDOTACustomShopInfo > m_vecCustomShopInfo; // offset 0x700, size 0x68, align 8
+    bool m_bCanSellAnywhere; // offset 0x768, size 0x1, align 1
+    char _pad_0769[0x3]; // offset 0x769
+    float32 m_flCameraNearZ; // offset 0x76C, size 0x4, align 4
+    float32 m_flCameraFarZ; // offset 0x770, size 0x4, align 4
+    int32 m_nCustomRadiantScore; // offset 0x774, size 0x4, align 4
+    int32 m_nCustomDireScore; // offset 0x778, size 0x4, align 4
+    bool m_bAbilityUpgradeWhitelistEnabled; // offset 0x77C, size 0x1, align 1
+    char _pad_077D[0x3]; // offset 0x77D
+    C_NetworkUtlVectorBase< AbilityID_t > m_vecAbilityUpgradeWhitelist; // offset 0x780, size 0x18, align 8
+    bool m_bGiveFreeTPOnDeath; // offset 0x798, size 0x1, align 1
+    char _pad_0799[0x3]; // offset 0x799
+    int32 m_nInnateMeleeDamageBlockPct; // offset 0x79C, size 0x4, align 4
+    int32 m_nInnateMeleeDamageBlockAmount; // offset 0x7A0, size 0x4, align 4
+    int32 m_nInnateMeleeDamageBlockPerLevelAmount; // offset 0x7A4, size 0x4, align 4
+    float32 m_flWaterRuneSpawnInterval; // offset 0x7A8, size 0x4, align 4
+    char _pad_07AC[0x4]; // offset 0x7AC
+    C_NetworkUtlVectorBase< CHandle< C_DOTA_BaseNPC > > m_vecBigHealthBarUnits; // offset 0x7B0, size 0x18, align 8
+    char _pad_07C8[0x18]; // offset 0x7C8
+    uint32 m_nHUDVisibilityBitsPrevious; // offset 0x7E0, size 0x4, align 4
+    char _pad_07E4[0x4]; // offset 0x7E4
 };

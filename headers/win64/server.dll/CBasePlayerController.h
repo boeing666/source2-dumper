@@ -4,7 +4,7 @@ class CBasePlayerController : public CBaseEntity /*0x0*/  // sizeof 0x7B8, align
 {
 public:
     char _pad_0000[0x4A0]; // offset 0x0
-    uint64 m_nInButtonsWhichAreToggles; // offset 0x4A0, size 0x8, align 8 | MNotSaved
+    ButtonBitMask_t m_nInButtonsWhichAreToggles; // offset 0x4A0, size 0x8, align 255 | MNotSaved
     uint32 m_nTickBase; // offset 0x4A8, size 0x4, align 4 | MNotSaved
     char _pad_04AC[0x24]; // offset 0x4AC
     CHandle< CBasePlayerPawn > m_hPawn; // offset 0x4D0, size 0x4, align 4
@@ -29,7 +29,7 @@ public:
     bool m_bGamePaused; // offset 0x5A5, size 0x1, align 1 | MNotSaved
     char _pad_05A6[0x132]; // offset 0x5A6
     ChatIgnoreType_t m_iIgnoreGlobalChat; // offset 0x6D8, size 0x4, align 4 | MNotSaved
-    float32 m_flLastPlayerTalkTime; // offset 0x6DC, size 0x4, align 4 | MKV3TransferSaveOpsForField
+    float32 m_flLastPlayerTalkTime; // offset 0x6DC, size 0x4, align 4
     float32 m_flLastEntitySteadyState; // offset 0x6E0, size 0x4, align 4 | MNotSaved
     int32 m_nAvailableEntitySteadyState; // offset 0x6E4, size 0x4, align 4 | MNotSaved
     bool m_bHasAnySteadyStateEnts; // offset 0x6E8, size 0x1, align 1 | MNotSaved

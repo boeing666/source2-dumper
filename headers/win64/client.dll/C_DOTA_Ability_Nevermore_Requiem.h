@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTA_Ability_Nevermore_Requiem : public C_DOTABaseAbility /*0x0*/  // sizeof 0x6D8, align 0x8 [vtable] (client)
+class C_DOTA_Ability_Nevermore_Requiem : public C_DOTABaseAbility /*0x0*/  // sizeof 0x708, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x6A8]; // offset 0x0
@@ -11,4 +11,6 @@ public:
     int32 m_nKilleater_nLines; // offset 0x6B8, size 0x4, align 4
     char _pad_06BC[0x4]; // offset 0x6BC
     CUtlVector< CHandle< C_BaseEntity > > m_vecHeroesReqd; // offset 0x6C0, size 0x18, align 8
+    CUtlVector< CHandle< C_BaseEntity > > m_vecHitTargets; // offset 0x6D8, size 0x18, align 8
+    CUtlVector< CHandle< C_BaseEntity > > m_vecReturnHitTargets; // offset 0x6F0, size 0x18, align 8
 };

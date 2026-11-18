@@ -3,12 +3,12 @@
 class C_OP_RenderModels : public CParticleFunctionRenderer /*0x0*/  // sizeof 0x3CF0, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x221]; // offset 0x0
-    bool m_bOnlyRenderInEffectsBloomPass; // offset 0x221, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority
-    bool m_bOnlyRenderInEffectsWaterPass; // offset 0x222, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority MPropertySuppressExpr
-    bool m_bUseMixedResolutionRendering; // offset 0x223, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority
-    bool m_bOnlyRenderInEffecsGameOverlay; // offset 0x224, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority MPropertySuppressExpr
-    char _pad_0225[0x3]; // offset 0x225
+    char _pad_0000[0x21D]; // offset 0x0
+    bool m_bOnlyRenderInEffectsBloomPass; // offset 0x21D, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority
+    bool m_bOnlyRenderInEffectsWaterPass; // offset 0x21E, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority MPropertySuppressExpr
+    bool m_bUseMixedResolutionRendering; // offset 0x21F, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority
+    bool m_bOnlyRenderInEffecsGameOverlay; // offset 0x220, size 0x1, align 1 | MPropertyFriendlyName MPropertySortPriority MPropertySuppressExpr
+    char _pad_0221[0x7]; // offset 0x221
     CUtlVector< ModelReference_t > m_ModelList; // offset 0x228, size 0x18, align 8 | MPropertyFriendlyName MParticleRequireDefaultArrayEntry MPropertyAutoExpandSelf MPropertySortPriority
     ParticleAttributeIndex_t m_nBodyGroupField; // offset 0x240, size 0x4, align 255 | MPropertyFriendlyName MPropertyAttributeChoiceName
     ParticleAttributeIndex_t m_nSubModelField; // offset 0x244, size 0x4, align 255 | MPropertyFriendlyName MPropertyAttributeChoiceName

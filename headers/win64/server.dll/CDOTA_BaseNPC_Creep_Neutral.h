@@ -1,8 +1,8 @@
 #pragma once
 
-class CDOTA_BaseNPC_Creep_Neutral : public CDOTA_BaseNPC_Creep /*0x0*/  // sizeof 0x19E0, align 0x8 [vtable] (server)
+class CDOTA_BaseNPC_Creep_Neutral : public CDOTA_BaseNPC_Creep /*0x0*/  // sizeof 0x1A70, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x19C8]; // offset 0x0
-    CountdownTimer m_ThinkTimer; // offset 0x19C8, size 0x18, align 8
+    char _pad_0000[0x1A58]; // offset 0x0
+    CountdownTimer m_ThinkTimer; // offset 0x1A58, size 0x18, align 8
 };

@@ -9,6 +9,6 @@ enum EDestructibleParts_DestroyParameterFlags : uint32_t  // sizeof 0x4
     ForceDamageApply = 8,
     IgnoreKillEntityFlag = 16,
     IgnoreHealthCheck = 32,
-    ApplyPhysicsForce = 64,
+    ApplyPhysicsForceToOwner = 64,
     Default = 7,
 };

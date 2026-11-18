@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_PlayerResource : public CBaseEntity /*0x0*/  // sizeof 0xEFB0, align 0x8 [vtable] (server)
+class CDOTA_PlayerResource : public CBaseEntity /*0x0*/  // sizeof 0xF200, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x6D8]; // offset 0x0
@@ -108,39 +108,39 @@ public:
     int32[24] m_iCouriersPotentiallyKilled; // offset 0xC390, size 0x60, align 4
     int32[24] m_iCommandsIssued; // offset 0xC3F0, size 0x60, align 4
     uint32[24] m_hHeroSpawnGroup; // offset 0xC450, size 0x60, align 4
-    char _pad_C4B0[0x17C0]; // offset 0xC4B0
-    float32 m_fNextLaneDetectionUpdate; // offset 0xDC70, size 0x4, align 4
-    float32 m_fNextTimedHeroStatsUpdate; // offset 0xDC74, size 0x4, align 4
-    char _pad_DC78[0x2A0]; // offset 0xDC78
-    bool m_bInitializedLaneWaypoints; // offset 0xDF18, size 0x1, align 1
-    char _pad_DF19[0x517]; // offset 0xDF19
-    uint32 m_nLastWardSuggestionBuildingState; // offset 0xE430, size 0x4, align 4
-    uint32 m_nLastWardSuggestionUpdateNum; // offset 0xE434, size 0x4, align 4
-    bool m_bLastWardSuggestionRoshanAlive; // offset 0xE438, size 0x1, align 1
-    bool[10] m_bDoFinalPregameSuggestion; // offset 0xE439, size 0xA, align 1
-    char _pad_E443[0x1]; // offset 0xE443
-    float32 m_fNextCreepDistanceUpdate; // offset 0xE444, size 0x4, align 4
-    float32[15] m_fCreepDistanceSafe; // offset 0xE448, size 0x3C, align 4
-    float32[15] m_fCreepDistanceMid; // offset 0xE484, size 0x3C, align 4
-    float32[15] m_fCreepDistanceOff; // offset 0xE4C0, size 0x3C, align 4
-    GameTime_t m_fLastSuggestionTime; // offset 0xE4FC, size 0x4, align 255
-    bool m_bHasRevealedAnonymizedEnemyPlayerInfo; // offset 0xE500, size 0x1, align 1
-    char _pad_E501[0x607]; // offset 0xE501
-    PlayerID_t m_nRequestedBotPlayerID; // offset 0xEB08, size 0x4, align 255
-    float32 m_fNextCombatLogLocationUpdateTime; // offset 0xEB0C, size 0x4, align 4
-    float32 m_fNextAPMUpdateTime; // offset 0xEB10, size 0x4, align 4
-    char _pad_EB14[0x4]; // offset 0xEB14
-    CUtlVector< uint32 > m_vecPendingPlayerResourceRequests; // offset 0xEB18, size 0x18, align 8
-    int32[24] m_iRampages; // offset 0xEB30, size 0x60, align 4
-    int32[24] m_iTripleKills; // offset 0xEB90, size 0x60, align 4
-    int32[24] m_iCouriersKilled; // offset 0xEBF0, size 0x60, align 4
-    int32[24] m_iAegisesSnatched; // offset 0xEC50, size 0x60, align 4
-    int32[24] m_iCheesesEaten; // offset 0xECB0, size 0x60, align 4
-    int32[24] m_iRapiersPurchased; // offset 0xED10, size 0x60, align 4
-    float32[24] m_flPushingDamage; // offset 0xED70, size 0x60, align 4
-    int32[24] m_iRoshanKillsNight; // offset 0xEDD0, size 0x60, align 4
-    int32[24] m_iRoshanKillsDay; // offset 0xEE30, size 0x60, align 4
-    int32[24] m_iPortalsUsed; // offset 0xEE90, size 0x60, align 4
-    int32[24] m_iWisdomRunesGained; // offset 0xEEF0, size 0x60, align 4
-    int32[24] m_iShieldRunesGained; // offset 0xEF50, size 0x60, align 4
+    char _pad_C4B0[0x1A10]; // offset 0xC4B0
+    float32 m_fNextLaneDetectionUpdate; // offset 0xDEC0, size 0x4, align 4
+    float32 m_fNextTimedHeroStatsUpdate; // offset 0xDEC4, size 0x4, align 4
+    char _pad_DEC8[0x2A0]; // offset 0xDEC8
+    bool m_bInitializedLaneWaypoints; // offset 0xE168, size 0x1, align 1
+    char _pad_E169[0x517]; // offset 0xE169
+    uint32 m_nLastWardSuggestionBuildingState; // offset 0xE680, size 0x4, align 4
+    uint32 m_nLastWardSuggestionUpdateNum; // offset 0xE684, size 0x4, align 4
+    bool m_bLastWardSuggestionRoshanAlive; // offset 0xE688, size 0x1, align 1
+    bool[10] m_bDoFinalPregameSuggestion; // offset 0xE689, size 0xA, align 1
+    char _pad_E693[0x1]; // offset 0xE693
+    float32 m_fNextCreepDistanceUpdate; // offset 0xE694, size 0x4, align 4
+    float32[15] m_fCreepDistanceSafe; // offset 0xE698, size 0x3C, align 4
+    float32[15] m_fCreepDistanceMid; // offset 0xE6D4, size 0x3C, align 4
+    float32[15] m_fCreepDistanceOff; // offset 0xE710, size 0x3C, align 4
+    GameTime_t m_fLastSuggestionTime; // offset 0xE74C, size 0x4, align 255
+    bool m_bHasRevealedAnonymizedEnemyPlayerInfo; // offset 0xE750, size 0x1, align 1
+    char _pad_E751[0x607]; // offset 0xE751
+    PlayerID_t m_nRequestedBotPlayerID; // offset 0xED58, size 0x4, align 255
+    float32 m_fNextCombatLogLocationUpdateTime; // offset 0xED5C, size 0x4, align 4
+    float32 m_fNextAPMUpdateTime; // offset 0xED60, size 0x4, align 4
+    char _pad_ED64[0x4]; // offset 0xED64
+    CUtlVector< uint32 > m_vecPendingPlayerResourceRequests; // offset 0xED68, size 0x18, align 8
+    int32[24] m_iRampages; // offset 0xED80, size 0x60, align 4
+    int32[24] m_iTripleKills; // offset 0xEDE0, size 0x60, align 4
+    int32[24] m_iCouriersKilled; // offset 0xEE40, size 0x60, align 4
+    int32[24] m_iAegisesSnatched; // offset 0xEEA0, size 0x60, align 4
+    int32[24] m_iCheesesEaten; // offset 0xEF00, size 0x60, align 4
+    int32[24] m_iRapiersPurchased; // offset 0xEF60, size 0x60, align 4
+    float32[24] m_flPushingDamage; // offset 0xEFC0, size 0x60, align 4
+    int32[24] m_iRoshanKillsNight; // offset 0xF020, size 0x60, align 4
+    int32[24] m_iRoshanKillsDay; // offset 0xF080, size 0x60, align 4
+    int32[24] m_iPortalsUsed; // offset 0xF0E0, size 0x60, align 4
+    int32[24] m_iWisdomRunesGained; // offset 0xF140, size 0x60, align 4
+    int32[24] m_iShieldRunesGained; // offset 0xF1A0, size 0x60, align 4
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-struct AI_DefaultNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t /*0x0*/  // sizeof 0x80, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MPropertyFriendlyName}
+struct AI_DefaultNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t /*0x0*/  // sizeof 0x80, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MPropertyFriendlyName MDebugSnapshotDataSortPriority}
 {
     char _pad_0000[0x8]; // offset 0x0
     CGlobalSymbol s_npc_current_ability; // offset 0x8, size 0x8, align 8

@@ -1,7 +1,7 @@
 #pragma once
 
-class CDOTA_BossAttackableTrigger : public CBaseTrigger /*0x0*/  // sizeof 0xCA8, align 0x8 [vtable] (server)
+class CDOTA_BossAttackableTrigger : public CBaseTrigger /*0x0*/  // sizeof 0xD10, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0xCA8]; // offset 0x0
+    char _pad_0000[0xD10]; // offset 0x0
 };

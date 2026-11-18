@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTAPlayerController : public CBasePlayerController /*0x0*/  // sizeof 0x10A0, align 0x8 [vtable] (client)
+class C_DOTAPlayerController : public CBasePlayerController /*0x0*/  // sizeof 0x10C0, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0xA28]; // offset 0x0
@@ -134,7 +134,10 @@ public:
     char _pad_0F0C[0x4]; // offset 0xF0C
     CUtlVector< sControlGroupElem >[10] m_ControlGroups; // offset 0xF10, size 0xF0, align 8
     KeyValues* m_pkvControlGroupKV; // offset 0x1000, size 0x8, align 8
-    char _pad_1008[0x58]; // offset 0x1008
-    float32 m_flAltHeldStartTime; // offset 0x1060, size 0x4, align 4
-    char _pad_1064[0x3C]; // offset 0x1064
+    HeroID_t m_cachedWearablesHeroID; // offset 0x1008, size 0x4, align 255
+    char _pad_100C[0x4]; // offset 0x100C
+    CUtlVector< C_DOTAWearableItem* > m_vecCachedWearables; // offset 0x1010, size 0x18, align 8
+    char _pad_1028[0x58]; // offset 0x1028
+    float32 m_flAltHeldStartTime; // offset 0x1080, size 0x4, align 4
+    char _pad_1084[0x3C]; // offset 0x1084
 };

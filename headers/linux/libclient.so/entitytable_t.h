@@ -9,7 +9,7 @@ struct entitytable_t  // sizeof 0x50, align 0x8 (client) {MGetKV3ClassDefaults}
     bool bWasSaved; // offset 0x14, size 0x1, align 1
     char _pad_0015[0x3]; // offset 0x15
     SaveRestoreTableFlags_t flags; // offset 0x18, size 0x4, align 4
-    char _pad_001C[0x4]; // offset 0x1C
+    int32 spawngroupslot; // offset 0x1C, size 0x4, align 4
     CUtlSymbolLarge classname; // offset 0x20, size 0x8, align 8
     CUtlSymbolLarge globalname; // offset 0x28, size 0x8, align 8
     CUtlSymbolLarge entityname; // offset 0x30, size 0x8, align 8

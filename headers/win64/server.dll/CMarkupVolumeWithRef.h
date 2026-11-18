@@ -1,12 +1,12 @@
 #pragma once
 
-class CMarkupVolumeWithRef : public CMarkupVolumeTagged /*0x0*/  // sizeof 0x8C0, align 0x8 [vtable] (server)
+class CMarkupVolumeWithRef : public CMarkupVolumeTagged /*0x0*/  // sizeof 0x920, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x8A0]; // offset 0x0
-    bool m_bUseRef; // offset 0x8A0, size 0x1, align 1
-    char _pad_08A1[0x3]; // offset 0x8A1
-    Vector m_vRefPosEntitySpace; // offset 0x8A4, size 0xC, align 4
-    VectorWS m_vRefPosWorldSpace; // offset 0x8B0, size 0xC, align 4
-    float32 m_flRefDot; // offset 0x8BC, size 0x4, align 4
+    char _pad_0000[0x900]; // offset 0x0
+    bool m_bUseRef; // offset 0x900, size 0x1, align 1
+    char _pad_0901[0x3]; // offset 0x901
+    Vector m_vRefPosEntitySpace; // offset 0x904, size 0xC, align 4
+    VectorWS m_vRefPosWorldSpace; // offset 0x910, size 0xC, align 4
+    float32 m_flRefDot; // offset 0x91C, size 0x4, align 4
 };

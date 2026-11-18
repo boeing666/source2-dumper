@@ -1,7 +1,7 @@
 #pragma once
 
-class CSpriteOriented : public C_Sprite /*0x0*/  // sizeof 0xBF8, align 0x8 [vtable] (client)
+class CSpriteOriented : public C_Sprite /*0x0*/  // sizeof 0xC58, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0xBF8]; // offset 0x0
+    char _pad_0000[0xC58]; // offset 0x0
 };

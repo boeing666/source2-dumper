@@ -1,6 +1,6 @@
 #pragma once
 
-class CPulseEditorSettings  // sizeof 0x218, align 0x8 (pulsedoc_lib) {MGetKV3ClassDefaults}
+class CPulseEditorSettings  // sizeof 0x238, align 0x8 (pulsedoc_lib) {MGetKV3ClassDefaults}
 {
 public:
     Color m_colCanvasBackground; // offset 0x0, size 0x4, align 4
@@ -79,46 +79,55 @@ public:
     float32 m_flRecentExecConnectionIndicatorSize; // offset 0x150, size 0x4, align 4 | MPropertyAttributeRange
     char _pad_0154[0x4]; // offset 0x154
     CUtlString m_RecentExecConnectionIndicatorImg; // offset 0x158, size 0x8, align 8
-    bool m_bBreakOnExceptions; // offset 0x160, size 0x1, align 1
-    bool m_bShowExecutionHistory; // offset 0x161, size 0x1, align 1
-    bool m_bBoxSelectRequiresFullyContained; // offset 0x162, size 0x1, align 1
-    bool m_bShowFullContextLogging; // offset 0x163, size 0x1, align 1
-    bool m_bFollowCursorDuringDebugSteps; // offset 0x164, size 0x1, align 1
-    char _pad_0165[0x3]; // offset 0x165
-    float32 m_flFlowMinWidth; // offset 0x168, size 0x4, align 4 | MPropertyStartGroup
-    Color m_colSelectedBorder; // offset 0x16C, size 0x4, align 4
-    float32 m_flAppendButtonSize; // offset 0x170, size 0x4, align 4 | MPropertyAttributeRange
-    Color m_colAppendHover; // offset 0x174, size 0x4, align 4
-    CUtlString m_AppendImg; // offset 0x178, size 0x8, align 8
-    float32 m_flMoveChildArrowOffset; // offset 0x180, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flMoveChildArrowSize; // offset 0x184, size 0x4, align 4 | MPropertyAttributeRange
-    CUtlString m_MoveChildArrowImg; // offset 0x188, size 0x8, align 8
-    Color m_colMoveChildArrow; // offset 0x190, size 0x4, align 4
-    float32 m_flConnectionTangentStrength; // offset 0x194, size 0x4, align 4 | MPropertyStartGroup MPropertyAttributeRange
-    float32 m_flConnectionCurveSpacing; // offset 0x198, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flConnectionDeltaLimitScale; // offset 0x19C, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flBrokenConnectionOffset; // offset 0x1A0, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flConnectionInflowOffset; // offset 0x1A4, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flConnectionInparamOffset; // offset 0x1A8, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flConnectionInparamOffsetArray; // offset 0x1AC, size 0x4, align 4 | MPropertyAttributeRange
-    float32 m_flConnectionCapBrokenSize; // offset 0x1B0, size 0x4, align 4 | MPropertyAttributeRange
-    char _pad_01B4[0x4]; // offset 0x1B4
-    CUtlString m_ConnectionCapBrokenImg; // offset 0x1B8, size 0x8, align 8
-    float32 m_flConnectionColorLerpPercentageStart; // offset 0x1C0, size 0x4, align 4 | MPropertyAttributeRange
-    Vector2D m_vecBlockCommentDefaultSize; // offset 0x1C4, size 0x8, align 4 | MPropertyStartGroup
-    Vector2D m_vecBlockCommentMinSize; // offset 0x1CC, size 0x8, align 4
-    Color m_colBlockCommentDefault; // offset 0x1D4, size 0x4, align 4
-    Color m_colBlockCommentTextLight; // offset 0x1D8, size 0x4, align 4
-    Color m_colBlockCommentTextDark; // offset 0x1DC, size 0x4, align 4
-    float32 m_flBlockCommentRegionAlpha; // offset 0x1E0, size 0x4, align 4
-    float32 m_flTimelineSeekBarHeight; // offset 0x1E4, size 0x4, align 4 | MPropertyStartGroup
-    float32 m_flTimelinePauseIconSize; // offset 0x1E8, size 0x4, align 4
-    float32 m_flTimelineCallModeIconSize; // offset 0x1EC, size 0x4, align 4
-    CUtlString m_FontTimelineTime; // offset 0x1F0, size 0x8, align 8 | MPropertyAttributeEditor
-    Color m_colTimelineLabel; // offset 0x1F8, size 0x4, align 4
-    Vector2D m_vecTimelineIconFromPort; // offset 0x1FC, size 0x8, align 4
-    Vector2D m_vecTimelinePauseIconOffset; // offset 0x204, size 0x8, align 4
-    float32 m_flTimelineCursorHeight; // offset 0x20C, size 0x4, align 4
-    float32 m_flTimelineCursorTextHeight; // offset 0x210, size 0x4, align 4
-    char _pad_0214[0x4]; // offset 0x214
+    Color m_colHighlightCursorIcon; // offset 0x160, size 0x4, align 4 | MPropertyColorPlusAlpha
+    bool m_bBreakOnExceptions; // offset 0x164, size 0x1, align 1
+    bool m_bShowExecutionHistory; // offset 0x165, size 0x1, align 1
+    bool m_bBoxSelectRequiresFullyContained; // offset 0x166, size 0x1, align 1
+    bool m_bShowFullContextLogging; // offset 0x167, size 0x1, align 1
+    bool m_bFollowCursorDuringDebugSteps; // offset 0x168, size 0x1, align 1
+    bool m_bHighlightCursors; // offset 0x169, size 0x1, align 1
+    char _pad_016A[0x2]; // offset 0x16A
+    float32 m_flFlowMinWidth; // offset 0x16C, size 0x4, align 4 | MPropertyStartGroup
+    Color m_colSelectedBorder; // offset 0x170, size 0x4, align 4
+    float32 m_flAppendButtonSize; // offset 0x174, size 0x4, align 4 | MPropertyAttributeRange
+    Color m_colAppendHover; // offset 0x178, size 0x4, align 4
+    char _pad_017C[0x4]; // offset 0x17C
+    CUtlString m_AppendImg; // offset 0x180, size 0x8, align 8
+    float32 m_flMoveChildArrowOffset; // offset 0x188, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flMoveChildArrowSize; // offset 0x18C, size 0x4, align 4 | MPropertyAttributeRange
+    CUtlString m_MoveChildArrowImg; // offset 0x190, size 0x8, align 8
+    Color m_colMoveChildArrow; // offset 0x198, size 0x4, align 4
+    float32 m_flConnectionTangentStrength; // offset 0x19C, size 0x4, align 4 | MPropertyStartGroup MPropertyAttributeRange
+    float32 m_flConnectionCurveSpacing; // offset 0x1A0, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flConnectionDeltaLimitScale; // offset 0x1A4, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flBrokenConnectionOffset; // offset 0x1A8, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flConnectionInflowOffset; // offset 0x1AC, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flConnectionInparamOffset; // offset 0x1B0, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flConnectionInparamOffsetArray; // offset 0x1B4, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flConnectionCapBrokenSize; // offset 0x1B8, size 0x4, align 4 | MPropertyAttributeRange
+    char _pad_01BC[0x4]; // offset 0x1BC
+    CUtlString m_ConnectionCapBrokenImg; // offset 0x1C0, size 0x8, align 8
+    float32 m_flConnectionColorLerpPercentageStart; // offset 0x1C8, size 0x4, align 4 | MPropertyAttributeRange
+    Vector2D m_vecBlockCommentDefaultSize; // offset 0x1CC, size 0x8, align 4 | MPropertyStartGroup
+    Vector2D m_vecBlockCommentMinSize; // offset 0x1D4, size 0x8, align 4
+    Color m_colBlockCommentDefault; // offset 0x1DC, size 0x4, align 4
+    Color m_colBlockCommentTextLight; // offset 0x1E0, size 0x4, align 4
+    Color m_colBlockCommentTextDark; // offset 0x1E4, size 0x4, align 4
+    float32 m_flBlockCommentRegionAlpha; // offset 0x1E8, size 0x4, align 4
+    float32 m_flTimelineSeekBarHeight; // offset 0x1EC, size 0x4, align 4 | MPropertyStartGroup
+    float32 m_flTimelinePauseIconSize; // offset 0x1F0, size 0x4, align 4
+    float32 m_flTimelineCallModeIconSize; // offset 0x1F4, size 0x4, align 4
+    CUtlString m_FontTimelineTime; // offset 0x1F8, size 0x8, align 8 | MPropertyAttributeEditor
+    Color m_colTimelineLabel; // offset 0x200, size 0x4, align 4
+    Vector2D m_vecTimelineIconFromPort; // offset 0x204, size 0x8, align 4
+    Vector2D m_vecTimelinePauseIconOffset; // offset 0x20C, size 0x8, align 4
+    float32 m_flTimelineCursorHeight; // offset 0x214, size 0x4, align 4
+    float32 m_flTimelineCursorTextHeight; // offset 0x218, size 0x4, align 4
+    float32 m_flDiffEdgeArrowLength; // offset 0x21C, size 0x4, align 4 | MPropertyStartGroup MPropertyAttributeRange
+    float32 m_flDiffEdgeArrowHalfWidth; // offset 0x220, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flDiffEdgeArrowHeadLength; // offset 0x224, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flDiffEdgeArrowStemHalfWidth; // offset 0x228, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flDiffEdgeArrowMargin; // offset 0x22C, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flDiffEdgeArrowLabelOffset; // offset 0x230, size 0x4, align 4 | MPropertyAttributeRange
+    float32 m_flDiffEdgeArrowClickRadius; // offset 0x234, size 0x4, align 4 | MPropertyAttributeRange
 };

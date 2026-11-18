@@ -8,7 +8,7 @@ struct PGDInstruction_t  // sizeof 0x38, align 0x8 [trivial_dtor] (pulse_runtime
     PulseRuntimeRegisterIndex_t m_nReg0; // offset 0x8, size 0x2, align 255
     PulseRuntimeRegisterIndex_t m_nReg1; // offset 0xA, size 0x2, align 255
     PulseRuntimeRegisterIndex_t m_nReg2; // offset 0xC, size 0x2, align 255
-    char _pad_000E[0x2]; // offset 0xE
+    PulseRuntimeLambdaIndex_t m_nLambdaIdx; // offset 0xE, size 0x2, align 255
     PulseRuntimeInvokeIndex_t m_nInvokeBindingIndex; // offset 0x10, size 0x4, align 255
     PulseRuntimeChunkIndex_t m_nChunk; // offset 0x14, size 0x4, align 255
     int32 m_nDestInstruction; // offset 0x18, size 0x4, align 4

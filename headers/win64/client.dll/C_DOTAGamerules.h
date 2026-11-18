@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTAGamerules : public C_MultiplayRules /*0x0*/  // sizeof 0xFC98, align 0xFF [vtable] (client)
+class C_DOTAGamerules : public C_MultiplayRules /*0x0*/  // sizeof 0xFE70, align 0xFF [vtable] (client)
 {
 public:
     char _pad_0000[0x40]; // offset 0x0
@@ -126,148 +126,160 @@ public:
     GameTime_t m_fGoodGlyphCooldown; // offset 0x5B8, size 0x4, align 255
     GameTime_t m_fBadGlyphCooldown; // offset 0x5BC, size 0x4, align 255
     GameTime_t[15] m_flGlyphCooldowns; // offset 0x5C0, size 0x3C, align 4
-    GameTime_t m_fGoodRadarCooldown; // offset 0x5FC, size 0x4, align 255
-    GameTime_t m_fBadRadarCooldown; // offset 0x600, size 0x4, align 255
-    GameTime_t[15] m_flRadarCooldowns; // offset 0x604, size 0x3C, align 4
-    int32 m_iGoodRadarCharges; // offset 0x640, size 0x4, align 4
-    int32 m_iBadRadarCharges; // offset 0x644, size 0x4, align 4
-    int32[15] m_iRadarCharges; // offset 0x648, size 0x3C, align 4
-    float32[24] m_flOutpostTimes; // offset 0x684, size 0x60, align 4
-    bool m_bIsNightstalkerNight; // offset 0x6E4, size 0x1, align 1
-    bool m_bIsTemporaryNight; // offset 0x6E5, size 0x1, align 1
-    bool m_bIsTemporaryDay; // offset 0x6E6, size 0x1, align 1
-    char _pad_06E7[0x1]; // offset 0x6E7
-    int32 m_nRiverType; // offset 0x6E8, size 0x4, align 4
-    HeroID_t m_nTemporaryDayNightSource; // offset 0x6EC, size 0x4, align 255
-    PlayerID_t[15] m_nTeamFeaturedPlayerID; // offset 0x6F0, size 0x3C, align 4
-    item_definition_index_t[15] m_nTeamVersusScreen; // offset 0x72C, size 0x3C, align 4
-    float32 m_flGoldRedistributeTime; // offset 0x768, size 0x4, align 4
-    int32[2] m_nGoldToRedistribute; // offset 0x76C, size 0x8, align 4
-    GameTime_t m_flNextPreGameThink; // offset 0x774, size 0x4, align 255
-    GameTime_t m_flNextAllDraftGoldThink; // offset 0x778, size 0x4, align 255
-    char _pad_077C[0x4]; // offset 0x77C
-    float64 m_flTimeEnteredState; // offset 0x780, size 0x8, align 8
-    uint32 m_unRiverAccountID; // offset 0x788, size 0x4, align 4
-    char _pad_078C[0x4]; // offset 0x78C
-    itemid_t m_ulRiverItemID; // offset 0x790, size 0x8, align 255
-    char _pad_0798[0x40]; // offset 0x798
-    C_UtlVectorEmbeddedNetworkVar< CDOTA_ItemStockInfo > m_vecItemStockInfo; // offset 0x7D8, size 0x68, align 8
-    DOTA_AssassinMinigameNetworkState m_AssassinMiniGameNetData; // offset 0x840, size 0x10, align 255
-    int32 m_nGameWinner; // offset 0x850, size 0x4, align 4
-    char _pad_0854[0x4]; // offset 0x854
-    MatchID_t m_unMatchID64; // offset 0x858, size 0x8, align 255
-    bool m_bMatchSignoutComplete; // offset 0x860, size 0x1, align 1
-    char _pad_0861[0x3]; // offset 0x861
-    CHandle< C_BaseEntity > m_hSideShop1; // offset 0x864, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hSideShop2; // offset 0x868, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hSecretShop1; // offset 0x86C, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hSecretShop2; // offset 0x870, size 0x4, align 4
-    CHandle< C_BaseEntity >[15] m_hTeamFountains; // offset 0x874, size 0x3C, align 4
-    CHandle< C_BaseEntity >[15] m_hTeamForts; // offset 0x8B0, size 0x3C, align 4
-    CHandle< C_BaseEntity >[15] m_hTeamShops; // offset 0x8EC, size 0x3C, align 4
-    C_NetworkUtlVectorBase< CHandle< C_BaseEntity > > m_hWatchers; // offset 0x928, size 0x18, align 8
-    CHandle< C_BaseEntity >[15] m_hWisdomShrines; // offset 0x940, size 0x3C, align 4
-    CHandle< C_BaseEntity >[15] m_hLotusPools; // offset 0x97C, size 0x3C, align 4
-    CHandle< C_BaseEntity > m_hAnnouncerGood; // offset 0x9B8, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hAnnouncerBad; // offset 0x9BC, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hAnnouncerSpectator; // offset 0x9C0, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hAnnouncerGood_KillingSpree; // offset 0x9C4, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hAnnouncerBad_KillingSpree; // offset 0x9C8, size 0x4, align 4
-    CHandle< C_BaseEntity > m_hAnnouncerSpectator_KillingSpree; // offset 0x9CC, size 0x4, align 4
-    bool[15] m_arrTier1TowerDestroyed; // offset 0x9D0, size 0xF, align 1
-    bool[15] m_arrTier2TowerDestroyed; // offset 0x9DF, size 0xF, align 1
-    bool[15] m_arrTier3TowerDestroyed; // offset 0x9EE, size 0xF, align 1
-    bool[15] m_arrMeleeBarracksDestroyed; // offset 0x9FD, size 0xF, align 1
-    bool m_bTier1TowerDestroyed; // offset 0xA0C, size 0x1, align 1
-    bool m_bTier2TowerDestroyed; // offset 0xA0D, size 0x1, align 1
-    bool m_bTier3TowerDestroyed; // offset 0xA0E, size 0x1, align 1
-    bool m_bMeleeBarracksDestroyed; // offset 0xA0F, size 0x1, align 1
-    float32 m_fTimeOfDay; // offset 0xA10, size 0x4, align 4
-    int32 m_iNetTimeOfDay; // offset 0xA14, size 0x4, align 4
-    float32 m_flDaytimeStart; // offset 0xA18, size 0x4, align 4
-    float32 m_flNighttimeStart; // offset 0xA1C, size 0x4, align 4
-    int32 m_nLoadedPlayers; // offset 0xA20, size 0x4, align 4
-    int32 m_nExpectedPlayers; // offset 0xA24, size 0x4, align 4
-    char _pad_0A28[0x8]; // offset 0xA28
-    int32 m_iMinimapDebugGridState; // offset 0xA30, size 0x4, align 4
-    char _pad_0A34[0x7C]; // offset 0xA34
-    int32 m_iFoWFrameNumber; // offset 0xAB0, size 0x4, align 4
-    Vector m_vWeatherWindDirection; // offset 0xAB4, size 0xC, align 4
-    CTormentorSpawnPhase m_tormentorSpawnPhase; // offset 0xAC0, size 0x40, align 255
-    C_UtlVectorEmbeddedNetworkVar< CTormentorSpawnPhase > m_vecTormentorSpawnPhases; // offset 0xB00, size 0x68, align 8
-    C_NetworkUtlVectorBase< AbilityID_t > m_vecDeityBlessings; // offset 0xB68, size 0x18, align 8
-    HeroID_t[24] m_vecRequiredPlaytestHeroesStorage; // offset 0xB80, size 0x60, align 4
-    HeroID_t[24] m_vecRecommendedPlaytestHeroesStorage; // offset 0xBE0, size 0x60, align 4
-    bool m_bAllRequiredPlaytestHeroesPicked; // offset 0xC40, size 0x1, align 1
-    char _pad_0C41[0x3]; // offset 0xC41
-    int32 m_nLastPlaytestPickPhase; // offset 0xC44, size 0x4, align 4
-    int32 m_nCustomGameFowTeamCount; // offset 0xC48, size 0x4, align 4
-    bool m_bUseAlternateABRules; // offset 0xC4C, size 0x1, align 1
-    bool m_bLobbyIsAssociatedWithGame; // offset 0xC4D, size 0x1, align 1
-    char _pad_0C4E[0x2]; // offset 0xC4E
-    CountdownTimer m_BotDebugTimer; // offset 0xC50, size 0x18, align 8
-    uint8[18] m_BotDebugPushLane; // offset 0xC68, size 0x12, align 1
-    uint8[18] m_BotDebugDefendLane; // offset 0xC7A, size 0x12, align 1
-    uint8[6] m_BotDebugFarmLane; // offset 0xC8C, size 0x6, align 1
-    uint8[8] m_BotDebugRoam; // offset 0xC92, size 0x8, align 1
-    char _pad_0C9A[0x2]; // offset 0xC9A
-    CHandle< C_BaseEntity >[2] m_hBotDebugRoamTarget; // offset 0xC9C, size 0x8, align 4
-    uint8[2] m_BotDebugRoshan; // offset 0xCA4, size 0x2, align 1
-    char _pad_0CA6[0x2]; // offset 0xCA6
-    ERoshanSpawnPhase m_nRoshanRespawnPhase; // offset 0xCA8, size 0x4, align 4
-    GameTime_t m_flRoshanRespawnPhaseEndTime; // offset 0xCAC, size 0x4, align 255
-    C_UtlVectorEmbeddedNetworkVar< CDOTA_AbilityDraftAbilityState > m_AbilityDraftAbilities; // offset 0xCB0, size 0x68, align 8
-    C_UtlVectorEmbeddedNetworkVar< CDOTA_AbilityDraftHeroState > m_AbilityDraftHeroes; // offset 0xD18, size 0x68, align 8
-    bool m_bAbilityDraftCurrentPlayerHasPicked; // offset 0xD80, size 0x1, align 1
-    char _pad_0D81[0x3]; // offset 0xD81
-    int32 m_nAbilityDraftPlayerTracker; // offset 0xD84, size 0x4, align 4
-    int32 m_nAbilityDraftRoundNumber; // offset 0xD88, size 0x4, align 4
-    int32 m_nAbilityDraftAdvanceSteps; // offset 0xD8C, size 0x4, align 4
-    int32 m_nAbilityDraftPhase; // offset 0xD90, size 0x4, align 4
-    bool m_bIsPlayerDraft; // offset 0xD94, size 0x1, align 1
-    char _pad_0D95[0x3]; // offset 0xD95
-    DOTA_PlayerDraftState m_ePlayerDraftState; // offset 0xD98, size 0x4, align 4
-    char _pad_0D9C[0x4]; // offset 0xD9C
-    C_NetworkUtlVectorBase< uint8 > m_vecPlayerDraftPickOrder; // offset 0xDA0, size 0x18, align 8
-    int32 m_nPlayerDraftPick; // offset 0xDB8, size 0x4, align 4
-    int32 m_nPlayerDraftActiveTeam; // offset 0xDBC, size 0x4, align 4
-    float32[2] m_flPlayerDraftTimeBank; // offset 0xDC0, size 0x8, align 4
-    CUtlVector< KeyValues* >[2] m_vecARDMHeroes; // offset 0xDC8, size 0x30, align 8
-    int32 m_nARDMHeroesPrecached; // offset 0xDF8, size 0x4, align 4
-    float32 m_fLastARDMPrecache; // offset 0xDFC, size 0x4, align 4
-    int32 m_nAllDraftPhase; // offset 0xE00, size 0x4, align 4
-    bool m_bAllDraftRadiantFirst; // offset 0xE04, size 0x1, align 1
-    bool m_bAllowOverrideVPK; // offset 0xE05, size 0x1, align 1
-    char _pad_0E06[0x2]; // offset 0xE06
-    int32[2] m_nARDMHeroesRemaining; // offset 0xE08, size 0x8, align 4
-    bool m_bUpdateHeroStatues; // offset 0xE10, size 0x1, align 1
-    char _pad_0E11[0x27]; // offset 0xE11
-    bool m_bExperimentalGameplay; // offset 0xE38, size 0x1, align 1
-    char _pad_0E39[0x47]; // offset 0xE39
-    uint32 m_lobbyType; // offset 0xE80, size 0x4, align 4
-    LeagueID_t m_lobbyLeagueID; // offset 0xE84, size 0x4, align 255
-    char[256] m_lobbyGameName; // offset 0xE88, size 0x100, align 1
-    C_UtlVectorEmbeddedNetworkVar< CHeroStatueLiked > m_vecHeroStatueLiked; // offset 0xF88, size 0x68, align 8
-    int32[15] m_CustomGameTeamMaxPlayers; // offset 0xFF0, size 0x3C, align 4
-    int32[5] m_iMutations; // offset 0x102C, size 0x14, align 4
-    C_NetworkUtlVectorBase< CHandle< C_IngameEvent_Base > > m_vecIngameEvents; // offset 0x1040, size 0x18, align 8
-    int8 m_nPrimaryIngameEventIndex; // offset 0x1058, size 0x1, align 1
-    char _pad_1059[0x3]; // offset 0x1059
-    CHandle< C_IngameEvent_Base > m_hObsoleteIngameEvent; // offset 0x105C, size 0x4, align 4
-    uint32 m_nOfrendaPledges; // offset 0x1060, size 0x4, align 4
-    uint32 m_nRadiantOfrendas; // offset 0x1064, size 0x4, align 4
-    uint32 m_nDireOfrendas; // offset 0x1068, size 0x4, align 4
-    bool m_bOfrendaEnabled; // offset 0x106C, size 0x1, align 1
-    char _pad_106D[0x43]; // offset 0x106D
-    C_NetworkUtlVectorBase< NeutralSpawnBoxes_t > m_NeutralSpawnBoxes; // offset 0x10B0, size 0x18, align 8
-    C_NetworkUtlVectorBase< RegionTriggerBoxes_t > m_RegionTriggerBoxes; // offset 0x10C8, size 0x18, align 8
-    char _pad_10E0[0xFB8]; // offset 0x10E0
-    float64 m_flLastPerfSampleTime; // offset 0x2098, size 0x8, align 8
-    char _pad_20A0[0x3ED0]; // offset 0x20A0
-    int32 m_nMultipleTickFrameCount; // offset 0x5F70, size 0x4, align 4
-    int32 m_nTimesPlayersDisconnected; // offset 0x5F74, size 0x4, align 4
-    float64 m_flLastPerfSampleSendTime; // offset 0x5F78, size 0x8, align 8
-    bool m_bDidSeeStrategyTime; // offset 0x5F80, size 0x1, align 1
-    char _pad_5F81[0x9D0F]; // offset 0x5F81
-    float64 m_flLastUnfocusedSleepTime; // offset 0xFC90, size 0x8, align 8
+    int32 m_iGoodGlyphCharges; // offset 0x5FC, size 0x4, align 4
+    int32 m_iBadGlyphCharges; // offset 0x600, size 0x4, align 4
+    int32[15] m_iGlyphCharges; // offset 0x604, size 0x3C, align 4
+    GameTime_t m_fGoodGlyphActiveEndTime; // offset 0x640, size 0x4, align 255
+    GameTime_t m_fBadGlyphActiveEndTime; // offset 0x644, size 0x4, align 255
+    GameTime_t[15] m_flGlyphActiveEndTimes; // offset 0x648, size 0x3C, align 4
+    GameTime_t[15] m_flGlyphUseCooldowns; // offset 0x684, size 0x3C, align 4
+    GameTime_t m_fGoodRadarCooldown; // offset 0x6C0, size 0x4, align 255
+    GameTime_t m_fBadRadarCooldown; // offset 0x6C4, size 0x4, align 255
+    GameTime_t[15] m_flRadarCooldowns; // offset 0x6C8, size 0x3C, align 4
+    GameTime_t[15] m_flGreaterHornOfBattleCooldowns; // offset 0x704, size 0x3C, align 4
+    int32 m_iGoodRadarCharges; // offset 0x740, size 0x4, align 4
+    int32 m_iBadRadarCharges; // offset 0x744, size 0x4, align 4
+    int32[15] m_iRadarCharges; // offset 0x748, size 0x3C, align 4
+    float32[24] m_flOutpostTimes; // offset 0x784, size 0x60, align 4
+    bool m_bIsNightstalkerNight; // offset 0x7E4, size 0x1, align 1
+    bool m_bIsTemporaryNight; // offset 0x7E5, size 0x1, align 1
+    bool m_bIsTemporaryDay; // offset 0x7E6, size 0x1, align 1
+    char _pad_07E7[0x1]; // offset 0x7E7
+    int32 m_nRiverType; // offset 0x7E8, size 0x4, align 4
+    HeroID_t m_nTemporaryDayNightSource; // offset 0x7EC, size 0x4, align 255
+    PlayerID_t[15] m_nTeamFeaturedPlayerID; // offset 0x7F0, size 0x3C, align 4
+    item_definition_index_t[15] m_nTeamVersusScreen; // offset 0x82C, size 0x3C, align 4
+    float32 m_flGoldRedistributeTime; // offset 0x868, size 0x4, align 4
+    int32[2] m_nGoldToRedistribute; // offset 0x86C, size 0x8, align 4
+    GameTime_t m_flNextPreGameThink; // offset 0x874, size 0x4, align 255
+    GameTime_t m_flNextAllDraftGoldThink; // offset 0x878, size 0x4, align 255
+    char _pad_087C[0x4]; // offset 0x87C
+    float64 m_flTimeEnteredState; // offset 0x880, size 0x8, align 8
+    uint32 m_unRiverAccountID; // offset 0x888, size 0x4, align 4
+    char _pad_088C[0x4]; // offset 0x88C
+    itemid_t m_ulRiverItemID; // offset 0x890, size 0x8, align 255
+    char _pad_0898[0x40]; // offset 0x898
+    C_UtlVectorEmbeddedNetworkVar< CDOTA_ItemStockInfo > m_vecItemStockInfo; // offset 0x8D8, size 0x68, align 8
+    DOTA_AssassinMinigameNetworkState m_AssassinMiniGameNetData; // offset 0x940, size 0x10, align 255
+    int32 m_nGameWinner; // offset 0x950, size 0x4, align 4
+    char _pad_0954[0x4]; // offset 0x954
+    MatchID_t m_unMatchID64; // offset 0x958, size 0x8, align 255
+    bool m_bMatchSignoutComplete; // offset 0x960, size 0x1, align 1
+    char _pad_0961[0x3]; // offset 0x961
+    CHandle< C_BaseEntity > m_hSideShop1; // offset 0x964, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hSideShop2; // offset 0x968, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hSecretShop1; // offset 0x96C, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hSecretShop2; // offset 0x970, size 0x4, align 4
+    CHandle< C_BaseEntity >[15] m_hTeamFountains; // offset 0x974, size 0x3C, align 4
+    CHandle< C_BaseEntity >[15] m_hTeamForts; // offset 0x9B0, size 0x3C, align 4
+    CHandle< C_BaseEntity >[15] m_hTeamShops; // offset 0x9EC, size 0x3C, align 4
+    C_NetworkUtlVectorBase< CHandle< C_BaseEntity > > m_hWatchers; // offset 0xA28, size 0x18, align 8
+    CHandle< C_BaseEntity >[15] m_hWisdomShrines; // offset 0xA40, size 0x3C, align 4
+    CHandle< C_BaseEntity >[15] m_hLotusPools; // offset 0xA7C, size 0x3C, align 4
+    CHandle< C_BaseEntity > m_hAnnouncerGood; // offset 0xAB8, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAnnouncerBad; // offset 0xABC, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAnnouncerSpectator; // offset 0xAC0, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAnnouncerGood_KillingSpree; // offset 0xAC4, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAnnouncerBad_KillingSpree; // offset 0xAC8, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hAnnouncerSpectator_KillingSpree; // offset 0xACC, size 0x4, align 4
+    bool[15] m_arrTier1TowerDestroyed; // offset 0xAD0, size 0xF, align 1
+    bool[15] m_arrTier2TowerDestroyed; // offset 0xADF, size 0xF, align 1
+    bool[15] m_arrTier3TowerDestroyed; // offset 0xAEE, size 0xF, align 1
+    bool[15] m_arrMeleeBarracksDestroyed; // offset 0xAFD, size 0xF, align 1
+    bool m_bTier1TowerDestroyed; // offset 0xB0C, size 0x1, align 1
+    bool m_bTier2TowerDestroyed; // offset 0xB0D, size 0x1, align 1
+    bool m_bTier3TowerDestroyed; // offset 0xB0E, size 0x1, align 1
+    bool m_bMeleeBarracksDestroyed; // offset 0xB0F, size 0x1, align 1
+    float32 m_fTimeOfDay; // offset 0xB10, size 0x4, align 4
+    int32 m_iNetTimeOfDay; // offset 0xB14, size 0x4, align 4
+    float32 m_flDaytimeStart; // offset 0xB18, size 0x4, align 4
+    float32 m_flNighttimeStart; // offset 0xB1C, size 0x4, align 4
+    int32 m_nLoadedPlayers; // offset 0xB20, size 0x4, align 4
+    int32 m_nExpectedPlayers; // offset 0xB24, size 0x4, align 4
+    char _pad_0B28[0x8]; // offset 0xB28
+    int32 m_iMinimapDebugGridState; // offset 0xB30, size 0x4, align 4
+    char _pad_0B34[0x7C]; // offset 0xB34
+    int32 m_iFoWFrameNumber; // offset 0xBB0, size 0x4, align 4
+    char _pad_0BB4[0x4]; // offset 0xBB4
+    C_UtlVectorEmbeddedNetworkVar< CDOTA_FoWRevealedRegion > m_vecFoWRevealedRegions; // offset 0xBB8, size 0x68, align 8
+    Vector m_vWeatherWindDirection; // offset 0xC20, size 0xC, align 4
+    char _pad_0C2C[0x4]; // offset 0xC2C
+    CTormentorSpawnPhase m_tormentorSpawnPhase; // offset 0xC30, size 0x40, align 255
+    C_UtlVectorEmbeddedNetworkVar< CTormentorSpawnPhase > m_vecTormentorSpawnPhases; // offset 0xC70, size 0x68, align 8
+    C_NetworkUtlVectorBase< AbilityID_t > m_vecDeityBlessings; // offset 0xCD8, size 0x18, align 8
+    C_UtlVectorEmbeddedNetworkVar< NeutralArtifactPoolState_t > m_arrArtifactPools; // offset 0xCF0, size 0x68, align 8
+    HeroID_t[24] m_vecRequiredPlaytestHeroesStorage; // offset 0xD58, size 0x60, align 4
+    HeroID_t[24] m_vecRecommendedPlaytestHeroesStorage; // offset 0xDB8, size 0x60, align 4
+    bool m_bAllRequiredPlaytestHeroesPicked; // offset 0xE18, size 0x1, align 1
+    char _pad_0E19[0x3]; // offset 0xE19
+    int32 m_nLastPlaytestPickPhase; // offset 0xE1C, size 0x4, align 4
+    int32 m_nCustomGameFowTeamCount; // offset 0xE20, size 0x4, align 4
+    bool m_bUseAlternateABRules; // offset 0xE24, size 0x1, align 1
+    bool m_bLobbyIsAssociatedWithGame; // offset 0xE25, size 0x1, align 1
+    char _pad_0E26[0x2]; // offset 0xE26
+    CountdownTimer m_BotDebugTimer; // offset 0xE28, size 0x18, align 8
+    uint8[18] m_BotDebugPushLane; // offset 0xE40, size 0x12, align 1
+    uint8[18] m_BotDebugDefendLane; // offset 0xE52, size 0x12, align 1
+    uint8[6] m_BotDebugFarmLane; // offset 0xE64, size 0x6, align 1
+    uint8[8] m_BotDebugRoam; // offset 0xE6A, size 0x8, align 1
+    char _pad_0E72[0x2]; // offset 0xE72
+    CHandle< C_BaseEntity >[2] m_hBotDebugRoamTarget; // offset 0xE74, size 0x8, align 4
+    uint8[2] m_BotDebugRoshan; // offset 0xE7C, size 0x2, align 1
+    char _pad_0E7E[0x2]; // offset 0xE7E
+    ERoshanSpawnPhase m_nRoshanRespawnPhase; // offset 0xE80, size 0x4, align 4
+    GameTime_t m_flRoshanRespawnPhaseEndTime; // offset 0xE84, size 0x4, align 255
+    C_UtlVectorEmbeddedNetworkVar< CDOTA_AbilityDraftAbilityState > m_AbilityDraftAbilities; // offset 0xE88, size 0x68, align 8
+    C_UtlVectorEmbeddedNetworkVar< CDOTA_AbilityDraftHeroState > m_AbilityDraftHeroes; // offset 0xEF0, size 0x68, align 8
+    bool m_bAbilityDraftCurrentPlayerHasPicked; // offset 0xF58, size 0x1, align 1
+    char _pad_0F59[0x3]; // offset 0xF59
+    int32 m_nAbilityDraftPlayerTracker; // offset 0xF5C, size 0x4, align 4
+    int32 m_nAbilityDraftRoundNumber; // offset 0xF60, size 0x4, align 4
+    int32 m_nAbilityDraftAdvanceSteps; // offset 0xF64, size 0x4, align 4
+    int32 m_nAbilityDraftPhase; // offset 0xF68, size 0x4, align 4
+    bool m_bIsPlayerDraft; // offset 0xF6C, size 0x1, align 1
+    char _pad_0F6D[0x3]; // offset 0xF6D
+    DOTA_PlayerDraftState m_ePlayerDraftState; // offset 0xF70, size 0x4, align 4
+    char _pad_0F74[0x4]; // offset 0xF74
+    C_NetworkUtlVectorBase< uint8 > m_vecPlayerDraftPickOrder; // offset 0xF78, size 0x18, align 8
+    int32 m_nPlayerDraftPick; // offset 0xF90, size 0x4, align 4
+    int32 m_nPlayerDraftActiveTeam; // offset 0xF94, size 0x4, align 4
+    float32[2] m_flPlayerDraftTimeBank; // offset 0xF98, size 0x8, align 4
+    CUtlVector< KeyValues* >[2] m_vecARDMHeroes; // offset 0xFA0, size 0x30, align 8
+    int32 m_nARDMHeroesPrecached; // offset 0xFD0, size 0x4, align 4
+    float32 m_fLastARDMPrecache; // offset 0xFD4, size 0x4, align 4
+    int32 m_nAllDraftPhase; // offset 0xFD8, size 0x4, align 4
+    bool m_bAllDraftRadiantFirst; // offset 0xFDC, size 0x1, align 1
+    bool m_bAllowOverrideVPK; // offset 0xFDD, size 0x1, align 1
+    char _pad_0FDE[0x2]; // offset 0xFDE
+    int32[2] m_nARDMHeroesRemaining; // offset 0xFE0, size 0x8, align 4
+    bool m_bUpdateHeroStatues; // offset 0xFE8, size 0x1, align 1
+    char _pad_0FE9[0x27]; // offset 0xFE9
+    bool m_bExperimentalGameplay; // offset 0x1010, size 0x1, align 1
+    char _pad_1011[0x47]; // offset 0x1011
+    uint32 m_lobbyType; // offset 0x1058, size 0x4, align 4
+    LeagueID_t m_lobbyLeagueID; // offset 0x105C, size 0x4, align 255
+    char[256] m_lobbyGameName; // offset 0x1060, size 0x100, align 1
+    C_UtlVectorEmbeddedNetworkVar< CHeroStatueLiked > m_vecHeroStatueLiked; // offset 0x1160, size 0x68, align 8
+    int32[15] m_CustomGameTeamMaxPlayers; // offset 0x11C8, size 0x3C, align 4
+    int32[5] m_iMutations; // offset 0x1204, size 0x14, align 4
+    C_NetworkUtlVectorBase< CHandle< C_IngameEvent_Base > > m_vecIngameEvents; // offset 0x1218, size 0x18, align 8
+    int8 m_nPrimaryIngameEventIndex; // offset 0x1230, size 0x1, align 1
+    char _pad_1231[0x3]; // offset 0x1231
+    CHandle< C_IngameEvent_Base > m_hObsoleteIngameEvent; // offset 0x1234, size 0x4, align 4
+    uint32 m_nOfrendaPledges; // offset 0x1238, size 0x4, align 4
+    uint32 m_nRadiantOfrendas; // offset 0x123C, size 0x4, align 4
+    uint32 m_nDireOfrendas; // offset 0x1240, size 0x4, align 4
+    bool m_bOfrendaEnabled; // offset 0x1244, size 0x1, align 1
+    char _pad_1245[0x43]; // offset 0x1245
+    C_NetworkUtlVectorBase< NeutralSpawnBoxes_t > m_NeutralSpawnBoxes; // offset 0x1288, size 0x18, align 8
+    C_NetworkUtlVectorBase< RegionTriggerBoxes_t > m_RegionTriggerBoxes; // offset 0x12A0, size 0x18, align 8
+    char _pad_12B8[0xFB8]; // offset 0x12B8
+    float64 m_flLastPerfSampleTime; // offset 0x2270, size 0x8, align 8
+    char _pad_2278[0x3ED0]; // offset 0x2278
+    int32 m_nMultipleTickFrameCount; // offset 0x6148, size 0x4, align 4
+    int32 m_nTimesPlayersDisconnected; // offset 0x614C, size 0x4, align 4
+    float64 m_flLastPerfSampleSendTime; // offset 0x6150, size 0x8, align 8
+    bool m_bDidSeeStrategyTime; // offset 0x6158, size 0x1, align 1
+    char _pad_6159[0x9D0F]; // offset 0x6159
+    float64 m_flLastUnfocusedSleepTime; // offset 0xFE68, size 0x8, align 8
 };

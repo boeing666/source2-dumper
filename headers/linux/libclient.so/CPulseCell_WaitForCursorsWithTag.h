@@ -1,6 +1,6 @@
 #pragma once
 
-class CPulseCell_WaitForCursorsWithTag : public CPulseCell_WaitForCursorsWithTagBase /*0x0*/  // sizeof 0x130, align 0x8 [vtable] (pulse_runtime_lib) {MGetKV3ClassDefaults MPropertyFriendlyName MPropertyDescription MPulseEditorHeaderIcon}
+class CPulseCell_WaitForCursorsWithTag : public CPulseCell_WaitForCursorsWithTagBase /*0x0*/  // sizeof 0x130, align 0x8 [vtable] (pulse_runtime_lib) {MGetKV3ClassDefaults MPropertyFriendlyName MPulseEditorSearchExpr MPropertyDescription MPulseEditorHeaderIcon}
 {
 public:
     char _pad_0000[0x128]; // offset 0x0

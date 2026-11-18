@@ -3,16 +3,16 @@
 class CDOTA_Ability_Dawnbreaker_Celestial_Hammer : public C_DOTABaseAbility /*0x0*/  // sizeof 0x8E8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x824]; // offset 0x0
-    int32 m_nProjectileIndex; // offset 0x824, size 0x4, align 4
-    int32 m_nReturnProjectileID; // offset 0x828, size 0x4, align 4
-    VectorWS m_vEndLocation; // offset 0x82C, size 0xC, align 4
-    float32 m_fZCoord; // offset 0x838, size 0x4, align 4
-    VectorWS m_vLastTrailThinkerLocation; // offset 0x83C, size 0xC, align 4
-    bool m_bFlareDone; // offset 0x848, size 0x1, align 1
-    bool m_bStartedCatchAnimation; // offset 0x849, size 0x1, align 1
-    bool m_bIsReturning; // offset 0x84A, size 0x1, align 1
-    char _pad_084B[0x5]; // offset 0x84B
+    char _pad_0000[0x828]; // offset 0x0
+    int32 m_nProjectileIndex; // offset 0x828, size 0x4, align 4
+    int32 m_nReturnProjectileID; // offset 0x82C, size 0x4, align 4
+    VectorWS m_vEndLocation; // offset 0x830, size 0xC, align 4
+    float32 m_fZCoord; // offset 0x83C, size 0x4, align 4
+    VectorWS m_vLastTrailThinkerLocation; // offset 0x840, size 0xC, align 4
+    bool m_bFlareDone; // offset 0x84C, size 0x1, align 1
+    bool m_bStartedCatchAnimation; // offset 0x84D, size 0x1, align 1
+    bool m_bIsReturning; // offset 0x84E, size 0x1, align 1
+    char _pad_084F[0x1]; // offset 0x84F
     CUtlVector< CHandle< C_BaseEntity > > m_hReturnHits; // offset 0x850, size 0x18, align 8
     CUtlVector< CHandle< C_BaseEntity > > m_hAoEHits; // offset 0x868, size 0x18, align 8
     ParticleIndex_t m_nFXIndex; // offset 0x880, size 0x4, align 255

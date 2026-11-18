@@ -1,10 +1,10 @@
 #pragma once
 
-class CDOTA_Unit_Nian : public CDOTA_BaseNPC_Creature /*0x0*/  // sizeof 0x1B38, align 0x8 [vtable] (server)
+class CDOTA_Unit_Nian : public CDOTA_BaseNPC_Creature /*0x0*/  // sizeof 0x1BC8, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x1B18]; // offset 0x0
-    CUtlVector< NianDamageTaken_t > m_vecRecentDamage; // offset 0x1B18, size 0x18, align 8
-    CHandle< CBaseEntity > m_hTail; // offset 0x1B30, size 0x4, align 4
-    CHandle< CBaseEntity > m_hHorn; // offset 0x1B34, size 0x4, align 4
+    char _pad_0000[0x1BA8]; // offset 0x0
+    CUtlVector< NianDamageTaken_t > m_vecRecentDamage; // offset 0x1BA8, size 0x18, align 8
+    CHandle< CBaseEntity > m_hTail; // offset 0x1BC0, size 0x4, align 4
+    CHandle< CBaseEntity > m_hHorn; // offset 0x1BC4, size 0x4, align 4
 };

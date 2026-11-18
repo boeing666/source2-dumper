@@ -1,6 +1,6 @@
 #pragma once
 
-class C_SceneEntity : public C_PointEntity /*0x0*/  // sizeof 0x658, align 0x8 [vtable] (client)
+class C_SceneEntity : public C_PointEntity /*0x0*/  // sizeof 0x660, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x5F8]; // offset 0x0
@@ -19,7 +19,9 @@ public:
     C_NetworkUtlVectorBase< CHandle< C_BaseModelEntity > > m_hActorList; // offset 0x610, size 0x18, align 8 | MNotSaved
     bool m_bWasPlaying; // offset 0x628, size 0x1, align 1 | MNotSaved
     char _pad_0629[0xF]; // offset 0x629
-    CUtlVector< C_SceneEntity::QueuedEvents_t > m_QueuedEvents; // offset 0x638, size 0x18, align 8 | MNotSaved
-    float32 m_flCurrentTime; // offset 0x650, size 0x4, align 4 | MNotSaved
-    char _pad_0654[0x4]; // offset 0x654
+    bool m_bDisableFrameSimulate; // offset 0x638, size 0x1, align 1 | MNotSaved
+    char _pad_0639[0x7]; // offset 0x639
+    CUtlVector< C_SceneEntity::QueuedEvents_t > m_QueuedEvents; // offset 0x640, size 0x18, align 8 | MNotSaved
+    float32 m_flCurrentTime; // offset 0x658, size 0x4, align 4 | MNotSaved
+    char _pad_065C[0x4]; // offset 0x65C
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class C_DOTA_DataNonSpectator : public C_BaseEntity /*0x0*/  // sizeof 0x1FC0, align 0x8 [vtable] (client)
+class C_DOTA_DataNonSpectator : public C_BaseEntity /*0x0*/  // sizeof 0x1FD0, align 0x8 [vtable] (client)
 {
 public:
     char _pad_0000[0x770]; // offset 0x0
@@ -29,7 +29,9 @@ public:
     Vector2D[100] m_vPossibleWardPlacement; // offset 0x1A88, size 0x320, align 4
     float32[100] m_vPossibleWardRadii; // offset 0x1DA8, size 0x190, align 4
     C_UtlVectorEmbeddedNetworkVar< DOTATeleportInfo_t > m_vecTrackedTeleports; // offset 0x1F38, size 0x68, align 8
-    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1FA0, size 0x18, align 255
-    int32 m_nNextPowerRuneType; // offset 0x1FB8, size 0x4, align 4
-    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1FBC, size 0x4, align 4
+    CRoshanPhaseInfo m_roshanSpawnInfo; // offset 0x1FA0, size 0x20, align 255
+    int32 m_nNextPowerRuneType; // offset 0x1FC0, size 0x4, align 4
+    int32 m_nNextPowerRuneSpawnIndex; // offset 0x1FC4, size 0x4, align 4
+    CHandle< C_BaseEntity > m_hNextPowerRuneSpawner; // offset 0x1FC8, size 0x4, align 4
+    char _pad_1FCC[0x4]; // offset 0x1FCC
 };

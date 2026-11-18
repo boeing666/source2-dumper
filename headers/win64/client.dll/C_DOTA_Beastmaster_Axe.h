@@ -1,7 +1,7 @@
 #pragma once
 
-class C_DOTA_Beastmaster_Axe : public CBaseAnimatingActivity /*0x0*/  // sizeof 0xBB0, align 0x8 [vtable] (client)
+class C_DOTA_Beastmaster_Axe : public CBaseAnimatingActivity /*0x0*/  // sizeof 0xC10, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0xBB0]; // offset 0x0
+    char _pad_0000[0xC10]; // offset 0x0
 };

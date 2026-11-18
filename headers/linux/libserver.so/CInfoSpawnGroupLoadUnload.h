@@ -1,6 +1,6 @@
 #pragma once
 
-class CInfoSpawnGroupLoadUnload : public CLogicalEntity /*0x0*/  // sizeof 0x850, align 0x8 [vtable] (server)
+class CInfoSpawnGroupLoadUnload : public CLogicalEntity /*0x0*/  // sizeof 0x858, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x778]; // offset 0x0
@@ -17,5 +17,6 @@ public:
     bool m_bUnloadingStarted; // offset 0x7FD, size 0x1, align 1 | MNotSaved
     bool m_bQueueActiveSpawnGroupChange; // offset 0x7FE, size 0x1, align 1 | MNotSaved
     bool m_bQueueFinishLoading; // offset 0x7FF, size 0x1, align 1 | MNotSaved
-    char _pad_0800[0x50]; // offset 0x800
+    bool m_bLoadFinishedFired; // offset 0x800, size 0x1, align 1 | MNotSaved
+    char _pad_0801[0x57]; // offset 0x801
 };

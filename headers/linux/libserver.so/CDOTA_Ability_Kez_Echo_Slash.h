@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Ability_Kez_Echo_Slash : public CDOTA_Ability_Kez_BaseAbility /*0x0*/  // sizeof 0x8D0, align 0x10 [vtable] (server)
+class CDOTA_Ability_Kez_Echo_Slash : public CDOTA_Ability_Kez_BaseAbility /*0x0*/  // sizeof 0x8E0, align 0x10 [vtable] (server)
 {
 public:
     char _pad_0000[0x85C]; // offset 0x0
@@ -17,8 +17,13 @@ public:
     float32 effect_duration; // offset 0x8B8, size 0x4, align 4
     int32 m_nStrikesLeft; // offset 0x8BC, size 0x4, align 4
     GameTime_t m_NextStrikeTime; // offset 0x8C0, size 0x4, align 255
-    bool m_bFlutter; // offset 0x8C4, size 0x1, align 1
-    char _pad_08C5[0x3]; // offset 0x8C5
-    ParticleIndex_t m_nFXCast; // offset 0x8C8, size 0x4, align 255
-    char _pad_08CC[0x4]; // offset 0x8CC
+    bool m_bBackwardStrikes; // offset 0x8C4, size 0x1, align 1
+    bool m_bBackwardStrikePending; // offset 0x8C5, size 0x1, align 1
+    bool m_bStrikingBackward; // offset 0x8C6, size 0x1, align 1
+    bool m_bStrikePairHitAnyTarget; // offset 0x8C7, size 0x1, align 1
+    GameTime_t m_NextBackwardStrikeTime; // offset 0x8C8, size 0x4, align 255
+    bool m_bFlutter; // offset 0x8CC, size 0x1, align 1
+    char _pad_08CD[0x3]; // offset 0x8CD
+    ParticleIndex_t m_nFXCast; // offset 0x8D0, size 0x4, align 255
+    char _pad_08D4[0xC]; // offset 0x8D4
 };

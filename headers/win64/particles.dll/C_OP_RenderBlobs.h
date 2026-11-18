@@ -3,7 +3,9 @@
 class C_OP_RenderBlobs : public CParticleFunctionRenderer /*0x0*/  // sizeof 0x6E0, align 0x8 [vtable] (particles) {MGetKV3ClassDefaults}
 {
 public:
-    char _pad_0000[0x230]; // offset 0x0
+    char _pad_0000[0x228]; // offset 0x0
+    bool m_bUseParticleColorForVertColor; // offset 0x228, size 0x1, align 1
+    char _pad_0229[0x7]; // offset 0x229
     CParticleCollectionRendererFloatInput m_cubeWidth; // offset 0x230, size 0x178, align 8 | MPropertyFriendlyName
     CParticleCollectionRendererFloatInput m_cutoffRadius; // offset 0x3A8, size 0x178, align 8 | MPropertyFriendlyName
     CParticleCollectionRendererFloatInput m_renderRadius; // offset 0x520, size 0x178, align 8 | MPropertyFriendlyName

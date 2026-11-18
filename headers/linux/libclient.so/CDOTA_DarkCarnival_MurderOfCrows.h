@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_DarkCarnival_MurderOfCrows : public C_BaseEntity /*0x0*/  // sizeof 0x830, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
+class CDOTA_DarkCarnival_MurderOfCrows : public C_BaseEntity /*0x0*/  // sizeof 0x860, align 0x8 [vtable] (client) {MEntityAllowsPortraitWorldSpawn}
 {
 public:
     char _pad_0000[0x770]; // offset 0x0
@@ -10,5 +10,5 @@ public:
     int32 m_nCountingCrows; // offset 0x788, size 0x4, align 4
     float32 m_flCrowSpeed; // offset 0x78C, size 0x4, align 4
     float32 m_flCrowScale; // offset 0x790, size 0x4, align 4
-    char _pad_0794[0x9C]; // offset 0x794
+    char _pad_0794[0xCC]; // offset 0x794
 };

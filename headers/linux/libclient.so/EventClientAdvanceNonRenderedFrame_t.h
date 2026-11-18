@@ -1,6 +1,6 @@
 #pragma once
 
-struct EventClientAdvanceNonRenderedFrame_t  // sizeof 0x1, align 0xFF [trivial_ctor trivial_dtor] (client)
+struct EventClientAdvanceNonRenderedFrame_t  // sizeof 0x1, align 0xFF [trivial_dtor] (client)
 {
-    char _pad_0000[0x1]; // offset 0x0
+    bool m_bRenderOnly; // offset 0x0, size 0x1, align 1
 };

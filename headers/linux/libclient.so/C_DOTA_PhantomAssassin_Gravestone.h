@@ -1,9 +1,9 @@
 #pragma once
 
-class C_DOTA_PhantomAssassin_Gravestone : public C_DOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x1CE0, align 0x8 [vtable] (client)
+class C_DOTA_PhantomAssassin_Gravestone : public C_DOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x1D70, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1C3C]; // offset 0x0
-    PlayerID_t m_nVictimPlayerID; // offset 0x1C3C, size 0x4, align 255
-    char _pad_1C40[0xA0]; // offset 0x1C40
+    char _pad_0000[0x1CCC]; // offset 0x0
+    PlayerID_t m_nVictimPlayerID; // offset 0x1CCC, size 0x4, align 255
+    char _pad_1CD0[0xA0]; // offset 0x1CD0
 };

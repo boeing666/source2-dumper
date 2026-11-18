@@ -1,10 +1,10 @@
 #pragma once
 
-class C_DOTA_NPC_TechiesMines : public C_DOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x1C48, align 0x8 [vtable] (client)
+class C_DOTA_NPC_TechiesMines : public C_DOTA_BaseNPC_Additive /*0x0*/  // sizeof 0x1CD8, align 0x8 [vtable] (client)
 {
 public:
-    char _pad_0000[0x1C3C]; // offset 0x0
-    ParticleIndex_t m_iRangeFX; // offset 0x1C3C, size 0x4, align 255
-    bool m_bShowPlacementRadius; // offset 0x1C40, size 0x1, align 1
-    char _pad_1C41[0x7]; // offset 0x1C41
+    char _pad_0000[0x1CCC]; // offset 0x0
+    ParticleIndex_t m_iRangeFX; // offset 0x1CCC, size 0x4, align 255
+    bool m_bShowPlacementRadius; // offset 0x1CD0, size 0x1, align 1
+    char _pad_1CD1[0x7]; // offset 0x1CD1
 };

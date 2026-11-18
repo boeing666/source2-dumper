@@ -1,7 +1,7 @@
 #pragma once
 
-class CDOTA_Tiny_ScepterTree : public CDOTAWearableItem /*0x0*/  // sizeof 0x9E8, align 0x8 [vtable] (server)
+class CDOTA_Tiny_ScepterTree : public CDOTAWearableItem /*0x0*/  // sizeof 0xA48, align 0x8 [vtable] (server)
 {
 public:
-    char _pad_0000[0x9E8]; // offset 0x0
+    char _pad_0000[0xA48]; // offset 0x0
 };
