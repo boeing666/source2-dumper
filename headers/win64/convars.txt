@@ -979,6 +979,7 @@ citadel_hideout_intro_dismiss_escape_only | developmentonly,clientdll |
 citadel_hideout_intro_version_seen | clientdll,release | 
 citadel_hideout_map_enabled | developmentonly,gamedll,clientdll,replicated | Cheat to make that map pretend its the hideout
 citadel_hideout_npc_debug | developmentonly,gamedll | 
+citadel_hideout_owner_ranked_season_reward_override | developmentonly,gamedll | 
 citadel_hideout_spoof_connection_state | developmentonly,clientdll | 
 citadel_hideout_teleport_trigger_delay | developmentonly,gamedll,clientdll,replicated,defensive | 
 citadel_hideout_tick_rate_override | gamedll,clientdll,replicated,release | 
@@ -2280,6 +2281,7 @@ deadlock_disable_post_match_survey | clientdll | Disable the early post match su
 deadlock_early_development_warning_disabled | clientdll | Disable the early dev build message
 deadlock_hero_debuts_seen | clientdll,release | 
 deadlock_mm_preference | clientdll,release | What style of player do we want to try and match with in matchmaking
+deadlock_ranked_season_last_acknowledged_interval | clientdll,release | 
 deadlock_steam_input_debug | developmentonly,clientdll,defensive | Show Steam Input Error Messages and Spew in console
 deadlock_steam_input_on_disc_manifest | developmentonly,clientdll,defensive | Use local cfg\steam_input_manifest.vdf as opposed to cloud manifest
 debug_async_data_panel_override_state | developmentonly,clientdll | Force ALL async data panels to be in a specific state. -1:disabled, 0:failure, 1:loading, 2:success

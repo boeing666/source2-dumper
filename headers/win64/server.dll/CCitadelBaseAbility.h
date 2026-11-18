@@ -7,9 +7,9 @@ public:
     CUtlVector< CModifierHandleTyped< CCitadelModifier > > m_vecIntrinsicModifiers; // offset 0x590, size 0x18, align 8
     CModifierHandleTyped< CCitadelModifier > m_pCastDelayAutoModifier; // offset 0x5A8, size 0x18, align 8
     CModifierHandleTyped< CCitadelModifier > m_pChannelAutoModifier; // offset 0x5C0, size 0x18, align 8
-    char _pad_05D8[0x4]; // offset 0x5D8
-    bool m_bIsCoolingDownInternal; // offset 0x5DC, size 0x1, align 1
-    char _pad_05DD[0x3]; // offset 0x5DD
+    char _pad_05D8[0x5]; // offset 0x5D8
+    bool m_bIsCoolingDownInternal; // offset 0x5DD, size 0x1, align 1
+    char _pad_05DE[0x2]; // offset 0x5DE
     GameTime_t m_flCancelMashProtectionEndTime; // offset 0x5E0, size 0x4, align 255
     GameTime_t m_flCancelLockoutEndTime; // offset 0x5E4, size 0x4, align 255
     char _pad_05E8[0x20]; // offset 0x5E8
