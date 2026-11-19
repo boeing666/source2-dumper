@@ -1,6 +1,6 @@
 #pragma once
 
-struct RsRasterizerStateDesc_t  // sizeof 0x10, align 0xFF [trivial_dtor] (rendersystemvulkan)
+struct RsRasterizerStateDesc_t  // sizeof 0x10, align 0xFF [trivial_dtor] (rendersystemempty)
 {
     RsFillMode_t m_nFillMode; // offset 0x0, size 0x1, align 1
     RsCullMode_t m_nCullMode; // offset 0x1, size 0x1, align 1
