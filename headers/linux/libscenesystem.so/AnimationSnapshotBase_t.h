@@ -1,6 +1,6 @@
 #pragma once
 
-struct AnimationSnapshotBase_t  // sizeof 0x110, align 0x10 (animationsystem) {MGetKV3ClassDefaults}
+struct AnimationSnapshotBase_t  // sizeof 0x110, align 0x10 (scenesystem) {MGetKV3ClassDefaults}
 {
     float32 m_flRealTime; // offset 0x0, size 0x4, align 4
     char _pad_0004[0xC]; // offset 0x4
