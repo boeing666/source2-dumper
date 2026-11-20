@@ -1,6 +1,6 @@
 #pragma once
 
-class CDOTA_Modifier_Morphling_Replicate_Echo : public CDOTA_Buff /*0x0*/  // sizeof 0x1B20, align 0xFF [vtable] (server)
+class CDOTA_Modifier_Morphling_Replicate_Echo : public CDOTA_Buff /*0x0*/  // sizeof 0x1B38, align 0xFF [vtable] (server)
 {
 public:
     char _pad_0000[0x1AF8]; // offset 0x0
@@ -12,7 +12,8 @@ public:
     GameTime_t m_flExpireTime; // offset 0x1B08, size 0x4, align 255
     CHandle< CBaseEntity > m_hChannelAbility; // offset 0x1B0C, size 0x4, align 4
     GameTime_t m_flLastChannelThinkTime; // offset 0x1B10, size 0x4, align 255
-    float32 echo_power; // offset 0x1B14, size 0x4, align 4
-    float32 scepter_echo_visible_duration; // offset 0x1B18, size 0x4, align 4
-    char _pad_1B1C[0x4]; // offset 0x1B1C
+    CHandle< CBaseEntity > m_hDebuffTarget; // offset 0x1B14, size 0x4, align 4
+    char _pad_1B18[0x18]; // offset 0x1B18
+    float32 echo_power; // offset 0x1B30, size 0x4, align 4
+    float32 scepter_echo_visible_duration; // offset 0x1B34, size 0x4, align 4
 };

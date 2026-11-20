@@ -1,6 +1,6 @@
 #pragma once
 
-struct AggregateMeshInfo_t  // sizeof 0x2C, align 0x4 [trivial_dtor] (scenesystem) {MGetKV3ClassDefaults}
+struct AggregateMeshInfo_t  // sizeof 0x2C, align 0x4 [trivial_dtor] (worldrenderer) {MGetKV3ClassDefaults}
 {
     uint32 m_nVisClusterMemberOffset; // offset 0x0, size 0x4, align 4
     uint8 m_nVisClusterMemberCount; // offset 0x4, size 0x1, align 1

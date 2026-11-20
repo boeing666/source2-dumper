@@ -1,6 +1,6 @@
 #pragma once
 
-struct MaterialOverride_t : public BaseSceneObjectOverride_t /*0x0*/  // sizeof 0x28, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
+struct MaterialOverride_t : public BaseSceneObjectOverride_t /*0x0*/  // sizeof 0x28, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
 {
     char _pad_0000[0x4]; // offset 0x0
     uint32 m_nSubSceneObject; // offset 0x4, size 0x4, align 4

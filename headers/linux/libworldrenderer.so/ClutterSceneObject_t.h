@@ -1,6 +1,6 @@
 #pragma once
 
-struct ClutterSceneObject_t  // sizeof 0xB0, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
+struct ClutterSceneObject_t  // sizeof 0xB0, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
 {
     AABB_t m_Bounds; // offset 0x0, size 0x18, align 255
     ObjectTypeFlags_t m_flags; // offset 0x18, size 0x4, align 4
