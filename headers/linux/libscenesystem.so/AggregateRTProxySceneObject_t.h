@@ -1,6 +1,6 @@
 #pragma once
 
-struct AggregateRTProxySceneObject_t  // sizeof 0x78, align 0x8 (worldrenderer) {MGetKV3ClassDefaults}
+struct AggregateRTProxySceneObject_t  // sizeof 0x78, align 0x8 (scenesystem) {MGetKV3ClassDefaults}
 {
     int16 m_nLayer; // offset 0x0, size 0x2, align 2
     char _pad_0002[0x6]; // offset 0x2

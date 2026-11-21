@@ -1,6 +1,6 @@
 #pragma once
 
-struct RTProxyInstanceInfo_t  // sizeof 0x4C, align 0x4 [trivial_dtor] (worldrenderer) {MGetKV3ClassDefaults}
+struct RTProxyInstanceInfo_t  // sizeof 0x4C, align 0x4 [trivial_dtor] (scenesystem) {MGetKV3ClassDefaults}
 {
     RTProxyInstanceFlags_t m_nFlags; // offset 0x0, size 0x1, align 1
     VertexAlbedoFormat_t m_albedoFormat; // offset 0x1, size 0x1, align 1
