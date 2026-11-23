@@ -1111,6 +1111,7 @@ citadel_melee_heavymelee_push_force | developmentonly,gamedll |
 citadel_melee_heavymelee_push_force_vs_tiny | developmentonly,gamedll | 
 citadel_melee_heavymelee_toss_force_vs_tiny_min | developmentonly,gamedll | 
 citadel_melee_hit_delay_max_time | developmentonly,gamedll,defensive | 
+citadel_melee_lagcomp_debug | developmentonly,gamedll,defensive | 
 citadel_melee_shake_amplitude | developmentonly,gamedll,defensive | 
 citadel_melee_shake_duration | developmentonly,gamedll,defensive | 
 citadel_melee_shake_frequency | developmentonly,gamedll,defensive | 
