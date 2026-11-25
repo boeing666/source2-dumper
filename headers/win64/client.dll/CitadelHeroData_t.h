@@ -1,6 +1,6 @@
 #pragma once
 
-struct CitadelHeroData_t  // sizeof 0x1088, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MVDataRoot MVDataAssociatedFile MVDataOverlayType MVDataOutlinerLeafNameFn}
+struct CitadelHeroData_t  // sizeof 0x1090, align 0x8 [vtable] (client) {MGetKV3ClassDefaults MVDataRoot MVDataAssociatedFile MVDataOverlayType MVDataOutlinerLeafNameFn}
 {
     char _pad_0000[0x8]; // offset 0x0
     CUtlVector< HeroAnimGraphDefaultValueOverride_t > m_vecAnimGraphDefaultValueOverrides; // offset 0x8, size 0x18, align 8
@@ -109,5 +109,5 @@ struct CitadelHeroData_t  // sizeof 0x1088, align 0x8 [vtable] (client) {MGetKV3
     CUtlOrderedMap< EAbilitySlots_t, CSubclassName< 4 > > m_mapBoundAbilities; // offset 0xFE8, size 0x28, align 8
     CUtlOrderedMap< EAbilitySlots_t, CSubclassName< 4 > > m_mapWIPAbilities; // offset 0x1010, size 0x28, align 8
     CUtlOrderedMap< CUtlString, ItemDraftWeight_t > m_mapItemDraftBucketing; // offset 0x1038, size 0x28, align 8 | MPropertyMapKeyLeafChoiceProviderFn
-    char _pad_1060[0x28]; // offset 0x1060
+    char _pad_1060[0x30]; // offset 0x1060
 };

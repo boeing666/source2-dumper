@@ -52,13 +52,13 @@ public:
     CRangeFloat m_fInitialSpawnXYSpeed; // offset 0x90C, size 0x8, align 255 | MPropertySuppressExpr
     CRangeFloat m_fInitialSpawnZSpeed; // offset 0x914, size 0x8, align 255 | MPropertySuppressExpr
     float32 m_flFallGravity; // offset 0x91C, size 0x4, align 4 | MPropertySuppressExpr
-    float32 m_flHoverOffset; // offset 0x920, size 0x4, align 4 | MPropertyDescription MPropertySuppressExpr
-    int32 m_iHitsRequired; // offset 0x924, size 0x4, align 4 | MPropertyStartGroup MPropertyStartGroup MPropertySuppressExpr
-    bool m_bHeavyMeleeOnly; // offset 0x928, size 0x1, align 1 | MPropertySuppressExpr
-    char _pad_0929[0x3]; // offset 0x929
-    float32 m_flCollisionRadius; // offset 0x92C, size 0x4, align 4 | MPropertySuppressExpr
-    float32 m_flCenterHeightOffset; // offset 0x930, size 0x4, align 4 | MPropertySuppressExpr
-    char _pad_0934[0x4]; // offset 0x934
+    float32 m_flYawSpin; // offset 0x920, size 0x4, align 4 | MPropertySuppressExpr
+    float32 m_flHoverOffset; // offset 0x924, size 0x4, align 4 | MPropertyDescription MPropertySuppressExpr
+    int32 m_iHitsRequired; // offset 0x928, size 0x4, align 4 | MPropertyStartGroup MPropertyStartGroup MPropertySuppressExpr
+    bool m_bHeavyMeleeOnly; // offset 0x92C, size 0x1, align 1 | MPropertySuppressExpr
+    char _pad_092D[0x3]; // offset 0x92D
+    float32 m_flCollisionRadius; // offset 0x930, size 0x4, align 4 | MPropertySuppressExpr
+    float32 m_flCenterHeightOffset; // offset 0x934, size 0x4, align 4 | MPropertySuppressExpr
     CEmbeddedSubclass< CBaseModifier > m_ParryCheckModifier; // offset 0x938, size 0x10, align 8
     bool m_bPicupIsVacuum; // offset 0x948, size 0x1, align 1 | MPropertyStartGroup MPropertyDescription
     char _pad_0949[0x3]; // offset 0x949

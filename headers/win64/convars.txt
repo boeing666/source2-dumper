@@ -1321,8 +1321,6 @@ citadel_player_move_speed_min | gamedll,clientdll,replicated,cheat | Min walk sp
 citadel_player_move_speed_scale | gamedll,clientdll,replicated,cheat | Scales how fast players can move
 citadel_player_neutral_gold_drop_min | developmentonly,gamedll,defensive | 
 citadel_player_neutral_gold_drop_min_increase_per_minute | developmentonly,gamedll,defensive | 
-citadel_player_neutral_gold_duration | developmentonly,gamedll,defensive | 
-citadel_player_neutral_gold_fallrate | developmentonly,gamedll,defensive | 
 citadel_player_outline_allies | developmentonly,clientdll | 
 citadel_player_outline_enemies | developmentonly,clientdll | 
 citadel_player_outline_fade_at_min | developmentonly,clientdll | 
@@ -1593,6 +1591,11 @@ citadel_slide_one_button_falling_max_lookahead_distance | developmentonly,gamedl
 citadel_slow_air_drag_penalty_scale | gamedll,clientdll,replicated,cheat | Fraction of an active movement slow that is also applied as additional air drag
 citadel_snowball_level_override | gamedll,cheat,release,client_can_execute | Change the snowball level
 citadel_solo_bot_match | gamedll,clientdll,replicated,release | 
+citadel_soul_bag_extra_spawn_min_value_multiplier | developmentonly,gamedll,defensive | 
+citadel_soul_bag_scale_max | developmentonly,gamedll,defensive | 
+citadel_soul_bag_scale_max_value | developmentonly,gamedll,defensive | 
+citadel_soul_bag_scale_min | developmentonly,gamedll,defensive | 
+citadel_soul_bag_spawn_max | developmentonly,gamedll,defensive | 
 citadel_soul_rune_lane_experiment | developmentonly,gamedll,clientdll,replicated | Forces all players down the mid lane.
 citadel_spawn_combine_only | developmentonly,gamedll | Only spawn creeps on one team
 citadel_spawn_practice_bots | gamedll,release | 
