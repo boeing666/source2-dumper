@@ -4,6 +4,6 @@ class CDOTA_Modifier_Special_Bonus_HP_Regen : public CDOTA_Buff /*0x0*/  // size
 {
 public:
     char _pad_0000[0x1AF8]; // offset 0x0
-    int32 value; // offset 0x1AF8, size 0x4, align 4
+    float32 value; // offset 0x1AF8, size 0x4, align 4
     char _pad_1AFC[0x4]; // offset 0x1AFC
 };
