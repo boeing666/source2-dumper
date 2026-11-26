@@ -1,6 +1,6 @@
 #pragma once
 
-class CAbilityGooGrenadeVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1288, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CAbilityGooGrenadeVData : public CitadelAbilityVData /*0x0*/  // sizeof 0x12A0, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x1080]; // offset 0x0
@@ -12,4 +12,10 @@ public:
     CSoundEventName m_GrenadeHitSound; // offset 0x1270, size 0x10, align 8 | MPropertyStartGroup
     float32 m_flMinRestitution; // offset 0x1280, size 0x4, align 4 | MPropertyStartGroup
     float32 m_flMaxRestitution; // offset 0x1284, size 0x4, align 4
+    float32 m_flClimbHeight; // offset 0x1288, size 0x4, align 4
+    float32 m_flLedgeForwardClearance; // offset 0x128C, size 0x4, align 4
+    float32 m_flLedgeExtraDropHeight; // offset 0x1290, size 0x4, align 4
+    float32 m_flEdgeBounceMaxNormalDot; // offset 0x1294, size 0x4, align 4
+    bool m_bDebug; // offset 0x1298, size 0x1, align 1
+    char _pad_1299[0x7]; // offset 0x1299
 };

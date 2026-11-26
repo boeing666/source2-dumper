@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_Priest_Flashbang_VData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1280, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
+class CCitadel_Ability_Priest_Flashbang_VData : public CitadelAbilityVData /*0x0*/  // sizeof 0x1288, align 0x8 [vtable] (server) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x1080]; // offset 0x0
@@ -12,6 +12,7 @@ public:
     float32 m_flMinSurfaceDotToBounce; // offset 0x1270, size 0x4, align 4 | MPropertyStartGroup
     float32 m_flMaxSurfaceDotToBounce; // offset 0x1274, size 0x4, align 4
     float32 m_flBounceVerticalReductionRatio; // offset 0x1278, size 0x4, align 4
-    bool m_bDebug; // offset 0x127C, size 0x1, align 1
-    char _pad_127D[0x3]; // offset 0x127D
+    float32 m_flClimbHeight; // offset 0x127C, size 0x4, align 4
+    bool m_bDebug; // offset 0x1280, size 0x1, align 1
+    char _pad_1281[0x7]; // offset 0x1281
 };

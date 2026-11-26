@@ -18,7 +18,8 @@ public:
     char _pad_1524[0x14]; // offset 0x1524
     bool m_bRequestStopClimbing; // offset 0x1538, size 0x1, align 1
     bool m_bRequestJumpToRoof; // offset 0x1539, size 0x1, align 1
-    char _pad_153A[0x2]; // offset 0x153A
+    bool m_bLatchedNearTop; // offset 0x153A, size 0x1, align 1
+    char _pad_153B[0x1]; // offset 0x153B
     GameTime_t m_flMoveDownStartTime; // offset 0x153C, size 0x4, align 255
     EClimbRopeState_t m_eClimbState; // offset 0x1540, size 0x4, align 4
     char _pad_1544[0x4]; // offset 0x1544

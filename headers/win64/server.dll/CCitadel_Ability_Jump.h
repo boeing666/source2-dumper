@@ -1,6 +1,6 @@
 #pragma once
 
-class CCitadel_Ability_Jump : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1990, align 0x8 [vtable] (server) {MAbilityDynamicValuesSuppressCacheWhileActive}
+class CCitadel_Ability_Jump : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1998, align 0x8 [vtable] (server) {MAbilityDynamicValuesSuppressCacheWhileActive}
 {
 public:
     char _pad_0000[0x14A8]; // offset 0x0
@@ -39,5 +39,10 @@ public:
     int8 m_nConsecutiveWallJumps; // offset 0x1986, size 0x1, align 1
     char _pad_1987[0x1]; // offset 0x1987
     GameTime_t m_flLateralInputSuppressEndTime; // offset 0x1988, size 0x4, align 255
-    char _pad_198C[0x4]; // offset 0x198C
+    bool m_bFailedAirJump; // offset 0x198C, size 0x1, align 1
+    char _pad_198D[0x3]; // offset 0x198D
+    GameTime_t m_flFailedAirJumpPenaltyEndTime; // offset 0x1990, size 0x4, align 255
+    int8 m_nFailedAirJumpPenaltyStacks; // offset 0x1994, size 0x1, align 1
+    bool m_bGroundJumpAirDragPenalty; // offset 0x1995, size 0x1, align 1
+    char _pad_1996[0x2]; // offset 0x1996
 };

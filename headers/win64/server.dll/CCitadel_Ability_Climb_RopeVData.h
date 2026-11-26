@@ -24,12 +24,12 @@ public:
     float32 m_flActivateRange; // offset 0x10C4, size 0x4, align 4
     float32 m_flJumpToRoofRayCheckDist; // offset 0x10C8, size 0x4, align 4
     float32 m_flMinTimeToRoofCheck; // offset 0x10CC, size 0x4, align 4
-    float32 m_flTimeToHintRefresh; // offset 0x10D0, size 0x4, align 4
-    float32 m_iMaxHintCount; // offset 0x10D4, size 0x4, align 4
-    float32 m_flClimbRopeSlowDurationOnHit; // offset 0x10D8, size 0x4, align 4
-    float32 m_flCameraRotateSpeed; // offset 0x10DC, size 0x4, align 4
-    float32 m_flCameraRotateMaxTime; // offset 0x10E0, size 0x4, align 4
-    char _pad_10E4[0x4]; // offset 0x10E4
+    float32 m_flMinTimeToRoofCheckLatchDist; // offset 0x10D0, size 0x4, align 4
+    float32 m_flTimeToHintRefresh; // offset 0x10D4, size 0x4, align 4
+    float32 m_iMaxHintCount; // offset 0x10D8, size 0x4, align 4
+    float32 m_flClimbRopeSlowDurationOnHit; // offset 0x10DC, size 0x4, align 4
+    float32 m_flCameraRotateSpeed; // offset 0x10E0, size 0x4, align 4
+    float32 m_flCameraRotateMaxTime; // offset 0x10E4, size 0x4, align 4
     CEmbeddedSubclass< CCitadelModifier > m_ClimbRopeSlowOnHitModifier; // offset 0x10E8, size 0x10, align 8 | MPropertyStartGroup
     CEmbeddedSubclass< CCitadelModifier > m_ClimbRopeSlowFromRecentDamageModifier; // offset 0x10F8, size 0x10, align 8
 };

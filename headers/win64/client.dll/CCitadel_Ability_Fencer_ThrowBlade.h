@@ -12,5 +12,6 @@ public:
     bool m_bHitEnemyPlayer; // offset 0x1704, size 0x1, align 1
     char _pad_1705[0x3]; // offset 0x1705
     GameTime_t m_tRecastEndTime; // offset 0x1708, size 0x4, align 255
-    char _pad_170C[0xC64]; // offset 0x170C
+    GameTime_t m_tFirstCastTime; // offset 0x170C, size 0x4, align 255
+    char _pad_1710[0xC60]; // offset 0x1710
 };

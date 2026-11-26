@@ -1,6 +1,6 @@
 #pragma once
 
-class CTakeDamageInfo  // sizeof 0x100, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
+class CTakeDamageInfo  // sizeof 0x108, align 0x8 [vtable] (client) {MGetKV3ClassDefaults}
 {
 public:
     char _pad_0000[0x8]; // offset 0x0
@@ -40,10 +40,13 @@ public:
     bool m_bSpeakDamageEvent; // offset 0xBC, size 0x1, align 1 | MNotSaved
     char _pad_00BD[0x3]; // offset 0xBD
     float32 m_flDeferredHealthLossFraction; // offset 0xC0, size 0x4, align 4 | MNotSaved
-    bool m_bCannotBeDeferred; // offset 0xC4, size 0x1, align 1 | MNotSaved
-    bool m_bIgnoresSelfBubble; // offset 0xC5, size 0x1, align 1 | MNotSaved
-    char _pad_00C6[0x22]; // offset 0xC6
-    CUtlLeanVector< DestructiblePartDamageRequest_t > m_DestructibleHitGroupRequests; // offset 0xE8, size 0x10, align 8
-    bool m_bInTakeDamageFlow; // offset 0xF8, size 0x1, align 1 | MNotSaved
-    char _pad_00F9[0x7]; // offset 0xF9
+    float32 m_flOwnerEventMitigationScale; // offset 0xC4, size 0x4, align 4 | MNotSaved
+    bool m_bCannotBeDeferred; // offset 0xC8, size 0x1, align 1 | MNotSaved
+    bool m_bOutgoingDamageScaleApplied; // offset 0xC9, size 0x1, align 1 | MNotSaved
+    bool m_bPureDamageUsesDamageAmps; // offset 0xCA, size 0x1, align 1 | MNotSaved
+    bool m_bIgnoresSelfBubble; // offset 0xCB, size 0x1, align 1 | MNotSaved
+    char _pad_00CC[0x24]; // offset 0xCC
+    CUtlLeanVector< DestructiblePartDamageRequest_t > m_DestructibleHitGroupRequests; // offset 0xF0, size 0x10, align 8
+    bool m_bInTakeDamageFlow; // offset 0x100, size 0x1, align 1 | MNotSaved
+    char _pad_0101[0x7]; // offset 0x101
 };

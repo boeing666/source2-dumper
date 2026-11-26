@@ -8,7 +8,8 @@ public:
     float32 m_flCurrentInvisLevel; // offset 0x144, size 0x4, align 4
     GameTime_t m_FadeStartTime; // offset 0x148, size 0x4, align 255
     bool m_bRevealing; // offset 0x14C, size 0x1, align 1
-    char _pad_014D[0x3]; // offset 0x14D
+    bool m_bFullyInvis; // offset 0x14D, size 0x1, align 1
+    char _pad_014E[0x2]; // offset 0x14E
     float32 m_flRevealStartLevel; // offset 0x150, size 0x4, align 4
     float32 m_flRevealFadeDuration; // offset 0x154, size 0x4, align 4
 };

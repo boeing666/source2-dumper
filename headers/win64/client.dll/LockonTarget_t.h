@@ -1,6 +1,6 @@
 #pragma once
 
-struct LockonTarget_t  // sizeof 0x68, align 0xFF [vtable] (client)
+struct LockonTarget_t  // sizeof 0x70, align 0xFF [vtable] (client)
 {
     char _pad_0000[0x30]; // offset 0x0
     float32 m_flGainRate; // offset 0x30, size 0x4, align 4
@@ -11,5 +11,6 @@ struct LockonTarget_t  // sizeof 0x68, align 0xFF [vtable] (client)
     GameTime_t m_flLatchedTime; // offset 0x44, size 0x4, align 255
     ELockonState m_eLockonState; // offset 0x48, size 0x4, align 4
     CHandle< C_BaseEntity > m_hTarget; // offset 0x4C, size 0x4, align 4
-    char _pad_0050[0x18]; // offset 0x50
+    bool m_bHasLOS; // offset 0x50, size 0x1, align 1
+    char _pad_0051[0x1F]; // offset 0x51
 };

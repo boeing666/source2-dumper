@@ -14,6 +14,6 @@ public:
     CEmbeddedSubclass< CCitadelModifier > m_BountyModifier; // offset 0x1430, size 0x10, align 8 | MPropertyStartGroup
     CitadelCameraOperationsSequence_t m_cameraSequenceSlash; // offset 0x1440, size 0xA0, align 8 | MPropertyStartGroup
     float32 m_flGroundBreakOffAngle; // offset 0x14E0, size 0x4, align 4 | MPropertyStartGroup
-    char _pad_14E4[0x4]; // offset 0x14E4
+    float32 m_flEnemyStopCheckRadius; // offset 0x14E4, size 0x4, align 4
     CPiecewiseCurve m_SpeedCurve; // offset 0x14E8, size 0x40, align 8
 };

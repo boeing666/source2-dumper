@@ -1,6 +1,6 @@
 #pragma once
 
-class CAbility_Fencer_Ultimate : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1EB8, align 0x8 [vtable] (server)
+class CAbility_Fencer_Ultimate : public CCitadelBaseAbility /*0x0*/  // sizeof 0x1F68, align 0x8 [vtable] (server)
 {
 public:
     char _pad_0000[0x14A8]; // offset 0x0
@@ -17,5 +17,5 @@ public:
     GameTime_t m_flStuckTime; // offset 0x1508, size 0x4, align 255
     ParticleIndex_t m_UltHoldVFX; // offset 0x150C, size 0x4, align 255
     ParticleIndex_t m_DirPreviewVFX; // offset 0x1510, size 0x4, align 255
-    char _pad_1514[0x9A4]; // offset 0x1514
+    char _pad_1514[0xA54]; // offset 0x1514
 };

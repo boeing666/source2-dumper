@@ -69,10 +69,13 @@ public:
     CPanoramaImageName m_strAbilityImage; // offset 0x4A0, size 0x10, align 8
     CitadelAbilityHUDPanel_t m_HUDPanel; // offset 0x4B0, size 0x38, align 8
     bool m_bShowInPassiveItemsArea; // offset 0x4E8, size 0x1, align 1
-    bool m_bForceHideHUDPanel; // offset 0x4E9, size 0x1, align 1
-    bool m_bForceShowHUDPanel; // offset 0x4EA, size 0x1, align 1
-    bool m_bUsesFlightControls; // offset 0x4EB, size 0x1, align 1
-    char _pad_04EC[0x4]; // offset 0x4EC
+    bool m_bTooltipShowEnemyMovementAbilities; // offset 0x4E9, size 0x1, align 1
+    bool m_bTooltipShowEnemyFlyingAbilities; // offset 0x4EA, size 0x1, align 1
+    bool m_bTooltipShowAsMovementAbility; // offset 0x4EB, size 0x1, align 1
+    bool m_bForceHideHUDPanel; // offset 0x4EC, size 0x1, align 1
+    bool m_bForceShowHUDPanel; // offset 0x4ED, size 0x1, align 1
+    bool m_bUsesFlightControls; // offset 0x4EE, size 0x1, align 1
+    char _pad_04EF[0x1]; // offset 0x4EF
     CUtlString m_strFlyUpLocString; // offset 0x4F0, size 0x8, align 8
     CUtlString m_strFlyDownLocString; // offset 0x4F8, size 0x8, align 8
     CUtlString m_strSubCastUICSSClass; // offset 0x500, size 0x8, align 8 | MPropertyDescription

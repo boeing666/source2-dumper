@@ -1,6 +1,6 @@
 #pragma once
 
-struct CitadelGenericData_t  // sizeof 0x1638, align 0x8 (client) {MVDataRoot MVDataSingleton MGetKV3ClassDefaults}
+struct CitadelGenericData_t  // sizeof 0x1640, align 0x8 (client) {MVDataRoot MVDataSingleton MGetKV3ClassDefaults}
 {
     CUtlOrderedMap< EDamageFlashType, DamageFlashSettings_t > m_mapDamageFlash; // offset 0x0, size 0x28, align 8
     CUtlOrderedMap< EDamageFlashType, DamageFlashSettings_t > m_mapDamageFlashLowViolence; // offset 0x28, size 0x28, align 8
@@ -45,17 +45,17 @@ struct CitadelGenericData_t  // sizeof 0x1638, align 0x8 (client) {MVDataRoot MV
     char _pad_0824[0x4]; // offset 0x824
     RejuvinatorParams_t m_RejuvParams; // offset 0x828, size 0x70, align 8
     IdolParams_t m_IdolParams; // offset 0x898, size 0x578, align 8
-    KothParams_t m_KothParams; // offset 0xE10, size 0x2E8, align 8
-    TeleporterParams_t m_TeleporterParams; // offset 0x10F8, size 0x1F0, align 8
-    ObjectivesParams_t m_ObjectiveParams; // offset 0x12E8, size 0x30, align 4
-    BreakablePowerupLootParams_t m_BreakablePowerupLootParams; // offset 0x1318, size 0x30, align 8
-    CUtlVector< BreakableSpawnTimeDesc_t > m_BreakableSpawnTimeDesc; // offset 0x1348, size 0x18, align 8
-    CUtlOrderedMap< EStatsType, CUtlString > m_mapStatTypeImages; // offset 0x1360, size 0x28, align 8
-    CRemapFloat m_AimSpringStrength; // offset 0x1388, size 0x10, align 255 | MPropertyDescription
-    CRemapFloat m_TargetingSpringStrength; // offset 0x1398, size 0x10, align 255 | MPropertyDescription
-    CUtlOrderedMap< EAbilityResourceType, HeroAbilityResourceDef_t > m_mapResourceTypes; // offset 0x13A8, size 0x28, align 8
-    CUtlVector< ShopGroups_t > m_vecWeaponGroups; // offset 0x13D0, size 0x18, align 8 | MPropertyStartGroup
-    CUtlVector< ShopGroups_t > m_vecArmorGroups; // offset 0x13E8, size 0x18, align 8
-    CUtlVector< ShopGroups_t > m_vecSpiritGroups; // offset 0x1400, size 0x18, align 8
-    GameModeStreetBrawl_t m_StreetBrawl; // offset 0x1418, size 0x220, align 8 | MPropertyFlattenIntoParentRow MPropertyStartGroup
+    KothParams_t m_KothParams; // offset 0xE10, size 0x2F0, align 8
+    TeleporterParams_t m_TeleporterParams; // offset 0x1100, size 0x1F0, align 8
+    ObjectivesParams_t m_ObjectiveParams; // offset 0x12F0, size 0x30, align 4
+    BreakablePowerupLootParams_t m_BreakablePowerupLootParams; // offset 0x1320, size 0x30, align 8
+    CUtlVector< BreakableSpawnTimeDesc_t > m_BreakableSpawnTimeDesc; // offset 0x1350, size 0x18, align 8
+    CUtlOrderedMap< EStatsType, CUtlString > m_mapStatTypeImages; // offset 0x1368, size 0x28, align 8
+    CRemapFloat m_AimSpringStrength; // offset 0x1390, size 0x10, align 255 | MPropertyDescription
+    CRemapFloat m_TargetingSpringStrength; // offset 0x13A0, size 0x10, align 255 | MPropertyDescription
+    CUtlOrderedMap< EAbilityResourceType, HeroAbilityResourceDef_t > m_mapResourceTypes; // offset 0x13B0, size 0x28, align 8
+    CUtlVector< ShopGroups_t > m_vecWeaponGroups; // offset 0x13D8, size 0x18, align 8 | MPropertyStartGroup
+    CUtlVector< ShopGroups_t > m_vecArmorGroups; // offset 0x13F0, size 0x18, align 8
+    CUtlVector< ShopGroups_t > m_vecSpiritGroups; // offset 0x1408, size 0x18, align 8
+    GameModeStreetBrawl_t m_StreetBrawl; // offset 0x1420, size 0x220, align 8 | MPropertyFlattenIntoParentRow MPropertyStartGroup
 };

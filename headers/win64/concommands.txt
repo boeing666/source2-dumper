@@ -127,6 +127,7 @@ citadel_bot_give_all_abilities | gamedll,cheat,release | Gives all bots all abil
 citadel_bot_give_all_abilities_base | developmentonly,gamedll,defensive | Gives all bots all abilities without perks.  Use with citadel_bot_use_ability 1-4
 citadel_bot_give_all_bots_all_items | developmentonly,gamedll,defensive | Gives all bots all items. Not limited by slot count (last I checked, this resulted in ~200 items being added to every bot)
 citadel_bot_give_team_gold | gamedll,cheat | Give all bots on a particular team gold
+citadel_bot_give_unsecured_souls | gamedll,cheat,release | <amount> Gives all bots unsecured souls
 citadel_bot_kick | developmentonly,gamedll,defensive | Kick bot <name>
 citadel_bot_list_ents | gamedll,cheat | List ent id of all players that are bots in this game
 citadel_bot_list_objectives_ent | gamedll,cheat | List all entities that are associated with a Citadel Game Objective
@@ -194,6 +195,7 @@ citadel_give_gold | gamedll,cheat,client_can_execute | <gold> [unsecure=0|1] Giv
 citadel_give_halloween_candy | gamedll,cheat,release | Gives you candy for the eat Halloween candy ability. Usage: citadel_give_halloween_candy <count>
 citadel_give_permanent_buffs | gamedll,cheat,release | Gives you N random breakable permanent buffs at once, the same way a Sinner's Sacrifice jackpot does. Usage: citadel_give_permanent_buffs <count>
 citadel_give_player_gold | gamedll,cheat,client_can_execute | <player name> <gold> Gives the specified player gold
+citadel_give_unsecured_souls | gamedll,cheat,release | <amount> Gives your hero unsecured souls
 citadel_grant_dev_account | developmentonly,clientdll | <Account ID> [0/1] Grants or removes dev access to an account
 citadel_guide_bot_say | developmentonly,gamedll,defensive | <line> makes the guide bot say the specified line
 citadel_gun_boon_growth_vdata_tweak | developmentonly,clientdll | Command to tweak boon gun damage growth.  ** Usage - arg1 - Scale Value 1.0 being no change.
@@ -290,6 +292,7 @@ citadel_spawn_all_pickup_spawners | gamedll,cheat,release | Spawns the pickup of
 citadel_spawn_escort | gamedll,cheat,release | Spawns the escort with an optional delay
 citadel_spawn_midboss_breakables | gamedll,cheat,release | Force spawns the breakables above the mid boss that normally first appear at 10 minutes
 citadel_spawn_nearby_neutrals | gamedll,cheat,release | Spawns any neutral camps within 800 units (~20m)
+citadel_spawn_parade_floats | gamedll,cheat,release | Spawns one of each parade float type in a line starting at the given position. Usage: citadel_spawn_parade_floats <x> <y> <z>
 citadel_spawn_pickup | developmentonly,gamedll,defensive | Spawns a pickup using a pickup subclass
 citadel_spawn_pickup_item | developmentonly,gamedll,defensive | Spawns an item pickup for a specific item. You can specify the item, or else you'll get a random one
 citadel_spawn_trooper | gamedll,cheat,release | Creates a new trooper NPC and spawn them in front of the player

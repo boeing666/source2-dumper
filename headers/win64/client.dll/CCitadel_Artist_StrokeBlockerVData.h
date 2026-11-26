@@ -5,7 +5,7 @@ class CCitadel_Artist_StrokeBlockerVData : public CEntitySubclassVDataBase /*0x0
 public:
     char _pad_0000[0x28]; // offset 0x0
     int32 m_nMeleeHits; // offset 0x28, size 0x4, align 4 | MPropertyStartGroup
-    char _pad_002C[0x4]; // offset 0x2C
+    int32 m_nTrooperMeleeHits; // offset 0x2C, size 0x4, align 4
     CSoundEventName m_strHitSound; // offset 0x30, size 0x10, align 8 | MPropertyStartGroup
     CSoundEventName m_strDestroySound; // offset 0x40, size 0x10, align 8
     CUtlOrderedMap< ECitadelAudioLoopSounds, CSoundEventName > m_mapLoopSounds; // offset 0x50, size 0x28, align 8
