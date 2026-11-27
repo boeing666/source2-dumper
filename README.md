@@ -1,5 +1,5 @@
 Source2 schema dump — deadlock
 
-PatchVersion: 6871
-Build: 26953664
+PatchVersion: 6875
+Build: 26966428
 One .h per class, grouped by platform/module (+ convars.txt / concommands.txt). Diff commits to see schema changes.
